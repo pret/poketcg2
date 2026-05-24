@@ -18,8 +18,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 $485a, $483d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 $489c, $483d
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           $49fc, $49e3
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           $49fc, $49e3
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   $4c3e, $4c32
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
@@ -310,7 +310,7 @@ AIDecide_Potion_Phase07:
 
 SECTION "Bank 8@49fc", ROMX[$49fc], BANK[$8]
 
-Func_209fc:
+AIDecide_GustOfWind:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	dec a
@@ -321,7 +321,7 @@ Func_209fc:
 	ret nz ; used Gust of Wind
 
 	; a = PLAY_AREA_ARENA
-	farcall CheckIfPokemonCanUseNonResidualAttack
+	farcall CanArenaCardUseNonResidualAttack
 	ret nc ; cannot use non-residual attack
 
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
@@ -464,15 +464,15 @@ Func_209fc:
 	jr .loop_bench
 
 .PoisonMistDeck:
-	farcall Func_3a441
+	farcall PoisonMistDeckAIDecideGustOfWind
 	ret
 
 .UltraRemovalDeck:
-	farcall Func_3a803
+	farcall UltraRemovalDeckAIDecideGustOfWind
 	ret
 
 .PsychicBattleDeck:
-	farcall Func_4c56b
+	farcall PsychicBattleDeckAIDecideGustOfWind
 	ret nc
 	cp $ff
 	jp z, .asm_20a79
@@ -480,15 +480,15 @@ Func_209fc:
 	ret
 
 .StopLifeDeck:
-	farcall Func_49603
+	farcall StopLifeDeckAIDecideGustOfWind
 	ret
 
 .TsunamiStarterDeck:
-	farcall Func_49b69
+	farcall TsunamiStarterDeckAIDecideGustOfWind
 	ret
 
 .SmashToMincemeatDeck:
-	farcall Func_49c04
+	farcall SmashToMincemeatDeckAIDecideGustOfWind
 	ret
 
 ; returns nc if Arena card can potentially damage

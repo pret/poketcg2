@@ -258,7 +258,7 @@ HandleStartMenu:
 	ld hl, wd554
 	set 0, [hl]
 	call LoadBackupSave
-	farcall CheckSavedDuelChecksum
+	farcall ValidateSavedNonLinkDuelData
 	jr c, .no_saved_duel
 	ld hl, wd554
 	set 2, [hl]

@@ -82,8 +82,8 @@ SleepCardEffect:
 	ld [hl], a
 	; reset changed type
 	ld l, DUELVARS_ARENA_CARD_CHANGED_TYPE
-	ld [hl], $00
-	; reset PLAY_AREA_FLAG_UNK_3 flag
+	ld [hl], 0
+	; reset Poison Mist flag
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 	res AFFECTED_BY_POISON_MIST_F, [hl]
 	bank1call DrawDuelHUDs
@@ -477,7 +477,7 @@ Challenge_PlayerAndOpponentSelectEffect:
 	ret
 
 .link_opp
-	ld a, OPPACTION_UNK_1B
+	ld a, OPPACTION_REACT_TO_CHALLENGE
 	call SetOppAction_SerialSendDuelData
 .loop_wait_response
 	call SerialRecvByte
@@ -493,7 +493,7 @@ Challenge_PlayerAndOpponentSelectEffect:
 	farcall HandleChallengeCardPlayerSelection
 
 	; send selection to link opponent
-	ld a, OPPACTION_UNK_1C
+	ld a, OPPACTION_ACCEPT_CHALLENGE_PUT_BASIC_PKMN
 	call SetOppAction_SerialSendDuelData
 
 	; await other player's selection
@@ -1774,7 +1774,7 @@ ComputerError_PlayerAndOppSelection:
 	ret
 
 .link_opp
-	ld a, OPPACTION_UNK_1A
+	ld a, OPPACTION_REACT_TO_COMPUTER_ERROR
 	call SetOppAction_SerialSendDuelData
 .loop_wait
 	call SerialRecvByte
@@ -4693,7 +4693,7 @@ HypnoMindShockEffect:
 	set UNAFFECTED_BY_WEAKNESS_RESISTANCE_F, [hl]
 	ret
 
-Func_65cf9:
+ClefairyDollMindShockEffect:
 	ld a, ATK_ANIM_PSYCHIC_HIT
 	ld [wLoadedAttackAnimation], a
 	ld hl, wDamage + 1

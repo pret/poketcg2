@@ -1031,7 +1031,7 @@ AISelectSpecialAttackParameters:
 	jr z, .select_foxfire_target_randomly
 	cp BLAZING_FLAME_DECK_ID
 	jr z, .select_foxfire_based_on_energies
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jr c, .asm_285ff
 	farcall FindBenchCardThatCanBeDamaged
 .asm_285ff
@@ -1277,7 +1277,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jp nc, .no_carry
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ldtx de, AttackSuccessCheckText
@@ -1347,7 +1347,7 @@ AISelectSpecialAttackParameters:
 	jp z, .no_carry
 	; don't remove any Food Counters in order to
 	; damage through Mr. Mime's Invisible Wall
-	farcall CheckIfDefendingPkmnIsMrMimeLv28AndHasActivePkmnPower
+	farcall IsInvisibleWallActiveInPlayerArena
 	jr c, .remove_0_food_counters
 
 	; if has no Food counters, output 0
@@ -2132,10 +2132,10 @@ HandleAIEnergyScoringForRepeatedBenchPokemon:
 	call CreateArenaOrBenchEnergyCardList
 	pop bc
 	sla a ; number of energy cards * 2
-	add $80
+	add AI_SCORE_NEUTRAL
 	sub b
 	pop de
-	; score = $80 + (num energy cards) * 2 - (num damage counters)
+	; score = AI_SCORE_NEUTRAL + (num energy cards) * 2 - (num damage counters)
 	push de
 	ld d, $00
 	ld hl, wSamePokemonEnergyScore
@@ -2535,11 +2535,9 @@ CheckIfPokemonEvolutionIsFoundInDeck:
 	scf
 	ret
 
-; returns carry if Pokémon in play area location in a
-; has any attack that is usable and non-residual
-; input:
-; - a = PLAY_AREA_* constant
-CheckIfPokemonCanUseNonResidualAttack:
+; return carry if the Arena Pokémon has any attack that is
+; usable and non-residual
+CanArenaCardUseNonResidualAttack:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
@@ -3035,7 +3033,7 @@ AIDeckSpecificBenchScore:
 
 .PowerfulPokemonDeck:
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	farcall CheckIfDefendingPokemonIsWeakToArenaCard
+	farcall IsDefendingPokemonWeakToArenaOrBenchPokemon
 	jp nc, .zero
 	ld a, 5
 	or a

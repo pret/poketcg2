@@ -364,15 +364,14 @@ CreateDeckCardList::
 	scf
 	ret
 
-; fill wDuelTempList with the turn holder's energy cards
-; in the arena or in a bench slot (their 0-59 deck indexes).
-; if a == 0: search in CARD_LOCATION_ARENA
-; if a != 0: search in CARD_LOCATION_BENCH_[A]
+; fill wDuelTempList with the turn holder's energy cards (their 0-59 deck indexes)
+; at PLAY_AREA_* location in a (then converted to CARD_LOCATION_*)
+; and return count in a and b
 ; return carry if no energy cards were found
 CreateArenaOrBenchEnergyCardList::
 	or CARD_LOCATION_PLAY_AREA
 	ld c, a
-	ld b, $00
+	ld b, 0
 	ld de, wDuelTempList
 	ld a, DUELVARS_CARD_LOCATIONS
 	get_turn_duelist_var
@@ -383,7 +382,7 @@ CreateArenaOrBenchEnergyCardList::
 	ld a, l
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Type]
-	and 1 << TYPE_ENERGY_F
+	and TYPE_ENERGY
 	jr z, .skip_card ; jump if Pokemon or trainer card
 	ld a, l
 	ld [de], a ; add to wDuelTempList
@@ -657,11 +656,11 @@ EvolvePokemonCard::
 	ld a, e
 	add DUELVARS_ARENA_CARD_FLAGS
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ld a, e
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ld a, e
 	or a
 	call z, ClearAllStatusConditions
@@ -743,11 +742,11 @@ CheckIfCanEvolveInto_BasicToStage2::
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, d
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ld a, [wLoadedCard1]
-	cp $08
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
 	jr nc, .cant_evolve
 	ld a, [wLoadedCard1Stage]
-	cp $02
+	cp STAGE2
 	jr nz, .cant_evolve
 	ld hl, wLoadedCard1PreEvoName
 	ld e, [hl]
@@ -837,23 +836,23 @@ PutHandPokemonCardInPlayArea::
 	ld a, DUELVARS_ARENA_CARD_FLAGS
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_CHANGED_TYPE
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_DEFENDER
 	add e
 	ld l, a
-	ld [hl], $0
-	ld a, $e6
+	ld [hl], 0
+	ld a, DUELVARS_ARENA_CARD_FOOD_COUNTERS
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_STAGE
 	add e
 	ld l, a
@@ -1352,7 +1351,7 @@ UseAttackOrPokemonPower::
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	jp c, DrawWideTextBox_WaitForInput_ReturnCarry
-	farcall PrintAttackDeclarationText
+	farcall DrawDuelMainScene_PrintPokemonsAttackText
 	call WaitForWideTextBoxInput
 	call SendAttackDataToLinkOpponent
 	bank1call HandleSandAttackSmokescreenOrLightningFlashSubstatus
@@ -1387,7 +1386,7 @@ UseAttackOrPokemonPower::
 	call SetOppAction_SerialSendDuelData
 ;	fallthrough
 
-PlayAttackAnimation_DealAttackDamage:
+PlayAttackAnimation_DealAttackDamage::
 	call UpdateTempDuelistCardIDs
 	bank1call SetDarkWaveAndDarknessVeilDamageModifiers
 	farcall ResetAttackAnimationIsPlaying
@@ -1480,7 +1479,7 @@ ClearNonTurnTemporaryDuelvars_ResetCarry:
 
 ; called when attacker deals damage to itself due to confusion
 ; display the corresponding animation and deal 20 damage to self
-HandleConfusionDamageToSelf:
+HandleConfusionDamageToSelf::
 	bank1call CheckIfArenaCardIsDarkPrimeapeAndHasPkmnPowerActive
 	jr c, .got_damage
 	ld de, 20 ; damage
@@ -1513,7 +1512,7 @@ UsePokemonPower:
 	ld a, [wcd0d]
 	or a
 	jr z, .asm_1687
-	ld a, OPPACTION_UNK_0C
+	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	call SetOppAction_SerialSendDuelData
 .asm_1687
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
@@ -1609,7 +1608,7 @@ Func_189d:
 	ret
 
 ; return carry and 1 into wGotHeadsFromConfusionCheck if damage will be dealt to oneself due to confusion
-CheckSelfConfusionDamage:
+CheckSelfConfusionDamage::
 	xor a
 	ld [wGotHeadsFromConfusionCheck], a
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -2112,7 +2111,7 @@ Func_19fd:
 	ld [de], a
 	ret
 
-ShowMetronomeUnsuccessfulText:
+ShowMetronomeUnsuccessfulText::
 	bank1call ClearNonTurnTemporaryDuelvars
 	call Func_19fd
 	ldtx hl, MetronomeWasUnsuccessfulText

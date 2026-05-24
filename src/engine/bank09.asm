@@ -1,257 +1,4 @@
-; save data of the current duel to sCurrentDuel
-; byte 0 is $01, bytes 1 and 2 are the checksum, byte 3 is [wDuelType]
-; next $33a bytes come from DuelDataToSave
-SaveDuelData::
-	ld de, sCurrentDuel
-;	fallthrough
-
-; save data of the current duel to de (in SRAM)
-; byte 0 is $01, bytes 1 and 2 are the checksum, byte 3 is [wDuelType]
-; next $33a bytes come from DuelDataToSave
-SaveDuelDataToDE::
-	call EnableSRAM
-	push de
-	inc de
-	inc de
-	inc de
-	inc de
-	ld hl, DuelDataToSave
-	push de
-.save_duel_data_loop
-	; start copying data to de = sCurrentDuelData + $1
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld a, c
-	or b
-	jr z, .data_done
-	push hl
-	push bc
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	pop hl
-	call CopyDataHLtoDE
-	pop hl
-	inc hl
-	inc hl
-	jr .save_duel_data_loop
-.data_done
-	pop hl
-	; save a checksum to hl = sCurrentDuelData + $1
-	lb de, $23, $45
-	ld bc, $352
-.checksum_loop
-	ld a, e
-	sub [hl]
-	ld e, a
-	ld a, [hli]
-	xor d
-	ld d, a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .checksum_loop
-	pop hl
-	ld a, $01
-	ld [hli], a ; sCurrentDuel
-	ld [hl], e ; sCurrentDuelChecksum
-	inc hl
-	ld [hl], d ; sCurrentDuelChecksum
-	inc hl
-	ld a, [wDuelType]
-	ld [hl], a ; sCurrentDuelData
-	call DisableSRAM
-	ret
-
-Func_24048:
-	ld hl, sCurrentDuel
-	call CheckSavedDuelChecksum_FromHL
-	ret c
-	ld de, sCurrentDuel
-	call LoadSavedDuelData
-	or a
-	ret
-
-; load the data saved in sCurrentDuelData to WRAM according to the distribution
-; of DuelDataToSave. assumes saved data exists and that the checksum is valid.
-LoadSavedDuelData:
-	call EnableSRAM
-	inc de
-	inc de
-	inc de
-	inc de
-	ld hl, DuelDataToSave
-.loop
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld a, c
-	or b
-	jr z, .done
-	push hl
-	push bc
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	pop hl
-.loop_copy
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .loop_copy
-	pop hl
-	inc hl
-	inc hl
-	jr .loop
-.done
-	call DisableSRAM
-	bank1call Func_6838
-	ret
-
-DuelDataToSave:
-;	dw address, number of bytes to copy
-	dw STARTOF("WRAM0 Duels 1"), wNameBuffer + NAME_BUFFER_LENGTH - STARTOF("WRAM0 Duels 1")
-	dw wWhoseTurn, $24
-	dw hWhoseTurn, $1
-	dw wRNG1, $3
-	dw wAIDuelVars, $20
-	dw NULL
-
-; return carry if saved duel checksum
-; in SRAM is not valid
-CheckSavedDuelChecksum:
-	call EnableSRAM
-	ld hl, sCurrentDuel
-	ld a, [sCurrentDuelChecksum + $2]
-	call DisableSRAM
-	cp $01
-	jr nz, CheckSavedDuelChecksum_FromHL
-	scf
-	ret
-
-CheckSavedDuelChecksum_FromHL:
-	call EnableSRAM
-	push de
-	ld a, [hli] ; sCurrentDuel
-	or a
-	jr z, .set_carry
-	lb de, $23, $45
-	ld bc, $352
-	ld a, [hl] ; sCurrentDuelChecksum
-	sub e
-	ld e, a
-	inc hl
-	ld a, [hl]
-	xor d
-	ld d, a
-	inc hl
-	inc hl
-	; hl = sCurrentDuelData
-.loop_data
-	ld a, [hl]
-	add e
-	ld e, a
-	ld a, [hli]
-	xor d
-	ld d, a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .loop_data
-	ld a, e
-	or d
-	jr z, .no_carry
-.set_carry
-	scf
-.no_carry
-	call DisableSRAM
-	pop de
-	ret
-
-ClearSavedDuel:
-	call EnableSRAM
-	ld hl, sCurrentDuel
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	call DisableSRAM
-	ret
-
-; save duel state to SRAM
-; called between each two-player turn, just after player draws card (ROM bank 1 loaded)
-SaveDuelStateToSRAM:
-	ld a, $2
-	call BankswitchSRAM
-	; save duel data to sCurrentDuel
-	call SaveDuelData
-	xor a
-	call BankswitchSRAM
-	call EnableSRAM
-	ld hl, s0a008
-	ld a, [hl]
-	inc [hl]
-	call DisableSRAM
-	; select hl = SRAM3:(a000 + $400 * [s0a008] & $3)
-	; save wDuelTurns, non-turn holder's arena card ID, turn holder's arena card ID
-	and $3
-	add HIGH($a000) / 4
-	ld l, $0
-	ld h, a
-	add hl, hl
-	add hl, hl
-	ld a, $3
-	call BankswitchSRAM
-	push hl
-	ld a, DUELVARS_ARENA_CARD
-	get_turn_duelist_var
-	call GetCardIDFromDeckIndex
-	ld hl, wTempTurnDuelistCardID
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	call SwapTurn
-	ld a, DUELVARS_ARENA_CARD
-	get_turn_duelist_var
-	call GetCardIDFromDeckIndex
-	ld hl, wTempNonTurnDuelistCardID
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	call SwapTurn
-	pop hl
-	push hl
-	call EnableSRAM
-	ld a, [wDuelTurns]
-	ld [hli], a
-	ld a, [wTempNonTurnDuelistCardID]
-	ld [hli], a
-	ld a, [wTempNonTurnDuelistCardID + 1]
-	ld [hli], a
-	ld a, [wTempTurnDuelistCardID]
-	ld [hli], a
-	ld a, [wTempTurnDuelistCardID + 1]
-	ld [hli], a
-	; save duel data to SRAM3:(a000 + $400 * [s0a008] & $3) + $10
-	pop hl
-	ld de, $10
-	add hl, de
-	ld e, l
-	ld d, h
-	call DisableSRAM
-	call SaveDuelDataToDE
-	xor a
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
+INCLUDE "engine/save_duel.asm"
 
 ; display the card details of the card in wLoadedCard1
 ; print the text at hl
@@ -478,9 +225,15 @@ CheckIfHasSpaceInBench:
 	ccf
 	ret
 
-; prints "<Arena Pokémon>'s <attack>"
-PrintAttackDeclarationText::
+; draw duel main scene, then print "<Pokemon Lv.XX>の\n<attack>!" text
+; ("<arena pokemon>'s <attack>!")
+DrawDuelMainScene_PrintPokemonsAttackText::
 	bank1call DrawDuelMainScene
+; fallthrough
+
+; print "<Pokemon Lv.XX>の\n<attack>!" text
+; ("<arena pokemon>'s <attack>!")
+PrintPokemonsAttackText:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -498,11 +251,59 @@ PrintAttackDeclarationText::
 	ldtx hl, PokemonsAttackText
 	call DrawWideTextBox_PrintText
 	ret
-; 0x2439a
 
-SECTION "Bank 9@43ee", ROMX[$43ee], BANK[$9]
+; display attack detail when the opponent's Pokemon uses an attack
+DisplayOpponentUsedAttackScreen:
+	bank1call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call LoadDuelCardSymbolTiles
+	call LoadDuelFaceDownCardTiles
+	ldh a, [hTempCardIndex_ff9f]
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, CARDPAGE_POKEMON_OVERVIEW
+	ld [wCardPageNumber], a
+	ld hl, wLoadedCard1Atk1Name
+	ld de, wLoadedCard1Atk1Description
+	ld a, [wSelectedAttack]
+	or a ; cp FIRST_ATTACK_OR_PKMN_POWER
+	jr z, .got_atk
+	ld hl, wLoadedCard1Atk2Name
+	ld de, wLoadedCard1Atk2Description
+.got_atk
+	push hl
+	push de
+	ld e, 1
+	bank1call PrintAttackOrPkmnPowerInformation
+	lb de, 1, 4
+	pop hl
+	push hl
+	bank1call PrintAttackOrCardDescription
+	pop de
+	pop hl
+	inc de
+	inc de
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	dec de
+	or c
+	ret z ; no second page
+; print second page info
+	push de
+	push hl
+	call DrawWideTextBox
+	call WaitForWideTextBoxInput
+	pop hl
+	ld e, 1
+	bank1call PrintAttackOrPkmnPowerInformation
+	lb de, 1, 4
+	pop hl
+; fallthrough
 
-Func_243ee:
+; hl = description ptr (WRAM)
+; de = coordinates
+PrintDescriptionFromHL:
 	push de
 	push hl
 	dec e
@@ -531,7 +332,7 @@ DisplayUsePokemonPowerScreen:
 	call LoadDuelCheckPokemonScreenTiles
 	bank1call Func_6c12
 	pop hl
-	call Func_24494
+	call PrintTextToDescriptionScreenTextBox
 	bank1call PrintPlayAreaCardInformationAndLocation
 	lb de, 1, 4
 	call InitTextPrinting
@@ -540,26 +341,50 @@ DisplayUsePokemonPowerScreen:
 	lb de, 1, 6
 	ld hl, wLoadedCard1Atk1Description
 	bank1call PrintAttackOrCardDescription
-	ld hl, wLoadedCard1Atk1Description + $2
+	ld hl, wLoadedCard1Atk1Description + 2
 	ld a, [hli]
 	or [hl]
 	ret z ; no second page
-	; print second page info
+; print second page info
 	call WaitForWideTextBoxInput
 	bank1call PrintPlayAreaCardInformationAndLocation
 	lb de, 1, 4
 	call InitTextPrinting
 	ld hl, wLoadedCard1Atk1Name
 	call InitTextPrinting_ProcessTextFromPointerToID
-	ld hl, wLoadedCard1Atk1Description + $2
+	ld hl, wLoadedCard1Atk1Description + 2
 	lb de, 1, 6
-	call Func_243ee
+	call PrintDescriptionFromHL
 	ret
-; 0x24459
 
-SECTION "Bank 9@4494", ROMX[$4494], BANK[$9]
+PrintUsedTrainerCardDescription:
+	call EmptyScreen
+	lb de, 1, 1
+	ld hl, wLoadedCard1Name
+	call InitTextPrinting_ProcessTextFromPointerToID
+	ldtx hl, UsedText
+	call PrintTextToDescriptionScreenTextBox
+	lb de, 1, 4
+	ld hl, wLoadedCard1NonPokemonDescription
+	bank1call PrintAttackOrCardDescription
+	ld hl, wLoadedCard1NonPokemonDescription + 2
+	ld a, [hli]
+	or [hl]
+	jr z, .done ; no second page
+; print second page info
+	call WaitForWideTextBoxInput
+	lb de, 1, 1
+	ld hl, wLoadedCard1Name
+	call InitTextPrinting_ProcessTextFromPointerToID
+	ld hl, wLoadedCard1NonPokemonDescription + 2
+	lb de, 1, 4
+	call PrintDescriptionFromHL
+.done
+	call WaitForWideTextBoxInput
+	ret
 
-Func_24494:
+; hl = text ID
+PrintTextToDescriptionScreenTextBox:
 	push hl
 	call DrawWideTextBox
 	ld a, 19
@@ -697,38 +522,370 @@ DoLinkOpponentTurn:
 ; on a link duel, this is referenced by DoLinkOpponentTurn in a loop (on each opponent's HandleTurn)
 ; on a non-link duel (vs AI opponent), this is referenced by AIMakeDecision
 OppActionTable:
-	dw DuelTransmissionError
-	dw $4613
-	dw $45f9
-	dw $45d6
-	dw $462f
-	dw $45bf
-	dw $4659
-	dw $466b
-	dw $4684
-	dw $46ae
-	dw $46c5
-	dw $45b8
-	dw $46fc
-	dw $4725
-	dw $4761
-	dw $46e2
-	dw $4828
-	dw $4828
-	dw $477f
-	dw $4790
-	dw $4828
-	dw $479e
-	dw $4770
-	dw $477b
-	dw $47d7
-	dw $47e3
-	dw $47ea
-	dw $4805
-	dw $4818
-; 0x245b8
+	dw DuelTransmissionError                         ; OPPACTION_ERROR
+	dw OppAction_PlayBasicPokemonCard                ; OPPACTION_PLAY_BASIC_PKMN
+	dw OppAction_EvolvePokemonCard                   ; OPPACTION_EVOLVE_PKMN
+	dw OppAction_PlayEnergyCard                      ; OPPACTION_PLAY_ENERGY
+	dw OppAction_AttemptRetreat                      ; OPPACTION_ATTEMPT_RETREAT
+	dw OppAction_FinishTurnWithoutAttacking          ; OPPACTION_FINISH_NO_ATTACK
+	dw OppAction_PlayTrainerCard                     ; OPPACTION_PLAY_TRAINER
+	dw OppAction_ExecuteTrainerCardEffectCommands    ; OPPACTION_EXECUTE_TRAINER_EFFECTS
+	dw OppAction_BeginUseAttack                      ; OPPACTION_BEGIN_ATTACK
+	dw OppAction_UseAttack                           ; OPPACTION_USE_ATTACK
+	dw OppAction_PlayAttackAnimationDealAttackDamage ; OPPACTION_ATTACK_ANIM_AND_DAMAGE
+	dw OppAction_DrawCard                            ; OPPACTION_DRAW_CARD
+	dw OppAction_UsePokemonPower_NoEffect2           ; OPPACTION_USE_PKMN_POWER_NO_EFF2
+	dw OppAction_UsePokemonPower                     ; OPPACTION_USE_PKMN_POWER
+	dw OppAction_ExecutePokemonPowerEffect           ; OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	dw OppAction_ForceSwitchActive                   ; OPPACTION_FORCE_SWITCH_ACTIVE
+	dw OppAction_NoAction                            ; OPPACTION_NO_ACTION_0F
+	dw OppAction_NoAction                            ; OPPACTION_NO_ACTION_10
+	dw OppAction_TossCoinATimes                      ; OPPACTION_TOSS_COIN_A_TIMES
+	dw OppAction_6b30                                ; OPPACTION_6B30
+	dw OppAction_NoAction                            ; OPPACTION_NO_ACTION_13
+	dw OppAction_UseMetronomeAttack                  ; OPPACTION_USE_METRONOME_ATTACK
+	dw OppAction_6b15                                ; OPPACTION_6B15
+	dw OppAction_DrawDuelMainScene                   ; OPPACTION_DUEL_MAIN_SCENE
+	dw OppAction_ProcessPlayedPokemonCard            ; OPPACTION_PROCESS_PLAYED_PKMN
+	dw OppAction_ProcessTriggeredPokemonPower        ; OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
+	dw OppAction_ComputerErrorPrompt                 ; OPPACTION_REACT_TO_COMPUTER_ERROR
+	dw OppAction_ChallengePrompt                     ; OPPACTION_REACT_TO_CHALLENGE
+	dw OppAction_ChallengeAccepted                   ; OPPACTION_ACCEPT_CHALLENGE_PUT_BASIC_PKMN
 
-SECTION "Bank 9@4829", ROMX[$4829], BANK[$9]
+OppAction_DrawCard:
+	call DrawCardFromDeck
+	call nc, AddCardToHand
+	ret
+
+OppAction_FinishTurnWithoutAttacking:
+	bank1call DrawDuelMainScene
+	bank1call ClearNonTurnTemporaryDuelvars
+	ld a, TRUE
+	ld [wOpponentTurnEnded], a
+	ld a, [wTurnEndedDueToComputerError]
+	or a
+	ret nz
+	ldtx hl, FinishedTurnWithoutAttackingText
+	call DrawWideTextBox_WaitForInput
+	ret
+
+OppAction_PlayEnergyCard:
+	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld e, a
+	ldh a, [hTemp_ffa0]
+	ldh [hTempCardIndex_ff98], a
+	call PutHandCardInPlayArea
+	ldh a, [hTemp_ffa0]
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call DrawLargePictureOfCard
+	call PrintAttachedEnergyToPokemon
+	ld a, TRUE
+	ld [wAlreadyPlayedEnergy], a
+	bank1call DrawDuelMainScene
+	bank1call Func_6986
+	ret
+
+OppAction_EvolvePokemonCard:
+	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hTemp_ffa0]
+	ldh [hTempCardIndex_ff98], a
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call DrawLargePictureOfCard
+	call EvolvePokemonCardIfPossible
+	call PrintPokemonEvolvedIntoPokemon
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+OppAction_PlayBasicPokemonCard:
+	ldh a, [hTemp_ffa0]
+	ldh [hTempCardIndex_ff98], a
+	call PutHandPokemonCardInPlayArea
+	ldh [hTempPlayAreaLocation_ff9d], a
+	add DUELVARS_ARENA_CARD_STAGE
+	get_turn_duelist_var
+	ld [hl], BASIC
+	ldh a, [hTemp_ffa0]
+	ldtx hl, PlacedOnBenchText
+	bank1call DisplayCardDetailScreen
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+; now handle KOs by Pokemon Power effects
+OppAction_AttemptRetreat:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	push af
+	bank1call AttemptRetreat
+	ldtx hl, RetreatWasUnsuccessfulText
+	jr c, .failed
+	or a
+	jr z, .knocked_out
+	xor a
+	ld [wDuelDisplayedScreen], a
+	ldtx hl, RetreatedToTheBenchText
+.failed
+	push hl
+	bank1call DrawDuelMainScene
+	pop hl
+	pop af
+	push hl
+	call LoadCardNameToTxRam2
+	pop hl
+	call DrawWideTextBox_WaitForInput
+	ret
+.knocked_out
+	pop af
+	bank1call DrawDuelMainScene
+	ret
+
+OppAction_PlayTrainerCard:
+	bank1call LoadNonPokemonCardEffectCommands
+	call DisplayUsedTrainerCardDetailScreen
+	call PrintUsedTrainerCardDescription
+	call ExchangeRNG
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+OppAction_ExecuteTrainerCardEffectCommands:
+	ld a, EFFECTCMDTYPE_DISCARD_ENERGY
+	call TryExecuteEffectCommandFunction
+	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
+	call TryExecuteEffectCommandFunction
+	bank1call DrawDuelMainScene
+	ldh a, [hTempCardIndex_ff9f]
+	call MoveHandCardToDiscardPile
+	call ExchangeRNG
+	bank1call DrawDuelMainScene
+	ret
+
+OppAction_BeginUseAttack:
+	ldh a, [hTempCardIndex_ff9f]
+	ld d, a
+	ldh a, [hTemp_ffa0]
+	ld e, a
+	call CopyAttackDataAndDamage_FromDeckIndex
+	call UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars
+	call DisplayOpponentUsedAttackScreen
+	call PrintPokemonsAttackText
+	call WaitForWideTextBoxInput
+	call ExchangeRNG
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	bank1call HandleSandAttackSmokescreenOrLightningFlashSubstatus
+	ret nc
+	bank1call ClearNonTurnTemporaryDuelvars
+	ld a, TRUE
+	ld [wOpponentTurnEnded], a
+	ret
+
+OppAction_UseAttack:
+	call CheckSelfConfusionDamage
+	jr c, .confusion_damage
+	call ExchangeRNG
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+.confusion_damage
+	call HandleConfusionDamageToSelf
+	ld a, TRUE
+	ld [wOpponentTurnEnded], a
+	ret
+
+; now handle EFFECTCMDTYPE_DISCARD_ENERGY here
+OppAction_PlayAttackAnimationDealAttackDamage:
+	ldh a, [hTempCardIndex_ff9f]
+	cp -1
+	jr z, .metronome_unsuccessful
+	ld a, EFFECTCMDTYPE_DISCARD_ENERGY
+	call TryExecuteEffectCommandFunction
+	call PlayAttackAnimation_DealAttackDamage
+	ld a, TRUE
+	ld [wOpponentTurnEnded], a
+	ret
+.metronome_unsuccessful
+	call ShowMetronomeUnsuccessfulText
+	ld a, TRUE
+	ld [wOpponentTurnEnded], a
+	ret
+
+OppAction_ForceSwitchActive:
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
+	call DrawWideTextBox_WaitForInput
+	call SwapTurn
+	bank1call HasAlivePokemonInBench
+.force_selection
+	bank1call OpenPlayAreaScreenForSelection
+	jr c, .force_selection
+	call SwapTurn
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	call SerialSendByte
+	ret
+
+OppAction_UsePokemonPower_NoEffect2:
+	ldh a, [hTempCardIndex_ff9f]
+	ld d, a
+	ld e, FIRST_ATTACK_OR_PKMN_POWER
+	call CopyAttackDataAndDamage_FromDeckIndex
+	call ClearTwoTurnDuelVars
+	ldh a, [hTemp_ffa0]
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hTempCardIndex_ff9f]
+	call LoadCardNameToTxRam2
+	ld hl, wLoadedAttackName
+	ld a, [hli]
+	ld [wTxRam2_b], a
+	ld a, [hl]
+	ld [wTxRam2_b + 1], a
+	ldtx hl, UsePokemonPowerText
+	call DisplayUsePokemonPowerScreen
+	call WaitForWideTextBoxInput
+	ret
+
+OppAction_UsePokemonPower:
+	ldh a, [hTempCardIndex_ff9f]
+	ld d, a
+	ld e, FIRST_ATTACK_OR_PKMN_POWER
+	call CopyAttackDataAndDamage_FromDeckIndex
+	call ClearTwoTurnDuelVars
+	ldh a, [hTemp_ffa0]
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
+	call TryExecuteEffectCommandFunction
+	ld a, [wcd0d]
+	or a
+	jr nz, .exit
+	ldh a, [hTempCardIndex_ff9f]
+	call LoadCardNameToTxRam2
+	ld hl, wLoadedAttackName
+	ld a, [hli]
+	ld [wTxRam2_b], a
+	ld a, [hl]
+	ld [wTxRam2_b + 1], a
+	ldtx hl, UsePokemonPowerText
+	call DisplayUsePokemonPowerScreen
+	call WaitForWideTextBoxInput
+.exit
+	call ExchangeRNG
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+OppAction_ExecutePokemonPowerEffect:
+	farcall ResetAttackAnimationIsPlaying
+	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
+	call TryExecuteEffectCommandFunction
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+; transfer-based Pokemon Power
+; now EFFECTCMDTYPE_UNK_11 instead of EFFECTCMDTYPE_AFTER_DAMAGE
+OppAction_6b15:
+	ld a, EFFECTCMDTYPE_UNK_11
+	call TryExecuteEffectCommandFunction
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+OppAction_DrawDuelMainScene:
+	bank1call DrawDuelMainScene
+	ret
+
+OppAction_TossCoinATimes:
+	call SerialRecv8Bytes
+	push af
+	call LoadTxRam3
+	pop af
+	call TossCoinATimes
+	ld a, TRUE
+	ld [wSkipDuelistIsThinkingDelay], a
+	ret
+
+OppAction_6b30:
+	ldh a, [hWhoseTurn]
+	push af
+	ldh a, [hTemp_ffa0]
+	ldh [hWhoseTurn], a
+	call PlayDeckShuffleAnimation
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OppAction_UseMetronomeAttack:
+	bank1call DrawDuelMainScene
+	call SerialRecv8Bytes
+	push bc
+	ld [wMetronomeAttackCannotBeUsed], a
+	call SwapTurn
+	call CopyAttackDataAndDamage_FromDeckIndex
+	call SwapTurn
+	ldh a, [hTempCardIndex_ff9f]
+	ld [wPlayerAttackingCardIndex], a
+	ld a, [wSelectedAttack]
+	ld [wPlayerAttackingAttackIndex], a
+	ld a, [wTempCardID_ccc2]
+	ld [wPlayerAttackingCardID], a
+	ld a, [wTempCardID_ccc2 + 1]
+	ld [wPlayerAttackingCardID + 1], a
+	call UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars
+	pop bc
+	ld a, c
+	ld [wMetronomeEnergyCost], a
+	call PrintPokemonsAttackText
+	call WaitForWideTextBoxInput
+	ret
+
+OppAction_ProcessPlayedPokemonCard:
+	ldh a, [hTemp_ffa0]
+	ldh [hTempPlayAreaLocation_ff9d], a
+	bank1call ProcessPlayedPokemonCard.Process
+	ret nc
+	bank1call DrawDuelMainScene
+	ret
+
+; EFFECTCMDTYPE_PKMN_POWER_TRIGGER
+OppAction_ProcessTriggeredPokemonPower:
+	bank1call ProcessPlayedPokemonCard.TriggerPkmnPower
+	bank1call DrawDuelMainScene
+	ret
+
+OppAction_ComputerErrorPrompt:
+	ldh a, [hTemp_ffa0]
+	ld l, a
+	ld h, 0
+	call LoadTxRam3
+	ldtx hl, DuelistDrawCardsText
+	call DrawWideTextBox_WaitForInput
+	call SwapTurn
+	call HandleComputerErrorPlayerSelection
+	call SwapTurn
+	call SerialSendByte
+	ret
+
+OppAction_ChallengePrompt:
+	call SwapTurn
+	bank1call DrawDuelMainScene
+	ldtx hl, ChallengePromptText
+	call YesOrNoMenuWithText
+	call SwapTurn
+	call SerialSendByte
+	ret
+
+OppAction_ChallengeAccepted:
+	call PrintHowManyCardsLinkOpponentChoseDueToChallenge
+	call SwapTurn
+	call HandleChallengeCardPlayerSelection
+	call SetOppAction_SerialSendDuelData
+	call SwapTurn
+	ret
+
+OppAction_NoAction:
+	ret
 
 ; load the text ID of the card name with deck index given in a to TxRam2
 ; also loads the card to wLoadedCard1
@@ -1013,10 +1170,10 @@ PlacePrizes:
 	; print new deck card number
 	lb bc, 3, 5
 	ld a, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	lb bc, 18, 7
 	ld a, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop hl
 	pop de
 	dec e ; decrease number of cards in deck
@@ -1040,8 +1197,6 @@ PlacePrizes:
 	db 6, 7, 13, 4 ; Prize 4
 	db 5, 8, 14, 3 ; Prize 5
 	db 6, 8, 13, 3 ; Prize 6
-
-SECTION "Bank 9@4a1f", ROMX[$4a1f], BANK[$9]
 
 ; display the animation of the turn duelist drawing one card at the beginning of the turn
 ; if there isn't any card left in the deck, let the player know with a text message
@@ -1184,10 +1339,10 @@ PrintPlayerNumberOfHandAndDeckCards:
 	ld e, a
 	ld a, d
 	lb bc, 16, 10
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld a, e
 	lb bc, 10, 10
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ret
 
 PrintOpponentNumberOfHandAndDeckCards:
@@ -1203,10 +1358,10 @@ PrintOpponentNumberOfHandAndDeckCards:
 	ld e, a
 	ld a, d
 	lb bc, 5, 3
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld a, e
 	lb bc, 11, 3
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ret
 
 DeckAndHandIconsTileData:
@@ -1782,19 +1937,19 @@ ConvertSpecialTrainerCardToPokemon::
 	tx DiscardActionDescription ; CARD_DATA_ATTACK1_DESCRIPTION
 	ds CARD_DATA_ATTACK1_CATEGORY - (CARD_DATA_ATTACK1_DESCRIPTION + 2)
 	db POKEMON_POWER      ; CARD_DATA_ATTACK1_CATEGORY
-	dw $4896 ; TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
+	dw TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
 	ds CARD_DATA_RETREAT_COST - (CARD_DATA_ATTACK1_EFFECT_COMMANDS + 2)
 	db UNABLE_RETREAT     ; CARD_DATA_RETREAT_COST
 	ds PKMN_CARD_DATA_LENGTH - (CARD_DATA_RETREAT_COST + 1)
 
 .mind_shock_attack_data
 	energy 0 ; energies
-	tx ClefairyDollsMindShockName ; name
-	tx ClefairyDollsMindShockDescription ; description
+	tx ClefairyDollMindShockName ; name
+	tx ClefairyDollMindShockDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw $50ab ; effect commands
+	dw ClefairyDollMindShockEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2702,7 +2857,7 @@ CheckDeck:
 .loop_counts
 	ld a, [hli]
 	push hl
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop hl
 	inc c
 	inc c ; two tiles spacing
@@ -4127,13 +4282,13 @@ _TossCoin::
 	lb bc, 15, 11
 	ld a, [wCoinTossNumTossed]
 	inc a ; current coin number is wCoinTossNumTossed + 1
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld b, 17
 	ld a, SYM_SLASH
 	call WriteByteToBGMap0
 	inc b
 	ld a, [wCoinTossTotalNum]
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 
 .skip_print_coin_tally
 	call ResetAnimationQueue
@@ -4164,7 +4319,7 @@ _TossCoin::
 .got_result
 ; already decided on coin toss result,
 ; check if we should show animation or not
-	ld a, [wcd14]
+	ld a, [wSkipCoinTossAnimationAllowed]
 	or a
 	jr z, .dont_skip_animation
 	ldh a, [hKeysHeld]
@@ -4403,4 +4558,63 @@ _TossCoin::
 	call FinishQueuedAnimations
 	call DuelTransmissionError
 	ret
-; 0x26709
+
+; debug? unreferenced
+RequestToPrintCards_SelectStartCard:
+	call EmptyScreen
+	call EnableLCD
+	ld hl, wPrinterStartCardID
+	ld [hl], LOW(GRASS_ENERGY)
+	inc hl
+	ld [hl], HIGH(GRASS_ENERGY)
+.wait_input
+	call DoFrame
+	ld hl, wPrinterStartCardID
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ldh a, [hDPadHeld]
+	ld b, a
+; left
+	bit B_PAD_LEFT, b
+	jr z, .right
+	dec hl ; previous card
+.right
+	bit B_PAD_RIGHT, b
+	jr z, .up
+	inc hl ; next card
+.up
+	bit B_PAD_UP, b
+	jr z, .down
+	ld de, 10
+	add hl, de
+.down
+	bit B_PAD_DOWN, b
+	jr z, .got_card_id
+	ld de, -10
+	add hl, de
+
+.got_card_id
+	ld a, l
+	ld [wPrinterStartCardID], a
+	ld a, h
+	ld [wPrinterStartCardID + 1], a
+	lb bc, 5, 5
+	bank1call WriteTwoByteNumberInTxSymbol_PadSpace
+	ldh a, [hKeysPressed]
+	and PAD_START
+	jr z, .wait_input
+
+; request to print until end of card index
+	ld hl, wPrinterStartCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+.loop_cards
+	call LoadCardDataToBuffer1_FromCardID
+	ret c ; reached out of bounds
+	push de
+	farcall RequestToPrintCard
+	pop de
+	inc de
+	jr .loop_cards

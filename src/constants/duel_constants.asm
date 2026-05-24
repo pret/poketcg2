@@ -7,6 +7,18 @@ DEF HP_BAR_LENGTH         EQU MAX_HP / 10
 DEF STARTING_HAND_SIZE EQU 7
 DEF MAX_PRIZE_CARDS    EQU 6
 
+; see sCurrentDuel and DuelDataToSave
+RSRESET
+DEF SAVE_DUEL_HEADER_VALID_FLAG RB ; $0
+DEF SAVE_DUEL_HEADER_CHECKSUM   RW ; $1
+DEF SAVE_DUEL_HEADER_DUEL_TYPE  RB ; $3
+DEF SAVE_DUEL_HEADER_SIZE       EQU _RS ; 4
+DEF SAVE_DUEL_DATA              RB 856 ; $4
+DEF SAVE_DUEL_DATA_SIZE         EQU _RS - SAVE_DUEL_HEADER_SIZE ; 856
+DEF SAVE_DUEL_SIZE              EQU _RS ; 860
+
+DEF SAVE_DUEL_CHECKSUM_SEED EQU $2345
+
 ; coin result constants
 DEF TAILS EQU 0
 DEF HEADS EQU 1
@@ -56,6 +68,11 @@ DEF DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK      EQUS "LOW(wPlayerNumberOfCardsNotI
 DEF DUELVARS_ARENA_CARD                       EQUS "LOW(wPlayerArenaCard)"                   ; bb
 DEF DUELVARS_BENCH                            EQUS "LOW(wPlayerBench)"                       ; bc
 DEF DUELVARS_ARENA_CARD_FLAGS                 EQUS "LOW(wPlayerArenaCardFlags)"              ; c2
+DEF DUELVARS_BENCH1_CARD_FLAGS                EQUS "LOW(wPlayerBench1CardFlags)"             ; c3
+DEF DUELVARS_BENCH2_CARD_FLAGS                EQUS "LOW(wPlayerBench2CardFlags)"             ; c4
+DEF DUELVARS_BENCH3_CARD_FLAGS                EQUS "LOW(wPlayerBench3CardFlags)"             ; c5
+DEF DUELVARS_BENCH4_CARD_FLAGS                EQUS "LOW(wPlayerBench4CardFlags)"             ; c6
+DEF DUELVARS_BENCH5_CARD_FLAGS                EQUS "LOW(wPlayerBench5CardFlags)"             ; c7
 DEF DUELVARS_ARENA_CARD_HP                    EQUS "LOW(wPlayerArenaCardHP)"                 ; c8
 DEF DUELVARS_BENCH1_CARD_HP                   EQUS "LOW(wPlayerBench1CardHP)"                ; c9
 DEF DUELVARS_BENCH2_CARD_HP                   EQUS "LOW(wPlayerBench2CardHP)"                ; ca
@@ -215,7 +232,7 @@ DEF SUBSTATUS3_TURN_COUNTDOWN_HI_F       EQU 5
 DEF SUBSTATUS3_STRANGE_BEAM_F            EQU 6
 DEF SUBSTATUS3_PERPLEX_F                 EQU 7
 
-; DUELVARS_ARENA_CARD_FLAGS constants
+; DUELVARS_*_CARD_FLAGS constants
 DEF PLAY_AREA_FLAG_UNK_1_F       EQU 1
 DEF PLAY_AREA_FLAG_UNK_2_F       EQU 2
 DEF AFFECTED_BY_POISON_MIST_F    EQU 3
@@ -224,6 +241,7 @@ DEF USED_PKMN_POWER_THIS_TURN_F  EQU 5
 DEF USED_LEEK_SLAP_THIS_DUEL_F   EQU 6
 DEF CAN_EVOLVE_THIS_TURN_F       EQU 7
 
+DEF AFFECTED_BY_POISON_MIST     EQU 1 << AFFECTED_BY_POISON_MIST_F
 DEF AFFECTED_BY_STARE           EQU 1 << AFFECTED_BY_STARE_F
 DEF USED_PKMN_POWER_THIS_TURN   EQU 1 << USED_PKMN_POWER_THIS_TURN_F
 DEF USED_LEEK_SLAP_THIS_DUEL    EQU 1 << USED_LEEK_SLAP_THIS_DUEL_F
@@ -279,35 +297,35 @@ DEF NO_DAMAGE_OR_EFFECT_AURORA_VEIL  EQU $07
 
 ; OppAction_* constants (OppActionTable)
 	const_def
-	const OPPACTION_ERROR                     ; $00
-	const OPPACTION_PLAY_BASIC_PKMN           ; $01
-	const OPPACTION_EVOLVE_PKMN               ; $02
-	const OPPACTION_PLAY_ENERGY               ; $03
-	const OPPACTION_ATTEMPT_RETREAT           ; $04
-	const OPPACTION_FINISH_NO_ATTACK          ; $05
-	const OPPACTION_PLAY_TRAINER              ; $06
-	const OPPACTION_EXECUTE_TRAINER_EFFECTS   ; $07
-	const OPPACTION_BEGIN_ATTACK              ; $08
-	const OPPACTION_USE_ATTACK                ; $09
-	const OPPACTION_ATTACK_ANIM_AND_DAMAGE    ; $0a
-	const OPPACTION_DRAW_CARD                 ; $0b
-	const OPPACTION_UNK_0C                    ; $0c
-	const OPPACTION_USE_PKMN_POWER            ; $0d
-	const OPPACTION_EXECUTE_PKMN_POWER_EFFECT ; $0e
-	const OPPACTION_FORCE_SWITCH_ACTIVE       ; $0f
-	const OPPACTION_NO_ACTION_0F              ; $10
-	const OPPACTION_NO_ACTION_10              ; $11
-	const OPPACTION_TOSS_COIN_A_TIMES         ; $12
-	const OPPACTION_6B30                      ; $13
-	const OPPACTION_NO_ACTION_13              ; $14
-	const OPPACTION_USE_METRONOME_ATTACK      ; $15
-	const OPPACTION_6B15                      ; $16
-	const OPPACTION_DUEL_MAIN_SCENE           ; $17
-	const OPPACTION_UNK_18                    ; $18
-	const OPPACTION_UNK_19                    ; $19
-	const OPPACTION_UNK_1A                    ; $1a
-	const OPPACTION_UNK_1B                    ; $1b
-	const OPPACTION_UNK_1C                    ; $1c
+	const OPPACTION_ERROR                           ; $00
+	const OPPACTION_PLAY_BASIC_PKMN                 ; $01
+	const OPPACTION_EVOLVE_PKMN                     ; $02
+	const OPPACTION_PLAY_ENERGY                     ; $03
+	const OPPACTION_ATTEMPT_RETREAT                 ; $04
+	const OPPACTION_FINISH_NO_ATTACK                ; $05
+	const OPPACTION_PLAY_TRAINER                    ; $06
+	const OPPACTION_EXECUTE_TRAINER_EFFECTS         ; $07
+	const OPPACTION_BEGIN_ATTACK                    ; $08
+	const OPPACTION_USE_ATTACK                      ; $09
+	const OPPACTION_ATTACK_ANIM_AND_DAMAGE          ; $0a
+	const OPPACTION_DRAW_CARD                       ; $0b
+	const OPPACTION_USE_PKMN_POWER_NO_EFF2          ; $0c
+	const OPPACTION_USE_PKMN_POWER                  ; $0d
+	const OPPACTION_EXECUTE_PKMN_POWER_EFFECT       ; $0e
+	const OPPACTION_FORCE_SWITCH_ACTIVE             ; $0f
+	const OPPACTION_NO_ACTION_0F                    ; $10
+	const OPPACTION_NO_ACTION_10                    ; $11
+	const OPPACTION_TOSS_COIN_A_TIMES               ; $12
+	const OPPACTION_6B30                            ; $13
+	const OPPACTION_NO_ACTION_13                    ; $14
+	const OPPACTION_USE_METRONOME_ATTACK            ; $15
+	const OPPACTION_6B15                            ; $16
+	const OPPACTION_DUEL_MAIN_SCENE                 ; $17
+	const OPPACTION_PROCESS_PLAYED_PKMN             ; $18
+	const OPPACTION_PROCESS_TRIGGERED_PKMN_POWER    ; $19
+	const OPPACTION_REACT_TO_COMPUTER_ERROR         ; $1a
+	const OPPACTION_REACT_TO_CHALLENGE              ; $1b
+	const OPPACTION_ACCEPT_CHALLENGE_PUT_BASIC_PKMN ; $1c
 DEF NUM_OPP_ACTIONS EQU const_value
 
 ; constants for PracticeDuelActionTable entries

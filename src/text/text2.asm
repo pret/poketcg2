@@ -759,12 +759,12 @@ DuelistDrawCardsText:
 	linefw "<RAMNUM>枚 ひきます"
 	done
 
-ClefairyDollsMindShockName:
+ClefairyDollMindShockName:
 	; redundant/dupe of MindShockName
 	textfw "マインドショック"
 	done
 
-ClefairyDollsMindShockDescription:
+ClefairyDollMindShockDescription:
 	; redundant, slightly different punctuation
 	; than SonicboomAltDescription (for Mind Shock etc.)
 	textfw "このワザのダメージは [相手]の"

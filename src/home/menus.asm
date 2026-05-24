@@ -272,14 +272,13 @@ HandleDuelMenuInput::
 	and PAD_A
 	jp nz, HandleMenuInput.A_pressed
 .blink_cursor
-	; blink cursor every 16 frames
 	ld hl, wCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $f
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
 	ld a, SYM_CURSOR_R
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, .draw_cursor
 .erase_cursor
 	ld a, SYM_SPACE
@@ -410,9 +409,9 @@ Func_2827::
 	ldh [hffbb], a
 	ret
 
-; convert the number at a to TX_SYMBOL text format and write it to wDefaultText
-; if the first digit is a 0, delete it and shift the number one tile to the left
-OneByteNumberToTxSymbol_TrimLeadingZerosAndAlign::
+; convert number in a to TX_SYMBOL format and write it to wDefaultText
+; if the first digit is 0, delete it and shift the number one tile to the left
+OneByteNumberToTxSymbol_TrimLeadingZeroAndAlign::
 	call OneByteNumberToTxSymbol
 	ld a, [hli]
 	cp SYM_0
@@ -557,7 +556,7 @@ CardListMenuFunction::
 	ld c, a
 	ldh a, [hCurScrollMenuItem]
 	inc a
-	call OneByteNumberToTxSymbol_TrimLeadingZeros
+	call OneByteNumberToTxSymbol_PadSpace
 	ld b, 14
 	ld a, 2
 	call CopyDataToBGMap0
@@ -565,7 +564,7 @@ CardListMenuFunction::
 	ld a, SYM_SLASH
 	call WriteByteToBGMap0
 	ld a, [wNumListItems]
-	call OneByteNumberToTxSymbol_TrimLeadingZeros
+	call OneByteNumberToTxSymbol_PadSpace
 	ld b, 17
 	ld a, 2
 	call CopyDataToBGMap0
@@ -593,9 +592,9 @@ CardListMenuFunction::
 	scf
 	ret
 
-; convert the number at a to TX_SYMBOL text format and write it to wDefaultText
+; convert number in a to TX_SYMBOL format and write it to wDefaultText
 ; replace leading zeros with SYM_SPACE
-OneByteNumberToTxSymbol_TrimLeadingZeros::
+OneByteNumberToTxSymbol_PadSpace::
 	call OneByteNumberToTxSymbol
 	ld a, [hl]
 	cp SYM_0
@@ -603,7 +602,7 @@ OneByteNumberToTxSymbol_TrimLeadingZeros::
 	ld [hl], SYM_SPACE
 	ret
 
-; convert the number at a to TX_SYMBOL text format and write it to wDefaultText
+; convert number in a to TX_SYMBOL format and write it to wDefaultText
 OneByteNumberToTxSymbol::
 	ld hl, wDefaultText
 	push hl

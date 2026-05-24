@@ -39,8 +39,9 @@ AIDecideSpecialBasicCards:
 	cp BIG_THUNDER_DECK_ID
 	jp z, .BigThunderDeck
 
+; +2
 .standard_score
-	ld a, 130
+	ld a, AI_SCORE_BASIC_POKEMON
 	ret
 
 ; legendary birds
@@ -70,7 +71,7 @@ AIDecideSpecialBasicCards:
 	; or if it decides it will retreat this turn
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr c, .discourage_legendary_birds
-	call CheckIfPokemonCanUseNonResidualAttack
+	call CanArenaCardUseNonResidualAttack
 	jr nc, .discourage_legendary_birds
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	jr c, .discourage_legendary_birds
@@ -113,11 +114,11 @@ AIDecideSpecialBasicCards:
 	jr z, .discourage_legendary_birds
 
 	; encourage playing Articuno
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .discourage_legendary_birds
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .molters_lv40
@@ -168,7 +169,7 @@ AIDecideSpecialBasicCards:
 	farcall CountCardIDInTurnDuelistPlayArea
 	cp 2
 	jp c, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 .asm_29f4c
 	ld e, [hl]
@@ -181,7 +182,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .PsychicEliteDeck:
@@ -216,10 +217,10 @@ AIDecideSpecialBasicCards:
 	ld hl, wMaxNumPlayAreaPokemon
 	cp [hl]
 	jr z, .discourage_mr_mime_lv20_murray ; has no space in Bench
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 .discourage_mr_mime_lv20_murray
-	ld a, 100
+	ld a, AI_SCORE_BASIC_POKEMON - 30
 	ret
 
 .chansey_lv55
@@ -267,10 +268,10 @@ AIDecideSpecialBasicCards:
 	jr c, .encourage_mr_mime_lv20_mitch
 	; otherwise discourage playing Mr. Mime
 .discourage_mr_mime_lv20_mitch
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 .encourage_mr_mime_lv20_mitch
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .GoArcanineDeck:
@@ -298,7 +299,7 @@ AIDecideSpecialBasicCards:
 	farcall CountCardIDInTurnDuelistPlayArea
 	cp 2
 	jp c, .standard_score ; < 2 in Play Area
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .hitmonchan_lv33
@@ -314,7 +315,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score ; no other Pokémon in play
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .SuddenGrowthDeck:
@@ -347,7 +348,7 @@ AIDecideSpecialBasicCards:
 	cp 1
 	jp z, .standard_score
 	; discourage playing it
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .ChokeDeck:
@@ -371,7 +372,7 @@ AIDecideSpecialBasicCards:
 	ld a, TYPE_PKMN_FIRE
 	farcall CheckIfPlayerHasPokemonOfType
 	jr nc, .discourage_unless_only_1_pkmn_in_play_choke_deck
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .kangaskhan_lv40_or_dratini_lv10
@@ -390,7 +391,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score ; only 1 Pokémon in play
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .bulbasaur_lv12
@@ -406,7 +407,7 @@ AIDecideSpecialBasicCards:
 	jr nc, .encourage_main_basic_pkmn_biruritchi
 	jp .standard_score
 .encourage_main_basic_pkmn_biruritchi
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .IncinerateDeck:
@@ -430,7 +431,7 @@ AIDecideSpecialBasicCards:
 	ld a, TYPE_PKMN_WATER
 	farcall CheckIfPlayerHasPokemonOfType
 	jr nc, .discourage_unless_only_1_pkmn_in_play_incinerate_deck
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .clefairy_lv15_incinerate_deck
@@ -452,7 +453,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .SmashDeck:
@@ -474,7 +475,7 @@ AIDecideSpecialBasicCards:
 	ld a, TYPE_PKMN_LIGHTNING
 	farcall CheckIfPlayerHasPokemonOfType
 	jr nc, .discourage_unless_only_1_pkmn_in_play_smash_deck
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .clefairy_lv15_smash_deck
@@ -496,7 +497,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .ThrowOutDeck:
@@ -523,7 +524,7 @@ AIDecideSpecialBasicCards:
 	jr nc, .discourage_unless_only_1_pkmn_in_play_throw_out_deck
 
 .encourage_mr_mime_lv20_throw_out_deck
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .clefairy_lv15_throw_out_deck
@@ -545,7 +546,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .PowerfulPokemonDeck:
@@ -559,7 +560,7 @@ AIDecideSpecialBasicCards:
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .ImmortalPokemonDeck:
@@ -570,7 +571,7 @@ AIDecideSpecialBasicCards:
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
 	jp c, .standard_score
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .TrainerImprisonDeck:
@@ -588,7 +589,7 @@ AIDecideSpecialBasicCards:
 	ld a, TYPE_PKMN_FIRE
 	farcall CheckIfPlayerHasPokemonOfType
 	jr nc, .discourage_unless_only_1_pkmn_in_play_toshiron
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .oddish_lv21
@@ -604,7 +605,7 @@ AIDecideSpecialBasicCards:
 	get_turn_duelist_var
 	cp 1
 	jp z, .standard_score
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
 
 .BigThunderDeck:
@@ -645,9 +646,9 @@ AIDecideSpecialBasicCards:
 	jr nc, .discourage_dee
 
 .encourage_dee
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .discourage_dee
-	ld a, 40
+	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret

@@ -303,6 +303,11 @@ DEF UNABLE_RETREAT EQU $64
 DEF FIRST_ATTACK_OR_PKMN_POWER EQU $0
 DEF SECOND_ATTACK              EQU $1
 
+; special EFFECT_PARAM values to be used with the HEAL_USER flag
+DEF HEALING_EQUALS_10_HP             EQU $1
+DEF HEALING_EQUALS_HALF_DAMAGE_DEALT EQU $2
+DEF HEALING_EQUALS_DAMAGE_DEALT      EQU $3
+
 ; whether attack with the ATTACHED_ENERGY_BOOST flag
 ; has limit on attached energy cards boost.
 DEF MAX_ENERGY_BOOST_IS_LIMITED     EQU $2

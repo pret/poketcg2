@@ -1,6 +1,6 @@
 StartDuelFromSRAM:
 	call SetupDuel
-	farcall Func_24048
+	farcall LoadAndValidateDuelSaveData
 	ldtx hl, BackUpIsBrokenText
 	jr c, .corrupted
 .ok::
@@ -1055,7 +1055,7 @@ HandleAttachedEnergyMenuInput:
 .print_single_number
 	ld a, [wAttachedEnergyMenuNumerator]
 	inc b
-	call WriteTwoDigitNumberInTxSymbolFormat
+	call WriteTwoDigitNumberInTxSymbol_PadSpace
 .wait_input
 	call DoFrame
 	call HandleCardListInput
@@ -1434,7 +1434,7 @@ PrintDuelResultStats:
 
 ; print, at d,e, the number of prizes left, of active Pokemon, and of cards left in
 ; the deck of the turn duelist. b,c are used throughout as input coords for
-; WriteTwoDigitNumberInTxSymbolFormat, and d,e for InitTextPrinting_ProcessTextFromID.
+; WriteTwoDigitNumberInTxSymbol_PadSpace, and d,e for InitTextPrinting_ProcessTextFromID.
 .PrintDuelistResultStats:
 	call SetNoLineSeparation
 	ldtx hl, PrizesLeftActivePokemonCardsInDeckText
@@ -1468,7 +1468,7 @@ PrintDuelResultStats:
 	ld a, DECK_SIZE
 	sub [hl]
 .print_x_cards
-	call WriteTwoDigitNumberInTxSymbolFormat
+	call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ldtx hl, CardsUnitText
 	call InitTextPrinting_ProcessTextFromID
 	ret
@@ -2278,11 +2278,11 @@ PracticeDuel_RepeatInstructions:
 	ldtx hl, PracticeDuelMasonIncorrectRetryText
 	call PrintPracticeDuelDrMasonInstructions
 	; restart the turn from the saved data of the previous turn
-	ld a, $02
+	ld a, BANK(sBackupCurrentDuel)
 	call BankswitchSRAM
-	ld de, sCurrentDuel
-	farcall LoadSavedDuelData
-	xor a
+	ld de, sBackupCurrentDuel
+	farcall LoadSavedDuelDataFromDE
+	xor a ; BANK("SRAM0")
 	call BankswitchSRAM
 	call DisableSRAM
 	; return carry in order to repeat instructions
@@ -3551,10 +3551,10 @@ DisplayCardPage_PokemonOverview:
 	; print card level and maximum HP
 	lb bc, 12, 2
 	ld a, [wLoadedCard1Level]
-	call WriteTwoDigitNumberInTxSymbolFormat
+	call WriteTwoDigitNumberInTxSymbol_PadSpace
 	lb bc, 16, 2
 	ld a, [wLoadedCard1HP]
-	call WriteTwoByteNumberInTxSymbolFormat
+	call WriteOneByteNumberInTxSymbol_PadSpace
 	jr .print_numbers_and_energies
 
 .play_area_card_page
@@ -3577,7 +3577,7 @@ DisplayCardPage_PokemonOverview:
 	; print Pokedex number in the bottom right corner (16,16)
 	lb bc, 16, 16
 	ld a, [wLoadedCard1PokedexNumber]
-	call WriteTwoByteNumberInTxSymbolFormat
+	call WriteOneByteNumberInTxSymbol_PadSpace
 	; print the name, damage, and energy cost of each attack and/or Pokemon power that exists
 	; first attack at 5,10 and second at 5,12
 	lb bc, 5, 10
@@ -3676,7 +3676,7 @@ PrintAttackOrPkmnPowerInformation:
 	ld b, 15 ; unless damage has three digits, this is effectively 16
 	ld c, e
 	inc c
-	call WriteTwoByteNumberInTxSymbolFormat
+	call WriteOneByteNumberInTxSymbol_PadSpace
 .print_category
 	pop hl
 	inc hl
@@ -3865,10 +3865,10 @@ DisplayCardPage_PokemonDescription:
 	; print the Level and HP numbers at 12,2 and 16,2 respectively
 	lb bc, 12, 2
 	ld a, [wLoadedCard1Level]
-	call WriteTwoDigitNumberInTxSymbolFormat
+	call WriteTwoDigitNumberInTxSymbol_PadSpace
 	lb bc, 16, 2
 	ld a, [wLoadedCard1HP]
-	call WriteTwoByteNumberInTxSymbolFormat
+	call WriteOneByteNumberInTxSymbol_PadSpace
 	; print the Pokemon's category at 1,10 (just above the length and weight texts)
 	lb de, 1, 10
 	ld hl, wLoadedCard1Category
@@ -4048,7 +4048,7 @@ PrintNumberAsMeasurement:
 	push bc
 	ld l, e
 	ld h, d
-	call TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1
+	call TwoByteNumberToTxSymbol_PadSpace_Bank01
 	pop bc
 	pop hl
 	ld a, l
@@ -4663,7 +4663,7 @@ PrintPlayAreaCardHeader:
 	ld c, a
 	ld b, 15
 	ld a, [wLoadedCard1Level]
-	call WriteTwoDigitNumberInTxSymbolFormat
+	call WriteTwoDigitNumberInTxSymbol_PadSpace
 
 	; print the 2x2 face down card image depending on the Pokemon's evolution stage
 	ld a, [wCurPlayAreaSlot]
@@ -4788,7 +4788,7 @@ CheckPrintPoisoned:
 
 CheckPrintDoublePoisoned:
 	push af
-	and DOUBLE_POISONED & (POISONED ^ $ff)
+	and DOUBLE_POISONED & (~POISONED)
 	jr nz, CheckPrintPoisoned.poison ; double poisoned (print SYM_POISONED)
 	jr CheckPrintPoisoned.print ; not double poisoned (print SYM_SPACE)
 
@@ -5110,12 +5110,15 @@ AttemptRetreat:
 	or a
 	ret
 
-WriteTwoByteNumberInTxSymbolFormat:
+; convert one-byte number in a to TX_SYMBOL format,
+; and write it to wStringBuffer + 2 and BGMap0 address at bc
+; replace leading zeros with SYM_SPACE
+WriteOneByteNumberInTxSymbol_PadSpace:
 	push de
 	push bc
 	ld l, a
 	ld h, $00
-	call TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1
+	call TwoByteNumberToTxSymbol_PadSpace_Bank01
 	pop bc
 	push bc
 	call BCCoordToBGMap0Address
@@ -5126,10 +5129,13 @@ WriteTwoByteNumberInTxSymbolFormat:
 	pop de
 	ret
 
-Func_6079:
+; convert two-byte number in hl to TX_SYMBOL format,
+; and write it to wStringBuffer and BGMap0 address at bc
+; replace leading zeros with SYM_SPACE
+WriteTwoByteNumberInTxSymbol_PadSpace:
 	push de
 	push bc
-	call TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1
+	call TwoByteNumberToTxSymbol_PadSpace_Bank01
 	pop bc
 	push bc
 	call BCCoordToBGMap0Address
@@ -5140,16 +5146,16 @@ Func_6079:
 	pop de
 	ret
 
-; given a number between 0-99 in a, converts it to TX_SYMBOL format,
-; and writes it to wStringBuffer + 3 and to the BGMap0 address at bc.
-; if the number is between 0-9, the first digit is replaced with SYM_SPACE.
-WriteTwoDigitNumberInTxSymbolFormat:
+; convert one-byte two-digit number in a (0-99) to TX_SYMBOL format,
+; and write it to wStringBuffer + 3 and BGMap0 address at bc
+; replace leading zero with SYM_SPACE if 0-9
+WriteTwoDigitNumberInTxSymbol_PadSpace:
 	push hl
 	push de
 	push bc
 	ld l, a
 	ld h, $00
-	call TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1
+	call TwoByteNumberToTxSymbol_PadSpace_Bank01
 	pop bc
 	push bc
 	call BCCoordToBGMap0Address
@@ -5161,9 +5167,10 @@ WriteTwoDigitNumberInTxSymbolFormat:
 	pop hl
 	ret
 
-; convert the number at hl to TX_SYMBOL text format and write it to wStringBuffer
+; convert two-byte number in hl to TX_SYMBOL format,
+; and write it to wStringBuffer
 ; replace leading zeros with SYM_SPACE
-TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1:
+TwoByteNumberToTxSymbol_PadSpace_Bank01:
 	ld de, wStringBuffer
 	ld bc, -10000
 	call .get_digit
@@ -5364,13 +5371,13 @@ ProcessPlayedPokemonCard:
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	call SetOppAction_SerialSendDuelData
 	call .Process
 	ret c
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
 	call TryExecuteEffectCommandFunction
-	ld a, OPPACTION_UNK_19
+	ld a, OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
 	call SetOppAction_SerialSendDuelData
 	call .TriggerPkmnPower
 	ret
@@ -5923,7 +5930,7 @@ ApplyStatusConditionToArenaPokemon:
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 	res AFFECTED_BY_POISON_MIST_F, [hl]
 	ld l, DUELVARS_ARENA_CARD_CHANGED_TYPE
-	ld [hl], $00 ; reset changed type
+	ld [hl], 0 ; reset changed type
 	pop hl
 	ret
 
@@ -6351,7 +6358,7 @@ InitVariablesToBeginDuel:
 
 	ld a, [wSelectedCoin]
 	ld [wPlayerCoin], a
-	call Func_6838
+	call LoadSkipAllowed
 
 	ld b, MAX_PLAY_AREA_POKEMON
 	ld a, [wSpecialRule]
@@ -6465,12 +6472,12 @@ InitializeDuelVariables:
 	jr nz, .init_play_area
 	ret
 
-Func_6838:
+LoadSkipAllowed:
 	call EnableSRAM
 	ld a, [sSkipDelayAllowed]
 	ld [wSkipDelayAllowed], a
 	ld a, [sCoinTossAnimationSetting]
-	ld [wcd14], a
+	ld [wSkipCoinTossAnimationAllowed], a
 	call DisableSRAM
 	ret
 
@@ -9542,19 +9549,20 @@ HandleGasExplosionKnockOut:
 	call SwapTurn
 	ret
 
-Func_796b:
+; return carry if Poison Mist is active
+IsPoisonMistActive:
 	call CheckGoopGasAttackAndToxicGasActive
 	ccf
 	ret nc
-	call .Func_797f
+	call .LookForActivePoisonMist
 	jr c, .done
 	call SwapTurn
-	call .Func_797f
+	call .LookForActivePoisonMist
 	call SwapTurn
 .done
 	ret
 
-.Func_797f:
+.LookForActivePoisonMist:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
@@ -9893,7 +9901,7 @@ GetPoisonDamage:
 	ld a, DBLPSN_DAMAGE
 	ret z
 	push de
-	call Func_796b
+	call IsPoisonMistActive
 	pop de
 	ld a, PSN_DAMAGE
 	ret nc

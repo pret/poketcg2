@@ -21,7 +21,7 @@ MachokeLv24Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT_EFFECT ; animation
 
 	; attack 2
@@ -35,7 +35,7 @@ MachokeLv24Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_FOCUS_BLAST ; animation
 
 	db 2 ; retreat cost
@@ -73,7 +73,7 @@ MachokeLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LEG_SWEEP ; animation
 
 	; attack 2
@@ -87,7 +87,7 @@ MachokeLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	db 2 ; retreat cost
@@ -125,7 +125,7 @@ MachokeLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -139,7 +139,7 @@ MachokeLv40Card:
 	db LOW_RECOIL ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 20 ; ?
+	db 20 ; effect param
 	db ATK_ANIM_HIT_RECOIL ; animation
 
 	db 3 ; retreat cost
@@ -177,7 +177,7 @@ DarkMachokeCard:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -191,7 +191,7 @@ DarkMachokeCard:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	db 2 ; retreat cost
@@ -229,7 +229,7 @@ MachampLv54Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -243,7 +243,7 @@ MachampLv54Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 3 ; retreat cost
@@ -281,7 +281,7 @@ MachampLv67Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -295,7 +295,7 @@ MachampLv67Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SEISMIC_TOSS ; animation
 
 	db 3 ; retreat cost
@@ -333,7 +333,7 @@ DarkMachampCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	; attack 2
@@ -347,7 +347,7 @@ DarkMachampCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MIRROR_MOVE ; animation
 
 	db 3 ; retreat cost
@@ -385,7 +385,7 @@ GeodudeLv15Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -399,7 +399,7 @@ GeodudeLv15Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PROTECT ; animation
 
 	db 1 ; retreat cost
@@ -437,7 +437,7 @@ GeodudeLv16Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_STONE_BARRAGE ; animation
 
 	; attack 2
@@ -451,7 +451,7 @@ GeodudeLv16Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -489,7 +489,7 @@ GravelerLv27Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BOULDER_SMASH ; animation
 
 	; attack 2
@@ -503,7 +503,7 @@ GravelerLv27Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 2 ; retreat cost
@@ -541,7 +541,7 @@ GravelerLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_STONE_BARRAGE ; animation
 
 	; attack 2
@@ -555,7 +555,7 @@ GravelerLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_EARTHQUAKE ; animation
 
 	db 2 ; retreat cost
@@ -593,7 +593,7 @@ GravelerLv29Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PROTECT ; animation
 
 	; attack 2
@@ -607,7 +607,7 @@ GravelerLv29Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_ROCK_THROW ; animation
 
 	db 2 ; retreat cost
@@ -645,7 +645,7 @@ GolemLv36Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_AVALANCHE ; animation
 
 	; attack 2
@@ -659,7 +659,7 @@ GolemLv36Card:
 	db HIGH_RECOIL ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 100 ; ?
+	db 100 ; effect param
 	db ATK_ANIM_BIG_SELFDESTRUCTION ; animation
 
 	db 4 ; retreat cost
@@ -697,7 +697,7 @@ GolemLv37Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -711,7 +711,7 @@ GolemLv37Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BOULDER_SMASH ; animation
 
 	db 3 ; retreat cost
@@ -749,7 +749,7 @@ OnixLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_ROCK_THROW ; animation
 
 	; attack 2
@@ -763,7 +763,7 @@ OnixLv12Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PROTECT ; animation
 
 	db 3 ; retreat cost
@@ -801,7 +801,7 @@ OnixLv25Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT_EFFECT ; animation
 
 	; attack 2
@@ -815,7 +815,7 @@ OnixLv25Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_ROCK_THROW ; animation
 
 	db 2 ; retreat cost
@@ -853,7 +853,7 @@ CuboneLv13Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_CRY ; animation
 
 	; attack 2
@@ -867,7 +867,7 @@ CuboneLv13Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -905,7 +905,7 @@ CuboneLv14Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 3 ; ?
+	db 3 ; effect param
 	db ATK_ANIM_BONEMERANG ; animation
 
 	; attack 2
@@ -919,7 +919,7 @@ CuboneLv14Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -957,7 +957,7 @@ MarowakLv26Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BONEMERANG ; animation
 
 	; attack 2
@@ -971,7 +971,7 @@ MarowakLv26Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -1009,7 +1009,7 @@ MarowakLv32Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BONEMERANG ; animation
 
 	; attack 2
@@ -1023,7 +1023,7 @@ MarowakLv32Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_CRY ; animation
 
 	db 2 ; retreat cost
@@ -1061,7 +1061,7 @@ DarkMarowakCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BONE_HEADBUTT ; animation
 
 	; attack 2
@@ -1075,7 +1075,7 @@ DarkMarowakCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -1113,7 +1113,7 @@ HitmonleeLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LEG_SWEEP ; animation
 
 	; attack 2
@@ -1127,7 +1127,7 @@ HitmonleeLv23Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LEG_SWEEP ; animation
 
 	db 1 ; retreat cost
@@ -1165,7 +1165,7 @@ HitmonleeLv30Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 3 ; ?
+	db 3 ; effect param
 	db ATK_ANIM_STRETCH_KICK ; animation
 
 	; attack 2
@@ -1179,7 +1179,7 @@ HitmonleeLv30Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LEG_SWEEP ; animation
 
 	db 1 ; retreat cost
@@ -1217,7 +1217,7 @@ HitmonchanLv23Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	; attack 2
@@ -1231,7 +1231,7 @@ HitmonchanLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 2 ; retreat cost
@@ -1269,7 +1269,7 @@ HitmonchanLv33Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	; attack 2
@@ -1283,7 +1283,7 @@ HitmonchanLv33Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 2 ; retreat cost
@@ -1321,7 +1321,7 @@ RhyhornCard:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -1335,7 +1335,7 @@ RhyhornCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 3 ; retreat cost
@@ -1373,7 +1373,7 @@ RhydonLv37Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -1387,7 +1387,7 @@ RhydonLv37Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 3 ; retreat cost
@@ -1425,7 +1425,7 @@ RhydonLv48Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -1439,7 +1439,7 @@ RhydonLv48Card:
 	db LOW_RECOIL ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 20 ; ?
+	db 20 ; effect param
 	db ATK_ANIM_HIT_RECOIL ; animation
 
 	db 3 ; retreat cost
@@ -1477,7 +1477,7 @@ KabutoLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -1491,7 +1491,7 @@ KabutoLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLASH ; animation
 
 	db 1 ; retreat cost
@@ -1529,7 +1529,7 @@ KabutoLv22Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -1543,7 +1543,7 @@ KabutoLv22Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLASH ; animation
 
 	db 1 ; retreat cost
@@ -1581,7 +1581,7 @@ KabutopsCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TEAR ; animation
 
 	; attack 2
@@ -1595,7 +1595,7 @@ KabutopsCard:
 	db NONE ; flags 1
 	db HEAL_USER ; flags 2
 	db NONE ; flags 3
-	db 2 ; ?
+	db HEALING_EQUALS_HALF_DAMAGE_DEALT ; effect param
 	db ATK_ANIM_DRAIN ; animation
 
 	db 1 ; retreat cost
@@ -1633,7 +1633,7 @@ AerodactylLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -1647,7 +1647,7 @@ AerodactylLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 2 ; retreat cost
@@ -1685,7 +1685,7 @@ AerodactylLv30Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SUPERSONIC_COPY ; animation
 
 	; attack 2
@@ -1699,7 +1699,7 @@ AerodactylLv30Card:
 	db LOW_RECOIL ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_HIT_RECOIL ; animation
 
 	db 1 ; retreat cost
@@ -1737,7 +1737,7 @@ AbraLv8Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYBEAM ; animation
 
 	; attack 2
@@ -1751,7 +1751,7 @@ AbraLv8Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 0 ; retreat cost
@@ -1789,7 +1789,7 @@ AbraLv10Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -1803,7 +1803,7 @@ AbraLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 0 ; retreat cost
@@ -1841,7 +1841,7 @@ AbraLv14Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TELEPORT ; animation
 
 	; attack 2
@@ -1855,7 +1855,7 @@ AbraLv14Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYSHOCK ; animation
 
 	db 1 ; retreat cost
@@ -1893,7 +1893,7 @@ KadabraLv38Card:
 	db NONE ; flags 1
 	db DISCARD_ENERGY ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 3 ; ?
+	db 3 ; effect param
 	db ATK_ANIM_RECOVER ; animation
 
 	; attack 2
@@ -1907,7 +1907,7 @@ KadabraLv38Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 3 ; retreat cost
@@ -1945,7 +1945,7 @@ KadabraLv39Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -1959,7 +1959,7 @@ KadabraLv39Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BLINK ; animation
 
 	db 3 ; retreat cost
@@ -1997,7 +1997,7 @@ DarkKadabraCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -2011,7 +2011,7 @@ DarkKadabraCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -2049,7 +2049,7 @@ AlakazamLv42Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -2063,7 +2063,7 @@ AlakazamLv42Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_CONFUSE_RAY ; animation
 
 	db 3 ; retreat cost
@@ -2101,7 +2101,7 @@ AlakazamLv45Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -2115,7 +2115,7 @@ AlakazamLv45Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TRANS_DAMAGE ; animation
 
 	db 3 ; retreat cost
@@ -2153,7 +2153,7 @@ DarkAlakazamCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TELEPORT_BLAST ; animation
 
 	; attack 2
@@ -2167,7 +2167,7 @@ DarkAlakazamCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 3 ; retreat cost
@@ -2205,7 +2205,7 @@ SlowpokeLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -2219,7 +2219,7 @@ SlowpokeLv9Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_AMNESIA ; animation
 
 	db 1 ; retreat cost
@@ -2257,7 +2257,7 @@ SlowpokeLv16Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -2271,7 +2271,7 @@ SlowpokeLv16Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -2309,7 +2309,7 @@ SlowpokeLv18Card:
 	db NONE ; flags 1
 	db HEAL_USER ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 1 ; ?
+	db HEALING_EQUALS_10_HP ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -2323,7 +2323,7 @@ SlowpokeLv18Card:
 	db NONE ; flags 1
 	db DISCARD_ENERGY ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -2361,7 +2361,7 @@ SlowbroLv26Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -2375,7 +2375,7 @@ SlowbroLv26Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -2413,7 +2413,7 @@ SlowbroLv35Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BIG_YAWN ; animation
 
 	; attack 2
@@ -2427,7 +2427,7 @@ SlowbroLv35Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BIG_SNORE ; animation
 
 	db 3 ; retreat cost
@@ -2465,7 +2465,7 @@ DarkSlowbroCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_POISON_GAS_COPY ; animation
 
 	; attack 2
@@ -2479,7 +2479,7 @@ DarkSlowbroCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 2 ; retreat cost
@@ -2517,7 +2517,7 @@ GastlyLv8Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLEEPING_GAS ; animation
 
 	; attack 2
@@ -2531,7 +2531,7 @@ GastlyLv8Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 3 ; ?
+	db 3 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 0 ; retreat cost
@@ -2569,7 +2569,7 @@ GastlyLv13Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 1 ; ?
+	db 1 ; effect param
 	db ATK_ANIM_SPOOKIFY ; animation
 
 	; attack 2
@@ -2583,7 +2583,7 @@ GastlyLv13Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_FADE_TO_BLACK ; animation
 
 	db 0 ; retreat cost
@@ -2621,7 +2621,7 @@ GastlyLv17Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GOO ; animation
 
 	; attack 2
@@ -2635,7 +2635,7 @@ GastlyLv17Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_ENERGY_CONVERSION ; animation
 
 	db 0 ; retreat cost
@@ -2673,7 +2673,7 @@ HaunterLv17Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -2687,7 +2687,7 @@ HaunterLv17Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NIGHTMARE ; animation
 
 	db 0 ; retreat cost
@@ -2725,7 +2725,7 @@ HaunterLv22Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HYPNOSIS ; animation
 
 	; attack 2
@@ -2739,7 +2739,7 @@ HaunterLv22Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -2777,7 +2777,7 @@ HaunterLv25Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_EERIE_LIGHT ; animation
 
 	; attack 2
@@ -2791,7 +2791,7 @@ HaunterLv25Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -2829,7 +2829,7 @@ HaunterLv26Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -2843,7 +2843,7 @@ HaunterLv26Card:
 	db INFLICT_SLEEP | INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NIGHTMARE ; animation
 
 	db 1 ; retreat cost
@@ -2881,7 +2881,7 @@ DarkHaunterCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -2895,7 +2895,7 @@ DarkHaunterCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -2933,7 +2933,7 @@ GengarLv38Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -2947,7 +2947,7 @@ GengarLv38Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_DARK_MIND ; animation
 
 	db 1 ; retreat cost
@@ -2985,7 +2985,7 @@ GengarLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -2999,7 +2999,7 @@ GengarLv40Card:
 	db INFLICT_SLEEP | INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NIGHTMARE ; animation
 
 	db 2 ; retreat cost
@@ -3037,7 +3037,7 @@ DarkGengarCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3051,7 +3051,7 @@ DarkGengarCard:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 1 ; ?
+	db 1 ; effect param
 	db ATK_ANIM_PUSH_ASIDE ; animation
 
 	db 2 ; retreat cost
@@ -3089,7 +3089,7 @@ DrowzeeLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HYPNOSIS ; animation
 
 	; attack 2
@@ -3103,7 +3103,7 @@ DrowzeeLv10Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NIGHTMARE ; animation
 
 	db 1 ; retreat cost
@@ -3141,7 +3141,7 @@ DrowzeeLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -3155,7 +3155,7 @@ DrowzeeLv12Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_CONFUSE_RAY ; animation
 
 	db 1 ; retreat cost
@@ -3193,7 +3193,7 @@ HypnoLv30Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -3207,7 +3207,7 @@ HypnoLv30Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -3245,7 +3245,7 @@ HypnoLv36Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_5 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3259,7 +3259,7 @@ HypnoLv36Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_DARK_MIND ; animation
 
 	db 2 ; retreat cost
@@ -3297,7 +3297,7 @@ DarkHypnoCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYPUNCH ; animation
 
 	; attack 2
@@ -3311,7 +3311,7 @@ DarkHypnoCard:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 1 ; ?
+	db 1 ; effect param
 	db ATK_ANIM_BENCH_MANIPULATION ; animation
 
 	db 2 ; retreat cost
@@ -3349,7 +3349,7 @@ MrMimeLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -3363,7 +3363,7 @@ MrMimeLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -3401,7 +3401,7 @@ MrMimeLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3415,7 +3415,7 @@ MrMimeLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -3453,7 +3453,7 @@ JynxLv18Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_ICE_PUNCH ; animation
 
 	; attack 2
@@ -3467,7 +3467,7 @@ JynxLv18Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_COLD_BREATH ; animation
 
 	db 1 ; retreat cost
@@ -3505,7 +3505,7 @@ JynxLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLAP ; animation
 
 	; attack 2
@@ -3519,7 +3519,7 @@ JynxLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3557,7 +3557,7 @@ JynxLv27Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -3571,7 +3571,7 @@ JynxLv27Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLAP ; animation
 
 	db 2 ; retreat cost
@@ -3609,7 +3609,7 @@ MewtwoLv30Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3623,7 +3623,7 @@ MewtwoLv30Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3661,7 +3661,7 @@ MewtwoLv53Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -3675,7 +3675,7 @@ MewtwoLv53Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK | DISCARD_ENERGY ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_BARRIER ; animation
 
 	db 3 ; retreat cost
@@ -3713,7 +3713,7 @@ MewtwoLv54Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -3727,7 +3727,7 @@ MewtwoLv54Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3765,7 +3765,7 @@ MewtwoLv60Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3779,7 +3779,7 @@ MewtwoLv60Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3817,7 +3817,7 @@ MewtwoAltLv60Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -3831,7 +3831,7 @@ MewtwoAltLv60Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3869,7 +3869,7 @@ MewtwoLv67Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_RECOVER ; animation
 
 	; attack 2
@@ -3883,7 +3883,7 @@ MewtwoLv67Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 3 ; retreat cost
@@ -3921,7 +3921,7 @@ GRsMewtwoCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -3935,7 +3935,7 @@ GRsMewtwoCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 2 ; retreat cost
@@ -3973,7 +3973,7 @@ MewLv8Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -3987,7 +3987,7 @@ MewLv8Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	db 1 ; retreat cost
@@ -4025,7 +4025,7 @@ MewLv15Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT_EFFECT ; animation
 
 	; attack 2
@@ -4039,7 +4039,7 @@ MewLv15Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 0 ; retreat cost
@@ -4077,7 +4077,7 @@ MewLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYCHIC_HIT ; animation
 
 	; attack 2
@@ -4091,7 +4091,7 @@ MewLv23Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -4129,7 +4129,7 @@ PidgeyLv8Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	; attack 2
@@ -4143,7 +4143,7 @@ PidgeyLv8Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -4181,7 +4181,7 @@ PidgeyLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	; attack 2
@@ -4195,7 +4195,7 @@ PidgeyLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	db 1 ; retreat cost
@@ -4233,7 +4233,7 @@ PidgeottoLv36Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	; attack 2
@@ -4247,7 +4247,7 @@ PidgeottoLv36Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MIRROR_MOVE ; animation
 
 	db 1 ; retreat cost
@@ -4285,7 +4285,7 @@ PidgeottoLv38Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	; attack 2
@@ -4299,7 +4299,7 @@ PidgeottoLv38Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_AGILITY_PROTECT ; animation
 
 	db 0 ; retreat cost
@@ -4337,7 +4337,7 @@ PidgeotLv38Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_WHIRLWIND_ZIGZAG ; animation
 
 	; attack 2
@@ -4351,7 +4351,7 @@ PidgeotLv38Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -4389,7 +4389,7 @@ PidgeotLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4403,7 +4403,7 @@ PidgeotLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	db 0 ; retreat cost
@@ -4441,7 +4441,7 @@ RattataLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4455,7 +4455,7 @@ RattataLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 0 ; retreat cost
@@ -4493,7 +4493,7 @@ RattataLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -4507,7 +4507,7 @@ RattataLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	db 0 ; retreat cost
@@ -4545,7 +4545,7 @@ RattataLv15Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4559,7 +4559,7 @@ RattataLv15Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TAIL_WHIP ; animation
 
 	db 1 ; retreat cost
@@ -4597,7 +4597,7 @@ RaticateCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4611,7 +4611,7 @@ RaticateCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -4649,7 +4649,7 @@ DarkRaticateCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4663,7 +4663,7 @@ DarkRaticateCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -4701,7 +4701,7 @@ SpearowLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4715,7 +4715,7 @@ SpearowLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 0 ; retreat cost
@@ -4753,7 +4753,7 @@ SpearowLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MULTIPLE_SLASH ; animation
 
 	; attack 2
@@ -4767,7 +4767,7 @@ SpearowLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIRLWIND ; animation
 
 	db 0 ; retreat cost
@@ -4805,7 +4805,7 @@ SpearowLv13Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -4819,7 +4819,7 @@ SpearowLv13Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MIRROR_MOVE ; animation
 
 	db 0 ; retreat cost
@@ -4857,7 +4857,7 @@ FearowLv24Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	; attack 2
@@ -4871,7 +4871,7 @@ FearowLv24Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_DRILL ; animation
 
 	db 0 ; retreat cost
@@ -4909,7 +4909,7 @@ FearowLv27Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	; attack 2
@@ -4923,7 +4923,7 @@ FearowLv27Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_DRILL ; animation
 
 	db 0 ; retreat cost
@@ -4961,7 +4961,7 @@ DarkFearowCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -4975,7 +4975,7 @@ DarkFearowCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_DRILL_DIVE ; animation
 
 	db 0 ; retreat cost
@@ -5013,7 +5013,7 @@ ClefairyLv14Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SING ; animation
 
 	; attack 2
@@ -5027,7 +5027,7 @@ ClefairyLv14Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_5 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -5065,7 +5065,7 @@ ClefairyLv15Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_FOLLOW_ME ; animation
 
 	; attack 2
@@ -5079,7 +5079,7 @@ ClefairyLv15Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SHINING_FINGER ; animation
 
 	db 1 ; retreat cost
@@ -5117,7 +5117,7 @@ ClefableCard:
 	db NONE ; flags 1
 	db FLAG_2_BIT_5 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -5131,7 +5131,7 @@ ClefableCard:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 20 ; ?
+	db 20 ; effect param
 	db ATK_ANIM_PROTECT ; animation
 
 	db 2 ; retreat cost
@@ -5169,7 +5169,7 @@ DarkClefableCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -5183,7 +5183,7 @@ DarkClefableCard:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_DARK_SONG ; animation
 
 	db 2 ; retreat cost
@@ -5221,7 +5221,7 @@ JigglypuffLv12Card:
 	db NONE ; flags 1
 	db HEAL_USER ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 1 ; ?
+	db HEALING_EQUALS_10_HP ; effect param
 	db ATK_ANIM_RECOVER ; animation
 
 	; attack 2
@@ -5235,7 +5235,7 @@ JigglypuffLv12Card:
 	db LOW_RECOIL ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 20 ; ?
+	db 20 ; effect param
 	db ATK_ANIM_HIT_RECOIL ; animation
 
 	db 1 ; retreat cost
@@ -5273,7 +5273,7 @@ JigglypuffLv13Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -5287,7 +5287,7 @@ JigglypuffLv13Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_EXPAND ; animation
 
 	db 1 ; retreat cost
@@ -5325,7 +5325,7 @@ JigglypuffLv14Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LULLABY ; animation
 
 	; attack 2
@@ -5339,7 +5339,7 @@ JigglypuffLv14Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -5377,7 +5377,7 @@ WigglytuffLv36Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LULLABY ; animation
 
 	; attack 2
@@ -5391,7 +5391,7 @@ WigglytuffLv36Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 2 ; retreat cost
@@ -5429,7 +5429,7 @@ WigglytuffLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HELPING_HAND ; animation
 
 	; attack 2
@@ -5443,7 +5443,7 @@ WigglytuffLv40Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_EXPAND ; animation
 
 	db 3 ; retreat cost
@@ -5481,7 +5481,7 @@ MeowthLv10Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_COIN_HURL ; animation
 
 	; attack 2
@@ -5495,7 +5495,7 @@ MeowthLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -5533,7 +5533,7 @@ MeowthLv13Card:
 	db DAMAGE_TO_OPPONENT_BENCH ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 2 ; ?
+	db 2 ; effect param
 	db ATK_ANIM_CAT_PUNCH ; animation
 
 	; attack 2
@@ -5547,7 +5547,7 @@ MeowthLv13Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -5585,7 +5585,7 @@ MeowthLv14Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLASH ; animation
 
 	; attack 2
@@ -5599,7 +5599,7 @@ MeowthLv14Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -5637,7 +5637,7 @@ MeowthLv15Card:
 	db DRAW_CARD ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -5651,7 +5651,7 @@ MeowthLv15Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -5689,7 +5689,7 @@ MeowthLv17Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -5703,7 +5703,7 @@ MeowthLv17Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MULTIPLE_SLASH ; animation
 
 	db 1 ; retreat cost
@@ -5741,7 +5741,7 @@ PersianCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLASH ; animation
 
 	; attack 2
@@ -5755,7 +5755,7 @@ PersianCard:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 0 ; retreat cost
@@ -5793,7 +5793,7 @@ DarkPersianLv28Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LURE ; animation
 
 	; attack 2
@@ -5807,7 +5807,7 @@ DarkPersianLv28Card:
 	db INFLICT_POISON ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_POISON_FANG ; animation
 
 	db 0 ; retreat cost
@@ -5845,7 +5845,7 @@ DarkPersianAltLv28Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LURE ; animation
 
 	; attack 2
@@ -5859,7 +5859,7 @@ DarkPersianAltLv28Card:
 	db INFLICT_POISON ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_POISON_FANG ; animation
 
 	db 0 ; retreat cost
@@ -5897,7 +5897,7 @@ FarfetchdLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIP ; animation
 
 	; attack 2
@@ -5911,7 +5911,7 @@ FarfetchdLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_POT_SMASH ; animation
 
 	db 1 ; retreat cost
@@ -5949,7 +5949,7 @@ FarfetchdAltLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_WHIP ; animation
 
 	; attack 2
@@ -5963,7 +5963,7 @@ FarfetchdAltLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_POT_SMASH ; animation
 
 	db 1 ; retreat cost
@@ -6001,7 +6001,7 @@ DoduoLv8Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 10 ; ?
+	db 10 ; effect param
 	db ATK_ANIM_SUPERSONIC ; animation
 
 	; attack 2
@@ -6015,7 +6015,7 @@ DoduoLv8Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 0 ; retreat cost
@@ -6053,7 +6053,7 @@ DoduoLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MULTIPLE_SLASH ; animation
 
 	; attack 2
@@ -6067,7 +6067,7 @@ DoduoLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 0 ; retreat cost
@@ -6105,7 +6105,7 @@ DodrioLv25Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6119,7 +6119,7 @@ DodrioLv25Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MULTIPLE_SLASH ; animation
 
 	db 0 ; retreat cost
@@ -6157,7 +6157,7 @@ DodrioLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PKMN_POWER_1 ; animation
 
 	; attack 2
@@ -6171,7 +6171,7 @@ DodrioLv28Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BIG_HIT ; animation
 
 	db 0 ; retreat cost
@@ -6209,7 +6209,7 @@ LickitungLv20Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LICK ; animation
 
 	; attack 2
@@ -6223,7 +6223,7 @@ LickitungLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 2 ; retreat cost
@@ -6261,7 +6261,7 @@ LickitungLv26Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GOO ; animation
 
 	; attack 2
@@ -6275,7 +6275,7 @@ LickitungLv26Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SUPERSONIC ; animation
 
 	db 3 ; retreat cost
@@ -6313,7 +6313,7 @@ ChanseyLv40Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_LULLABY ; animation
 
 	; attack 2
@@ -6327,7 +6327,7 @@ ChanseyLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_SLAP ; animation
 
 	db 1 ; retreat cost
@@ -6365,7 +6365,7 @@ ChanseyLv55Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -6379,7 +6379,7 @@ ChanseyLv55Card:
 	db HIGH_RECOIL ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 80 ; ?
+	db 80 ; effect param
 	db ATK_ANIM_HIT_RECOIL ; animation
 
 	db 1 ; retreat cost
@@ -6417,7 +6417,7 @@ KangaskhanLv36Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6431,7 +6431,7 @@ KangaskhanLv36Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 3 ; retreat cost
@@ -6469,7 +6469,7 @@ KangaskhanLv38Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	; attack 2
@@ -6483,7 +6483,7 @@ KangaskhanLv38Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 3 ; retreat cost
@@ -6521,7 +6521,7 @@ KangaskhanLv40Card:
 	db DRAW_CARD ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -6535,7 +6535,7 @@ KangaskhanLv40Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PUNCH ; animation
 
 	db 3 ; retreat cost
@@ -6573,7 +6573,7 @@ TaurosLv32Card:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db NONE ; flags 3
-	db 1 ; ?
+	db 1 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6587,7 +6587,7 @@ TaurosLv32Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_RAMPAGE ; animation
 
 	db 2 ; retreat cost
@@ -6625,7 +6625,7 @@ TaurosLv35Card:
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_MULTIPLE_SLASH ; animation
 
 	; attack 2
@@ -6639,7 +6639,7 @@ TaurosLv35Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 2 ; retreat cost
@@ -6677,7 +6677,7 @@ DittoCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6691,7 +6691,7 @@ DittoCard:
 	db NONE ; flags 1
 	db FLAG_2_BIT_6 ; flags 2
 	db FLAG_3_BIT_2 ; flags 3
-	db 3 ; ?
+	db 3 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -6729,7 +6729,7 @@ EeveeLv5Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6743,7 +6743,7 @@ EeveeLv5Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 0 ; retreat cost
@@ -6781,7 +6781,7 @@ EeveeLv9Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -6795,7 +6795,7 @@ EeveeLv9Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_DARK_GAS ; animation
 
 	db 1 ; retreat cost
@@ -6833,7 +6833,7 @@ EeveeLv12Card:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -6847,7 +6847,7 @@ EeveeLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	db 1 ; retreat cost
@@ -6885,7 +6885,7 @@ PorygonLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -6899,7 +6899,7 @@ PorygonLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 1 ; retreat cost
@@ -6937,7 +6937,7 @@ PorygonLv18Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_3D_ATTACK ; animation
 
 	; attack 2
@@ -6951,7 +6951,7 @@ PorygonLv18Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	db 0 ; retreat cost
@@ -6989,7 +6989,7 @@ PorygonLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7003,7 +7003,7 @@ PorygonLv20Card:
 	db INFLICT_CONFUSION ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_PSYBEAM ; animation
 
 	db 0 ; retreat cost
@@ -7041,7 +7041,7 @@ CoolPorygonCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7055,7 +7055,7 @@ CoolPorygonCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_3D_ATTACK ; animation
 
 	db 1 ; retreat cost
@@ -7093,7 +7093,7 @@ SnorlaxLv20Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7107,7 +7107,7 @@ SnorlaxLv20Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_BIG_HIT ; animation
 
 	db 4 ; retreat cost
@@ -7145,7 +7145,7 @@ SnorlaxLv35Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	; attack 2
@@ -7159,7 +7159,7 @@ SnorlaxLv35Card:
 	db INFLICT_SLEEP ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_ROLL_OVER ; animation
 
 	db 4 ; retreat cost
@@ -7197,7 +7197,7 @@ HungrySnorlaxCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2 ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7211,7 +7211,7 @@ HungrySnorlaxCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 4 ; retreat cost
@@ -7249,7 +7249,7 @@ DratiniLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -7263,7 +7263,7 @@ DratiniLv10Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -7301,7 +7301,7 @@ DratiniLv12Card:
 	db INFLICT_PARALYSIS ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT_EFFECT ; animation
 
 	; attack 2
@@ -7315,7 +7315,7 @@ DratiniLv12Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -7353,7 +7353,7 @@ DragonairCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	; attack 2
@@ -7367,7 +7367,7 @@ DragonairCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HYPER_BEAM ; animation
 
 	db 2 ; retreat cost
@@ -7405,7 +7405,7 @@ DarkDragonairCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7419,7 +7419,7 @@ DarkDragonairCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 2 ; retreat cost
@@ -7457,7 +7457,7 @@ DragoniteLv41Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HEALING_WIND ; animation
 
 	; attack 2
@@ -7471,7 +7471,7 @@ DragoniteLv41Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 2 ; retreat cost
@@ -7509,7 +7509,7 @@ DragoniteLv43Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7523,7 +7523,7 @@ DragoniteLv43Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_QUICK_ATTACK ; animation
 
 	db 2 ; retreat cost
@@ -7561,7 +7561,7 @@ DragoniteLv45Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7575,7 +7575,7 @@ DragoniteLv45Card:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_HIT ; animation
 
 	db 1 ; retreat cost
@@ -7613,7 +7613,7 @@ DarkDragoniteCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_GLOW_EFFECT ; animation
 
 	; attack 2
@@ -7627,7 +7627,7 @@ DarkDragoniteCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 2 ; retreat cost
@@ -7665,7 +7665,7 @@ TogepiCard:
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK ; flags 2
 	db NONE ; flags 3
-	db 20 ; ?
+	db 20 ; effect param
 	db ATK_ANIM_CRY ; animation
 
 	; attack 2
@@ -7679,7 +7679,7 @@ TogepiCard:
 	db NONE ; flags 1
 	db FLAG_2_BIT_5 ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 1 ; retreat cost
@@ -7717,7 +7717,7 @@ LugiaCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_AEROBLAST ; animation
 
 	; attack 2
@@ -7731,7 +7731,7 @@ LugiaCard:
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
-	db 0 ; ?
+	db 0 ; effect param
 	db ATK_ANIM_NONE ; animation
 
 	db 2 ; retreat cost

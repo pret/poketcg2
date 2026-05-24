@@ -1684,8 +1684,7 @@ RaticateSuperFangEffectCommands:
 	dbw EFFECTCMDTYPE_AI, SuperFangEffect
 	db $00
 
-; unreferenced
-UnreferencedTrainerCardAsPokemonEffectCommands:
+TrainerCardAsPokemonEffectCommands:
 	db BANK("Effect Functions 1")
 	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TrainerCardAsPokemon_BenchCheck
 	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TrainerCardAsPokemon_DiscardEffect
@@ -3178,10 +3177,9 @@ HypnoMindShockEffectCommands:
 	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HypnoMindShockEffect
 	db $00
 
-; unreferenced
-EffectCommands_590ab:
+ClefairyDollMindShockEffectCommands:
 	db BANK("Effect Functions 2")
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65cf9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ClefairyDollMindShockEffect
 	db $00
 
 KinglerSaltWaterEffectCommands:

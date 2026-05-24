@@ -150,3 +150,21 @@ DEF AI_PEEK_TARGET_HAND_F EQU 7
 DEF AI_PEEK_TARGET_HAND   EQU 1 << AI_PEEK_TARGET_HAND_F
 ; all bits set means AI chose to look at Player's top deck card
 DEF AI_PEEK_TARGET_DECK EQU $ff
+
+; search filter by AI
+; different from FILTER_ONLY_*
+	const_def
+	const AI_SEARCH_ONLY_TRAINER ; $0
+	const AI_SEARCH_ONLY_PKMN    ; $1
+	const AI_SEARCH_ONLY_ENERGY  ; $2
+
+	const_def
+	const AI_SEARCH_2_ONLY_TRAINER        ; $0
+	const AI_SEARCH_2_ONLY_BASIC_PKMN     ; $1
+	const AI_SEARCH_2_ONLY_EVOLUTION_PKMN ; $2
+	const AI_SEARCH_2_ONLY_ENERGY         ; $3
+
+; AI score (-128 to 127)
+DEF AI_SCORE_NEUTRAL       EQU $80
+DEF AI_SCORE_BASIC_POKEMON EQU AI_SCORE_NEUTRAL + 2
+DEF MIN_AI_SCORE_ATTACK    EQU AI_SCORE_NEUTRAL - 48

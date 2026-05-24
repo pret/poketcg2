@@ -227,6 +227,7 @@ wPlayTimeCounterEnable:: ; cac2
 wPlayTimeCounter:: ; cac3
 	ds $5
 
+wRNGVars::
 wRNG1:: ; cac8
 	ds $1
 
@@ -484,10 +485,15 @@ wAttachedEnergyMenuPlayAreaLocation:: ; cbd9
 
 SECTION "WRAM0 Duels 2", WRAM0
 
+wOppRNGVars::
 wOppRNG1:: ; cbda
 	ds $1
 
-	ds $2
+wOppRNG2:: ; cbdb
+	ds $1
+
+wOppRNGCounter:: ; ccdc
+	ds $1
 
 ; sp is saved here when starting a duel, in order to save the return address
 ; however, it only seems to be read after a transmission error in a link duel
@@ -553,6 +559,8 @@ wcbf5:: ; cbf5
 ; see ATTACKPAGE_* constants
 wAttackPageNumber:: ; cbfc
 	ds $1
+
+wDuelStates:: ; cbfd
 
 ; the value of hWhoseTurn gets loaded here at the beginning of each duelist's turn.
 ; more reliable than hWhoseTurn, as hWhoseTurn may change temporarily in order to handle status
@@ -679,6 +687,7 @@ wMiniMetronomeCoinTossResult:: ; cc1b
 	ds $1
 
 	ds $5
+wDuelStatesEnd::
 
 wAttackEnergyCost:: ; cc21
 	ds NUM_TYPES
@@ -864,7 +873,9 @@ wDarkWaveDamageModifier:: ; cd10
 wDarknessVeilDamageModifier:: ; cd12
 	ds $2
 
-wcd14:: ; cd14
+; value read from sCoinTossAnimationSetting
+; (mirror of wCoinTossAnimationSetting)
+wSkipCoinTossAnimationAllowed:: ; cd14
 	ds $1
 
 wcd15:: ; cd15
@@ -1312,6 +1323,7 @@ wce9f:: ; ce21
 wCardPopCardObtainSong:: ; ce22
 	ds $1
 
+wPrinterStartCardID:: ; ce23
 	ds $2
 
 ; either IRPARAM_CARD_POP or IRPARAM_RARE_CARD_POP
@@ -1566,6 +1578,7 @@ wd038:: ; d038
 
 wAIDuelVarsEnd::
 
+wTempAIHandDuplicatePokemonCardDeckIndex:: ; d043
 	ds $1
 
 ; when AI decides which Bench Pokemon to switch to
@@ -1635,6 +1648,7 @@ wAICannotDamage:: ; d05f
 wTempAI:: ; d060
 	ds $1
 
+wTempAI2:: ; d061
 wd061:: ; d061
 	ds $1
 
@@ -1672,26 +1686,41 @@ wAIFirstAttackDamage:: ; d070
 wAISecondAttackDamage:: ; d071
 	ds $1
 
-wd072:: ; d072
+; TRUE when AI's attack does not do damage to defending Pokémon
+; (also apply to attacks that only do damage to Benched Pokémon)
+wAIAttackIsNonDamaging:: ; d072
+
+wTempAIEnergyCard:: ; d072
 	ds $1
 
-wd073:: ; d073
+wTempAISingleTargetCardDeckIndex:: ; d073
 	ds $1
 
-wd074:: ; d074
+; card count, energy count, etc.
+wTempAICount1:: ; d074
 	ds $1
 
-wd075:: ; d075
+; energy count, WR_* constant, etc.
+wTempAICount2:: ; d075
 	ds $1
 
-wd076:: ; d076
+; energy count, etc.
+wTempAICount3:: ; d076
 	ds $1
 
-	ds $2
+; deck index of the first of the two cards to discard to use Computer Search
+wTempAIComputerSearchFirstDiscardDeckIndex:: ; d077
+	ds $1
+
+; deck index of the first of the two cards to discard to use Item Finder
+wTempAIItemFinderFirstDiscardDeckIndex:: ; d078
+	ds $1
 
 wd079:: ; d079
 	ds $1
 
+; AI_SEARCH_2_ONLY_* constant, energy count, etc.
+wTempAISearchCriteria:: ; d07a
 	ds $1
 
 wd07b:: ; d07b
@@ -1724,6 +1753,7 @@ wd081:: ; d081
 ; setting up AI Boss deck
 wAISetupBasicPokemonCount:: ; d082
 wAITempHPRecoverAmount:: ; d082
+wTempAISingleTargetCardDeckIndex_2:: ; d082
 wd082:: ; d082
 	ds $1
 
@@ -1736,7 +1766,14 @@ wAIPkmnPowerUserCardIndex:: ; d084
 wd084:: ; d084
 	ds $1
 
-	ds $d
+	ds $6
+
+wTempAITargetPokemonCardDeckIndex:: ; d08b
+	ds $1
+wTempAITargetNonPokemonCardDeckIndex:: ; d08c
+	ds $1
+
+	ds $5
 
 ; stores the deck index (0-59) of the Trainer card
 ; the AI intends to play from hand.
@@ -1756,7 +1793,14 @@ wAITrainerCardPhase:: ; d095
 wAITrainerCardParameter:: ; d096
 	ds $1
 
-	ds $6
+wTempAIMultiTargetCardDeckIndex1:: ; d097
+	ds $1
+wTempAIMultiTargetCardDeckIndex2:: ; d098
+	ds $1
+wTempAIMultiTargetCardDeckIndex3:: ; d099
+	ds $1
+
+	ds $3
 
 ; used to store previous/current flags of AI actions
 ; see AI_FLAG_* constants
@@ -2084,9 +2128,22 @@ wTempCardList:: ; d122
 
 	ds $2
 
+UNION
+
+; holds attached energies and remaining HP
+wTempPlayAreaList:: ; d1c4
+
+wTempPlayAreaEnergyList:: ; d1c4
+	ds MAX_PLAY_AREA_POKEMON
+wTempPlayAreaHPList:: ; d1ca
+	ds MAX_PLAY_AREA_POKEMON
+
+NEXTU
 ; holds cards for the current deck
 wCurDeckCards:: ; d1c4
 	ds 2 * (DECK_CONFIG_BUFFER_SIZE + 1)
+
+ENDU
 
 ; list of all the different cards in a deck configuration
 wUniqueDeckCardList:: ; d266

@@ -136,14 +136,24 @@ sChallengeMachineSaveDataChecksumSeed:: ; bae6
 
 	ds $19
 
-; saved data of the current duel, including a two-byte checksum
+; saved data of the current duel, including 4-byte header
 ; see SaveDuelDataToDE
 sCurrentDuel:: ; bb00
+
+; set to TRUE when saving duel data
+sCurrentDuelValid:: ; bb00
 	ds $1
+
 sCurrentDuelChecksum:: ; bb01
-	ds $3
+	ds $2
+
+; DUELTYPE_* constant
+sCurrentDuelType:: ; bb03
+	ds $1
+
+; defined at DuelDataToSave
 sCurrentDuelData:: ; bb04
-	ds $352
+	ds SAVE_DUEL_DATA_SIZE
 
 SECTION "SRAM1", SRAM
 
@@ -201,10 +211,16 @@ sBackupChallengeMachineSaveDataChecksum0:: ; bae5
 sBackupChallengeMachineSaveDataChecksumSeed:: ; bae6
 	ds $1
 
+	ds $19
+
+; see sCurrentDuel
+sBackupCurrentDuel:: ; bb00
+	ds SAVE_DUEL_SIZE
+
 SECTION "SRAM3", SRAM
 
-; buffers used to temporary store gfx related data
-; such as tiles or BG maps
+; temp buffers for gfx-related data such as tiles or BG maps
+; or duel snapshot data
 sGfxBuffer0:: ; a000
 	ds $400
 

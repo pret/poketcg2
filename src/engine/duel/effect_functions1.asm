@@ -1172,12 +1172,12 @@ ResetDevolvedCardStatus:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	get_turn_duelist_var
-	ld [hl], $00
+	ld [hl], 0
 ; reset flags
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_FLAGS
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ret
 
 ; prompts the Player with a Yes/No question
@@ -4189,14 +4189,14 @@ Firegiver_AddToHandEffect:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	inc a
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 ; update and print number of cards in deck
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	ld a, DECK_SIZE - 1
 	sub [hl]
 	ld c, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop bc
 	pop hl
 
@@ -9168,7 +9168,7 @@ DealStareDamage:
 	ldh a, [hTemp_ffa0]
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 
 .done
 	call SwapTurn

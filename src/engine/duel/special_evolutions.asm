@@ -56,7 +56,7 @@ AIDecideSpecialEvolutions:
 	jp z, .TrainerImprisonDeck
 
 .standard_score:
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .GreatDragonDeck:
@@ -66,8 +66,8 @@ AIDecideSpecialEvolutions:
 	jr .standard_score
 
 ; Magnemite: +10;
-; Voltorb: dismiss if 5+ own Pokémon in play, +10 otherwise;
-; Doduo: dismiss if 30+ HP, +10 otherwise;
+; Voltorb: dismiss if >= 5 own Pokémon in play, +10 otherwise;
+; Doduo: dismiss if >= 30 HP, +10 otherwise;
 ; others (non-existent): neutral
 .ElectricSelfdestructDeck:
 	ld hl, wLoadedCard2ID
@@ -95,7 +95,7 @@ AIDecideSpecialEvolutions:
 	xor a
 	ret
 .encourage_isaac
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Alakazam line: +10;
@@ -107,7 +107,7 @@ AIDecideSpecialEvolutions:
 	cphl KADABRA_LV39
 	jp nz, .standard_score
 .encourage_murray
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Drowzee: neutral
@@ -120,7 +120,7 @@ AIDecideSpecialEvolutions:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
 	jp nc, .standard_score
-	ld a, 123
+	ld a, AI_SCORE_NEUTRAL - 5
 	ret
 
 ; Exeggcute: +5;
@@ -129,7 +129,7 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl EXEGGCUTE
 	jp nz, .standard_score
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; active: neutral
@@ -138,16 +138,16 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
-; 138
+; +10
 .RainDanceConfusionDeck:
 .QuickAttackDeck:
 .RockBlastDeck:
 .RunningWildDeck:
 .EverybodysFriendDeck:
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Growlithe: neutral
@@ -167,10 +167,10 @@ AIDecideSpecialEvolutions:
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .encourage_ken
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 .encourage_ken
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Drowzee: neutral if active, -10 if benched
@@ -182,7 +182,7 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Fossil: +10
@@ -191,13 +191,13 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl MYSTERIOUS_FOSSIL
 	jp nz, .standard_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Dark Dragonair:
 ;   +10 if
-;     active with 4+ Energy attached to it, or
-;     3- own Pokémon in play with no basic cards in hand;
+;        active with >= 4 Energy attached to it
+;     OR (<= 3 own Pokémon in play AND no basic cards in hand);
 ;   -10 otherwise;
 ; others: neutral
 .DangerousBenchDeck:
@@ -221,17 +221,17 @@ AIDecideSpecialEvolutions:
 	or a
 	jr nz, .discourage_tap
 .encourage_tap
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_tap
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Gastly: +10;
 ; Haunter Lv.17: neutral;
 ; Haunter Lv.22: -10;
 ; Drowzee:
-;   +10 if any other Drowzee is in play, or Bench is full;
+;   +10 if any other Drowzee is in play OR Bench is full;
 ;   -10 otherwise
 .BadDreamDeck:
 	ld hl, wLoadedCard2ID
@@ -251,13 +251,13 @@ AIDecideSpecialEvolutions:
 	cp 6
 	jr nz, .discourage_yosuke
 .encourage_yosuke
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_yosuke
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
-; Meowth: -10 if 7+ cards in hand, +10 otherwise;
+; Meowth: -10 if >= 7 cards in hand, +10 otherwise;
 ; others: neutral
 .PokemonPowerDeck:
 	ld hl, wLoadedCard2ID
@@ -267,15 +267,15 @@ AIDecideSpecialEvolutions:
 	get_turn_duelist_var
 	cp 7
 	jr c, .discourage_ryoko
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_ryoko
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Dratini: +2;
 ; Clefairy: +10;
-; Dark Dragonair: +10 if 2+ Dark Clefable in play, -10 otherwise
+; Dark Dragonair: +10 if >= 2 Dark Clefable in play, -10 otherwise
 .SuddenGrowthDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRATINI_LV12
@@ -290,20 +290,20 @@ AIDecideSpecialEvolutions:
 	cp 2
 	jr c, .lower_samejima_score
 .higher_samejima_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .lower_samejima_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 .mid_samejima_score
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; Oddish: -28 if any Dark Gloom already, neutral otherwise;
 ; Slowpoke:
 ;   +12 if none other than Slowpoke is in play;
 ;   else, for n = number of Dark Slowbro in play,
-;     n = 0: +12 if 2+ Psychic Energy attached to it;
+;     n = 0: +12 if >= 2 Psychic Energy attached to Slowpoke;
 ;     n = 1: +12 if towards using Reel In;
 ;   -28 otherwise
 ; others: neutral
@@ -322,11 +322,11 @@ AIDecideSpecialEvolutions:
 	jp nc, .standard_score
 
 .discourage_kanzaki
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 .encourage_kanzaki
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
 .slowpoke_kanzaki
@@ -360,8 +360,8 @@ AIDecideSpecialEvolutions:
 
 ; Dratini:
 ;   -28 if any Dark Dragonair in play;
-;   +12 if benched and no Dark Dragonair yet;
-;   neutral if active and no Dark Dragonair yet;
+;   +12 if benched AND no Dark Dragonair yet;
+;   neutral if active AND no Dark Dragonair yet;
 ; others: neutral
 .ChokeDeck:
 	ld hl, wLoadedCard2ID
@@ -374,14 +374,14 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .discourage_biruritchi_grass
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
-;   -28 if Dark Charizard isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Charizard isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .IncinerateDeck:
@@ -396,11 +396,11 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_fire
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
-;   -28 if Dark Blastoise isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Blastoise isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .SmashDeck:
@@ -415,11 +415,11 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_water
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
-;   -28 if Dark Machamp isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Machamp isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .ThrowOutDeck:
@@ -434,14 +434,14 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_fighting
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Gastly: neutral
 ; Haunter: -28 if any Gengar in play, neutral otherwise;
 ; Dratini: +12;
 ; Dark Dragonair:
-;   -28 if any Dark Dragonite or 5+ Pokémon in play,
+;   -28 if any Dark Dragonite OR >= 5 Pokémon in play,
 ;   neutral otherwise
 .RonaldsPsychicDeck:
 	ld hl, wLoadedCard2ID
@@ -460,11 +460,11 @@ AIDecideSpecialEvolutions:
 	jp nc, .standard_score
 
 .discourage_ronald
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 .encourage_ronald
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
 .dark_dragonair_ronald
@@ -492,10 +492,10 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_magician
 .encourage_magician
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .discourage_magician
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Squirtle:
@@ -519,7 +519,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_yui
 .encourage_yui
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .check_breeder_evo
 	ld de, POKEMON_BREEDER
@@ -529,7 +529,7 @@ AIDecideSpecialEvolutions:
 	call LookForCardIDInHandList
 	jr nc, .encourage_yui
 .discourage_yui
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Oddish and Dark Gloom:
@@ -547,7 +547,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_toshiron
 .encourage_toshiron
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .oddish_toshiron
 	ld de, DARK_GLOOM
@@ -555,15 +555,16 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr nc, .encourage_toshiron
 .discourage_toshiron
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; unchanged since TCG1
 ; +10 if
-;   Muk isn't in play, and
-;   Dragonair is
-;     Active with 50+ damage taken and 3+ Energy attached to it, or
-;     Benched, and total of 70+ damage on own Pokémon in play;
+;       Muk isn't in play
+;   AND (
+;         Dragonair is Active with >= 50 damage and >= 3 Energy attached to it
+;     OR (Dragonair is Benched AND >= 70 damage in total on own Pokémon in play)
+;   );
 ; -10 otherwise
 .dragonair_rod:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -591,7 +592,7 @@ AIDecideSpecialEvolutions:
 	jr c, .dragonair_rod_check_muk
 
 .lower_dragonair_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; should now use the lock-check function instead of this TCG1 code
@@ -599,7 +600,7 @@ AIDecideSpecialEvolutions:
 	ld de, MUK
 	bank1call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	jr c, .lower_dragonair_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .dragonair_rod_active
