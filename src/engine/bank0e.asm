@@ -3148,13 +3148,13 @@ RainDanceConfusionDeckAIDecideProfessorOak:
 
 .check_squirtle_lv16
 	cp16 SQUIRTLE_LV16
-	jr nz, .check_wartotle
+	jr nz, .check_wartortle
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jp nc, .no_carry
 	jp .next_card
 
-.check_wartotle
+.check_wartortle
 	cp16 WARTORTLE_LV22
 	jr nz, .check_blastoise
 	ld b, PLAY_AREA_ARENA
@@ -5634,7 +5634,7 @@ IsSameCardInHandAndPlayArea:
 	scf
 	ret
 
-; check dark charmeleon, dark goldock, dark slowbro, or dark gloom
+; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
 BadGuysDeckAIDecideTheBosssWay:
 	ld bc, CHARMANDER_LV9
 	ld de, DARK_CHARMELEON
@@ -5653,7 +5653,7 @@ BadGuysDeckAIDecideTheBosssWay:
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 
-; check dark charmeleon, dark goldock, dark slowbro, or dark gloom
+; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
 BadGuysDeckAIDecidePokemonTraderForEvo:
 	ld de, CHARMANDER_LV9
 	ld bc, DARK_CHARMELEON

@@ -5112,7 +5112,7 @@ CountNumberOfBasicPokemonInHandOrPlayArea:
 	ld a, [wTempAI]
 	ret
 
-; hl = wDuelTemplist, (*ArenaCard + *Bench), etc.
+; hl = wDuelTempList, (*ArenaCard + *Bench), etc.
 CountNumberOfBasicPokemonInListInHL:
 .loop
 	ld a, [hli]
@@ -7578,7 +7578,7 @@ AIDeckSpecificAttackLogic:
 
 ; Ninetales' Lure: +3 if has good target;
 ; Base Set Arcanine's Flamethrower:
-;   +3 if defeinding pkmn has <= 50 HP remaining
+;   +3 if defending pkmn has <= 50 HP remaining
 ;   (not considering damage changes);
 ; Promo Arcanine: for (Quick Attack, Flames of Rage),
 ;   (-5, +5) if has >= 2 damage counters on it;
@@ -7588,7 +7588,7 @@ AIDeckSpecificAttackLogic:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 NINETALES_LV32
-	jr z, .ninetailes
+	jr z, .ninetales
 	cp16 ARCANINE_LV45
 	jr z, .BlazingFlameDeck_arcanine_lv45
 	cp16 ARCANINE_LV34
@@ -7621,7 +7621,7 @@ AIDeckSpecificAttackLogic:
 	jp nc, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
-.ninetailes
+.ninetales
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .standard_score
