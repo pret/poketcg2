@@ -114,8 +114,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -126,8 +126,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -138,8 +138,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -150,8 +150,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -162,8 +162,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -174,8 +174,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -186,8 +186,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -198,8 +198,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_PACK_OAM
-	dw $091 ; ?
-	dw $158 ; ?
+	dw SPRITE_ANIM_91
+	dw FRAMESET_158
 	dw PALETTE_160
 	db $ff, $ff ; end
 
@@ -240,8 +240,8 @@ SceneDataPointers:
 
 	db $00, $00 ; x, y
 	dw TILESET_CARD_POP_MENU_OAM
-	dw $0a3 ; ?
-	dw $16b ; ?
+	dw SPRITE_ANIM_A3
+	dw FRAMESET_16B
 	dw PALETTE_171
 	db $ff, $ff ; end
 
@@ -252,8 +252,8 @@ SceneDataPointers:
 
 	db $50, $48 ; x, y
 	dw TILESET_CARD_POP_OAM
-	dw $0a5 ; ?
-	dw $16d ; ?
+	dw SPRITE_ANIM_A5
+	dw FRAMESET_16D
 	dw PALETTE_174
 	db $ff, $ff ; end
 
@@ -264,8 +264,8 @@ SceneDataPointers:
 
 	db $40, $30 ; x, y
 	dw TILESET_LINK_CROSS
-	dw $0a4 ; ?
-	dw $16c ; ?
+	dw SPRITE_ANIM_A4
+	dw FRAMESET_16C
 	dw PALETTE_173
 	db $ff, $ff ; end
 
@@ -282,8 +282,8 @@ SceneDataPointers:
 
 	db $50, $30 ; x, y
 	dw TILESET_RARE_CARD_POP_OAM
-	dw $0a6 ; ?
-	dw $16e ; ?
+	dw SPRITE_ANIM_A6
+	dw FRAMESET_16E
 	dw PALETTE_177
 	db $ff, $ff ; end
 
@@ -294,8 +294,8 @@ SceneDataPointers:
 
 	db $40, $30 ; x, y
 	dw TILESET_LINK_CROSS
-	dw $0a4 ; ?
-	dw $16c ; ?
+	dw SPRITE_ANIM_A4
+	dw FRAMESET_16C
 	dw PALETTE_173
 	db $ff, $ff ; end
 
@@ -306,8 +306,8 @@ SceneDataPointers:
 
 	db $50, $48 ; x, y
 	dw TILESET_PRINTER_OAM
-	dw $0a7 ; ?
-	dw $16f ; ?
+	dw SPRITE_ANIM_A7
+	dw FRAMESET_16F
 	dw PALETTE_17A
 	db $ff, $ff ; end
 
@@ -318,8 +318,8 @@ SceneDataPointers:
 
 	db $50, $40 ; x, y
 	dw TILESET_PRINTER_OAM
-	dw $0a7 ; ?
-	dw $170 ; ?
+	dw SPRITE_ANIM_A7
+	dw FRAMESET_170
 	dw PALETTE_17A
 	db $ff, $ff ; end
 
@@ -360,8 +360,8 @@ SceneDataPointers:
 
 	db $28, $20 ; x, y
 	dw TILESET_MAIL_CROSS
-	dw $0a8 ; ?
-	dw $171 ; ?
+	dw SPRITE_ANIM_A8
+	dw FRAMESET_171
 	dw PALETTE_17C
 	db $ff, $ff ; end
 
@@ -372,8 +372,8 @@ SceneDataPointers:
 
 	db $28, $20 ; x, y
 	dw TILESET_GOT_MAIL_ANIM
-	dw $0a9 ; ?
-	dw $172 ; ?
+	dw SPRITE_ANIM_A9
+	dw FRAMESET_172
 	dw PALETTE_17E
 	db $ff, $ff ; end
 
@@ -396,8 +396,8 @@ SceneDataPointers:
 
 	db $50, $4c ; x, y
 	dw TILESET_LINK_OAM
-	dw $0ab ; ?
-	dw $174 ; ?
+	dw SPRITE_ANIM_AB
+	dw FRAMESET_174
 	dw PALETTE_183
 	db $ff, $ff ; end
 
@@ -408,8 +408,8 @@ SceneDataPointers:
 
 	db $50, $48 ; x, y
 	dw TILESET_LINK_OAM
-	dw $0ab ; ?
-	dw $175 ; ?
+	dw SPRITE_ANIM_AB
+	dw FRAMESET_175
 	dw PALETTE_183
 	db $ff, $ff ; end
 
