@@ -9967,7 +9967,7 @@ CheckIfCardCanBePlayed:
 	; this seems like a branch that is never taken
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	call $6968
+	call LoadNonPokemonCardEffectCommands ; BUG: should be bank1call
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret
