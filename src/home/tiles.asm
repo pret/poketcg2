@@ -126,7 +126,7 @@ LoadCardTypeHeaderTiles::
 	ld de, v0Tiles1 + $60 tiles
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
-	bank1call $6c1d
+	bank1call Func_6c1d
 	ret
 
 ; loads the symbols that are displayed near the names of a list of cards in the hand or discard pile

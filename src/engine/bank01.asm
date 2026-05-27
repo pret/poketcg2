@@ -7207,7 +7207,7 @@ Func_6c15:
 	ld de, wBackgroundPalettesCGB + 2 * PAL_SIZE
 	ld c, 3 palettes
 	jp CopyFontsOrDuelGraphicsBytes
-Func_6c1d:
+Func_6c1d::
 	ld hl, Pals_6f0f0 - $4000
 	jr Func_6c15
 
