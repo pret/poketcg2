@@ -1278,7 +1278,7 @@ AIDecide_EnergyRemoval:
 	cp $45
 	jp z, $4de7
 	cp $47
-	jp z, $4e3c
+	jp z, AIDecide_EnergyRemoval_Deck47
 	cp $4a
 	jp z, $4e90
 	cp $50
@@ -1451,6 +1451,66 @@ ScoreBenchEnergyRemovalCandidate:
 	pop de
 	ret
 ; 0x20d6b
+
+SECTION "Bank 8@4e3c", ROMX[$4e3c], BANK[$8]
+
+; deck $47's Energy Removal policy. Bail if we can already KO the
+; defender from hand (no point disrupting attacks we'll prevent
+; anyway). Bail if the defender has no non-Recycle energy. Score
+; both of the defender's attacks via the helper -- attack 0 hitting
+; means we want to disrupt it; attack 0 missing but attack 1 hitting
+; means we'd rather NOT remove energy (leave the weaker option as
+; their commitment); both attacks "safe" means we still commit.
+AIDecide_EnergyRemoval_Deck47:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .check_energy
+.no_play
+	or a
+	ret
+.check_energy
+	ld e, $00
+	call SwapTurn
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call SwapTurn
+	or a
+	ret z
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call CheckIfEnergyRemovalDisruptsBigAttack
+	jr c, .commit
+	ld a, $01
+	call CheckIfEnergyRemovalDisruptsBigAttack
+	jr c, .no_play
+.commit
+	call SwapTurn
+	xor a
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+
+; For attack `a` of the defending Pokemon: returns carry SET when
+; (a) it would do 50+ damage to us AND (b) removing energy from the
+; defender would actually reduce that damage. NC means either the
+; attack is too weak to worry about or removal wouldn't change the
+; outcome.
+CheckIfEnergyRemovalDisruptsBigAttack:
+	ld [wSelectedAttack], a
+	call SwapTurn
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wDamage]
+	cp $32
+	jr c, .too_weak
+	farcall CanRemovingEnergyReduceDamage
+	call SwapTurn
+	ret
+.too_weak
+	call SwapTurn
+	or a
+	ret
+; 0x20e90
 
 SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
 
@@ -2154,7 +2214,7 @@ AIDecide_ScoopUp:
 	cp $3c
 	jr z, .deck_3c
 	cp $47
-	jp z, $620f
+	jp z, AIDecide_ScoopUp_Deck47
 	cp $64
 	jp z, $6228
 	cp $6e
@@ -2271,6 +2331,32 @@ AIDecide_ScoopUp:
 	scf
 	ret
 ; 0x221e2
+
+SECTION "Bank 8@620f", ROMX[$620f], BANK[$8]
+
+; deck $47's Scoop Up policy: find the play-area card with the
+; lowest remaining HP (returns slot in `e`, remaining HP in `d`).
+; If d >= $15 (21 HP), it's not desperate enough to scoop.
+; If the candidate is a bench slot (e != 0), commit (carry SET).
+; If the candidate is the arena, defer to the shared
+; AIDecide_ScoopUp paths -- skip if we can already KO from hand,
+; otherwise jump to its bench-picker.
+AIDecide_ScoopUp_Deck47:
+	xor a
+	farcall FindPlayAreaCardWithLeastRemainingHP
+	ret nc
+	ld e, a
+	ld a, d
+	cp $15
+	ret nc
+	ld a, e
+	or a
+	scf
+	ret nz
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jp c, AIDecide_ScoopUp.no_play
+	jp AIDecide_ScoopUp.pick_bench
+; 0x22228
 
 SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
 
@@ -2491,7 +2577,7 @@ AIDecide_Pokeball:
 	cp $46
 	jp z, $6b2e
 	cp $47
-	jp z, $6b60
+	jp z, AIDecide_Pokeball_Deck47
 	cp $4a
 	jp z, $6bbb
 	cp $4b
@@ -2521,6 +2607,53 @@ AIDecide_Pokeball_Deck25:
 	ld a, e
 	ret
 ; 0x22a68
+
+SECTION "Bank 8@6b60", ROMX[$6b60], BANK[$8]
+
+; deck $47's Poké Ball policy. If we have only one Pokemon left in
+; play, scramble: search the deck for any of card IDs $59, $7f, $f3,
+; $168 (basic Pokemon options). Otherwise walk a two-stage evolution
+; chain ($59 -> $5d -> $60) by checking both "evo is in deck" and
+; "preevo is in deck given evo is in hand".
+AIDecide_Pokeball_Deck47:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .evolution_chain
+	ld de, $59
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $7f
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $f3
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $168
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret
+.evolution_chain
+	ld bc, $59
+	ld de, $5d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $5d
+	ld de, $60
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, $59
+	ld bc, $5d
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, $5d
+	ld bc, $60
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+; 0x22bbb
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 

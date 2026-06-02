@@ -112,6 +112,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$45ef` | [`AIDecide_Defender_Phase14`](../../../src/engine/bank08.asm) + inline `.deck_72` | sameboy_trace duel-renna | 2026-06-01 |
 | `$08` | `$4c44` | [`AIPlay_EnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-ichikawa2 | 2026-06-02 |
 | `$08` | `$4c5a` | [`AIDecide_EnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate` | sameboy_trace duel-ichikawa2 (7 deck cases left raw) | 2026-06-02 |
+| `$08` | `$4e3c` | [`AIDecide_EnergyRemoval_Deck47`](../../../src/engine/bank08.asm) + `CheckIfEnergyRemovalDisruptsBigAttack` | sameboy_trace duel-yuki | 2026-06-02 |
+| `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
+| `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$49e3` | [`AIPlay_GustOfWind`](../../../src/engine/bank08.asm) | sameboy_trace duel-takahashi | 2026-06-01 |
 | `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
@@ -161,7 +164,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 31.62% (~5.1 KiB of 16 KiB).
+**Source-defined**: 32.84% (~5.3 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -171,7 +174,10 @@ the target (helps justify future decomp prioritization).
 - `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
 - `$483d-$489b` — `AIPlay_Switch` (shared by Phase_09 and Phase_16) + `AIDecide_Switch_Phase09`.
 - `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
-- `$4c44-$4d6a` — `AIPlay_EnergyRemoval` + `AIDecide_EnergyRemoval` (7 deck cases left raw) + 3 helpers (`CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate`).
+- `$4c44-$4d6a` — `AIPlay_EnergyRemoval` + `AIDecide_EnergyRemoval` (6 deck cases left raw) + 3 helpers (`CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate`).
+- `$4e3c-$4e8f` — `AIDecide_EnergyRemoval_Deck47` + `CheckIfEnergyRemovalDisruptsBigAttack`.
+- `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
+- `$6b60-$6bba` — `AIDecide_Pokeball_Deck47`.
 - `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
@@ -245,6 +251,7 @@ parens.
 | duel-renna2 | **0** ✓ |
 | duel-ichikawa, duel-ichikawa2 | **0** ✓ (Ichikawa2 played ENERGY_REMOVAL default path) |
 | duel-catherine | 47 (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
+| duel-yuki | 47 (played ENERGY_REMOVAL + SCOOP_UP + POKEBALL as deck $47; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
