@@ -101,6 +101,12 @@ the target (helps justify future decomp prioritization).
 
 | Bank | Address | Name | Via | Landed |
 |---|---|---|---|---|
+| `$08` | `$42d0` | [`AIDecide_Potion_Phase10`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
+| `$08` | `$433b` | [`CheckIfAnyAttackBoostsIfTakenDamage`](../../../src/engine/bank08.asm) | called from AIDecide_Potion_Phase10 | 2026-06-01 |
+| `$08` | `$439b` | [`AIDecide_Potion_Phase11`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
+| `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
+| `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
+| `$08` | `$4c3e` | [`AIDecide_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
@@ -109,11 +115,15 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 9.55% (~1.5 KiB of 16 KiB).
+**Source-defined**: 11.25% (~1.8 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
 - `$4000-$4c32` — `AITrainerCardLogic` table + early decompiled functions through `Func_20be6.return_with_carry`.
+- `$42d0-$4364` — `AIDecide_Potion_Phase10` + `CheckIfAnyAttackBoostsIfTakenDamage`.
+- `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
+- `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
+- `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
@@ -125,11 +135,11 @@ parens.
 
 1. `$566e` (ENERGY_RETRIEVAL decide) — large (~300+ bytes) 24-way deck-ID dispatch. Needs deeper investigation of the per-deck sub-functions (`Func_217c8`-`Func_21a83`) before landing. **Hot in duel-gene** but big.
 2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `$566e`.
-3. Other `AIDecide_*` table entries still pointing at raw hex addresses (`$42d0`, `$439b`, etc.) — pick small ones first; the simple "is there carry SET in some deck-vars check?" pattern lands quickly.
-4. Other `AIPlay_*` table entries with raw hex `play_fn` columns — most are AIMakeDecision wrappers, structurally identical to the energy-retrieval plays.
-5. Everything else in the table that's still a raw hex address (see
-   [src/engine/bank08.asm](../../../src/engine/bank08.asm) lines
-   8-65).
+3. Deck-specific helpers referenced as raw hex inside the decompiled deciders:
+   - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
+   - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
+   - `$4bc5d` in bank `$12` (POTION Phase 11, deck `$74` delegate)
+4. Other `AIDecide_*` / `AIPlay_*` table entries still pointing at raw hex — most plays are AIMakeDecision wrappers, structurally identical to the ones already landed. Most decides are small.
 
 ## Workflow for adding the next AI label
 

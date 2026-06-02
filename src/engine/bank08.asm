@@ -7,8 +7,8 @@ ENDM
 
 AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POTION,                 AIDecide_Potion_Phase07, AIPlay_Potion
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, POTION,                 $42d0, AIPlay_Potion
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, POTION,                 $439b, AIPlay_Potion
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, POTION,                 AIDecide_Potion_Phase10, AIPlay_Potion
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, POTION,                 AIDecide_Potion_Phase11, AIPlay_Potion
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, SUPER_POTION,           $43d0, $43aa
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_POTION,           $43ff, $43aa
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, SUPER_POTION,           $44d4, $43aa
@@ -17,10 +17,10 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              $4692, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 $485a, $483d
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 $489c, $483d
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 AIDecide_Switch_Phase16, $483d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   $4c3e, $4c32
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, $507b
@@ -307,6 +307,190 @@ AIDecide_Potion_Phase07:
 	or a
 	ret
 ; 0x202d0
+
+SECTION "Bank 8@42d0", ROMX[$42d0], BANK[$8]
+
+; PHASE_10 fires after the AI decides whether to retreat. Returns
+; carry SET with `a` = play-area position to heal when Potion is
+; worth playing on someone in our play area.
+; Two deck IDs bypass the default heuristics:
+;   $45: dispatches to a deck-specific Dark-Jolteon/Raichu policy
+;        at $4365 (not yet decompiled).
+;   $74: always returns "don't play".
+AIDecide_Potion_Phase10:
+	ld a, [wOpponentDeckID]
+	cp $45
+	jp z, $4365
+	cp $74
+	jp z, .skip
+	ld a, $14
+	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
+	jr nc, .find_candidate
+	or a
+	ret
+.find_candidate
+; if we're on our last prize, consider healing the arena (start at
+; e=0); otherwise skip the arena and look at bench only (start at e=1).
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	dec a
+	jr z, .check_arena_too
+	ld e, $01
+	jr .loop
+.check_arena_too
+	ld e, $00
+.loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	ret z
+	call CheckIfAnyAttackBoostsIfTakenDamage
+	jr c, .next
+	call GetCardDamageAndMaxHP
+	cp $14
+	jr nc, .found
+.next
+	inc e
+	jr .loop
+.found
+	ld a, e
+	or a
+	jr z, .arena_pick
+; bench pick: 30% of the time, skip the heal anyway so the AI is
+; less deterministic. The skip is suppressed when the opponent has
+; only one prize left (no time left to waste).
+	push de
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	dec a
+	or a
+	jr z, .commit
+	ld a, $0a
+	call Random
+	cp $03
+.commit
+	pop de
+	jr c, .skip
+	ld a, e
+	scf
+	ret
+.arena_pick
+; don't heal the arena if its attacks are high-recoil — Potion would
+; just buy a turn so we hurt ourselves again.
+	push de
+	farcall AICheckIfAttackIsHighRecoil
+	pop de
+	jr c, .skip
+	ld a, e
+	scf
+	ret
+.skip
+	or a
+	ret
+
+; returns carry SET if either of the loaded Pokemon's attacks has the
+; BOOST_IF_TAKEN_DAMAGE flag (attacks like Bide that get stronger as
+; the user takes damage). AIDecide_Potion_Phase10 uses this to avoid
+; healing a Pokemon whose damage is actually load-bearing.
+CheckIfAnyAttackBoostsIfTakenDamage:
+	push de
+	xor a
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .try_second
+	ld a, ATTACK_FLAG3_ADDRESS | BOOST_IF_TAKEN_DAMAGE_F
+	call CheckLoadedAttackFlag
+	jr c, .yes
+.try_second
+	ld a, $01
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .no
+	ld a, ATTACK_FLAG3_ADDRESS | BOOST_IF_TAKEN_DAMAGE_F
+	call CheckLoadedAttackFlag
+	jr c, .yes
+.no
+	pop de
+	or a
+	ret
+.yes
+	pop de
+	scf
+	ret
+; 0x20365
+
+SECTION "Bank 8@439b", ROMX[$439b], BANK[$8]
+
+; PHASE_11 only fires for deck $74 — every other deck immediately
+; returns "don't play". The deck-$74 path delegates to a bank $12
+; helper that drives its bespoke Potion policy.
+AIDecide_Potion_Phase11:
+	ld a, [wOpponentDeckID]
+	cp $74
+	jp z, AIDecide_Potion_Phase11_Deck74
+	or a
+	ret
+
+AIDecide_Potion_Phase11_Deck74:
+	farcall Func_4bc5d
+	ret
+; 0x203aa
+
+SECTION "Bank 8@489c", ROMX[$489c], BANK[$8]
+
+; PHASE_16 fires when the AI is considering whether to manually
+; switch its active Pokemon (vs. through a forced retreat). Bails
+; out immediately if we have no bench, or if wD035 is non-zero
+; (some prior pass already committed to a different action).
+; Then dispatches to one of 14 deck-specific switch policies; decks
+; not in the table default to "don't play".
+AIDecide_Switch_Phase16:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	dec a
+	jr z, .skip
+	farcall IswD035Zero
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $32
+	jp z, $4902
+	cp $3a
+	jp z, $493d
+	cp $3b
+	jp z, $493d
+	cp $3d
+	jp z, $494f
+	cp $5b
+	jp z, $49a7
+	cp $5c
+	jp z, $49ac
+	cp $5d
+	jp z, $49b1
+	cp $5e
+	jp z, $49b6
+	cp $5f
+	jp z, $49bb
+	cp $60
+	jp z, $49c0
+	cp $61
+	jp z, $49c5
+	cp $66
+	jp z, $49ca
+	cp $6e
+	jp z, $49cf
+	cp $6f
+	jp z, $49d4
+	cp $70
+	jp z, $49d9
+	cp $72
+	jp z, $49de
+.skip
+	or a
+	ret
+; 0x208fc
 
 SECTION "Bank 8@49fc", ROMX[$49fc], BANK[$8]
 
@@ -669,6 +853,25 @@ Func_20be6:
 	scf
 	ret
 ; 0x20c32
+
+SECTION "Bank 8@4c32", ROMX[$4c32], BANK[$8]
+
+AIPlay_Bill:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; play Bill only if fewer than 49 cards are out of the deck — i.e.
+; there are 12+ cards left to draw from, so the extra two-card draw
+; won't risk decking out.
+AIDecide_Bill:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $31
+	ret
+; 0x20c44
 
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
