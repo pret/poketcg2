@@ -46,13 +46,13 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               $68d8, $68b7
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        $6d20, $6cfd
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         $6e43, $6e28
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          $74a7, $7492
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    $761d, $75fe
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      $7a13, $79f5
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            $7b1f, $7b0a
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            AIDecide_MasterBall, AIPlay_MasterBall
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       $7e05, $7df9
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MOON_STONE,             $7e1c, $7e0b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, THE_ROCKETS_TRAP,       $7e85, $7e79
@@ -1272,6 +1272,139 @@ AIDecide_Gambler:
 	ret
 ; 0x2271b
 
+SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
+
+; Pokemon Trader's play also sets wd081 = 1 so subsequent passes can
+; tell the AI has already traded this turn.
+AIPlay_PokemonTrader:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ld a, $01
+	ld [wd081], a
+	ret
+
+; Pure dispatcher: bail if we've already traded this turn, then jump
+; to a per-deck policy. 25 deck IDs are special-cased; everyone else
+; defaults to "don't play".
+AIDecide_PokemonTrader:
+	ld a, [wd081]
+	or a
+	ret nz
+	ld a, [wOpponentDeckID]
+	cp $17
+	jp z, $6eca
+	cp $18
+	jp z, AIDecide_PokemonTrader_Deck18
+	cp $2c
+	jp z, $6f88
+	cp $2d
+	jp z, $7040
+	cp $32
+	jp z, $70a7
+	cp $41
+	jp z, $71d4
+	cp $42
+	jp z, $71d9
+	cp $48
+	jp z, $71fc
+	cp $49
+	jp z, $7274
+	cp $4c
+	jp z, $72d7
+	cp $4d
+	jp z, $7327
+	cp $4f
+	jp z, $739e
+	cp $51
+	jp z, $73d8
+	cp $5a
+	jp z, $7456
+	cp $5b
+	jp z, $745b
+	cp $5c
+	jp z, $7460
+	cp $65
+	jp z, $7465
+	cp $6c
+	jp z, $746a
+	cp $6d
+	jp z, $746f
+	cp $6f
+	jp z, $7474
+	cp $70
+	jp z, $7479
+	cp $71
+	jp z, $747e
+	cp $72
+	jp z, $7483
+	cp $73
+	jp z, $7488
+	cp $74
+	jp z, $748d
+	or a
+	ret
+; 0x22eca
+
+SECTION "Bank 8@6f1b", ROMX[$6f1b], BANK[$8]
+
+; Deck $18's Pokemon Trader policy: only play when we can complete
+; one of two specific evolution chains (by either fetching the next
+; stage in an existing line, or by digging up a duplicate basic).
+; The pairs are (preevo card ID, evo card ID); each pair is tried as
+; both "evo is in deck" and "preevo is in deck given evo in hand".
+; If any pair matches, set the picked deck index as the swap target.
+; Falls back to FindDuplicatePokemonCardsInHand as a generic out.
+AIDecide_PokemonTrader_Deck18:
+	ld bc, $115
+	ld de, $119
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld bc, $119
+	ld de, $11c
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld de, $115
+	ld bc, $119
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, $119
+	ld bc, $11c
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld bc, $125
+	ld de, $12a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld bc, $12a
+	ld de, $12d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld de, $125
+	ld bc, $12a
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, $12a
+	ld bc, $12d
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr nc, .no_match
+.pick
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDuplicatePokemonCardsInHand
+	jr c, .play
+.no_match
+	or a
+	ret
+.play
+	scf
+	ret
+; 0x22f88
+
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 
 AIPlay_Sleep:
@@ -1310,3 +1443,112 @@ AIDecide_Sleep_Deck12:
 	scf
 	ret
 ; 0x23a73
+
+SECTION "Bank 8@7b0a", ROMX[$7b0a], BANK[$8]
+
+AIPlay_MasterBall:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, $ff
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Bails out first if the duelist already has 55+ cards out of the
+; deck. Then 12-way deck-ID dispatch. Decks $13 and $14 have inline
+; policies (right here); ten others jump to bespoke sub-functions
+; that are still raw; everyone else returns "don't play".
+AIDecide_MasterBall:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $37
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $13
+	jr z, .deck_13
+	cp $14
+	jr z, .deck_14
+	cp $18
+	jp z, $7bdf
+	cp $1a
+	jp z, $7be4
+	cp $29
+	jp z, $7c10
+	cp $3d
+	jp z, $7c60
+	cp $3e
+	jp z, $7cdc
+	cp $3f
+	jp z, $7d44
+	cp $40
+	jp z, $7d61
+	cp $43
+	jp z, $7dc2
+	cp $46
+	jp z, $7dc7
+	cp $74
+	jp z, $7df4
+	or a
+	ret
+; deck $13: priority targets are card IDs $de, $df, $e0; else AITryMasterBall
+.deck_13
+	ld de, $de
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $df
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $e0
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+; deck $14: skip Master Ball if card $1b8 is already in hand, if we
+; already have 3+ Pokemon in play, or if we have a Basic Pokemon to
+; develop instead. Otherwise pull from a fixed priority list of
+; target card IDs.
+.deck_14
+	ld de, $1b8
+	farcall LookForCardIDInHand
+	jr nc, .deck_14_pick
+.deck_14_skip
+	or a
+	ret
+.deck_14_pick
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $03
+	jr nc, .deck_14_skip
+	farcall CountNumberOfBasicPokemonInHand
+	or a
+	jr nz, .deck_14_skip
+	ld de, $c1
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $c2
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $bf
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $c0
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $bb
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $bd
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $c3
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $c4
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+; 0x23bdf
