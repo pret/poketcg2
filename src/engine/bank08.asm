@@ -16,8 +16,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, DEFENDER,               $45ef, $44e3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              $4692, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 $485a, $483d
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 AIDecide_Switch_Phase16, $483d
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 AIDecide_Switch_Phase09, AIPlay_Switch
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 AIDecide_Switch_Phase16, AIPlay_Switch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
@@ -438,6 +438,80 @@ AIDecide_Potion_Phase11_Deck74:
 	farcall Func_4bc5d
 	ret
 ; 0x203aa
+
+SECTION "Bank 8@483d", ROMX[$483d], BANK[$8]
+
+; Shared play function for Switch (both Phase_09 and Phase_16). Sets
+; AI_FLAG_USED_SWITCH so the AI doesn't try Switch again this turn,
+; then clears wd032 after the trainer effect so any "pending switch
+; target" flag is reset.
+AIPlay_Switch:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_USED_SWITCH
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	xor a
+	ld [wd032], a
+	ret
+
+; PHASE_09 is the general "would switching the active Pokemon help
+; us this turn?" decider. Two paths in: if the AI is mid-way through
+; setting up the energy needed for a normal retreat
+; (wAIPlayEnergyCardForRetreat != 0), Switch is only worth playing
+; when retreat is still 2+ energy short. Otherwise it's only worth
+; considering if wd035 is zero (no other pending action).
+; The actual decision: pick Switch when the active either has a
+; status condition, has retreat cost 3+, or can't currently afford
+; its retreat cost. Final go/no-go runs through
+; AIDecideBenchPokemonToSwitchTo, which scores bench candidates --
+; if none qualifies we don't play Switch.
+AIDecide_Switch_Phase09:
+	ld a, [wAIPlayEnergyCardForRetreat]
+	or a
+	jr z, .check_wd035
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	push af
+	xor a
+	call CreateArenaOrBenchEnergyCardList
+	ld b, a
+	pop af
+	sub b
+	jr c, .check_active
+	cp $02
+	jr nc, .pick_bench
+	jr .check_active
+.check_wd035
+	farcall IswD035Zero
+	ret nc
+.check_active
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and $0f
+	jr nz, .pick_bench
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	cp $03
+	jr nc, .pick_bench
+	push af
+	xor a
+	call CreateArenaOrBenchEnergyCardList
+	pop bc
+	cp b
+	jr c, .pick_bench
+	ret
+.pick_bench
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+; 0x2089c
 
 SECTION "Bank 8@489c", ROMX[$489c], BANK[$8]
 
