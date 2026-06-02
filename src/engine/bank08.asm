@@ -24,7 +24,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, $507b
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          $53d0, $53bc
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, AIPlay_EnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
@@ -50,7 +50,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          $74a7, $7492
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    $761d, $75fe
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      $7a13, $79f5
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  $7a4f, $7a43
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            $7b1f, $7b0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       $7e05, $7df9
@@ -873,6 +873,186 @@ AIDecide_Bill:
 	ret
 ; 0x20c44
 
+SECTION "Bank 8@53bc", ROMX[$53bc], BANK[$8]
+
+AIPlay_ProfessorOak:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_USED_PROFESSOR_OAK | AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; PHASE_15 fires only after every other phase. The AI scores Oak
+; against a target of $3c (60) and plays if the score lands at or
+; above it. The default scoring path:
+;   start at $1e (30)
+;   hand size: +50 if <4, -30 if >=9, no change otherwise
+;   duplicate energy cards in hand: +40
+;   has Computer Search (card $03) in hand AND no active Pkmn Powers
+;     on either side: +10
+;   always: +10
+;   has at least one Basic Pokemon in hand: -10
+;   for any play-area Pokemon that has an evolution available in deck
+;     but not in hand: +10 (Oak might draw it)
+; Decks $11, $2d, $32, $3a, $3b, $45, $49, $4d, $50, $53, $55, $57,
+; $58, $5a, $5c, $5d, $6e, $70, $71, $72 each have bespoke deciders
+; (still raw hex). All decks bail out immediately if 54+ cards are
+; out of the deck.
+AIDecide_ProfessorOak:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $36
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $11
+	jp z, $5528
+	cp $2d
+	jp z, $5546
+	cp $32
+	jp z, $5565
+	cp $3a
+	jp z, $559c
+	cp $3b
+	jp z, $55c9
+	cp $45
+	jp z, $55cf
+	cp $49
+	jp z, $55d5
+	cp $4d
+	jp z, $55d5
+	cp $50
+	jp z, $55cf
+	cp $53
+	jp z, $55e8
+	cp $55
+	jp z, $5610
+	cp $57
+	jp z, $5616
+	cp $58
+	jp z, $561b
+	cp $5a
+	jp z, $5620
+	cp $5c
+	jp z, $5625
+	cp $5d
+	jp z, $562a
+	cp $6e
+	jp z, $562f
+	cp $70
+	jp z, $5634
+	cp $71
+	jp z, $5639
+	cp $72
+	jp z, $563e
+; default scoring path
+	ld a, [hl]
+	cp $2e
+	ret nc
+	ld a, $1e
+	ld [wd082], a
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $04
+	jr nc, .not_small_hand
+	ld a, [wd082]
+	add $32
+	ld [wd082], a
+	jr .after_hand_size
+.not_small_hand
+	cp $09
+	jr c, .after_hand_size
+	ld a, [wd082]
+	sub $1e
+	ld [wd082], a
+.after_hand_size
+	bank1call CreateEnergyCardListFromHand
+	jr nc, .after_dup_energy
+	ld a, [wd082]
+	add $28
+	ld [wd082], a
+.after_dup_energy
+	ld de, $49
+	bank1call CountPokemonWithActivePkmnPowerInBothPlayAreas
+	jr c, .after_pkmn_power
+	ld de, $83
+	bank1call CountTurnDuelistPokemonWithActivePkmnPower
+	jr nc, .after_pkmn_power
+	ld de, $3
+	farcall LookForCardIDInHand
+	jr nc, .after_pkmn_power
+	ld a, [wd082]
+	add $0a
+	ld [wd082], a
+.after_pkmn_power
+	ld a, [wd082]
+	add $0a
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+.scan_basics
+	ld a, [hli]
+	cp $ff
+	jr z, .check_evolutions
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .scan_basics
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr nz, .scan_basics
+	ld a, [wd082]
+	sub $0a
+	ld [wd082], a
+.check_evolutions
+	xor a
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	ld [wTempAITargetNonPokemonCardDeckIndex], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.evolution_loop
+	push de
+	call LookForEvolutionInHand
+	pop de
+	jr nc, .check_deck_only
+	ld a, $01
+	ld [wTempAITargetPokemonCardDeckIndex], a
+.check_deck_only
+	ld a, [wd084]
+	cp $01
+	jr nz, .next_evolution
+	ld a, $01
+	ld [wTempAITargetNonPokemonCardDeckIndex], a
+.next_evolution
+	inc e
+	dec d
+	jr nz, .evolution_loop
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	or a
+	jr z, .score_check
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	or a
+	jr nz, .score_check
+; an evolution exists in deck but not in hand: Oak might draw it
+	ld a, [wd082]
+	add $0a
+	ld [wd082], a
+.score_check
+	ld a, [wd082]
+	ld b, $3c
+	cp b
+	jr nc, .play_oak
+	or a
+	ret
+.play_oak
+	scf
+	ret
+; 0x21505
+
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
 ; Searches the turn duelist's deck for a card that the play-area
@@ -1071,3 +1251,42 @@ AIDecide_Gambler:
 	scf
 	ret
 ; 0x2271b
+
+SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
+
+AIPlay_Sleep:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; PHASE_12 fires only for two decks. Always bails out first if the
+; defending Pokemon is protected from status conditions (Mr. Mime,
+; Erika's Tangela, etc.). Decks $12 and $53 have bespoke policies;
+; every other deck defaults to "don't play".
+AIDecide_Sleep:
+	call SwapTurn
+	bank1call CheckIfArenaCardIsProtectedFromStatusCondition
+	call SwapTurn
+	jr c, .no_play
+	ld a, [wOpponentDeckID]
+	cp $12
+	jp z, AIDecide_Sleep_Deck12
+	cp $53
+	jp z, $7a73
+.no_play
+	or a
+	ret
+
+; Deck $12: only play Sleep when the defending Pokemon doesn't
+; already have a status condition — otherwise it'd just overwrite
+; (or be useless if it's already Asleep / Paralyzed / etc.).
+AIDecide_Sleep_Deck12:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	or a
+	jr nz, AIDecide_Sleep.no_play
+	scf
+	ret
+; 0x23a73
