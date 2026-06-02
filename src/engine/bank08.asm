@@ -21,7 +21,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         AIDecide_EnergyRemoval, AIPlay_EnergyRemoval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
@@ -1210,6 +1210,207 @@ AIDecide_Bill:
 	cp $31
 	ret
 ; 0x20c44
+
+SECTION "Bank 8@4c44", ROMX[$4c44], BANK[$8]
+
+AIPlay_EnergyRemoval:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; 7 deck-specific policies, all still raw. Default: walk the
+; opponent's play area looking for a Pokemon that (a) has at least
+; one non-Recycle energy attached and (b) would be disabled /
+; weakened if we removed one. Start from the arena if we can KO
+; their active from hand (no point disrupting attacks we'll prevent
+; anyway), otherwise bench. Falls back to scoring bench-only
+; candidates by estimated incoming damage.
+AIDecide_EnergyRemoval:
+	ld a, [wOpponentDeckID]
+	cp $11
+	jp z, $4d6b
+	cp $45
+	jp z, $4de7
+	cp $47
+	jp z, $4e3c
+	cp $4a
+	jp z, $4e90
+	cp $50
+	jp z, $4de7
+	cp $55
+	jp z, $4ede
+	cp $74
+	jp z, $4f05
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .skip_arena
+	ld a, $01
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	jr .start_scan
+.skip_arena
+	xor a
+	ld [wTempAITargetPokemonCardDeckIndex], a
+.start_scan
+	call SwapTurn
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	ld e, a
+.scan_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	jr z, .primary_scan_done
+	ld d, a
+	call CheckIfHasNonRecycleEnergy
+	jr nc, .next_slot
+	call CheckIfBothAttacksStillNeedEnergy
+	jr nc, .commit
+.next_slot
+	inc e
+	jr .scan_play_area
+.commit
+	ld a, e
+	push af
+	farcall PickAttachedEnergyCardToRemove
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	pop af
+	call SwapTurn
+	scf
+	ret
+.primary_scan_done
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	or a
+	jr nz, .start_secondary_scan
+; arena was skipped during the primary pass; circle back and try it now.
+	call CheckIfHasNonRecycleEnergy
+	jr c, .commit
+.start_secondary_scan
+; secondary scan: best bench target by estimated damage on us.
+	xor a
+	ld [wd082], a
+	ld [wd084], a
+	ld e, $01
+.secondary_loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	jr z, .secondary_done
+	ld d, a
+	call CheckIfHasNonRecycleEnergy
+	jr nc, .secondary_next
+	call ScoreBenchEnergyRemovalCandidate
+.secondary_next
+	inc e
+	jr .secondary_loop
+.secondary_done
+	ld a, [wd084]
+	or a
+	jr z, .secondary_no_target
+	ld e, a
+	jr .commit
+.secondary_no_target
+	call SwapTurn
+	or a
+	ret
+
+; returns carry SET if the Pokemon at deck index `d` has at least
+; one energy card attached (ignoring Recycle Energy).
+CheckIfHasNonRecycleEnergy:
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	or a
+	ret z
+	scf
+	ret
+
+; returns carry SET when removing energy from the play-area slot
+; in `e` would actually disrupt the target -- i.e. both of their
+; attacks still need more energy, so removing one keeps them from
+; firing. NC means the target's first attack is already ready
+; (removing energy is a waste). The deck-$01 / mid-attack branch
+; defers to CanRemovingEnergyReduceDamage when only the second
+; attack still needs energy.
+CheckIfBothAttacksStillNeedEnergy:
+	push de
+	xor a
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr nc, .first_ready
+	pop de
+	push de
+	ld a, $01
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr nc, .check_reduce
+	pop de
+	scf
+	ret
+.first_ready
+	pop de
+	or a
+	ret
+.check_reduce
+	farcall CanRemovingEnergyReduceDamage
+	pop de
+	ccf
+	ret
+
+; secondary-pass scorer: simulate damage from both attacks against
+; us with the candidate at slot `e`. Track the minimum-damage
+; target in wd082 (best damage so far) and wd084 (slot picked).
+ScoreBenchEnergyRemovalCandidate:
+	push de
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	xor a
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wDamage]
+	or a
+	jr z, .try_attack_2
+	ld e, a
+	ld a, [wd082]
+	cp e
+	jr nc, .try_attack_2
+	ld a, e
+	ld [wd082], a
+	pop de
+	ld a, e
+	ld [wd084], a
+	jr .check_atk2
+.try_attack_2
+	pop de
+.check_atk2
+	push de
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, $01
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wDamage]
+	or a
+	jr z, .done
+	ld e, a
+	ld a, [wd082]
+	cp e
+	jr nc, .done
+	ld a, e
+	ld [wd082], a
+	pop de
+	ld a, e
+	ld [wd084], a
+	ret
+.done
+	pop de
+	ret
+; 0x20d6b
 
 SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
 
