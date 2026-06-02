@@ -23,7 +23,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, $507b
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, AIPlay_EnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
@@ -48,7 +48,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        $6d20, $6cfd
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          AIDecide_TheBosssWay, AIPlay_TheBosssWay
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    $761d, $75fe
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    AIDecide_NightlyGarbageRun, AIPlay_NightlyGarbageRun
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      $7a13, $79f5
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
@@ -966,6 +966,42 @@ AIDecide_Bill:
 	cp $31
 	ret
 ; 0x20c44
+
+SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
+
+; Pokemon Breeder is a non-standard play wrapper -- the trainer card
+; effect picks a Stage-2 Pokemon from hand, but only the AI knows
+; the bench slot to evolve. So it runs THREE AIMakeDecision calls:
+; (1) action $07 to play the Breeder card itself, (2) action $18 to
+; commit the Stage-2 Pokemon, (3) action $19 to resolve the new
+; Pokemon's incoming Pkmn Power. The intermediate $ff / $00 checks
+; bail out cleanly if the prior step rejected the choice.
+AIPlay_PokemonBreeder:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ld a, [wcd15]
+	cp $ff
+	ret z
+	ldh [hTempCardIndex_ff9f], a
+	ld [wTempAIPokemonCard], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, $18
+	farcall AIMakeDecision
+	ld a, [wcd18]
+	or a
+	ret z
+	farcall AIHandlePkmnPowersWhenPlayingPkmnFromHand
+	ld a, $19
+	farcall AIMakeDecision
+	ret
+; 0x210b6
 
 SECTION "Bank 8@53bc", ROMX[$53bc], BANK[$8]
 
@@ -2026,7 +2062,7 @@ AIDecide_PokemonTrader:
 	cp $32
 	jp z, $70a7
 	cp $41
-	jp z, $71d4
+	jp z, AIDecide_PokemonTrader_Deck41
 	cp $42
 	jp z, $71d9
 	cp $48
@@ -2122,6 +2158,15 @@ AIDecide_PokemonTrader_Deck18:
 	scf
 	ret
 ; 0x22f88
+
+SECTION "Bank 8@71d4", ROMX[$71d4], BANK[$8]
+
+; deck $41 ("Mad Petals") delegates Pokemon Trader entirely to a
+; bespoke bank-$12 helper.
+AIDecide_PokemonTrader_Deck41:
+	farcall MadPetalsDeckAIDecidePokemonTrader
+	ret
+; 0x231d9
 
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 
@@ -2242,6 +2287,131 @@ AIDecide_TheBosssWay_Deck6A:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
 ; 0x235f9
+
+SECTION "Bank 8@75fe", ROMX[$75fe], BANK[$8]
+
+AIPlay_NightlyGarbageRun:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempRetreatCostCards], a
+	ld a, $ff
+	ldh [hAIEnergyTransPlayAreaLocation], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Pure dispatcher: 12 deck-specific policies, default returns NC.
+AIDecide_NightlyGarbageRun:
+	ld a, [wOpponentDeckID]
+	cp $17
+	jp z, $765e
+	cp $3a
+	jp z, $76ad
+	cp $3b
+	jp z, $76d6
+	cp $3d
+	jp z, $76ff
+	cp $40
+	jp z, $7789
+	cp $41
+	jp z, AIDecide_NightlyGarbageRun_Deck41
+	cp $46
+	jp z, $787d
+	cp $49
+	jp z, $78c9
+	cp $55
+	jp z, $78f2
+	cp $58
+	jp z, $7956
+	cp $5a
+	jp z, $79d5
+	cp $6f
+	jp z, $79da
+	or a
+	ret
+; 0x2365e
+
+SECTION "Bank 8@782f", ROMX[$782f], BANK[$8]
+
+; deck $41 NGR policy. Empties the three multi-target slots, then
+; tries to fill them with cards from the discard pile in priority
+; order: card ID $39 (PSYDUCK_LV??), card ID $37 (??), and finally
+; any basic energies. Any successful add returns NC from
+; AddDeckIndexToAIMultiTargetSlots; once it returns carry SET we
+; know we've packed all three slots.
+;
+; The trailing block shifts slot2 down to slot1 and slot3 down to
+; slot2 -- the trainer effect treats slot1 as "first card to rescue"
+; so this re-packs after the AI knocked some entries out, then
+; commits with the saved $a register state.
+AIDecide_NightlyGarbageRun_Deck41:
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, $02
+	ld de, $39
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, $02
+	ld de, $37
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, $02
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.scan_energy
+	ld a, [hli]
+	cp $ff
+	jr z, .commit
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .scan_energy
+.commit
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	ret z
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	pop af
+	scf
+	ret
+; 0x2387d
+
+SECTION "Bank 8@79df", ROMX[$79df], BANK[$8]
+
+; Helper for NIGHTLY_GARBAGE_RUN's deck-specific policies: given a
+; deck index in `a`, find the first $ff slot in
+; wTempAIMultiTargetCardDeckIndex1/2/3 and write `a` there. Returns
+; NC on success, carry SET if all three slots are already full.
+AddDeckIndexToAIMultiTargetSlots:
+	ld b, a
+	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld a, $ff
+	cp [hl]
+	jr z, .store
+	inc hl
+	cp [hl]
+	jr z, .store
+	inc hl
+	cp [hl]
+	jr z, .store
+	scf
+	ret
+.store
+	ld [hl], b
+	or a
+	ret
+; 0x239f5
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 

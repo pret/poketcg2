@@ -112,6 +112,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4c3e` | [`AIDecide_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
 | `$08` | `$53bc` | [`AIPlay_ProfessorOak`](../../../src/engine/bank08.asm) | AITrainerCardLogic, shared duel-gene + duel-sousuke | 2026-06-01 |
 | `$08` | `$53d0` | [`AIDecide_ProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene ∩ duel-sousuke (114 shared hits) | 2026-06-01 |
+| `$08` | `$507b` | [`AIPlay_PokemonBreeder`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (3-stage non-standard play wrapper) | 2026-06-01 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
@@ -130,6 +131,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
+| `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
 | `$08` | `$6a59` | [`AIDecide_Pokeball_Deck25`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (Ayako is deck $25) | 2026-06-01 |
@@ -137,6 +139,10 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$74a7` | [`AIDecide_TheBosssWay`](../../../src/engine/bank08.asm) + inline decks $38, $39 | sameboy_trace duel-gr3-3 (deck $39; 8 other deck cases left raw) | 2026-06-01 |
 | `$08` | `$7539` | [`AIDecide_TheBosssWay_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
 | `$08` | `$75cd` | [`AIDecide_TheBosssWay_Deck6A`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx (deck $6a) | 2026-06-01 |
+| `$08` | `$75fe` | [`AIPlay_NightlyGarbageRun`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino | 2026-06-01 |
+| `$08` | `$761d` | [`AIDecide_NightlyGarbageRun`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (12-way dispatcher; 11 deck cases left raw) | 2026-06-01 |
+| `$08` | `$782f` | [`AIDecide_NightlyGarbageRun_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino | 2026-06-01 |
+| `$08` | `$79df` | [`AddDeckIndexToAIMultiTargetSlots`](../../../src/engine/bank08.asm) | helper called from deck-$41 NGR | 2026-06-01 |
 | `$08` | `$7d44` | [`AIDecide_MasterBall_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
 | `$08` | `$7e9e` | [`AIPlay_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7eaa` | [`AIDecide_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
@@ -147,7 +153,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 25.37% (~4.1 KiB of 16 KiB).
+**Source-defined**: 26.95% (~4.3 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
@@ -168,7 +174,12 @@ the target (helps justify future decomp prioritization).
 - `$7492-$7538` — `AIPlay_TheBosssWay` + `AIDecide_TheBosssWay` (inline deck $38, deck $39; 7 other deck cases left raw).
 - `$7539-$754e` — `AIDecide_TheBosssWay_Deck3F`.
 - `$75cd-$75f8` — `AIDecide_TheBosssWay_Deck6A`.
+- `$507b-$50b5` — `AIPlay_PokemonBreeder` (3-stage play wrapper with action codes `$07`/`$18`/`$19`).
 - `$671b-$67ae` — `AIPlay_Revive` + `AIDecide_Revive` + `AIDecide_Revive_Deck14` + `AIDecide_Revive_Deck40`.
+- `$71d4-$71d8` — `AIDecide_PokemonTrader_Deck41` (5-byte trampoline into `MadPetalsDeckAIDecidePokemonTrader`).
+- `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
+- `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
+- `$79df-$79f4` — `AddDeckIndexToAIMultiTargetSlots` (3-slot list-add helper).
 - `$7d44-$7d60` — `AIDecide_MasterBall_Deck3F`.
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
@@ -216,6 +227,7 @@ parens.
 | duel-midori | **0** ✓ |
 | duel-yuuta, duel-yuuta2 | 47 each (played THE_BOSSS_WAY + MASTER_BALL as deck $3f; remaining all in deferred ENERGY_RETRIEVAL territory) |
 | duel-miyuki | 29 (played REVIVE + GOOP_GAS_ATTACK; remaining in deferred ENERGY_RETRIEVAL territory) |
+| duel-morino | 26 (played POKEMON_BREEDER, POKEMON_TRADER as deck $41, NIGHTLY_GARBAGE_RUN; remaining hits all in POKEMON_BREEDER decide -- big function with 7 deck cases + complex default scoring still deferred) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
