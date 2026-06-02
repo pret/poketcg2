@@ -28,10 +28,10 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, AIPlay_EnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, $5cee, $5ce2
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          $5d3e, $5d2d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              $5f6f, $5f63
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                $604f, $603e
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               $60ed, $60d7
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
@@ -1178,6 +1178,177 @@ AIPlay_SuperEnergyRetrieval:
 	farcall AIMakeDecision
 	ret
 ; 0x21adf
+
+SECTION "Bank 8@5ce2", ROMX[$5ce2], BANK[$8]
+
+AIPlay_ImposterProfessorOak:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Three deck IDs bypass the default policy:
+;   $59, $68: play whenever wd033 is non-zero, OR when the opponent
+;             has 7+ cards in hand.
+;   $67:      always play.
+; Default: in the early game (opponent has <46 cards out of deck),
+; play only if the opponent has 9+ cards in hand (force them to redraw
+; a smaller hand). In the late game (>=46 out), play only if the
+; opponent has fewer than 6 cards in hand (try to deck them out).
+AIDecide_ImposterProfessorOak:
+	ld a, [wOpponentDeckID]
+	cp $59
+	jr z, .deck_59_or_68
+	cp $67
+	jr z, .play
+	cp $68
+	jr z, .deck_59_or_68
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	call GetNonTurnDuelistVariable
+	cp $2e
+	jr c, .early_game
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $06
+	jr c, .play
+.no_play
+	or a
+	ret
+.early_game
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $09
+	jr c, .no_play
+.play
+	scf
+	ret
+.deck_59_or_68
+	ld a, [wd033]
+	or a
+	jr nz, .play
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $07
+	jr c, .no_play
+	jr .play
+; 0x21d2d
+
+SECTION "Bank 8@5f63", ROMX[$5f63], BANK[$8]
+
+AIPlay_FullHeal:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; First checks: if the AI is already committed to retreating AND can
+; either retreat or has the energy for it, skip Full Heal (just
+; retreat). If the defender can't KO us, also skip — no urgency.
+; If we have no status condition, skip.
+; Otherwise branch by the status condition (CONFUSED / ASLEEP /
+; PARALYZED) into per-status policies; deck $53 has its own policy.
+AIDecide_FullHeal:
+	farcall AIDecideWhetherToRetreat_IgnoreStatus
+	jr nc, .check_threat
+	farcall CheckIfArenaCardCanRetreat
+	ccf
+	ret nc
+	ld a, [wAIPlayEnergyCardForRetreat]
+	or a
+	jr z, .check_threat
+	or a
+	ret
+.check_threat
+	farcall CheckIfDefendingPokemonCanKnockOut
+	ccf
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $53
+	jp z, $602b
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr z, .no_play
+	and $0f
+	cp PARALYZED
+	jr z, .check_paralyzed_or_other
+	cp ASLEEP
+	jr z, .asleep_case
+	cp CONFUSED
+	jr z, .confused_case
+.play
+	scf
+	ret
+.asleep_case
+; if our active is Slowbro Lv35 (whose Pkmn Power keeps it asleep on
+; purpose), don't Full Heal — being asleep is the point.
+; Otherwise check if the opponent has any of a few specific cards
+; ($124, $126, $128) in play that would punish us for being asleep.
+; If yes, play immediately; else fall through to the paralyzed-or-other
+; checks below.
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 SLOWBRO_LV35
+	jr z, .no_play
+	ld de, $124
+	ld b, $00
+	call SwapTurn
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	call SwapTurn
+	jr c, .play
+	ld de, $126
+	ld b, $00
+	call SwapTurn
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	call SwapTurn
+	jr c, .play
+	ld de, $128
+	ld b, $00
+	call SwapTurn
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	call SwapTurn
+	jr c, .play
+.check_paralyzed_or_other
+; if our hand has card ID $1a9 (some recovery / cure card?) and the
+; Scoop Up decider would also fire, skip — let one of those handle
+; the situation. Otherwise: play if we can damage the defender AND
+; we either have no energy-for-retreat OR retreat-with-status isn't
+; a viable plan.
+	ld de, $1a9
+	farcall LookForCardIDInHandList
+	jr nc, .full_heal_check_damage
+	call $60ed
+	jr c, .no_play
+.full_heal_check_damage
+	xor a
+	farcall CheckIfCanDamageDefendingPokemon
+	jr nc, .no_play
+	ld a, [wAIPlayEnergyCardForRetreat]
+	or a
+	jr nz, .play
+	farcall AIDecideWhetherToRetreat_ConsiderStatus
+	jr nc, .play
+.no_play
+	or a
+	ret
+.confused_case
+	ld de, $1a9
+	farcall LookForCardIDInHandList
+	jr nc, .confused_check_damage
+	call $60ed
+	jr c, .no_play
+.confused_check_damage
+	xor a
+	farcall CheckIfCanDamageDefendingPokemon
+	jr nc, .no_play
+	ld a, [wAIPlayEnergyCardForRetreat]
+	or a
+	jp nz, .play
+	jr .no_play
+; 0x2202b
 
 SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
 

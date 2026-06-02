@@ -113,6 +113,10 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
+| `$08` | `$5ce2` | [`AIPlay_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
+| `$08` | `$5cee` | [`AIDecide_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
+| `$08` | `$5f63` | [`AIPlay_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
+| `$08` | `$5f6f` | [`AIDecide_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 (deck-$53 case `$602b` and shared SCOOP_UP helper `$60ed` still raw) | 2026-06-01 |
 | `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$66e7` | [`AIDecide_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
@@ -125,7 +129,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 16.66% (~2.7 KiB of 16 KiB).
+**Source-defined**: 18.33% (~2.9 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
@@ -136,6 +140,8 @@ the target (helps justify future decomp prioritization).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
 - `$6f1b-$6f87` — `AIDecide_PokemonTrader_Deck18`.
+- `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
+- `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (deck `$53` case `$602b` left raw; `call $60ed` to the still-raw shared SCOOP_UP-decider helper left as a raw call).
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (the 20 deck-specific Func_2152x-Func_2163e cases left raw).
@@ -169,6 +175,7 @@ parens.
 | duel-takahashi | **0** ✓ (gusted, no other trainer plays) |
 | duel-keita | **0** ✓ |
 | duel-miura | **0** ✓ |
+| duel-gr4 | **0** ✓ (played IMPOSTER_PROFESSOR_OAK + FULL_HEAL) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
