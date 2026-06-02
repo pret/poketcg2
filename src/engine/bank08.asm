@@ -14,8 +14,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, SUPER_POTION,           $44d4, $43aa
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, DEFENDER,               AIDecide_Defender_Phase13, AIPlay_Defender
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, DEFENDER,               AIDecide_Defender_Phase14, AIPlay_Defender
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              $4692, $4678
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              AIDecide_PlusPower_Phase13, AIPlay_PlusPower
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              AIDecide_PlusPower_Phase14, AIPlay_PlusPower
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 AIDecide_Switch_Phase09, AIPlay_Switch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 AIDecide_Switch_Phase16, AIPlay_Switch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
@@ -722,6 +722,283 @@ AIDecide_Defender_Phase14:
 	call CheckLoadedAttackFlag
 	ret
 ; 0x20678
+
+SECTION "Bank 8@4678", ROMX[$4678], BANK[$8]
+
+; Shared by Phase_13 and Phase_14. Sets AI_FLAG_USED_PLUSPOWER and
+; stashes wAITrainerCardParameter (which attack to boost) into
+; wAIPlusPowerAttack so the trainer-effect step knows which attack
+; was chosen.
+AIPlay_PlusPower:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_USED_PLUSPOWER
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardParameter]
+	ld [wAIPlusPowerAttack], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Phase_13 pre-attack decision. Bail if the player's arena card has
+; status $1b ($ed = DUELVARS_ARENA_CARD_LAST_TURN_EFFECT?) or is
+; immune to our attack. deck $45 skips this phase entirely.
+; If we can already KO from hand, skip (no point boosting). If our
+; active is Mr. Mime Lv28, skip (Pkmn Power). If card $18e is in
+; hand AND AIDecide_ProfessorOak says fire, return with a = $ff so
+; the caller defers to Oak (the bigger swing).
+; Otherwise pick whichever of our two attacks PlusPower-would-KO
+; (CheckIfPlusPowerEnablesKO_Phase13) AND clears the damage
+; threshold (CheckIfDamageThresholdMetForPlusPower_Phase13). Returns
+; carry SET with `a` = attack index (0 or 1) on commit.
+AIDecide_PlusPower_Phase13:
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
+	call GetNonTurnDuelistVariable
+	cp $1b
+	ret z
+	farcall IsPlayerArenaCardImmune
+	ccf
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $45
+	jr z, .skip
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .skip
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 MR_MIME_LV28
+	jr z, .check_attacks
+	ld de, $18e
+	farcall LookForCardIDInHandList
+	jr nc, .check_attacks
+	call AIDecide_ProfessorOak
+	jr nc, .check_attacks
+	ld a, $ff
+	scf
+	ret
+.check_attacks
+	xor a
+	ld [wSelectedAttack], a
+	call CheckIfPlusPowerEnablesKO_Phase13
+	jr c, .attack_0_passes
+	ld a, $01
+	ld [wSelectedAttack], a
+	call CheckIfPlusPowerEnablesKO_Phase13
+	jr c, .attack_1_passes
+.skip
+	or a
+	ret
+.attack_0_passes
+	call CheckIfDamageThresholdMetForPlusPower_Phase13
+	jr nc, .skip
+	xor a
+	scf
+	ret
+.attack_1_passes
+	call CheckIfDamageThresholdMetForPlusPower_Phase13
+	jr nc, .skip
+	ld a, $01
+	scf
+	ret
+
+; Phase 13 helper: simulate "what if PlusPower were attached" and
+; return carry SET when the boosted attack would KO the defender
+; (going from "doesn't KO" to "does KO" by adding +10 damage).
+; Returns NC when the attack is unusable, would already KO without
+; the bonus, or wouldn't KO even with it.
+CheckIfPlusPowerEnablesKO_Phase13:
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .unusable
+	ld a, [wSelectedAttack]
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, DUELVARS_ARENA_CARD_HP
+	call GetNonTurnDuelistVariable
+	ld b, a
+	ld hl, wDamage
+	sub [hl]
+	jr c, AIDecide_PlusPower_Phase13.skip
+	jr z, AIDecide_PlusPower_Phase13.skip
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
+	get_turn_duelist_var
+	inc [hl]
+	push bc
+	ld a, [wSelectedAttack]
+	farcall EstimateDamage_VersusDefendingCard
+	pop bc
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
+	get_turn_duelist_var
+	dec [hl]
+	ld a, [wDamage]
+	ld c, a
+	ld a, b
+	sub c
+	ret c
+	ret nz
+	scf
+	ret
+.unusable
+	or a
+	ret
+
+; Phase 13 helper: returns carry SET when (damage + 10 >= 30) AND
+; the defending Pokemon is NOT Mr. Mime Lv28 (whose Pkmn Power
+; prevents low-damage attacks). Used as a secondary gate after
+; CheckIfPlusPowerEnablesKO_Phase13.
+CheckIfDamageThresholdMetForPlusPower_Phase13:
+	ld a, [wDamage]
+	add $0a
+	cp $1e
+	ret c
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 MR_MIME_LV28
+	ret z
+	scf
+	ret
+
+; Phase 14 immediately-pre-attack decision. Same Mr. Mime / immune
+; guard as Phase 13. Then deck-specific skip list ($32, $3b, $4d,
+; $5d, $5e, $60, $6e, $76) and one deck ($45) with its own policy.
+; Default: gates the active attack through 3 helpers
+; (CheckIfAttackWontKOAlready, ScoreAttackWithPoisonDiscount,
+; CheckIfDamageThresholdMetForPlusPower_Phase14). Returns carry SET
+; with the active attack as the commit.
+AIDecide_PlusPower_Phase14:
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
+	call GetNonTurnDuelistVariable
+	cp $1b
+	ret z
+	farcall IsPlayerArenaCardImmune
+	ccf
+	ret nc
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld e, a
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld a, $05
+	call CheckLoadedAttackFlag
+	jr c, .skip
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, [wOpponentDeckID]
+	cp $32
+	jr z, .skip
+	cp $3b
+	jr z, .skip
+	cp $45
+	jp z, AIDecide_PlusPower_Phase14_Deck45
+	cp $4d
+	jr z, .skip
+	cp $5d
+	jr z, .skip
+	cp $5e
+	jr z, .skip
+	cp $60
+	jr z, .skip
+	cp $6e
+	jr z, .skip
+	cp $76
+	jr z, .skip
+	call CheckIfAttackWontKOAlready
+	jr nc, .skip
+	call ScoreAttackWithPoisonDiscount
+	jr nc, .skip
+	call CheckIfDamageThresholdMetForPlusPower_Phase14
+	jr nc, .skip
+	scf
+	ret
+.skip
+	or a
+	ret
+
+; Phase 14 helper (duplicate of CheckIfDamageThresholdMetForPlusPower_Phase13
+; -- the ROM has both copies at $4733 and $47b0).
+CheckIfDamageThresholdMetForPlusPower_Phase14:
+	ld a, [wDamage]
+	add $0a
+	cp $1e
+	ret c
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 MR_MIME_LV28
+	ret z
+	scf
+	ret
+
+; Returns carry SET when our attack would NOT already KO the
+; defender (so PlusPower's +10 might enable the KO). NC means the
+; attack is already lethal or unusable -- don't bother boosting.
+CheckIfAttackWontKOAlready:
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .unusable
+	ld a, [wSelectedAttack]
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, DUELVARS_ARENA_CARD_HP
+	call GetNonTurnDuelistVariable
+	ld hl, wDamage
+	sub [hl]
+	jr c, AIDecide_PlusPower_Phase14.skip
+	jr z, AIDecide_PlusPower_Phase14.skip
+	scf
+	ret
+.unusable
+	or a
+	ret
+
+; Random-gate scorer. Reads wAIMinDamage, subtracts the poison
+; tick, and bails if it's still under 10. Otherwise rolls
+; Random(0..9) and compares with 3 -- carry SET 30% of the time
+; means commit. This is how the AI introduces randomness into its
+; PlusPower commitment.
+ScoreAttackWithPoisonDiscount:
+	ld a, [wAIMinDamage]
+	farcall DiscountPoisonFromDamage
+	cp $0a
+	jr c, CheckIfAttackWontKOAlready.unusable
+	ld a, $0a
+	call Random
+	cp $03
+	ret
+
+; deck $45 (Dark Jolteon / Dark Raichu) Phase 14 case: only commit
+; if our active is one of those two AND the standard gates pass
+; (CheckIfAttackWontKOAlready + min-damage >= 10 +
+; CheckIfDamageThresholdMetForPlusPower_Phase14).
+AIDecide_PlusPower_Phase14_Deck45:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_JOLTEON
+	jr z, .matched
+	cp16 DARK_RAICHU
+	jr nz, AIDecide_PlusPower_Phase14.skip
+.matched
+	call CheckIfAttackWontKOAlready
+	jr nc, AIDecide_PlusPower_Phase14.skip
+	farcall CheckIfSelectedAttackIsUnusable
+	jp c, AIDecide_PlusPower_Phase14.skip
+	ld a, [wSelectedAttack]
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wAIMinDamage]
+	cp $0a
+	jp c, AIDecide_PlusPower_Phase14.skip
+	call CheckIfDamageThresholdMetForPlusPower_Phase14
+	jp nc, AIDecide_PlusPower_Phase14.skip
+	scf
+	ret
+; 0x2083d
 
 SECTION "Bank 8@483d", ROMX[$483d], BANK[$8]
 
@@ -2697,7 +2974,7 @@ AIDecide_PokemonTrader:
 	cp $48
 	jp z, AIDecide_PokemonTrader_Deck48
 	cp $49
-	jp z, $7274
+	jp z, AIDecide_PokemonTrader_Deck49
 	cp $4c
 	jp z, $72d7
 	cp $4d
@@ -2870,6 +3147,60 @@ AIDecide_PokemonTrader_Deck48:
 	ret
 ; 0x23274
 
+SECTION "Bank 8@7274", ROMX[$7274], BANK[$8]
+
+; deck $49's Pokemon Trader policy. Two paths based on whether we
+; have only one Pokemon in play.
+;
+; Multi-Pokemon: walk the evolution chain (preevo $61 -> evo $65)
+; in deck, fall back to swap $61-in-hand for $65-in-deck.
+; Solo: try fetching specific cards from the deck in order:
+; $75, $59, $61, $6c. Any hit commits.
+;
+; Hits store the deck index to wTempAIMultiTargetCardDeckIndex1,
+; then FindDifferentPokemonCardInHand picks the swap partner.
+AIDecide_PokemonTrader_Deck49:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr z, .solo
+	ld bc, $61
+	ld de, $65
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, $61
+	ld bc, $65
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $65
+	jp c, .commit
+	ret
+.solo
+	ld a, $00
+	ld de, $75
+	farcall IsCardIDInDeckAndNotInHand
+	ld de, $75
+	jr c, .commit
+	ld a, $00
+	ld de, $59
+	farcall IsCardIDInDeckAndNotInHand
+	ld de, $59
+	jr c, .commit
+	ld a, $00
+	ld de, $61
+	farcall IsCardIDInDeckAndNotInHand
+	ld de, $61
+	jr c, .commit
+	ld a, $00
+	ld de, $6c
+	farcall IsCardIDInDeckAndNotInHand
+	ld de, $6c
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x232d7
+
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 
 AIPlay_TheBosssWay:
@@ -3025,7 +3356,7 @@ AIDecide_NightlyGarbageRun:
 	cp $46
 	jp z, $787d
 	cp $49
-	jp z, $78c9
+	jp z, AIDecide_NightlyGarbageRun_Deck49
 	cp $55
 	jp z, $78f2
 	cp $58
@@ -3114,6 +3445,35 @@ AddDeckIndexToAIMultiTargetSlots:
 	or a
 	ret
 ; 0x239f5
+
+SECTION "Bank 8@78c9", ROMX[$78c9], BANK[$8]
+
+; deck $49 NGR policy: gather basic energies in the discard pile,
+; require at least 3, then rescue the first two on the list plus
+; (if found) a card $65 from discard. Returns the result with the
+; rescue target list pre-populated in
+; wTempAIMultiTargetCardDeckIndex1/2.
+AIDecide_NightlyGarbageRun_Deck49:
+	ld a, $02
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, .no_play
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [$c511]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, $02
+	ld de, $65
+	farcall FindCardIDInLocation
+	ret c
+	ld a, [$c512]
+	scf
+	ret
+.no_play
+	or a
+	ret
+; 0x238f2
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 

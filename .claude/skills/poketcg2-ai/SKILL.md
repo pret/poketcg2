@@ -110,6 +110,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$44e3` | [`AIPlay_Defender`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna | 2026-06-01 |
 | `$08` | `$44f2` | [`AIDecide_Defender_Phase13`](../../../src/engine/bank08.asm) + inline `.deck_50`, `.deck_74` | sameboy_trace duel-renna | 2026-06-01 |
 | `$08` | `$45ef` | [`AIDecide_Defender_Phase14`](../../../src/engine/bank08.asm) + inline `.deck_72` | sameboy_trace duel-renna | 2026-06-01 |
+| `$08` | `$4678` | [`AIPlay_PlusPower`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
+| `$08` | `$4692` | [`AIDecide_PlusPower_Phase13`](../../../src/engine/bank08.asm) + helpers | sameboy_trace duel-hidero | 2026-06-02 |
+| `$08` | `$4752` | [`AIDecide_PlusPower_Phase14`](../../../src/engine/bank08.asm) + helpers + inline `Deck45` | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$4c44` | [`AIPlay_EnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-ichikawa2 | 2026-06-02 |
 | `$08` | `$4c5a` | [`AIDecide_EnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate` | sameboy_trace duel-ichikawa2 (7 deck cases left raw) | 2026-06-02 |
 | `$08` | `$4e3c` | [`AIDecide_EnergyRemoval_Deck47`](../../../src/engine/bank08.asm) + `CheckIfEnergyRemovalDisruptsBigAttack` | sameboy_trace duel-yuki | 2026-06-02 |
@@ -143,6 +146,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
+| `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
+| `$08` | `$78c9` | [`AIDecide_NightlyGarbageRun_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
 | `$08` | `$6a59` | [`AIDecide_Pokeball_Deck25`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (Ayako is deck $25) | 2026-06-01 |
@@ -165,7 +170,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 33.58% (~5.4 KiB of 16 KiB).
+**Source-defined**: 37.19% (~6.0 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -175,6 +180,7 @@ the target (helps justify future decomp prioritization).
 - `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
 - `$483d-$489b` — `AIPlay_Switch` (shared by Phase_09 and Phase_16) + `AIDecide_Switch_Phase09`.
 - `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
+- `$4678-$483c` — `AIPlay_PlusPower` + `AIDecide_PlusPower_Phase13` + `AIDecide_PlusPower_Phase14` (inline `Deck45`) + 5 helpers (`CheckIfPlusPowerEnablesKO_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase14` [byte-duplicate of Phase13], `CheckIfAttackWontKOAlready`, `ScoreAttackWithPoisonDiscount`).
 - `$4c44-$4d6a` — `AIPlay_EnergyRemoval` + `AIDecide_EnergyRemoval` (6 deck cases left raw) + 3 helpers (`CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate`).
 - `$4e3c-$4e8f` — `AIDecide_EnergyRemoval_Deck47` + `CheckIfEnergyRemovalDisruptsBigAttack`.
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
@@ -196,6 +202,8 @@ the target (helps justify future decomp prioritization).
 - `$671b-$67ae` — `AIPlay_Revive` + `AIDecide_Revive` + `AIDecide_Revive_Deck14` + `AIDecide_Revive_Deck40`.
 - `$71d4-$71d8` — `AIDecide_PokemonTrader_Deck41` (5-byte trampoline into `MadPetalsDeckAIDecidePokemonTrader`).
 - `$71fc-$7273` — `AIDecide_PokemonTrader_Deck48` (4-way split on play-area count × Water-type opponent).
+- `$7274-$72d6` — `AIDecide_PokemonTrader_Deck49` (multi-Pokemon evolution chain vs. solo card-fetch).
+- `$78c9-$78f1` — `AIDecide_NightlyGarbageRun_Deck49` (rescue 2 basic energies + optional card $65).
 - `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
 - `$79df-$79f4` — `AddDeckIndexToAIMultiTargetSlots` (3-slot list-add helper).
@@ -255,6 +263,7 @@ parens.
 | duel-catherine | 47 (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
 | duel-yuki | 47 (played ENERGY_REMOVAL + SCOOP_UP + POKEBALL as deck $47; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
 | duel-shoro | 92 (played POKEMON_TRADER as deck $48; rest in deferred ENERGY_RETRIEVAL + SUPER_ENERGY_RETRIEVAL deciders — deck $48's ER case is at `$5937` but tightly couples to the parent's local labels, deferred until the parent is decompiled) |
+| duel-hidero | **0** ✓ (played PLUSPOWER both phases + POKEMON_TRADER + NGR as deck $49) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
