@@ -25,7 +25,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, AIPlay_EnergyRetrieval
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       AIDecide_EnergyRetrieval, AIPlay_EnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
@@ -2207,6 +2207,64 @@ AIPlay_EnergyRetrieval:
 	farcall AIMakeDecision
 	ret
 ; 0x2166e
+
+SECTION "Bank 8@566e", ROMX[$566e], BANK[$8]
+
+; Dispatcher for the Energy Retrieval decide pass. Reads the opponent's
+; deck ID and routes to a per-deck handler when it matches one of 22
+; tuned cases; otherwise falls through to the general gate which only
+; proceeds when the hand still has at least one basic-energy card to
+; discard as fuel.
+AIDecide_EnergyRetrieval:
+	ld a, [wOpponentDeckID]
+	cp $11
+	jp z, $57c8
+	cp $24
+	jp z, $57d2
+	cp $2d
+	jp z, $581d
+	cp $35
+	jp z, $589d
+	cp $40
+	jp z, $58cf
+	cp $48
+	jp z, $5937
+	cp $4a
+	jp z, $5969
+	cp $4b
+	jp z, $5969
+	cp $4c
+	jp z, $599b
+	cp $4f
+	jp z, $59cd
+	cp $57
+	jp z, $5a0b
+	cp $5a
+	jp z, $5a10
+	cp $5d
+	jp z, $5a19
+	cp $5f
+	jp z, $5a22
+	cp $63
+	jp z, $5a2b
+	cp $64
+	jp z, $5a34
+	cp $6c
+	jp z, $5a53
+	cp $70
+	jp z, $5a5c
+	cp $72
+	jp z, $5a70
+	cp $73
+	jp z, $5a75
+	cp $74
+	jp z, $5a7e
+	cp $75
+	jp z, $5a83
+.default
+	farcall CountBasicEnergyCardsInHand
+	ret nc
+; 0x216e4
 
 SECTION "Bank 8@5a9d", ROMX[$5a9d], BANK[$8]
 

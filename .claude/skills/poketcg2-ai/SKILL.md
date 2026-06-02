@@ -134,6 +134,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$55d5` | [`AIDecide_ProfessorOak_Deck49Or4D`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko (hand-size threshold scales with cards-out-of-deck) | 2026-06-02 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
+| `$08` | `$566e` | [`AIDecide_EnergyRetrieval`](../../../src/engine/bank08.asm) | sameboy_trace duel-kevin (dispatcher only; 22 deck cases left raw; default-path early `ret nc` lands) | 2026-06-02 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5ce2` | [`AIPlay_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
 | `$08` | `$5cee` | [`AIDecide_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
@@ -191,7 +192,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 44.63% (~7.1 KiB of 16 KiB).
+**Source-defined**: 45.35% (~7.3 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -250,6 +251,7 @@ the target (helps justify future decomp prioritization).
 - `$55d5-$55e7` — `AIDecide_ProfessorOak_Deck49Or4D`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
+- `$566e-$56e3` — `AIDecide_EnergyRetrieval` (22-deck-ID dispatcher; falls through to `.default` which gates on `CountBasicEnergyCardsInHand` and bails with `ret nc` when no basic energies remain in hand to discard as ER fuel).
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
 - `$6373-$6395` — `AIPlay_ItemFinder`.
 - `$664d-$2693` — `AIPlay_ImakuniCard` + `AIDecide_ImakuniCard` (inline `deck_50_dark_primeape`).
@@ -260,8 +262,8 @@ the target (helps justify future decomp prioritization).
 Addresses listed are bank-$08 CPU addresses; nearest table card in
 parens.
 
-1. `$566e` (ENERGY_RETRIEVAL decide) — large (~300+ bytes) 24-way deck-ID dispatch. Needs deeper investigation of the per-deck sub-functions (`Func_217c8`-`Func_21a83`) before landing. **Last bucket of hot duel-gene hits (144 remaining undecompiled).**
-2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `$566e`.
+1. `$56e4-$5a9c` (ENERGY_RETRIEVAL deck cases + post-`.default` logic) — 22 deck-specific handlers at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`, plus the second deck-ID dispatcher inside the `.default` continuation at `$56e4` (decks `$19, $22, $32, $42, $44, $45, $51, $62, $6e` → branches at `$5720, $591a, $592c, $572c`). **Last bucket of hot duel-gene hits (144 remaining undecompiled).**
+2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
 3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
    - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
    - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
@@ -281,35 +283,36 @@ parens.
 | duel-keita | **0** ✓ |
 | duel-miura | **0** ✓ |
 | duel-gr4 | **0** ✓ (played IMPOSTER_PROFESSOR_OAK + FULL_HEAL) |
-| duel-ronald | 12 (all in deferred SUPER_ENERGY_RETRIEVAL decide territory) |
-| duel-gr3, duel-gr3-2 | 53 each (same deferred territory) |
+| duel-ronald | 10 (deferred SUPER_ENERGY_RETRIEVAL decide territory) |
+| duel-gr3, duel-gr3-2 | **0** ✓ (cleared by `AIDecide_EnergyRetrieval` dispatcher) |
 | duel-gr3-3 | **0** ✓ (played THE_BOSSS_WAY; deck $39) |
 | duel-ayako | **0** ✓ (played POKEBALL; deck $25) |
 | duel-masahiro | **0** ✓ (played SWITCH; Phase_09 general decider) |
-| duel-tashiro | 53 (played SCOOP_UP; remaining hits in deferred ENERGY_RETRIEVAL territory) |
+| duel-tashiro | 5 (played SCOOP_UP; remaining in deferred SUPER_ER territory) |
 | duel-gr2 | **0** ✓ |
 | duel-grx | **0** ✓ (played THE_BOSSS_WAY; deck $6a) |
 | duel-midori | **0** ✓ |
-| duel-yuuta, duel-yuuta2 | 47 each (played THE_BOSSS_WAY + MASTER_BALL as deck $3f; remaining all in deferred ENERGY_RETRIEVAL territory) |
-| duel-miyuki | 29 (played REVIVE + GOOP_GAS_ATTACK; remaining in deferred ENERGY_RETRIEVAL territory) |
-| duel-morino | 26 (played POKEMON_BREEDER, POKEMON_TRADER as deck $41, NIGHTLY_GARBAGE_RUN; remaining hits all in POKEMON_BREEDER decide -- big function with 7 deck cases + complex default scoring still deferred) |
+| duel-yuuta, duel-yuuta2 | **0** ✓ (played THE_BOSSS_WAY + MASTER_BALL as deck $3f; ER dispatcher cleared) |
+| duel-miyuki | 17 (played REVIVE + GOOP_GAS_ATTACK; remaining in deferred SUPER_ER territory) |
+| duel-morino | 23 (played POKEMON_BREEDER, POKEMON_TRADER as deck $41, NIGHTLY_GARBAGE_RUN; remaining hits all in POKEMON_BREEDER decide -- big function with 7 deck cases + complex default scoring still deferred) |
 | duel-renna | **0** ✓ (played DEFENDER both phases + MASTER_BALL as deck $43) |
 | duel-renna2 | **0** ✓ |
 | duel-ichikawa, duel-ichikawa2 | **0** ✓ (Ichikawa2 played ENERGY_REMOVAL default path) |
-| duel-catherine | 47 (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
-| duel-yuki | 47 (played ENERGY_REMOVAL + SCOOP_UP + POKEBALL as deck $47; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
-| duel-shoro | 92 (played POKEMON_TRADER as deck $48; rest in deferred ENERGY_RETRIEVAL + SUPER_ENERGY_RETRIEVAL deciders — deck $48's ER case is at `$5937` but tightly couples to the parent's local labels, deferred until the parent is decompiled) |
+| duel-catherine | **0** ✓ (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; ER dispatcher cleared) |
+| duel-yuki | **0** ✓ (played ENERGY_REMOVAL + SCOOP_UP + POKEBALL as deck $47; ER dispatcher cleared) |
+| duel-shoro | 50 (played POKEMON_TRADER as deck $48; rest in deck-$48's ER handler at `$5937` + deferred SUPER_ER) |
 | duel-hidero | **0** ✓ (played PLUSPOWER both phases + POKEMON_TRADER + NGR as deck $49) |
-| duel-miyajima | 35 (played ENERGY_REMOVAL + POKEBALL as deck $4a; remaining hits all in deferred ER/SUPER_ER deciders) |
-| duel-senta | 22 (played POKEBALL as deck $4b; remaining in deferred ER/SUPER_ER) |
-| duel-aira | 39 (played POKEMON_FLUTE + POKEMON_TRADER as deck $4c; remaining in deferred ER/SUPER_ER) |
+| duel-miyajima | 15 (deck $4a; rest in deck-$4a's ER handler at `$5969` + deferred SUPER_ER) |
+| duel-senta | 13 (deck $4b; rest in shared deck-$4a/$4b ER handler at `$5969` + deferred SUPER_ER) |
+| duel-aira | 15 (deck $4c; rest in deck-$4c's ER handler at `$599b` + deferred SUPER_ER) |
 | duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
-| duel-gouda | 47 (played POKEBALL as deck $4e; rest in deferred ER/SER) |
-| duel-grace | 50 (played POKEMON_TRADER + THE_BOSSS_WAY as deck $4f; rest in deferred ER/SER) |
-| duel-kamiya | 51 (deck $50 -- ENERGY_REMOVAL $45/$50, ITEMFINDER, IMAKUNI_CARD; remaining 51 in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw) |
+| duel-gouda | 5 (deck $4e; rest in deferred SUPER_ER) |
+| duel-grace | 19 (deck $4f; rest in deck-$4f's ER handler at `$59cd` + deferred SUPER_ER) |
+| duel-kamiya | 48 (deck $50; rest in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw + deferred SUPER_ER) |
+| duel-kevin | **0** ✓ (2-duel trace; both decks fell through ER dispatcher to `.default` → `ret nc`) |
 | duel-rie | **0** ✓ |
-| duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
-| duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
+| duel-rie2, duel-rie3 | 5 / 7 (only in deferred SUPER_ER territory) |
+| duel-gene | 65 (mostly in deferred SUPER_ER territory + a few ER deck-specific handlers) |
 
 ## Workflow for adding the next AI label
 
