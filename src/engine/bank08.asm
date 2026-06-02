@@ -3147,7 +3147,7 @@ AIDecide_Pokeball:
 	cp $4b
 	jp z, AIDecide_Pokeball_Deck4B
 	cp $4e
-	jp z, $6c35
+	jp z, AIDecide_Pokeball_Deck4E
 	cp $53
 	jp z, $6c5c
 	or a
@@ -3291,6 +3291,29 @@ AIDecide_Pokeball_Deck4B:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22c35
+
+SECTION "Bank 8@6c35", ROMX[$6c35], BANK[$8]
+
+; deck $4e's Poké Ball policy: walk three evolution chains
+; ($fc -> $fe, $fe -> $101, $e7 -> $eb), then fall back to any basic
+; Pokemon in the deck.
+AIDecide_Pokeball_Deck4E:
+	ld bc, $fc
+	ld de, $fe
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $fe
+	ld de, $101
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $e7
+	ld de, $eb
+	farcall CheckReelInEvoLineTarget
+	ret c
+	farcall CheckIfAnyBasicPokemonInDeck
+	ld a, e
+	ret
+; 0x22c5c
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 

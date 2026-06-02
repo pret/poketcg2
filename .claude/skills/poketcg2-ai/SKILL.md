@@ -121,6 +121,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6bbb` | [`AIDecide_Pokeball_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima | 2026-06-02 |
 | `$08` | `$6bf8` | [`AIDecide_Pokeball_Deck4B`](../../../src/engine/bank08.asm) | sameboy_trace duel-senta | 2026-06-02 |
+| `$08` | `$6c35` | [`AIDecide_Pokeball_Deck4E`](../../../src/engine/bank08.asm) | sameboy_trace duel-gouda (uses `CheckReelInEvoLineTarget`) | 2026-06-02 |
 | `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$49e3` | [`AIPlay_GustOfWind`](../../../src/engine/bank08.asm) | sameboy_trace duel-takahashi | 2026-06-01 |
 | `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
@@ -184,7 +185,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 42.74% (~6.8 KiB of 16 KiB).
+**Source-defined**: 42.97% (~6.9 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -202,6 +203,7 @@ the target (helps justify future decomp prioritization).
 - `$6b60-$6bba` — `AIDecide_Pokeball_Deck47`.
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
 - `$6bf8-$6c34` — `AIDecide_Pokeball_Deck4B`.
+- `$6c35-$6c5b` — `AIDecide_Pokeball_Deck4E`.
 - `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
@@ -291,6 +293,7 @@ parens.
 | duel-senta | 22 (played POKEBALL as deck $4b; remaining in deferred ER/SUPER_ER) |
 | duel-aira | 39 (played POKEMON_FLUTE + POKEMON_TRADER as deck $4c; remaining in deferred ER/SUPER_ER) |
 | duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
+| duel-gouda | 47 (played POKEBALL as deck $4e; rest in deferred ER/SER) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
