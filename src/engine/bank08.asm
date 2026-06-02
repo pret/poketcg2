@@ -2903,7 +2903,7 @@ AIDecide_Pokeball:
 	cp $4a
 	jp z, AIDecide_Pokeball_Deck4A
 	cp $4b
-	jp z, $6bf8
+	jp z, AIDecide_Pokeball_Deck4B
 	cp $4e
 	jp z, $6c35
 	cp $53
@@ -3012,6 +3012,43 @@ AIDecide_Pokeball_Deck4A:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22bf8
+
+SECTION "Bank 8@6bf8", ROMX[$6bf8], BANK[$8]
+
+; deck $4b's Poké Ball policy. Same shape as deck $4a -- solo path
+; priority-fetches a single card then tries two in-hand-for-in-deck
+; swap pairs; multi path walks an evolution chain with the swap as
+; fallback.
+;
+; Solo: fetch card $8c, then $7c-for-$81 swap, then $a8-for-$ac.
+; Multi: $a8 -> $ac evolution chain, fall back to $a8-for-$ac swap.
+AIDecide_Pokeball_Deck4B:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .multi
+	ld de, $8c
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $7c
+	ld bc, $81
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, $a8
+	ld bc, $ac
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+.multi
+	ld bc, $a8
+	ld de, $ac
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, $a8
+	ld bc, $ac
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+; 0x22c35
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 

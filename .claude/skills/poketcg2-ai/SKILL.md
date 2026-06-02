@@ -120,6 +120,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6bbb` | [`AIDecide_Pokeball_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima | 2026-06-02 |
+| `$08` | `$6bf8` | [`AIDecide_Pokeball_Deck4B`](../../../src/engine/bank08.asm) | sameboy_trace duel-senta | 2026-06-02 |
 | `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$49e3` | [`AIPlay_GustOfWind`](../../../src/engine/bank08.asm) | sameboy_trace duel-takahashi | 2026-06-01 |
 | `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
@@ -176,7 +177,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 39.07% (~6.3 KiB of 16 KiB).
+**Source-defined**: 39.44% (~6.3 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -193,6 +194,7 @@ the target (helps justify future decomp prioritization).
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
 - `$6b60-$6bba` — `AIDecide_Pokeball_Deck47`.
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
+- `$6bf8-$6c34` — `AIDecide_Pokeball_Deck4B`.
 - `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
@@ -274,6 +276,7 @@ parens.
 | duel-shoro | 92 (played POKEMON_TRADER as deck $48; rest in deferred ENERGY_RETRIEVAL + SUPER_ENERGY_RETRIEVAL deciders — deck $48's ER case is at `$5937` but tightly couples to the parent's local labels, deferred until the parent is decompiled) |
 | duel-hidero | **0** ✓ (played PLUSPOWER both phases + POKEMON_TRADER + NGR as deck $49) |
 | duel-miyajima | 35 (played ENERGY_REMOVAL + POKEBALL as deck $4a; remaining hits all in deferred ER/SUPER_ER deciders) |
+| duel-senta | 22 (played POKEBALL as deck $4b; remaining in deferred ER/SUPER_ER) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
