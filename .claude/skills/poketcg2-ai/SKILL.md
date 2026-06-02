@@ -144,12 +144,15 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$66e7` | [`AIDecide_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$671b` | [`AIPlay_Revive`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$672c` | [`AIDecide_Revive`](../../../src/engine/bank08.asm) + Deck14 + Deck40 | sameboy_trace duel-miyuki | 2026-06-01 |
+| `$08` | `$67af` | [`AIPlay_PokemonFlute`](../../../src/engine/bank08.asm) | sameboy_trace duel-aira | 2026-06-02 |
+| `$08` | `$67c0` | [`AIDecide_PokemonFlute`](../../../src/engine/bank08.asm) + inline `.deck_68`, `.pick_any_basic` | sameboy_trace duel-aira | 2026-06-02 |
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
+| `$08` | `$72d7` | [`AIDecide_PokemonTrader_Deck4C`](../../../src/engine/bank08.asm) | sameboy_trace duel-aira (gated on opponent Water-type arena) | 2026-06-02 |
 | `$08` | `$78c9` | [`AIDecide_NightlyGarbageRun_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
@@ -177,7 +180,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 39.44% (~6.3 KiB of 16 KiB).
+**Source-defined**: 40.96% (~6.6 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -210,9 +213,11 @@ the target (helps justify future decomp prioritization).
 - `$75cd-$75f8` — `AIDecide_TheBosssWay_Deck6A`.
 - `$507b-$50b5` — `AIPlay_PokemonBreeder` (3-stage play wrapper with action codes `$07`/`$18`/`$19`).
 - `$671b-$67ae` — `AIPlay_Revive` + `AIDecide_Revive` + `AIDecide_Revive_Deck14` + `AIDecide_Revive_Deck40`.
+- `$67af-$2857` — `AIPlay_PokemonFlute` + `AIDecide_PokemonFlute` (inline `.pick_any_basic`, `.deck_68`).
 - `$71d4-$71d8` — `AIDecide_PokemonTrader_Deck41` (5-byte trampoline into `MadPetalsDeckAIDecidePokemonTrader`).
 - `$71fc-$7273` — `AIDecide_PokemonTrader_Deck48` (4-way split on play-area count × Water-type opponent).
 - `$7274-$72d6` — `AIDecide_PokemonTrader_Deck49` (multi-Pokemon evolution chain vs. solo card-fetch).
+- `$72d7-$7326` — `AIDecide_PokemonTrader_Deck4C` (gated on opponent Water-type arena).
 - `$78c9-$78f1` — `AIDecide_NightlyGarbageRun_Deck49` (rescue 2 basic energies + optional card $65).
 - `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
@@ -277,6 +282,7 @@ parens.
 | duel-hidero | **0** ✓ (played PLUSPOWER both phases + POKEMON_TRADER + NGR as deck $49) |
 | duel-miyajima | 35 (played ENERGY_REMOVAL + POKEBALL as deck $4a; remaining hits all in deferred ER/SUPER_ER deciders) |
 | duel-senta | 22 (played POKEBALL as deck $4b; remaining in deferred ER/SUPER_ER) |
+| duel-aira | 39 (played POKEMON_FLUTE + POKEMON_TRADER as deck $4c; remaining in deferred ER/SUPER_ER) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |

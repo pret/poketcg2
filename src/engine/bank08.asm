@@ -41,7 +41,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           $6659, $664d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          $67c0, $67af
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          AIDecide_PokemonFlute, AIPlay_PokemonFlute
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               AIDecide_Pokeball, AIPlay_Pokeball
@@ -2854,6 +2854,110 @@ AIDecide_Revive_Deck40:
 	ret
 ; 0x227af
 
+SECTION "Bank 8@67af", ROMX[$67af], BANK[$8]
+
+AIPlay_PokemonFlute:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Pokemon Flute brings a basic Pokemon from the *opponent's* discard
+; pile to their bench. The AI's angle: dump a *weak* basic on their
+; bench so they have to babysit it. Bail if their discard is empty
+; or their bench is full.
+;
+; Two deck-specific cases: deck $67 always picks any basic via the
+; .pick_any_basic loop; deck $68 first checks for our card $133 on
+; our play area that can attack -- if so, drop a basic, otherwise
+; skip.
+;
+; Default policy: walk the opponent's discard pile tracking the
+; LOWEST-HP basic Pokemon (wd082 = best HP, wd084 = slot). Commit
+; only if the minimum HP is under $32 (50) -- otherwise the dumped
+; Pokemon would be too useful to them.
+AIDecide_PokemonFlute:
+	call SwapTurn
+	bank1call CreateDiscardPileCardList
+	call SwapTurn
+	jr c, .skip
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	call GetNonTurnDuelistVariable
+	ld hl, wMaxNumPlayAreaPokemon
+	cp [hl]
+	jr nc, .skip
+	ld a, [wOpponentDeckID]
+	ld a, [wOpponentDeckID]
+	cp $67
+	jr z, .pick_any_basic
+	cp $68
+	jr z, .deck_68
+	ld a, $ff
+	ld [wd082], a
+	ld [wd084], a
+	ld hl, wDuelTempList
+.scan_min_hp
+	ld a, [hli]
+	cp $ff
+	jr z, .check_min_hp
+	ld b, a
+	call SwapTurn
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call SwapTurn
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .scan_min_hp
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr nz, .scan_min_hp
+	ld a, [wLoadedCard1HP]
+	push hl
+	ld hl, wd082
+	cp [hl]
+	pop hl
+	jr nc, .scan_min_hp
+	ld [wd082], a
+	ld a, b
+	ld [wd084], a
+	jr .scan_min_hp
+.check_min_hp
+	ld a, [wd082]
+	cp $32
+	jr nc, .skip
+	ld a, [wd084]
+	scf
+	ret
+.skip
+	or a
+	ret
+.deck_68
+	ld de, $133
+	farcall CheckCardIDInPlayAreaThatCanUseAttacks
+	jr nc, .skip
+.pick_any_basic
+	ld hl, wDuelTempList
+.pick_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .skip
+	ld b, a
+	call SwapTurn
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call SwapTurn
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .pick_loop
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr nz, .pick_loop
+	ld a, b
+	scf
+	ret
+; 0x22858
+
 SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
 
 ; Poké Ball is a coin-flip card: heads → search the deck for a basic
@@ -3094,7 +3198,7 @@ AIDecide_PokemonTrader:
 	cp $49
 	jp z, AIDecide_PokemonTrader_Deck49
 	cp $4c
-	jp z, $72d7
+	jp z, AIDecide_PokemonTrader_Deck4C
 	cp $4d
 	jp z, $7327
 	cp $4f
@@ -3318,6 +3422,47 @@ AIDecide_PokemonTrader_Deck49:
 	farcall FindDifferentPokemonCardInHand
 	ret
 ; 0x232d7
+
+SECTION "Bank 8@72d7", ROMX[$72d7], BANK[$8]
+
+; deck $4c only plays Pokemon Trader when the opponent's arena
+; Pokemon is Water type. Then priority-fetches card $136, $173,
+; $c3, or $c4 from the deck.
+AIDecide_PokemonTrader_Deck4C:
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer2_FromDeckIndex
+	call SwapTurn
+	ld a, [wLoadedCard2Type]
+	cp $02
+	jr z, .water_matchup
+	or a
+	ret
+.water_matchup
+	ld a, $00
+	ld de, $136
+	farcall FindCardIDInLocation
+	ld de, $136
+	jr c, .commit
+	ld a, $00
+	ld de, $173
+	farcall FindCardIDInLocation
+	ld de, $173
+	jr c, .commit
+	ld de, $c3
+	farcall FindCardIDInLocation
+	ld de, $c3
+	jr c, .commit
+	ld de, $c4
+	farcall FindCardIDInLocation
+	ld de, $c4
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x23327
 
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 
