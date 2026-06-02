@@ -2076,7 +2076,7 @@ AIDecide_TheBosssWay:
 	cp $5a
 	jp z, $75c8
 	cp $6a
-	jp z, $75cd
+	jp z, AIDecide_TheBosssWay_Deck6A
 	cp $73
 	jp z, $75f9
 	or a
@@ -2122,6 +2122,30 @@ AIDecide_TheBosssWay:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23539
+
+SECTION "Bank 8@75cd", ROMX[$75cd], BANK[$8]
+
+; deck $6a's The Boss's Way policy: four evolution-chain checks. Same
+; "fetch from opponent's deck along an evolution line" pattern that
+; decks $38 and $39 use, just with different card-ID pairs.
+AIDecide_TheBosssWay_Deck6A:
+	ld bc, $2e
+	ld de, $33
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $47
+	ld de, $4a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $14a
+	ld de, $14d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $15d
+	ld de, $163
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+; 0x235f9
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 
