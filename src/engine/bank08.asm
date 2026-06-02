@@ -29,7 +29,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          $5d3e, $5d2d
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          AIDecide_EnergySearch, AIPlay_EnergySearch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                $604f, $603e
@@ -1233,6 +1233,161 @@ AIDecide_ImposterProfessorOak:
 	jr c, .no_play
 	jr .play
 ; 0x21d2d
+
+SECTION "Bank 8@5d2d", ROMX[$5d2d], BANK[$8]
+
+AIPlay_EnergySearch:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Decks $09 and $0b each pick between two specific basic-energy types
+; (whichever the AI has fewer of in hand). Decks $0d and $66 dispatch
+; to bespoke policies. Default path: see if any basic / Recycle Energy
+; in the hand would already be useful to someone in the play area; if
+; so, fetching another from the deck is fair game. If the hand has
+; nothing useful, fall back to picking the first useful basic energy
+; in the deck. Returns NC if there's no good pick.
+AIDecide_EnergySearch:
+	ld a, [wOpponentDeckID]
+	cp $09
+	jr z, .deck_09_fighting_or_grass
+	cp $0b
+	jr z, .deck_0b_psychic_or_grass
+	cp $0d
+	jp z, AIDecide_EnergySearch_Deck0D
+	cp $66
+	jp z, AIDecide_EnergySearch_Deck66
+	farcall CreateEnergyCardListFromHand_OnlyBasicOrRecycleEnergy
+	jr c, .check_deck
+	call LookForEnergyUsefulToPlayArea
+	jr c, .check_deck
+.skip
+	or a
+	ret
+.check_deck
+	ld a, $00
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, .skip
+	call LookForEnergyUsefulToPlayArea
+	jr c, .pick_first_in_list
+	scf
+	ret
+.pick_first_in_list
+	ld a, [wDuelTempList]
+	scf
+	ret
+
+; deck $09: pick whichever the AI has less of in hand (Fighting vs Grass).
+.deck_09_fighting_or_grass
+	ld de, FIGHTING_ENERGY
+	farcall CountCardIDInHand
+	push af
+	ld de, GRASS_ENERGY
+	farcall CountCardIDInHand
+	pop bc
+	cp b
+	jr c, .pick_grass
+	ld de, FIGHTING_ENERGY
+	jr .pick_in_deck
+.pick_grass
+	ld de, GRASS_ENERGY
+.pick_in_deck
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret
+
+; deck $0b: pick whichever the AI has less of in hand (Psychic vs Grass).
+.deck_0b_psychic_or_grass
+	ld de, PSYCHIC_ENERGY
+	farcall CountCardIDInHand
+	push af
+	ld de, GRASS_ENERGY
+	farcall CountCardIDInHand
+	pop bc
+	cp b
+	jr c, .pick_grass
+	ld de, PSYCHIC_ENERGY
+	jr .pick_in_deck
+
+; Unreferenced in bank $08; preserved here so the section produces
+; the same bytes as the baserom. May be called from another bank
+; via a jump table or function pointer.
+AIDecide_EnergySearch_GrassOnly:
+	ld de, GRASS_ENERGY
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret
+
+; deck $0d: always grab Psychic.
+AIDecide_EnergySearch_Deck0D:
+	ld de, PSYCHIC_ENERGY
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret
+
+; deck $66: delegate to the Powerful Pokemon deck's bespoke policy
+; in bank $12.
+AIDecide_EnergySearch_Deck66:
+	farcall PowerfulPokemonDeckAIDecideEnergySearch
+	ret
+
+; Iterates the turn duelist's play-area Pokemon; for each, loads its
+; card data and scans wDuelTempList (basic-or-Recycle energies the
+; caller produced) for one that's "useful" to this Pokemon via
+; CheckIfEnergyIsUseful. Returns NC + `a` = the useful energy's deck
+; index on the first match. Returns carry SET if the list was
+; exhausted without finding a useful target on any play-area Pokemon.
+LookForEnergyUsefulToPlayArea:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.next_pokemon
+	push de
+	ld a, e
+	farcall Func_4b3d8
+	pop de
+	jr c, .advance
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	push de
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	pop de
+	ld a, [wLoadedCard1ID]
+	ld [wTempCardID_d0a3], a
+	ld a, [$cc3b]
+	ld [$d0a4], a
+	ld a, [wLoadedCard1Type]
+	or $08
+	ld [wTempCardType], a
+	ld hl, wDuelTempList
+.scan_list
+	ld a, [hli]
+	cp $ff
+	jr z, .list_exhausted
+	ld b, a
+	farcall CheckIfEnergyIsUseful
+	jr nc, .scan_list
+	ld a, b
+	or a
+	ret
+.list_exhausted
+	scf
+	ret
+.advance
+	inc e
+	ld a, e
+	cp d
+	jr nz, .next_pokemon
+	or a
+	ret
+; 0x21e0e
 
 SECTION "Bank 8@5f63", ROMX[$5f63], BANK[$8]
 
