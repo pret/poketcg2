@@ -2695,7 +2695,7 @@ AIDecide_PokemonTrader:
 	cp $42
 	jp z, $71d9
 	cp $48
-	jp z, $71fc
+	jp z, AIDecide_PokemonTrader_Deck48
 	cp $49
 	jp z, $7274
 	cp $4c
@@ -2796,6 +2796,79 @@ AIDecide_PokemonTrader_Deck41:
 	farcall MadPetalsDeckAIDecidePokemonTrader
 	ret
 ; 0x231d9
+
+SECTION "Bank 8@71fc", ROMX[$71fc], BANK[$8]
+
+; deck $48's Pokemon Trader policy. Splits on (a) whether we have
+; only one Pokemon in play and (b) whether the opponent has a
+; Water-type Pokemon out (Water-type matchup changes our target
+; priority).
+;
+; With one Pokemon in play AND no Water threat: try to fetch card
+; $75 from the deck directly, falling back to swapping card $176
+; in hand for card $78 in deck.
+; With one Pokemon in play AND a Water threat: same shape but the
+; targets become $da and $176/$dd.
+; With multi Pokemon AND no Water threat: walk evolution chain
+; $176 -> $78, falling back to $176 in-hand-given-$78-in-deck.
+; With multi Pokemon AND a Water threat: same shape but pivoting
+; through $dd instead of $78.
+;
+; Any successful target is stored to wTempAIMultiTargetCardDeckIndex1,
+; then FindDifferentPokemonCardInHand picks the swap partner.
+AIDecide_PokemonTrader_Deck48:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .multi_pokemon
+	ld a, $03
+	farcall CheckIfPlayerHasPokemonOfType
+	jr c, .single_water_threat
+	ld a, $00
+	ld de, $75
+	farcall FindCardIDInLocation
+	ld de, $75
+	jr c, .commit
+	jr .single_no_threat_fallback
+.single_water_threat
+	ld de, $da
+	farcall FindCardIDInLocation
+	ld de, $da
+	jr c, .commit
+	jr .single_water_threat_fallback
+.multi_pokemon
+	ld a, $03
+	farcall CheckIfPlayerHasPokemonOfType
+	jr c, .multi_water_threat
+	ld bc, $176
+	ld de, $78
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	jr .single_no_threat_fallback
+.multi_water_threat
+	ld bc, $176
+	ld de, $dd
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	jr .single_water_threat_fallback
+.single_no_threat_fallback
+	ld de, $176
+	ld bc, $78
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $78
+	jp c, .commit
+	ret
+.single_water_threat_fallback
+	ld de, $176
+	ld bc, $dd
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $dd
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x23274
 
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 

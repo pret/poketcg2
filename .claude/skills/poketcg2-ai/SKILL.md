@@ -142,6 +142,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
+| `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
 | `$08` | `$6a59` | [`AIDecide_Pokeball_Deck25`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (Ayako is deck $25) | 2026-06-01 |
@@ -164,7 +165,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 32.84% (~5.3 KiB of 16 KiB).
+**Source-defined**: 33.58% (~5.4 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -194,6 +195,7 @@ the target (helps justify future decomp prioritization).
 - `$507b-$50b5` — `AIPlay_PokemonBreeder` (3-stage play wrapper with action codes `$07`/`$18`/`$19`).
 - `$671b-$67ae` — `AIPlay_Revive` + `AIDecide_Revive` + `AIDecide_Revive_Deck14` + `AIDecide_Revive_Deck40`.
 - `$71d4-$71d8` — `AIDecide_PokemonTrader_Deck41` (5-byte trampoline into `MadPetalsDeckAIDecidePokemonTrader`).
+- `$71fc-$7273` — `AIDecide_PokemonTrader_Deck48` (4-way split on play-area count × Water-type opponent).
 - `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
 - `$79df-$79f4` — `AddDeckIndexToAIMultiTargetSlots` (3-slot list-add helper).
@@ -252,6 +254,7 @@ parens.
 | duel-ichikawa, duel-ichikawa2 | **0** ✓ (Ichikawa2 played ENERGY_REMOVAL default path) |
 | duel-catherine | 47 (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
 | duel-yuki | 47 (played ENERGY_REMOVAL + SCOOP_UP + POKEBALL as deck $47; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
+| duel-shoro | 92 (played POKEMON_TRADER as deck $48; rest in deferred ENERGY_RETRIEVAL + SUPER_ENERGY_RETRIEVAL deciders — deck $48's ER case is at `$5937` but tightly couples to the parent's local labels, deferred until the parent is decompiled) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
