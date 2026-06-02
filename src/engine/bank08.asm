@@ -32,7 +32,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          AIDecide_EnergySearch, AIPlay_EnergySearch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                $604f, $603e
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                AIDecide_MrFuji, AIPlay_MrFuji
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               AIDecide_ScoopUp, AIPlay_ScoopUp
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
@@ -1917,9 +1917,9 @@ AIDecide_ProfessorOak:
 	cp $45
 	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp $49
-	jp z, $55d5
+	jp z, AIDecide_ProfessorOak_Deck49Or4D
 	cp $4d
-	jp z, $55d5
+	jp z, AIDecide_ProfessorOak_Deck49Or4D
 	cp $50
 	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp $53
@@ -2060,6 +2060,29 @@ AIDecide_ProfessorOak_Deck45Or50:
 	cp $05
 	ret
 ; 0x215d5
+
+SECTION "Bank 8@55d5", ROMX[$55d5], BANK[$8]
+
+; Shared by decks $49 and $4d: hand-size threshold for playing Oak
+; scales with how much of the deck is gone. Early game
+; (cards-out-of-deck < 36): play Oak iff hand < 5. Late game
+; (cards-out >= 36): play Oak iff hand < 4 -- be stingier as the
+; deck shrinks since the redraw shuffles the hand back in.
+AIDecide_ProfessorOak_Deck49Or4D:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $24
+	jr nc, .late_game
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret
+.late_game
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $04
+	ret
+; 0x215e8
 
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
@@ -2492,6 +2515,121 @@ AIDecide_FullHeal:
 	jp nz, .play
 	jr .no_play
 ; 0x2202b
+
+SECTION "Bank 8@603e", ROMX[$603e], BANK[$8]
+
+AIPlay_MrFuji:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Mr. Fuji shuffles our active or bench Pokemon (plus its cards)
+; back into our deck. The AI uses it to retire weak benched Pokemon.
+; Two deck-specific cases ($4d, $6d); default scans the bench
+; (skipping arena) for the Pokemon whose damage-vs-HP ratio is
+; lowest (i.e. heaviest damage relative to max HP). Only commits if
+; that minimum ratio is under $14 quanta of CalculateBDividedByA's
+; scale -- otherwise the candidate isn't damaged enough to bother.
+AIDecide_MrFuji:
+	ld a, [wOpponentDeckID]
+	cp $4d
+	jp z, AIDecide_MrFuji_Deck4D
+	cp $6d
+	jp z, AIDecide_MrFuji_Deck6D
+.default_scan
+	ld a, $ff
+	ld [wd082], a
+	ld [wd084], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	ret z
+	dec a
+	ld d, a
+	ld e, $01
+.scan_loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, [wLoadedCard1HP]
+	ld b, a
+	call GetCardDamageAndMaxHP
+	farcall ConvertHPToCounters
+	or a
+	jr z, .next
+	call CalculateBDividedByA_Bank08
+	cp $14
+	jr nc, .next
+	ld hl, wd084
+	cp [hl]
+	jr nc, .next
+	ld [hl], a
+	ld a, e
+	ld [wd082], a
+.next
+	inc e
+	dec d
+	jr nz, .scan_loop
+	ld a, [wd082]
+	cp $ff
+	ret z
+	scf
+	ret
+
+; deck $4d: walk the bench, return the slot of the first Pokemon
+; that has energy attached AND HP < $15 (21). I.e., "rescue a
+; powered-up Pokemon that's about to die".
+AIDecide_MrFuji_Deck4D:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	or a
+	ret z
+	ld d, a
+	ld e, $01
+.deck_4d_loop
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	or a
+	jr z, .deck_4d_next
+	ld a, e
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp $15
+	jr nc, .deck_4d_next
+	ld a, e
+	scf
+	ret
+.deck_4d_next
+	inc e
+	ld a, e
+	cp d
+	jr nz, .deck_4d_loop
+	or a
+	ret
+
+; deck $6d: only consider Mr. Fuji when cards-out-of-deck >= $29
+; AND our play area is full (5). Then runs the default scoring
+; logic via .default_scan above.
+AIDecide_MrFuji_Deck6D:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $29
+	jr nc, .deck_6d_check_full
+.deck_6d_skip
+	or a
+	ret
+.deck_6d_check_full
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $05
+	jr c, .deck_6d_skip
+	jp AIDecide_MrFuji.default_scan
+; 0x220d7
 
 SECTION "Bank 8@60d7", ROMX[$60d7], BANK[$8]
 
@@ -3200,7 +3338,7 @@ AIDecide_PokemonTrader:
 	cp $4c
 	jp z, AIDecide_PokemonTrader_Deck4C
 	cp $4d
-	jp z, $7327
+	jp z, AIDecide_PokemonTrader_Deck4D
 	cp $4f
 	jp z, $739e
 	cp $51
@@ -3463,6 +3601,64 @@ AIDecide_PokemonTrader_Deck4C:
 	farcall FindDifferentPokemonCardInHand
 	ret
 ; 0x23327
+
+SECTION "Bank 8@7327", ROMX[$7327], BANK[$8]
+
+; deck $4d's Pokemon Trader: 3-way split on play-area-count x
+; opponent-Water-type. Solo path priority-fetches single cards.
+; Multi+no-Water walks $a4 -> $a7 evolution chain with swap
+; fallback. Multi+Water tries a single in-deck-not-in-hand check
+; for card $b7 (likely the deck's Water-counter target).
+AIDecide_PokemonTrader_Deck4D:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr z, .solo
+	ld a, $02
+	farcall CheckIfPlayerHasPokemonOfType
+	jr c, .multi_water
+	ld bc, $a4
+	ld de, $a7
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, $a4
+	ld bc, $a7
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $a7
+	jr c, .commit
+	ret
+.multi_water
+	ld de, $b7
+	farcall IsCardIDInDeckAndNotInHandOrPlayArea
+	ld de, $b7
+	jr c, .commit
+	ret
+.solo
+	ld a, $00
+	ld de, $ae
+	farcall FindCardIDInLocation
+	ld de, $ae
+	jr c, .commit
+	ld a, $00
+	ld de, $b7
+	farcall FindCardIDInLocation
+	ld de, $b7
+	jr c, .commit
+	ld a, $00
+	ld de, $a4
+	farcall FindCardIDInLocation
+	ld de, $a4
+	jr c, .commit
+	ld a, $00
+	ld de, $a2
+	farcall FindCardIDInLocation
+	ld de, $a2
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x2339e
 
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 

@@ -129,6 +129,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$53d0` | [`AIDecide_ProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene ∩ duel-sousuke (114 shared hits) | 2026-06-01 |
 | `$08` | `$507b` | [`AIPlay_PokemonBreeder`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (3-stage non-standard play wrapper) | 2026-06-01 |
 | `$08` | `$55cf` | [`AIDecide_ProfessorOak_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (shared by decks $45 and $50) | 2026-06-02 |
+| `$08` | `$55d5` | [`AIDecide_ProfessorOak_Deck49Or4D`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko (hand-size threshold scales with cards-out-of-deck) | 2026-06-02 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
@@ -139,6 +140,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5d3e` | [`AIDecide_EnergySearch`](../../../src/engine/bank08.asm) + Deck0D + Deck66 + helper `LookForEnergyUsefulToPlayArea` | sameboy_trace duel-ronald | 2026-06-01 |
 | `$08` | `$5f6f` | [`AIDecide_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 (deck-$53 case `$602b` and shared SCOOP_UP helper `$60ed` still raw) | 2026-06-01 |
 | `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
+| `$08` | `$603e` | [`AIPlay_MrFuji`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko | 2026-06-02 |
+| `$08` | `$604f` | [`AIDecide_MrFuji`](../../../src/engine/bank08.asm) + `Deck4D` + `Deck6D` | sameboy_trace duel-kanoko | 2026-06-02 |
 | `$08` | `$60d7` | [`AIPlay_ScoopUp`](../../../src/engine/bank08.asm) | sameboy_trace duel-tashiro | 2026-06-01 |
 | `$08` | `$60ed` | [`AIDecide_ScoopUp`](../../../src/engine/bank08.asm) + inline `.deck_3c` | sameboy_trace duel-tashiro (8 other deck cases left raw); also called as a heuristic from AIDecide_FullHeal | 2026-06-01 |
 | `$08` | `$66e7` | [`AIDecide_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
@@ -153,6 +156,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$72d7` | [`AIDecide_PokemonTrader_Deck4C`](../../../src/engine/bank08.asm) | sameboy_trace duel-aira (gated on opponent Water-type arena) | 2026-06-02 |
+| `$08` | `$7327` | [`AIDecide_PokemonTrader_Deck4D`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko (3-way play-area × Water matchup split) | 2026-06-02 |
 | `$08` | `$78c9` | [`AIDecide_NightlyGarbageRun_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
@@ -180,7 +184,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 40.96% (~6.6 KiB of 16 KiB).
+**Source-defined**: 42.74% (~6.8 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -205,6 +209,7 @@ the target (helps justify future decomp prioritization).
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (deck `$53` case `$602b` left raw; previously raw `call $60ed` is now `call AIDecide_ScoopUp`).
+- `$603e-$60d6` — `AIPlay_MrFuji` + `AIDecide_MrFuji` + `AIDecide_MrFuji_Deck4D` + `AIDecide_MrFuji_Deck6D`.
 - `$60d7-$61e1` — `AIPlay_ScoopUp` + `AIDecide_ScoopUp` (inline `.deck_3c`; 8 other deck cases left raw).
 - `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).
 - `$6a59-$6a67` — `AIDecide_Pokeball_Deck25`.
@@ -218,6 +223,7 @@ the target (helps justify future decomp prioritization).
 - `$71fc-$7273` — `AIDecide_PokemonTrader_Deck48` (4-way split on play-area count × Water-type opponent).
 - `$7274-$72d6` — `AIDecide_PokemonTrader_Deck49` (multi-Pokemon evolution chain vs. solo card-fetch).
 - `$72d7-$7326` — `AIDecide_PokemonTrader_Deck4C` (gated on opponent Water-type arena).
+- `$7327-$739d` — `AIDecide_PokemonTrader_Deck4D` (3-way split: solo / multi-no-Water / multi-Water).
 - `$78c9-$78f1` — `AIDecide_NightlyGarbageRun_Deck49` (rescue 2 basic energies + optional card $65).
 - `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
@@ -230,6 +236,7 @@ the target (helps justify future decomp prioritization).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (19 deck-specific Func_2152x-Func_2163e cases left raw; one named).
 - `$55cf-$55d4` — `AIDecide_ProfessorOak_Deck45Or50`.
+- `$55d5-$55e7` — `AIDecide_ProfessorOak_Deck49Or4D`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
@@ -283,6 +290,7 @@ parens.
 | duel-miyajima | 35 (played ENERGY_REMOVAL + POKEBALL as deck $4a; remaining hits all in deferred ER/SUPER_ER deciders) |
 | duel-senta | 22 (played POKEBALL as deck $4b; remaining in deferred ER/SUPER_ER) |
 | duel-aira | 39 (played POKEMON_FLUTE + POKEMON_TRADER as deck $4c; remaining in deferred ER/SUPER_ER) |
+| duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
