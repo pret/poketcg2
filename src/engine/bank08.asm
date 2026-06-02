@@ -18,8 +18,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 $485a, $483d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_16, SWITCH,                 AIDecide_Switch_Phase16, $483d
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, $49e3
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         $4c5a, $4c44
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
@@ -491,6 +491,26 @@ AIDecide_Switch_Phase16:
 	or a
 	ret
 ; 0x208fc
+
+SECTION "Bank 8@49e3", ROMX[$49e3], BANK[$8]
+
+; Shared play function for both AI_TRAINER_CARD_PHASE_07 and
+; AI_TRAINER_CARD_PHASE_10 GUST_OF_WIND entries. Sets the
+; AI_FLAG_USED_GUST_OF_WIND so the same phase pass doesn't try it
+; twice, then forwards the AI's pre-picked target Pokemon via
+; wAITrainerCardParameter.
+AIPlay_GustOfWind:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_USED_GUST_OF_WIND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+; 0x209fc
 
 SECTION "Bank 8@49fc", ROMX[$49fc], BANK[$8]
 
