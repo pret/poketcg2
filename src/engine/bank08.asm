@@ -669,3 +669,42 @@ Func_20be6:
 	scf
 	ret
 ; 0x20c32
+
+SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
+
+; Searches the turn duelist's deck for a card that the play-area
+; Pokemon at position e evolves into.
+; Input:
+;   e = play-area position of the Pokemon (0 = arena, 1-5 = bench)
+; Output:
+;   carry = a matching evolution card was found in the duelist's hand.
+;   wd084 = $01 if any matching evolution exists in the deck regardless
+;           of location, else $00. Lets callers tell "evolution in hand
+;           right now" apart from "evolution buried in the deck" — the
+;           sole caller (Func_214ad) uses this to choose between the
+;           Pokemon-target and non-Pokemon-target AI flags.
+LookForEvolutionInHand:
+	xor a
+	ld [wd084], a
+	ld d, $00
+.loop_deck
+	farcall CheckIfEvolvesInto
+	jr nc, .evolution_in_deck
+.next
+	inc d
+	ld a, DECK_SIZE
+	cp d
+	jr nz, .loop_deck
+	or a
+	ret
+.evolution_in_deck
+	ld a, $01
+	ld [wd084], a
+	ld a, DUELVARS_CARD_LOCATIONS
+	add d
+	get_turn_duelist_var
+	cp CARD_LOCATION_HAND
+	jr nz, .next
+	scf
+	ret
+; 0x21528
