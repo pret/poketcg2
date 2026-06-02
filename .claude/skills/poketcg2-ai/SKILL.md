@@ -163,6 +163,10 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7dc2` | [`AIDecide_MasterBall_Deck43`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna (Chain Lightning by Pikachu deck) | 2026-06-01 |
 | `$08` | `$7e9e` | [`AIPlay_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7eaa` | [`AIDecide_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
+| `$08` | `$7f3e` | [`AIPlay_ComputerError`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx | 2026-06-02 |
+| `$08` | `$7f61` | [`AIDecide_ComputerError`](../../../src/engine/bank08.asm) + inline `Deck59`, `Deck68`, `Deck6B` | sameboy_trace duel-grx | 2026-06-02 |
+| `$08` | `$7f96` | [`AIPlay_SuperScoopUp`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx (coin-flip wrapper) | 2026-06-02 |
+| `$08` | `$7fbc` | [`AIDecide_SuperScoopUp`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx | 2026-06-02 |
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7a4f` | [`AIDecide_Sleep`](../../../src/engine/bank08.asm) + `AIDecide_Sleep_Deck12` | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7b0a` | [`AIPlay_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 | 2026-06-01 |
@@ -170,7 +174,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 37.19% (~6.0 KiB of 16 KiB).
+**Source-defined**: 38.22% (~6.1 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -210,6 +214,7 @@ the target (helps justify future decomp prioritization).
 - `$7d44-$7d60` — `AIDecide_MasterBall_Deck3F`.
 - `$7dc2-$7dc6` — `AIDecide_MasterBall_Deck43`.
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
+- `$7f3e-$7fe5` — `AIPlay_ComputerError` + `AIDecide_ComputerError` + `AIPlay_SuperScoopUp` + `AIDecide_SuperScoopUp`.
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (19 deck-specific Func_2152x-Func_2163e cases left raw; one named).

@@ -59,8 +59,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, GOOP_GAS_ATTACK,        AIDecide_GoopGasAttack, AIPlay_GoopGasAttack
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_OAKS_REVENGE,  $7ed4, $7ec3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, DIGGER,                 $7f3c, $7f30
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, COMPUTER_ERROR,         $7f61, $7f3e
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SUPER_SCOOP_UP,         $7fbc, $7f96
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, COMPUTER_ERROR,         AIDecide_ComputerError, AIPlay_ComputerError
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SUPER_SCOOP_UP,         AIDecide_SuperScoopUp, AIPlay_SuperScoopUp
 	db $ff
 
 AIProcessHandTrainerCards:
@@ -3679,3 +3679,119 @@ AIDecide_GoopGasAttack:
 	farcall AIChooseStareTarget
 	ret
 ; 0x23ec3
+
+SECTION "Bank 8@7f3e", ROMX[$7f3e], BANK[$8]
+
+; Computer Error's play has its own pre-step: SwapTurn so the
+; trainer effect picks a card from the *player's* hand to swap,
+; then SwapTurn back, store the chosen index in
+; hTempPlayAreaLocation_ffa1, fire the effect, and bump wd033 to
+; signal "AI used Computer Error this turn".
+AIPlay_ComputerError:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	call SwapTurn
+	farcall HandleComputerErrorPlayerSelection
+	call SwapTurn
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ld a, $02
+	ld [wd033], a
+	scf
+	ret
+
+; Three deck-specific cases ($59, $68, $6b); default returns NC.
+; All three "yes" exits return with a = $05 (Computer Error's
+; per-card priority code in the AI ranking system).
+AIDecide_ComputerError:
+	ld a, [wOpponentDeckID]
+	cp $59
+	jr z, .deck_59
+	cp $68
+	jr z, .deck_68
+	cp $6b
+	jr z, .deck_6b
+.skip
+	or a
+	ret
+.deck_59
+	farcall AIProcessButDontUseAttack
+	jr c, .skip
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $03
+	ret nc
+	ld a, $05
+	scf
+	ret
+.deck_68
+	ld a, $05
+	scf
+	ret
+.deck_6b
+	farcall AIProcessButDontUseAttack
+	jr c, .skip
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $33
+	ret nc
+	ld a, $05
+	scf
+	ret
+
+; Coin-flip card -- toss first, only commit the target on heads.
+; On tails the trainer effect treats $ff as "no target."
+AIPlay_SuperScoopUp:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld de, $10e
+	bank1call TossCoin
+	ldh [hTemp_ffa0], a
+	jr nc, .tails
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempRetreatCostCards], a
+	jr .commit
+.tails
+	ld a, $ff
+	ldh [hTempPlayAreaLocation_ffa1], a
+.commit
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Skip if we only have 1 Pokemon in play (would leave us with
+; nothing), can already KO the defender from hand, the defender
+; can't even KO us, or no good bench candidate exists. The bench
+; pick (via AIDecideBenchPokemonToSwitchTo) is scored -- the
+; replacement must hit score >= 50, otherwise scooping costs more
+; than it saves.
+AIDecide_SuperScoopUp:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr z, .skip
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .skip
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jr nc, .skip
+	farcall AIDecideBenchPokemonToSwitchTo
+	jr c, .skip
+	ld a, e
+	cp $32
+	jr c, .skip
+	ld a, d
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+.skip
+	or a
+	ret
+; 0x23fe6
