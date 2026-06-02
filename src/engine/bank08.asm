@@ -39,7 +39,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, $6373
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           $6659, $664d
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                $66e7, $6694
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 $672c, $671b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          $67c0, $67af
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
@@ -708,3 +708,96 @@ LookForEvolutionInHand:
 	scf
 	ret
 ; 0x21528
+
+SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
+
+; The AI cheats at Gambler: stash wRNGVars, force every byte to $50 so
+; the coin flip and shuffle land on a known outcome, play the card, then
+; restore the original RNG state. Three deck IDs ($29, $65, $67) opt out
+; of the rigging and just play it honestly.
+AIPlay_Gambler:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wOpponentDeckID]
+	cp $29
+	jr z, .play_honestly
+	cp $65
+	jr z, .play_honestly
+	cp $67
+	jr z, .play_honestly
+	ld hl, wRNGVars
+	ld a, [hli]
+	ld [wd082], a
+	ld a, [hli]
+	ld [wd084], a
+	ld a, [hl]
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	ld a, $50
+	ld [hld], a
+	ld [hld], a
+	ld [hl], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ld hl, wRNGVars
+	ld a, [wd082]
+	ld [hli], a
+	ld a, [wd084]
+	ld [hli], a
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	ld [hl], a
+	or a
+	ret
+.play_honestly
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; decides whether the AI should play Gambler this turn. Three deck IDs
+; have bespoke conditions; the default policy is to play only when
+; wAIBarrierFlagCounter bit 7 is set AND the duelist has 56+ cards out
+; of the deck (i.e. the deck is nearly empty and Gambler will shuffle
+; the hand back in).
+AIDecide_Gambler:
+	ld a, [wOpponentDeckID]
+	cp $29
+	jr z, .deck_29
+	cp $65
+	jr z, .deck_65
+	cp $67
+	jr z, .always_play
+	ld a, [wAIBarrierFlagCounter]
+	and $80
+	jr z, .skip
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $38
+	jr nc, .always_play
+.skip
+	or a
+	ret
+; play if hand has fewer than 3 cards.
+.deck_29
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $03
+	ret
+; play if hand has fewer than 3 cards, or if 46+ cards are out of the deck.
+.deck_65
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $03
+	ret c
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $2e
+	ccf
+	ret
+.always_play
+	scf
+	ret
+; 0x2271b

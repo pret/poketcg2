@@ -102,24 +102,27 @@ the target (helps justify future decomp prioritization).
 | Bank | Address | Name | Via | Landed |
 |---|---|---|---|---|
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
+| `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
+| `$08` | `$66e7` | [`AIDecide_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 8.06% (~1.3 KiB of 16 KiB).
+**Source-defined**: 8.89% (~1.4 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
 - `$4000-$4c32` — `AITrainerCardLogic` table + early decompiled functions through `Func_20be6.return_with_carry`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
+- `$6694-$2271a` — `AIPlay_Gambler` + `AIDecide_Gambler`.
 
 ### Still raw, in priority order (highest = most leverage)
 Addresses listed are bank-$08 CPU addresses; nearest table card in
 parens.
 
-1. `$5511`-region helpers — **partially addressed by `LookForEvolutionInHand`**, but the table entries pointing at `$54xx`/`$55xx` may still wrap more shared logic.
-2. `$66e7` (GAMBLER decide) — 26 hits per Gene-duel session, ~80 bytes.
-3. `$5adf` (SUPER_ENERGY_RETRIEVAL decide), `$5a9d` (play).
-4. `$566e` (ENERGY_RETRIEVAL decide), `$5643` (play).
+1. `$5643` (ENERGY_RETRIEVAL play), `$5a9d` (SUPER_ENERGY_RETRIEVAL play) — both clean ~45 / ~65 byte AIMakeDecision wrappers, easy to land in source without dragging in their giant decide functions.
+2. `$566e` (ENERGY_RETRIEVAL decide) — large (~300+ bytes) 24-way deck-ID dispatch. Needs deeper investigation of the per-deck sub-functions (`Func_217c8`-`Func_21a83`) before landing.
+3. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `$566e`.
+4. `$5511`-region helpers — **partially addressed by `LookForEvolutionInHand`**, but the table entries pointing at `$54xx`/`$55xx` may still wrap more shared logic.
 5. Everything else in the table that's still a raw hex address (see
    [src/engine/bank08.asm](../../../src/engine/bank08.asm) lines
    8-65).
