@@ -2264,7 +2264,130 @@ AIDecide_EnergyRetrieval:
 .default
 	farcall CountBasicEnergyCardsInHand
 	ret nc
-; 0x216e4
+	; the hand still has a basic energy to discard as fuel — now choose
+	; which Pokemon to recharge and which discarded energies to pull.
+	; Default target is a duplicated Pokemon in hand; a few decks instead
+	; reuse the pre-tagged non-Pokemon AI target.
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_targets
+	push af
+	ld a, [wOpponentDeckID]
+	cp $19
+	jr z, .use_tagged_target
+	cp $22
+	jr z, .use_tagged_target
+	cp $32
+	jr z, .use_tagged_target
+	cp $42
+	jp z, $591a
+	cp $44
+	jp z, $592c
+	cp $45
+	jp z, $592c
+	cp $51
+	jr z, .use_tagged_target
+	cp $62
+	jp z, $592c
+	cp $6e
+	jp z, $591a
+	jr .got_target
+.use_tagged_target
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	cp $ff
+	jr z, .got_target
+	pop af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	push af
+.got_target
+	pop af
+	ld [wd082], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jp c, .no_targets
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.play_area_loop
+	push de
+	ld a, e
+	farcall Func_4b3d8
+	pop de
+	jr c, .next_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	push de
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	pop de
+	ld a, [wLoadedCard1ID]
+	ld [wTempCardID_d0a3], a
+	ld a, [$cc3b]
+	ld [wTempCardID_d0a3 + 1], a
+	ld a, [wLoadedCard1Type]
+	or TYPE_ENERGY
+	ld [wTempCardType], a
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .next_play_area
+	ld b, a
+	push hl
+	farcall CheckIfEnergyIsUseful
+	pop hl
+	jr nc, .energy_loop
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	jr nz, .second_slot
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	call $5a8c
+	jr .next_play_area
+.second_slot
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	jr .success
+.next_play_area
+	inc e
+	dec d
+	jr nz, .play_area_loop
+	; play area exhausted — top off any unused slot from the energy list
+	ld hl, wDuelTempList
+.fill_remaining
+	ld a, [hli]
+	cp $ff
+	jr z, .check_found
+	ld b, a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	jr nz, .fill_second
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	call $5a8c
+	jr .fill_remaining
+.fill_second
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	jr .success
+.check_found
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	jr nz, .success
+.no_targets
+	or a
+	ret
+.success
+	ld a, [wd082]
+	scf
+	ret
+; 0x217c8
 
 SECTION "Bank 8@5a9d", ROMX[$5a9d], BANK[$8]
 

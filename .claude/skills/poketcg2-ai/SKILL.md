@@ -134,7 +134,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$55d5` | [`AIDecide_ProfessorOak_Deck49Or4D`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko (hand-size threshold scales with cards-out-of-deck) | 2026-06-02 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
-| `$08` | `$566e` | [`AIDecide_EnergyRetrieval`](../../../src/engine/bank08.asm) | sameboy_trace duel-kevin (dispatcher only; 22 deck cases left raw; default-path early `ret nc` lands) | 2026-06-02 |
+| `$08` | `$566e` | [`AIDecide_EnergyRetrieval`](../../../src/engine/bank08.asm) | sameboy_trace duel-kevin (dispatcher + full `.default` target-selection algorithm; 22 deck cases left raw) | 2026-06-02 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5ce2` | [`AIPlay_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
 | `$08` | `$5cee` | [`AIDecide_ImposterProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
@@ -192,7 +192,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 45.35% (~7.3 KiB of 16 KiB).
+**Source-defined**: 46.74% (~7.5 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -251,7 +251,7 @@ the target (helps justify future decomp prioritization).
 - `$55d5-$55e7` — `AIDecide_ProfessorOak_Deck49Or4D`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
-- `$566e-$56e3` — `AIDecide_EnergyRetrieval` (22-deck-ID dispatcher; falls through to `.default` which gates on `CountBasicEnergyCardsInHand` and bails with `ret nc` when no basic energies remain in hand to discard as ER fuel).
+- `$566e-$57c7` — `AIDecide_EnergyRetrieval` (22-deck-ID dispatcher + full `.default` path: `CountBasicEnergyCardsInHand` gate → duplicate-Pokemon target via `FindDuplicateCards_IgnoreTrainerCardToPlay` (9 decks override with the pre-tagged non-Pokemon AI target or jump to `$591a`/`$592c`) → `CreateBasicEnergyCardListInLocation` over the discard pile → per-play-area-Pokemon `CheckIfEnergyIsUseful` loop filling up to 2 multi-target slots via the `$5a8c` list-add helper).
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
 - `$6373-$6395` — `AIPlay_ItemFinder`.
 - `$664d-$2693` — `AIPlay_ImakuniCard` + `AIDecide_ImakuniCard` (inline `deck_50_dark_primeape`).
@@ -262,7 +262,7 @@ the target (helps justify future decomp prioritization).
 Addresses listed are bank-$08 CPU addresses; nearest table card in
 parens.
 
-1. `$56e4-$5a9c` (ENERGY_RETRIEVAL deck cases + post-`.default` logic) — 22 deck-specific handlers at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`, plus the second deck-ID dispatcher inside the `.default` continuation at `$56e4` (decks `$19, $22, $32, $42, $44, $45, $51, $62, $6e` → branches at `$5720, $591a, $592c, $572c`). **Last bucket of hot duel-gene hits (144 remaining undecompiled).**
+1. `$57c8-$5a9c` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. The shared list-add helper at `$5a8c` (`Func_21a8c`, also used by ITEMFINDER decide) sits in this range. None traced yet — each needs a duel against the owning deck.
 2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
 3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
    - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
