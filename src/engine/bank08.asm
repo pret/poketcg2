@@ -33,7 +33,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                $604f, $603e
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               $60ed, $60d7
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               AIDecide_ScoopUp, AIPlay_ScoopUp
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
@@ -1549,7 +1549,7 @@ AIDecide_FullHeal:
 	ld de, $1a9
 	farcall LookForCardIDInHandList
 	jr nc, .full_heal_check_damage
-	call $60ed
+	call AIDecide_ScoopUp
 	jr c, .no_play
 .full_heal_check_damage
 	xor a
@@ -1567,7 +1567,7 @@ AIDecide_FullHeal:
 	ld de, $1a9
 	farcall LookForCardIDInHandList
 	jr nc, .confused_check_damage
-	call $60ed
+	call AIDecide_ScoopUp
 	jr c, .no_play
 .confused_check_damage
 	xor a
@@ -1578,6 +1578,167 @@ AIDecide_FullHeal:
 	jp nz, .play
 	jr .no_play
 ; 0x2202b
+
+SECTION "Bank 8@60d7", ROMX[$60d7], BANK[$8]
+
+AIPlay_ScoopUp:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Bails out immediately if we have fewer than two Pokemon in the play
+; area (no bench means nothing to scoop into). 8 deck IDs have
+; bespoke policies (one of them, deck $3c, is inline as .deck_3c);
+; the default policy says: only scoop if the arena can't already KO
+; the defender from hand, is in a bad spot (POISONED or status type
+; $02/$03 -- ASLEEP/PARALYZED), or can't afford its retreat cost.
+; If those gates pass, evaluate via a damage-taken / HP-counters
+; ratio and only commit when a suitable bench replacement scores
+; well in AIDecideBenchPokemonToSwitchTo.
+;
+; Also called as a standalone heuristic from AIDecide_FullHeal --
+; FullHeal asks "would the Scoop Up decider fire here?" and if so
+; defers to it instead of healing.
+AIDecide_ScoopUp:
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $02
+	jr c, .no_play
+	ld a, [wOpponentDeckID]
+	cp $17
+	jp z, $61e2
+	cp $1f
+	jp z, $61e7
+	cp $3a
+	jp z, $6201
+	cp $3c
+	jr z, .deck_3c
+	cp $47
+	jp z, $620f
+	cp $64
+	jp z, $6228
+	cp $6e
+	jp z, $6241
+	cp $74
+	jp z, $6246
+; default policy:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .no_play
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	push af
+	and $80
+	pop bc
+	ld a, b
+	jr nz, .evaluate
+	and $0f
+	cp PARALYZED
+	jr z, .evaluate
+	cp ASLEEP
+	jr z, .evaluate
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	ld b, a
+	xor a
+	push bc
+	call CreateArenaOrBenchEnergyCardList
+	pop bc
+	cp b
+	jr c, .evaluate
+.no_play
+	or a
+	ret
+.evaluate
+; score the active by damage taken / HP counters. If the ratio is at
+; least 7 (out of CalculateBDividedByA_Bank08's quantization), the
+; active is too damaged to be worth retreating -- commit to scooping.
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, [wLoadedCard1HP]
+	farcall ConvertHPToCounters
+	ld d, a
+	ld e, $00
+	call GetCardDamageAndMaxHP
+	or a
+	jr z, .no_play
+	ld b, a
+	ld a, d
+	call CalculateBDividedByA_Bank08
+	cp $07
+	jr c, .no_play
+.pick_bench
+	farcall AIDecideBenchPokemonToSwitchTo
+	jr c, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+
+; deck $3c: only scoop with 3+ Pokemon in play. If card $b9 is in
+; the play area, fall through to a Snorlax-Lv20-defender check;
+; otherwise require the active to be Articuno Lv37 or Chansey Lv40
+; plus a "can't KO but can be KO'd" situation, then commit via the
+; normal pick-bench path.
+.deck_3c
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $03
+	jr c, .no_play
+	ld de, $b9
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jr c, .deck_3c_card_b9
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ARTICUNO_LV37
+	jr z, .deck_3c_check_threat
+	cp16 CHANSEY_LV40
+	jr nz, .no_play
+.deck_3c_check_threat
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .no_play
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jr nc, .no_play
+	jr .pick_bench
+.deck_3c_card_b9
+; if defender is Snorlax Lv20 skip; otherwise require energy ready
+; so the scoop has follow-up value, then commit with $ff as the
+; target deck index (let the trainer effect pick the bench slot).
+	push af
+	ld a, DUELVARS_ARENA_CARD
+	call GetNonTurnDuelistVariable
+	call SwapTurn
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 SNORLAX_LV20
+	pop bc
+	jp z, .no_play
+	ld a, b
+	push af
+	call CreateArenaOrBenchEnergyCardList
+	pop bc
+	ld a, b
+	jr c, .deck_3c_play
+	jp .no_play
+.deck_3c_play
+	push af
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	pop af
+	scf
+	ret
+; 0x221e2
 
 SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
 
