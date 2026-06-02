@@ -37,8 +37,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, $6373
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           $6659, $664d
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, AIPlay_ItemFinder
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_ImakuniCard, AIPlay_ImakuniCard
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          AIDecide_PokemonFlute, AIPlay_PokemonFlute
@@ -1553,13 +1553,13 @@ AIDecide_EnergyRemoval:
 	cp $11
 	jp z, $4d6b
 	cp $45
-	jp z, $4de7
+	jp z, AIDecide_EnergyRemoval_Deck45Or50
 	cp $47
 	jp z, AIDecide_EnergyRemoval_Deck47
 	cp $4a
 	jp z, AIDecide_EnergyRemoval_Deck4A
 	cp $50
-	jp z, $4de7
+	jp z, AIDecide_EnergyRemoval_Deck45Or50
 	cp $55
 	jp z, $4ede
 	cp $74
@@ -1728,6 +1728,63 @@ ScoreBenchEnergyRemovalCandidate:
 	pop de
 	ret
 ; 0x20d6b
+
+SECTION "Bank 8@4de7", ROMX[$4de7], BANK[$8]
+
+; Shared by decks $45 and $50 (Dark Jolteon / Dark Raichu family).
+; First two passes: if a Double Colorless energy is attached to a
+; player-area Pokemon, remove THAT one as priority -- returning the
+; "should I play Energy Removal because we can KO?" flag (b) as the
+; commit hint. Otherwise the policy needs us to actually be able to
+; KO from hand AND the defender to have meaningful HP (more than
+; double our active's current HP). Then commit a normal energy
+; removal via PickAttachedEnergyCardToRemove.
+AIDecide_EnergyRemoval_Deck45Or50:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ld b, $01
+	jr c, .check_dce
+	ld b, $00
+.check_dce
+	farcall FindDoubleColorlessAttachedToPlayerPokemonInPlayArea
+	jr c, .commit_dce
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .normal_path
+.skip
+	or a
+	ret
+.normal_path
+	ld e, $00
+	call SwapTurn
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call SwapTurn
+	or a
+	ret z
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2HP]
+	ld b, a
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	call SwapTurn
+	sla a
+	cp b
+	jr c, .skip
+	call SwapTurn
+	xor a
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+.commit_dce
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, b
+	scf
+	ret
+; 0x20e3c
 
 SECTION "Bank 8@4e3c", ROMX[$4e3c], BANK[$8]
 
@@ -2817,6 +2874,78 @@ AIDecide_ScoopUp_Deck47:
 	jp c, AIDecide_ScoopUp.no_play
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
+
+SECTION "Bank 8@6373", ROMX[$6373], BANK[$8]
+
+; Itemfinder discards two trainer cards from hand to recover one
+; from the discard. The play wrapper sets AI_FLAG_MODIFIED_HAND
+; (since hand contents change) and forwards three slots: the two
+; cards to discard (wTempAIMultiTargetCardDeckIndex1/2) and the
+; recovery target via wAITrainerCardParameter.
+AIPlay_ItemFinder:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempRetreatCostCards], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+SECTION "Bank 8@664d", ROMX[$664d], BANK[$8]
+
+AIPlay_ImakuniCard:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Imakuni's Card confuses our OWN active. The AI plays it when (a)
+; our active doesn't already have a status condition (no point
+; overwriting), or (b) we're deck $50 (Dark Primeape) and the
+; confusion is desirable -- but only if Dark Primeape has 2+
+; energy attached (so its "Fury Swipes" benefits) and isn't
+; already confused.
+AIDecide_ImakuniCard:
+	ld a, [wOpponentDeckID]
+	cp $50
+	jr z, .deck_50_dark_primeape
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and $0f
+	cp CONFUSED
+	jr z, .skip
+	scf
+	ret
+.skip
+	or a
+	ret
+.deck_50_dark_primeape
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_PRIMEAPE
+	jr nz, .skip
+	ld e, $00 ; PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp $02
+	jr c, .skip
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and $0f
+	cp CONFUSED
+	jr z, .skip
+	scf
+	ret
+; 0x22694
 
 SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
 

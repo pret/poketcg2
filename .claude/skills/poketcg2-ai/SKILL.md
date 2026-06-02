@@ -116,6 +116,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4c44` | [`AIPlay_EnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-ichikawa2 | 2026-06-02 |
 | `$08` | `$4c5a` | [`AIDecide_EnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate` | sameboy_trace duel-ichikawa2 (7 deck cases left raw) | 2026-06-02 |
 | `$08` | `$4e3c` | [`AIDecide_EnergyRemoval_Deck47`](../../../src/engine/bank08.asm) + `CheckIfEnergyRemovalDisruptsBigAttack` | sameboy_trace duel-yuki | 2026-06-02 |
+| `$08` | `$4de7` | [`AIDecide_EnergyRemoval_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya (Dark Jolteon / Dark Raichu shared; Double Colorless priority) | 2026-06-02 |
 | `$08` | `$4e90` | [`AIDecide_EnergyRemoval_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima (Dark Vaporeon / Dark Starmie deck) | 2026-06-02 |
 | `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
@@ -145,6 +146,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$604f` | [`AIDecide_MrFuji`](../../../src/engine/bank08.asm) + `Deck4D` + `Deck6D` | sameboy_trace duel-kanoko | 2026-06-02 |
 | `$08` | `$60d7` | [`AIPlay_ScoopUp`](../../../src/engine/bank08.asm) | sameboy_trace duel-tashiro | 2026-06-01 |
 | `$08` | `$60ed` | [`AIDecide_ScoopUp`](../../../src/engine/bank08.asm) + inline `.deck_3c` | sameboy_trace duel-tashiro (8 other deck cases left raw); also called as a heuristic from AIDecide_FullHeal | 2026-06-01 |
+| `$08` | `$6373` | [`AIPlay_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya | 2026-06-02 |
+| `$08` | `$664d` | [`AIPlay_ImakuniCard`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya | 2026-06-02 |
+| `$08` | `$6659` | [`AIDecide_ImakuniCard`](../../../src/engine/bank08.asm) + inline deck `$50` | sameboy_trace duel-kamiya | 2026-06-02 |
 | `$08` | `$66e7` | [`AIDecide_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$671b` | [`AIPlay_Revive`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$672c` | [`AIDecide_Revive`](../../../src/engine/bank08.asm) + Deck14 + Deck40 | sameboy_trace duel-miyuki | 2026-06-01 |
@@ -187,7 +191,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 43.46% (~7.0 KiB of 16 KiB).
+**Source-defined**: 44.63% (~7.1 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -199,6 +203,7 @@ the target (helps justify future decomp prioritization).
 - `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
 - `$4678-$483c` — `AIPlay_PlusPower` + `AIDecide_PlusPower_Phase13` + `AIDecide_PlusPower_Phase14` (inline `Deck45`) + 5 helpers (`CheckIfPlusPowerEnablesKO_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase14` [byte-duplicate of Phase13], `CheckIfAttackWontKOAlready`, `ScoreAttackWithPoisonDiscount`).
 - `$4c44-$4d6a` — `AIPlay_EnergyRemoval` + `AIDecide_EnergyRemoval` (6 deck cases left raw) + 3 helpers (`CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate`).
+- `$4de7-$4e3b` — `AIDecide_EnergyRemoval_Deck45Or50` (Double Colorless priority pass + standard "would-KO + meaningful-HP" gate).
 - `$4e3c-$4e8f` — `AIDecide_EnergyRemoval_Deck47` + `CheckIfEnergyRemovalDisruptsBigAttack`.
 - `$4e90-$4edd` — `AIDecide_EnergyRemoval_Deck4A`.
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
@@ -246,6 +251,8 @@ the target (helps justify future decomp prioritization).
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
+- `$6373-$6395` — `AIPlay_ItemFinder`.
+- `$664d-$2693` — `AIPlay_ImakuniCard` + `AIDecide_ImakuniCard` (inline `deck_50_dark_primeape`).
 - `$6694-$271a` — `AIPlay_Gambler` + `AIDecide_Gambler`.
 - `$7a43-$7a72` — `AIPlay_Sleep` + `AIDecide_Sleep` + `AIDecide_Sleep_Deck12` (deck-$53 case `$7a73` left raw).
 
@@ -299,6 +306,7 @@ parens.
 | duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
 | duel-gouda | 47 (played POKEBALL as deck $4e; rest in deferred ER/SER) |
 | duel-grace | 50 (played POKEMON_TRADER + THE_BOSSS_WAY as deck $4f; rest in deferred ER/SER) |
+| duel-kamiya | 51 (deck $50 -- ENERGY_REMOVAL $45/$50, ITEMFINDER, IMAKUNI_CARD; remaining 51 in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
