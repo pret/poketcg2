@@ -106,6 +106,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$439b` | [`AIDecide_Potion_Phase11`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$483d` | [`AIPlay_Switch`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
 | `$08` | `$485a` | [`AIDecide_Switch_Phase09`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
+| `$08` | `$44e3` | [`AIPlay_Defender`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna | 2026-06-01 |
+| `$08` | `$44f2` | [`AIDecide_Defender_Phase13`](../../../src/engine/bank08.asm) + inline `.deck_50`, `.deck_74` | sameboy_trace duel-renna | 2026-06-01 |
+| `$08` | `$45ef` | [`AIDecide_Defender_Phase14`](../../../src/engine/bank08.asm) + inline `.deck_72` | sameboy_trace duel-renna | 2026-06-01 |
 | `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$49e3` | [`AIPlay_GustOfWind`](../../../src/engine/bank08.asm) | sameboy_trace duel-takahashi | 2026-06-01 |
 | `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
@@ -144,6 +147,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$782f` | [`AIDecide_NightlyGarbageRun_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino | 2026-06-01 |
 | `$08` | `$79df` | [`AddDeckIndexToAIMultiTargetSlots`](../../../src/engine/bank08.asm) | helper called from deck-$41 NGR | 2026-06-01 |
 | `$08` | `$7d44` | [`AIDecide_MasterBall_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
+| `$08` | `$7dc2` | [`AIDecide_MasterBall_Deck43`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna (Chain Lightning by Pikachu deck) | 2026-06-01 |
 | `$08` | `$7e9e` | [`AIPlay_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7eaa` | [`AIDecide_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
@@ -153,7 +157,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 26.95% (~4.3 KiB of 16 KiB).
+**Source-defined**: 29.46% (~4.7 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
@@ -161,6 +165,7 @@ the target (helps justify future decomp prioritization).
 - `$42d0-$4364` — `AIDecide_Potion_Phase10` + `CheckIfAnyAttackBoostsIfTakenDamage`.
 - `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
 - `$483d-$489b` — `AIPlay_Switch` (shared by Phase_09 and Phase_16) + `AIDecide_Switch_Phase09`.
+- `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
 - `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
@@ -181,6 +186,7 @@ the target (helps justify future decomp prioritization).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
 - `$79df-$79f4` — `AddDeckIndexToAIMultiTargetSlots` (3-slot list-add helper).
 - `$7d44-$7d60` — `AIDecide_MasterBall_Deck3F`.
+- `$7dc2-$7dc6` — `AIDecide_MasterBall_Deck43`.
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
@@ -228,6 +234,7 @@ parens.
 | duel-yuuta, duel-yuuta2 | 47 each (played THE_BOSSS_WAY + MASTER_BALL as deck $3f; remaining all in deferred ENERGY_RETRIEVAL territory) |
 | duel-miyuki | 29 (played REVIVE + GOOP_GAS_ATTACK; remaining in deferred ENERGY_RETRIEVAL territory) |
 | duel-morino | 26 (played POKEMON_BREEDER, POKEMON_TRADER as deck $41, NIGHTLY_GARBAGE_RUN; remaining hits all in POKEMON_BREEDER decide -- big function with 7 deck cases + complex default scoring still deferred) |
+| duel-renna | **0** ✓ (played DEFENDER both phases + MASTER_BALL as deck $43) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |

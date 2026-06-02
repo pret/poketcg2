@@ -12,8 +12,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, SUPER_POTION,           $43d0, $43aa
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_POTION,           $43ff, $43aa
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, SUPER_POTION,           $44d4, $43aa
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, DEFENDER,               $44f2, $44e3
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, DEFENDER,               $45ef, $44e3
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, DEFENDER,               AIDecide_Defender_Phase13, AIPlay_Defender
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, DEFENDER,               AIDecide_Defender_Phase14, AIPlay_Defender
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              $4692, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, PLUSPOWER,              $4752, $4678
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_09, SWITCH,                 AIDecide_Switch_Phase09, AIPlay_Switch
@@ -438,6 +438,250 @@ AIDecide_Potion_Phase11_Deck74:
 	farcall Func_4bc5d
 	ret
 ; 0x203aa
+
+SECTION "Bank 8@44e3", ROMX[$44e3], BANK[$8]
+
+; Shared by Phase_13 and Phase_14. Forwards hTemp_ffa0 = 0 since
+; Defender doesn't need a target parameter beyond the active slot.
+AIPlay_Defender:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	xor a
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; PHASE_13 fires before the AI attacks. Skip if our active is
+; Mr. Mime Lv28 (its Pkmn Power makes Defender redundant). If we
+; can pull Professor Oak via card $18e + AIDecide_ProfessorOak,
+; commit to that instead -- Oak is a bigger swing than Defender.
+; Skip if a Defender is already attached. Two decks have bespoke
+; policies ($50 and $74).
+; Default: look at the strongest attack we could land this turn,
+; compare its damage to the defender's strongest counter; play only
+; if the counter would otherwise KO us but adding $14 (Defender's
+; reduction) keeps us alive.
+AIDecide_Defender_Phase13:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 MR_MIME_LV28
+	ret z
+	ld de, $18e
+	farcall LookForCardIDInHandList
+	jr nc, .skip_oak
+	call AIDecide_ProfessorOak
+	ret c
+.skip_oak
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_DEFENDER
+	get_turn_duelist_var
+	or a
+	ret nz
+	ld a, [wOpponentDeckID]
+	cp $50
+	jr z, .deck_50
+	cp $74
+	jp z, .deck_74
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .no_play
+	farcall CanBeKnockedOutByTwicePoisonDamage
+	jr c, .no_play
+	farcall CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP
+	jr nc, .no_play
+	call SwapTurn
+	farcall CheckIfSelectedAttackIsUnusable
+	call SwapTurn
+	jr c, .no_play
+	ld a, [wSelectedAttack]
+	farcall EstimateDamage_FromDefendingPokemon
+	ld a, [wDamage]
+	ld [wd082], a
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld b, a
+	ld a, $01
+	sub b
+	ld [wSelectedAttack], a
+	push de
+	call SwapTurn
+	farcall CheckIfSelectedAttackIsUnusable
+	call SwapTurn
+	pop de
+	jr c, .restore_attack
+	ld a, [wSelectedAttack]
+	push de
+	farcall EstimateDamage_FromDefendingPokemon
+	pop de
+	ld a, [wDamage]
+	cp d
+	jr nc, .check_hp
+.restore_attack
+	ld a, [wSelectedAttack]
+	ld b, a
+	ld a, $01
+	sub b
+	ld [wSelectedAttack], a
+	ld a, [wd082]
+	ld [wDamage], a
+.check_hp
+	ld a, [wDamage]
+	sub $14
+	ld d, a
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	sub d
+	jr c, .no_play
+	jr z, .no_play
+.play
+	scf
+	ret
+.no_play
+	or a
+	ret
+; deck $50: only play if our active is Dark Primeape AND its status
+; is CONFUSED AND it still has 40+ HP -- Defender preserves our
+; Dark Primeape long enough to recover.
+.deck_50
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_PRIMEAPE
+	jr nz, .no_play
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and $0f
+	cp CONFUSED
+	jr nz, .no_play
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp $28
+	jr c, .no_play
+	scf
+	ret
+; deck $74: if active is Ditto and we have a solo play area, just
+; play. Otherwise gate on a "highest damage we'd take >= 30 AND
+; Defender keeps us alive" check.
+.deck_74
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DITTO
+	jr nz, .deck_74_check_threat
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr z, .play
+.deck_74_check_threat
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .no_play
+	farcall CanBeKnockedOutByTwicePoisonDamage
+	jr c, .no_play
+	farcall GetHighestDamageFromDefendingPokemon
+	cp $1e
+	jr c, .no_play
+	push af
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	add $14
+	pop bc
+	sub b
+	jr c, .no_play
+	jr z, .no_play
+	jr nc, .play
+; 0x205ef
+
+; PHASE_14 fires immediately before the AI attacks. Most of the
+; smarts is in checking whether our own current attack will be
+; effective and meaningful (after applying Defender to the
+; defender's expected counter). 9 deck IDs short-circuit to "don't
+; play" (so they never get to spend Defender pre-attack), one ($45)
+; has a bespoke policy, one ($72) only checks attack flag $04.
+AIDecide_Defender_Phase14:
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_DEFENDER
+	get_turn_duelist_var
+	or a
+	ret nz
+	farcall CanBeKnockedOutByTwicePoisonDamage
+	jr c, .no_play
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld e, a
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld a, [wOpponentDeckID]
+	cp $50
+	jr z, .no_play
+	cp $72
+	jr z, .deck_72
+	cp $74
+	jr z, .no_play
+	ld a, $06
+	call CheckLoadedAttackFlag
+	jr c, .compute_threat
+	ld a, $04
+	call CheckLoadedAttackFlag
+	jr c, .compute_threat
+.no_play
+	or a
+	ret
+.compute_threat
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wSelectedAttack]
+	or a
+	jr nz, .use_atk2
+	ld a, [wLoadedCard2Atk1EffectParam]
+	jr .got_damage
+.use_atk2
+	ld a, [wLoadedCard2Atk2EffectParam]
+.got_damage
+	ld d, a
+	push de
+	bank1call GetArenaCardColor
+	call TranslateColorToWR
+	ld b, a
+	bank1call GetArenaCardWeakness
+	and b
+	pop de
+	jr z, .no_weakness
+	sla d
+.no_weakness
+	push de
+	bank1call GetArenaCardColor
+	call TranslateColorToWR
+	ld b, a
+	bank1call GetArenaCardResistance
+	and b
+	pop de
+	jr z, .no_resistance
+	ld a, d
+	sub $1e
+	jr c, .no_play_alias
+	ld d, a
+.no_resistance
+	ld a, d
+	or a
+	jr z, .no_play_alias
+	sub $14
+	ld d, a
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	sub d
+	jr c, .no_play_alias
+	jr z, .no_play_alias
+	scf
+	ret
+.no_play_alias
+	or a
+	ret
+.deck_72
+	ld a, $04
+	call CheckLoadedAttackFlag
+	ret
+; 0x20678
 
 SECTION "Bank 8@483d", ROMX[$483d], BANK[$8]
 
@@ -2494,7 +2738,7 @@ AIDecide_MasterBall:
 	cp $40
 	jp z, $7d61
 	cp $43
-	jp z, $7dc2
+	jp z, AIDecide_MasterBall_Deck43
 	cp $46
 	jp z, $7dc7
 	cp $74
@@ -2579,6 +2823,15 @@ AIDecide_MasterBall_Deck3F:
 	farcall AITryMasterBall
 	ret
 ; 0x23d61
+
+SECTION "Bank 8@7dc2", ROMX[$7dc2], BANK[$8]
+
+; deck $43 ("Chain Lightning by Pikachu") delegates Master Ball
+; entirely to a bespoke bank-$12 helper.
+AIDecide_MasterBall_Deck43:
+	farcall ChainLightningByPikachuDeckAIDecideMasterBall
+	ret
+; 0x23dc7
 
 SECTION "Bank 8@7e9e", ROMX[$7e9e], BANK[$8]
 
