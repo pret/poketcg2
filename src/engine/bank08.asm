@@ -47,7 +47,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               $68d8, $68b7
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        $6d20, $6cfd
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          $74a7, $7492
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          AIDecide_TheBosssWay, AIPlay_TheBosssWay
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    $761d, $75fe
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      $7a13, $79f5
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
@@ -1730,6 +1730,87 @@ AIDecide_PokemonTrader_Deck18:
 	scf
 	ret
 ; 0x22f88
+
+SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
+
+AIPlay_TheBosssWay:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, $ff
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Pure dispatcher: 10 deck-specific policies, two of them ($38 and
+; $39) inline. Every other deck returns "don't play" by default.
+AIDecide_TheBosssWay:
+	ld a, [wOpponentDeckID]
+	cp $38
+	jr z, .deck_38
+	cp $39
+	jr z, .deck_39
+	cp $3f
+	jp z, $7539
+	cp $42
+	jp z, $754f
+	cp $4f
+	jp z, $7570
+	cp $51
+	jp z, $7586
+	cp $58
+	jp z, $75b2
+	cp $5a
+	jp z, $75c8
+	cp $6a
+	jp z, $75cd
+	cp $73
+	jp z, $75f9
+	or a
+	ret
+; deck $38: scan the deck for four specific evolution chain advances
+; (card IDs $1f→$23, $20→$23, $e6→$eb, $e7→$eb), then fall back to
+; checking whether card $23 or $eb is in the deck but not in hand.
+.deck_38
+	ld bc, $1f
+	ld de, $23
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $20
+	ld de, $23
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $e6
+	ld de, $eb
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $e7
+	ld de, $eb
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, $23
+	farcall IsCardIDInDeckAndNotInHand
+	ret c
+	ld de, $eb
+	farcall IsCardIDInDeckAndNotInHand
+	ret
+; deck $39: three evolution chain checks ($5b→$5d, $34→$37, $37→$39).
+.deck_39
+	ld bc, $5b
+	ld de, $5d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $34
+	ld de, $37
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $37
+	ld de, $39
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; 0x23539
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 
