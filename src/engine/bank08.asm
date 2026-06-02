@@ -1557,7 +1557,7 @@ AIDecide_EnergyRemoval:
 	cp $47
 	jp z, AIDecide_EnergyRemoval_Deck47
 	cp $4a
-	jp z, $4e90
+	jp z, AIDecide_EnergyRemoval_Deck4A
 	cp $50
 	jp z, $4de7
 	cp $55
@@ -1788,6 +1788,51 @@ CheckIfEnergyRemovalDisruptsBigAttack:
 	or a
 	ret
 ; 0x20e90
+
+SECTION "Bank 8@4e90", ROMX[$4e90], BANK[$8]
+
+; deck $4a's Energy Removal policy. Bail if we can KO the defender
+; from hand or if the defender has no non-Recycle energy. Special
+; case: if our active is Dark Vaporeon or Dark Starmie AND its
+; attack 1 is usable right now, defer to attacking (return NC) --
+; we'd rather hit than disrupt. Otherwise commit the removal,
+; picking the energy via PickAttachedEnergyCardToRemove.
+AIDecide_EnergyRemoval_Deck4A:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .check_energy
+	or a
+	ret
+.check_energy
+	ld e, $00
+	call SwapTurn
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call SwapTurn
+	or a
+	ret z
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_VAPOREON
+	jr z, .check_dark_attack
+	cp16 DARK_STARMIE
+	jr nz, .commit
+.check_dark_attack
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, $01
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	ret nc
+.commit
+	call SwapTurn
+	xor a
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+; 0x20ede
 
 SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
 
@@ -2856,7 +2901,7 @@ AIDecide_Pokeball:
 	cp $47
 	jp z, AIDecide_Pokeball_Deck47
 	cp $4a
-	jp z, $6bbb
+	jp z, AIDecide_Pokeball_Deck4A
 	cp $4b
 	jp z, $6bf8
 	cp $4e
@@ -2931,6 +2976,42 @@ AIDecide_Pokeball_Deck47:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22bbb
+
+SECTION "Bank 8@6bbb", ROMX[$6bbb], BANK[$8]
+
+; deck $4a's Poké Ball policy. Two paths based on play-area count.
+;
+; Solo: priority fetch card $a4, then swap $176-in-hand for
+; $b1-in-deck, then swap $d3-in-hand for $d6-in-deck.
+; Multi: walk evolution chain $176 -> $b1, fall back to $176-in-
+; hand-for-$b1-in-deck swap.
+AIDecide_Pokeball_Deck4A:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .multi
+	ld de, $a4
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $176
+	ld bc, $b1
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, $d3
+	ld bc, $d6
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+.multi
+	ld bc, $176
+	ld de, $b1
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, $176
+	ld bc, $b1
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+; 0x22bf8
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 
