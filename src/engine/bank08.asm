@@ -3363,7 +3363,7 @@ AIDecide_PokemonTrader:
 	cp $4d
 	jp z, AIDecide_PokemonTrader_Deck4D
 	cp $4f
-	jp z, $739e
+	jp z, AIDecide_PokemonTrader_Deck4F
 	cp $51
 	jp z, $73d8
 	cp $5a
@@ -3683,6 +3683,38 @@ AIDecide_PokemonTrader_Deck4D:
 	ret
 ; 0x2339e
 
+SECTION "Bank 8@739e", ROMX[$739e], BANK[$8]
+
+; deck $4f's Pokemon Trader policy. Solo path priority-fetches
+; card $103 from the deck. Multi path walks the $f3 -> $f7 -> $fa
+; 3-stage evolution chain, falling back to the chain swap.
+AIDecide_PokemonTrader_Deck4F:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .multi
+	ld a, $00
+	ld de, $103
+	farcall FindCardIDInLocation
+	ld de, $103
+	jr c, .commit
+.multi
+	ld de, $f3
+	ld bc, $f7
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $f7
+	jr c, .commit
+	ld de, $f7
+	ld bc, $fa
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, $fa
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x233d8
+
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 
 AIPlay_TheBosssWay:
@@ -3709,7 +3741,7 @@ AIDecide_TheBosssWay:
 	cp $42
 	jp z, $754f
 	cp $4f
-	jp z, $7570
+	jp z, AIDecide_TheBosssWay_Deck4F
 	cp $51
 	jp z, $7586
 	cp $58
@@ -3778,6 +3810,22 @@ AIDecide_TheBosssWay_Deck3F:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x2354f
+
+SECTION "Bank 8@7570", ROMX[$7570], BANK[$8]
+
+; deck $4f's The Boss's Way policy: walk the $f3 -> $f7 -> $fa
+; 3-stage evolution chain (same chain that deck $4f's Pokemon
+; Trader walks).
+AIDecide_TheBosssWay_Deck4F:
+	ld bc, $f3
+	ld de, $f7
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $f7
+	ld de, $fa
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; 0x23586
 
 SECTION "Bank 8@75cd", ROMX[$75cd], BANK[$8]
 

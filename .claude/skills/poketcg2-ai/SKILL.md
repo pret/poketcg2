@@ -158,6 +158,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$72d7` | [`AIDecide_PokemonTrader_Deck4C`](../../../src/engine/bank08.asm) | sameboy_trace duel-aira (gated on opponent Water-type arena) | 2026-06-02 |
 | `$08` | `$7327` | [`AIDecide_PokemonTrader_Deck4D`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko (3-way play-area × Water matchup split) | 2026-06-02 |
+| `$08` | `$739e` | [`AIDecide_PokemonTrader_Deck4F`](../../../src/engine/bank08.asm) | sameboy_trace duel-grace (3-stage chain $f3 -> $f7 -> $fa) | 2026-06-02 |
+| `$08` | `$7570` | [`AIDecide_TheBosssWay_Deck4F`](../../../src/engine/bank08.asm) | sameboy_trace duel-grace (same chain as deck $4f Trader) | 2026-06-02 |
 | `$08` | `$78c9` | [`AIDecide_NightlyGarbageRun_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
 | `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
 | `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
@@ -185,7 +187,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 42.97% (~6.9 KiB of 16 KiB).
+**Source-defined**: 43.46% (~7.0 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -226,6 +228,8 @@ the target (helps justify future decomp prioritization).
 - `$7274-$72d6` — `AIDecide_PokemonTrader_Deck49` (multi-Pokemon evolution chain vs. solo card-fetch).
 - `$72d7-$7326` — `AIDecide_PokemonTrader_Deck4C` (gated on opponent Water-type arena).
 - `$7327-$739d` — `AIDecide_PokemonTrader_Deck4D` (3-way split: solo / multi-no-Water / multi-Water).
+- `$739e-$73d7` — `AIDecide_PokemonTrader_Deck4F`.
+- `$7570-$7585` — `AIDecide_TheBosssWay_Deck4F`.
 - `$78c9-$78f1` — `AIDecide_NightlyGarbageRun_Deck49` (rescue 2 basic energies + optional card $65).
 - `$75fe-$765d` — `AIPlay_NightlyGarbageRun` + `AIDecide_NightlyGarbageRun` (12-way dispatcher; 11 cases left raw).
 - `$782f-$787c` — `AIDecide_NightlyGarbageRun_Deck41`.
@@ -294,6 +298,7 @@ parens.
 | duel-aira | 39 (played POKEMON_FLUTE + POKEMON_TRADER as deck $4c; remaining in deferred ER/SUPER_ER) |
 | duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
 | duel-gouda | 47 (played POKEBALL as deck $4e; rest in deferred ER/SER) |
+| duel-grace | 50 (played POKEMON_TRADER + THE_BOSSS_WAY as deck $4f; rest in deferred ER/SER) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
