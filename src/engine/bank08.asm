@@ -44,7 +44,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          $67c0, $67af
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               $68d8, $68b7
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               AIDecide_Pokeball, AIPlay_Pokeball
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        $6d20, $6cfd
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          AIDecide_TheBosssWay, AIPlay_TheBosssWay
@@ -1597,6 +1597,82 @@ AIDecide_Gambler:
 	scf
 	ret
 ; 0x2271b
+
+SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
+
+; Poké Ball is a coin-flip card: heads → search the deck for a basic
+; Pokemon, tails → nothing happens. The AI tosses the coin first so
+; it knows the outcome before committing the target — on heads it
+; forwards the pre-picked target via wAITrainerCardParameter; on
+; tails it forwards $ff so AIMakeDecision treats it as "no target".
+AIPlay_Pokeball:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld de, $10e
+	bank1call TossCoin
+	ldh [hTemp_ffa0], a
+	jr nc, .tails
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	jr .commit
+.tails
+	ld a, $ff
+	ldh [hTempPlayAreaLocation_ffa1], a
+.commit
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Pure dispatcher: 13 deck-specific policies, default returns NC.
+AIDecide_Pokeball:
+	ld a, [wOpponentDeckID]
+	cp $3a
+	jp z, $691e
+	cp $13
+	jp z, $6965
+	cp $14
+	jp z, $699f
+	cp $24
+	jp z, $69b5
+	cp $25
+	jp z, AIDecide_Pokeball_Deck25
+	cp $2c
+	jp z, $6a68
+	cp $3e
+	jp z, $6b02
+	cp $46
+	jp z, $6b2e
+	cp $47
+	jp z, $6b60
+	cp $4a
+	jp z, $6bbb
+	cp $4b
+	jp z, $6bf8
+	cp $4e
+	jp z, $6c35
+	cp $53
+	jp z, $6c5c
+	or a
+	ret
+; 0x2291e
+
+SECTION "Bank 8@6a59", ROMX[$6a59], BANK[$8]
+
+; Deck $25's Poké Ball policy: don't play if our play area is already
+; full (6 Pokemon); otherwise search the deck for any basic Pokemon
+; and return its result (carry SET + deck index in `a` on success).
+AIDecide_Pokeball_Deck25:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $06
+	jr c, .has_room
+	or a
+	ret
+.has_room
+	farcall CheckIfAnyBasicPokemonInDeck
+	ld a, e
+	ret
+; 0x22a68
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 

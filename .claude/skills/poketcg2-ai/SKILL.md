@@ -124,6 +124,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
+| `$08` | `$68b7` | [`AIPlay_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako | 2026-06-01 |
+| `$08` | `$68d8` | [`AIDecide_Pokeball`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (13-way dispatcher; 12 deck cases left raw) | 2026-06-01 |
+| `$08` | `$6a59` | [`AIDecide_Pokeball_Deck25`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (Ayako is deck $25) | 2026-06-01 |
 | `$08` | `$7492` | [`AIPlay_TheBosssWay`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr3-3 | 2026-06-01 |
 | `$08` | `$74a7` | [`AIDecide_TheBosssWay`](../../../src/engine/bank08.asm) + inline decks $38, $39 | sameboy_trace duel-gr3-3 (deck $39; 8 other deck cases left raw) | 2026-06-01 |
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
@@ -133,7 +136,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 20.73% (~3.3 KiB of 16 KiB).
+**Source-defined**: 21.45% (~3.4 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
@@ -147,6 +150,8 @@ the target (helps justify future decomp prioritization).
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (deck `$53` case `$602b` left raw; `call $60ed` to the still-raw shared SCOOP_UP-decider helper left as a raw call).
+- `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).
+- `$6a59-$6a67` — `AIDecide_Pokeball_Deck25`.
 - `$7492-$7538` — `AIPlay_TheBosssWay` + `AIDecide_TheBosssWay` (inline deck $38, deck $39; 8 other deck cases left raw).
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
@@ -185,6 +190,7 @@ parens.
 | duel-ronald | 12 (all in deferred SUPER_ENERGY_RETRIEVAL decide territory) |
 | duel-gr3, duel-gr3-2 | 53 each (same deferred territory) |
 | duel-gr3-3 | **0** ✓ (played THE_BOSSS_WAY; deck $39) |
+| duel-ayako | **0** ✓ (played POKEBALL; deck $25) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
