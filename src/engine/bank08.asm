@@ -2064,7 +2064,7 @@ AIDecide_TheBosssWay:
 	cp $39
 	jr z, .deck_39
 	cp $3f
-	jp z, $7539
+	jp z, AIDecide_TheBosssWay_Deck3F
 	cp $42
 	jp z, $754f
 	cp $4f
@@ -2122,6 +2122,21 @@ AIDecide_TheBosssWay:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23539
+
+SECTION "Bank 8@7539", ROMX[$7539], BANK[$8]
+
+; deck $3f's The Boss's Way policy: walk a 3-stage evolution chain
+; ($e -> $11 -> $15) by checking $e->$11 and $11->$15 advances.
+AIDecide_TheBosssWay_Deck3F:
+	ld bc, $e
+	ld de, $11
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $11
+	ld de, $15
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; 0x2354f
 
 SECTION "Bank 8@75cd", ROMX[$75cd], BANK[$8]
 
@@ -2224,7 +2239,7 @@ AIDecide_MasterBall:
 	cp $3e
 	jp z, $7cdc
 	cp $3f
-	jp z, $7d44
+	jp z, AIDecide_MasterBall_Deck3F
 	cp $40
 	jp z, $7d61
 	cp $43
@@ -2294,3 +2309,22 @@ AIDecide_MasterBall:
 	farcall AITryMasterBall
 	ret
 ; 0x23bdf
+
+SECTION "Bank 8@7d44", ROMX[$7d44], BANK[$8]
+
+; deck $3f's Master Ball policy: priority targets are the same three
+; card IDs deck $3f's Boss's Way decider walks ($11 then $15 then
+; $e), then fall through to a generic AITryMasterBall.
+AIDecide_MasterBall_Deck3F:
+	ld de, $11
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $15
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, $e
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+; 0x23d61

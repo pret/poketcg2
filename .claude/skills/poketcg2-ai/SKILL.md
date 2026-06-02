@@ -133,7 +133,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6a59` | [`AIDecide_Pokeball_Deck25`](../../../src/engine/bank08.asm) | sameboy_trace duel-ayako (Ayako is deck $25) | 2026-06-01 |
 | `$08` | `$7492` | [`AIPlay_TheBosssWay`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr3-3 | 2026-06-01 |
 | `$08` | `$74a7` | [`AIDecide_TheBosssWay`](../../../src/engine/bank08.asm) + inline decks $38, $39 | sameboy_trace duel-gr3-3 (deck $39; 8 other deck cases left raw) | 2026-06-01 |
+| `$08` | `$7539` | [`AIDecide_TheBosssWay_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
 | `$08` | `$75cd` | [`AIDecide_TheBosssWay_Deck6A`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx (deck $6a) | 2026-06-01 |
+| `$08` | `$7d44` | [`AIDecide_MasterBall_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7a4f` | [`AIDecide_Sleep`](../../../src/engine/bank08.asm) + `AIDecide_Sleep_Deck12` | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7b0a` | [`AIPlay_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 | 2026-06-01 |
@@ -141,7 +143,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 23.93% (~3.8 KiB of 16 KiB).
+**Source-defined**: 24.24% (~3.9 KiB of 16 KiB).
 **Last updated**: 2026-06-01.
 
 ### Decompiled regions (named, in source)
@@ -160,7 +162,9 @@ the target (helps justify future decomp prioritization).
 - `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).
 - `$6a59-$6a67` — `AIDecide_Pokeball_Deck25`.
 - `$7492-$7538` — `AIPlay_TheBosssWay` + `AIDecide_TheBosssWay` (inline deck $38, deck $39; 7 other deck cases left raw).
+- `$7539-$754e` — `AIDecide_TheBosssWay_Deck3F`.
 - `$75cd-$75f8` — `AIDecide_TheBosssWay_Deck6A`.
+- `$7d44-$7d60` — `AIDecide_MasterBall_Deck3F`.
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (the 20 deck-specific Func_2152x-Func_2163e cases left raw).
@@ -204,6 +208,7 @@ parens.
 | duel-gr2 | **0** ✓ |
 | duel-grx | **0** ✓ (played THE_BOSSS_WAY; deck $6a) |
 | duel-midori | **0** ✓ |
+| duel-yuuta, duel-yuuta2 | 47 each (played THE_BOSSS_WAY + MASTER_BALL as deck $3f; remaining all in deferred ENERGY_RETRIEVAL territory) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
