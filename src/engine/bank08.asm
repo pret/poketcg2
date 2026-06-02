@@ -25,8 +25,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, $507b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          $53d0, $53bc
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, $5643
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, $5a9d
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       $566e, AIPlay_EnergyRetrieval
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, $5cee, $5ce2
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          $5d3e, $5d2d
@@ -708,6 +708,73 @@ LookForEvolutionInHand:
 	scf
 	ret
 ; 0x21528
+
+SECTION "Bank 8@5643", ROMX[$5643], BANK[$8]
+
+; Packs the AI's pre-computed Energy Retrieval targets into the
+; OPPACTION_EXECUTE_TRAINER_EFFECTS registers and dispatches. The
+; second multi-target slot is optional — when it holds $ff, the
+; AI energy-trans slot is zeroed so the effect treats it as unused.
+AIPlay_EnergyRetrieval:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempRetreatCostCards], a
+	cp $ff
+	jr z, .single_target
+	ld a, $ff
+	ldh [hAIEnergyTransPlayAreaLocation], a
+.single_target
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+; 0x2166e
+
+SECTION "Bank 8@5a9d", ROMX[$5a9d], BANK[$8]
+
+; Same shape as AIPlay_EnergyRetrieval, but Super Energy Retrieval
+; takes up to three multi-target slots plus two raw $d09a/$d09b
+; arguments. Each slot is forwarded only until one is $ff, at which
+; point the rest are skipped (the trainer effect treats $ff as "no
+; more targets").
+AIPlay_SuperEnergyRetrieval:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempRetreatCostCards], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ldh [hAIEnergyTransPlayAreaLocation], a
+	cp $ff
+	jr z, .done
+	ld a, [$d09a]
+	ldh [$ffa6], a
+	cp $ff
+	jr z, .done
+	ld a, [$d09b]
+	ldh [$ffa7], a
+	cp $ff
+	jr z, .done
+	ld a, $ff
+	ldh [$ffa8], a
+.done
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+; 0x21adf
 
 SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
 
