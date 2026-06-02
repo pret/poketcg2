@@ -310,6 +310,7 @@ parens.
 | duel-grace | 19 (deck $4f; rest in deck-$4f's ER handler at `$59cd` + deferred SUPER_ER) |
 | duel-kamiya | 48 (deck $50; rest in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw + deferred SUPER_ER) |
 | duel-kevin | **0** ✓ (2-duel trace; both decks fell through ER dispatcher to `.default` → `ret nc`) |
+| duel-ryoko | **0** ✓ (no trainer cards played all duel; no AIPlay_* entry fired) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 5 / 7 (only in deferred SUPER_ER territory) |
 | duel-gene | 65 (mostly in deferred SUPER_ER territory + a few ER deck-specific handlers) |
