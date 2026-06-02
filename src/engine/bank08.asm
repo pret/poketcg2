@@ -320,7 +320,7 @@ SECTION "Bank 8@42d0", ROMX[$42d0], BANK[$8]
 AIDecide_Potion_Phase10:
 	ld a, [wOpponentDeckID]
 	cp $45
-	jp z, $4365
+	jp z, AIDecide_Potion_Phase10_Deck45
 	cp $74
 	jp z, .skip
 	ld a, $14
@@ -421,6 +421,46 @@ CheckIfAnyAttackBoostsIfTakenDamage:
 	scf
 	ret
 ; 0x20365
+
+SECTION "Bank 8@4365", ROMX[$4365], BANK[$8]
+
+; deck $45's POTION Phase 10 policy: iterate play-area positions,
+; pick the first Dark Jolteon (HP threshold 30) or Dark Raichu (HP
+; threshold 50) whose current HP is below its threshold. Returns
+; carry SET with the slot index in `a`.
+AIDecide_Potion_Phase10_Deck45:
+	ld e, $00
+.loop
+	ld a, e
+	add DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	cp $ff
+	ret z
+	push de
+	call GetCardIDFromDeckIndex
+	cp16 DARK_JOLTEON
+	ld c, $1e
+	jr z, .check_hp
+	cp16 DARK_RAICHU
+	ld c, $32
+	jr z, .check_hp
+.next
+	pop de
+	inc e
+	jr .loop
+.check_hp
+	pop de
+	ld a, e
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp c
+	push de
+	jr nc, .next
+	pop de
+	ld a, e
+	scf
+	ret
+; 0x2039b
 
 SECTION "Bank 8@439b", ROMX[$439b], BANK[$8]
 
@@ -1493,13 +1533,13 @@ AIDecide_ProfessorOak:
 	cp $3b
 	jp z, $55c9
 	cp $45
-	jp z, $55cf
+	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp $49
 	jp z, $55d5
 	cp $4d
 	jp z, $55d5
 	cp $50
-	jp z, $55cf
+	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp $53
 	jp z, $55e8
 	cp $55
@@ -1627,6 +1667,17 @@ AIDecide_ProfessorOak:
 	scf
 	ret
 ; 0x21505
+
+SECTION "Bank 8@55cf", ROMX[$55cf], BANK[$8]
+
+; Shared by decks $45 and $50: play Oak iff hand has fewer than 5
+; cards.
+AIDecide_ProfessorOak_Deck45Or50:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret
+; 0x215d5
 
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 

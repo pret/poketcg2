@@ -103,6 +103,7 @@ the target (helps justify future decomp prioritization).
 |---|---|---|---|---|
 | `$08` | `$42d0` | [`AIDecide_Potion_Phase10`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$433b` | [`CheckIfAnyAttackBoostsIfTakenDamage`](../../../src/engine/bank08.asm) | called from AIDecide_Potion_Phase10 | 2026-06-01 |
+| `$08` | `$4365` | [`AIDecide_Potion_Phase10_Deck45`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (Dark Jolteon / Dark Raichu deck) | 2026-06-02 |
 | `$08` | `$439b` | [`AIDecide_Potion_Phase11`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$483d` | [`AIPlay_Switch`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
 | `$08` | `$485a` | [`AIDecide_Switch_Phase09`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
@@ -118,6 +119,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$53bc` | [`AIPlay_ProfessorOak`](../../../src/engine/bank08.asm) | AITrainerCardLogic, shared duel-gene + duel-sousuke | 2026-06-01 |
 | `$08` | `$53d0` | [`AIDecide_ProfessorOak`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene ∩ duel-sousuke (114 shared hits) | 2026-06-01 |
 | `$08` | `$507b` | [`AIPlay_PokemonBreeder`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (3-stage non-standard play wrapper) | 2026-06-01 |
+| `$08` | `$55cf` | [`AIDecide_ProfessorOak_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (shared by decks $45 and $50) | 2026-06-02 |
 | `$08` | `$5505` | [`LookForEvolutionInHand`](../../../src/engine/bank08.asm) | sameboy_trace duel-gene, 240-hit saturation | 2026-06-01 |
 | `$08` | `$5643` | [`AIPlay_EnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
 | `$08` | `$5a9d` | [`AIPlay_SuperEnergyRetrieval`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry | 2026-06-01 |
@@ -159,12 +161,13 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 31.26% (~5.0 KiB of 16 KiB).
+**Source-defined**: 31.62% (~5.1 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
 - `$4000-$4c32` — `AITrainerCardLogic` table + early decompiled functions through `Func_20be6.return_with_carry`.
 - `$42d0-$4364` — `AIDecide_Potion_Phase10` + `CheckIfAnyAttackBoostsIfTakenDamage`.
+- `$4365-$439a` — `AIDecide_Potion_Phase10_Deck45`.
 - `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
 - `$483d-$489b` — `AIPlay_Switch` (shared by Phase_09 and Phase_16) + `AIDecide_Switch_Phase09`.
 - `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
@@ -193,7 +196,8 @@ the target (helps justify future decomp prioritization).
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
 - `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
-- `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (the 20 deck-specific Func_2152x-Func_2163e cases left raw).
+- `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (19 deck-specific Func_2152x-Func_2163e cases left raw; one named).
+- `$55cf-$55d4` — `AIDecide_ProfessorOak_Deck45Or50`.
 - `$5505-$5527` — `LookForEvolutionInHand`.
 - `$5643-$566d` — `AIPlay_EnergyRetrieval`.
 - `$5a9d-$5ade` — `AIPlay_SuperEnergyRetrieval`.
@@ -240,6 +244,7 @@ parens.
 | duel-renna | **0** ✓ (played DEFENDER both phases + MASTER_BALL as deck $43) |
 | duel-renna2 | **0** ✓ |
 | duel-ichikawa, duel-ichikawa2 | **0** ✓ (Ichikawa2 played ENERGY_REMOVAL default path) |
+| duel-catherine | 47 (played POTION Phase 10 as deck $45 + PROFESSOR_OAK deck $45/$50; remaining hits all in deferred ENERGY_RETRIEVAL territory) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 53 / 55 (only in shared ENERGY_RETRIEVAL territory) |
 | duel-gene | 144 (all in `$566e-$5cxx` energy-retrieval decide territory) |
