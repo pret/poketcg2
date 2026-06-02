@@ -40,7 +40,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, $6373
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           $6659, $664d
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 $672c, $671b
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          $67c0, $67af
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
@@ -56,7 +56,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       $7e05, $7df9
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MOON_STONE,             $7e1c, $7e0b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, THE_ROCKETS_TRAP,       $7e85, $7e79
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, GOOP_GAS_ATTACK,        $7eaa, $7e9e
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, GOOP_GAS_ATTACK,        AIDecide_GoopGasAttack, AIPlay_GoopGasAttack
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_OAKS_REVENGE,  $7ed4, $7ec3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, DIGGER,                 $7f3c, $7f30
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, COMPUTER_ERROR,         $7f61, $7f3e
@@ -1833,6 +1833,87 @@ AIDecide_Gambler:
 	ret
 ; 0x2271b
 
+SECTION "Bank 8@671b", ROMX[$671b], BANK[$8]
+
+AIPlay_Revive:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Don't play if the discard pile is empty or if we already have 4+
+; Pokemon in the play area. Two decks ($14 and $40) have bespoke
+; "which card to revive" policies; the default policy walks the
+; discard pile looking for Hitmonchan Lv33, Hitmonlee Lv30, Tauros
+; Lv32, or Kangaskhan Lv40 in priority order.
+AIDecide_Revive:
+	bank1call CreateDiscardPileCardList
+	jr c, .no_play
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $04
+	jr c, .check_deck
+.no_play
+	or a
+	ret
+.check_deck
+	ld a, [wOpponentDeckID]
+	cp $14
+	jp z, AIDecide_Revive_Deck14
+	cp $40
+	jp z, AIDecide_Revive_Deck40
+	ld hl, wDuelTempList
+.scan
+	ld a, [hli]
+	cp $ff
+	jr z, .no_play
+	ld b, a
+	call GetCardIDFromDeckIndex
+	cp16 HITMONCHAN_LV33
+	jr z, .pick
+	cp16 HITMONLEE_LV30
+	jr z, .pick
+	cp16 TAUROS_LV32
+	jr nz, .scan
+	cp16 KANGASKHAN_LV40
+	jr z, .pick
+.pick
+	ld a, b
+	scf
+	ret
+
+; deck $14: delegate to a still-raw helper with parameter $02.
+AIDecide_Revive_Deck14:
+	ld a, $02
+	call $6ca2
+	ret
+
+; deck $40: first try card $5a in the discard pile. Otherwise look
+; for three specific "card-in-hand + matching-card-in-discard" pairs:
+; ($47 hand, $49 discard), ($4d hand, $52 discard), ($20 hand, $23
+; discard).
+AIDecide_Revive_Deck40:
+	ld de, $5a
+	ld a, $02
+	farcall FindCardIDInLocation
+	ret c
+	ld de, $47
+	ld bc, $49
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
+	ret c
+	ld de, $4d
+	ld bc, $52
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
+	ret c
+	ld de, $20
+	ld bc, $23
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
+	ret
+; 0x227af
+
 SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
 
 ; Poké Ball is a coin-flip card: heads → search the deck for a basic
@@ -2328,3 +2409,32 @@ AIDecide_MasterBall_Deck3F:
 	farcall AITryMasterBall
 	ret
 ; 0x23d61
+
+SECTION "Bank 8@7e9e", ROMX[$7e9e], BANK[$8]
+
+AIPlay_GoopGasAttack:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Deck $67 always plays. Otherwise the AI skips Goop Gas Attack if
+; card ID $49 is already in our play area (its Pkmn Power likely
+; conflicts with the trainer effect). If neither applies, delegate
+; to AIChooseStareTarget which picks a target and returns the
+; appropriate carry.
+AIDecide_GoopGasAttack:
+	ld a, [wOpponentDeckID]
+	cp $67
+	jr z, .pick_target
+	ld de, $49
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jr nc, .pick_target
+	or a
+	ret
+.pick_target
+	farcall AIChooseStareTarget
+	ret
+; 0x23ec3
