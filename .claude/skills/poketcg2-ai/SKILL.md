@@ -267,6 +267,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7040` | [`AIDecide_PokemonTrader_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (Rain Dance Confusion; Squirtle/Seel evo-line trader) | 2026-06-03 |
 | `$08` | `$6d59` | [`AIDecide_ComputerSearch_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (delegate to RainDanceConfusionDeckAIDecideComputerSearch) | 2026-06-03 |
 | `$08` | `$581d` | [`AIDecide_EnergyRetrieval_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (gated energy-recovery heuristic; $44 shares tail) | 2026-06-03 |
+| `$08` | `$70a7` | [`AIDecide_PokemonTrader_Deck32`](../../../src/engine/bank08.asm) | sameboy_trace duel-ken (Go Arcanine; Growlithe/Doduo/Hitmonchan/Seel evo-line trader) | 2026-06-03 |
+| `$08` | `$4902` | [`AIDecide_Switch_Phase16_Deck32`](../../../src/engine/bank08.asm) + shared `AIDecide_Switch_Phase16_CommitBenchTarget` ($48fc) | sameboy_trace duel-ken (Go Arcanine; switch when Arena is Arcanine/KO-able) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -307,7 +309,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 67.24% (~10.8 KiB of 16 KiB).
+**Source-defined**: 69.48% (~11.1 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -344,7 +346,7 @@ the target (helps justify future decomp prioritization).
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
 - `$6bf8-$6c34` — `AIDecide_Pokeball_Deck4B`.
 - `$6c35-$6c5b` — `AIDecide_Pokeball_Deck4E`.
-- `$489c-$48fb` — `AIDecide_Switch_Phase16` (decks $32/$3a/$3b/$3d inline sub-deciders $4902-$49a6 still raw).
+- `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck $32 done at $4902; decks $3a/$3b/$3d inline sub-deciders $493d-$49a6 still raw).
 - `$49a7-$49e2` — `AIDecide_Switch_Phase16_Deck5B…_Deck72` (12 thin per-deck delegates).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
@@ -352,6 +354,8 @@ the target (helps justify future decomp prioritization).
 - `$7040-$70a6` — `AIDecide_PokemonTrader_Deck2D` (Rain Dance Confusion; Squirtle/Wartortle/Blastoise + Seel/Dewgong evo-line trader).
 - `$6d59-$6d5d` — `AIDecide_ComputerSearch_Deck2D` (Rain Dance Confusion; bank-helper delegate).
 - `$581d-$58ce` — `AIDecide_EnergyRetrieval_Deck2D` (Rain Dance Confusion; gated energy-recovery heuristic; deck $44 reuses tail at `.check_energy_count` = $589d).
+- `$70a7-$71d3` — `AIDecide_PokemonTrader_Deck32` (Go Arcanine; Magmar/Growlithe-Arcanine/Doduo-Dodrio/Hitmonchan/Seel-Dewgong evo-line trader).
+- `$48fc-$4901` — `AIDecide_Switch_Phase16_CommitBenchTarget` (shared bench-pick commit tail) + `$4902-$493c` — `AIDecide_Switch_Phase16_Deck32` (Go Arcanine). Sub-deciders $493d-$49a6 (decks $3a/$3b/$3d) still raw.
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).

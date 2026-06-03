@@ -1303,7 +1303,7 @@ AIDecide_Switch_Phase16:
 	ret nc
 	ld a, [wOpponentDeckID]
 	cp GO_ARCANINE_DECK_ID
-	jp z, $4902
+	jp z, AIDecide_Switch_Phase16_Deck32
 	cp GRAND_FIRE_DECK_ID
 	jp z, $493d
 	cp LEGENDARY_FOSSIL_DECK_ID
@@ -1338,8 +1338,56 @@ AIDecide_Switch_Phase16:
 	or a
 	ret
 ; 0x208fc
-; (decks $32/$3a/$3b/$3d have bespoke inline sub-deciders at $4902-$49a6,
+; (decks $3a/$3b/$3d have bespoke inline sub-deciders at $493d-$49a6,
 ; still raw)
+
+SECTION "Bank 8@48fc", ROMX[$48fc], BANK[$8]
+
+; Shared commit tail for the bespoke Switch_Phase16 deciders: pick which
+; benched Pokemon to switch the Arena card to. AIDecideBenchPokemonToSwitchTo
+; returns carry CLEAR on success; the ccf flips it so this routine follows
+; the decide-fn convention (carry SET = "yes, play Switch").
+AIDecide_Switch_Phase16_CommitBenchTarget:
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+SECTION "Bank 8@4902", ROMX[$4902], BANK[$8]
+
+; deck $32 (Go Arcanine) Switch_Phase16 decider. Don't switch a healthy,
+; status-free Arena card. If the Arena is asleep/confused/etc. with the
+; high status bit set, only proceed when it actually has a retreat cost.
+; Force a switch when the Arena is Arcanine, or when the defender can KO
+; us next turn. Otherwise only switch if a benched Arcanine or Dewgong is
+; already powered up enough to attack.
+AIDecide_Switch_Phase16_Deck32:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr z, AIDecide_Switch_Phase16.skip
+	and $80
+	jr z, .check_card
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	or a
+	ret z
+.check_card
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ARCANINE_LV45
+	jr z, AIDecide_Switch_Phase16_CommitBenchTarget
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jr c, AIDecide_Switch_Phase16_CommitBenchTarget
+	ld de, ARCANINE_LV45
+	farcall CheckIfPokemonInBenchHasEnoughEnergy
+	ret c
+	ld de, DEWGONG_LV42
+	farcall CheckIfPokemonInBenchHasEnoughEnergy
+	ret
 
 SECTION "Bank 8@49a7", ROMX[$49a7], BANK[$8]
 
@@ -4934,7 +4982,7 @@ AIDecide_PokemonTrader:
 	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck2D
 	cp GO_ARCANINE_DECK_ID
-	jp z, $70a7
+	jp z, AIDecide_PokemonTrader_Deck32
 	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck41
 	cp DANGEROUS_BENCH_DECK_ID
@@ -5083,6 +5131,127 @@ AIDecide_PokemonTrader_Deck2D:
 	ret
 .play
 	scf
+	ret
+
+SECTION "Bank 8@70a7", ROMX[$70a7], BANK[$8]
+
+; deck $32 (Go Arcanine) Pokemon Trader policy. Walk the deck's evolution
+; lines in priority order — Magmar, the Growlithe/Arcanine line, the
+; Doduo/Dodrio line, Hitmonchan ($23 then $33), and the Seel/Dewgong line.
+; For each, if we don't already hold the card, try to dig it (or the next
+; evolution stage) out of the deck. The first card we can fetch becomes the
+; swap target; we then trade away a different Pokemon in hand for it. If no
+; line can be advanced, don't play. (Carved out of the still-raw
+; $6f88-$71d4 block.)
+AIDecide_PokemonTrader_Deck32:
+	ld de, MAGMAR_LV31
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .growlithe
+	ld a, CARD_LOCATION_DECK
+	ld de, MAGMAR_LV31
+	farcall FindCardIDInLocation
+	ld de, MAGMAR_LV31
+	jp c, .commit
+.growlithe
+	ld de, GROWLITHE_LV12
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .growlithe_lv18
+	ld de, GROWLITHE_LV18
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .growlithe_lv18
+	ld a, CARD_LOCATION_DECK
+	ld de, GROWLITHE_LV12
+	farcall FindCardIDInLocation
+	ld de, GROWLITHE_LV12
+	jp c, .commit
+.growlithe_lv18
+	ld de, GROWLITHE_LV18
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .arcanine_line
+	ld de, GROWLITHE_LV12
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .arcanine_line
+	ld a, CARD_LOCATION_DECK
+	ld de, GROWLITHE_LV18
+	farcall FindCardIDInLocation
+	ld de, GROWLITHE_LV18
+	jp c, .commit
+.arcanine_line
+	ld bc, GROWLITHE_LV12
+	ld de, ARCANINE_LV45
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jp c, .commit
+	ld bc, GROWLITHE_LV18
+	ld de, ARCANINE_LV45
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jp c, .commit
+	ld de, GROWLITHE_LV12
+	ld bc, ARCANINE_LV45
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, ARCANINE_LV45
+	jp c, .commit
+	ld de, GROWLITHE_LV18
+	ld bc, ARCANINE_LV45
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, ARCANINE_LV45
+	jp c, .commit
+	ld de, DODUO_LV10
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .dodrio_line
+	ld a, CARD_LOCATION_DECK
+	ld de, DODUO_LV10
+	farcall FindCardIDInLocation
+	ld de, DODUO_LV10
+	jr c, .commit
+.dodrio_line
+	ld bc, DODUO_LV10
+	ld de, DODRIO_LV28
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, DODUO_LV10
+	ld bc, DODRIO_LV28
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, DODRIO_LV28
+	jr c, .commit
+	ld de, HITMONCHAN_LV23
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .hitmonchan_lv33
+	ld a, CARD_LOCATION_DECK
+	ld de, HITMONCHAN_LV23
+	farcall FindCardIDInLocation
+	ld de, HITMONCHAN_LV23
+	jr c, .commit
+.hitmonchan_lv33
+	ld de, HITMONCHAN_LV33
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .seel_line
+	ld a, CARD_LOCATION_DECK
+	ld de, HITMONCHAN_LV33
+	farcall FindCardIDInLocation
+	ld de, HITMONCHAN_LV33
+	jr c, .commit
+.seel_line
+	ld de, SEEL_LV12
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .dewgong_line
+	ld a, CARD_LOCATION_DECK
+	ld de, SEEL_LV12
+	farcall FindCardIDInLocation
+	ld de, SEEL_LV12
+	jr c, .commit
+.dewgong_line
+	ld bc, SEEL_LV12
+	ld de, DEWGONG_LV42
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, SEEL_LV12
+	ld bc, DEWGONG_LV42
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, DEWGONG_LV42
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
 	ret
 
 SECTION "Bank 8@71d4", ROMX[$71d4], BANK[$8]
