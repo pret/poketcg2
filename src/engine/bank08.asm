@@ -628,9 +628,9 @@ AIDecide_Defender_Phase13:
 ; PHASE_14 fires immediately before the AI attacks. Most of the
 ; smarts is in checking whether our own current attack will be
 ; effective and meaningful (after applying Defender to the
-; defender's expected counter). 9 deck IDs short-circuit to "don't
-; play" (so they never get to spend Defender pre-attack), one ($45)
-; has a bespoke policy, one ($72) only checks attack flag $04.
+; defender's expected counter). Decks $50 and $74 decline outright;
+; $72 takes a bespoke path. For every other deck the selected attack
+; must have flag $06 or $04 set, otherwise we decline.
 AIDecide_Defender_Phase14:
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_DEFENDER
 	get_turn_duelist_var
@@ -733,12 +733,12 @@ AIPlay_PlusPower:
 	farcall AIMakeDecision
 	ret
 
-; Phase_13 pre-attack decision. Bail if the player's arena card has
-; status $1b ($ed = DUELVARS_ARENA_CARD_LAST_TURN_EFFECT?) or is
+; Phase_13 pre-attack decision. Bail if the player's arena card is
+; under Destiny Bond ($1b in DUELVARS_ARENA_CARD_SUBSTATUS1) or is
 ; immune to our attack. deck $45 skips this phase entirely.
 ; If we can already KO from hand, skip (no point boosting). If our
-; active is Mr. Mime Lv28, skip (Pkmn Power). If card $18e is in
-; hand AND AIDecide_ProfessorOak says fire, return with a = $ff so
+; active is Mr. Mime Lv28, skip (Pkmn Power). If Professor Oak ($18e)
+; is in hand AND AIDecide_ProfessorOak says fire, return with a = $ff so
 ; the caller defers to Oak (the bigger swing).
 ; Otherwise pick whichever of our two attacks PlusPower-would-KO
 ; (CheckIfPlusPowerEnablesKO_Phase13) AND clears the damage
@@ -1526,10 +1526,10 @@ AIPlay_EnergyRemoval:
 ; 7 deck-specific policies, all still raw. Default: walk the
 ; opponent's play area looking for a Pokemon that (a) has at least
 ; one non-Recycle energy attached and (b) would be disabled /
-; weakened if we removed one. Start from the arena if we can KO
-; their active from hand (no point disrupting attacks we'll prevent
-; anyway), otherwise bench. Falls back to scoring bench-only
-; candidates by estimated incoming damage.
+; weakened if we removed one. Skip their arena and start at the bench
+; if we can KO their active from hand (no point disrupting an attack
+; we'll prevent anyway); otherwise start at the arena. Falls back to
+; scoring bench-only candidates by estimated incoming damage.
 AIDecide_EnergyRemoval:
 	ld a, [wOpponentDeckID]
 	cp $11
@@ -1547,11 +1547,11 @@ AIDecide_EnergyRemoval:
 	cp $74
 	jp z, AIDecide_EnergyRemoval_Deck74
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
-	jr nc, .skip_arena
+	jr nc, .scan_from_arena
 	ld a, $01
 	ld [wTempAITargetPokemonCardDeckIndex], a
 	jr .start_scan
-.skip_arena
+.scan_from_arena
 	xor a
 	ld [wTempAITargetPokemonCardDeckIndex], a
 .start_scan
@@ -1631,9 +1631,9 @@ CheckIfHasNonRecycleEnergy:
 ; in `e` would actually disrupt the target -- i.e. both of their
 ; attacks still need more energy, so removing one keeps them from
 ; firing. NC means the target's first attack is already ready
-; (removing energy is a waste). The deck-$01 / mid-attack branch
-; defers to CanRemovingEnergyReduceDamage when only the second
-; attack still needs energy.
+; (removing energy is a waste). When only the second attack still
+; needs energy, defers to CanRemovingEnergyReduceDamage to decide
+; whether removal would meaningfully cut its damage.
 CheckIfBothAttacksStillNeedEnergy:
 	push de
 	xor a
@@ -1664,7 +1664,7 @@ CheckIfBothAttacksStillNeedEnergy:
 	ret
 
 ; secondary-pass scorer: simulate damage from both attacks against
-; us with the candidate at slot `e`. Track the minimum-damage
+; us with the candidate at slot `e`. Track the maximum-damage
 ; target in wd082 (best damage so far) and wd084 (slot picked).
 ScoreBenchEnergyRemovalCandidate:
 	push de
@@ -1927,10 +1927,10 @@ AIPlay_SuperEnergyRemoval:
 ; remove two from a single opponent Pokemon. First find one of our own
 ; play-area Pokemon carrying a non-Rainbow, non-Double-Colorless energy
 ; we can afford to discard. Then pick the opponent Pokemon to strip: if
-; the defender can already KO us we look at the opponent's whole play
-; area, otherwise just their bench, preferring a target whose attack we
-; can disrupt, and among multiple disruptable targets the one estimated
-; to deal the most damage.
+; we can already KO their active from hand we scan only their bench (no
+; point stripping a Pokemon we'll KO anyway), otherwise their whole play
+; area, preferring a target whose attack we can disrupt, and among
+; multiple disruptable targets the one estimated to deal the most damage.
 AIDecide_SuperEnergyRemoval:
 	ld e, $01
 .find_discard_loop
@@ -1968,11 +1968,11 @@ AIDecide_SuperEnergyRemoval:
 	ld a, e
 	ld [wTempAITargetPokemonCardDeckIndex], a
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
-	jr nc, .opp_bench_only
+	jr nc, .scan_whole_area
 	call SwapTurn
 	ld e, $01
 	jr .scan_opp_loop
-.opp_bench_only
+.scan_whole_area
 	call SwapTurn
 	ld e, $00
 .scan_opp_loop
@@ -2220,7 +2220,7 @@ AIPlay_ProfessorOak:
 ;   start at $1e (30)
 ;   hand size: +50 if <4, -30 if >=9, no change otherwise
 ;   duplicate energy cards in hand: +40
-;   has Computer Search (card $03) in hand AND no active Pkmn Powers
+;   has Water Energy (card $03) in hand AND no active Pkmn Powers
 ;     on either side: +10
 ;   always: +10
 ;   has at least one Basic Pokemon in hand: -10
@@ -2461,8 +2461,8 @@ SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 ;   wd084 = $01 if any matching evolution exists in the deck regardless
 ;           of location, else $00. Lets callers tell "evolution in hand
 ;           right now" apart from "evolution buried in the deck" — the
-;           sole caller (Func_214ad) uses this to choose between the
-;           Pokemon-target and non-Pokemon-target AI flags.
+;           sole caller (AIDecide_ProfessorOak) uses this to choose between
+;           the Pokemon-target and non-Pokemon-target AI flags.
 LookForEvolutionInHand:
 	xor a
 	ld [wd084], a
@@ -3104,7 +3104,7 @@ AIDecide_FullHeal:
 ; Deck $53 (Bad Dream): when the defending Pokemon is Asleep -- which
 ; this sleep-lock deck engineers on purpose -- only Full Heal ourselves
 ; if we actually carry a status worth clearing. When the defender isn't
-; asleep, fall back to the normal Full Heal logic.
+; asleep, decline (jump straight to AIDecide_FullHeal.no_play).
 AIDecide_FullHeal_Deck53:
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	call GetNonTurnDuelistVariable
@@ -4836,8 +4836,8 @@ SECTION "Bank 8@782f", ROMX[$782f], BANK[$8]
 
 ; deck $41 NGR policy. Empties the three multi-target slots, then
 ; tries to fill them with cards from the discard pile in priority
-; order: card ID $39 (PSYDUCK_LV??), card ID $37 (??), and finally
-; any basic energies. Any successful add returns NC from
+; order: card ID $39 (Dark Vileplume), card ID $37 (Dark Gloom), and
+; finally any basic energies. Any successful add returns NC from
 ; AddDeckIndexToAIMultiTargetSlots; once it returns carry SET we
 ; know we've packed all three slots.
 ;
