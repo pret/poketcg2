@@ -177,6 +177,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$433b` | [`CheckIfAnyAttackBoostsIfTakenDamage`](../../../src/engine/bank08.asm) | called from AIDecide_Potion_Phase10 | 2026-06-01 |
 | `$08` | `$4365` | [`AIDecide_Potion_Phase10_Deck45`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (deck $45 Quick Attack; Dark Jolteon/Raichu cards) | 2026-06-02 |
 | `$08` | `$439b` | [`AIDecide_Potion_Phase11`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
+| `$08` | `$43aa` | [`AIPlay_SuperPotion`](../../../src/engine/bank08.asm) + `AIDecide_SuperPotion_Phase08`/`_Phase11`/`_Phase13` + helpers (`CheckIfPlayAreaCardHasAttachedEnergy` ×2, `CheckIfEitherAttackUsableAndHasFlag10`, `CheckIfEnergyDiscardBreaksEitherAttack`) | sameboy_trace duel-biruitchi redo (313-byte Super Potion cluster: heal min(40,dmg) + discard energy; Phase11 bench-heal scan) | 2026-06-03 |
 | `$08` | `$483d` | [`AIPlay_Switch`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
 | `$08` | `$485a` | [`AIDecide_Switch_Phase09`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
 | `$08` | `$44e3` | [`AIPlay_Defender`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna | 2026-06-01 |
@@ -300,7 +301,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 59.06% (~9.5 KiB of 16 KiB).
+**Source-defined**: 60.97% (~9.8 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -308,6 +309,7 @@ the target (helps justify future decomp prioritization).
 - `$42d0-$4364` — `AIDecide_Potion_Phase10` + `CheckIfAnyAttackBoostsIfTakenDamage`.
 - `$4365-$439a` — `AIDecide_Potion_Phase10_Deck45`.
 - `$439b-$43a9` — `AIDecide_Potion_Phase11` + `AIDecide_Potion_Phase11_Deck74`.
+- `$43aa-$44e2` — Super Potion cluster: `AIPlay_SuperPotion` + `AIDecide_SuperPotion_Phase08`/`_Phase11`/`_Phase13` + 4 helpers (`CheckIfPlayAreaCardHasAttachedEnergy` and a byte-identical duplicate, `CheckIfEitherAttackUsableAndHasFlag10`, `CheckIfEnergyDiscardBreaksEitherAttack`).
 - `$483d-$489b` — `AIPlay_Switch` (shared by Phase_09 and Phase_16) + `AIDecide_Switch_Phase09`.
 - `$44e3-$4677` — `AIPlay_Defender` + `AIDecide_Defender_Phase13` (inline decks $50, $74) + `AIDecide_Defender_Phase14` (inline deck $72).
 - `$4678-$483c` — `AIPlay_PlusPower` + `AIDecide_PlusPower_Phase13` + `AIDecide_PlusPower_Phase14` (inline `Deck45`) + 5 helpers (`CheckIfPlusPowerEnablesKO_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase13`, `CheckIfDamageThresholdMetForPlusPower_Phase14` [byte-duplicate of Phase13], `CheckIfAttackWontKOAlready`, `ScoreAttackWithPoisonDiscount`).

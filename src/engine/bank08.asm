@@ -17,9 +17,9 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POTION,                 AIDecide_Potion_Phase07, AIPlay_Potion
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, POTION,                 AIDecide_Potion_Phase10, AIPlay_Potion
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, POTION,                 AIDecide_Potion_Phase11, AIPlay_Potion
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, SUPER_POTION,           $43d0, $43aa
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_POTION,           $43ff, $43aa
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, SUPER_POTION,           $44d4, $43aa
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, SUPER_POTION,           AIDecide_SuperPotion_Phase08, AIPlay_SuperPotion
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_POTION,           AIDecide_SuperPotion_Phase11, AIPlay_SuperPotion
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, SUPER_POTION,           AIDecide_SuperPotion_Phase13, AIPlay_SuperPotion
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, DEFENDER,               AIDecide_Defender_Phase13, AIPlay_Defender
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_14, DEFENDER,               AIDecide_Defender_Phase14, AIPlay_Defender
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, PLUSPOWER,              AIDecide_PlusPower_Phase13, AIPlay_PlusPower
@@ -479,9 +479,225 @@ AIDecide_Potion_Phase11:
 AIDecide_Potion_Phase11_Deck74:
 	farcall Func_4bc5d
 	ret
-; 0x203aa
 
-SECTION "Bank 8@44e3", ROMX[$44e3], BANK[$8]
+; Super Potion heals 40 HP and discards one attached energy as its cost.
+; The play picks the energy to discard (AIPickEnergyCardToDiscard) and
+; passes the heal amount, capped at the target's current damage so it
+; never overheals.
+AIPlay_SuperPotion:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	farcall AIPickEnergyCardToDiscard
+	ldh [hTemp_ffa0], a
+	ld a, [wAITrainerCardParameter]
+	ld e, a
+	call GetCardDamageAndMaxHP
+	cp $28
+	jr c, .heal_amount ; heal min(damage, 40)
+	ld a, $28
+.heal_amount
+	ldh [hTempRetreatCostCards], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Phase 08: heal the arena Pokemon if a 40 HP recovery would prevent an
+; incoming KO. Skips if we should be retreating instead, if it's deck $74
+; (Big Thunder, which never plays Super Potion here), or if our attack is
+; high-recoil. Requires the arena Pokemon to carry energy (so the discard
+; cost is payable). Returns carry SET with a = 0 (arena) to play.
+AIDecide_SuperPotion_Phase08:
+	farcall AIDecideWhetherToRetreat_ConsiderStatus
+	jr c, .no_play
+	ld a, [wOpponentDeckID]
+	cp BIG_THUNDER_DECK_ID
+	jr z, .no_play
+	farcall AICheckIfAttackIsHighRecoil
+	jr c, .no_play
+	ld e, $00
+	call CheckIfPlayAreaCardHasAttachedEnergy
+	ret nc
+	ld a, $28
+	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
+	ret nc
+	xor a
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+; Returns carry SET if the play-area Pokemon at position e has at least
+; one attached energy (i.e. it can pay Super Potion's discard cost).
+CheckIfPlayAreaCardHasAttachedEnergy:
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	or a
+	ret z
+	scf
+	ret
+
+; Phase 11: if healing the arena wouldn't save it (Phase 08's job), look
+; for a worthwhile bench Pokemon to heal instead. Walks the play area
+; (starting at the bench when we still have a spare prize) for a card that
+; has energy, has a usable attack flagged worth keeping, wouldn't lose its
+; attack to the energy discard, and is damaged 40+. Bench picks past the
+; first are gated behind a prize-count random roll; an arena pick is gated
+; on the attack not being high-recoil. Returns carry SET with a = position.
+AIDecide_SuperPotion_Phase11:
+	ld a, [wOpponentDeckID]
+	cp BIG_THUNDER_DECK_ID
+	jp z, .no_play
+	ld a, $28
+	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
+	jr nc, .scan
+	or a
+	ret
+.scan
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	dec a
+	jr z, .from_arena
+	ld e, $01
+	jr .loop
+.from_arena
+	ld e, $00
+.loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	ret z
+	ld d, a
+	call CheckIfPlayAreaCardHasAttachedEnergy_Duplicate
+	jr nc, .next
+	call CheckIfEitherAttackUsableAndHasFlag10
+	jr c, .next
+	call CheckIfEnergyDiscardBreaksEitherAttack
+	jr c, .next
+	call GetCardDamageAndMaxHP
+	cp $28
+	jr nc, .candidate
+.next
+	inc e
+	jr .loop
+.candidate
+	ld a, e
+	or a
+	jr z, .arena_candidate
+	push de
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	dec a
+	or a
+	jr z, .commit
+	ld a, $0a
+	call Random
+	cp $03
+.commit
+	pop de
+	jr c, .no_play
+	ld a, e
+	scf
+	ret
+.arena_candidate
+	push de
+	farcall AICheckIfAttackIsHighRecoil
+	pop de
+	jr c, .no_play
+	ld a, e
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+; byte-identical duplicate of CheckIfPlayAreaCardHasAttachedEnergy (the
+; ROM ships two copies; this one is Phase 11's).
+CheckIfPlayAreaCardHasAttachedEnergy_Duplicate:
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	or a
+	ret z
+	scf
+	ret
+
+; Returns carry SET if either attack (0 or 1) is usable AND has loaded-
+; attack flag $10 set (used by Phase 11 to keep a benched attacker alive).
+CheckIfEitherAttackUsableAndHasFlag10:
+	push de
+	xor a
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .try_second
+	ld a, $10
+	call CheckLoadedAttackFlag
+	jr c, .yes
+.try_second
+	ld a, $01
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .no
+	ld a, $10
+	call CheckLoadedAttackFlag
+	jr c, .yes
+.no
+	pop de
+	or a
+	ret
+.yes
+	pop de
+	scf
+	ret
+
+; Returns carry SET if, for either attack (0 or 1), the Pokemon currently
+; has enough energy but would NOT after the Super Potion discard -- i.e.
+; healing it would break its attack, so it's a poor target.
+CheckIfEnergyDiscardBreaksEitherAttack:
+	push de
+	xor a
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr c, .try_second
+	farcall CheckEnergyNeededForAttackAfterDiscard
+	jr c, .yes
+.try_second
+	pop de
+	push de
+	ld a, $01
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr c, .no
+	farcall CheckEnergyNeededForAttackAfterDiscard
+	jr c, .yes
+.no
+	pop de
+	or a
+	ret
+.yes
+	pop de
+	scf
+	ret
+
+; Phase 13: only deck $74 (Big Thunder) has a Super Potion policy here,
+; delegated to a bespoke bank-$12 helper; every other deck declines.
+AIDecide_SuperPotion_Phase13:
+	ld a, [wOpponentDeckID]
+	cp BIG_THUNDER_DECK_ID
+	jp z, .deck_74
+	or a
+	ret
+.deck_74
+	farcall Func_4bcbb
+	ret
 
 ; Shared by Phase_13 and Phase_14. Forwards hTemp_ffa0 = 0 since
 ; Defender doesn't need a target parameter beyond the active slot.
