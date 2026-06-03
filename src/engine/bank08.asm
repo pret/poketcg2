@@ -2227,9 +2227,10 @@ AIPlay_ProfessorOak:
 ;   for any play-area Pokemon that has an evolution available in deck
 ;     but not in hand: +10 (Oak might draw it)
 ; Decks $11, $2d, $32, $3a, $3b, $45, $49, $4d, $50, $53, $55, $57,
-; $58, $5a, $5c, $5d, $6e, $70, $71, $72 each have bespoke deciders
-; (still raw hex). All decks bail out immediately if 54+ cards are
-; out of the deck.
+; $58, $5a, $5c, $5d, $6e, $70, $71, $72 each have bespoke deciders;
+; $57-$72 are thin delegates to per-deck AI helpers (decompiled just
+; below), the rest are still raw hex. All decks bail out immediately if
+; 54+ cards are out of the deck.
 AIDecide_ProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -2259,23 +2260,23 @@ AIDecide_ProfessorOak:
 	cp $55
 	jp z, AIDecide_ProfessorOak_Deck55
 	cp $57
-	jp z, $5616
+	jp z, AIDecide_ProfessorOak_Deck57
 	cp $58
-	jp z, $561b
+	jp z, AIDecide_ProfessorOak_Deck58
 	cp $5a
-	jp z, $5620
+	jp z, AIDecide_ProfessorOak_Deck5A
 	cp $5c
-	jp z, $5625
+	jp z, AIDecide_ProfessorOak_Deck5C
 	cp $5d
-	jp z, $562a
+	jp z, AIDecide_ProfessorOak_Deck5D
 	cp $6e
-	jp z, $562f
+	jp z, AIDecide_ProfessorOak_Deck6E
 	cp $70
-	jp z, $5634
+	jp z, AIDecide_ProfessorOak_Deck70
 	cp $71
-	jp z, $5639
+	jp z, AIDecide_ProfessorOak_Deck71
 	cp $72
-	jp z, $563e
+	jp z, AIDecide_ProfessorOak_Deck72
 ; default scoring path
 	ld a, [hl]
 	cp $2e
@@ -2450,6 +2451,36 @@ AIDecide_ProfessorOak_Deck55:
 	cp $08
 	ret
 
+; Nine decks delegate their Professor Oak decision to a bespoke per-deck
+; AI helper in bank $0e/$12 (deck $5d's is still raw, Func_4c4ba).
+AIDecide_ProfessorOak_Deck57:
+	farcall ColorlessAltarAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck58:
+	farcall SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck5A:
+	farcall BadGuysDeckAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck5C:
+	farcall UltraRemovalDeckAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck5D:
+	farcall Func_4c4ba
+	ret
+AIDecide_ProfessorOak_Deck6E:
+	farcall EverybodysFriendDeckAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck70:
+	farcall TorrentialFloodDeckAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck71:
+	farcall TrainerImprisonDeckAIDecideProfessorOak
+	ret
+AIDecide_ProfessorOak_Deck72:
+	farcall BlazingFlameDeckAIDecideProfessorOak
+	ret
+
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
 ; Searches the turn duelist's deck for a card that the play-area
@@ -2545,7 +2576,7 @@ AIDecide_EnergyRetrieval:
 	cp $4f
 	jp z, $59cd
 	cp $57
-	jp z, $5a0b
+	jp z, AIDecide_EnergyRetrieval_Deck57
 	cp $5a
 	jp z, $5a10
 	cp $5d
@@ -2695,6 +2726,15 @@ AIDecide_EnergyRetrieval:
 	scf
 	ret
 ; 0x217c8
+
+SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
+
+; deck $57 (Eye of the Storm) Energy Retrieval: bank-$0e delegate. (One
+; of AIDecide_EnergyRetrieval's many deck cases; the rest of the
+; $57c8-$5a8c block is still raw.)
+AIDecide_EnergyRetrieval_Deck57:
+	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
+	ret
 
 SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
 
@@ -4243,15 +4283,15 @@ AIDecide_ComputerSearch:
 	cp $55
 	jp z, AIDecide_ComputerSearch_Deck55
 	cp $57
-	jp z, $6e0f
+	jp z, AIDecide_ComputerSearch_Deck57
 	cp $58
-	jp z, $6e14
+	jp z, AIDecide_ComputerSearch_Deck58
 	cp $6e
-	jp z, $6e19
+	jp z, AIDecide_ComputerSearch_Deck6E
 	cp $6f
-	jp z, $6e1e
+	jp z, AIDecide_ComputerSearch_Deck6F
 	cp $70
-	jp z, $6e23
+	jp z, AIDecide_ComputerSearch_Deck70
 .no_play
 	or a
 	ret
@@ -4264,7 +4304,23 @@ AIDecide_ComputerSearch_Deck55:
 	farcall SpiritedAwayDeckAIDecideComputerSearch
 	ret
 
-SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
+; Five more decks delegate Computer Search to a per-deck AI helper in
+; bank $0e/$12.
+AIDecide_ComputerSearch_Deck57:
+	farcall EyeOfTheStormDeckAIDecideComputerSearch
+	ret
+AIDecide_ComputerSearch_Deck58:
+	farcall SuddenGrowthDeckAIDecideComputerSearch
+	ret
+AIDecide_ComputerSearch_Deck6E:
+	farcall EverybodysFriendDeckAIDecideComputerSearch
+	ret
+AIDecide_ComputerSearch_Deck6F:
+	farcall ImmortalPokemonDeckAIDecideComputerSearch
+	ret
+AIDecide_ComputerSearch_Deck70:
+	farcall TorrentialFloodDeckAIDecideComputerSearch
+	ret
 
 ; Pokemon Trader's play also sets wd081 = 1 so subsequent passes can
 ; tell the AI has already traded this turn.

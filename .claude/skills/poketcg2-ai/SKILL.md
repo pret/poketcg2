@@ -170,6 +170,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4f0a` | [`AIPlay_SuperEnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (SUPER_ENERGY_REMOVAL table entry, was raw) | 2026-06-02 |
 | `$08` | `$4f33` | [`AIDecide_SuperEnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfPlayAreaCardHasTwoEnergy`, `CheckIfRemovingEnergyDisruptsAttack`, `ScoreSuperEnergyRemovalTarget` | sameboy_trace duel-mami | 2026-06-02 |
 | `$08` | `$5610` | [`AIDecide_ProfessorOak_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (play Oak when hand < 8) | 2026-06-02 |
+| `$08` | `$5616` | `AIDecide_ProfessorOak_Deck57`…`_Deck72` (9 per-deck delegates) | sameboy_trace duel-ishii ($57 Eye of the Storm = Ishii; thin bank-$0e/$12 delegates, deck $5d still raw Func_4c4ba) | 2026-06-02 |
+| `$08` | `$5a0b` | `AIDecide_EnergyRetrieval_Deck57` | sameboy_trace duel-ishii (Eye of the Storm; bank-$0e delegate, rest of $57c8-$5a8c gap still raw) | 2026-06-02 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
 | `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
@@ -178,6 +180,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$52fb` | [`AIDecide_PokemonBreeder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (Gastly→Dark Gengar; PB dispatcher $50b6 still raw) | 2026-06-02 |
 | `$08` | `$6cfd` | [`AIPlay_ComputerSearch`](../../../src/engine/bank08.asm) + [`AIDecide_ComputerSearch`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (COMPUTER_SEARCH table entry; dispatcher, 8 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6e0a` | [`AIDecide_ComputerSearch_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (trampoline to SpiritedAwayDeckAIDecideComputerSearch) | 2026-06-02 |
+| `$08` | `$6e0f` | `AIDecide_ComputerSearch_Deck57`…`_Deck70` (5 per-deck delegates) | sameboy_trace duel-ishii (Eye of the Storm; bank-$0e/$12 delegates) | 2026-06-02 |
 | `$08` | `$78f2` | [`AIDecide_NightlyGarbageRun_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (rescue energies + Psychic line from discard) | 2026-06-02 |
 | `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
@@ -267,7 +270,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 57.71% (~9.2 KiB of 16 KiB).
+**Source-defined**: 58.17% (~9.3 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -285,11 +288,13 @@ the target (helps justify future decomp prioritization).
 - `$4ede-$507a` — `AIDecide_EnergyRemoval_Deck55` + `AIDecide_EnergyRemoval_Deck74` (trampoline) + `AIPlay_SuperEnergyRemoval` + `AIDecide_SuperEnergyRemoval` (with embedded `.check_discardable_energy` + 3 helpers `CheckIfPlayAreaCardHasTwoEnergy`, `CheckIfRemovingEnergyDisruptsAttack`, `ScoreSuperEnergyRemovalTarget`).
 - `$52fb-$5322` — `AIDecide_PokemonBreeder_Deck55` (standalone; parent dispatcher `$50b6` still raw).
 - `$5610-$5615` — `AIDecide_ProfessorOak_Deck55`.
+- `$5616-$5642` — `AIDecide_ProfessorOak_Deck57/_58/_5A/_5C/_5D/_6E/_70/_71/_72` (9 thin per-deck delegates; $5d = raw Func_4c4ba).
+- `$5a0b-$5a0f` — `AIDecide_EnergyRetrieval_Deck57` (Eye of the Storm delegate; isolated in the still-raw $57c8-$5a8c EnergyRetrieval deck-case block).
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
 - `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
 - `$6542-$664c` — `AIDecide_ItemFinder_Deck55` + `AIDecide_ItemFinder_Deck56` + `AIDecide_ItemFinder_Deck58` + `AIDecide_ItemFinder_Deck6E` + helper `StoreItemFinderDiscardTarget`.
 - `$6cfd-$6d58` — `AIPlay_ComputerSearch` + `AIDecide_ComputerSearch` (dispatcher; 8 deck cases left raw).
-- `$6e0a-$6e0e` — `AIDecide_ComputerSearch_Deck55` (trampoline).
+- `$6e0a-$6e27` — `AIDecide_ComputerSearch_Deck55` (trampoline) + `_Deck57/_58/_6E/_6F/_70` (5 per-deck delegates).
 - `$78f2-$7955` — `AIDecide_NightlyGarbageRun_Deck55`.
 - `$7956-$79de` — `AIDecide_NightlyGarbageRun_Deck58` (Sudden Growth; rescue Dragonair/Clefable lines from discard + basic energy) + `_Deck5A` + `_Deck6F` (bank-$12 delegates).
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
