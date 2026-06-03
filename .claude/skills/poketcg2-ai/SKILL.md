@@ -172,6 +172,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5610` | [`AIDecide_ProfessorOak_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (play Oak when hand < 8) | 2026-06-02 |
 | `$08` | `$5616` | `AIDecide_ProfessorOak_Deck57`…`_Deck72` (9 per-deck delegates) | sameboy_trace duel-ishii ($57 Eye of the Storm = Ishii; thin bank-$0e/$12 delegates, deck $5d still raw Func_4c4ba) | 2026-06-02 |
 | `$08` | `$5a0b` | `AIDecide_EnergyRetrieval_Deck57` | sameboy_trace duel-ishii (Eye of the Storm; bank-$0e delegate, rest of $57c8-$5a8c gap still raw) | 2026-06-02 |
+| `$08` | `$5a53` | `AIDecide_EnergyRetrieval_Deck6C` | sameboy_trace duel-ronald2 ($6c Ronald's Psychic = ronald2; bank-$12 helper then rejoin .got_target) | 2026-06-02 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
 | `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
@@ -212,6 +213,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7a73` | [`AIDecide_Sleep_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (Haunter22 active + defender not already Asleep) | 2026-06-02 |
 | `$08` | `$5a8c` | [`RemoveCardFromListAtHL`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (shared list-compaction helper; used by ER + ITEMFINDER) | 2026-06-02 |
 | `$08` | `$73d8` | [`AIDecide_PokemonTrader_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (deck $51 Direct Hit; Abra/Mewtwo/Dark Alakazam line) | 2026-06-02 |
+| `$08` | `$7456` | `AIDecide_PokemonTrader_Deck5A`…`_Deck74` (12 per-deck delegates) | sameboy_trace duel-ronald2 ($6c hit; thin bank-$0e/$12 delegates, deck $6d still raw Func_487ff) | 2026-06-02 |
 | `$08` | `$7586` | [`AIDecide_TheBosssWay_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (same chains as deck $51 Trader) | 2026-06-02 |
 | `$08` | `$75b2` | [`AIDecide_TheBosssWay_Deck58`](../../../src/engine/bank08.asm) + [`AIDecide_TheBosssWay_Deck5A`](../../../src/engine/bank08.asm) | sameboy_trace duel-samejima ($58 Sudden Growth = Samejima; $5a Bad Guys delegate) | 2026-06-02 |
 | `$08` | `$7956` | [`AIDecide_NightlyGarbageRun_Deck58`](../../../src/engine/bank08.asm) + [`_Deck5A`](../../../src/engine/bank08.asm) + [`_Deck6F`](../../../src/engine/bank08.asm) | sameboy_trace duel-samejima (Sudden Growth rescues Dragonair/Clefable lines + basic energy; $5a/$6f delegates) | 2026-06-02 |
@@ -270,7 +272,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 58.17% (~9.3 KiB of 16 KiB).
+**Source-defined**: 58.59% (~9.4 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -290,6 +292,7 @@ the target (helps justify future decomp prioritization).
 - `$5610-$5615` — `AIDecide_ProfessorOak_Deck55`.
 - `$5616-$5642` — `AIDecide_ProfessorOak_Deck57/_58/_5A/_5C/_5D/_6E/_70/_71/_72` (9 thin per-deck delegates; $5d = raw Func_4c4ba).
 - `$5a0b-$5a0f` — `AIDecide_EnergyRetrieval_Deck57` (Eye of the Storm delegate; isolated in the still-raw $57c8-$5a8c EnergyRetrieval deck-case block).
+- `$5a53-$5a5b` — `AIDecide_EnergyRetrieval_Deck6C` (Ronald's Psychic; bank-$12 helper, then rejoins `AIDecide_EnergyRetrieval.got_target`; also isolated in that block).
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
 - `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
 - `$6542-$664c` — `AIDecide_ItemFinder_Deck55` + `AIDecide_ItemFinder_Deck56` + `AIDecide_ItemFinder_Deck58` + `AIDecide_ItemFinder_Deck6E` + helper `StoreItemFinderDiscardTarget`.
@@ -314,7 +317,7 @@ the target (helps justify future decomp prioritization).
 - `$6c5c-$6ca1` — `AIDecide_Pokeball_Deck53`.
 - `$7a73-$7a8f` — `AIDecide_Sleep_Deck53` (jumps back to `AIDecide_Sleep.no_play`).
 - `$5a8c-$5a9c` — `RemoveCardFromListAtHL` (shared list-compaction helper).
-- `$73d8-$7455` — `AIDecide_PokemonTrader_Deck51` (deck $51 Direct Hit; solo priority-fetch + evolution-chain walk).
+- `$73d8-$7491` — `AIDecide_PokemonTrader_Deck51` (deck $51 Direct Hit; solo priority-fetch + evolution-chain walk) + `_Deck5A/_5B/_5C/_65/_6C/_6D/_6F/_70/_71/_72/_73/_74` (12 thin per-deck delegates; $6d = raw Func_487ff).
 - `$7586-$75b1` — `AIDecide_TheBosssWay_Deck51` (same chains as the deck $51 Trader).
 - `$75b2-$75cc` — `AIDecide_TheBosssWay_Deck58` (Sudden Growth; Dratini/Clefairy evo lines) + `AIDecide_TheBosssWay_Deck5A` (Bad Guys; bank-$12 delegate).
 - `$603e-$60d6` — `AIPlay_MrFuji` + `AIDecide_MrFuji` + `AIDecide_MrFuji_Deck4D` + `AIDecide_MrFuji_Deck6D`.

@@ -2588,7 +2588,7 @@ AIDecide_EnergyRetrieval:
 	cp $64
 	jp z, $5a34
 	cp $6c
-	jp z, $5a53
+	jp z, AIDecide_EnergyRetrieval_Deck6C
 	cp $70
 	jp z, $5a5c
 	cp $72
@@ -2730,11 +2730,22 @@ AIDecide_EnergyRetrieval:
 SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
 
 ; deck $57 (Eye of the Storm) Energy Retrieval: bank-$0e delegate. (One
-; of AIDecide_EnergyRetrieval's many deck cases; the rest of the
-; $57c8-$5a8c block is still raw.)
+; of AIDecide_EnergyRetrieval's many deck cases carved out of the
+; otherwise-still-raw $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck57:
 	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
 	ret
+
+SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
+
+; deck $6c (Ronald's Psychic) Energy Retrieval: a bank-$12 helper picks
+; the target; on success rejoin AIDecide_EnergyRetrieval's shared
+; commit tail (.got_target).
+AIDecide_EnergyRetrieval_Deck6C:
+	farcall RonaldsPsychicDeckAIDecideEnergyRetrieval
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
 
 SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
 
@@ -4372,29 +4383,29 @@ AIDecide_PokemonTrader:
 	cp $51
 	jp z, AIDecide_PokemonTrader_Deck51
 	cp $5a
-	jp z, $7456
+	jp z, AIDecide_PokemonTrader_Deck5A
 	cp $5b
-	jp z, $745b
+	jp z, AIDecide_PokemonTrader_Deck5B
 	cp $5c
-	jp z, $7460
+	jp z, AIDecide_PokemonTrader_Deck5C
 	cp $65
-	jp z, $7465
+	jp z, AIDecide_PokemonTrader_Deck65
 	cp $6c
-	jp z, $746a
+	jp z, AIDecide_PokemonTrader_Deck6C
 	cp $6d
-	jp z, $746f
+	jp z, AIDecide_PokemonTrader_Deck6D
 	cp $6f
-	jp z, $7474
+	jp z, AIDecide_PokemonTrader_Deck6F
 	cp $70
-	jp z, $7479
+	jp z, AIDecide_PokemonTrader_Deck70
 	cp $71
-	jp z, $747e
+	jp z, AIDecide_PokemonTrader_Deck71
 	cp $72
-	jp z, $7483
+	jp z, AIDecide_PokemonTrader_Deck72
 	cp $73
-	jp z, $7488
+	jp z, AIDecide_PokemonTrader_Deck73
 	cp $74
-	jp z, $748d
+	jp z, AIDecide_PokemonTrader_Deck74
 	or a
 	ret
 ; 0x22eca
@@ -4722,51 +4733,87 @@ AIDecide_PokemonTrader_Deck51:
 	cp $01
 	jr nz, .multi
 	ld a, $00
-	ld de, $171
+	ld de, KANGASKHAN_LV40
 	farcall FindCardIDInLocation
-	ld de, $171
+	ld de, KANGASKHAN_LV40
 	jr c, .commit
 	ld a, $00
-	ld de, $87
+	ld de, PSYDUCK_LV16
 	farcall FindCardIDInLocation
-	ld de, $87
+	ld de, PSYDUCK_LV16
 	jr c, .commit
-	ld de, $139
+	ld de, MEWTWO_LV30
 	farcall FindCardIDInLocation
-	ld de, $139
+	ld de, MEWTWO_LV30
 	jr c, .commit
-	ld de, $14b
+	ld de, RATTATA_LV15
 	farcall FindCardIDInLocation
-	ld de, $14b
+	ld de, RATTATA_LV15
 	jr c, .commit
-	ld de, $115
+	ld de, ABRA_LV8
 	farcall FindCardIDInLocation
-	ld de, $115
+	ld de, ABRA_LV8
 	jr c, .commit
 .multi
-	ld bc, $115
-	ld de, $11a
+	ld bc, ABRA_LV8
+	ld de, DARK_KADABRA
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
-	ld bc, $11a
-	ld de, $11d
+	ld bc, DARK_KADABRA
+	ld de, DARK_ALAKAZAM
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
-	ld bc, $87
-	ld de, $8a
+	ld bc, PSYDUCK_LV16
+	ld de, DARK_GOLDUCK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
-	ld bc, $14b
-	ld de, $14d
+	ld bc, RATTATA_LV15
+	ld de, DARK_RATICATE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
-; 0x23456
 
-SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
+; Twelve more decks delegate Pokemon Trader to a per-deck AI helper in
+; bank $0e/$12 (deck $6d's is still raw, Func_487ff).
+AIDecide_PokemonTrader_Deck5A:
+	farcall BadGuysDeckAIDecidePokemonTraderForEvo
+	ret
+AIDecide_PokemonTrader_Deck5B:
+	farcall PoisonMistDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck5C:
+	farcall UltraRemovalDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck65:
+	farcall ColorlessEnergyDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck6C:
+	farcall RonaldsPsychicDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck6D:
+	farcall Func_487ff
+	ret
+AIDecide_PokemonTrader_Deck6F:
+	farcall ImmortalPokemonDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck70:
+	farcall TorrentialFloodDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck71:
+	farcall TrainerImprisonDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck72:
+	farcall BlazingFlameDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck73:
+	farcall DamageChaosDeckAIDecidePokemonTrader
+	ret
+AIDecide_PokemonTrader_Deck74:
+	farcall BigThunderDeckAIDecidePokemonTrader
+	ret
 
 AIPlay_TheBosssWay:
 	ld a, [wAITrainerCardToPlay]
