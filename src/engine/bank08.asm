@@ -53,9 +53,9 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            AIDecide_MasterBall, AIPlay_MasterBall
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       $7e05, $7df9
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MOON_STONE,             $7e1c, $7e0b
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, THE_ROCKETS_TRAP,       $7e85, $7e79
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       AIDecide_BillsTeleporter, AIPlay_BillsTeleporter
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MOON_STONE,             AIDecide_MoonStone, AIPlay_MoonStone
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, THE_ROCKETS_TRAP,       AIDecide_TheRocketsTrap, AIPlay_TheRocketsTrap
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, GOOP_GAS_ATTACK,        AIDecide_GoopGasAttack, AIPlay_GoopGasAttack
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_OAKS_REVENGE,  $7ed4, $7ec3
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, DIGGER,                 $7f3c, $7f30
@@ -5063,7 +5063,8 @@ AIPlay_MasterBall:
 ; Bails out first if the duelist already has 55+ cards out of the
 ; deck. Then 12-way deck-ID dispatch. Decks $13 and $14 have inline
 ; policies (right here); ten others jump to bespoke sub-functions
-; that are still raw; everyone else returns "don't play".
+; (decks $3f, $43, $46, $74 decompiled; six still raw); everyone else
+; returns "don't play".
 AIDecide_MasterBall:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -5091,9 +5092,9 @@ AIDecide_MasterBall:
 	cp $43
 	jp z, AIDecide_MasterBall_Deck43
 	cp $46
-	jp z, $7dc7
+	jp z, AIDecide_MasterBall_Deck46
 	cp $74
-	jp z, $7df4
+	jp z, AIDecide_MasterBall_Deck74
 	or a
 	ret
 ; deck $13: priority targets are card IDs $de, $df, $e0; else AITryMasterBall
@@ -5182,9 +5183,149 @@ SECTION "Bank 8@7dc2", ROMX[$7dc2], BANK[$8]
 AIDecide_MasterBall_Deck43:
 	farcall ChainLightningByPikachuDeckAIDecideMasterBall
 	ret
-; 0x23dc7
 
-SECTION "Bank 8@7e9e", ROMX[$7e9e], BANK[$8]
+; deck $46 (Complete Combustion) Master Ball policy: walk a fixed
+; priority list of card IDs (its Fire attackers plus two Colorless
+; support Pokemon); fall back to the generic AITryMasterBall.
+AIDecide_MasterBall_Deck46:
+	ld de, MAGMAR_LV27
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, PONYTA_LV15
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, GROWLITHE_LV12
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, KANGASKHAN_LV40
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, MEOWTH_LV14
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+
+; deck $74 (Big Thunder) delegates Master Ball to a bespoke bank-$12 helper.
+AIDecide_MasterBall_Deck74:
+	farcall BigThunderDeckAIDecideMasterBall
+	ret
+
+; Bill's Teleporter has no targeting -- just execute the trainer effect.
+AIPlay_BillsTeleporter:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Play Bill's Teleporter only while fewer than $2f (47) cards are out of
+; the deck -- with that many cards still left to draw into, the
+; shuffle-hand-and-redraw is worth it. Returns carry SET to play.
+AIDecide_BillsTeleporter:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $2f
+	ret
+
+; Moon Stone evolves a Pokemon already in play. Stash the chosen
+; play-area position (wAITrainerCardParameter, set by the decider) into
+; hTemp_ffa0, then execute the trainer effect.
+AIPlay_MoonStone:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Moon Stone decider: bail if 56+ cards are already out of the deck, then
+; dispatch on deck ID. Each deck checks for a specific Moon Stone evolution
+; it can complete (pre-evo in hand/play + evo waiting in deck), returning
+; carry SET to play; the lookups also stash the target as a side effect.
+AIDecide_MoonStone:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $38
+	ret nc
+	ld a, [wOpponentDeckID]
+	cp $16
+	jr z, .deck_16
+	cp $23
+	jr z, .deck_23
+	cp $57
+	jr z, .deck_57
+	cp $58
+	jr z, .deck_58
+	cp $65
+	jr z, .deck_65
+	cp $6d
+	jr z, .deck_6d
+	or a
+	ret
+; deck $16 (Hand Over GR): Jigglypuff -> Wigglytuff
+.deck_16
+	ld bc, JIGGLYPUFF_LV13
+	ld de, WIGGLYTUFF_LV36
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; deck $23 (I Love to Fight): just confirm Dodrio is sitting in the deck
+.deck_23
+	ld a, $00
+	ld de, DODRIO_LV28
+	farcall FindCardIDInLocation
+	ret
+; deck $57 (Eye of the Storm) delegates to a bespoke bank-$12 helper.
+.deck_57
+	farcall EyeOfTheStormDeckAIDecideMoonStone
+	ret
+; deck $58 (Sudden Growth): Dratini -> Dark Dragonair, else Clefairy -> Dark Clefable
+.deck_58
+	ld bc, DRATINI_LV12
+	ld de, DARK_DRAGONAIR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, CLEFAIRY_LV15
+	ld de, DARK_CLEFABLE
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; deck $65 (Colorless Energy) delegates to a bespoke bank-$12 helper.
+.deck_65
+	farcall ColorlessEnergyDeckAIDecideMoonStone
+	ret
+; deck $6d (Ronald's Ultra) delegates to a bespoke bank-$48 helper.
+.deck_6d
+	farcall Func_487c7
+	ret
+
+; The Rocket's Trap has no targeting -- just execute the trainer effect.
+AIPlay_TheRocketsTrap:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; The Rocket's Trap disrupts the opponent's hand, so play it once the
+; opponent is holding a big hand: 5+ cards normally, or 3+ for deck $6d
+; (Ronald's Ultra). `ccf` flips the `cp` borrow so carry is SET (play)
+; when the hand size is at or above the threshold.
+AIDecide_TheRocketsTrap:
+	ld a, [wOpponentDeckID]
+	cp $6d
+	jr z, .deck_6d
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $05
+	ccf
+	ret
+.deck_6d
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $03
+	ccf
+	ret
 
 AIPlay_GoopGasAttack:
 	ld a, [wAITrainerCardToPlay]

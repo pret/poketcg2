@@ -245,6 +245,11 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$79df` | [`AddDeckIndexToAIMultiTargetSlots`](../../../src/engine/bank08.asm) | helper called from deck-$41 NGR | 2026-06-01 |
 | `$08` | `$7d44` | [`AIDecide_MasterBall_Deck3F`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuuta (deck $3f) | 2026-06-01 |
 | `$08` | `$7dc2` | [`AIDecide_MasterBall_Deck43`](../../../src/engine/bank08.asm) | sameboy_trace duel-renna (Chain Lightning by Pikachu deck) | 2026-06-01 |
+| `$08` | `$7dc7` | [`AIDecide_MasterBall_Deck46`](../../../src/engine/bank08.asm) | gap-fill (deck $46 Complete Combustion; Fire-attacker priority list) | 2026-06-02 |
+| `$08` | `$7df4` | [`AIDecide_MasterBall_Deck74`](../../../src/engine/bank08.asm) | gap-fill (deck $74 Big Thunder; delegates to bank-$12) | 2026-06-02 |
+| `$08` | `$7df9` | [`AIPlay_BillsTeleporter`](../../../src/engine/bank08.asm) + [`AIDecide_BillsTeleporter`](../../../src/engine/bank08.asm) | sameboy_trace duel-nishijima (play when <47 cards out of deck) | 2026-06-02 |
+| `$08` | `$7e0b` | [`AIPlay_MoonStone`](../../../src/engine/bank08.asm) + [`AIDecide_MoonStone`](../../../src/engine/bank08.asm) | gap-fill (6-way deck dispatch on Moon Stone evo targets) | 2026-06-02 |
+| `$08` | `$7e79` | [`AIPlay_TheRocketsTrap`](../../../src/engine/bank08.asm) + [`AIDecide_TheRocketsTrap`](../../../src/engine/bank08.asm) | gap-fill (play vs large opponent hand: 5+, or 3+ for deck $6d) | 2026-06-02 |
 | `$08` | `$7e9e` | [`AIPlay_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7eaa` | [`AIDecide_GoopGasAttack`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$7f3e` | [`AIPlay_ComputerError`](../../../src/engine/bank08.asm) | sameboy_trace duel-grx | 2026-06-02 |
@@ -254,11 +259,11 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7a4f` | [`AIDecide_Sleep`](../../../src/engine/bank08.asm) + `AIDecide_Sleep_Deck12` | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7b0a` | [`AIPlay_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 | 2026-06-01 |
-| `$08` | `$7b1f` | [`AIDecide_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 (12-way dispatch; decks $13, $14 inline; 10 cases left raw) | 2026-06-01 |
+| `$08` | `$7b1f` | [`AIDecide_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 (12-way dispatch; decks $13, $14 inline; decks $3f/$43/$46/$74 decompiled; 6 cases left raw) | 2026-06-01 |
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 54.42% (~8.7 KiB of 16 KiB).
+**Source-defined**: 55.73% (~8.9 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -324,9 +329,10 @@ the target (helps justify future decomp prioritization).
 - `$79df-$79f4` — `AddDeckIndexToAIMultiTargetSlots` (3-slot list-add helper).
 - `$7d44-$7d60` — `AIDecide_MasterBall_Deck3F`.
 - `$7dc2-$7dc6` — `AIDecide_MasterBall_Deck43`.
+- `$7dc7-$7e9d` — `AIDecide_MasterBall_Deck46` + `AIDecide_MasterBall_Deck74` + `AIPlay_BillsTeleporter`/`AIDecide_BillsTeleporter` + `AIPlay_MoonStone`/`AIDecide_MoonStone` (6-way deck dispatch) + `AIPlay_TheRocketsTrap`/`AIDecide_TheRocketsTrap`.
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
 - `$7f3e-$7fe5` — `AIPlay_ComputerError` + `AIDecide_ComputerError` + `AIPlay_SuperScoopUp` + `AIDecide_SuperScoopUp`.
-- `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; 10 other deck cases left raw).
+- `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; decks $3f/$43/$46/$74 decompiled; 6 other deck cases left raw).
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (19 deck-specific Func_2152x-Func_2163e cases left raw; one named).
 - `$55cf-$55d4` — `AIDecide_ProfessorOak_Deck45Or50`.
