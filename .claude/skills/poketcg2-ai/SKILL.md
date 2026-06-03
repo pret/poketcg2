@@ -202,7 +202,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5a19` | `AIDecide_EnergyRetrieval_Deck5D` | sameboy_trace duel-rui ($5d Psychic Battle; raw Func_4c524 then rejoin .got_target) | 2026-06-03 |
 | `$08` | `$5a22` | `AIDecide_EnergyRetrieval_Deck5F` | sameboy_trace duel-biruitchi (deck $5f = internal ScorcherDeck, a Fire/Dark-Charizard deck; bank-$12 helper then rejoin .got_target) | 2026-06-03 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
-| `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
+| `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; all deck cases now decompiled) | 2026-06-02 |
+| `$08` | `$6421` | `AIDecide_ItemFinder_Deck1A`/`_Deck1E`/`_Deck50` | sameboy_trace duel-andrew ($1e Awesome Fossil = Andrew; recover-trainer-from-discard policies; completes the ItemFinder dispatch) | 2026-06-03 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
 | `$08` | `$65ad` | [`AIDecide_ItemFinder_Deck56`](../../../src/engine/bank08.asm) + helper [`StoreItemFinderDiscardTarget`](../../../src/engine/bank08.asm) | sameboy_trace duel-nishijima redo (Snorlax Guard $56; discard duplicates after recoverable trainer in discard) | 2026-06-02 |
 | `$08` | `$662b` | [`AIDecide_ItemFinder_Deck58`](../../../src/engine/bank08.asm) + [`AIDecide_ItemFinder_Deck6E`](../../../src/engine/bank08.asm) | gap-fill ($58 Sudden Growth, $6e Everybody's Friend; both bank-$12 delegates) | 2026-06-02 |
@@ -259,6 +260,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$672c` | [`AIDecide_Revive`](../../../src/engine/bank08.asm) + Deck14 + Deck40 | sameboy_trace duel-miyuki | 2026-06-01 |
 | `$08` | `$67af` | [`AIPlay_PokemonFlute`](../../../src/engine/bank08.asm) | sameboy_trace duel-aira | 2026-06-02 |
 | `$08` | `$67c0` | [`AIDecide_PokemonFlute`](../../../src/engine/bank08.asm) + inline `.deck_68`, `.pick_any_basic` | sameboy_trace duel-aira | 2026-06-02 |
+| `$08` | `$6858` | `AIPlay_ClefairyDollOrMysteriousFossil` + `AIDecide_ClefairyDollOrMysteriousFossil` (+ inline `.deck_1a`, `.deck_3b`) | sameboy_trace duel-andrew (shared by both Trainer-as-Basic cards; play to fill a bench slot) | 2026-06-03 |
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
@@ -301,7 +303,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 60.97% (~9.8 KiB of 16 KiB).
+**Source-defined**: 63.32% (~10.1 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -326,7 +328,8 @@ the target (helps justify future decomp prioritization).
 - `$5a22-$5a2a` — `AIDecide_EnergyRetrieval_Deck5F` (internal ScorcherDeck, a Fire/Dark-Charizard deck; bank-$12 helper then rejoins `.got_target`; isolated in that block).
 - `$5a53-$5a5b` — `AIDecide_EnergyRetrieval_Deck6C` (Ronald's Super deck; bank-$12 helper, then rejoins `AIDecide_EnergyRetrieval.got_target`; also isolated in that block).
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
-- `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
+- `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path).
+- `$6421-$6541` — `AIDecide_ItemFinder_Deck1A` (Puppet Master) + `_Deck1E` (Awesome Fossil) + `_Deck50` (Running Wild); all ItemFinder deck cases now decompiled.
 - `$6542-$664c` — `AIDecide_ItemFinder_Deck55` + `AIDecide_ItemFinder_Deck56` + `AIDecide_ItemFinder_Deck58` + `AIDecide_ItemFinder_Deck6E` + helper `StoreItemFinderDiscardTarget`.
 - `$6cfd-$6d58` — `AIPlay_ComputerSearch` + `AIDecide_ComputerSearch` (dispatcher; 8 deck cases left raw).
 - `$6e0a-$6e27` — `AIDecide_ComputerSearch_Deck55` (trampoline) + `_Deck57/_58/_6E/_6F/_70` (5 per-deck delegates).
@@ -363,6 +366,7 @@ the target (helps justify future decomp prioritization).
 - `$507b-$50b5` — `AIPlay_PokemonBreeder` (3-stage play wrapper with action codes `$07`/`$18`/`$19`).
 - `$671b-$67ae` — `AIPlay_Revive` + `AIDecide_Revive` + `AIDecide_Revive_Deck14` + `AIDecide_Revive_Deck40`.
 - `$67af-$2857` — `AIPlay_PokemonFlute` + `AIDecide_PokemonFlute` (inline `.pick_any_basic`, `.deck_68`).
+- `$6858-$68b6` — `AIPlay_ClefairyDollOrMysteriousFossil` + `AIDecide_ClefairyDollOrMysteriousFossil` (inline `.deck_1a`, `.deck_3b`); shared by the Clefairy Doll and Mysterious Fossil PHASE_05 table rows.
 - `$71d4-$71d8` — `AIDecide_PokemonTrader_Deck41` (5-byte trampoline into `MadPetalsDeckAIDecidePokemonTrader`).
 - `$71fc-$7273` — `AIDecide_PokemonTrader_Deck48` (4-way split on play-area count × Water-type opponent).
 - `$7274-$72d6` — `AIDecide_PokemonTrader_Deck49` (multi-Pokemon evolution chain vs. solo card-fetch).

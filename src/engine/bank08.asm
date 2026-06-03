@@ -50,8 +50,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          AIDecide_PokemonFlute, AIPlay_PokemonFlute
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          AIDecide_ClefairyDollOrMysteriousFossil, AIPlay_ClefairyDollOrMysteriousFossil
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      AIDecide_ClefairyDollOrMysteriousFossil, AIPlay_ClefairyDollOrMysteriousFossil
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               AIDecide_Pokeball, AIPlay_Pokeball
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        AIDecide_ComputerSearch, AIPlay_ComputerSearch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
@@ -3787,11 +3787,11 @@ AIPlay_ItemFinder:
 AIDecide_ItemFinder:
 	ld a, [wOpponentDeckID]
 	cp PUPPET_MASTER_DECK_ID
-	jp z, $6421
+	jp z, AIDecide_ItemFinder_Deck1A
 	cp AWESOME_FOSSIL_DECK_ID
-	jp z, $6475
+	jp z, AIDecide_ItemFinder_Deck1E
 	cp RUNNING_WILD_DECK_ID
-	jp z, $64c2
+	jp z, AIDecide_ItemFinder_Deck50
 	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_ItemFinder_Deck55
 	cp SNORLAX_GUARD_DECK_ID
@@ -3837,6 +3837,133 @@ AIDecide_ItemFinder:
 	ld a, [wd082]
 	scf
 	ret
+.no_play
+	or a
+	ret
+
+; deck $1a (Puppet Master) Item Finder: recover Clefairy Doll from the
+; discard, paying the cost with duplicate junk trainers in hand (Defender
+; / PlusPower / Scoop Up / Master Ball), but only if 4+ energy cards
+; remain in hand. StoreItemFinderDiscardTarget commits once two discard
+; targets are queued.
+AIDecide_ItemFinder_Deck1A:
+	ld de, CLEFAIRY_DOLL
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr nc, .no_play
+	ld [wd082], a
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld de, DEFENDER
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, PLUSPOWER
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, SCOOP_UP
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, MASTER_BALL
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	farcall CountEnergyCardsInHand
+	cp $04
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	call StoreItemFinderDiscardTarget
+	ld a, [wDuelTempList + 1]
+	call StoreItemFinderDiscardTarget
+.no_play
+	or a
+	ret
+
+; deck $1e (Awesome Fossil) Item Finder: recover Mysterious Fossil from
+; the discard, but only if any of the fossil Pokemon it feeds (Omanyte,
+; Kabuto, Aerodactyl) is not yet in hand, and only with 3+ basic energy
+; to pay the discard cost (the first two hand-list entries).
+AIDecide_ItemFinder_Deck1E:
+	ld de, MYSTERIOUS_FOSSIL
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr nc, .no_play
+	ld [wd082], a
+	ld de, OMANYTE_LV20
+	farcall LookForCardIDInHand
+	jr nc, .commit
+	ld de, KABUTO_LV9
+	farcall LookForCardIDInHand
+	jr nc, .commit
+	ld de, KABUTO_LV22
+	farcall LookForCardIDInHand
+	jr nc, .commit
+	ld de, AERODACTYL_LV30
+	farcall LookForCardIDInHand
+	jr nc, .commit
+.no_play
+	or a
+	ret
+.commit
+	farcall CountBasicEnergyCardsInHand
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
+	ret
+
+; deck $50 (Running Wild) Item Finder: recover the most valuable trainer
+; in the discard (priority Defender, Energy Removal, Imakuni?, Bill,
+; Professor Oak), paying with duplicate copies of those trainers; only
+; if 4+ energy cards remain in hand.
+AIDecide_ItemFinder_Deck50:
+	ld de, DEFENDER
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, ENERGY_REMOVAL
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, IMAKUNI_CARD
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, BILL
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, PROFESSOR_OAK
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr nc, .no_play
+.found
+	ld [wd082], a
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld de, PROFESSOR_OAK
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, BILL
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, IMAKUNI_CARD
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, ENERGY_REMOVAL
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	farcall CountEnergyCardsInHand
+	cp $04
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	call StoreItemFinderDiscardTarget
+	ld a, [wDuelTempList + 1]
+	call StoreItemFinderDiscardTarget
 .no_play
 	or a
 	ret
@@ -4295,7 +4422,65 @@ AIDecide_PokemonFlute:
 	ld a, b
 	scf
 	ret
-; 0x22858
+
+; Clefairy Doll and Mysterious Fossil are Trainer cards that act as a
+; throwaway Basic Pokemon to fill a bench slot. Shared play + decide for
+; both (their PHASE_05 table rows point here).
+AIPlay_ClefairyDollOrMysteriousFossil:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Never play with a full (6) play area. Decks $1a and $3b have bespoke
+; policies; otherwise play if the arena is Wigglytuff (it wants a wall to
+; hide behind) or if we have fewer than 4 Pokemon in play (room to develop).
+AIDecide_ClefairyDollOrMysteriousFossil:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $06
+	jr nc, .no_play
+	ld [wd082], a
+	ld a, [wOpponentDeckID]
+	cp PUPPET_MASTER_DECK_ID
+	jp z, .deck_1a
+	cp LEGENDARY_FOSSIL_DECK_ID
+	jp z, .deck_3b
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 WIGGLYTUFF_LV36
+	jr z, .play
+	ld a, [wd082]
+	cp $04
+	jr nc, .no_play
+.play
+	scf
+	ret
+.no_play
+	or a
+	ret
+; deck $1a (Puppet Master): only if Hypno Lv30 is benched (b = 1 skips
+; the arena) and that Hypno's second attack is currently usable.
+.deck_1a
+	ld de, HYPNO_LV30
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, $01
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	ccf
+	ret
+; deck $3b (Legendary Fossil): play if Aerodactyl Lv28 is anywhere in the
+; play area (b = 0 includes the arena).
+.deck_3b
+	ld de, AERODACTYL_LV28
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret
 
 SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
 
