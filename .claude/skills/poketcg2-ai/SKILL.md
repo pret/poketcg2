@@ -101,10 +101,15 @@ or `cp16 $XXX` against a card — write the named constant from
 `ld de, PROFESSOR_OAK` not `ld de, $18e`. Resolve the value with an
 rgbasm probe or by counting `const` entries (the Nth `const` = value N,
 starting at 1; verified `$125`=GASTLY_LV13). `make compare` proves the
-constant equals the byte. This is a *going-forward* rule for new
-functions (existing raw-hex IDs get a bulk pass at bank completion).
-Leave hex only for non-card operands (WRAM addrs, list pointers, flags)
-and for `jp/call $XXXX` to still-raw functions.
+constant equals the byte. Leave hex only for non-card operands (WRAM
+addrs, list pointers, flags) and for `jp/call $XXXX` to still-raw
+functions.
+
+Applies to new functions AND **boy-scout**: when a trace analysis brings
+you to an existing line whose hex operand is clearly a card ID, replace
+it with the label in the same pass — leave the code better than you
+found it. (No *dedicated* sweep of untouched code; the wholesale
+retroactive rename is still reserved for bank-8 completion.)
 
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
