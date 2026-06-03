@@ -308,8 +308,6 @@ AIDecide_Potion_Phase07:
 	ret
 ; 0x202d0
 
-SECTION "Bank 8@42d0", ROMX[$42d0], BANK[$8]
-
 ; PHASE_10 fires after the AI decides whether to retreat. Returns
 ; carry SET with `a` = play-area position to heal when Potion is
 ; worth playing on someone in our play area.
@@ -422,8 +420,6 @@ CheckIfAnyAttackBoostsIfTakenDamage:
 	ret
 ; 0x20365
 
-SECTION "Bank 8@4365", ROMX[$4365], BANK[$8]
-
 ; deck $45's POTION Phase 10 policy: iterate play-area positions,
 ; pick the first Dark Jolteon (HP threshold 30) or Dark Raichu (HP
 ; threshold 50) whose current HP is below its threshold. Returns
@@ -461,8 +457,6 @@ AIDecide_Potion_Phase10_Deck45:
 	scf
 	ret
 ; 0x2039b
-
-SECTION "Bank 8@439b", ROMX[$439b], BANK[$8]
 
 ; PHASE_11 only fires for deck $74 — every other deck immediately
 ; returns "don't play". The deck-$74 path delegates to a bank $12
@@ -722,8 +716,6 @@ AIDecide_Defender_Phase14:
 	call CheckLoadedAttackFlag
 	ret
 ; 0x20678
-
-SECTION "Bank 8@4678", ROMX[$4678], BANK[$8]
 
 ; Shared by Phase_13 and Phase_14. Sets AI_FLAG_USED_PLUSPOWER and
 ; stashes wAITrainerCardParameter (which attack to boost) into
@@ -1000,8 +992,6 @@ AIDecide_PlusPower_Phase14_Deck45:
 	ret
 ; 0x2083d
 
-SECTION "Bank 8@483d", ROMX[$483d], BANK[$8]
-
 ; Shared play function for Switch (both Phase_09 and Phase_16). Sets
 ; AI_FLAG_USED_SWITCH so the AI doesn't try Switch again this turn,
 ; then clears wd032 after the trainer effect so any "pending switch
@@ -1074,8 +1064,6 @@ AIDecide_Switch_Phase09:
 	ret
 ; 0x2089c
 
-SECTION "Bank 8@489c", ROMX[$489c], BANK[$8]
-
 ; PHASE_16 fires when the AI is considering whether to manually
 ; switch its active Pokemon (vs. through a forced retreat). Bails
 ; out immediately if we have no bench, or if wD035 is non-zero
@@ -1146,8 +1134,6 @@ AIPlay_GustOfWind:
 	farcall AIMakeDecision
 	ret
 ; 0x209fc
-
-SECTION "Bank 8@49fc", ROMX[$49fc], BANK[$8]
 
 AIDecide_GustOfWind:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -1509,8 +1495,6 @@ Func_20be6:
 	ret
 ; 0x20c32
 
-SECTION "Bank 8@4c32", ROMX[$4c32], BANK[$8]
-
 AIPlay_Bill:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
@@ -1527,8 +1511,6 @@ AIDecide_Bill:
 	cp $31
 	ret
 ; 0x20c44
-
-SECTION "Bank 8@4c44", ROMX[$4c44], BANK[$8]
 
 AIPlay_EnergyRemoval:
 	ld a, [wAITrainerCardToPlay]
@@ -1787,8 +1769,6 @@ AIDecide_EnergyRemoval_Deck45Or50:
 	ret
 ; 0x20e3c
 
-SECTION "Bank 8@4e3c", ROMX[$4e3c], BANK[$8]
-
 ; deck $47's Energy Removal policy. Bail if we can already KO the
 ; defender from hand (no point disrupting attacks we'll prevent
 ; anyway). Bail if the defender has no non-Recycle energy. Score
@@ -1847,8 +1827,6 @@ CheckIfEnergyRemovalDisruptsBigAttack:
 	ret
 ; 0x20e90
 
-SECTION "Bank 8@4e90", ROMX[$4e90], BANK[$8]
-
 ; deck $4a (Whirlpool Shower) Energy Removal policy. Bail if we can KO the defender
 ; from hand or if the defender has no non-Recycle energy. Special
 ; case: if our active is Dark Vaporeon or Dark Starmie AND its
@@ -1891,8 +1869,6 @@ AIDecide_EnergyRemoval_Deck4A:
 	scf
 	ret
 ; 0x20ede
-
-SECTION "Bank 8@4ede", ROMX[$4ede], BANK[$8]
 
 ; deck $55 (Spirited Away) Energy Removal policy: don't bother if we can
 ; already KO the defender from hand; otherwise, if the opponent's active
@@ -2166,8 +2142,6 @@ ScoreSuperEnergyRemovalTarget:
 	ret
 ; 0x2107b
 
-SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
-
 ; Pokemon Breeder is a non-standard play wrapper -- the trainer card
 ; effect picks a Stage-2 Pokemon from hand, but only the AI knows
 ; the bench slot to evolve. So it runs THREE AIMakeDecision calls:
@@ -2419,8 +2393,6 @@ AIDecide_ProfessorOak_Deck45Or50:
 	ret
 ; 0x215d5
 
-SECTION "Bank 8@55d5", ROMX[$55d5], BANK[$8]
-
 ; Shared by decks $49 and $4d: hand-size threshold for playing Oak
 ; scales with how much of the deck is gone. Early game
 ; (cards-out-of-deck < 36): play Oak iff hand < 5. Late game
@@ -2441,8 +2413,6 @@ AIDecide_ProfessorOak_Deck49Or4D:
 	cp $04
 	ret
 ; 0x215e8
-
-SECTION "Bank 8@55e8", ROMX[$55e8], BANK[$8]
 
 ; Deck $53 (Bad Dream): play Oak to refill a tiny hand (< 5 cards), or
 ; for a mid-size hand (5-10) only if we're not already holding the key
@@ -2470,8 +2440,6 @@ AIDecide_ProfessorOak_Deck53:
 	or a
 	ret
 ; 0x21610
-
-SECTION "Bank 8@5610", ROMX[$5610], BANK[$8]
 
 ; deck $55 (Spirited Away) Professor Oak policy: play whenever our hand
 ; has fewer than 8 cards (carry set), so we redraw a full 7 once we've
@@ -2548,8 +2516,6 @@ AIPlay_EnergyRetrieval:
 	farcall AIMakeDecision
 	ret
 ; 0x2166e
-
-SECTION "Bank 8@566e", ROMX[$566e], BANK[$8]
 
 ; Dispatcher for the Energy Retrieval decide pass. Reads the opponent's
 ; deck ID and routes to a per-deck handler when it matches one of 22
@@ -2757,8 +2723,6 @@ RemoveCardFromListAtHL:
 	ret
 ; 0x21a9d
 
-SECTION "Bank 8@5a9d", ROMX[$5a9d], BANK[$8]
-
 ; Same shape as AIPlay_EnergyRetrieval, but Super Energy Retrieval
 ; takes up to three multi-target slots plus two raw $d09a/$d09b
 ; arguments. Each slot is forwarded only until one is $ff, at which
@@ -2867,8 +2831,6 @@ AIDecide_ImposterProfessorOak:
 	jr c, .no_play
 	jr .play
 ; 0x21d2d
-
-SECTION "Bank 8@5d2d", ROMX[$5d2d], BANK[$8]
 
 AIPlay_EnergySearch:
 	ld a, [wAITrainerCardToPlay]
@@ -3139,8 +3101,6 @@ AIDecide_FullHeal:
 	jr .no_play
 ; 0x2202b
 
-SECTION "Bank 8@602b", ROMX[$602b], BANK[$8]
-
 ; Deck $53 (Bad Dream): when the defending Pokemon is Asleep -- which
 ; this sleep-lock deck engineers on purpose -- only Full Heal ourselves
 ; if we actually carry a status worth clearing. When the defender isn't
@@ -3157,8 +3117,6 @@ AIDecide_FullHeal_Deck53:
 	jp nz, AIDecide_FullHeal.play
 	ret
 ; 0x2203e
-
-SECTION "Bank 8@603e", ROMX[$603e], BANK[$8]
 
 AIPlay_MrFuji:
 	ld a, [wAITrainerCardToPlay]
@@ -3272,8 +3230,6 @@ AIDecide_MrFuji_Deck6D:
 	jr c, .deck_6d_skip
 	jp AIDecide_MrFuji.default_scan
 ; 0x220d7
-
-SECTION "Bank 8@60d7", ROMX[$60d7], BANK[$8]
 
 AIPlay_ScoopUp:
 	ld a, [wAITrainerCardToPlay]
@@ -3483,8 +3439,6 @@ AIPlay_ItemFinder:
 	farcall AIMakeDecision
 	ret
 
-SECTION "Bank 8@6396", ROMX[$6396], BANK[$8]
-
 ; Item Finder decider. Seven decks have bespoke policies; the default
 ; only fires if Energy Removal ($18b) is sitting in our discard to fetch
 ; back. It then builds a hand list, drops Mr. Mime and Pokemon Trader
@@ -3649,8 +3603,6 @@ AIDecide_ImakuniCard:
 	ret
 ; 0x22694
 
-SECTION "Bank 8@6694", ROMX[$6694], BANK[$8]
-
 ; The AI cheats at Gambler: stash wRNGVars, force every byte to $50 so
 ; the coin flip and shuffle land on a known outcome, play the card, then
 ; restore the original RNG state. Three deck IDs ($29, $65, $67) opt out
@@ -3742,8 +3694,6 @@ AIDecide_Gambler:
 	ret
 ; 0x2271b
 
-SECTION "Bank 8@671b", ROMX[$671b], BANK[$8]
-
 AIPlay_Revive:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
@@ -3822,8 +3772,6 @@ AIDecide_Revive_Deck40:
 	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
 	ret
 ; 0x227af
-
-SECTION "Bank 8@67af", ROMX[$67af], BANK[$8]
 
 AIPlay_PokemonFlute:
 	ld a, [wAITrainerCardToPlay]
@@ -4050,8 +3998,6 @@ AIDecide_Pokeball_Deck47:
 	ret
 ; 0x22bbb
 
-SECTION "Bank 8@6bbb", ROMX[$6bbb], BANK[$8]
-
 ; deck $4a's Poké Ball policy. Two paths based on play-area count.
 ;
 ; Solo: priority fetch card $a4, then swap $176-in-hand for
@@ -4085,8 +4031,6 @@ AIDecide_Pokeball_Deck4A:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22bf8
-
-SECTION "Bank 8@6bf8", ROMX[$6bf8], BANK[$8]
 
 ; deck $4b's Poké Ball policy. Same shape as deck $4a -- solo path
 ; priority-fetches a single card then tries two in-hand-for-in-deck
@@ -4123,8 +4067,6 @@ AIDecide_Pokeball_Deck4B:
 	ret
 ; 0x22c35
 
-SECTION "Bank 8@6c35", ROMX[$6c35], BANK[$8]
-
 ; deck $4e's Poké Ball policy: walk three evolution chains
 ; ($fc -> $fe, $fe -> $101, $e7 -> $eb), then fall back to any basic
 ; Pokemon in the deck.
@@ -4145,8 +4087,6 @@ AIDecide_Pokeball_Deck4E:
 	ld a, e
 	ret
 ; 0x22c5c
-
-SECTION "Bank 8@6c5c", ROMX[$6c5c], BANK[$8]
 
 ; Deck $53 (Bad Dream): search the deck for any of the deck's Pokemon
 ; line -- Haunter Lv22/Lv17, Drowzee, Kangaskhan, Gastly, Gengar, Dark
@@ -4457,8 +4397,6 @@ AIDecide_PokemonTrader_Deck48:
 	ret
 ; 0x23274
 
-SECTION "Bank 8@7274", ROMX[$7274], BANK[$8]
-
 ; deck $49's Pokemon Trader policy. Two paths based on whether we
 ; have only one Pokemon in play.
 ;
@@ -4511,8 +4449,6 @@ AIDecide_PokemonTrader_Deck49:
 	ret
 ; 0x232d7
 
-SECTION "Bank 8@72d7", ROMX[$72d7], BANK[$8]
-
 ; deck $4c only plays Pokemon Trader when the opponent's arena
 ; Pokemon is Water type. Then priority-fetches card $136, $173,
 ; $c3, or $c4 from the deck.
@@ -4551,8 +4487,6 @@ AIDecide_PokemonTrader_Deck4C:
 	farcall FindDifferentPokemonCardInHand
 	ret
 ; 0x23327
-
-SECTION "Bank 8@7327", ROMX[$7327], BANK[$8]
 
 ; deck $4d's Pokemon Trader: 3-way split on play-area-count x
 ; opponent-Water-type. Solo path priority-fetches single cards.
@@ -4610,8 +4544,6 @@ AIDecide_PokemonTrader_Deck4D:
 	ret
 ; 0x2339e
 
-SECTION "Bank 8@739e", ROMX[$739e], BANK[$8]
-
 ; deck $4f's Pokemon Trader policy. Solo path priority-fetches
 ; card $103 from the deck. Multi path walks the $f3 -> $f7 -> $fa
 ; 3-stage evolution chain, falling back to the chain swap.
@@ -4641,8 +4573,6 @@ AIDecide_PokemonTrader_Deck4F:
 	farcall FindDifferentPokemonCardInHand
 	ret
 ; 0x233d8
-
-SECTION "Bank 8@73d8", ROMX[$73d8], BANK[$8]
 
 ; deck $51's Pokemon Trader policy. Solo path (one Pokemon in play)
 ; priority-fetches a basic from the deck ($171, $87, $139, $14b, $115).
@@ -4779,8 +4709,6 @@ AIDecide_TheBosssWay:
 	ret
 ; 0x23539
 
-SECTION "Bank 8@7539", ROMX[$7539], BANK[$8]
-
 ; deck $3f's The Boss's Way policy: walk a 3-stage evolution chain
 ; ($e -> $11 -> $15) by checking $e->$11 and $11->$15 advances.
 AIDecide_TheBosssWay_Deck3F:
@@ -4809,8 +4737,6 @@ AIDecide_TheBosssWay_Deck4F:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23586
-
-SECTION "Bank 8@7586", ROMX[$7586], BANK[$8]
 
 ; deck $51 (Direct Hit) The Boss's Way policy: walk the same evolution
 ; chains its Pokemon Trader uses -- Abra -> Dark Kadabra -> Dark Alakazam
@@ -5011,8 +4937,6 @@ AIDecide_NightlyGarbageRun_Deck49:
 	or a
 	ret
 ; 0x238f2
-
-SECTION "Bank 8@78f2", ROMX[$78f2], BANK[$8]
 
 ; deck $55 (Spirited Away) Nightly Garbage Run policy: pull back up to
 ; three cards from the discard pile. First grab every basic energy
