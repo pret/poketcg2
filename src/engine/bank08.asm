@@ -2623,7 +2623,7 @@ AIDecide_EnergyRetrieval:
 	cp $5d
 	jp z, AIDecide_EnergyRetrieval_Deck5D
 	cp $5f
-	jp z, $5a22
+	jp z, AIDecide_EnergyRetrieval_Deck5F
 	cp $63
 	jp z, $5a2b
 	cp $64
@@ -2785,6 +2785,17 @@ SECTION "Bank 8@5a19", ROMX[$5a19], BANK[$8]
 ; $57c8-$5a8c block.
 AIDecide_EnergyRetrieval_Deck5D:
 	farcall Func_4c524
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5a22", ROMX[$5a22], BANK[$8]
+
+; deck $5f (Scorcher) Energy Retrieval: a bank-$12 helper picks the
+; target; on success rejoin the shared commit tail (.got_target). Also
+; carved out of the still-raw $57c8-$5a8c block.
+AIDecide_EnergyRetrieval_Deck5F:
+	farcall ScorcherDeckAIDecideEnergyRetrieval
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target

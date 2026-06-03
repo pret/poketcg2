@@ -174,6 +174,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5a0b` | `AIDecide_EnergyRetrieval_Deck57` | sameboy_trace duel-ishii (Eye of the Storm; bank-$0e delegate, rest of $57c8-$5a8c gap still raw) | 2026-06-02 |
 | `$08` | `$5a53` | `AIDecide_EnergyRetrieval_Deck6C` | sameboy_trace duel-ronald2 ($6c Ronald's Psychic = ronald2; bank-$12 helper then rejoin .got_target) | 2026-06-02 |
 | `$08` | `$5a19` | `AIDecide_EnergyRetrieval_Deck5D` | sameboy_trace duel-rui ($5d Psychic Battle; raw Func_4c524 then rejoin .got_target) | 2026-06-03 |
+| `$08` | `$5a22` | `AIDecide_EnergyRetrieval_Deck5F` | sameboy_trace duel-biruitchi ($5f Scorcher; Biruitchi rotates 4 decks, this duel was Scorcher; bank-$12 helper then rejoin .got_target) | 2026-06-03 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
 | `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
@@ -274,7 +275,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 59.01% (~9.4 KiB of 16 KiB).
+**Source-defined**: 59.06% (~9.5 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -295,6 +296,7 @@ the target (helps justify future decomp prioritization).
 - `$5616-$5642` — `AIDecide_ProfessorOak_Deck57/_58/_5A/_5C/_5D/_6E/_70/_71/_72` (9 thin per-deck delegates; $5d = raw Func_4c4ba).
 - `$5a0b-$5a0f` — `AIDecide_EnergyRetrieval_Deck57` (Eye of the Storm delegate; isolated in the still-raw $57c8-$5a8c EnergyRetrieval deck-case block).
 - `$5a19-$5a21` — `AIDecide_EnergyRetrieval_Deck5D` (Psychic Battle; raw Func_4c524 then rejoins `.got_target`; isolated in that block).
+- `$5a22-$5a2a` — `AIDecide_EnergyRetrieval_Deck5F` (Scorcher; bank-$12 helper then rejoins `.got_target`; isolated in that block).
 - `$5a53-$5a5b` — `AIDecide_EnergyRetrieval_Deck6C` (Ronald's Psychic; bank-$12 helper, then rejoins `AIDecide_EnergyRetrieval.got_target`; also isolated in that block).
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
 - `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
