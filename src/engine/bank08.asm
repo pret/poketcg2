@@ -57,7 +57,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          AIDecide_TheBosssWay, AIPlay_TheBosssWay
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    AIDecide_NightlyGarbageRun, AIPlay_NightlyGarbageRun
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      $7a13, $79f5
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      AIDecide_FossilExcavation, AIPlay_FossilExcavation
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            AIDecide_MasterBall, AIPlay_MasterBall
@@ -2577,7 +2577,7 @@ AIDecide_ProfessorOak:
 	cp GRAND_FIRE_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck3A
 	cp LEGENDARY_FOSSIL_DECK_ID
-	jp z, $55c9
+	jp z, AIDecide_ProfessorOak_Deck3B
 	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
@@ -2876,6 +2876,17 @@ AIDecide_ProfessorOak_Deck3A:
 	ret
 .no_play
 	or a
+	ret
+
+SECTION "Bank 8@55c9", ROMX[$55c9], BANK[$8]
+
+; deck $3b (Legendary Fossil) Professor Oak decider: redraw only once our
+; own hand has dwindled below 4 cards. (Carved out of the still-raw
+; $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck3B:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $04
 	ret
 
 SECTION "Bank 8@5643", ROMX[$5643], BANK[$8]
@@ -5052,7 +5063,7 @@ AIDecide_ComputerSearch:
 	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck2D
 	cp LEGENDARY_FOSSIL_DECK_ID
-	jp z, $6d5e
+	jp z, AIDecide_ComputerSearch_Deck3B
 	cp MAD_PETALS_DECK_ID
 	jp z, $6dbe
 	cp SPIRITED_AWAY_DECK_ID
@@ -5077,6 +5088,62 @@ SECTION "Bank 8@6d59", ROMX[$6d59], BANK[$8]
 ; bank helper. (Carved out of the still-raw $6d59-$6e0a block.)
 AIDecide_ComputerSearch_Deck2D:
 	farcall RainDanceConfusionDeckAIDecideComputerSearch
+	ret
+
+SECTION "Bank 8@6d5e", ROMX[$6d5e], BANK[$8]
+
+; deck $3b (Legendary Fossil) Computer Search decider. Pick the most
+; valuable thing to fetch, in order: an Aerodactyl to evolve a Mysterious
+; Fossil; a PlusPower (only if AIDecide_PlusPower_Phase13 says it would help
+; right now); a Professor Oak (only if AIDecide_ProfessorOak agrees); or a
+; Bill. When something qualifies, stash it in wd082 and pull two different
+; non-target cards from the hand to pay Computer Search's discard cost.
+; (Carved out of the still-raw $6d5e-$6e0a block.)
+AIDecide_ComputerSearch_Deck3B:
+	ld bc, MYSTERIOUS_FOSSIL
+	ld de, AERODACTYL_LV28
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ld b, a
+	jr c, .commit
+	ld de, PLUSPOWER
+	farcall IsCardIDInDeckAndNotInHand
+	jr nc, .try_oak
+	push af
+	call AIDecide_PlusPower_Phase13
+	pop bc
+	jr c, .commit
+.try_oak
+	ld de, PROFESSOR_OAK
+	farcall IsCardIDInDeckAndNotInHand
+	jr nc, .try_bill
+	push af
+	call AIDecide_ProfessorOak
+	pop bc
+	jr c, .commit
+.try_bill
+	ld de, BILL
+	farcall IsCardIDInDeckAndNotInHand
+	ld b, a
+	jr c, .commit
+.no_play
+	or a
+	ret
+.commit
+	ld a, b
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld d, $00
+	ld a, [wAITrainerCardToPlay]
+	ld e, a
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
 	ret
 
 SECTION "Bank 8@6e0a", ROMX[$6e0a], BANK[$8]
@@ -5998,7 +6065,7 @@ AIDecide_NightlyGarbageRun:
 	cp GRAND_FIRE_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck3A
 	cp LEGENDARY_FOSSIL_DECK_ID
-	jp z, $76d6
+	jp z, AIDecide_NightlyGarbageRun_Deck3B
 	cp GREAT_DRAGON_DECK_ID
 	jp z, $76ff
 	cp STICKY_POISON_GAS_DECK_ID
@@ -6083,6 +6150,33 @@ AIDecide_NightlyGarbageRun_Deck3A:
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MOLTRES_LV40
+	farcall FindCardIDInLocation
+	ret c
+	ld a, [wDuelTempList + 2]
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+SECTION "Bank 8@76d6", ROMX[$76d6], BANK[$8]
+
+; deck $3b (Legendary Fossil) Nightly Garbage Run policy: only play once at
+; least three basic energies are in the discard pile, then shuffle the first
+; two back along with a discarded Zapdos if one is there (else a third
+; energy). (Carved out of the still-raw $76d6-$76ff block.)
+AIDecide_NightlyGarbageRun_Deck3B:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, .no_play
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, ZAPDOS_LV68
 	farcall FindCardIDInLocation
 	ret c
 	ld a, [wDuelTempList + 2]
@@ -6323,6 +6417,59 @@ AIDecide_NightlyGarbageRun_Deck5A:
 ; deck $6f (Immortal Pokemon) delegates Nightly Garbage Run to a bank-$12 helper.
 AIDecide_NightlyGarbageRun_Deck6F:
 	farcall ImmortalPokemonDeckAIDecideNightlyGarbageRun
+	ret
+
+SECTION "Bank 8@79f5", ROMX[$79f5], BANK[$8]
+
+; Fossil Excavation: shuffle your deck, then recover a Mysterious Fossil
+; from the discard pile (or, if none, reveal one from the deck). The play
+; wrapper forwards the recovered card's deck index (slot 1) and the
+; parameter that tells the effect where it came from.
+; (Carved out of the still-raw $79f5-$7a43 block.)
+AIPlay_FossilExcavation:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Pure dispatcher: only decks $3b (Legendary Fossil) and $63 (Protohistoric)
+; ever play Fossil Excavation; everyone else declines.
+AIDecide_FossilExcavation:
+	ld a, [wOpponentDeckID]
+	cp LEGENDARY_FOSSIL_DECK_ID
+	jp z, AIDecide_FossilExcavation_Deck3BOr63
+	cp PROTOHISTORIC_DECK_ID
+	jp z, AIDecide_FossilExcavation_Deck3BOr63
+	or a
+	ret
+
+; Recover a Mysterious Fossil: prefer one already in the discard pile
+; (return a = 1 to mark "from discard"), otherwise pull one out of the deck
+; (return a = 0). Don't play if neither location has one.
+AIDecide_FossilExcavation_Deck3BOr63:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MYSTERIOUS_FOSSIL
+	farcall FindCardIDInLocation
+	jr nc, .from_deck
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, $01
+	ret
+.from_deck
+	ld a, CARD_LOCATION_DECK
+	ld de, MYSTERIOUS_FOSSIL
+	farcall FindCardIDInLocation
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
 	ret
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
