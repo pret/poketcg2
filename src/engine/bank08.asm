@@ -4091,7 +4091,7 @@ SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
 AIPlay_Pokeball:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
-	ld de, $10e ; coin-toss prompt text ID (not a card ID)
+	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
 	ldh [hTemp_ffa0], a
 	jr nc, .tails
@@ -5769,7 +5769,7 @@ AIDecide_ComputerError:
 AIPlay_SuperScoopUp:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
-	ld de, $10e ; coin-toss prompt text ID (not a card ID)
+	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
 	ldh [hTemp_ffa0], a
 	jr nc, .tails

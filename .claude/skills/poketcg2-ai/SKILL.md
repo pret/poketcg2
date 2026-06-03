@@ -112,13 +112,16 @@ found it.
 
 **The wholesale retroactive pass was done early on 2026-06-03** (user
 request): all 189 card-ID operands in `bank08.asm` are now named
-constants; only 2 in-range hex operands remain, both deliberately left
-and commented — `ld de, $10e` before `bank1call TossCoin` is a coin-toss
-prompt **text ID**, NOT a card (the classic "value in card range but not
-a card" trap; `de`/`bc` are only card IDs when consumed by a
-`*CardID*`/`AITryMasterBall_GivenTarget`/`Count*PkmnPower` helper). If new
-raw functions are later decompiled with hex card operands, re-run the
-pass; it's mechanical and `make compare`-verified.
+constants. The two `ld de, $10e` before `bank1call TossCoin` were NOT
+cards (the classic "value in card range but not a card" trap — `de`/`bc`
+are card IDs only when consumed by a `*CardID*`/`AITryMasterBall_GivenTarget`/
+`Count*PkmnPower` helper); they are coin-toss prompt **text IDs** and are
+now written idiomatically as `ldtx de, TrainerCardSuccessCheckText`
+(`ldtx X, Y` expands to `ld X, Y_`, where `Y_` is the text-offset constant
+from `text/text_offsets.asm`'s `textpointer` enumeration). No hex
+`ld de`/`ld bc`/`ld hl`/`cp16` operands remain. If new raw functions are
+later decompiled with hex operands, re-run the pass; it's mechanical and
+`make compare`-verified.
 
 **Non-card hex was also labelled (2026-06-03), only where 100% certain and
 only on branch-added lines:** every `cp $NN` inside an
