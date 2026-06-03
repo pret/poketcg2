@@ -92,6 +92,20 @@ Attack deck. Verified deck IDs so far: `$41`=Mad Petals, `$43`=Chain
 Lightning by Pikachu, `$45`=Quick Attack, `$4a`=Whirlpool Shower,
 `$50`=Running Wild, `$51`=Direct Hit, `$53`=Bad Dream.
 
+**Name card IDs, don't hardcode hex.** Whenever an operand is a card
+reference — `ld de, $XXX` / `ld bc, $XXX` before `FindCardIDInLocation`,
+`LookForCardIDInHand*`, `LookForEvoCardInDeck_*`,
+`FindCardIDInTurnDuelistsPlayArea`, `IsCardIDInDeckAndNotInHand`, etc.,
+or `cp16 $XXX` against a card — write the named constant from
+[card_constants.asm](../../../src/constants/card_constants.asm), e.g.
+`ld de, PROFESSOR_OAK` not `ld de, $18e`. Resolve the value with an
+rgbasm probe or by counting `const` entries (the Nth `const` = value N,
+starting at 1; verified `$125`=GASTLY_LV13). `make compare` proves the
+constant equals the byte. This is a *going-forward* rule for new
+functions (existing raw-hex IDs get a bulk pass at bank completion).
+Leave hex only for non-card operands (WRAM addrs, list pointers, flags)
+and for `jp/call $XXXX` to still-raw functions.
+
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
 pattern (`scf; ret` = success, `or a; ret` = fail). Watch for
