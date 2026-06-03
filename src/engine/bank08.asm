@@ -2791,9 +2791,10 @@ AIDecide_EnergyRetrieval_Deck5D:
 
 SECTION "Bank 8@5a22", ROMX[$5a22], BANK[$8]
 
-; deck $5f (Scorcher) Energy Retrieval: a bank-$12 helper picks the
-; target; on success rejoin the shared commit tail (.got_target). Also
-; carved out of the still-raw $57c8-$5a8c block.
+; deck $5f (internal ScorcherDeck -- a Fire deck built around Dark
+; Charizard) Energy Retrieval: a bank-$12 helper picks the target; on
+; success rejoin the shared commit tail (.got_target). Also carved out
+; of the still-raw $57c8-$5a8c block.
 AIDecide_EnergyRetrieval_Deck5F:
 	farcall ScorcherDeckAIDecideEnergyRetrieval
 	ret nc
