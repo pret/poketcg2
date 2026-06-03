@@ -5825,15 +5825,15 @@ AIDecide_MasterBall:
 	cp I_LOVE_PIKACHU_DECK_ID
 	jr z, .deck_14
 	cp PSYCHOKINESIS_DECK_ID
-	jp z, $7bdf
+	jp z, AIDecide_MasterBall_Deck18
 	cp PUPPET_MASTER_DECK_ID
-	jp z, $7be4
+	jp z, AIDecide_MasterBall_Deck1A
 	cp DARK_SCIENCE_DECK_ID
-	jp z, $7c10
+	jp z, AIDecide_MasterBall_Deck29
 	cp GREAT_DRAGON_DECK_ID
-	jp z, $7c60
+	jp z, AIDecide_MasterBall_Deck3D
 	cp BUG_COLLECTING_DECK_ID
-	jp z, $7cdc
+	jp z, AIDecide_MasterBall_Deck3E
 	cp DEMONIC_FOREST_DECK_ID
 	jp z, AIDecide_MasterBall_Deck3F
 	cp STICKY_POISON_GAS_DECK_ID
@@ -5904,7 +5904,167 @@ AIDecide_MasterBall:
 	ret c
 	farcall AITryMasterBall
 	ret
-; 0x23bdf
+
+; deck $18 (Psychokinesis): plain Master Ball with no priority target.
+AIDecide_MasterBall_Deck18:
+	farcall AITryMasterBall
+	ret
+
+; deck $1a (Puppet Master): Master Ball an evolved attacker whose pre-evo
+; is already in play -- Drowzee -> Hypno, then Slowpoke -> Slowbro; else
+; plain Master Ball.
+AIDecide_MasterBall_Deck1A:
+	ld bc, DROWZEE_LV12
+	ld de, HYPNO_LV30
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .slowbro
+	ld de, HYPNO_LV30
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.slowbro
+	ld bc, SLOWPOKE_LV18
+	ld de, SLOWBRO_LV26
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret nc
+	ld de, SLOWBRO_LV26
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+
+; deck $29 (Dark Science): evolved Poison attackers first (Koffing ->
+; Weezing, Ekans -> Arbok), then a flat priority list (Grimer, Koffing,
+; Ekans, Zubat, Chansey).
+AIDecide_MasterBall_Deck29:
+	ld bc, KOFFING_LV13
+	ld de, WEEZING_LV26
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .ekans
+	ld de, WEEZING_LV26
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.ekans
+	ld bc, EKANS_LV15
+	ld de, ARBOK_LV30
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .flat
+	ld de, ARBOK_LV30
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.flat
+	ld de, GRIMER_LV10
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, KOFFING_LV13
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, EKANS_LV15
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, ZUBAT_LV12
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, CHANSEY_LV55
+	farcall AITryMasterBall_GivenTarget
+	ret
+
+; deck $3d (Great Dragon): Dratini -> Dark Dragonair (either Dratini
+; print), then the Charmander -> Charmeleon -> Charizard line; else plain.
+AIDecide_MasterBall_Deck3D:
+	ld bc, DRATINI_LV10
+	ld de, DARK_DRAGONAIR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .dratini_lv12
+	ld de, DARK_DRAGONAIR
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.dratini_lv12
+	ld bc, DRATINI_LV12
+	ld de, DARK_DRAGONAIR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .charizard
+	ld de, DARK_DRAGONAIR
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.charizard
+	ld bc, CHARMELEON
+	ld de, CHARIZARD_LV76
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .charizard_alt
+	ld de, CHARIZARD_LV76
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.charizard_alt
+	ld bc, CHARMELEON
+	ld de, CHARIZARD_ALT_LV76
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .charmeleon
+	ld de, CHARIZARD_ALT_LV76
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.charmeleon
+	ld bc, CHARMANDER_LV12
+	ld de, CHARMELEON
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .charmeleon_alt
+	ld de, CHARMELEON
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.charmeleon_alt
+	ld bc, CHARMANDER_LV10
+	ld de, CHARMELEON
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret nc
+	ld de, CHARMELEON
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+
+; deck $3e (Bug Collecting): Weedle -> Kakuna, Venonat -> Venomoth,
+; Caterpie -> Metapod -> Butterfree, Meowth -> Dark Persian; else plain.
+AIDecide_MasterBall_Deck3E:
+	ld bc, WEEDLE_LV12
+	ld de, KAKUNA_LV20
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .venomoth
+	ld de, KAKUNA_LV20
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.venomoth
+	ld bc, VENONAT_LV12
+	ld de, VENOMOTH_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .metapod
+	ld de, VENOMOTH_LV22
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.metapod
+	ld bc, CATERPIE
+	ld de, METAPOD_LV20
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .butterfree
+	ld de, METAPOD_LV20
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.butterfree
+	ld bc, METAPOD_LV20
+	ld de, BUTTERFREE
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .persian
+	ld de, BUTTERFREE
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.persian
+	ld bc, MEOWTH_LV10
+	ld de, DARK_PERSIAN_LV28
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret nc
+	ld de, DARK_PERSIAN_LV28
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
 
 SECTION "Bank 8@7d44", ROMX[$7d44], BANK[$8]
 

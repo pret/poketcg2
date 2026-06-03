@@ -299,11 +299,12 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7a43` | [`AIPlay_Sleep`](../../../src/engine/bank08.asm) | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7a4f` | [`AIDecide_Sleep`](../../../src/engine/bank08.asm) + `AIDecide_Sleep_Deck12` | sameboy_trace duel-sousuke (deck $12) | 2026-06-01 |
 | `$08` | `$7b0a` | [`AIPlay_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 | 2026-06-01 |
-| `$08` | `$7b1f` | [`AIDecide_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 (12-way dispatch; decks $13, $14 inline; decks $3f/$43/$46/$74 decompiled; 6 cases left raw) | 2026-06-01 |
+| `$08` | `$7b1f` | [`AIDecide_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 (12-way dispatch; decks $13, $14 inline; decks $18/$1a/$29/$3d/$3e/$3f/$43/$46/$74 decompiled; only deck $40 left raw) | 2026-06-01 |
+| `$08` | `$7bdf` | `AIDecide_MasterBall_Deck18`/`_Deck1A`/`_Deck29`/`_Deck3D`/`_Deck3E` | sameboy_trace duel-daniel ($1a Puppet Master = Daniel; evo-line Master Ball targeting; fills the gap before Deck3F) | 2026-06-03 |
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 63.32% (~10.1 KiB of 16 KiB).
+**Source-defined**: 65.50% (~10.5 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -383,7 +384,8 @@ the target (helps justify future decomp prioritization).
 - `$7dc7-$7e9d` — `AIDecide_MasterBall_Deck46` + `AIDecide_MasterBall_Deck74` + `AIPlay_BillsTeleporter`/`AIDecide_BillsTeleporter` + `AIPlay_MoonStone`/`AIDecide_MoonStone` (6-way deck dispatch) + `AIPlay_TheRocketsTrap`/`AIDecide_TheRocketsTrap`.
 - `$7e9e-$7ec2` — `AIPlay_GoopGasAttack` + `AIDecide_GoopGasAttack`.
 - `$7f3e-$7fe5` — `AIPlay_ComputerError` + `AIDecide_ComputerError` + `AIPlay_SuperScoopUp` + `AIDecide_SuperScoopUp`.
-- `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14; decks $3f/$43/$46/$74 decompiled; 6 other deck cases left raw).
+- `$7b0a-$7bde` — `AIPlay_MasterBall` + `AIDecide_MasterBall` (inline deck $13, deck $14).
+- `$7bdf-$7d43` — `AIDecide_MasterBall_Deck18`/`_Deck1A`/`_Deck29`/`_Deck3D`/`_Deck3E` (evo-line + priority-list Master Ball targeting); only deck $40 ($7d61) still raw.
 - `$4c32-$4c43` — `AIPlay_Bill` + `AIDecide_Bill`.
 - `$53bc-$5504` — `AIPlay_ProfessorOak` + `AIDecide_ProfessorOak` (19 deck-specific Func_2152x-Func_2163e cases left raw; one named).
 - `$55cf-$55d4` — `AIDecide_ProfessorOak_Deck45Or50`.
