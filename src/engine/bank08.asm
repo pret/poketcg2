@@ -510,7 +510,7 @@ AIDecide_Defender_Phase13:
 	call GetCardIDFromDeckIndex
 	cp16 MR_MIME_LV28
 	ret z
-	ld de, $18e
+	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr nc, .skip_oak
 	call AIDecide_ProfessorOak
@@ -772,7 +772,7 @@ AIDecide_PlusPower_Phase13:
 	call SwapTurn
 	cp16 MR_MIME_LV28
 	jr z, .check_attacks
-	ld de, $18e
+	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr nc, .check_attacks
 	call AIDecide_ProfessorOak
@@ -2232,7 +2232,7 @@ SECTION "Bank 8@52fb", ROMX[$52fb], BANK[$8]
 ; ($126) straight up to Dark Gengar ($12e) when the Gastly is on the
 ; field carrying 2+ energy and Dark Gengar is in hand.
 AIDecide_PokemonBreeder_Deck55:
-	ld de, $126
+	ld de, GASTLY_LV17
 	ld b, $00
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	ret nc
@@ -2243,7 +2243,7 @@ AIDecide_PokemonBreeder_Deck55:
 	cp $02
 	ccf
 	ret nc
-	ld de, $12e
+	ld de, DARK_GENGAR
 	farcall LookForCardIDInHandList
 	ret nc
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -2353,13 +2353,13 @@ AIDecide_ProfessorOak:
 	add $28
 	ld [wd082], a
 .after_dup_energy
-	ld de, $49
+	ld de, MUK
 	bank1call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	jr c, .after_pkmn_power
-	ld de, $83
+	ld de, BLASTOISE_LV52
 	bank1call CountTurnDuelistPokemonWithActivePkmnPower
 	jr nc, .after_pkmn_power
-	ld de, $3
+	ld de, WATER_ENERGY
 	farcall LookForCardIDInHand
 	jr nc, .after_pkmn_power
 	ld a, [wd082]
@@ -3168,19 +3168,19 @@ AIDecide_FullHeal:
 	call GetCardIDFromDeckIndex
 	cp16 SLOWBRO_LV35
 	jr z, .no_play
-	ld de, $124
+	ld de, GASTLY_LV8
 	ld b, $00
 	call SwapTurn
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	call SwapTurn
 	jr c, .play
-	ld de, $126
+	ld de, GASTLY_LV17
 	ld b, $00
 	call SwapTurn
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	call SwapTurn
 	jr c, .play
-	ld de, $128
+	ld de, HAUNTER_LV22
 	ld b, $00
 	call SwapTurn
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
@@ -3192,7 +3192,7 @@ AIDecide_FullHeal:
 ; the situation. Otherwise: play if we can damage the defender AND
 ; we either have no energy-for-retreat OR retreat-with-status isn't
 ; a viable plan.
-	ld de, $1a9
+	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
 	jr nc, .full_heal_check_damage
 	call AIDecide_ScoopUp
@@ -3210,7 +3210,7 @@ AIDecide_FullHeal:
 	or a
 	ret
 .confused_case
-	ld de, $1a9
+	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
 	jr nc, .confused_check_damage
 	call AIDecide_ScoopUp
@@ -3468,7 +3468,7 @@ AIDecide_ScoopUp:
 	get_turn_duelist_var
 	cp $03
 	jr c, .no_play
-	ld de, $b9
+	ld de, ARTICUNO_LV37
 	ld b, $01
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	jr c, .deck_3c_card_b9
@@ -3584,7 +3584,7 @@ AIDecide_ItemFinder:
 	jp z, AIDecide_ItemFinder_Deck58
 	cp $6e
 	jp z, AIDecide_ItemFinder_Deck6E
-	ld de, $18b
+	ld de, ENERGY_REMOVAL
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr nc, .no_play
@@ -3634,31 +3634,31 @@ SECTION "Bank 8@6542", ROMX[$6542], BANK[$8]
 ; basic energies in hand to pay (discard) for the Item Finder, using the
 ; first two hand-list entries as the discard cost.
 AIDecide_ItemFinder_Deck55:
-	ld de, $199
+	ld de, SUPER_ENERGY_REMOVAL
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $18b
+	ld de, ENERGY_REMOVAL
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $1b2
+	ld de, BILL
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $18c
+	ld de, ENERGY_RETRIEVAL
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $18e
+	ld de, PROFESSOR_OAK
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $1ae
+	ld de, POKEMON_BREEDER
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
-	ld de, $1a3
+	ld de, COMPUTER_SEARCH
 	ld a, $02
 	farcall FindCardIDInLocation
 	jr c, .found
@@ -3961,20 +3961,20 @@ AIDecide_Revive_Deck14:
 ; ($47 hand, $49 discard), ($4d hand, $52 discard), ($20 hand, $23
 ; discard).
 AIDecide_Revive_Deck40:
-	ld de, $5a
+	ld de, CHARMANDER_LV10
 	ld a, $02
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $47
-	ld bc, $49
+	ld de, GRIMER_LV10
+	ld bc, MUK
 	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
 	ret c
-	ld de, $4d
-	ld bc, $52
+	ld de, KOFFING_LV12
+	ld bc, DARK_WEEZING
 	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
 	ret c
-	ld de, $20
-	ld bc, $23
+	ld de, EKANS_LV15
+	ld bc, DARK_ARBOK
 	farcall LookForCardIDInDiscardPile_GivenCardIDInHand
 	ret
 ; 0x227af
@@ -4057,7 +4057,7 @@ AIDecide_PokemonFlute:
 	or a
 	ret
 .deck_68
-	ld de, $133
+	ld de, DARK_HYPNO
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
 	jr nc, .skip
 .pick_any_basic
@@ -4091,7 +4091,7 @@ SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
 AIPlay_Pokeball:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
-	ld de, $10e
+	ld de, $10e ; coin-toss prompt text ID (not a card ID)
 	bank1call TossCoin
 	ldh [hTemp_ffa0], a
 	jr nc, .tails
@@ -4169,37 +4169,37 @@ AIDecide_Pokeball_Deck47:
 	get_turn_duelist_var
 	cp $01
 	jr nz, .evolution_chain
-	ld de, $59
+	ld de, CHARMANDER_LV9
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $7f
+	ld de, SQUIRTLE_LV16
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $f3
+	ld de, MACHOP_LV24
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $168
+	ld de, DODUO_LV10
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret
 .evolution_chain
-	ld bc, $59
-	ld de, $5d
+	ld bc, CHARMANDER_LV9
+	ld de, DARK_CHARMELEON
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $5d
-	ld de, $60
+	ld bc, DARK_CHARMELEON
+	ld de, DARK_CHARIZARD
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld de, $59
-	ld bc, $5d
+	ld de, CHARMANDER_LV9
+	ld bc, DARK_CHARMELEON
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret c
-	ld de, $5d
-	ld bc, $60
+	ld de, DARK_CHARMELEON
+	ld bc, DARK_CHARIZARD
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22bbb
@@ -4215,25 +4215,25 @@ AIDecide_Pokeball_Deck4A:
 	get_turn_duelist_var
 	cp $01
 	jr nz, .multi
-	ld de, $a4
+	ld de, STARYU_LV15
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $176
-	ld bc, $b1
+	ld de, EEVEE_LV9
+	ld bc, DARK_VAPOREON
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret c
-	ld de, $d3
-	ld bc, $d6
+	ld de, VOLTORB_LV10
+	ld bc, ELECTRODE_LV42
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 .multi
-	ld bc, $176
-	ld de, $b1
+	ld bc, EEVEE_LV9
+	ld de, DARK_VAPOREON
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld de, $176
-	ld bc, $b1
+	ld de, EEVEE_LV9
+	ld bc, DARK_VAPOREON
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22bf8
@@ -4250,25 +4250,25 @@ AIDecide_Pokeball_Deck4B:
 	get_turn_duelist_var
 	cp $01
 	jr nz, .multi
-	ld de, $8c
+	ld de, POLIWAG_LV15
 	ld a, $00
 	farcall FindCardIDInLocation
 	ret c
-	ld de, $7c
-	ld bc, $81
+	ld de, SQUIRTLE_LV8
+	ld bc, WARTORTLE_LV24
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret c
-	ld de, $a8
-	ld bc, $ac
+	ld de, MAGIKARP_LV6
+	ld bc, DARK_GYARADOS
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 .multi
-	ld bc, $a8
-	ld de, $ac
+	ld bc, MAGIKARP_LV6
+	ld de, DARK_GYARADOS
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld de, $a8
-	ld bc, $ac
+	ld de, MAGIKARP_LV6
+	ld bc, DARK_GYARADOS
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 ; 0x22c35
@@ -4277,16 +4277,16 @@ AIDecide_Pokeball_Deck4B:
 ; ($fc -> $fe, $fe -> $101, $e7 -> $eb), then fall back to any basic
 ; Pokemon in the deck.
 AIDecide_Pokeball_Deck4E:
-	ld bc, $fc
-	ld de, $fe
+	ld bc, GEODUDE_LV16
+	ld de, GRAVELER_LV28
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $fe
-	ld de, $101
+	ld bc, GRAVELER_LV28
+	ld de, GOLEM_LV37
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $e7
-	ld de, $eb
+	ld bc, DIGLETT_LV15
+	ld de, DARK_DUGTRIO
 	farcall CheckReelInEvoLineTarget
 	ret c
 	farcall CheckIfAnyBasicPokemonInDeck
@@ -4493,36 +4493,36 @@ SECTION "Bank 8@6f1b", ROMX[$6f1b], BANK[$8]
 ; If any pair matches, set the picked deck index as the swap target.
 ; Falls back to FindDuplicatePokemonCardsInHand as a generic out.
 AIDecide_PokemonTrader_Deck18:
-	ld bc, $115
-	ld de, $119
+	ld bc, ABRA_LV8
+	ld de, KADABRA_LV39
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .pick
-	ld bc, $119
-	ld de, $11c
+	ld bc, KADABRA_LV39
+	ld de, ALAKAZAM_LV45
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .pick
-	ld de, $115
-	ld bc, $119
+	ld de, ABRA_LV8
+	ld bc, KADABRA_LV39
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr c, .pick
-	ld de, $119
-	ld bc, $11c
+	ld de, KADABRA_LV39
+	ld bc, ALAKAZAM_LV45
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr c, .pick
-	ld bc, $125
-	ld de, $12a
+	ld bc, GASTLY_LV13
+	ld de, HAUNTER_LV26
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .pick
-	ld bc, $12a
-	ld de, $12d
+	ld bc, HAUNTER_LV26
+	ld de, GENGAR_LV40
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .pick
-	ld de, $125
-	ld bc, $12a
+	ld de, GASTLY_LV13
+	ld bc, HAUNTER_LV26
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr c, .pick
-	ld de, $12a
-	ld bc, $12d
+	ld de, HAUNTER_LV26
+	ld bc, GENGAR_LV40
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr nc, .no_match
 .pick
@@ -4574,44 +4574,44 @@ AIDecide_PokemonTrader_Deck48:
 	farcall CheckIfPlayerHasPokemonOfType
 	jr c, .single_water_threat
 	ld a, $00
-	ld de, $75
+	ld de, MAGMAR_LV31
 	farcall FindCardIDInLocation
-	ld de, $75
+	ld de, MAGMAR_LV31
 	jr c, .commit
 	jr .single_no_threat_fallback
 .single_water_threat
-	ld de, $da
+	ld de, ELECTABUZZ_LV35
 	farcall FindCardIDInLocation
-	ld de, $da
+	ld de, ELECTABUZZ_LV35
 	jr c, .commit
 	jr .single_water_threat_fallback
 .multi_pokemon
 	ld a, $03
 	farcall CheckIfPlayerHasPokemonOfType
 	jr c, .multi_water_threat
-	ld bc, $176
-	ld de, $78
+	ld bc, EEVEE_LV9
+	ld de, DARK_FLAREON
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
 	jr .single_no_threat_fallback
 .multi_water_threat
-	ld bc, $176
-	ld de, $dd
+	ld bc, EEVEE_LV9
+	ld de, DARK_JOLTEON
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
 	jr .single_water_threat_fallback
 .single_no_threat_fallback
-	ld de, $176
-	ld bc, $78
+	ld de, EEVEE_LV9
+	ld bc, DARK_FLAREON
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $78
+	ld de, DARK_FLAREON
 	jp c, .commit
 	ret
 .single_water_threat_fallback
-	ld de, $176
-	ld bc, $dd
+	ld de, EEVEE_LV9
+	ld bc, DARK_JOLTEON
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $dd
+	ld de, DARK_JOLTEON
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -4634,36 +4634,36 @@ AIDecide_PokemonTrader_Deck49:
 	get_turn_duelist_var
 	cp $01
 	jr z, .solo
-	ld bc, $61
-	ld de, $65
+	ld bc, VULPIX_LV11
+	ld de, DARK_NINETALES
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
-	ld de, $61
-	ld bc, $65
+	ld de, VULPIX_LV11
+	ld bc, DARK_NINETALES
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $65
+	ld de, DARK_NINETALES
 	jp c, .commit
 	ret
 .solo
 	ld a, $00
-	ld de, $75
+	ld de, MAGMAR_LV31
 	farcall IsCardIDInDeckAndNotInHand
-	ld de, $75
+	ld de, MAGMAR_LV31
 	jr c, .commit
 	ld a, $00
-	ld de, $59
+	ld de, CHARMANDER_LV9
 	farcall IsCardIDInDeckAndNotInHand
-	ld de, $59
+	ld de, CHARMANDER_LV9
 	jr c, .commit
 	ld a, $00
-	ld de, $61
+	ld de, VULPIX_LV11
 	farcall IsCardIDInDeckAndNotInHand
-	ld de, $61
+	ld de, VULPIX_LV11
 	jr c, .commit
 	ld a, $00
-	ld de, $6c
+	ld de, PONYTA_LV8
 	farcall IsCardIDInDeckAndNotInHand
-	ld de, $6c
+	ld de, PONYTA_LV8
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -4687,22 +4687,22 @@ AIDecide_PokemonTrader_Deck4C:
 	ret
 .water_matchup
 	ld a, $00
-	ld de, $136
+	ld de, JYNX_LV18
 	farcall FindCardIDInLocation
-	ld de, $136
+	ld de, JYNX_LV18
 	jr c, .commit
 	ld a, $00
-	ld de, $173
+	ld de, TAUROS_LV35
 	farcall FindCardIDInLocation
-	ld de, $173
+	ld de, TAUROS_LV35
 	jr c, .commit
-	ld de, $c3
+	ld de, SURFING_PIKACHU_LV13
 	farcall FindCardIDInLocation
-	ld de, $c3
+	ld de, SURFING_PIKACHU_LV13
 	jr c, .commit
-	ld de, $c4
+	ld de, SURFING_PIKACHU_ALT_LV13
 	farcall FindCardIDInLocation
-	ld de, $c4
+	ld de, SURFING_PIKACHU_ALT_LV13
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -4723,42 +4723,42 @@ AIDecide_PokemonTrader_Deck4D:
 	ld a, $02
 	farcall CheckIfPlayerHasPokemonOfType
 	jr c, .multi_water
-	ld bc, $a4
-	ld de, $a7
+	ld bc, STARYU_LV15
+	ld de, DARK_STARMIE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	jr c, .commit
-	ld de, $a4
-	ld bc, $a7
+	ld de, STARYU_LV15
+	ld bc, DARK_STARMIE
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $a7
+	ld de, DARK_STARMIE
 	jr c, .commit
 	ret
 .multi_water
-	ld de, $b7
+	ld de, ARTICUNO_LV34
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
-	ld de, $b7
+	ld de, ARTICUNO_LV34
 	jr c, .commit
 	ret
 .solo
 	ld a, $00
-	ld de, $ae
+	ld de, LAPRAS_LV31
 	farcall FindCardIDInLocation
-	ld de, $ae
+	ld de, LAPRAS_LV31
 	jr c, .commit
 	ld a, $00
-	ld de, $b7
+	ld de, ARTICUNO_LV34
 	farcall FindCardIDInLocation
-	ld de, $b7
+	ld de, ARTICUNO_LV34
 	jr c, .commit
 	ld a, $00
-	ld de, $a4
+	ld de, STARYU_LV15
 	farcall FindCardIDInLocation
-	ld de, $a4
+	ld de, STARYU_LV15
 	jr c, .commit
 	ld a, $00
-	ld de, $a2
+	ld de, GOLDEEN
 	farcall FindCardIDInLocation
-	ld de, $a2
+	ld de, GOLDEEN
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -4775,20 +4775,20 @@ AIDecide_PokemonTrader_Deck4F:
 	cp $01
 	jr nz, .multi
 	ld a, $00
-	ld de, $103
+	ld de, ONIX_LV25
 	farcall FindCardIDInLocation
-	ld de, $103
+	ld de, ONIX_LV25
 	jr c, .commit
 .multi
-	ld de, $f3
-	ld bc, $f7
+	ld de, MACHOP_LV24
+	ld bc, DARK_MACHOKE
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $f7
+	ld de, DARK_MACHOKE
 	jr c, .commit
-	ld de, $f7
-	ld bc, $fa
+	ld de, DARK_MACHOKE
+	ld bc, DARK_MACHAMP
 	farcall LookForCardIDInDeck_GivenCardIDInHand
-	ld de, $fa
+	ld de, DARK_MACHAMP
 	ret nc
 .commit
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -4929,40 +4929,40 @@ AIDecide_TheBosssWay:
 ; (card IDs $1f→$23, $20→$23, $e6→$eb, $e7→$eb), then fall back to
 ; checking whether card $23 or $eb is in the deck but not in hand.
 .deck_38
-	ld bc, $1f
-	ld de, $23
+	ld bc, EKANS_LV10
+	ld de, DARK_ARBOK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $20
-	ld de, $23
+	ld bc, EKANS_LV15
+	ld de, DARK_ARBOK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $e6
-	ld de, $eb
+	ld bc, DIGLETT_LV8
+	ld de, DARK_DUGTRIO
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $e7
-	ld de, $eb
+	ld bc, DIGLETT_LV15
+	ld de, DARK_DUGTRIO
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld de, $23
+	ld de, DARK_ARBOK
 	farcall IsCardIDInDeckAndNotInHand
 	ret c
-	ld de, $eb
+	ld de, DARK_DUGTRIO
 	farcall IsCardIDInDeckAndNotInHand
 	ret
 ; deck $39: three evolution chain checks ($5b→$5d, $34→$37, $37→$39).
 .deck_39
-	ld bc, $5b
-	ld de, $5d
+	ld bc, CHARMANDER_LV12
+	ld de, DARK_CHARMELEON
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $34
-	ld de, $37
+	ld bc, ODDISH_LV8
+	ld de, DARK_GLOOM
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $37
-	ld de, $39
+	ld bc, DARK_GLOOM
+	ld de, DARK_VILEPLUME
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23539
@@ -4970,12 +4970,12 @@ AIDecide_TheBosssWay:
 ; deck $3f's The Boss's Way policy: walk a 3-stage evolution chain
 ; ($e -> $11 -> $15) by checking $e->$11 and $11->$15 advances.
 AIDecide_TheBosssWay_Deck3F:
-	ld bc, $e
-	ld de, $11
+	ld bc, BULBASAUR_LV15
+	ld de, DARK_IVYSAUR
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $11
-	ld de, $15
+	ld bc, DARK_IVYSAUR
+	ld de, DARK_VENUSAUR
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x2354f
@@ -5040,20 +5040,20 @@ AIDecide_TheBosssWay_Deck5A:
 ; "fetch from opponent's deck along an evolution line" pattern that
 ; decks $38 and $39 use, just with different card-ID pairs.
 AIDecide_TheBosssWay_Deck6A:
-	ld bc, $2e
-	ld de, $33
+	ld bc, ZUBAT_LV9
+	ld de, DARK_GOLBAT
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $47
-	ld de, $4a
+	ld bc, GRIMER_LV10
+	ld de, DARK_MUK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $14a
-	ld de, $14d
+	ld bc, RATTATA_LV12
+	ld de, DARK_RATICATE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $15d
-	ld de, $163
+	ld bc, MEOWTH_LV10
+	ld de, DARK_PERSIAN_LV28
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
 ; 0x235f9
@@ -5125,11 +5125,11 @@ AIDecide_NightlyGarbageRun_Deck41:
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld [wTempAIMultiTargetCardDeckIndex3], a
 	ld a, $02
-	ld de, $39
+	ld de, DARK_VILEPLUME
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	ld a, $02
-	ld de, $37
+	ld de, DARK_GLOOM
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	ld a, $02
@@ -5201,7 +5201,7 @@ AIDecide_NightlyGarbageRun_Deck49:
 	ld a, [$c511]
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld a, $02
-	ld de, $65
+	ld de, DARK_NINETALES
 	farcall FindCardIDInLocation
 	ret c
 	ld a, [$c512]
@@ -5236,17 +5236,17 @@ AIDecide_NightlyGarbageRun_Deck55:
 	jr .pack
 .add_pokemon
 	ld a, $02
-	ld de, $12e
+	ld de, DARK_GENGAR
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
 	ld a, $02
-	ld de, $12b
+	ld de, DARK_HAUNTER
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
 	ld a, $02
-	ld de, $126
+	ld de, GASTLY_LV17
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
@@ -5447,13 +5447,13 @@ AIDecide_MasterBall:
 	ret
 ; deck $13: priority targets are card IDs $de, $df, $e0; else AITryMasterBall
 .deck_13
-	ld de, $de
+	ld de, ZAPDOS_LV28
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $df
+	ld de, ZAPDOS_LV40
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $e0
+	ld de, ZAPDOS_LV64
 	farcall AITryMasterBall_GivenTarget
 	ret c
 	farcall AITryMasterBall
@@ -5463,7 +5463,7 @@ AIDecide_MasterBall:
 ; develop instead. Otherwise pull from a fixed priority list of
 ; target card IDs.
 .deck_14
-	ld de, $1b8
+	ld de, POKEBALL
 	farcall LookForCardIDInHand
 	jr nc, .deck_14_pick
 .deck_14_skip
@@ -5477,28 +5477,28 @@ AIDecide_MasterBall:
 	farcall CountNumberOfBasicPokemonInHand
 	or a
 	jr nz, .deck_14_skip
-	ld de, $c1
+	ld de, FLYING_PIKACHU_LV12
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $c2
+	ld de, FLYING_PIKACHU_ALT_LV12
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $bf
+	ld de, PIKACHU_LV16
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $c0
+	ld de, PIKACHU_ALT_LV16
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $bb
+	ld de, PIKACHU_LV5
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $bd
+	ld de, PIKACHU_LV13
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $c3
+	ld de, SURFING_PIKACHU_LV13
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $c4
+	ld de, SURFING_PIKACHU_ALT_LV13
 	farcall AITryMasterBall_GivenTarget
 	ret c
 	farcall AITryMasterBall
@@ -5511,13 +5511,13 @@ SECTION "Bank 8@7d44", ROMX[$7d44], BANK[$8]
 ; card IDs deck $3f's Boss's Way decider walks ($11 then $15 then
 ; $e), then fall through to a generic AITryMasterBall.
 AIDecide_MasterBall_Deck3F:
-	ld de, $11
+	ld de, DARK_IVYSAUR
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $15
+	ld de, DARK_VENUSAUR
 	farcall AITryMasterBall_GivenTarget
 	ret c
-	ld de, $e
+	ld de, BULBASAUR_LV15
 	farcall AITryMasterBall_GivenTarget
 	ret c
 	farcall AITryMasterBall
@@ -5691,7 +5691,7 @@ AIDecide_GoopGasAttack:
 	ld a, [wOpponentDeckID]
 	cp $67
 	jr z, .pick_target
-	ld de, $49
+	ld de, MUK
 	ld b, $00
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	jr nc, .pick_target
@@ -5769,7 +5769,7 @@ AIDecide_ComputerError:
 AIPlay_SuperScoopUp:
 	ld a, [wAITrainerCardToPlay]
 	ldh [hTempCardIndex_ff9f], a
-	ld de, $10e
+	ld de, $10e ; coin-toss prompt text ID (not a card ID)
 	bank1call TossCoin
 	ldh [hTemp_ffa0], a
 	jr nc, .tails

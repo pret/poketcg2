@@ -108,8 +108,17 @@ functions.
 Applies to new functions AND **boy-scout**: when a trace analysis brings
 you to an existing line whose hex operand is clearly a card ID, replace
 it with the label in the same pass — leave the code better than you
-found it. (No *dedicated* sweep of untouched code; the wholesale
-retroactive rename is still reserved for bank-8 completion.)
+found it.
+
+**The wholesale retroactive pass was done early on 2026-06-03** (user
+request): all 189 card-ID operands in `bank08.asm` are now named
+constants; only 2 in-range hex operands remain, both deliberately left
+and commented — `ld de, $10e` before `bank1call TossCoin` is a coin-toss
+prompt **text ID**, NOT a card (the classic "value in card range but not
+a card" trap; `de`/`bc` are only card IDs when consumed by a
+`*CardID*`/`AITryMasterBall_GivenTarget`/`Count*PkmnPower` helper). If new
+raw functions are later decompiled with hex card operands, re-run the
+pass; it's mechanical and `make compare`-verified.
 
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
