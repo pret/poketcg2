@@ -146,6 +146,18 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4e3c` | [`AIDecide_EnergyRemoval_Deck47`](../../../src/engine/bank08.asm) + `CheckIfEnergyRemovalDisruptsBigAttack` | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$4de7` | [`AIDecide_EnergyRemoval_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya (deck $45 Quick Attack + $50 Running Wild shared; Double Colorless priority) | 2026-06-02 |
 | `$08` | `$4e90` | [`AIDecide_EnergyRemoval_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima (deck $4a Whirlpool Shower; Dark Vaporeon/Starmie cards) | 2026-06-02 |
+| `$08` | `$4ede` | [`AIDecide_EnergyRemoval_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (deck $55 Spirited Away) | 2026-06-02 |
+| `$08` | `$4f05` | [`AIDecide_EnergyRemoval_Deck74`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (trampoline to bank-13 Func_4c676) | 2026-06-02 |
+| `$08` | `$4f0a` | [`AIPlay_SuperEnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (SUPER_ENERGY_REMOVAL table entry, was raw) | 2026-06-02 |
+| `$08` | `$4f33` | [`AIDecide_SuperEnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfPlayAreaCardHasTwoEnergy`, `CheckIfRemovingEnergyDisruptsAttack`, `ScoreSuperEnergyRemovalTarget` | sameboy_trace duel-mami | 2026-06-02 |
+| `$08` | `$5610` | [`AIDecide_ProfessorOak_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (play Oak when hand < 8) | 2026-06-02 |
+| `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
+| `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 6 deck cases left raw) | 2026-06-02 |
+| `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
+| `$08` | `$52fb` | [`AIDecide_PokemonBreeder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (Gastly→Dark Gengar; PB dispatcher $50b6 still raw) | 2026-06-02 |
+| `$08` | `$6cfd` | [`AIPlay_ComputerSearch`](../../../src/engine/bank08.asm) + [`AIDecide_ComputerSearch`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (COMPUTER_SEARCH table entry; dispatcher, 8 deck cases left raw) | 2026-06-02 |
+| `$08` | `$6e0a` | [`AIDecide_ComputerSearch_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (trampoline to SpiritedAwayDeckAIDecideComputerSearch) | 2026-06-02 |
+| `$08` | `$78f2` | [`AIDecide_NightlyGarbageRun_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (rescue energies + Psychic line from discard) | 2026-06-02 |
 | `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6bbb` | [`AIDecide_Pokeball_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima | 2026-06-02 |
@@ -227,7 +239,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 48.85% (~7.8 KiB of 16 KiB).
+**Source-defined**: 54.42% (~8.7 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -242,6 +254,15 @@ the target (helps justify future decomp prioritization).
 - `$4de7-$4e3b` — `AIDecide_EnergyRemoval_Deck45Or50` (Double Colorless priority pass + standard "would-KO + meaningful-HP" gate).
 - `$4e3c-$4e8f` — `AIDecide_EnergyRemoval_Deck47` + `CheckIfEnergyRemovalDisruptsBigAttack`.
 - `$4e90-$4edd` — `AIDecide_EnergyRemoval_Deck4A`.
+- `$4ede-$507a` — `AIDecide_EnergyRemoval_Deck55` + `AIDecide_EnergyRemoval_Deck74` (trampoline) + `AIPlay_SuperEnergyRemoval` + `AIDecide_SuperEnergyRemoval` (with embedded `.check_discardable_energy` + 3 helpers `CheckIfPlayAreaCardHasTwoEnergy`, `CheckIfRemovingEnergyDisruptsAttack`, `ScoreSuperEnergyRemovalTarget`).
+- `$52fb-$5322` — `AIDecide_PokemonBreeder_Deck55` (standalone; parent dispatcher `$50b6` still raw).
+- `$5610-$5615` — `AIDecide_ProfessorOak_Deck55`.
+- `$5c4e-$5c58` — `RemoveCardFromListByValue`.
+- `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; 6 deck cases left raw).
+- `$6542-$65ac` — `AIDecide_ItemFinder_Deck55`.
+- `$6cfd-$6d58` — `AIPlay_ComputerSearch` + `AIDecide_ComputerSearch` (dispatcher; 8 deck cases left raw).
+- `$6e0a-$6e0e` — `AIDecide_ComputerSearch_Deck55` (trampoline).
+- `$78f2-$7955` — `AIDecide_NightlyGarbageRun_Deck55`.
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
 - `$6b60-$6bba` — `AIDecide_Pokeball_Deck47`.
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
@@ -306,11 +327,13 @@ parens.
 
 1. `$57c8-$5a83` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. None traced yet — each needs a duel against the owning deck. (The shared helper at `$5a8c` is now landed as `RemoveCardFromListAtHL`.)
 2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
+2b. `$50b6-$53ba` (POKEMON_BREEDER decide) — 774-byte `AIDecide_PokemonBreeder` dispatcher (`IsPrehistoricPowerActive` gate, 7 deck cases `$3d/$41/$4e/$53/$55/$6f/$70`, big default Stage-2 evolution scoring path scanning VENUSAUR/BLASTOISE/VILEPLUME etc.). Deck-$55 case `$52fb` now landed standalone; the dispatcher + scoring + other 6 deck cases remain raw.
+2c. ITEMFINDER decide other deck cases (`$6421/$6475/$64c2/$65ad/$662b/$6630`) and COMPUTER_SEARCH decide other deck cases (`$6d59/$6d5e/$6dbe/$6e0f/$6e14/$6e19/$6e1e/$6e23`) — small per-deck sub-functions, untraced.
 3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
    - `$4365` (POTION Phase 10, deck `$45` Quick Attack)
    - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
    - `$4bc5d` in bank `$12` (POTION Phase 11, deck `$74` delegate)
-   - `$5528-$563e` (PROFESSOR_OAK, remaining deck-specific cases `$11, $2d, $32, $3a, $3b, $55, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72` — `$53` now landed)
+   - `$5528-$563e` (PROFESSOR_OAK, remaining deck-specific cases `$11, $2d, $32, $3a, $3b, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72` — `$53`, `$55` now landed)
 4. Other `AIDecide_*` / `AIPlay_*` table entries still pointing at raw hex — most plays are AIMakeDecision wrappers, structurally identical to the ones already landed. Most decides are small.
 
 ### Trace coverage status
@@ -349,10 +372,11 @@ parens.
 | duel-kanoko | **0** ✓ (played PROFESSOR_OAK + MR_FUJI + POKEMON_TRADER as deck $4d) |
 | duel-gouda | 5 (deck $4e; rest in deferred SUPER_ER) |
 | duel-grace | 19 (deck $4f; rest in deck-$4f's ER handler at `$59cd` + deferred SUPER_ER) |
-| duel-kamiya | 48 (deck $50; rest in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw + deferred SUPER_ER) |
+| duel-kamiya | 48 (deck $50; rest in deferred SUPER_ER — ITEMFINDER decide now landed) |
 | duel-kevin | **0** ✓ (2-duel trace; both decks fell through ER dispatcher to `.default` → `ret nc`) |
 | duel-ryoko | **0** ✓ (no trainer cards played all duel; no AIPlay_* entry fired) |
 | duel-yosuke | **0** ✓ (deck $53 Bad Dream; landed deck-$53 cases for SLEEP, FULL_HEAL, PROFESSOR_OAK, POKEBALL) |
+| duel-mami | 4 (deck $55 Spirited Away; played 7 trainer cards incl. SUPER_ENERGY_REMOVAL, ITEMFINDER, COMPUTER_SEARCH — all landed; remaining 4 hits are the deferred POKEMON_BREEDER dispatcher cp-chain) |
 | duel-miwa | **0** ✓ (deck $51 Direct Hit; landed `RemoveCardFromListAtHL` + POKEMON_TRADER/THE_BOSSS_WAY deck-$51) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 5 / 7 (only in deferred SUPER_ER territory) |

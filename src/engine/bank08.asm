@@ -22,7 +22,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, GUST_OF_WIND,           AIDecide_GustOfWind, AIPlay_GustOfWind
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         AIDecide_EnergyRemoval, AIPlay_EnergyRemoval
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   $4f33, $4f0a
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   AIDecide_SuperEnergyRemoval, AIPlay_SuperEnergyRemoval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       AIDecide_EnergyRetrieval, AIPlay_EnergyRetrieval
@@ -37,7 +37,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, AIPlay_ItemFinder
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             AIDecide_ItemFinder, AIPlay_ItemFinder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_ImakuniCard, AIPlay_ImakuniCard
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
@@ -45,7 +45,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, CLEFAIRY_DOLL,          $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, MYSTERIOUS_FOSSIL,      $6864, $6858
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEBALL,               AIDecide_Pokeball, AIPlay_Pokeball
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        $6d20, $6cfd
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, COMPUTER_SEARCH,        AIDecide_ComputerSearch, AIPlay_ComputerSearch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_TRADER,         AIDecide_PokemonTrader, AIPlay_PokemonTrader
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, THE_BOSSS_WAY,          AIDecide_TheBosssWay, AIPlay_TheBosssWay
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    AIDecide_NightlyGarbageRun, AIPlay_NightlyGarbageRun
@@ -1561,9 +1561,9 @@ AIDecide_EnergyRemoval:
 	cp $50
 	jp z, AIDecide_EnergyRemoval_Deck45Or50
 	cp $55
-	jp z, $4ede
+	jp z, AIDecide_EnergyRemoval_Deck55
 	cp $74
-	jp z, $4f05
+	jp z, AIDecide_EnergyRemoval_Deck74
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr nc, .skip_arena
 	ld a, $01
@@ -1892,6 +1892,280 @@ AIDecide_EnergyRemoval_Deck4A:
 	ret
 ; 0x20ede
 
+SECTION "Bank 8@4ede", ROMX[$4ede], BANK[$8]
+
+; deck $55 (Spirited Away) Energy Removal policy: don't bother if we can
+; already KO the defender from hand; otherwise, if the opponent's active
+; has any energy, remove one.
+AIDecide_EnergyRemoval_Deck55:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .consider
+	or a
+	ret
+.consider
+	ld e, $00
+	call SwapTurn
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call SwapTurn
+	or a
+	ret z
+	call SwapTurn
+	xor a
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+
+; deck $74 (Big Thunder) Energy Removal policy: delegated to a bank-13
+; helper.
+AIDecide_EnergyRemoval_Deck74:
+	farcall Func_4c676
+	ret
+
+; Forwards the pre-computed Super Energy Removal targets to the trainer
+; effect: the target Pokemon (slot1 = its discard energy), plus the two
+; energies to remove (slots 2/3) and a third in $d09a. $ffa7 = $ff caps
+; the list.
+AIPlay_SuperEnergyRemoval:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempRetreatCostCards], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ldh [hAIEnergyTransPlayAreaLocation], a
+	ld a, [$d09a]
+	ldh [$ffa6], a
+	ld a, $ff
+	ldh [$ffa7], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Super Energy Removal makes us discard one of our own energies to
+; remove two from a single opponent Pokemon. First find one of our own
+; play-area Pokemon carrying a non-Rainbow, non-Double-Colorless energy
+; we can afford to discard. Then pick the opponent Pokemon to strip: if
+; the defender can already KO us we look at the opponent's whole play
+; area, otherwise just their bench, preferring a target whose attack we
+; can disrupt, and among multiple disruptable targets the one estimated
+; to deal the most damage.
+AIDecide_SuperEnergyRemoval:
+	ld e, $01
+.find_discard_loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	jr z, .no_target
+	ld d, a
+	push de
+	call .check_discardable_energy
+	pop de
+	jr c, .have_discard
+	inc e
+	jr .find_discard_loop
+.check_discardable_energy
+	ld a, e
+	call CreateArenaOrBenchEnergyCardList
+	ld hl, wDuelTempList
+.scan_discard
+	ld a, [hli]
+	cp $ff
+	ret z
+	call GetCardIDFromDeckIndex
+	cp16 RAINBOW_ENERGY
+	jr z, .scan_discard
+	cp16 DOUBLE_COLORLESS_ENERGY
+	jr z, .scan_discard
+	scf
+	ret
+.no_target
+	or a
+	ret
+.have_discard
+	ld a, e
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr nc, .opp_bench_only
+	call SwapTurn
+	ld e, $01
+	jr .scan_opp_loop
+.opp_bench_only
+	call SwapTurn
+	ld e, $00
+.scan_opp_loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	jr z, .no_disrupt_target
+	ld d, a
+	call CheckIfPlayAreaCardHasTwoEnergy
+	jr c, .scan_opp_next
+	call CheckIfRemovingEnergyDisruptsAttack
+	jr nc, .disrupt_found
+.scan_opp_next
+	inc e
+	jr .scan_opp_loop
+.disrupt_found
+	ld a, e
+	or a
+	jr nz, .score_bench
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	farcall PickTwoAttachedEnergyCards
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, b
+	ld [$d09a], a
+	call SwapTurn
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	push af
+	farcall AIPickEnergyCardToDiscard
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	pop af
+	scf
+	ret
+.score_bench
+	xor a
+	ld [wd082], a
+	ld [wd084], a
+	ld e, $01
+.score_loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	cp $ff
+	jr z, .score_done
+	ld d, a
+	call CheckIfPlayAreaCardHasTwoEnergy
+	jr c, .score_next
+	call CheckIfRemovingEnergyDisruptsAttack
+	jr c, .score_next
+	call ScoreSuperEnergyRemovalTarget
+.score_next
+	inc e
+	jr .score_loop
+.score_done
+	ld a, [wd084]
+	or a
+	jr z, .no_disrupt_target
+	jr .commit
+.no_disrupt_target
+	call SwapTurn
+	or a
+	ret
+
+; Returns NC if play-area Pokemon e carries at least two units of energy
+; (counting the colorless-bucket byte at half weight) -- i.e. enough to
+; be worth a double removal. Carry SET means too little to bother.
+CheckIfPlayAreaCardHasTwoEnergy:
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp $02
+	ret c
+	xor a
+	ld b, $06
+	ld hl, wAttachedEnergies
+.sum
+	add [hl]
+	inc hl
+	dec b
+	jr nz, .sum
+	ld b, [hl]
+	srl b
+	add b
+	cp $02
+	ret
+
+; Returns NC ("disrupts") if removing energy from play-area Pokemon e
+; would stop one of its attacks: either an attack is currently usable
+; (so removal denies it), or for an affordable attack removal would cut
+; its damage by 2+.
+CheckIfRemovingEnergyDisruptsAttack:
+	push de
+	xor a
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr nc, .cannot_disrupt
+	pop de
+	push de
+	ld a, $01
+	ld [wSelectedAttack], a
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckEnergyNeededForAttack
+	jr nc, .attack1_check_reduce
+	pop de
+	scf
+	ret
+.cannot_disrupt
+	pop de
+	or a
+	ret
+.attack1_check_reduce
+	farcall CanRemovingEnergyReduceDamage
+	cp $02
+	jr c, .cannot_disrupt
+	pop de
+	scf
+	ret
+
+; Tracks the highest single-attack damage estimate across the opponent's
+; play area into wd082 (best damage) / wd084 (best slot), checking both
+; attacks of play-area Pokemon e.
+ScoreSuperEnergyRemovalTarget:
+	push de
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	xor a
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wDamage]
+	or a
+	jr z, .attack1
+	ld e, a
+	ld a, [wd082]
+	cp e
+	jr nc, .attack1
+	ld a, e
+	ld [wd082], a
+	pop de
+	ld a, e
+	ld [wd084], a
+	jr .score_attack1
+.attack1
+	pop de
+.score_attack1
+	push de
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, $01
+	farcall EstimateDamage_VersusDefendingCard
+	ld a, [wDamage]
+	or a
+	jr z, .done
+	ld e, a
+	ld a, [wd082]
+	cp e
+	jr nc, .done
+	ld a, e
+	ld [wd082], a
+	pop de
+	ld a, e
+	ld [wd084], a
+	ret
+.done
+	pop de
+	ret
+; 0x2107b
+
 SECTION "Bank 8@507b", ROMX[$507b], BANK[$8]
 
 ; Pokemon Breeder is a non-standard play wrapper -- the trainer card
@@ -1927,6 +2201,32 @@ AIPlay_PokemonBreeder:
 	farcall AIMakeDecision
 	ret
 ; 0x210b6
+
+SECTION "Bank 8@52fb", ROMX[$52fb], BANK[$8]
+
+; deck $55 (Spirited Away) Pokemon Breeder case (reached from the still-
+; raw AIDecide_PokemonBreeder dispatcher at $50b6). Breed Gastly Lv17
+; ($126) straight up to Dark Gengar ($12e) when the Gastly is on the
+; field carrying 2+ energy and Dark Gengar is in hand.
+AIDecide_PokemonBreeder_Deck55:
+	ld de, $126
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld e, a
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp $02
+	ccf
+	ret nc
+	ld de, $12e
+	farcall LookForCardIDInHandList
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
 
 SECTION "Bank 8@53bc", ROMX[$53bc], BANK[$8]
 
@@ -1983,7 +2283,7 @@ AIDecide_ProfessorOak:
 	cp $53
 	jp z, AIDecide_ProfessorOak_Deck53
 	cp $55
-	jp z, $5610
+	jp z, AIDecide_ProfessorOak_Deck55
 	cp $57
 	jp z, $5616
 	cp $58
@@ -2170,6 +2470,17 @@ AIDecide_ProfessorOak_Deck53:
 	or a
 	ret
 ; 0x21610
+
+SECTION "Bank 8@5610", ROMX[$5610], BANK[$8]
+
+; deck $55 (Spirited Away) Professor Oak policy: play whenever our hand
+; has fewer than 8 cards (carry set), so we redraw a full 7 once we've
+; spent down.
+AIDecide_ProfessorOak_Deck55:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $08
+	ret
 
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
@@ -2484,6 +2795,23 @@ AIPlay_SuperEnergyRetrieval:
 	farcall AIMakeDecision
 	ret
 ; 0x21adf
+
+SECTION "Bank 8@5c4e", ROMX[$5c4e], BANK[$8]
+
+; Removes the first entry equal to A from the $ff-terminated list at hl,
+; shifting the remainder down (via RemoveCardFromListAtHL). hl is
+; preserved. Used by the Item Finder decider to drop the Item Finder
+; card itself (and other unwanted IDs) from the working hand list.
+RemoveCardFromListByValue:
+	push hl
+	ld b, a
+.find
+	ld a, [hli]
+	cp b
+	jr nz, .find
+	call RemoveCardFromListAtHL
+	pop hl
+	ret
 
 SECTION "Bank 8@5ce2", ROMX[$5ce2], BANK[$8]
 
@@ -3155,6 +3483,123 @@ AIPlay_ItemFinder:
 	farcall AIMakeDecision
 	ret
 
+SECTION "Bank 8@6396", ROMX[$6396], BANK[$8]
+
+; Item Finder decider. Seven decks have bespoke policies; the default
+; only fires if Energy Removal ($18b) is sitting in our discard to fetch
+; back. It then builds a hand list, drops Mr. Mime and Pokemon Trader
+; (cards we don't want to discard as the Item Finder cost), and uses the
+; first two duplicate cards in hand as the two discard targets.
+AIDecide_ItemFinder:
+	ld a, [wOpponentDeckID]
+	cp $1a
+	jp z, $6421
+	cp $1e
+	jp z, $6475
+	cp $50
+	jp z, $64c2
+	cp $55
+	jp z, AIDecide_ItemFinder_Deck55
+	cp $56
+	jp z, $65ad
+	cp $58
+	jp z, $662b
+	cp $6e
+	jp z, $6630
+	ld de, $18b
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr nc, .no_play
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+.scan_hand
+	ld a, [hli]
+	cp $ff
+	jr z, .pick_discards
+	ld b, a
+	call GetCardIDFromDeckIndex
+	cp16 MR_MIME_LV28
+	jr nz, .check_trader
+	call RemoveCardFromListAtHL
+	jr .scan_hand
+.check_trader
+	cp16 POKEMON_TRADER
+	jr nz, .scan_hand
+	call RemoveCardFromListAtHL
+	jr .scan_hand
+.pick_discards
+	ld hl, wDuelTempList
+	ld a, [wAITrainerCardToPlay]
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld hl, wDuelTempList
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+SECTION "Bank 8@6542", ROMX[$6542], BANK[$8]
+
+; deck $55 (Spirited Away) Item Finder policy: fetch the most valuable
+; trainer sitting in the discard, scanning in priority order -- Super
+; Energy Removal, Energy Removal, Bill, Energy Retrieval, Professor Oak,
+; Pokemon Breeder, Computer Search. Only commits if we still have 3+
+; basic energies in hand to pay (discard) for the Item Finder, using the
+; first two hand-list entries as the discard cost.
+AIDecide_ItemFinder_Deck55:
+	ld de, $199
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $18b
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $1b2
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $18c
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $18e
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $1ae
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, $1a3
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+.no_play
+	or a
+	ret
+.found
+	ld [wd082], a
+	farcall CountBasicEnergyCardsInHand
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
+	ret
+
 SECTION "Bank 8@664d", ROMX[$664d], BANK[$8]
 
 AIPlay_ImakuniCard:
@@ -3737,6 +4182,65 @@ AIDecide_Pokeball_Deck53:
 	farcall FindCardIDInLocation
 	ret
 ; 0x22ca2
+
+SECTION "Bank 8@6cfd", ROMX[$6cfd], BANK[$8]
+
+; Forwards the two pre-chosen discard targets to Computer Search's
+; trainer effect.
+AIPlay_ComputerSearch:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTempRetreatCostCards], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Computer Search dispatcher: never play with fewer than 3 cards in hand
+; (it discards two as its cost). Nine decks have bespoke policies; every
+; other deck declines.
+AIDecide_ComputerSearch:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $03
+	jr c, .no_play
+	ld a, [wOpponentDeckID]
+	cp $2d
+	jp z, $6d59
+	cp $3b
+	jp z, $6d5e
+	cp $41
+	jp z, $6dbe
+	cp $55
+	jp z, AIDecide_ComputerSearch_Deck55
+	cp $57
+	jp z, $6e0f
+	cp $58
+	jp z, $6e14
+	cp $6e
+	jp z, $6e19
+	cp $6f
+	jp z, $6e1e
+	cp $70
+	jp z, $6e23
+.no_play
+	or a
+	ret
+
+SECTION "Bank 8@6e0a", ROMX[$6e0a], BANK[$8]
+
+; deck $55 (Spirited Away) Computer Search policy: delegated to a bank-13
+; helper.
+AIDecide_ComputerSearch_Deck55:
+	farcall SpiritedAwayDeckAIDecideComputerSearch
+	ret
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 
@@ -4391,7 +4895,7 @@ AIDecide_NightlyGarbageRun:
 	cp $49
 	jp z, AIDecide_NightlyGarbageRun_Deck49
 	cp $55
-	jp z, $78f2
+	jp z, AIDecide_NightlyGarbageRun_Deck55
 	cp $58
 	jp z, $7956
 	cp $5a
@@ -4507,6 +5011,61 @@ AIDecide_NightlyGarbageRun_Deck49:
 	or a
 	ret
 ; 0x238f2
+
+SECTION "Bank 8@78f2", ROMX[$78f2], BANK[$8]
+
+; deck $55 (Spirited Away) Nightly Garbage Run policy: pull back up to
+; three cards from the discard pile. First grab every basic energy
+; found, then top up with the deck's Psychic line from discard --
+; Gastly Lv17 ($126), Dark Haunter ($12b), Dark Gengar ($12e). Returns
+; with the chosen deck indices packed into the first two target slots.
+AIDecide_NightlyGarbageRun_Deck55:
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, $02
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .add_pokemon
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .energy_loop
+	jr .pack
+.add_pokemon
+	ld a, $02
+	ld de, $12e
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	ld a, $02
+	ld de, $12b
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	ld a, $02
+	ld de, $126
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	or a
+	ret
+.pack
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	ret z
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	pop af
+	scf
+	ret
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 
