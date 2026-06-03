@@ -173,6 +173,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5616` | `AIDecide_ProfessorOak_Deck57`…`_Deck72` (9 per-deck delegates) | sameboy_trace duel-ishii ($57 Eye of the Storm = Ishii; thin bank-$0e/$12 delegates, deck $5d still raw Func_4c4ba) | 2026-06-02 |
 | `$08` | `$5a0b` | `AIDecide_EnergyRetrieval_Deck57` | sameboy_trace duel-ishii (Eye of the Storm; bank-$0e delegate, rest of $57c8-$5a8c gap still raw) | 2026-06-02 |
 | `$08` | `$5a53` | `AIDecide_EnergyRetrieval_Deck6C` | sameboy_trace duel-ronald2 ($6c Ronald's Psychic = ronald2; bank-$12 helper then rejoin .got_target) | 2026-06-02 |
+| `$08` | `$5a19` | `AIDecide_EnergyRetrieval_Deck5D` | sameboy_trace duel-rui ($5d Psychic Battle; raw Func_4c524 then rejoin .got_target) | 2026-06-03 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
 | `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
@@ -189,6 +190,7 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6bf8` | [`AIDecide_Pokeball_Deck4B`](../../../src/engine/bank08.asm) | sameboy_trace duel-senta | 2026-06-02 |
 | `$08` | `$6c35` | [`AIDecide_Pokeball_Deck4E`](../../../src/engine/bank08.asm) | sameboy_trace duel-gouda (uses `CheckReelInEvoLineTarget`) | 2026-06-02 |
 | `$08` | `$489c` | [`AIDecide_Switch_Phase16`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
+| `$08` | `$49a7` | `AIDecide_Switch_Phase16_Deck5B`…`_Deck72` (12 per-deck delegates) | sameboy_trace duel-rui ($5c hit; thin bank-$0e/$12 delegates; decks $32/$3a/$3b/$3d inline deciders still raw) | 2026-06-03 |
 | `$08` | `$49e3` | [`AIPlay_GustOfWind`](../../../src/engine/bank08.asm) | sameboy_trace duel-takahashi | 2026-06-01 |
 | `$08` | `$4c32` | [`AIPlay_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
 | `$08` | `$4c3e` | [`AIDecide_Bill`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr-leader | 2026-06-01 |
@@ -272,8 +274,8 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 58.59% (~9.4 KiB of 16 KiB).
-**Last updated**: 2026-06-02.
+**Source-defined**: 59.01% (~9.4 KiB of 16 KiB).
+**Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
 - `$4000-$4c32` — `AITrainerCardLogic` table + early decompiled functions through `Func_20be6.return_with_carry`.
@@ -292,6 +294,7 @@ the target (helps justify future decomp prioritization).
 - `$5610-$5615` — `AIDecide_ProfessorOak_Deck55`.
 - `$5616-$5642` — `AIDecide_ProfessorOak_Deck57/_58/_5A/_5C/_5D/_6E/_70/_71/_72` (9 thin per-deck delegates; $5d = raw Func_4c4ba).
 - `$5a0b-$5a0f` — `AIDecide_EnergyRetrieval_Deck57` (Eye of the Storm delegate; isolated in the still-raw $57c8-$5a8c EnergyRetrieval deck-case block).
+- `$5a19-$5a21` — `AIDecide_EnergyRetrieval_Deck5D` (Psychic Battle; raw Func_4c524 then rejoins `.got_target`; isolated in that block).
 - `$5a53-$5a5b` — `AIDecide_EnergyRetrieval_Deck6C` (Ronald's Psychic; bank-$12 helper, then rejoins `AIDecide_EnergyRetrieval.got_target`; also isolated in that block).
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
 - `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
@@ -305,7 +308,8 @@ the target (helps justify future decomp prioritization).
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
 - `$6bf8-$6c34` — `AIDecide_Pokeball_Deck4B`.
 - `$6c35-$6c5b` — `AIDecide_Pokeball_Deck4E`.
-- `$489c-$48fb` — `AIDecide_Switch_Phase16` (deck-specific Func_209xx sub-deciders left raw).
+- `$489c-$48fb` — `AIDecide_Switch_Phase16` (decks $32/$3a/$3b/$3d inline sub-deciders $4902-$49a6 still raw).
+- `$49a7-$49e2` — `AIDecide_Switch_Phase16_Deck5B…_Deck72` (12 thin per-deck delegates).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
 - `$6f1b-$6f87` — `AIDecide_PokemonTrader_Deck18`.

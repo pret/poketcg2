@@ -1087,35 +1087,76 @@ AIDecide_Switch_Phase16:
 	cp $3d
 	jp z, $494f
 	cp $5b
-	jp z, $49a7
+	jp z, AIDecide_Switch_Phase16_Deck5B
 	cp $5c
-	jp z, $49ac
+	jp z, AIDecide_Switch_Phase16_Deck5C
 	cp $5d
-	jp z, $49b1
+	jp z, AIDecide_Switch_Phase16_Deck5D
 	cp $5e
-	jp z, $49b6
+	jp z, AIDecide_Switch_Phase16_Deck5E
 	cp $5f
-	jp z, $49bb
+	jp z, AIDecide_Switch_Phase16_Deck5F
 	cp $60
-	jp z, $49c0
+	jp z, AIDecide_Switch_Phase16_Deck60
 	cp $61
-	jp z, $49c5
+	jp z, AIDecide_Switch_Phase16_Deck61
 	cp $66
-	jp z, $49ca
+	jp z, AIDecide_Switch_Phase16_Deck66
 	cp $6e
-	jp z, $49cf
+	jp z, AIDecide_Switch_Phase16_Deck6E
 	cp $6f
-	jp z, $49d4
+	jp z, AIDecide_Switch_Phase16_Deck6F
 	cp $70
-	jp z, $49d9
+	jp z, AIDecide_Switch_Phase16_Deck70
 	cp $72
-	jp z, $49de
+	jp z, AIDecide_Switch_Phase16_Deck72
 .skip
 	or a
 	ret
 ; 0x208fc
+; (decks $32/$3a/$3b/$3d have bespoke inline sub-deciders at $4902-$49a6,
+; still raw)
 
-SECTION "Bank 8@49e3", ROMX[$49e3], BANK[$8]
+SECTION "Bank 8@49a7", ROMX[$49a7], BANK[$8]
+
+; Twelve decks delegate their Phase-16 Switch decision to a per-deck AI
+; helper in bank $0e/$12.
+AIDecide_Switch_Phase16_Deck5B:
+	farcall PoisonMistDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck5C:
+	farcall UltraRemovalDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck5D:
+	farcall PsychicBattleDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck5E:
+	farcall StopLifeDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck5F:
+	farcall ScorcherDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck60:
+	farcall TsunamiStarterDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck61:
+	farcall SmashToMincemeatDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck66:
+	farcall PowerfulPokemonDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck6E:
+	farcall EverybodysFriendDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck6F:
+	farcall ImmortalPokemonDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck70:
+	farcall TorrentialFloodDeckAIDecideSwitch
+	ret
+AIDecide_Switch_Phase16_Deck72:
+	farcall BlazingFlameDeckAIDecideSwitch
+	ret
 
 ; Shared play function for both AI_TRAINER_CARD_PHASE_07 and
 ; AI_TRAINER_CARD_PHASE_10 GUST_OF_WIND entries. Sets the
@@ -2580,7 +2621,7 @@ AIDecide_EnergyRetrieval:
 	cp $5a
 	jp z, $5a10
 	cp $5d
-	jp z, $5a19
+	jp z, AIDecide_EnergyRetrieval_Deck5D
 	cp $5f
 	jp z, $5a22
 	cp $63
@@ -2735,6 +2776,18 @@ SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
 AIDecide_EnergyRetrieval_Deck57:
 	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
 	ret
+
+SECTION "Bank 8@5a19", ROMX[$5a19], BANK[$8]
+
+; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (Func_4c524,
+; still raw) picks the target; on success rejoin AIDecide_EnergyRetrieval's
+; shared commit tail (.got_target). Also carved out of the still-raw
+; $57c8-$5a8c block.
+AIDecide_EnergyRetrieval_Deck5D:
+	farcall Func_4c524
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
 
 SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
 
