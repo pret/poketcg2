@@ -64,6 +64,21 @@ consideration. `0` is the Arena, `1`-`5` are bench slots. This maps
 through `add DUELVARS_ARENA_CARD; get_turn_duelist_var` to the deck
 index of whatever Pokemon is at that slot.
 
+**Deck IDs (`wOpponentDeckID`) are `*_DECK_ID` values, NOT `deck_const`
+ordinals.** The `cp $NN` checks in every dispatcher compare against the
+`*_DECK_ID` namespace (defined via `deck_duel` in
+[src/data/deck_id_data.asm](../../../src/data/deck_id_data.asm)), which
+differs from the `deck_const` collection ordinal in
+[src/constants/deck_constants.asm](../../../src/constants/deck_constants.asm).
+E.g. `DIRECT_HIT_DECK_ID = $51` but `deck_const DIRECT_HIT_DECK = $53`.
+**To name a deck, never read the `deck_const ; $NN` comment** — instead
+resolve `<NAME>_DECK_ID` with an rgbasm probe, or (most reliable)
+identify the deck by the card IDs the decompiled function searches and
+match them against the card lists in
+[src/data/decks.asm](../../../src/data/decks.asm). The `_DeckNN` label
+suffix is always the hex `*_DECK_ID` literal from the `cp` instruction.
+Known so far: `$51`=Direct Hit, `$53`=Bad Dream.
+
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
 pattern (`scf; ret` = success, `or a; ret` = fail). Watch for
@@ -142,10 +157,13 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5d2d` | [`AIPlay_EnergySearch`](../../../src/engine/bank08.asm) | sameboy_trace duel-ronald | 2026-06-01 |
 | `$08` | `$5d3e` | [`AIDecide_EnergySearch`](../../../src/engine/bank08.asm) + Deck0D + Deck66 + helper `LookForEnergyUsefulToPlayArea` | sameboy_trace duel-ronald | 2026-06-01 |
 | `$08` | `$5f6f` | [`AIDecide_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 (shared SCOOP_UP helper `$60ed` still raw) | 2026-06-01 |
-| `$08` | `$602b` | [`AIDecide_FullHeal_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (deck $53 Direct Hit; gated on defender Asleep) | 2026-06-02 |
+| `$08` | `$602b` | [`AIDecide_FullHeal_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (deck $53 Bad Dream; gated on defender Asleep) | 2026-06-02 |
 | `$08` | `$55e8` | [`AIDecide_ProfessorOak_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (hand 5-10 unless holding Gastly/Haunter22/Drowzee) | 2026-06-02 |
 | `$08` | `$6c5c` | [`AIDecide_Pokeball_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (7-card deck search of the Psychic line) | 2026-06-02 |
 | `$08` | `$7a73` | [`AIDecide_Sleep_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (Haunter22 active + defender not already Asleep) | 2026-06-02 |
+| `$08` | `$5a8c` | [`RemoveCardFromListAtHL`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (shared list-compaction helper; used by ER + ITEMFINDER) | 2026-06-02 |
+| `$08` | `$73d8` | [`AIDecide_PokemonTrader_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (deck $51 Direct Hit; Abra/Mewtwo/Dark Alakazam line) | 2026-06-02 |
+| `$08` | `$7586` | [`AIDecide_TheBosssWay_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (same chains as deck $51 Trader) | 2026-06-02 |
 | `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$603e` | [`AIPlay_MrFuji`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko | 2026-06-02 |
 | `$08` | `$604f` | [`AIDecide_MrFuji`](../../../src/engine/bank08.asm) + `Deck4D` + `Deck6D` | sameboy_trace duel-kanoko | 2026-06-02 |
@@ -196,7 +214,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 47.71% (~7.6 KiB of 16 KiB).
+**Source-defined**: 48.85% (~7.8 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -223,10 +241,13 @@ the target (helps justify future decomp prioritization).
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).
-- `$602b-$603d` — `AIDecide_FullHeal_Deck53` (deck $53; gates on opponent Asleep, jumps back to `AIDecide_FullHeal.no_play`/`.play`).
+- `$602b-$603d` — `AIDecide_FullHeal_Deck53` (deck $53 Bad Dream; gates on opponent Asleep, jumps back to `AIDecide_FullHeal.no_play`/`.play`).
 - `$55e8-$560f` — `AIDecide_ProfessorOak_Deck53`.
 - `$6c5c-$6ca1` — `AIDecide_Pokeball_Deck53`.
 - `$7a73-$7a8f` — `AIDecide_Sleep_Deck53` (jumps back to `AIDecide_Sleep.no_play`).
+- `$5a8c-$5a9c` — `RemoveCardFromListAtHL` (shared list-compaction helper).
+- `$73d8-$7455` — `AIDecide_PokemonTrader_Deck51` (deck $51 Direct Hit; solo priority-fetch + evolution-chain walk).
+- `$7586-$75b1` — `AIDecide_TheBosssWay_Deck51` (same chains as the deck $51 Trader).
 - `$603e-$60d6` — `AIPlay_MrFuji` + `AIDecide_MrFuji` + `AIDecide_MrFuji_Deck4D` + `AIDecide_MrFuji_Deck6D`.
 - `$60d7-$61e1` — `AIPlay_ScoopUp` + `AIDecide_ScoopUp` (inline `.deck_3c`; 8 other deck cases left raw).
 - `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).
@@ -270,7 +291,7 @@ the target (helps justify future decomp prioritization).
 Addresses listed are bank-$08 CPU addresses; nearest table card in
 parens.
 
-1. `$57c8-$5a9c` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. The shared list-add helper at `$5a8c` (`Func_21a8c`, also used by ITEMFINDER decide) sits in this range. None traced yet — each needs a duel against the owning deck.
+1. `$57c8-$5a83` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. None traced yet — each needs a duel against the owning deck. (The shared helper at `$5a8c` is now landed as `RemoveCardFromListAtHL`.)
 2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
 3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
    - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
@@ -318,7 +339,8 @@ parens.
 | duel-kamiya | 48 (deck $50; rest in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw + deferred SUPER_ER) |
 | duel-kevin | **0** ✓ (2-duel trace; both decks fell through ER dispatcher to `.default` → `ret nc`) |
 | duel-ryoko | **0** ✓ (no trainer cards played all duel; no AIPlay_* entry fired) |
-| duel-yosuke | **0** ✓ (deck $53 Direct Hit; landed deck-$53 cases for SLEEP, FULL_HEAL, PROFESSOR_OAK, POKEBALL) |
+| duel-yosuke | **0** ✓ (deck $53 Bad Dream; landed deck-$53 cases for SLEEP, FULL_HEAL, PROFESSOR_OAK, POKEBALL) |
+| duel-miwa | **0** ✓ (deck $51 Direct Hit; landed `RemoveCardFromListAtHL` + POKEMON_TRADER/THE_BOSSS_WAY deck-$51) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 5 / 7 (only in deferred SUPER_ER territory) |
 | duel-gene | 65 (mostly in deferred SUPER_ER territory + a few ER deck-specific handlers) |

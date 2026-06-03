@@ -2143,7 +2143,7 @@ AIDecide_ProfessorOak_Deck49Or4D:
 
 SECTION "Bank 8@55e8", ROMX[$55e8], BANK[$8]
 
-; Deck $53 (Direct Hit): play Oak to refill a tiny hand (< 5 cards), or
+; Deck $53 (Bad Dream): play Oak to refill a tiny hand (< 5 cards), or
 ; for a mid-size hand (5-10) only if we're not already holding the key
 ; Psychic basics (Gastly, Haunter Lv22, Drowzee) -- redrawing would risk
 ; shuffling those evolution starters away. Never play with 11+ cards.
@@ -2377,7 +2377,7 @@ AIDecide_EnergyRetrieval:
 	jr nz, .second_slot
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex1], a
-	call $5a8c
+	call RemoveCardFromListAtHL
 	jr .next_play_area
 .second_slot
 	ld a, b
@@ -2399,7 +2399,7 @@ AIDecide_EnergyRetrieval:
 	jr nz, .fill_second
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex1], a
-	call $5a8c
+	call RemoveCardFromListAtHL
 	jr .fill_remaining
 .fill_second
 	ld a, b
@@ -2417,6 +2417,33 @@ AIDecide_EnergyRetrieval:
 	scf
 	ret
 ; 0x217c8
+
+SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
+
+; Removes the list entry just consumed from an $ff-terminated byte list.
+; On entry hl points one past that entry (i.e. the caller just did
+; `ld a, [hli]`); the remainder of the list is shifted down one byte to
+; overwrite it. hl ends at the deleted slot (now the next entry) and de
+; is preserved. Used by AIDecide_EnergyRetrieval and ITEMFINDER to drop
+; a card from wDuelTempList once it has been assigned to a target slot.
+RemoveCardFromListAtHL:
+	push de
+	ld d, h
+	ld e, l
+	dec hl
+	push hl
+.loop
+	ld a, [de]
+	ld [hli], a
+	cp $ff
+	jr z, .done
+	inc de
+	jr .loop
+.done
+	pop hl
+	pop de
+	ret
+; 0x21a9d
 
 SECTION "Bank 8@5a9d", ROMX[$5a9d], BANK[$8]
 
@@ -2785,7 +2812,7 @@ AIDecide_FullHeal:
 
 SECTION "Bank 8@602b", ROMX[$602b], BANK[$8]
 
-; Deck $53 (Direct Hit): when the defending Pokemon is Asleep -- which
+; Deck $53 (Bad Dream): when the defending Pokemon is Asleep -- which
 ; this sleep-lock deck engineers on purpose -- only Full Heal ourselves
 ; if we actually carry a status worth clearing. When the defender isn't
 ; asleep, fall back to the normal Full Heal logic.
@@ -3675,7 +3702,7 @@ AIDecide_Pokeball_Deck4E:
 
 SECTION "Bank 8@6c5c", ROMX[$6c5c], BANK[$8]
 
-; Deck $53 (Direct Hit): search the deck for any of the deck's Pokemon
+; Deck $53 (Bad Dream): search the deck for any of the deck's Pokemon
 ; line -- Haunter Lv22/Lv17, Drowzee, Kangaskhan, Gastly, Gengar, Dark
 ; Hypno -- returning the first one found (carry SET) so Poké Ball can
 ; fetch it.
@@ -3760,7 +3787,7 @@ AIDecide_PokemonTrader:
 	cp $4f
 	jp z, AIDecide_PokemonTrader_Deck4F
 	cp $51
-	jp z, $73d8
+	jp z, AIDecide_PokemonTrader_Deck51
 	cp $5a
 	jp z, $7456
 	cp $5b
@@ -4110,6 +4137,62 @@ AIDecide_PokemonTrader_Deck4F:
 	ret
 ; 0x233d8
 
+SECTION "Bank 8@73d8", ROMX[$73d8], BANK[$8]
+
+; deck $51's Pokemon Trader policy. Solo path (one Pokemon in play)
+; priority-fetches a basic from the deck ($171, $87, $139, $14b, $115).
+; Multi path walks the Abra -> Dark Kadabra -> Dark Alakazam chain
+; ($115 -> $11a -> $11d) plus the $87 -> $8a and $14b -> $14d advances.
+AIDecide_PokemonTrader_Deck51:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $01
+	jr nz, .multi
+	ld a, $00
+	ld de, $171
+	farcall FindCardIDInLocation
+	ld de, $171
+	jr c, .commit
+	ld a, $00
+	ld de, $87
+	farcall FindCardIDInLocation
+	ld de, $87
+	jr c, .commit
+	ld de, $139
+	farcall FindCardIDInLocation
+	ld de, $139
+	jr c, .commit
+	ld de, $14b
+	farcall FindCardIDInLocation
+	ld de, $14b
+	jr c, .commit
+	ld de, $115
+	farcall FindCardIDInLocation
+	ld de, $115
+	jr c, .commit
+.multi
+	ld bc, $115
+	ld de, $11a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld bc, $11a
+	ld de, $11d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld bc, $87
+	ld de, $8a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld bc, $14b
+	ld de, $14d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDifferentPokemonCardInHand
+	ret
+; 0x23456
+
 SECTION "Bank 8@7492", ROMX[$7492], BANK[$8]
 
 AIPlay_TheBosssWay:
@@ -4138,7 +4221,7 @@ AIDecide_TheBosssWay:
 	cp $4f
 	jp z, AIDecide_TheBosssWay_Deck4F
 	cp $51
-	jp z, $7586
+	jp z, AIDecide_TheBosssWay_Deck51
 	cp $58
 	jp z, $75b2
 	cp $5a
@@ -4221,6 +4304,30 @@ AIDecide_TheBosssWay_Deck4F:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23586
+
+SECTION "Bank 8@7586", ROMX[$7586], BANK[$8]
+
+; deck $51 (Direct Hit) The Boss's Way policy: walk the same evolution
+; chains its Pokemon Trader uses -- Abra -> Dark Kadabra -> Dark Alakazam
+; ($115 -> $11a -> $11d) plus $87 -> $8a and $14b -> $14d.
+AIDecide_TheBosssWay_Deck51:
+	ld bc, $115
+	ld de, $11a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $11a
+	ld de, $11d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $87
+	ld de, $8a
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, $14b
+	ld de, $14d
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+; 0x235b2
 
 SECTION "Bank 8@75cd", ROMX[$75cd], BANK[$8]
 
@@ -4438,7 +4545,7 @@ AIDecide_Sleep_Deck12:
 	scf
 	ret
 
-; Deck $53 (Direct Hit): only bother with Sleep when our active is
+; Deck $53 (Bad Dream): only bother with Sleep when our active is
 ; Haunter Lv22 (whose attack synergizes with a sleeping defender), and
 ; not if the defender is already Asleep.
 AIDecide_Sleep_Deck53:
