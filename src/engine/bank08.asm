@@ -325,9 +325,9 @@ AIDecide_Potion_Phase07:
 ;   $74: always returns "don't play".
 AIDecide_Potion_Phase10:
 	ld a, [wOpponentDeckID]
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_Potion_Phase10_Deck45
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, .skip
 	ld a, $14
 	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
@@ -471,7 +471,7 @@ AIDecide_Potion_Phase10_Deck45:
 ; helper that drives its bespoke Potion policy.
 AIDecide_Potion_Phase11:
 	ld a, [wOpponentDeckID]
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_Potion_Phase11_Deck74
 	or a
 	ret
@@ -521,9 +521,9 @@ AIDecide_Defender_Phase13:
 	or a
 	ret nz
 	ld a, [wOpponentDeckID]
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jr z, .deck_50
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, .deck_74
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr c, .no_play
@@ -653,11 +653,11 @@ AIDecide_Defender_Phase14:
 	ld e, a
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, [wOpponentDeckID]
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jr z, .no_play
-	cp $72
+	cp BLAZING_FLAME_DECK_ID
 	jr z, .deck_72
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jr z, .no_play
 	ld a, $06
 	call CheckLoadedAttackFlag
@@ -761,7 +761,7 @@ AIDecide_PlusPower_Phase13:
 	ccf
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jr z, .skip
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr c, .skip
@@ -890,23 +890,23 @@ AIDecide_PlusPower_Phase14:
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ld a, [wOpponentDeckID]
-	cp $32
+	cp GO_ARCANINE_DECK_ID
 	jr z, .skip
-	cp $3b
+	cp LEGENDARY_FOSSIL_DECK_ID
 	jr z, .skip
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_PlusPower_Phase14_Deck45
-	cp $4d
+	cp WATER_STREAM_DECK_ID
 	jr z, .skip
-	cp $5d
+	cp PSYCHIC_BATTLE_DECK_ID
 	jr z, .skip
-	cp $5e
+	cp STOP_LIFE_DECK_ID
 	jr z, .skip
-	cp $60
+	cp TSUNAMI_STARTER_DECK_ID
 	jr z, .skip
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jr z, .skip
-	cp $76
+	cp POISON_STORM_DECK_ID
 	jr z, .skip
 	call CheckIfAttackWontKOAlready
 	jr nc, .skip
@@ -1086,37 +1086,37 @@ AIDecide_Switch_Phase16:
 	farcall IswD035Zero
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $32
+	cp GO_ARCANINE_DECK_ID
 	jp z, $4902
-	cp $3a
+	cp GRAND_FIRE_DECK_ID
 	jp z, $493d
-	cp $3b
+	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $493d
-	cp $3d
+	cp GREAT_DRAGON_DECK_ID
 	jp z, $494f
-	cp $5b
+	cp POISON_MIST_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5B
-	cp $5c
+	cp ULTRA_REMOVAL_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5C
-	cp $5d
+	cp PSYCHIC_BATTLE_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5D
-	cp $5e
+	cp STOP_LIFE_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5E
-	cp $5f
+	cp SCORCHER_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5F
-	cp $60
+	cp TSUNAMI_STARTER_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck60
-	cp $61
+	cp SMASH_TO_MINCEMEAT_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck61
-	cp $66
+	cp POWERFUL_POKEMON_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck66
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck6E
-	cp $6f
+	cp IMMORTAL_POKEMON_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck6F
-	cp $70
+	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck70
-	cp $72
+	cp BLAZING_FLAME_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck72
 .skip
 	or a
@@ -1581,19 +1581,19 @@ AIPlay_EnergyRemoval:
 ; scoring bench-only candidates by estimated incoming damage.
 AIDecide_EnergyRemoval:
 	ld a, [wOpponentDeckID]
-	cp $11
+	cp ELECTRIC_SELFDESTRUCT_DECK_ID
 	jp z, $4d6b
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck45Or50
-	cp $47
+	cp FIREBALL_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck47
-	cp $4a
+	cp WHIRLPOOL_SHOWER_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck4A
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck45Or50
-	cp $55
+	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck55
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck74
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr nc, .scan_from_arena
@@ -2286,45 +2286,45 @@ AIDecide_ProfessorOak:
 	cp $36
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $11
+	cp ELECTRIC_SELFDESTRUCT_DECK_ID
 	jp z, $5528
-	cp $2d
+	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, $5546
-	cp $32
+	cp GO_ARCANINE_DECK_ID
 	jp z, $5565
-	cp $3a
+	cp GRAND_FIRE_DECK_ID
 	jp z, $559c
-	cp $3b
+	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $55c9
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck45Or50
-	cp $49
+	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck49Or4D
-	cp $4d
+	cp WATER_STREAM_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck49Or4D
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck45Or50
-	cp $53
+	cp BAD_DREAM_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck53
-	cp $55
+	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck55
-	cp $57
+	cp EYE_OF_THE_STORM_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck57
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck58
-	cp $5a
+	cp BAD_GUYS_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck5A
-	cp $5c
+	cp ULTRA_REMOVAL_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck5C
-	cp $5d
+	cp PSYCHIC_BATTLE_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck5D
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck6E
-	cp $70
+	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck70
-	cp $71
+	cp TRAINER_IMPRISON_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck71
-	cp $72
+	cp BLAZING_FLAME_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck72
 ; default scoring path
 	ld a, [hl]
@@ -2604,49 +2604,49 @@ AIPlay_EnergyRetrieval:
 ; discard as fuel.
 AIDecide_EnergyRetrieval:
 	ld a, [wOpponentDeckID]
-	cp $11
+	cp ELECTRIC_SELFDESTRUCT_DECK_ID
 	jp z, $57c8
-	cp $24
+	cp MAX_ENERGY_DECK_ID
 	jp z, $57d2
-	cp $2d
+	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, $581d
-	cp $35
+	cp ELECTRIC_CURRENT_SHOCK_DECK_ID
 	jp z, $589d
-	cp $40
+	cp STICKY_POISON_GAS_DECK_ID
 	jp z, $58cf
-	cp $48
+	cp EEVEE_SHOWDOWN_DECK_ID
 	jp z, $5937
-	cp $4a
+	cp WHIRLPOOL_SHOWER_DECK_ID
 	jp z, $5969
-	cp $4b
+	cp PARALYZED_PARALYZED_DECK_ID
 	jp z, $5969
-	cp $4c
+	cp BENCH_CALL_DECK_ID
 	jp z, $599b
-	cp $4f
+	cp FULL_STRENGTH_DECK_ID
 	jp z, $59cd
-	cp $57
+	cp EYE_OF_THE_STORM_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck57
-	cp $5a
+	cp BAD_GUYS_DECK_ID
 	jp z, $5a10
-	cp $5d
+	cp PSYCHIC_BATTLE_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck5D
-	cp $5f
+	cp SCORCHER_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck5F
-	cp $63
+	cp PROTOHISTORIC_DECK_ID
 	jp z, $5a2b
-	cp $64
+	cp TEXTURE_TUNER7_DECK_ID
 	jp z, $5a34
-	cp $6c
+	cp RONALDS_PSYCHIC_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck6C
-	cp $70
+	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, $5a5c
-	cp $72
+	cp BLAZING_FLAME_DECK_ID
 	jp z, $5a70
-	cp $73
+	cp DAMAGE_CHAOS_DECK_ID
 	jp z, $5a75
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, $5a7e
-	cp $75
+	cp POWER_OF_DARKNESS_DECK_ID
 	jp z, $5a83
 .default
 	farcall CountBasicEnergyCardsInHand
@@ -2661,23 +2661,23 @@ AIDecide_EnergyRetrieval:
 	jp c, .no_targets
 	push af
 	ld a, [wOpponentDeckID]
-	cp $19
+	cp PHANTOM_DECK_ID
 	jr z, .use_tagged_target
-	cp $22
+	cp SKILLED_WARRIOR_DECK_ID
 	jr z, .use_tagged_target
-	cp $32
+	cp GO_ARCANINE_DECK_ID
 	jr z, .use_tagged_target
-	cp $42
+	cp DANGEROUS_BENCH_DECK_ID
 	jp z, $591a
-	cp $44
+	cp THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
 	jp z, $592c
-	cp $45
+	cp QUICK_ATTACK_DECK_ID
 	jp z, $592c
-	cp $51
+	cp DIRECT_HIT_DECK_ID
 	jr z, .use_tagged_target
-	cp $62
+	cp TEST_YOUR_LUCK_DECK_ID
 	jp z, $592c
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, $591a
 	jr .got_target
 .use_tagged_target
@@ -2920,11 +2920,11 @@ AIPlay_ImposterProfessorOak:
 ; opponent has fewer than 6 cards in hand (try to deck them out).
 AIDecide_ImposterProfessorOak:
 	ld a, [wOpponentDeckID]
-	cp $59
+	cp VERY_RARE_CARD_DECK_ID
 	jr z, .deck_59_or_68
-	cp $67
+	cp WEIRD_DECK_ID
 	jr z, .play
-	cp $68
+	cp STRANGE_DECK_ID
 	jr z, .deck_59_or_68
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	call GetNonTurnDuelistVariable
@@ -2974,13 +2974,13 @@ AIPlay_EnergySearch:
 ; in the deck. Returns NC if there's no good pick.
 AIDecide_EnergySearch:
 	ld a, [wOpponentDeckID]
-	cp $09
+	cp AARONS_STEP1_DECK_ID
 	jr z, .deck_09_fighting_or_grass
-	cp $0b
+	cp AARONS_STEP2_DECK_ID
 	jr z, .deck_0b_psychic_or_grass
-	cp $0d
+	cp AARONS_STEP3_DECK_ID
 	jp z, AIDecide_EnergySearch_Deck0D
-	cp $66
+	cp POWERFUL_POKEMON_DECK_ID
 	jp z, AIDecide_EnergySearch_Deck66
 	farcall CreateEnergyCardListFromHand_OnlyBasicOrRecycleEnergy
 	jr c, .check_deck
@@ -2990,7 +2990,7 @@ AIDecide_EnergySearch:
 	or a
 	ret
 .check_deck
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall CreateBasicEnergyCardListInLocation
 	jr c, .skip
 	call LookForEnergyUsefulToPlayArea
@@ -3017,7 +3017,7 @@ AIDecide_EnergySearch:
 .pick_grass
 	ld de, GRASS_ENERGY
 .pick_in_deck
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
 
@@ -3039,14 +3039,14 @@ AIDecide_EnergySearch:
 ; via a jump table or function pointer.
 AIDecide_EnergySearch_GrassOnly:
 	ld de, GRASS_ENERGY
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
 
 ; deck $0d: always grab Psychic.
 AIDecide_EnergySearch_Deck0D:
 	ld de, PSYCHIC_ENERGY
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
 
@@ -3140,7 +3140,7 @@ AIDecide_FullHeal:
 	ccf
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $53
+	cp BAD_DREAM_DECK_ID
 	jp z, AIDecide_FullHeal_Deck53
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
@@ -3260,9 +3260,9 @@ AIPlay_MrFuji:
 ; scale -- otherwise the candidate isn't damaged enough to bother.
 AIDecide_MrFuji:
 	ld a, [wOpponentDeckID]
-	cp $4d
+	cp WATER_STREAM_DECK_ID
 	jp z, AIDecide_MrFuji_Deck4D
-	cp $6d
+	cp RONALDS_ULTRA_DECK_ID
 	jp z, AIDecide_MrFuji_Deck6D
 .default_scan
 	ld a, $ff
@@ -3387,21 +3387,21 @@ AIDecide_ScoopUp:
 	cp $02
 	jr c, .no_play
 	ld a, [wOpponentDeckID]
-	cp $17
+	cp PSYCHIC_ELITE_DECK_ID
 	jp z, $61e2
-	cp $1f
+	cp RAGING_BILLOW_OF_FISTS_DECK_ID
 	jp z, $61e7
-	cp $3a
+	cp GRAND_FIRE_DECK_ID
 	jp z, $6201
-	cp $3c
+	cp WATER_LEGEND_DECK_ID
 	jr z, .deck_3c
-	cp $47
+	cp FIREBALL_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck47
-	cp $64
+	cp TEXTURE_TUNER7_DECK_ID
 	jp z, $6228
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, $6241
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, $6246
 ; default policy:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
@@ -3570,22 +3570,22 @@ AIPlay_ItemFinder:
 ; first two duplicate cards in hand as the two discard targets.
 AIDecide_ItemFinder:
 	ld a, [wOpponentDeckID]
-	cp $1a
+	cp PUPPET_MASTER_DECK_ID
 	jp z, $6421
-	cp $1e
+	cp AWESOME_FOSSIL_DECK_ID
 	jp z, $6475
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jp z, $64c2
-	cp $55
+	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_ItemFinder_Deck55
-	cp $56
+	cp SNORLAX_GUARD_DECK_ID
 	jp z, AIDecide_ItemFinder_Deck56
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jp z, AIDecide_ItemFinder_Deck58
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, AIDecide_ItemFinder_Deck6E
 	ld de, ENERGY_REMOVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .no_play
 	ld [wd082], a
@@ -3635,31 +3635,31 @@ SECTION "Bank 8@6542", ROMX[$6542], BANK[$8]
 ; first two hand-list entries as the discard cost.
 AIDecide_ItemFinder_Deck55:
 	ld de, SUPER_ENERGY_REMOVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, ENERGY_REMOVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, BILL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, ENERGY_RETRIEVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, PROFESSOR_OAK
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, POKEMON_BREEDER
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, COMPUTER_SEARCH
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 .no_play
@@ -3687,15 +3687,15 @@ AIDecide_ItemFinder_Deck55:
 ; commits (carry SET) the moment the second one is collected.
 AIDecide_ItemFinder_Deck56:
 	ld de, SUPER_ENERGY_REMOVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, ENERGY_REMOVAL
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr c, .found
 	ld de, SWITCH
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .no_play
 .found
@@ -3777,7 +3777,7 @@ AIPlay_ImakuniCard:
 ; already confused.
 AIDecide_ImakuniCard:
 	ld a, [wOpponentDeckID]
-	cp $50
+	cp RUNNING_WILD_DECK_ID
 	jr z, .deck_50_dark_primeape
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
@@ -3818,11 +3818,11 @@ AIPlay_Gambler:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wOpponentDeckID]
-	cp $29
+	cp DARK_SCIENCE_DECK_ID
 	jr z, .play_honestly
-	cp $65
+	cp COLORLESS_ENERGY_DECK_ID
 	jr z, .play_honestly
-	cp $67
+	cp WEIRD_DECK_ID
 	jr z, .play_honestly
 	ld hl, wRNGVars
 	ld a, [hli]
@@ -3862,11 +3862,11 @@ AIPlay_Gambler:
 ; the hand back in).
 AIDecide_Gambler:
 	ld a, [wOpponentDeckID]
-	cp $29
+	cp DARK_SCIENCE_DECK_ID
 	jr z, .deck_29
-	cp $65
+	cp COLORLESS_ENERGY_DECK_ID
 	jr z, .deck_65
-	cp $67
+	cp WEIRD_DECK_ID
 	jr z, .always_play
 	ld a, [wAIBarrierFlagCounter]
 	and $80
@@ -3926,9 +3926,9 @@ AIDecide_Revive:
 	ret
 .check_deck
 	ld a, [wOpponentDeckID]
-	cp $14
+	cp I_LOVE_PIKACHU_DECK_ID
 	jp z, AIDecide_Revive_Deck14
-	cp $40
+	cp STICKY_POISON_GAS_DECK_ID
 	jp z, AIDecide_Revive_Deck40
 	ld hl, wDuelTempList
 .scan
@@ -3962,7 +3962,7 @@ AIDecide_Revive_Deck14:
 ; discard).
 AIDecide_Revive_Deck40:
 	ld de, CHARMANDER_LV10
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	ret c
 	ld de, GRIMER_LV10
@@ -4014,9 +4014,9 @@ AIDecide_PokemonFlute:
 	jr nc, .skip
 	ld a, [wOpponentDeckID]
 	ld a, [wOpponentDeckID]
-	cp $67
+	cp WEIRD_DECK_ID
 	jr z, .pick_any_basic
-	cp $68
+	cp STRANGE_DECK_ID
 	jr z, .deck_68
 	ld a, $ff
 	ld [wd082], a
@@ -4109,31 +4109,31 @@ AIPlay_Pokeball:
 ; Pure dispatcher: 13 deck-specific policies, default returns NC.
 AIDecide_Pokeball:
 	ld a, [wOpponentDeckID]
-	cp $3a
+	cp GRAND_FIRE_DECK_ID
 	jp z, $691e
-	cp $13
+	cp TRIPLE_ZAPDOS_DECK_ID
 	jp z, $6965
-	cp $14
+	cp I_LOVE_PIKACHU_DECK_ID
 	jp z, $699f
-	cp $24
+	cp MAX_ENERGY_DECK_ID
 	jp z, $69b5
-	cp $25
+	cp REMAINING_GREEN_DECK_ID
 	jp z, AIDecide_Pokeball_Deck25
-	cp $2c
+	cp GATHERING_NIDORAN_DECK_ID
 	jp z, $6a68
-	cp $3e
+	cp BUG_COLLECTING_DECK_ID
 	jp z, $6b02
-	cp $46
+	cp COMPLETE_COMBUSTION_DECK_ID
 	jp z, $6b2e
-	cp $47
+	cp FIREBALL_DECK_ID
 	jp z, AIDecide_Pokeball_Deck47
-	cp $4a
+	cp WHIRLPOOL_SHOWER_DECK_ID
 	jp z, AIDecide_Pokeball_Deck4A
-	cp $4b
+	cp PARALYZED_PARALYZED_DECK_ID
 	jp z, AIDecide_Pokeball_Deck4B
-	cp $4e
+	cp ROCK_BLAST_DECK_ID
 	jp z, AIDecide_Pokeball_Deck4E
-	cp $53
+	cp BAD_DREAM_DECK_ID
 	jp z, AIDecide_Pokeball_Deck53
 	or a
 	ret
@@ -4170,19 +4170,19 @@ AIDecide_Pokeball_Deck47:
 	cp $01
 	jr nz, .evolution_chain
 	ld de, CHARMANDER_LV9
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, SQUIRTLE_LV16
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, MACHOP_LV24
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, DODUO_LV10
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
 .evolution_chain
@@ -4216,7 +4216,7 @@ AIDecide_Pokeball_Deck4A:
 	cp $01
 	jr nz, .multi
 	ld de, STARYU_LV15
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, EEVEE_LV9
@@ -4251,7 +4251,7 @@ AIDecide_Pokeball_Deck4B:
 	cp $01
 	jr nz, .multi
 	ld de, POLIWAG_LV15
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, SQUIRTLE_LV8
@@ -4300,31 +4300,31 @@ AIDecide_Pokeball_Deck4E:
 ; fetch it.
 AIDecide_Pokeball_Deck53:
 	ld de, HAUNTER_LV22
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, HAUNTER_LV17
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, DROWZEE_LV10
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, KANGASKHAN_LV40
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, GASTLY_LV13
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, GENGAR_LV40
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret c
 	ld de, DARK_HYPNO
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
 ; 0x22ca2
@@ -4358,23 +4358,23 @@ AIDecide_ComputerSearch:
 	cp $03
 	jr c, .no_play
 	ld a, [wOpponentDeckID]
-	cp $2d
+	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, $6d59
-	cp $3b
+	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $6d5e
-	cp $41
+	cp MAD_PETALS_DECK_ID
 	jp z, $6dbe
-	cp $55
+	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck55
-	cp $57
+	cp EYE_OF_THE_STORM_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck57
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck58
-	cp $6e
+	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck6E
-	cp $6f
+	cp IMMORTAL_POKEMON_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck6F
-	cp $70
+	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck70
 .no_play
 	or a
@@ -4429,55 +4429,55 @@ AIDecide_PokemonTrader:
 	or a
 	ret nz
 	ld a, [wOpponentDeckID]
-	cp $17
+	cp PSYCHIC_ELITE_DECK_ID
 	jp z, $6eca
-	cp $18
+	cp PSYCHOKINESIS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck18
-	cp $2c
+	cp GATHERING_NIDORAN_DECK_ID
 	jp z, $6f88
-	cp $2d
+	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, $7040
-	cp $32
+	cp GO_ARCANINE_DECK_ID
 	jp z, $70a7
-	cp $41
+	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck41
-	cp $42
+	cp DANGEROUS_BENCH_DECK_ID
 	jp z, $71d9
-	cp $48
+	cp EEVEE_SHOWDOWN_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck48
-	cp $49
+	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck49
-	cp $4c
+	cp BENCH_CALL_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck4C
-	cp $4d
+	cp WATER_STREAM_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck4D
-	cp $4f
+	cp FULL_STRENGTH_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck4F
-	cp $51
+	cp DIRECT_HIT_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck51
-	cp $5a
+	cp BAD_GUYS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck5A
-	cp $5b
+	cp POISON_MIST_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck5B
-	cp $5c
+	cp ULTRA_REMOVAL_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck5C
-	cp $65
+	cp COLORLESS_ENERGY_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck65
-	cp $6c
+	cp RONALDS_PSYCHIC_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck6C
-	cp $6d
+	cp RONALDS_ULTRA_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck6D
-	cp $6f
+	cp IMMORTAL_POKEMON_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck6F
-	cp $70
+	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck70
-	cp $71
+	cp TRAINER_IMPRISON_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck71
-	cp $72
+	cp BLAZING_FLAME_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck72
-	cp $73
+	cp DAMAGE_CHAOS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck73
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck74
 	or a
 	ret
@@ -4573,7 +4573,7 @@ AIDecide_PokemonTrader_Deck48:
 	ld a, $03
 	farcall CheckIfPlayerHasPokemonOfType
 	jr c, .single_water_threat
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, MAGMAR_LV31
 	farcall FindCardIDInLocation
 	ld de, MAGMAR_LV31
@@ -4686,12 +4686,12 @@ AIDecide_PokemonTrader_Deck4C:
 	or a
 	ret
 .water_matchup
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, JYNX_LV18
 	farcall FindCardIDInLocation
 	ld de, JYNX_LV18
 	jr c, .commit
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, TAUROS_LV35
 	farcall FindCardIDInLocation
 	ld de, TAUROS_LV35
@@ -4740,22 +4740,22 @@ AIDecide_PokemonTrader_Deck4D:
 	jr c, .commit
 	ret
 .solo
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, LAPRAS_LV31
 	farcall FindCardIDInLocation
 	ld de, LAPRAS_LV31
 	jr c, .commit
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, ARTICUNO_LV34
 	farcall FindCardIDInLocation
 	ld de, ARTICUNO_LV34
 	jr c, .commit
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, STARYU_LV15
 	farcall FindCardIDInLocation
 	ld de, STARYU_LV15
 	jr c, .commit
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, GOLDEEN
 	farcall FindCardIDInLocation
 	ld de, GOLDEEN
@@ -4774,7 +4774,7 @@ AIDecide_PokemonTrader_Deck4F:
 	get_turn_duelist_var
 	cp $01
 	jr nz, .multi
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, ONIX_LV25
 	farcall FindCardIDInLocation
 	ld de, ONIX_LV25
@@ -4805,12 +4805,12 @@ AIDecide_PokemonTrader_Deck51:
 	get_turn_duelist_var
 	cp $01
 	jr nz, .multi
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, KANGASKHAN_LV40
 	farcall FindCardIDInLocation
 	ld de, KANGASKHAN_LV40
 	jr c, .commit
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, PSYDUCK_LV16
 	farcall FindCardIDInLocation
 	ld de, PSYDUCK_LV16
@@ -4903,25 +4903,25 @@ AIPlay_TheBosssWay:
 ; $39) inline. Every other deck returns "don't play" by default.
 AIDecide_TheBosssWay:
 	ld a, [wOpponentDeckID]
-	cp $38
+	cp GREAT_ROCKET2_DECK_ID
 	jr z, .deck_38
-	cp $39
+	cp GREAT_ROCKET3_DECK_ID
 	jr z, .deck_39
-	cp $3f
+	cp DEMONIC_FOREST_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck3F
-	cp $42
+	cp DANGEROUS_BENCH_DECK_ID
 	jp z, $754f
-	cp $4f
+	cp FULL_STRENGTH_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck4F
-	cp $51
+	cp DIRECT_HIT_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck51
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck58
-	cp $5a
+	cp BAD_GUYS_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck5A
-	cp $6a
+	cp RONALDS_GRX_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck6A
-	cp $73
+	cp DAMAGE_CHAOS_DECK_ID
 	jp z, $75f9
 	or a
 	ret
@@ -5078,29 +5078,29 @@ AIPlay_NightlyGarbageRun:
 ; Pure dispatcher: 12 deck-specific policies, default returns NC.
 AIDecide_NightlyGarbageRun:
 	ld a, [wOpponentDeckID]
-	cp $17
+	cp PSYCHIC_ELITE_DECK_ID
 	jp z, $765e
-	cp $3a
+	cp GRAND_FIRE_DECK_ID
 	jp z, $76ad
-	cp $3b
+	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $76d6
-	cp $3d
+	cp GREAT_DRAGON_DECK_ID
 	jp z, $76ff
-	cp $40
+	cp STICKY_POISON_GAS_DECK_ID
 	jp z, $7789
-	cp $41
+	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck41
-	cp $46
+	cp COMPLETE_COMBUSTION_DECK_ID
 	jp z, $787d
-	cp $49
+	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck49
-	cp $55
+	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck55
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck58
-	cp $5a
+	cp BAD_GUYS_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck5A
-	cp $6f
+	cp IMMORTAL_POKEMON_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck6F
 	or a
 	ret
@@ -5124,15 +5124,15 @@ AIDecide_NightlyGarbageRun_Deck41:
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld [wTempAIMultiTargetCardDeckIndex3], a
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_VILEPLUME
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GLOOM
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
 	ld hl, wDuelTempList
 .scan_energy
@@ -5191,20 +5191,20 @@ SECTION "Bank 8@78c9", ROMX[$78c9], BANK[$8]
 ; rescue target list pre-populated in
 ; wTempAIMultiTargetCardDeckIndex1/2.
 AIDecide_NightlyGarbageRun_Deck49:
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
 	jr c, .no_play
 	cp $03
 	jr c, .no_play
 	ld a, [wDuelTempList]
 	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [$c511]
+	ld a, [wDuelTempList + 1]
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_NINETALES
 	farcall FindCardIDInLocation
 	ret c
-	ld a, [$c512]
+	ld a, [wDuelTempList + 2]
 	scf
 	ret
 .no_play
@@ -5222,7 +5222,7 @@ AIDecide_NightlyGarbageRun_Deck55:
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld [wTempAIMultiTargetCardDeckIndex3], a
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
 	ld hl, wDuelTempList
 .energy_loop
@@ -5235,17 +5235,17 @@ AIDecide_NightlyGarbageRun_Deck55:
 	jr nc, .energy_loop
 	jr .pack
 .add_pokemon
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GENGAR
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_HAUNTER
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, GASTLY_LV17
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
@@ -5276,30 +5276,30 @@ AIDecide_NightlyGarbageRun_Deck58:
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld [wTempAIMultiTargetCardDeckIndex3], a
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DRATINI_LV12
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_DRAGONAIR
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_DRAGONITE
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, CLEFAIRY_LV15
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_CLEFABLE
 	farcall FindCardIDInLocation
 	call c, AddDeckIndexToAIMultiTargetSlots
 	jr c, .pack
-	ld a, $02
+	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
 	ld hl, wDuelTempList
 .energy_loop
@@ -5358,9 +5358,9 @@ AIDecide_Sleep:
 	call SwapTurn
 	jr c, .no_play
 	ld a, [wOpponentDeckID]
-	cp $12
+	cp OVERFLOW_DECK_ID
 	jp z, AIDecide_Sleep_Deck12
-	cp $53
+	cp BAD_DREAM_DECK_ID
 	jp z, AIDecide_Sleep_Deck53
 .no_play
 	or a
@@ -5419,29 +5419,29 @@ AIDecide_MasterBall:
 	cp $37
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $13
+	cp TRIPLE_ZAPDOS_DECK_ID
 	jr z, .deck_13
-	cp $14
+	cp I_LOVE_PIKACHU_DECK_ID
 	jr z, .deck_14
-	cp $18
+	cp PSYCHOKINESIS_DECK_ID
 	jp z, $7bdf
-	cp $1a
+	cp PUPPET_MASTER_DECK_ID
 	jp z, $7be4
-	cp $29
+	cp DARK_SCIENCE_DECK_ID
 	jp z, $7c10
-	cp $3d
+	cp GREAT_DRAGON_DECK_ID
 	jp z, $7c60
-	cp $3e
+	cp BUG_COLLECTING_DECK_ID
 	jp z, $7cdc
-	cp $3f
+	cp DEMONIC_FOREST_DECK_ID
 	jp z, AIDecide_MasterBall_Deck3F
-	cp $40
+	cp STICKY_POISON_GAS_DECK_ID
 	jp z, $7d61
-	cp $43
+	cp CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
 	jp z, AIDecide_MasterBall_Deck43
-	cp $46
+	cp COMPLETE_COMBUSTION_DECK_ID
 	jp z, AIDecide_MasterBall_Deck46
-	cp $74
+	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_MasterBall_Deck74
 	or a
 	ret
@@ -5598,17 +5598,17 @@ AIDecide_MoonStone:
 	cp $38
 	ret nc
 	ld a, [wOpponentDeckID]
-	cp $16
+	cp HAND_OVER_GR_DECK_ID
 	jr z, .deck_16
-	cp $23
+	cp I_LOVE_TO_FIGHT_DECK_ID
 	jr z, .deck_23
-	cp $57
+	cp EYE_OF_THE_STORM_DECK_ID
 	jr z, .deck_57
-	cp $58
+	cp SUDDEN_GROWTH_DECK_ID
 	jr z, .deck_58
-	cp $65
+	cp COLORLESS_ENERGY_DECK_ID
 	jr z, .deck_65
-	cp $6d
+	cp RONALDS_ULTRA_DECK_ID
 	jr z, .deck_6d
 	or a
 	ret
@@ -5620,7 +5620,7 @@ AIDecide_MoonStone:
 	ret
 ; deck $23 (Love to Battle): just confirm Dodrio is sitting in the deck
 .deck_23
-	ld a, $00
+	ld a, CARD_LOCATION_DECK
 	ld de, DODRIO_LV28
 	farcall FindCardIDInLocation
 	ret
@@ -5661,7 +5661,7 @@ AIPlay_TheRocketsTrap:
 ; when the hand size is at or above the threshold.
 AIDecide_TheRocketsTrap:
 	ld a, [wOpponentDeckID]
-	cp $6d
+	cp RONALDS_ULTRA_DECK_ID
 	jr z, .deck_6d
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	call GetNonTurnDuelistVariable
@@ -5689,7 +5689,7 @@ AIPlay_GoopGasAttack:
 ; appropriate carry.
 AIDecide_GoopGasAttack:
 	ld a, [wOpponentDeckID]
-	cp $67
+	cp WEIRD_DECK_ID
 	jr z, .pick_target
 	ld de, MUK
 	ld b, $00
@@ -5730,11 +5730,11 @@ AIPlay_ComputerError:
 ; per-card priority code in the AI ranking system).
 AIDecide_ComputerError:
 	ld a, [wOpponentDeckID]
-	cp $59
+	cp VERY_RARE_CARD_DECK_ID
 	jr z, .deck_59
-	cp $68
+	cp STRANGE_DECK_ID
 	jr z, .deck_68
-	cp $6b
+	cp RONALDS_POWER_DECK_ID
 	jr z, .deck_6b
 .skip
 	or a

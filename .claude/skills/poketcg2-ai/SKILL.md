@@ -120,6 +120,19 @@ a card" trap; `de`/`bc` are only card IDs when consumed by a
 raw functions are later decompiled with hex card operands, re-run the
 pass; it's mechanical and `make compare`-verified.
 
+**Non-card hex was also labelled (2026-06-03), only where 100% certain and
+only on branch-added lines:** every `cp $NN` inside an
+`ld a, [wOpponentDeckID]` dispatch run now uses the `*_DECK_ID` constant
+(the symbol — its internal name; the official display name still lives in
+the comment); `ld a, $00/$01/$02` immediately before
+`FindCardIDInLocation`/`CreateBasicEnergyCardListInLocation` uses
+`CARD_LOCATION_DECK/HAND/DISCARD_PILE`; `[$c511]`/`[$c512]` →
+`wDuelTempList + 1/+2`. Left as hex (no exact label / not certain): raw
+`jp z, $XXXX` dispatch targets to still-raw functions, WRAM scratch with
+no label (`$d09a`, `$cc3b`, `$d0a4`, `$ffa6`+), and bare arithmetic /
+position / sentinel literals (`and $0f`, `cp $36`, `ld e, $00`,
+`ld a, $ff`).
+
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
 pattern (`scf; ret` = success, `or a; ret` = fail). Watch for
