@@ -269,6 +269,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$581d` | [`AIDecide_EnergyRetrieval_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (gated energy-recovery heuristic; $44 shares tail) | 2026-06-03 |
 | `$08` | `$70a7` | [`AIDecide_PokemonTrader_Deck32`](../../../src/engine/bank08.asm) | sameboy_trace duel-ken (Go Arcanine; Growlithe/Doduo/Hitmonchan/Seel evo-line trader) | 2026-06-03 |
 | `$08` | `$4902` | [`AIDecide_Switch_Phase16_Deck32`](../../../src/engine/bank08.asm) + shared `AIDecide_Switch_Phase16_CommitBenchTarget` ($48fc) | sameboy_trace duel-ken (Go Arcanine; switch when Arena is Arcanine/KO-able) | 2026-06-03 |
+| `$08` | `$6eca` | [`AIDecide_PokemonTrader_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; Abra/Kadabra/Alakazam + Mr. Mime trader) | 2026-06-03 |
+| `$08` | `$765e` | [`AIDecide_NightlyGarbageRun_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; recover Alakazam line + energy from discard) | 2026-06-03 |
+| `$08` | `$61e2` | [`AIDecide_ScoopUp_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; delegate to PsychicEliteDeckAIDecideScoopUp) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -309,7 +312,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 69.48% (~11.1 KiB of 16 KiB).
+**Source-defined**: 70.48% (~11.3 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -356,6 +359,9 @@ the target (helps justify future decomp prioritization).
 - `$581d-$58ce` — `AIDecide_EnergyRetrieval_Deck2D` (Rain Dance Confusion; gated energy-recovery heuristic; deck $44 reuses tail at `.check_energy_count` = $589d).
 - `$70a7-$71d3` — `AIDecide_PokemonTrader_Deck32` (Go Arcanine; Magmar/Growlithe-Arcanine/Doduo-Dodrio/Hitmonchan/Seel-Dewgong evo-line trader).
 - `$48fc-$4901` — `AIDecide_Switch_Phase16_CommitBenchTarget` (shared bench-pick commit tail) + `$4902-$493c` — `AIDecide_Switch_Phase16_Deck32` (Go Arcanine). Sub-deciders $493d-$49a6 (decks $3a/$3b/$3d) still raw.
+- `$61e2-$61e6` — `AIDecide_ScoopUp_Deck17` (Psychic Elite; bank-helper delegate).
+- `$6eca-$6f1a` — `AIDecide_PokemonTrader_Deck17` (Psychic Elite; Abra/Kadabra/Alakazam + Mr. Mime trader).
+- `$765e-$76ac` — `AIDecide_NightlyGarbageRun_Deck17` (Psychic Elite; recover Alakazam line + 3 energies/Mr. Mime from discard).
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).

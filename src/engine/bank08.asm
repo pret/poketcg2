@@ -3739,7 +3739,7 @@ AIDecide_ScoopUp:
 	jr c, .no_play
 	ld a, [wOpponentDeckID]
 	cp PSYCHIC_ELITE_DECK_ID
-	jp z, $61e2
+	jp z, AIDecide_ScoopUp_Deck17
 	cp RAGING_BILLOW_OF_FISTS_DECK_ID
 	jp z, $61e7
 	cp GRAND_FIRE_DECK_ID
@@ -3864,6 +3864,13 @@ AIDecide_ScoopUp:
 	scf
 	ret
 ; 0x221e2
+
+SECTION "Bank 8@61e2", ROMX[$61e2], BANK[$8]
+
+; deck $17 (Psychic Elite) Scoop Up policy: delegated to a bank helper.
+AIDecide_ScoopUp_Deck17:
+	farcall PsychicEliteDeckAIDecideScoopUp
+	ret
 
 SECTION "Bank 8@620f", ROMX[$620f], BANK[$8]
 
@@ -4974,7 +4981,7 @@ AIDecide_PokemonTrader:
 	ret nz
 	ld a, [wOpponentDeckID]
 	cp PSYCHIC_ELITE_DECK_ID
-	jp z, $6eca
+	jp z, AIDecide_PokemonTrader_Deck17
 	cp PSYCHOKINESIS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck18
 	cp GATHERING_NIDORAN_DECK_ID
@@ -5026,6 +5033,49 @@ AIDecide_PokemonTrader:
 	or a
 	ret
 ; 0x22eca
+
+SECTION "Bank 8@6eca", ROMX[$6eca], BANK[$8]
+
+; deck $17 (Psychic Elite) Pokemon Trader policy: play to complete the
+; Abra/Kadabra/Alakazam line (fetch the next stage of a line we've started,
+; or dig the missing pre-evo when the evo is already in hand) or to pull a
+; Mr. Mime out of the deck. On a hit, tag the picked deck index as the swap
+; target and trade away a duplicate Pokemon in hand; otherwise don't play.
+; (Carved out of the still-raw $6eca-$6f1b block.)
+AIDecide_PokemonTrader_Deck17:
+	ld bc, ABRA_LV14
+	ld de, KADABRA_LV39
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld bc, KADABRA_LV39
+	ld de, ALAKAZAM_LV42
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld de, ABRA_LV14
+	ld bc, KADABRA_LV39
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, KADABRA_LV39
+	ld bc, ALAKAZAM_LV42
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, MR_MIME_LV20
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .no_match
+	ld de, MR_MIME_LV20
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	jr nc, .no_match
+.pick
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDuplicatePokemonCardsInHand
+	jr c, .play
+.no_match
+	or a
+	ret
+.play
+	scf
+	ret
 
 SECTION "Bank 8@6f1b", ROMX[$6f1b], BANK[$8]
 
@@ -5796,7 +5846,7 @@ AIPlay_NightlyGarbageRun:
 AIDecide_NightlyGarbageRun:
 	ld a, [wOpponentDeckID]
 	cp PSYCHIC_ELITE_DECK_ID
-	jp z, $765e
+	jp z, AIDecide_NightlyGarbageRun_Deck17
 	cp GRAND_FIRE_DECK_ID
 	jp z, $76ad
 	cp LEGENDARY_FOSSIL_DECK_ID
@@ -5822,6 +5872,50 @@ AIDecide_NightlyGarbageRun:
 	or a
 	ret
 ; 0x2365e
+
+SECTION "Bank 8@765e", ROMX[$765e], BANK[$8]
+
+; deck $17 (Psychic Elite) Nightly Garbage Run policy: recover the
+; Abra/Kadabra/Alakazam line from the discard pile (Alakazam -> slot 2,
+; Kadabra -> slot 1, Abra returns on the spot). Failing that, fall back to
+; shuffling three discarded basic energies back in, optionally alongside a
+; discarded Mr. Mime. Don't play if there's nothing worth recovering.
+; (Carved out of the still-raw $765e-$76ad block.)
+AIDecide_NightlyGarbageRun_Deck17:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, ALAKAZAM_LV42
+	farcall FindCardIDInLocation
+	jr nc, .check_energy
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, KADABRA_LV39
+	farcall FindCardIDInLocation
+	jr nc, .check_energy
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, ABRA_LV14
+	farcall FindCardIDInLocation
+	ret c
+.check_energy
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, .no_play
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MR_MIME_LV20
+	farcall FindCardIDInLocation
+	ret c
+	ld a, [wDuelTempList + 2]
+	scf
+	ret
+.no_play
+	or a
+	ret
 
 SECTION "Bank 8@782f", ROMX[$782f], BANK[$8]
 
