@@ -1,3 +1,11 @@
+; Many functions below are per-deck AI policies named AIDecide_*_DeckNN,
+; where NN is the hex wOpponentDeckID literal they dispatch on. The "(name)"
+; in their comments is the deck's in-game *DeckName (data/deck_id_data.asm),
+; NOT the *_DECK symbol from constants/deck_constants.asm -- those two often
+; disagree, and both can differ from external English name lists. When in
+; doubt a deck is described by its card contents. See the naming caveat at
+; the top of data/deck_id_data.asm.
+
 MACRO ai_trainer_card_logic
 	db \1 ; AI_TRAINER_CARD_PHASE_* constant
 	dw \2 ; ID of trainer card

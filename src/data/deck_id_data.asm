@@ -19,6 +19,29 @@ MACRO deck_duel
 	db \4, \5, \6, \7, \8, \9, \<10>
 ENDM
 
+; DECK NAMING -- three layers that do NOT always agree, so be careful when
+; naming a deck for a human:
+;   1. *_DECK / *_DECK_ID symbol (constants/deck_constants.asm) -- an
+;      internal disassembly label, the LEAST reliable as a display name.
+;   2. The *DeckName text label below -- the deck's actual in-game name.
+;      This is the most reliable in-repo source and usually fixes the
+;      symbol's mistranslations, e.g.:
+;        SCORCHER_DECK        -> IncinerateDeckName
+;        HAND_OVER_GR_DECK    -> HandedOverGRDeckName  ("Handed Over GR")
+;        I_LOVE_TO_FIGHT_DECK -> LoveToBattleDeckName  ("Love to Battle")
+;        RONALDS_PSYCHIC_DECK -> RonaldsSuperDeckName  ("Ronald's Super")
+;   3. External English name lists can differ from BOTH of the above. The
+;      clearest case is the four "evil starter" decks $5e-$61, whose
+;      *DeckName labels here are Choke / Incinerate / Smash / ThrowOut but
+;      which are localized externally as Stop Breath! / Burn Up! / Smash
+;      It! / Throw Out! (Grass/Fire/Water/Fighting, Dark Venusaur/Charizard/
+;      Blastoise/Machamp respectively).
+; When the three disagree, identify the deck by its CARD LIST
+; (data/decks.asm; card-list label <Stem>Deck:) -- contents are
+; unambiguous. Note also that one card list can be shared by more than one
+; DECK_ID/entry (e.g. SamsPracticeDeck and Deck_7269 each have two slots),
+; so card contents do not uniquely pick a name either.
+
 DeckIDData:
 ; sam
 	deck_duel SAMS_PRACTICE_DECK_ID, SamsPracticeDeckName, \
