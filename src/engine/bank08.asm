@@ -3455,11 +3455,11 @@ AIDecide_ItemFinder:
 	cp $55
 	jp z, AIDecide_ItemFinder_Deck55
 	cp $56
-	jp z, $65ad
+	jp z, AIDecide_ItemFinder_Deck56
 	cp $58
-	jp z, $662b
+	jp z, AIDecide_ItemFinder_Deck58
 	cp $6e
-	jp z, $6630
+	jp z, AIDecide_ItemFinder_Deck6E
 	ld de, $18b
 	ld a, $02
 	farcall FindCardIDInLocation
@@ -3554,7 +3554,89 @@ AIDecide_ItemFinder_Deck55:
 	scf
 	ret
 
-SECTION "Bank 8@664d", ROMX[$664d], BANK[$8]
+; deck $56 (Snorlax Guard) Item Finder policy. Only worth it if there's a
+; high-value trainer to recover -- require Super Energy Removal, Energy
+; Removal, or Switch sitting in the discard. Then pick the two discard-cost
+; cards from duplicates in hand, scanning a priority list of cards this
+; deck is happy to pitch (its own Pokemon plus filler trainers). The first
+; two duplicates found become the discard targets; StoreItemFinderDiscardTarget
+; commits (carry SET) the moment the second one is collected.
+AIDecide_ItemFinder_Deck56:
+	ld de, SUPER_ENERGY_REMOVAL
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, ENERGY_REMOVAL
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr c, .found
+	ld de, SWITCH
+	ld a, $02
+	farcall FindCardIDInLocation
+	jr nc, .no_play
+.found
+	ld [wd082], a
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld de, SWITCH
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, SCOOP_UP
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, PLUSPOWER
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, BILLS_TELEPORTER
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, LICKITUNG_LV26
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, CHANSEY_LV55
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, KANGASKHAN_LV40
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+	ld de, SNORLAX_LV35
+	farcall CheckIfHandHasRepeatedCard
+	call c, StoreItemFinderDiscardTarget
+.no_play
+	or a
+	ret
+
+; deck $58 (Sudden Growth) delegates Item Finder to a bespoke bank-$12 helper.
+AIDecide_ItemFinder_Deck58:
+	farcall SuddenGrowthDeckAIDecideItemFinder
+	ret
+
+; deck $6e (Everybody's Friend) delegates Item Finder to a bespoke bank-$12 helper.
+AIDecide_ItemFinder_Deck6E:
+	farcall EverybodysFriendDeckAIDecideItemFinder
+	ret
+
+; Records a discard-cost target (deck index in `a`) for the deck-$56 Item
+; Finder. Fills wTempAIMultiTargetCardDeckIndex1 first; once that slot is
+; taken, fills slot 2 and unwinds the caller's stack frame (`add sp, $02`)
+; so AIDecide_ItemFinder_Deck56 returns immediately with carry SET -- two
+; discard targets are enough, no need to scan the rest of the list.
+StoreItemFinderDiscardTarget:
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	jr nz, .slot1_taken
+	pop af
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ret
+.slot1_taken
+	pop af
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	add sp, $02
+	ld a, [wd082]
+	scf
+	ret
 
 AIPlay_ImakuniCard:
 	ld a, [wAITrainerCardToPlay]

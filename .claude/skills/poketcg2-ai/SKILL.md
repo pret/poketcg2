@@ -171,8 +171,10 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4f33` | [`AIDecide_SuperEnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfPlayAreaCardHasTwoEnergy`, `CheckIfRemovingEnergyDisruptsAttack`, `ScoreSuperEnergyRemovalTarget` | sameboy_trace duel-mami | 2026-06-02 |
 | `$08` | `$5610` | [`AIDecide_ProfessorOak_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (play Oak when hand < 8) | 2026-06-02 |
 | `$08` | `$5c4e` | [`RemoveCardFromListByValue`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (used by AIDecide_ItemFinder) | 2026-06-02 |
-| `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 6 deck cases left raw) | 2026-06-02 |
+| `$08` | `$6396` | [`AIDecide_ItemFinder`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (dispatcher + default; 3 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6542` | [`AIDecide_ItemFinder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (priority trainer fetch from discard) | 2026-06-02 |
+| `$08` | `$65ad` | [`AIDecide_ItemFinder_Deck56`](../../../src/engine/bank08.asm) + helper [`StoreItemFinderDiscardTarget`](../../../src/engine/bank08.asm) | sameboy_trace duel-nishijima redo (Snorlax Guard $56; discard duplicates after recoverable trainer in discard) | 2026-06-02 |
+| `$08` | `$662b` | [`AIDecide_ItemFinder_Deck58`](../../../src/engine/bank08.asm) + [`AIDecide_ItemFinder_Deck6E`](../../../src/engine/bank08.asm) | gap-fill ($58 Sudden Growth, $6e Everybody's Friend; both bank-$12 delegates) | 2026-06-02 |
 | `$08` | `$52fb` | [`AIDecide_PokemonBreeder_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (Gastly→Dark Gengar; PB dispatcher $50b6 still raw) | 2026-06-02 |
 | `$08` | `$6cfd` | [`AIPlay_ComputerSearch`](../../../src/engine/bank08.asm) + [`AIDecide_ComputerSearch`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (COMPUTER_SEARCH table entry; dispatcher, 8 deck cases left raw) | 2026-06-02 |
 | `$08` | `$6e0a` | [`AIDecide_ComputerSearch_Deck55`](../../../src/engine/bank08.asm) | sameboy_trace duel-mami (trampoline to SpiritedAwayDeckAIDecideComputerSearch) | 2026-06-02 |
@@ -263,7 +265,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 55.73% (~8.9 KiB of 16 KiB).
+**Source-defined**: 56.71% (~9.1 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -282,8 +284,8 @@ the target (helps justify future decomp prioritization).
 - `$52fb-$5322` — `AIDecide_PokemonBreeder_Deck55` (standalone; parent dispatcher `$50b6` still raw).
 - `$5610-$5615` — `AIDecide_ProfessorOak_Deck55`.
 - `$5c4e-$5c58` — `RemoveCardFromListByValue`.
-- `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; 6 deck cases left raw).
-- `$6542-$65ac` — `AIDecide_ItemFinder_Deck55`.
+- `$6396-$641f` — `AIDecide_ItemFinder` (dispatcher + default duplicate-pick path; decks $55/$56/$58/$6e decompiled, decks $1a/$1e/$50 left raw).
+- `$6542-$664c` — `AIDecide_ItemFinder_Deck55` + `AIDecide_ItemFinder_Deck56` + `AIDecide_ItemFinder_Deck58` + `AIDecide_ItemFinder_Deck6E` + helper `StoreItemFinderDiscardTarget`.
 - `$6cfd-$6d58` — `AIPlay_ComputerSearch` + `AIDecide_ComputerSearch` (dispatcher; 8 deck cases left raw).
 - `$6e0a-$6e0e` — `AIDecide_ComputerSearch_Deck55` (trampoline).
 - `$78f2-$7955` — `AIDecide_NightlyGarbageRun_Deck55`.
