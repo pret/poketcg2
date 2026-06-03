@@ -272,6 +272,12 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6eca` | [`AIDecide_PokemonTrader_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; Abra/Kadabra/Alakazam + Mr. Mime trader) | 2026-06-03 |
 | `$08` | `$765e` | [`AIDecide_NightlyGarbageRun_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; recover Alakazam line + energy from discard) | 2026-06-03 |
 | `$08` | `$61e2` | [`AIDecide_ScoopUp_Deck17`](../../../src/engine/bank08.asm) | sameboy_trace duel-murray (Psychic Elite; delegate to PsychicEliteDeckAIDecideScoopUp) | 2026-06-03 |
+| `$08` | `$632c` | [`AIPlay_Lass`](../../../src/engine/bank08.asm) + [`AIDecide_Lass`](../../../src/engine/bank08.asm) ($6340) | sameboy_trace duel-courtney (whole trainer card; play when opp hand 7+ and we hold no other Trainer) | 2026-06-03 |
+| `$08` | `$493d` | [`AIDecide_Switch_Phase16_Deck3AOr3B`](../../../src/engine/bank08.asm) | sameboy_trace duel-courtney (Grand Fire + Legendary Fossil share; switch on retreat cost >= 2) | 2026-06-03 |
+| `$08` | `$559c` | [`AIDecide_ProfessorOak_Deck3A`](../../../src/engine/bank08.asm) | sameboy_trace duel-courtney (Grand Fire; keep hand with Moltres/Rapidash/Ninetales or 3+ energy) | 2026-06-03 |
+| `$08` | `$6201` | [`AIDecide_ScoopUp_Deck3A`](../../../src/engine/bank08.asm) | sameboy_trace duel-courtney (Grand Fire; scoop benched Moltres via shared energy-ready tail) | 2026-06-03 |
+| `$08` | `$691e` | [`AIDecide_Pokeball_Deck3A`](../../../src/engine/bank08.asm) | sameboy_trace duel-courtney (Grand Fire; Magmar/Ponyta-Rapidash/Vulpix-Ninetales/Moltres dig) | 2026-06-03 |
+| `$08` | `$76ad` | [`AIDecide_NightlyGarbageRun_Deck3A`](../../../src/engine/bank08.asm) | sameboy_trace duel-courtney (Grand Fire; recover 2 energy + Moltres from discard) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -312,7 +318,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 70.48% (~11.3 KiB of 16 KiB).
+**Source-defined**: 72.07% (~11.5 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -362,6 +368,8 @@ the target (helps justify future decomp prioritization).
 - `$61e2-$61e6` — `AIDecide_ScoopUp_Deck17` (Psychic Elite; bank-helper delegate).
 - `$6eca-$6f1a` — `AIDecide_PokemonTrader_Deck17` (Psychic Elite; Abra/Kadabra/Alakazam + Mr. Mime trader).
 - `$765e-$76ac` — `AIDecide_NightlyGarbageRun_Deck17` (Psychic Elite; recover Alakazam line + 3 energies/Mr. Mime from discard).
+- Grand Fire (deck $3a, Courtney) cases: `$493d-$494e` `AIDecide_Switch_Phase16_Deck3AOr3B` (shared with $3b Legendary Fossil), `$559c-$55c8` `AIDecide_ProfessorOak_Deck3A`, `$6201-$620e` `AIDecide_ScoopUp_Deck3A` (+ new `AIDecide_ScoopUp.scoop_if_energy_ready` label at $61ce), `$691e-$6964` `AIDecide_Pokeball_Deck3A`, `$76ad-$76d5` `AIDecide_NightlyGarbageRun_Deck3A`.
+- `$632c-$6372` — `AIPlay_Lass` + `AIDecide_Lass` (whole trainer-card pair carved from the $6228-$6373 ScoopUp gap; AITrainerCardLogic LASS row now resolves). Needed exporting `Zeroes::` in src/home.asm.
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).

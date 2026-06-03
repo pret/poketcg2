@@ -44,7 +44,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               AIDecide_ScoopUp, AIPlay_ScoopUp
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   AIDecide_Lass, AIPlay_Lass
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             AIDecide_ItemFinder, AIPlay_ItemFinder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_ImakuniCard, AIPlay_ImakuniCard
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
@@ -1305,9 +1305,9 @@ AIDecide_Switch_Phase16:
 	cp GO_ARCANINE_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck32
 	cp GRAND_FIRE_DECK_ID
-	jp z, $493d
+	jp z, AIDecide_Switch_Phase16_Deck3AOr3B
 	cp LEGENDARY_FOSSIL_DECK_ID
-	jp z, $493d
+	jp z, AIDecide_Switch_Phase16_Deck3AOr3B
 	cp GREAT_DRAGON_DECK_ID
 	jp z, $494f
 	cp POISON_MIST_DECK_ID
@@ -1388,6 +1388,24 @@ AIDecide_Switch_Phase16_Deck32:
 	ld de, DEWGONG_LV42
 	farcall CheckIfPokemonInBenchHasEnoughEnergy
 	ret
+
+SECTION "Bank 8@493d", ROMX[$493d], BANK[$8]
+
+; decks $3a (Grand Fire) and $3b (Legendary Fossil) share this Switch_Phase16
+; decider: never switch a status-free Arena card; otherwise only switch when
+; the Arena's retreat cost is at least 2 (cheap retreats aren't worth a
+; Switch), committing through the shared bench-target picker.
+AIDecide_Switch_Phase16_Deck3AOr3B:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr z, AIDecide_Switch_Phase16.skip
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	cp $02
+	jr nc, AIDecide_Switch_Phase16_CommitBenchTarget
+	jr AIDecide_Switch_Phase16.skip
 
 SECTION "Bank 8@49a7", ROMX[$49a7], BANK[$8]
 
@@ -2557,7 +2575,7 @@ AIDecide_ProfessorOak:
 	cp GO_ARCANINE_DECK_ID
 	jp z, $5565
 	cp GRAND_FIRE_DECK_ID
-	jp z, $559c
+	jp z, AIDecide_ProfessorOak_Deck3A
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $55c9
 	cp QUICK_ATTACK_DECK_ID
@@ -2832,6 +2850,33 @@ LookForEvolutionInHand:
 	scf
 	ret
 ; 0x21528
+
+SECTION "Bank 8@559c", ROMX[$559c], BANK[$8]
+
+; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
+; already holds a key attacker (Moltres, Rapidash or Ninetales) or three or
+; more energy cards. Otherwise play Oak when the opposing duelist is holding
+; fewer than 6 cards. (Carved out of the still-raw $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck3A:
+	ld de, MOLTRES_LV40
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	ld de, RAPIDASH_LV33
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	ld de, NINETALES_LV35
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	farcall CountEnergyCardsInHand
+	cp $03
+	jr nc, .no_play
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $06
+	ret
+.no_play
+	or a
+	ret
 
 SECTION "Bank 8@5643", ROMX[$5643], BANK[$8]
 
@@ -3743,7 +3788,7 @@ AIDecide_ScoopUp:
 	cp RAGING_BILLOW_OF_FISTS_DECK_ID
 	jp z, $61e7
 	cp GRAND_FIRE_DECK_ID
-	jp z, $6201
+	jp z, AIDecide_ScoopUp_Deck3A
 	cp WATER_LEGEND_DECK_ID
 	jr z, .deck_3c
 	cp FIREBALL_DECK_ID
@@ -3850,6 +3895,10 @@ AIDecide_ScoopUp:
 	pop bc
 	jp z, .no_play
 	ld a, b
+.scoop_if_energy_ready
+; also the entry point for deck $3a (Grand Fire) once it has found
+; Moltres on the bench: commit the scoop only if there's energy ready
+; (on the arena or bench) to make the follow-up worthwhile.
 	push af
 	call CreateArenaOrBenchEnergyCardList
 	pop bc
@@ -3871,6 +3920,18 @@ SECTION "Bank 8@61e2", ROMX[$61e2], BANK[$8]
 AIDecide_ScoopUp_Deck17:
 	farcall PsychicEliteDeckAIDecideScoopUp
 	ret
+
+SECTION "Bank 8@6201", ROMX[$6201], BANK[$8]
+
+; deck $3a (Grand Fire) Scoop Up policy: only scoop if Moltres is sitting
+; on the bench (a benched attacker worth re-setting up), then defer to the
+; shared "scoop if energy is ready" tail; otherwise don't play.
+AIDecide_ScoopUp_Deck3A:
+	ld de, MOLTRES_LV40
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jr c, AIDecide_ScoopUp.scoop_if_energy_ready
+	jp AIDecide_ScoopUp.no_play
 
 SECTION "Bank 8@620f", ROMX[$620f], BANK[$8]
 
@@ -3897,6 +3958,52 @@ AIDecide_ScoopUp_Deck47:
 	jp c, AIDecide_ScoopUp.no_play
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
+
+SECTION "Bank 8@632c", ROMX[$632c], BANK[$8]
+
+; Lass: both players reveal their hands and shuffle every Trainer card
+; back into their decks. (Carved out of the still-raw $6228-$6373 block.)
+AIPlay_Lass:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Play Lass only when it hurts the opponent more than us: the opposing
+; duelist must be holding a fat hand (7+ cards, so the forced shuffle
+; really disrupts them) and our own hand must contain no Trainer card
+; other than Lass itself (so we aren't shuffling away our own tools).
+AIDecide_Lass:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $07
+	jr c, .no_play
+	call CreateHandCardList
+	ld hl, wDuelTempList
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .play
+	ld b, a
+	push hl
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld hl, wLoadedCard1ID
+	cphl LASS
+	pop hl
+	jr z, .loop
+	ld a, [wLoadedCard1Type]
+	cp TYPE_TRAINER
+	jr nz, .loop
+.no_play
+	or a
+	ret
+.play
+	scf
+	ret
 
 SECTION "Bank 8@6373", ROMX[$6373], BANK[$8]
 
@@ -4653,7 +4760,7 @@ AIPlay_Pokeball:
 AIDecide_Pokeball:
 	ld a, [wOpponentDeckID]
 	cp GRAND_FIRE_DECK_ID
-	jp z, $691e
+	jp z, AIDecide_Pokeball_Deck3A
 	cp TRIPLE_ZAPDOS_DECK_ID
 	jp z, $6965
 	cp I_LOVE_PIKACHU_DECK_ID
@@ -4681,6 +4788,47 @@ AIDecide_Pokeball:
 	or a
 	ret
 ; 0x2291e
+
+SECTION "Bank 8@691e", ROMX[$691e], BANK[$8]
+
+; deck $3a (Grand Fire) Poke Ball decider. With fewer than 2 Pokemon in
+; play, dig for a Magmar to get something on the board (else report whether
+; the deck even has a basic to find). With a bench established, instead try
+; to advance an evolution line -- Ponyta->Rapidash, or Vulpix->Ninetales
+; (with or without a Vulpix already down) -- and failing that, only fetch
+; Moltres once we have energy in hand to power it. (Carved out of the
+; still-raw $691e-$6a59 block.)
+AIDecide_Pokeball_Deck3A:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $02
+	jr nc, .have_bench
+	ld de, MAGMAR_LV31
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	farcall CheckIfAnyBasicPokemonInDeck
+	ld a, e
+	ret
+.have_bench
+	ld bc, PONYTA_LV8
+	ld de, RAPIDASH_LV33
+	farcall CheckReelInEvoLineTarget
+	ret c
+	ld bc, Zeroes
+	ld de, NINETALES_LV35
+	farcall CheckReelInEvoLineTarget
+	ret c
+	ld bc, VULPIX_LV13
+	ld de, NINETALES_LV35
+	farcall CheckReelInEvoLineTarget
+	ret c
+	farcall CountEnergyCardsInHand
+	ret nc
+	ld de, MOLTRES_LV40
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret
 
 SECTION "Bank 8@6a59", ROMX[$6a59], BANK[$8]
 
@@ -5848,7 +5996,7 @@ AIDecide_NightlyGarbageRun:
 	cp PSYCHIC_ELITE_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck17
 	cp GRAND_FIRE_DECK_ID
-	jp z, $76ad
+	jp z, AIDecide_NightlyGarbageRun_Deck3A
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $76d6
 	cp GREAT_DRAGON_DECK_ID
@@ -5908,6 +6056,33 @@ AIDecide_NightlyGarbageRun_Deck17:
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MR_MIME_LV20
+	farcall FindCardIDInLocation
+	ret c
+	ld a, [wDuelTempList + 2]
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+SECTION "Bank 8@76ad", ROMX[$76ad], BANK[$8]
+
+; deck $3a (Grand Fire) Nightly Garbage Run policy: only play once at least
+; three basic energies are in the discard pile, then shuffle the first two
+; back along with a discarded Moltres if one is there (else a third energy).
+; (Carved out of the still-raw $76ad-$76d6 block.)
+AIDecide_NightlyGarbageRun_Deck3A:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, .no_play
+	cp $03
+	jr c, .no_play
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MOLTRES_LV40
 	farcall FindCardIDInLocation
 	ret c
 	ld a, [wDuelTempList + 2]
