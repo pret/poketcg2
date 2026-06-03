@@ -210,6 +210,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5a8c` | [`RemoveCardFromListAtHL`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (shared list-compaction helper; used by ER + ITEMFINDER) | 2026-06-02 |
 | `$08` | `$73d8` | [`AIDecide_PokemonTrader_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (deck $51 Direct Hit; Abra/Mewtwo/Dark Alakazam line) | 2026-06-02 |
 | `$08` | `$7586` | [`AIDecide_TheBosssWay_Deck51`](../../../src/engine/bank08.asm) | sameboy_trace duel-miwa (same chains as deck $51 Trader) | 2026-06-02 |
+| `$08` | `$75b2` | [`AIDecide_TheBosssWay_Deck58`](../../../src/engine/bank08.asm) + [`AIDecide_TheBosssWay_Deck5A`](../../../src/engine/bank08.asm) | sameboy_trace duel-samejima ($58 Sudden Growth = Samejima; $5a Bad Guys delegate) | 2026-06-02 |
+| `$08` | `$7956` | [`AIDecide_NightlyGarbageRun_Deck58`](../../../src/engine/bank08.asm) + [`_Deck5A`](../../../src/engine/bank08.asm) + [`_Deck6F`](../../../src/engine/bank08.asm) | sameboy_trace duel-samejima (Sudden Growth rescues Dragonair/Clefable lines + basic energy; $5a/$6f delegates) | 2026-06-02 |
 | `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$603e` | [`AIPlay_MrFuji`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko | 2026-06-02 |
 | `$08` | `$604f` | [`AIDecide_MrFuji`](../../../src/engine/bank08.asm) + `Deck4D` + `Deck6D` | sameboy_trace duel-kanoko | 2026-06-02 |
@@ -265,7 +267,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 56.71% (~9.1 KiB of 16 KiB).
+**Source-defined**: 57.71% (~9.2 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -289,6 +291,7 @@ the target (helps justify future decomp prioritization).
 - `$6cfd-$6d58` — `AIPlay_ComputerSearch` + `AIDecide_ComputerSearch` (dispatcher; 8 deck cases left raw).
 - `$6e0a-$6e0e` — `AIDecide_ComputerSearch_Deck55` (trampoline).
 - `$78f2-$7955` — `AIDecide_NightlyGarbageRun_Deck55`.
+- `$7956-$79de` — `AIDecide_NightlyGarbageRun_Deck58` (Sudden Growth; rescue Dragonair/Clefable lines from discard + basic energy) + `_Deck5A` + `_Deck6F` (bank-$12 delegates).
 - `$620f-$6227` — `AIDecide_ScoopUp_Deck47` (jumps back to AIDecide_ScoopUp's local labels).
 - `$6b60-$6bba` — `AIDecide_Pokeball_Deck47`.
 - `$6bbb-$6bf7` — `AIDecide_Pokeball_Deck4A`.
@@ -308,6 +311,7 @@ the target (helps justify future decomp prioritization).
 - `$5a8c-$5a9c` — `RemoveCardFromListAtHL` (shared list-compaction helper).
 - `$73d8-$7455` — `AIDecide_PokemonTrader_Deck51` (deck $51 Direct Hit; solo priority-fetch + evolution-chain walk).
 - `$7586-$75b1` — `AIDecide_TheBosssWay_Deck51` (same chains as the deck $51 Trader).
+- `$75b2-$75cc` — `AIDecide_TheBosssWay_Deck58` (Sudden Growth; Dratini/Clefairy evo lines) + `AIDecide_TheBosssWay_Deck5A` (Bad Guys; bank-$12 delegate).
 - `$603e-$60d6` — `AIPlay_MrFuji` + `AIDecide_MrFuji` + `AIDecide_MrFuji_Deck4D` + `AIDecide_MrFuji_Deck6D`.
 - `$60d7-$61e1` — `AIPlay_ScoopUp` + `AIDecide_ScoopUp` (inline `.deck_3c`; 8 other deck cases left raw).
 - `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).

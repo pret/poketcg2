@@ -4740,9 +4740,9 @@ AIDecide_TheBosssWay:
 	cp $51
 	jp z, AIDecide_TheBosssWay_Deck51
 	cp $58
-	jp z, $75b2
+	jp z, AIDecide_TheBosssWay_Deck58
 	cp $5a
-	jp z, $75c8
+	jp z, AIDecide_TheBosssWay_Deck5A
 	cp $6a
 	jp z, AIDecide_TheBosssWay_Deck6A
 	cp $73
@@ -4806,43 +4806,59 @@ AIDecide_TheBosssWay_Deck3F:
 
 SECTION "Bank 8@7570", ROMX[$7570], BANK[$8]
 
-; deck $4f's The Boss's Way policy: walk the $f3 -> $f7 -> $fa
-; 3-stage evolution chain (same chain that deck $4f's Pokemon
-; Trader walks).
+; deck $4f's The Boss's Way policy: walk the Machop -> Dark Machoke ->
+; Dark Machamp 3-stage evolution chain (same chain that deck $4f's
+; Pokemon Trader walks).
 AIDecide_TheBosssWay_Deck4F:
-	ld bc, $f3
-	ld de, $f7
+	ld bc, MACHOP_LV24
+	ld de, DARK_MACHOKE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $f7
-	ld de, $fa
+	ld bc, DARK_MACHOKE
+	ld de, DARK_MACHAMP
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x23586
 
 ; deck $51 (Direct Hit) The Boss's Way policy: walk the same evolution
-; chains its Pokemon Trader uses -- Abra -> Dark Kadabra -> Dark Alakazam
-; ($115 -> $11a -> $11d) plus $87 -> $8a and $14b -> $14d.
+; chains its Pokemon Trader uses -- Abra -> Dark Kadabra -> Dark Alakazam,
+; plus Psyduck -> Dark Golduck and Rattata -> Dark Raticate.
 AIDecide_TheBosssWay_Deck51:
-	ld bc, $115
-	ld de, $11a
+	ld bc, ABRA_LV8
+	ld de, DARK_KADABRA
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $11a
-	ld de, $11d
+	ld bc, DARK_KADABRA
+	ld de, DARK_ALAKAZAM
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $87
-	ld de, $8a
+	ld bc, PSYDUCK_LV16
+	ld de, DARK_GOLDUCK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	ld bc, $14b
-	ld de, $14d
+	ld bc, RATTATA_LV15
+	ld de, DARK_RATICATE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x235b2
 
-SECTION "Bank 8@75cd", ROMX[$75cd], BANK[$8]
+; deck $58 (Sudden Growth) The Boss's Way policy: pull a Moon Stone evo
+; line from the opponent's deck -- Dratini -> Dark Dragonair, else
+; Clefairy -> Dark Clefable.
+AIDecide_TheBosssWay_Deck58:
+	ld bc, DRATINI_LV12
+	ld de, DARK_DRAGONAIR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, CLEFAIRY_LV15
+	ld de, DARK_CLEFABLE
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+
+; deck $5a (Bad Guys) delegates The Boss's Way to a bespoke bank-$12 helper.
+AIDecide_TheBosssWay_Deck5A:
+	farcall BadGuysDeckAIDecideTheBosssWay
+	ret
 
 ; deck $6a's The Boss's Way policy: four evolution-chain checks. Same
 ; "fetch from opponent's deck along an evolution line" pattern that
@@ -4905,11 +4921,11 @@ AIDecide_NightlyGarbageRun:
 	cp $55
 	jp z, AIDecide_NightlyGarbageRun_Deck55
 	cp $58
-	jp z, $7956
+	jp z, AIDecide_NightlyGarbageRun_Deck58
 	cp $5a
-	jp z, $79d5
+	jp z, AIDecide_NightlyGarbageRun_Deck5A
 	cp $6f
-	jp z, $79da
+	jp z, AIDecide_NightlyGarbageRun_Deck6F
 	or a
 	ret
 ; 0x2365e
@@ -5071,6 +5087,80 @@ AIDecide_NightlyGarbageRun_Deck55:
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	pop af
 	scf
+	ret
+
+; deck $58 (Sudden Growth) Nightly Garbage Run policy: recover its Moon
+; Stone evo line from the discard -- Dratini, Dark Dragonair, Dark
+; Dragonite, then Clefairy / Dark Clefable (stopping once one of the
+; Clefairy-line cards is queued) -- and top up with basic energy. Up to
+; three deck indices are collected, then `.pack` compacts the slots and
+; returns carry SET if anything was found.
+AIDecide_NightlyGarbageRun_Deck58:
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, $02
+	ld de, DRATINI_LV12
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, $02
+	ld de, DARK_DRAGONAIR
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, $02
+	ld de, DARK_DRAGONITE
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	ld a, $02
+	ld de, CLEFAIRY_LV15
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	ld a, $02
+	ld de, DARK_CLEFABLE
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .pack
+	ld a, $02
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .pack
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .energy_loop
+.pack
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	ret z
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	cp $ff
+	jr z, .none_left
+	pop af
+	scf
+	ret
+.none_left
+	pop af
+	or a
+	ret
+
+; deck $5a (Bad Guys) delegates Nightly Garbage Run to a bank-$12 helper.
+AIDecide_NightlyGarbageRun_Deck5A:
+	farcall BadGuysDeckAIDecideNightlyGarbageRun
+	ret
+
+; deck $6f (Immortal Pokemon) delegates Nightly Garbage Run to a bank-$12 helper.
+AIDecide_NightlyGarbageRun_Deck6F:
+	farcall ImmortalPokemonDeckAIDecideNightlyGarbageRun
 	ret
 
 SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
