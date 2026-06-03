@@ -579,7 +579,7 @@ AIDecide_Defender_Phase13:
 .no_play
 	or a
 	ret
-; deck $50: only play if our active is Dark Primeape AND its status
+; deck $50 (Running Wild): only play if our active is Dark Primeape AND its status
 ; is CONFUSED AND it still has 40+ HP -- Defender preserves our
 ; Dark Primeape long enough to recover.
 .deck_50
@@ -972,8 +972,8 @@ ScoreAttackWithPoisonDiscount:
 	cp $03
 	ret
 
-; deck $45 (Dark Jolteon / Dark Raichu) Phase 14 case: only commit
-; if our active is one of those two AND the standard gates pass
+; deck $45 (Quick Attack) Phase 14 case: only commit if our active is
+; Dark Jolteon or Dark Raichu AND the standard gates pass
 ; (CheckIfAttackWontKOAlready + min-damage >= 10 +
 ; CheckIfDamageThresholdMetForPlusPower_Phase14).
 AIDecide_PlusPower_Phase14_Deck45:
@@ -1731,7 +1731,8 @@ ScoreBenchEnergyRemovalCandidate:
 
 SECTION "Bank 8@4de7", ROMX[$4de7], BANK[$8]
 
-; Shared by decks $45 and $50 (Dark Jolteon / Dark Raichu family).
+; Shared by deck $45 (Quick Attack) and deck $50 (Running Wild) -- two
+; different archetypes that happen to use the same Energy Removal policy.
 ; First two passes: if a Double Colorless energy is attached to a
 ; player-area Pokemon, remove THAT one as priority -- returning the
 ; "should I play Energy Removal because we can KO?" flag (b) as the
@@ -1848,7 +1849,7 @@ CheckIfEnergyRemovalDisruptsBigAttack:
 
 SECTION "Bank 8@4e90", ROMX[$4e90], BANK[$8]
 
-; deck $4a's Energy Removal policy. Bail if we can KO the defender
+; deck $4a (Whirlpool Shower) Energy Removal policy. Bail if we can KO the defender
 ; from hand or if the defender has no non-Recycle energy. Special
 ; case: if our active is Dark Vaporeon or Dark Starmie AND its
 ; attack 1 is usable right now, defer to attacking (return NC) --
@@ -3165,8 +3166,8 @@ AIPlay_ImakuniCard:
 
 ; Imakuni's Card confuses our OWN active. The AI plays it when (a)
 ; our active doesn't already have a status condition (no point
-; overwriting), or (b) we're deck $50 (Dark Primeape) and the
-; confusion is desirable -- but only if Dark Primeape has 2+
+; overwriting), or (b) we're deck $50 (Running Wild) and the
+; confusion is desirable -- but only if our Dark Primeape has 2+
 ; energy attached (so its "Fury Swipes" benefits) and isn't
 ; already confused.
 AIDecide_ImakuniCard:

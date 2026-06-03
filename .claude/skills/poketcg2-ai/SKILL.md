@@ -72,12 +72,25 @@ differs from the `deck_const` collection ordinal in
 [src/constants/deck_constants.asm](../../../src/constants/deck_constants.asm).
 E.g. `DIRECT_HIT_DECK_ID = $51` but `deck_const DIRECT_HIT_DECK = $53`.
 **To name a deck, never read the `deck_const ; $NN` comment** — instead
-resolve `<NAME>_DECK_ID` with an rgbasm probe, or (most reliable)
-identify the deck by the card IDs the decompiled function searches and
-match them against the card lists in
-[src/data/decks.asm](../../../src/data/decks.asm). The `_DeckNN` label
-suffix is always the hex `*_DECK_ID` literal from the `cp` instruction.
-Known so far: `$51`=Direct Hit, `$53`=Bad Dream.
+resolve `<NAME>_DECK_ID` with an rgbasm probe (loop `deck_duel` entries
+in deck_id_data.asm), or (most reliable) identify the deck by the card
+IDs the decompiled function searches and match them against the card
+lists in [src/data/decks.asm](../../../src/data/decks.asm) (the card
+list label is `<Stem>Deck:`, sharing the stem with `<STEM>_DECK_ID`).
+The `_DeckNN` label suffix is always the hex `*_DECK_ID` literal from
+the `cp` instruction — that part is correct by construction; only
+human-readable *names* are at risk.
+
+**In comments, the parenthetical after "deck $NN" must be the official
+deck name, not a signature-card nickname.** Two decks can share an AI
+policy yet be different archetypes (e.g. `$45` Quick Attack and `$50`
+Running Wild share `AIDecide_EnergyRemoval_Deck45Or50` but are
+Lightning vs. Fighting). Describing the cards the code checks ("our
+active is Dark Jolteon or Dark Raichu") is fine and accurate; calling
+the *deck* "Dark Jolteon / Dark Raichu" is not — that's the Quick
+Attack deck. Verified deck IDs so far: `$41`=Mad Petals, `$43`=Chain
+Lightning by Pikachu, `$45`=Quick Attack, `$4a`=Whirlpool Shower,
+`$50`=Running Wild, `$51`=Direct Hit, `$53`=Bad Dream.
 
 **Carry convention**: `decide_fn` returns **carry SET** when the AI
 chose to play the card. Lower-level helpers usually follow the same
@@ -118,7 +131,7 @@ the target (helps justify future decomp prioritization).
 |---|---|---|---|---|
 | `$08` | `$42d0` | [`AIDecide_Potion_Phase10`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$433b` | [`CheckIfAnyAttackBoostsIfTakenDamage`](../../../src/engine/bank08.asm) | called from AIDecide_Potion_Phase10 | 2026-06-01 |
-| `$08` | `$4365` | [`AIDecide_Potion_Phase10_Deck45`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (Dark Jolteon / Dark Raichu deck) | 2026-06-02 |
+| `$08` | `$4365` | [`AIDecide_Potion_Phase10_Deck45`](../../../src/engine/bank08.asm) | sameboy_trace duel-catherine (deck $45 Quick Attack; Dark Jolteon/Raichu cards) | 2026-06-02 |
 | `$08` | `$439b` | [`AIDecide_Potion_Phase11`](../../../src/engine/bank08.asm) | sameboy_trace duel-sam | 2026-06-01 |
 | `$08` | `$483d` | [`AIPlay_Switch`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
 | `$08` | `$485a` | [`AIDecide_Switch_Phase09`](../../../src/engine/bank08.asm) | sameboy_trace duel-masahiro | 2026-06-01 |
@@ -131,8 +144,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4c44` | [`AIPlay_EnergyRemoval`](../../../src/engine/bank08.asm) | sameboy_trace duel-ichikawa2 | 2026-06-02 |
 | `$08` | `$4c5a` | [`AIDecide_EnergyRemoval`](../../../src/engine/bank08.asm) + helpers `CheckIfHasNonRecycleEnergy`, `CheckIfBothAttacksStillNeedEnergy`, `ScoreBenchEnergyRemovalCandidate` | sameboy_trace duel-ichikawa2 (7 deck cases left raw) | 2026-06-02 |
 | `$08` | `$4e3c` | [`AIDecide_EnergyRemoval_Deck47`](../../../src/engine/bank08.asm) + `CheckIfEnergyRemovalDisruptsBigAttack` | sameboy_trace duel-yuki | 2026-06-02 |
-| `$08` | `$4de7` | [`AIDecide_EnergyRemoval_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya (Dark Jolteon / Dark Raichu shared; Double Colorless priority) | 2026-06-02 |
-| `$08` | `$4e90` | [`AIDecide_EnergyRemoval_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima (Dark Vaporeon / Dark Starmie deck) | 2026-06-02 |
+| `$08` | `$4de7` | [`AIDecide_EnergyRemoval_Deck45Or50`](../../../src/engine/bank08.asm) | sameboy_trace duel-kamiya (deck $45 Quick Attack + $50 Running Wild shared; Double Colorless priority) | 2026-06-02 |
+| `$08` | `$4e90` | [`AIDecide_EnergyRemoval_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima (deck $4a Whirlpool Shower; Dark Vaporeon/Starmie cards) | 2026-06-02 |
 | `$08` | `$620f` | [`AIDecide_ScoopUp_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6b60` | [`AIDecide_Pokeball_Deck47`](../../../src/engine/bank08.asm) | sameboy_trace duel-yuki | 2026-06-02 |
 | `$08` | `$6bbb` | [`AIDecide_Pokeball_Deck4A`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyajima | 2026-06-02 |
@@ -294,7 +307,7 @@ parens.
 1. `$57c8-$5a83` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. None traced yet — each needs a duel against the owning deck. (The shared helper at `$5a8c` is now landed as `RemoveCardFromListAtHL`.)
 2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
 3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
-   - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
+   - `$4365` (POTION Phase 10, deck `$45` Quick Attack)
    - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
    - `$4bc5d` in bank `$12` (POTION Phase 11, deck `$74` delegate)
    - `$5528-$563e` (PROFESSOR_OAK, remaining deck-specific cases `$11, $2d, $32, $3a, $3b, $55, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72` — `$53` now landed)
