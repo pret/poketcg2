@@ -2825,9 +2825,9 @@ AIDecide_EnergyRetrieval:
 	cp MAX_ENERGY_DECK_ID
 	jp z, $57d2
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jp z, $581d
+	jp z, AIDecide_EnergyRetrieval_Deck2D
 	cp ELECTRIC_CURRENT_SHOCK_DECK_ID
-	jp z, $589d
+	jp z, AIDecide_EnergyRetrieval_Deck2D.check_energy_count
 	cp STICKY_POISON_GAS_DECK_ID
 	jp z, $58cf
 	cp EEVEE_SHOWDOWN_DECK_ID
@@ -2991,6 +2991,93 @@ AIDecide_EnergyRetrieval:
 	scf
 	ret
 ; 0x217c8
+
+SECTION "Bank 8@581d", ROMX[$581d], BANK[$8]
+
+; deck $2d (Rain Dance Confusion) Energy Retrieval policy. Carved out of
+; the still-raw $57c8-$5a8c block. Pre-picks the first two basic energies
+; in the discard pile as the recharge payload (slots 1/2), then runs a
+; chain of "is it worth it?" gates: play only if the hand/board shows a
+; concrete use for the recovered energy — a Blastoise on the bench needing
+; fuel, a duplicate-laden hand wanting Professor Oak, damage worth a Potion,
+; a Switch/Gust play in hand, an in-progress Seel/Dewgong or Lapras line,
+; or a Pokemon Breeder. The Electric Current Shock deck ($44) reuses the
+; tail from .check_energy_count (jumped in by the dispatcher).
+AIDecide_EnergyRetrieval_Deck2D:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, AIDecide_EnergyRetrieval.no_targets
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	cp $ff
+	jr z, AIDecide_EnergyRetrieval.no_targets
+	bank1call CreateEnergyCardListFromHand
+	jr c, .check_oak
+	ld de, BLASTOISE_LV52
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+.check_oak
+	ld de, PROFESSOR_OAK
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $2a
+	jr c, .check_damage
+	ld de, PROFESSOR_OAK
+	farcall LookForCardIDInHandList
+	ret c
+.check_damage
+	farcall CheckIfAnyPlayAreaPokemonHasDamage
+	jr c, .check_switch
+	ld de, POTION
+	farcall LookForCardIDInHandList
+	ret c
+.check_switch
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	ret c
+	ld de, DEWGONG_LV24
+	farcall IsCardIDInHandAndPlayArea
+	ret c
+	ld de, SEEL_LV10
+	farcall IsCardIDInHandAndPlayArea
+	ret c
+	ld de, LAPRAS_LV31
+	farcall IsCardIDInHandAndPlayArea
+	ret c
+	ld de, BLASTOISE_LV52
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld de, POKEMON_BREEDER
+	farcall LookForCardIDInHandList
+	ret c
+.check_energy_count
+	farcall CountBasicEnergyCardsInHand
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	ld de, GUST_OF_WIND
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
 
 SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
 
@@ -4760,7 +4847,7 @@ AIDecide_ComputerSearch:
 	jr c, .no_play
 	ld a, [wOpponentDeckID]
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jp z, $6d59
+	jp z, AIDecide_ComputerSearch_Deck2D
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, $6d5e
 	cp MAD_PETALS_DECK_ID
@@ -4779,6 +4866,14 @@ AIDecide_ComputerSearch:
 	jp z, AIDecide_ComputerSearch_Deck70
 .no_play
 	or a
+	ret
+
+SECTION "Bank 8@6d59", ROMX[$6d59], BANK[$8]
+
+; deck $2d (Rain Dance Confusion) Computer Search policy: delegated to a
+; bank helper. (Carved out of the still-raw $6d59-$6e0a block.)
+AIDecide_ComputerSearch_Deck2D:
+	farcall RainDanceConfusionDeckAIDecideComputerSearch
 	ret
 
 SECTION "Bank 8@6e0a", ROMX[$6e0a], BANK[$8]
@@ -4837,7 +4932,7 @@ AIDecide_PokemonTrader:
 	cp GATHERING_NIDORAN_DECK_ID
 	jp z, $6f88
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jp z, $7040
+	jp z, AIDecide_PokemonTrader_Deck2D
 	cp GO_ARCANINE_DECK_ID
 	jp z, $70a7
 	cp MAD_PETALS_DECK_ID
@@ -4937,6 +5032,58 @@ AIDecide_PokemonTrader_Deck18:
 	scf
 	ret
 ; 0x22f88
+
+SECTION "Bank 8@7040", ROMX[$7040], BANK[$8]
+
+; deck $2d (Rain Dance Confusion) Pokemon Trader policy: play only when we
+; can complete a Squirtle/Wartortle/Blastoise or Seel/Dewgong line, either
+; by fetching the next stage of a line already started (evo-in-deck given
+; preevo in hand/play area), by digging the missing pre-evo when the evo is
+; already in hand, or — for the Seel line — via CheckReelInEvoLineTarget.
+; On a hit, tag the picked deck index as the swap target; otherwise fall
+; back to trading a duplicate Pokemon or an unusable evolution card in hand.
+; (Carved out of the still-raw $6f88-$71d4 block.)
+AIDecide_PokemonTrader_Deck2D:
+	ld bc, SQUIRTLE_LV15
+	ld de, WARTORTLE_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld bc, SQUIRTLE_LV16
+	ld de, WARTORTLE_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld bc, WARTORTLE_LV22
+	ld de, BLASTOISE_LV52
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .pick
+	ld de, SQUIRTLE_LV15
+	ld bc, WARTORTLE_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, SQUIRTLE_LV16
+	ld bc, WARTORTLE_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld de, WARTORTLE_LV22
+	ld bc, BLASTOISE_LV52
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .pick
+	ld bc, SEEL_LV10
+	ld de, DEWGONG_LV24
+	farcall CheckReelInEvoLineTarget
+	jr nc, .no_match
+.pick
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDuplicatePokemonCardsInHand
+	jr c, .play
+	farcall FindUnusableEvolutionCardInHand
+	jr c, .play
+.no_match
+	or a
+	ret
+.play
+	scf
+	ret
 
 SECTION "Bank 8@71d4", ROMX[$71d4], BANK[$8]
 

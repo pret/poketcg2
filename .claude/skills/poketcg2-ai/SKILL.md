@@ -264,6 +264,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6e28` | [`AIPlay_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie | 2026-06-01 |
 | `$08` | `$6e43` | [`AIDecide_PokemonTrader`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (dispatcher only; 25 deck-specific cases left raw) | 2026-06-01 |
 | `$08` | `$6f1b` | [`AIDecide_PokemonTrader_Deck18`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie (Rie is deck $18) | 2026-06-01 |
+| `$08` | `$7040` | [`AIDecide_PokemonTrader_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (Rain Dance Confusion; Squirtle/Seel evo-line trader) | 2026-06-03 |
+| `$08` | `$6d59` | [`AIDecide_ComputerSearch_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (delegate to RainDanceConfusionDeckAIDecideComputerSearch) | 2026-06-03 |
+| `$08` | `$581d` | [`AIDecide_EnergyRetrieval_Deck2D`](../../../src/engine/bank08.asm) | sameboy_trace duel-amy (gated energy-recovery heuristic; $44 shares tail) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -304,7 +307,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 65.50% (~10.5 KiB of 16 KiB).
+**Source-defined**: 67.24% (~10.8 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
@@ -346,6 +349,9 @@ the target (helps justify future decomp prioritization).
 - `$49e3-$49fb` — `AIPlay_GustOfWind`.
 - `$6e28-$6ec9` — `AIPlay_PokemonTrader` + `AIDecide_PokemonTrader` (dispatcher; 25 deck cases left raw).
 - `$6f1b-$6f87` — `AIDecide_PokemonTrader_Deck18`.
+- `$7040-$70a6` — `AIDecide_PokemonTrader_Deck2D` (Rain Dance Confusion; Squirtle/Wartortle/Blastoise + Seel/Dewgong evo-line trader).
+- `$6d59-$6d5d` — `AIDecide_ComputerSearch_Deck2D` (Rain Dance Confusion; bank-helper delegate).
+- `$581d-$58ce` — `AIDecide_EnergyRetrieval_Deck2D` (Rain Dance Confusion; gated energy-recovery heuristic; deck $44 reuses tail at `.check_energy_count` = $589d).
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
 - `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).
