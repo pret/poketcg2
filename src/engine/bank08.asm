@@ -2803,7 +2803,7 @@ AIDecide_EnergyRetrieval_Deck5F:
 
 SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
 
-; deck $6c (Ronald's Psychic) Energy Retrieval: a bank-$12 helper picks
+; deck $6c (Ronald's Super) Energy Retrieval: a bank-$12 helper picks
 ; the target; on success rejoin AIDecide_EnergyRetrieval's shared
 ; commit tail (.got_target).
 AIDecide_EnergyRetrieval_Deck6C:
@@ -5604,13 +5604,13 @@ AIDecide_MoonStone:
 	jr z, .deck_6d
 	or a
 	ret
-; deck $16 (Hand Over GR): Jigglypuff -> Wigglytuff
+; deck $16 (Handed Over GR): Jigglypuff -> Wigglytuff
 .deck_16
 	ld bc, JIGGLYPUFF_LV13
 	ld de, WIGGLYTUFF_LV36
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
-; deck $23 (I Love to Fight): just confirm Dodrio is sitting in the deck
+; deck $23 (Love to Battle): just confirm Dodrio is sitting in the deck
 .deck_23
 	ld a, $00
 	ld de, DODRIO_LV28
