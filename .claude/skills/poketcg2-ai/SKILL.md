@@ -141,7 +141,11 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$5f63` | [`AIPlay_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 | 2026-06-01 |
 | `$08` | `$5d2d` | [`AIPlay_EnergySearch`](../../../src/engine/bank08.asm) | sameboy_trace duel-ronald | 2026-06-01 |
 | `$08` | `$5d3e` | [`AIDecide_EnergySearch`](../../../src/engine/bank08.asm) + Deck0D + Deck66 + helper `LookForEnergyUsefulToPlayArea` | sameboy_trace duel-ronald | 2026-06-01 |
-| `$08` | `$5f6f` | [`AIDecide_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 (deck-$53 case `$602b` and shared SCOOP_UP helper `$60ed` still raw) | 2026-06-01 |
+| `$08` | `$5f6f` | [`AIDecide_FullHeal`](../../../src/engine/bank08.asm) | sameboy_trace duel-gr4 (shared SCOOP_UP helper `$60ed` still raw) | 2026-06-01 |
+| `$08` | `$602b` | [`AIDecide_FullHeal_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (deck $53 Direct Hit; gated on defender Asleep) | 2026-06-02 |
+| `$08` | `$55e8` | [`AIDecide_ProfessorOak_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (hand 5-10 unless holding Gastly/Haunter22/Drowzee) | 2026-06-02 |
+| `$08` | `$6c5c` | [`AIDecide_Pokeball_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (7-card deck search of the Psychic line) | 2026-06-02 |
+| `$08` | `$7a73` | [`AIDecide_Sleep_Deck53`](../../../src/engine/bank08.asm) | sameboy_trace duel-yosuke (Haunter22 active + defender not already Asleep) | 2026-06-02 |
 | `$08` | `$6694` | [`AIPlay_Gambler`](../../../src/engine/bank08.asm) | AITrainerCardLogic table entry, hot in duel-gene | 2026-06-01 |
 | `$08` | `$603e` | [`AIPlay_MrFuji`](../../../src/engine/bank08.asm) | sameboy_trace duel-kanoko | 2026-06-02 |
 | `$08` | `$604f` | [`AIDecide_MrFuji`](../../../src/engine/bank08.asm) + `Deck4D` + `Deck6D` | sameboy_trace duel-kanoko | 2026-06-02 |
@@ -192,7 +196,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 46.74% (~7.5 KiB of 16 KiB).
+**Source-defined**: 47.71% (~7.6 KiB of 16 KiB).
 **Last updated**: 2026-06-02.
 
 ### Decompiled regions (named, in source)
@@ -218,7 +222,11 @@ the target (helps justify future decomp prioritization).
 - `$6f1b-$6f87` — `AIDecide_PokemonTrader_Deck18`.
 - `$5ce2-$5d2c` — `AIPlay_ImposterProfessorOak` + `AIDecide_ImposterProfessorOak` (deck `$59`/`$67`/`$68` cases inline as local labels).
 - `$5d2d-$5e0d` — `AIPlay_EnergySearch` + `AIDecide_EnergySearch` (deck `$09`/`$0b` inline; `$0d`/`$66` as separate sub-functions; unreferenced `AIDecide_EnergySearch_GrassOnly` preserved) + `LookForEnergyUsefulToPlayArea` helper.
-- `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (deck `$53` case `$602b` left raw; previously raw `call $60ed` is now `call AIDecide_ScoopUp`).
+- `$5f63-$602a` — `AIPlay_FullHeal` + `AIDecide_FullHeal` (previously raw `call $60ed` is now `call AIDecide_ScoopUp`).
+- `$602b-$603d` — `AIDecide_FullHeal_Deck53` (deck $53; gates on opponent Asleep, jumps back to `AIDecide_FullHeal.no_play`/`.play`).
+- `$55e8-$560f` — `AIDecide_ProfessorOak_Deck53`.
+- `$6c5c-$6ca1` — `AIDecide_Pokeball_Deck53`.
+- `$7a73-$7a8f` — `AIDecide_Sleep_Deck53` (jumps back to `AIDecide_Sleep.no_play`).
 - `$603e-$60d6` — `AIPlay_MrFuji` + `AIDecide_MrFuji` + `AIDecide_MrFuji_Deck4D` + `AIDecide_MrFuji_Deck6D`.
 - `$60d7-$61e1` — `AIPlay_ScoopUp` + `AIDecide_ScoopUp` (inline `.deck_3c`; 8 other deck cases left raw).
 - `$68b7-$691d` — `AIPlay_Pokeball` + `AIDecide_Pokeball` (13-way dispatcher; 12 cases left raw).
@@ -268,8 +276,7 @@ parens.
    - `$4365` (POTION Phase 10, deck `$45` Dark Jolteon/Raichu)
    - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
    - `$4bc5d` in bank `$12` (POTION Phase 11, deck `$74` delegate)
-   - `$5528-$563e` (PROFESSOR_OAK, 20 deck-specific cases including `$11, $2d, $32, $3a, $3b, $45, $49, $4d, $50, $53, $55, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72`)
-   - `$7a73` (SLEEP, deck `$53` case)
+   - `$5528-$563e` (PROFESSOR_OAK, remaining deck-specific cases `$11, $2d, $32, $3a, $3b, $55, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72` — `$53` now landed)
 4. Other `AIDecide_*` / `AIPlay_*` table entries still pointing at raw hex — most plays are AIMakeDecision wrappers, structurally identical to the ones already landed. Most decides are small.
 
 ### Trace coverage status
@@ -311,6 +318,7 @@ parens.
 | duel-kamiya | 48 (deck $50; rest in ITEMFINDER decide which depends on shared list helpers `Func_21a8c`/`Func_21c4e` still raw + deferred SUPER_ER) |
 | duel-kevin | **0** ✓ (2-duel trace; both decks fell through ER dispatcher to `.default` → `ret nc`) |
 | duel-ryoko | **0** ✓ (no trainer cards played all duel; no AIPlay_* entry fired) |
+| duel-yosuke | **0** ✓ (deck $53 Direct Hit; landed deck-$53 cases for SLEEP, FULL_HEAL, PROFESSOR_OAK, POKEBALL) |
 | duel-rie | **0** ✓ |
 | duel-rie2, duel-rie3 | 5 / 7 (only in deferred SUPER_ER territory) |
 | duel-gene | 65 (mostly in deferred SUPER_ER territory + a few ER deck-specific handlers) |

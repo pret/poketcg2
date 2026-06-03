@@ -1980,7 +1980,7 @@ AIDecide_ProfessorOak:
 	cp $50
 	jp z, AIDecide_ProfessorOak_Deck45Or50
 	cp $53
-	jp z, $55e8
+	jp z, AIDecide_ProfessorOak_Deck53
 	cp $55
 	jp z, $5610
 	cp $57
@@ -2140,6 +2140,35 @@ AIDecide_ProfessorOak_Deck49Or4D:
 	cp $04
 	ret
 ; 0x215e8
+
+SECTION "Bank 8@55e8", ROMX[$55e8], BANK[$8]
+
+; Deck $53 (Direct Hit): play Oak to refill a tiny hand (< 5 cards), or
+; for a mid-size hand (5-10) only if we're not already holding the key
+; Psychic basics (Gastly, Haunter Lv22, Drowzee) -- redrawing would risk
+; shuffling those evolution starters away. Never play with 11+ cards.
+AIDecide_ProfessorOak_Deck53:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret c
+	cp $0b
+	ret nc
+	ld de, GASTLY_LV13
+	farcall LookForCardIDInHandList
+	jr c, .dont_play
+	ld de, HAUNTER_LV22
+	farcall LookForCardIDInHandList
+	jr c, .dont_play
+	ld de, DROWZEE_LV10
+	farcall LookForCardIDInHandList
+	jr c, .dont_play
+	scf
+	ret
+.dont_play
+	or a
+	ret
+; 0x21610
 
 SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
 
@@ -2670,7 +2699,7 @@ AIDecide_FullHeal:
 	ret nc
 	ld a, [wOpponentDeckID]
 	cp $53
-	jp z, $602b
+	jp z, AIDecide_FullHeal_Deck53
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
@@ -2753,6 +2782,25 @@ AIDecide_FullHeal:
 	jp nz, .play
 	jr .no_play
 ; 0x2202b
+
+SECTION "Bank 8@602b", ROMX[$602b], BANK[$8]
+
+; Deck $53 (Direct Hit): when the defending Pokemon is Asleep -- which
+; this sleep-lock deck engineers on purpose -- only Full Heal ourselves
+; if we actually carry a status worth clearing. When the defender isn't
+; asleep, fall back to the normal Full Heal logic.
+AIDecide_FullHeal_Deck53:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jr nz, AIDecide_FullHeal.no_play
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jp nz, AIDecide_FullHeal.play
+	ret
+; 0x2203e
 
 SECTION "Bank 8@603e", ROMX[$603e], BANK[$8]
 
@@ -3459,7 +3507,7 @@ AIDecide_Pokeball:
 	cp $4e
 	jp z, AIDecide_Pokeball_Deck4E
 	cp $53
-	jp z, $6c5c
+	jp z, AIDecide_Pokeball_Deck53
 	or a
 	ret
 ; 0x2291e
@@ -3624,6 +3672,43 @@ AIDecide_Pokeball_Deck4E:
 	ld a, e
 	ret
 ; 0x22c5c
+
+SECTION "Bank 8@6c5c", ROMX[$6c5c], BANK[$8]
+
+; Deck $53 (Direct Hit): search the deck for any of the deck's Pokemon
+; line -- Haunter Lv22/Lv17, Drowzee, Kangaskhan, Gastly, Gengar, Dark
+; Hypno -- returning the first one found (carry SET) so Poké Ball can
+; fetch it.
+AIDecide_Pokeball_Deck53:
+	ld de, HAUNTER_LV22
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, HAUNTER_LV17
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, DROWZEE_LV10
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, KANGASKHAN_LV40
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, GASTLY_LV13
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, GENGAR_LV40
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret c
+	ld de, DARK_HYPNO
+	ld a, $00
+	farcall FindCardIDInLocation
+	ret
+; 0x22ca2
 
 SECTION "Bank 8@6e28", ROMX[$6e28], BANK[$8]
 
@@ -4337,7 +4422,7 @@ AIDecide_Sleep:
 	cp $12
 	jp z, AIDecide_Sleep_Deck12
 	cp $53
-	jp z, $7a73
+	jp z, AIDecide_Sleep_Deck53
 .no_play
 	or a
 	ret
@@ -4352,7 +4437,24 @@ AIDecide_Sleep_Deck12:
 	jr nz, AIDecide_Sleep.no_play
 	scf
 	ret
-; 0x23a73
+
+; Deck $53 (Direct Hit): only bother with Sleep when our active is
+; Haunter Lv22 (whose attack synergizes with a sleeping defender), and
+; not if the defender is already Asleep.
+AIDecide_Sleep_Deck53:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 HAUNTER_LV22
+	jr nz, AIDecide_Sleep.no_play
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jr z, AIDecide_Sleep.no_play
+	scf
+	ret
+; 0x23a90
 
 SECTION "Bank 8@7b0a", ROMX[$7b0a], BANK[$8]
 
