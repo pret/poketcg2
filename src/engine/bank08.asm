@@ -1341,8 +1341,6 @@ AIDecide_Switch_Phase16:
 ; (decks $3a/$3b/$3d have bespoke inline sub-deciders at $493d-$49a6,
 ; still raw)
 
-SECTION "Bank 8@48fc", ROMX[$48fc], BANK[$8]
-
 ; Shared commit tail for the bespoke Switch_Phase16 deciders: pick which
 ; benched Pokemon to switch the Arena card to. AIDecideBenchPokemonToSwitchTo
 ; returns carry CLEAR on success; the ccf flips it so this routine follows
@@ -2611,8 +2609,6 @@ AIPlay_PokemonBreeder:
 	ret
 ; 0x210b6
 
-SECTION "Bank 8@50b6", ROMX[$50b6], BANK[$8]
-
 ; Pokemon Breeder evolves a Basic directly into a Stage 2 (skipping Stage 1).
 ; Several decks have bespoke policies; everyone else uses the generic scan
 ; below. Never breed while a Prehistoric Power locks evolution.
@@ -2930,8 +2926,6 @@ AIDecide_PokemonBreeder_Deck53:
 	scf
 	ret
 
-SECTION "Bank 8@52fb", ROMX[$52fb], BANK[$8]
-
 ; deck $55 (Spirited Away) Pokemon Breeder case (reached from the still-
 ; raw AIDecide_PokemonBreeder dispatcher at $50b6). Breed Gastly Lv17
 ; ($126) straight up to Dark Gengar ($12e) when the Gastly is on the
@@ -2955,8 +2949,6 @@ AIDecide_PokemonBreeder_Deck55:
 	ld a, [wd082]
 	scf
 	ret
-
-SECTION "Bank 8@5323", ROMX[$5323], BANK[$8]
 
 ; deck $6f (Immortal Pokemon) Pokemon Breeder: breed an Alakazam onto a
 ; benched Abra -- but only if there isn't an Alakazam in play already.
@@ -3057,8 +3049,6 @@ PokemonBreeder_CheckBasicWorthBreeding:
 	pop af
 	scf
 	ret
-
-SECTION "Bank 8@53bc", ROMX[$53bc], BANK[$8]
 
 AIPlay_ProfessorOak:
 	ld a, [wCurrentAIFlags]
@@ -4182,8 +4172,6 @@ AIPlay_SuperEnergyRetrieval:
 	ret
 ; 0x21adf
 
-SECTION "Bank 8@5adf", ROMX[$5adf], BANK[$8]
-
 ; Super Energy Retrieval discards 2 cards from hand to recover up to 4
 ; basic Energy from the discard pile. The Ronald's Uncool deck has its own
 ; policy; everyone else uses this generic one: it needs two duplicate
@@ -4377,8 +4365,6 @@ AIDecide_SuperEnergyRetrieval_Deck69:
 	ld [hl], a
 	jr AIDecide_SuperEnergyRetrieval.commit
 
-SECTION "Bank 8@5c4e", ROMX[$5c4e], BANK[$8]
-
 ; Removes the first entry equal to A from the $ff-terminated list at hl,
 ; shifting the remainder down (via RemoveCardFromListAtHL). hl is
 ; preserved. Used by the Item Finder decider to drop the Item Finder
@@ -4393,8 +4379,6 @@ RemoveCardFromListByValue:
 	call RemoveCardFromListAtHL
 	pop hl
 	ret
-
-SECTION "Bank 8@5c59", ROMX[$5c59], BANK[$8]
 
 ; Pokemon Center heals all of the player's Pokemon but discards every
 ; Energy attached to them.
@@ -4474,8 +4458,6 @@ AIDecide_PokemonCenter:
 .deck_6f
 	farcall ImmortalPokemonDeckAIDecidePokemonCenter
 	ret
-
-SECTION "Bank 8@5ce2", ROMX[$5ce2], BANK[$8]
 
 AIPlay_ImposterProfessorOak:
 	ld a, [wAITrainerCardToPlay]
