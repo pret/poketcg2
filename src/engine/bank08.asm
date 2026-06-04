@@ -38,7 +38,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         AIDecide_PokemonCenter, AIPlay_PokemonCenter
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          AIDecide_EnergySearch, AIPlay_EnergySearch
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                AIDecide_Pokedex, AIPlay_Pokedex
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                AIDecide_MrFuji, AIPlay_MrFuji
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               AIDecide_ScoopUp, AIPlay_ScoopUp
@@ -59,14 +59,14 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, NIGHTLY_GARBAGE_RUN,    AIDecide_NightlyGarbageRun, AIPlay_NightlyGarbageRun
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, FOSSIL_EXCAVATION,      AIDecide_FossilExcavation, AIPlay_FossilExcavation
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, SLEEP,                  AIDecide_Sleep, AIPlay_Sleep
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         $7aa5, $7a90
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, POKEMON_RECALL,         AIDecide_PokemonRecall, AIPlay_PokemonRecall
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MASTER_BALL,            AIDecide_MasterBall, AIPlay_MasterBall
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILLS_TELEPORTER,       AIDecide_BillsTeleporter, AIPlay_BillsTeleporter
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MOON_STONE,             AIDecide_MoonStone, AIPlay_MoonStone
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_08, THE_ROCKETS_TRAP,       AIDecide_TheRocketsTrap, AIPlay_TheRocketsTrap
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, GOOP_GAS_ATTACK,        AIDecide_GoopGasAttack, AIPlay_GoopGasAttack
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_OAKS_REVENGE,  $7ed4, $7ec3
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, DIGGER,                 $7f3c, $7f30
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_OAKS_REVENGE,  AIDecide_ImposterOaksRevenge, AIPlay_ImposterOaksRevenge
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, DIGGER,                 AIDecide_Digger, AIPlay_Digger
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_17, COMPUTER_ERROR,         AIDecide_ComputerError, AIPlay_ComputerError
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SUPER_SCOOP_UP,         AIDecide_SuperScoopUp, AIPlay_SuperScoopUp
 	db $ff
@@ -4665,6 +4665,238 @@ LookForEnergyUsefulToPlayArea:
 	ret
 ; 0x21e0e
 
+SECTION "Bank 8@5e0e", ROMX[$5e0e], BANK[$8]
+
+; Scan the turn duelist's play area for the first Fire- or Lightning-type
+; Pokemon, then return (in a) the first card from the prepared wDuelTempList
+; whose energy is useful to it; carry set if none found.
+LookForUsefulEnergyForFireOrLightningPokemon:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	push de
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	ld a, e
+	ld [wTempCardID_d0a3], a
+	ld a, d
+	ld [wTempCardID_d0a3 + 1], a
+	call LoadCardDataToBuffer1_FromCardID
+	pop de
+	ld a, [wLoadedCard1Type]
+	or TYPE_ENERGY_FIRE
+	cp TYPE_ENERGY_FIRE
+	jr z, .matched
+	cp TYPE_ENERGY_LIGHTNING
+	jr nz, .next
+.matched
+	ld [wTempCardType], a
+	ld hl, wDuelTempList
+.scan_energy
+	ld a, [hli]
+	cp $ff
+	jr z, .next
+	ld b, a
+	push hl
+	farcall CheckIfEnergyIsUseful
+	pop hl
+	jr nc, .scan_energy
+	ld a, b
+	or a
+	ret
+.next
+	inc e
+	ld a, e
+	cp d
+	jr nz, .loop
+	scf
+	ret
+
+; As above, but for the first Grass-type Pokemon in the play area.
+LookForUsefulEnergyForGrassPokemon:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	push de
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	ld a, e
+	ld [wTempCardID_d0a3], a
+	ld a, d
+	ld [wTempCardID_d0a3 + 1], a
+	call LoadCardDataToBuffer1_FromCardID
+	pop de
+	ld a, [wLoadedCard1Type]
+	or TYPE_ENERGY_FIRE
+	cp TYPE_ENERGY_GRASS
+	jr nz, .next
+	ld [wTempCardType], a
+	ld hl, wDuelTempList
+.scan_energy
+	ld a, [hli]
+	cp $ff
+	jr z, .next
+	ld b, a
+	push hl
+	farcall CheckIfEnergyIsUseful
+	pop hl
+	jr nc, .scan_energy
+	ld a, b
+	or a
+	ret
+.next
+	inc e
+	ld a, e
+	cp d
+	jr nz, .loop
+	scf
+	ret
+
+; Pokedex lets the AI look at the top of its deck and reorder those cards.
+; The play wrapper forwards the chosen ordering (slots 1-3 plus $d09a/$d09b).
+AIPlay_Pokedex:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ldh [hTempRetreatCostCards], a
+	ld a, [$d09a]
+	ldh [hAIEnergyTransPlayAreaLocation], a
+	ld a, [$d09b]
+	ldh [$ffa6], a
+	ld a, $ff
+	ldh [$ffa7], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Play Pokedex only occasionally: at most once per 6 considerations
+; (wAIPokedexCounter), never when the deck is nearly empty (56+ cards out),
+; and then only 30% of the time. When it does, reorder the top 5 cards so
+; Pokemon come first, then Trainers, then Energy.
+AIDecide_Pokedex:
+	ld a, [wAIPokedexCounter]
+	cp $06
+	jr c, .no_play
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp $38
+	jr nc, .no_play
+	ld a, $0a
+	call Random
+	cp $03
+	jr c, .reorder
+.no_play
+	or a
+	ret
+.reorder
+	xor a
+	ld [wAIPokedexCounter], a
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	add $7e
+	ld l, a
+	ld de, $0
+	ld b, $05
+.classify_loop
+	ld a, [hli]
+	ld c, a
+	call GetCardTypeFromDeckIndex
+	push hl
+	ld hl, wd084
+	add hl, de
+	ld [hl], a
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, de
+	ld [hl], c
+	pop hl
+	inc e
+	dec b
+	jr nz, .classify_loop
+	ld a, $ff
+	ld [wMusicPanning], a
+	ld de, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wd084
+	ld c, $ff
+	ld b, $00
+.pokemon_pass
+	inc c
+	ld a, [hli]
+	cp $ff
+	jr z, .trainer_pass
+	cp $08 ; skip anything that isn't a Pokemon (type < first energy)
+	jr nc, .pokemon_pass
+	push hl
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	ld [de], a
+	inc de
+	jr .pokemon_pass
+.trainer_pass
+	ld hl, wd084
+	ld c, $ff
+	ld b, $00
+.trainer_loop
+	inc c
+	ld a, [hli]
+	cp $ff
+	jr z, .energy_pass
+	cp TYPE_TRAINER
+	jr nz, .trainer_loop
+	push hl
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	ld [de], a
+	inc de
+	jr .trainer_loop
+.energy_pass
+	ld hl, wd084
+	ld c, $ff
+	ld b, $00
+.energy_loop
+	inc c
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	and $08 ; energy bit
+	jr z, .energy_loop
+	push hl
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	ld [de], a
+	inc de
+	jr .energy_loop
+.done
+	scf
+	ret
+
+; Load the card at deck index a and return its type in a (bc/de preserved).
+GetCardTypeFromDeckIndex:
+	push bc
+	push de
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	pop de
+	pop bc
+	ret
+
 SECTION "Bank 8@5f63", ROMX[$5f63], BANK[$8]
 
 AIPlay_FullHeal:
@@ -8355,6 +8587,67 @@ AIDecide_Sleep_Deck53:
 	ret
 ; 0x23a90
 
+SECTION "Bank 8@7a90", ROMX[$7a90], BANK[$8]
+
+; Pokemon Recall returns a Pokemon from the play area (and its attached
+; cards) to the hand. The play wrapper forwards the chosen target ($ff =
+; let the effect pick).
+AIPlay_PokemonRecall:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, $ff
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Only the Overflow ($12) and Psychokinesis ($18) decks play Pokemon Recall,
+; each to rescue a discarded evolution whose pre-evo is already in hand/play.
+AIDecide_PokemonRecall:
+	ld a, [wOpponentDeckID]
+	cp OVERFLOW_DECK_ID
+	jr z, .deck_12
+	cp PSYCHOKINESIS_DECK_ID
+	jr z, .deck_18
+	or a
+	ret
+.deck_12
+	ld bc, MAGNEMITE_LV12
+	ld de, MAGNETON_LV35
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, SPEAROW_LV13
+	ld de, FEAROW_LV27
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, DODUO_LV10
+	ld de, DODRIO_LV25
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, VOLTORB_LV8
+	ld de, ELECTRODE_LV35
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret
+.deck_18
+	ld bc, ABRA_LV8
+	ld de, KADABRA_LV39
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, KADABRA_LV39
+	ld de, ALAKAZAM_LV45
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, GASTLY_LV13
+	ld de, HAUNTER_LV26
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret c
+	ld bc, HAUNTER_LV26
+	ld de, GENGAR_LV40
+	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
+	ret
+
 SECTION "Bank 8@7b0a", ROMX[$7b0a], BANK[$8]
 
 AIPlay_MasterBall:
@@ -8863,6 +9156,83 @@ AIDecide_GoopGasAttack:
 	farcall AIChooseStareTarget
 	ret
 ; 0x23ec3
+
+SECTION "Bank 8@7ec3", ROMX[$7ec3], BANK[$8]
+
+; Imposter Oak's Revenge makes the OPPONENT shuffle their hand into the deck
+; and draw 7 -- a disruption when their hand is large.
+AIPlay_ImposterOaksRevenge:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Only the Eevee Showdown ($48) and Ronald's Power ($6b) decks play it, and
+; only when the opposing duelist holds 5+ cards. Eevee Showdown also requires
+; a spare duplicate (Switch / Pokemon Trader / Energy Search / Energy
+; Retrieval) so it isn't discarding its own only copy; Ronald's Power just
+; needs any in-hand duplicate.
+AIDecide_ImposterOaksRevenge:
+	ld a, [wOpponentDeckID]
+	cp EEVEE_SHOWDOWN_DECK_ID
+	jr z, .deck_48
+	cp RONALDS_POWER_DECK_ID
+	jr z, .deck_6b
+.no_play
+	or a
+	ret
+.deck_48
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $05
+	jr c, .no_play
+	ld de, SWITCH
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, POKEMON_TRADER
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, ENERGY_SEARCH
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, ENERGY_RETRIEVAL
+	farcall CheckIfHandHasRepeatedCard
+	ret
+.deck_6b
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $05
+	jr c, .no_play
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	cp $ff
+	jr z, .commit
+	pop af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	push af
+.commit
+	pop af
+	scf
+	ret
+
+; Digger discards a card to draw 2 -- the AI always plays it when able.
+AIPlay_Digger:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+AIDecide_Digger:
+	scf
+	ret
 
 SECTION "Bank 8@7f3e", ROMX[$7f3e], BANK[$8]
 
