@@ -42,8 +42,8 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              AIDecide_FullHeal, AIPlay_FullHeal
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                AIDecide_MrFuji, AIPlay_MrFuji
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               AIDecide_ScoopUp, AIPlay_ScoopUp
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            AIDecide_Maintenance, AIPlay_Maintenance
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                AIDecide_Recycle, AIPlay_Recycle
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   AIDecide_Lass, AIPlay_Lass
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             AIDecide_ItemFinder, AIPlay_ItemFinder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_ImakuniCard, AIPlay_ImakuniCard
@@ -5159,6 +5159,126 @@ AIDecide_ScoopUp_Deck6E:
 ; of the still-raw $6228-$632c block.)
 AIDecide_ScoopUp_Deck74:
 	farcall BigThunderDeckAI_4c7b5
+	ret
+
+SECTION "Bank 8@624b", ROMX[$624b], BANK[$8]
+
+; Maintenance shuffles 2 cards from hand into the deck to draw 1.
+AIPlay_Maintenance:
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_MODIFIED_HAND
+	ld [wCurrentAIFlags], a
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ldh [hTemp_ffa0], a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Play Maintenance only with a hand of 4+ cards that holds two pairs of
+; duplicate non-target cards to shuffle away (stored in the two target
+; slots).
+AIDecide_Maintenance:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $04
+	jr c, .no_play
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld a, [wAITrainerCardToPlay]
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld hl, wDuelTempList
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	scf
+	ret
+.no_play
+	or a
+	ret
+
+; Recycle flips a coin; heads recovers a Trainer card from the discard pile
+; (the parameter picks which), tails does nothing.
+AIPlay_Recycle:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld de, $10e
+	bank1call TossCoin
+	jr nc, .tails
+	ld a, [wAITrainerCardParameter]
+	ldh [hTemp_ffa0], a
+	jr .decide
+.tails
+	ld a, $ff
+	ldh [hTemp_ffa0], a
+.decide
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Play Recycle whenever the discard pile holds any of the deck's key
+; recovery targets -- a Double Colorless Energy, Chansey Lv55, Tauros Lv32
+; or Jigglypuff Lv12 (slots wd084..wddf0 = $d084-$d088).
+AIDecide_Recycle:
+	bank1call CreateDiscardPileCardList
+	jr c, .no_play
+	ld a, $ff
+	ld [wd084], a
+	ld [$d085], a
+	ld [wddef], a
+	ld [wAudio_d087], a
+	ld [wddf0], a
+	ld hl, wDuelTempList
+.scan
+	ld a, [hli]
+	cp $ff
+	jr z, .check_found
+	ld b, a
+	call GetCardIDFromDeckIndex
+	cp16 DOUBLE_COLORLESS_ENERGY
+	jr nz, .check_chansey
+	ld a, b
+	ld [wd084], a
+	jr .scan
+.check_chansey
+	cp16 CHANSEY_LV55
+	jr nz, .check_tauros
+	ld a, b
+	ld [$d085], a
+	jr .scan
+.check_tauros
+	cp16 TAUROS_LV32
+	jr nz, .check_jigglypuff
+	ld a, b
+	ld [wddef], a
+	jr .scan
+.check_jigglypuff
+	cp16 JIGGLYPUFF_LV12
+	jr nz, .scan
+	ld a, b
+	ld [wAudio_d087], a
+	jr .scan
+.check_found
+	ld hl, wd084
+	ld b, $05
+.found_loop
+	ld a, [hli]
+	cp $ff
+	jr nz, .play
+	dec b
+	jr nz, .found_loop
+.no_play
+	or a
+	ret
+.play
+	scf
 	ret
 
 SECTION "Bank 8@632c", ROMX[$632c], BANK[$8]
