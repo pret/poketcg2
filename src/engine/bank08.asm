@@ -34,7 +34,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        AIDecide_PokemonBreeder, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       AIDecide_EnergyRetrieval, AIPlay_EnergyRetrieval
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, AIDecide_SuperEnergyRetrieval, AIPlay_SuperEnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         AIDecide_PokemonCenter, AIPlay_PokemonCenter
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          AIDecide_EnergySearch, AIPlay_EnergySearch
@@ -4181,6 +4181,201 @@ AIPlay_SuperEnergyRetrieval:
 	farcall AIMakeDecision
 	ret
 ; 0x21adf
+
+SECTION "Bank 8@5adf", ROMX[$5adf], BANK[$8]
+
+; Super Energy Retrieval discards 2 cards from hand to recover up to 4
+; basic Energy from the discard pile. The Ronald's Uncool deck has its own
+; policy; everyone else uses this generic one: it needs two duplicate
+; non-target cards to pay the discard cost (wd082/wd084) and at least one
+; basic Energy in the discard, then walks the play area picking the
+; recovered Energies that are actually useful (CheckIfEnergyIsUseful) into
+; the multi-target slots, topping up from the remaining list.
+AIDecide_SuperEnergyRetrieval:
+	ld a, [wOpponentDeckID]
+	cp RONALDS_UNCOOL_DECK_ID
+	jp z, AIDecide_SuperEnergyRetrieval_Deck69
+	bank1call CreateEnergyCardListFromHand
+	jp nc, .no_play
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wd082], a
+	ld hl, wDuelTempList
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, .no_play
+	ld [wd084], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jp c, .no_play
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [$d09a], a
+	ld [$d09b], a
+	ld [$d09c], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.play_area_loop
+	push de
+	ld a, e
+	farcall Func_4b3d8
+	pop de
+	jr c, .next_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	push de
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	pop de
+	ld a, [wLoadedCard1ID]
+	ld [wTempCardID_d0a3], a
+	ld a, [$cc3b]
+	ld [wTempCardID_d0a3 + 1], a
+	ld a, [wLoadedCard1Type]
+	or TYPE_ENERGY
+	ld [wTempCardType], a
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .next_play_area
+	ld b, a
+	push hl
+	farcall CheckIfEnergyIsUseful
+	pop hl
+	jr nc, .energy_loop
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	cp $ff
+	jr nz, .try_slot3
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	call RemoveCardFromListAtHL
+	jr .next_play_area
+.try_slot3
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	cp $ff
+	jr nz, .try_slot4
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	call RemoveCardFromListAtHL
+	jr .next_play_area
+.try_slot4
+	ld a, [$d09a]
+	cp $ff
+	jr nz, .slot5
+	ld a, b
+	ld [$d09a], a
+	call RemoveCardFromListAtHL
+	jr .next_play_area
+.slot5
+	ld a, b
+	ld [$d09b], a
+	jr .commit
+.next_play_area
+	inc e
+	dec d
+	jr nz, .play_area_loop
+	ld hl, wDuelTempList
+.fill_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .check_found
+	ld b, a
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	cp $ff
+	jr nz, .fill_slot3
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	call RemoveCardFromListAtHL
+	jr .fill_loop
+.fill_slot3
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	cp $ff
+	jr nz, .fill_slot4
+	ld a, b
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	call RemoveCardFromListAtHL
+	jr .fill_loop
+.fill_slot4
+	ld a, [$d09a]
+	cp $ff
+	jr nz, .fill_slot5
+	ld a, b
+	ld [$d09a], a
+	call RemoveCardFromListAtHL
+	jr .fill_loop
+.fill_slot5
+	ld a, b
+	ld [$d09b], a
+	jr .commit
+.check_found
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	cp $ff
+	jr nz, .commit
+.no_play
+	or a
+	ret
+.commit
+	ld a, [wd084]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
+; deck $69 (Ronald's Uncool) Super Energy Retrieval: play only with fewer
+; than 3 energy in hand, two distinct duplicate non-target cards to discard,
+; and 4+ basic Energy in the discard, then bulk-copy up to 5 of them into
+; the multi-target slot list.
+AIDecide_SuperEnergyRetrieval_Deck69:
+	farcall CountEnergyCardsInHand
+	cp $03
+	ret nc
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_SuperEnergyRetrieval.no_play
+	ld hl, wTempAITargetNonPokemonCardDeckIndex
+	cp [hl]
+	jr z, AIDecide_SuperEnergyRetrieval.no_play
+	ld [wd082], a
+	ld hl, wDuelTempList
+	call RemoveCardFromListByValue
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_SuperEnergyRetrieval.no_play
+	ld hl, wTempAITargetNonPokemonCardDeckIndex
+	cp [hl]
+	jr z, AIDecide_SuperEnergyRetrieval.no_play
+	ld [wd084], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	cp $04
+	jr c, AIDecide_SuperEnergyRetrieval.no_play
+	cp $06
+	jr c, .cap
+	ld a, $05
+.cap
+	ld b, a
+	ld c, $00
+	ld de, wDuelTempList
+	ld hl, wTempAIMultiTargetCardDeckIndex1
+.copy_loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	cp $ff
+	jr z, AIDecide_SuperEnergyRetrieval.commit
+	inc c
+	ld a, c
+	cp b
+	jr nz, .copy_loop
+	ld a, $ff
+	ld [hl], a
+	jr AIDecide_SuperEnergyRetrieval.commit
 
 SECTION "Bank 8@5c4e", ROMX[$5c4e], BANK[$8]
 

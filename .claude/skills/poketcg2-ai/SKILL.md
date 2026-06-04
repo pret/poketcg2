@@ -337,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 92.10% (~14.7 KiB of 16 KiB). All deck-ID dispatcher cases done; whole-card deciders Pokemon Breeder + Pokemon Center landed.
+**Source-defined**: 94.34% (~15.1 KiB of 16 KiB). Whole-card deciders Pokemon Breeder/Center/Super Energy Retrieval landed; remaining raw: Pokedex, Maintenance, Recycle, Pokemon Recall, Imposter Oak Revenge, Digger.
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
