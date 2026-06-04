@@ -1864,7 +1864,7 @@ AIPlay_EnergyRemoval:
 AIDecide_EnergyRemoval:
 	ld a, [wOpponentDeckID]
 	cp ELECTRIC_SELFDESTRUCT_DECK_ID
-	jp z, $4d6b
+	jp z, AIDecide_EnergyRemoval_Deck11
 	cp QUICK_ATTACK_DECK_ID
 	jp z, AIDecide_EnergyRemoval_Deck45Or50
 	cp FIREBALL_DECK_ID
@@ -2041,6 +2041,82 @@ ScoreBenchEnergyRemovalCandidate:
 	pop de
 	ret
 ; 0x20d6b
+
+SECTION "Bank 8@4d6b", ROMX[$4d6b], BANK[$8]
+
+; deck $11 (Electric Self-Destruct) Energy Removal decider. First note
+; whether we can already KO the defender from hand (wd082). Then scan the
+; opponent's bench for a Pokemon carrying a Double Colorless and, if found,
+; strip that. Otherwise -- only when we couldn't already KO -- consider
+; removing energy from the defending Arena Pokemon, but only if it holds 2+
+; (non-Recycle) energy and is damaged enough that the removal matters
+; (HP/counter ratio >= 8). (Carved out of the still-raw $4d6b-$4de7 block.)
+AIDecide_EnergyRemoval_Deck11:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .can_ko
+	xor a
+	jr .stored
+.can_ko
+	ld a, $01
+.stored
+	ld c, a
+	ld [wd082], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	call GetNonTurnDuelistVariable
+	ld b, a
+.scan_bench
+	ld a, c
+	cp b
+	jr z, .check_arena
+	push bc
+	call SwapTurn
+	ld b, $00
+	farcall FindDoubleColorlessAttachedToCard
+	call SwapTurn
+	pop bc
+	jr c, .found
+	inc c
+	jr .scan_bench
+.found
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, c
+	scf
+	ret
+.check_arena
+	ld a, [wd082]
+	or a
+	ret nz
+	ld e, $00
+	call SwapTurn
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call SwapTurn
+	cp $02
+	ccf
+	ret nc
+	ld a, DUELVARS_ARENA_CARD_HP
+	call GetNonTurnDuelistVariable
+	ld b, a
+	push bc
+	ld a, DUELVARS_ARENA_CARD
+	call GetNonTurnDuelistVariable
+	call SwapTurn
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call SwapTurn
+	ld a, [wLoadedCard1HP]
+	farcall ConvertHPToCounters
+	pop bc
+	call CalculateBDividedByA_Bank08
+	cp $08
+	ccf
+	ret nc
+	call SwapTurn
+	xor a
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
 
 SECTION "Bank 8@4de7", ROMX[$4de7], BANK[$8]
 
@@ -2569,7 +2645,7 @@ AIDecide_ProfessorOak:
 	ret nc
 	ld a, [wOpponentDeckID]
 	cp ELECTRIC_SELFDESTRUCT_DECK_ID
-	jp z, $5528
+	jp z, AIDecide_ProfessorOak_Deck11
 	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, $5546
 	cp GO_ARCANINE_DECK_ID
@@ -2851,6 +2927,28 @@ LookForEvolutionInHand:
 	ret
 ; 0x21528
 
+SECTION "Bank 8@5528", ROMX[$5528], BANK[$8]
+
+; deck $11 (Electric Self-Destruct) Professor Oak decider: redraw only with
+; a small hand (under 5 cards) that is also clogged with all three of
+; Magnemite Lv13, Magnemite Lv15 and Voltorb Lv8 -- a hand of redundant
+; basics worth shuffling away. (Carved out of the still-raw $5528-$5643
+; block.)
+AIDecide_ProfessorOak_Deck11:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+	ld de, MAGNEMITE_LV13
+	farcall LookForCardIDInHand
+	ret nc
+	ld de, MAGNEMITE_LV15
+	farcall LookForCardIDInHand
+	ret nc
+	ld de, VOLTORB_LV8
+	farcall LookForCardIDInHand
+	ret
+
 SECTION "Bank 8@559c", ROMX[$559c], BANK[$8]
 
 ; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
@@ -2925,7 +3023,7 @@ AIPlay_EnergyRetrieval:
 AIDecide_EnergyRetrieval:
 	ld a, [wOpponentDeckID]
 	cp ELECTRIC_SELFDESTRUCT_DECK_ID
-	jp z, $57c8
+	jp z, AIDecide_EnergyRetrieval_Deck11
 	cp MAX_ENERGY_DECK_ID
 	jp z, $57d2
 	cp RAIN_DANCE_CONFUSION_DECK_ID
@@ -2975,6 +3073,10 @@ AIDecide_EnergyRetrieval:
 	; which Pokemon to recharge and which discarded energies to pull.
 	; Default target is a duplicated Pokemon in hand; a few decks instead
 	; reuse the pre-tagged non-Pokemon AI target.
+.find_recharge_target
+; deck-specific cases that have already confirmed their own fuel condition
+; (e.g. deck $11, Electric Self-Destruct) jump straight here, skipping the
+; shared basic-energy-in-hand gate above.
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
@@ -3095,6 +3197,18 @@ AIDecide_EnergyRetrieval:
 	scf
 	ret
 ; 0x217c8
+
+SECTION "Bank 8@57c8", ROMX[$57c8], BANK[$8]
+
+; deck $11 (Electric Self-Destruct) Energy Retrieval decider: only worth it
+; when the hand is low on energy (fewer than 3 cards), in which case reuse
+; the shared default target-finder. (Carved out of the still-raw
+; $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck11:
+	farcall CountEnergyCardsInHand
+	cp $03
+	ret nc
+	jp AIDecide_EnergyRetrieval.find_recharge_target
 
 SECTION "Bank 8@581d", ROMX[$581d], BANK[$8]
 
