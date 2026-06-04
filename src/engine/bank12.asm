@@ -948,7 +948,7 @@ AIDoTurn_GeneralNoRetreat:
 	farcall AIMakeDecision
 	ret
 
-Func_487c7:
+RonaldsUltraDeckAIDecideMoonStone:
 	call CountPrizes
 	cp 4
 	jr c, .prefer_pidgeot_line
@@ -978,7 +978,7 @@ Func_487c7:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 
-Func_487ff:
+RonaldsUltraDeckAIDecidePokemonTrader:
 	ld bc, PIDGEY_LV10
 	ld de, PIDGEOTTO_LV38
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -7745,7 +7745,7 @@ PickRandomCardOfSpecificTypeFromHand:
 ; DamageChaosDeckAI?
 ; no deck has all of
 ; {Switch, The Boss's Way, Pokemon Trader, Computer Search}
-AIDecideEnergyRetrieval_4b973:
+DamageChaosDeckAIDecideEnergyRetrieval:
 	farcall CountBasicEnergyCardsInHand
 	ret nc
 ; find discard card
@@ -8135,7 +8135,7 @@ RainDanceConfusionDeckAIDecideComputerSearch:
 ; AND (no benched pkmn OR player is ko'ing chansey in arena to win the duel)
 ; )
 ; OR   any non-chansey pkmn in play with >= 20 hp remaining
-Func_4bc5d:
+BigThunderDeckAIDecidePotion:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8191,7 +8191,7 @@ Func_4bc5d:
 
 ; return carry if
 ; non-chansey pkmn in arena with >= 40 hp remaining and any energy attached
-Func_4bcbb:
+BigThunderDeckAIDecideSuperPotion:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8364,7 +8364,7 @@ CanUseEvolutionaryLight:
 
 ; no deck has all of
 ; {Energy Retrieval, The Boss's Way, Pokeball, Pokemon Trader, Professor Oak}
-AIDecideEnergyRetrieval_4bdb6:
+PowerOfDarknessDeckAIDecideEnergyRetrieval:
 	farcall CountBasicEnergyCardsInHand
 	ret nc
 

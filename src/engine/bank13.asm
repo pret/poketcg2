@@ -481,7 +481,7 @@ FindReplacementPkmnIfMrMime:
 	ret
 
 ; PsychicBattleDeckAI?
-Func_4c4ba:
+PsychicBattleDeckAIDecideProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 16
@@ -543,7 +543,7 @@ Func_4c4ba:
 	ret
 
 ; PsychicBattleDeckAI?
-Func_4c524:
+PsychicBattleDeckAIDecideEnergyRetrieval:
 	call CountBasicEnergyCardsInHand
 	ret nc
 
@@ -758,7 +758,7 @@ Func_4c65b:
 	ld [hl], 1 ; wd038
 	ret
 
-Func_4c676:
+BigThunderDeckAIDecideEnergyRemoval:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ld b, PLAY_AREA_BENCH_1
 	jr c, .check_hp_and_energy
@@ -942,7 +942,7 @@ BigThunderDeckAIDecideEnergyRetrieval:
 	ret
 
 ; Switch or Scoop Up?
-BigThunderDeckAI_4c7b5:
+BigThunderDeckAIDecideScoopUp:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ccf
 	ret nc

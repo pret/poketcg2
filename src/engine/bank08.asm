@@ -477,7 +477,7 @@ AIDecide_Potion_Phase11:
 	ret
 
 AIDecide_Potion_Phase11_Deck74:
-	farcall Func_4bc5d
+	farcall BigThunderDeckAIDecidePotion
 	ret
 
 ; Super Potion heals 40 HP and discards one attached energy as its cost.
@@ -696,7 +696,7 @@ AIDecide_SuperPotion_Phase13:
 	or a
 	ret
 .deck_74
-	farcall Func_4bcbb
+	farcall BigThunderDeckAIDecideSuperPotion
 	ret
 
 ; Shared by Phase_13 and Phase_14. Forwards hTemp_ffa0 = 0 since
@@ -2330,7 +2330,7 @@ AIDecide_EnergyRemoval_Deck55:
 ; deck $74 (Big Thunder) Energy Removal policy: delegated to a bank-13
 ; helper.
 AIDecide_EnergyRemoval_Deck74:
-	farcall Func_4c676
+	farcall BigThunderDeckAIDecideEnergyRemoval
 	ret
 
 ; Forwards the pre-computed Super Energy Removal targets to the trainer
@@ -3454,7 +3454,7 @@ AIDecide_ProfessorOak_Deck55:
 	ret
 
 ; Nine decks delegate their Professor Oak decision to a bespoke per-deck
-; AI helper in bank $0e/$12 (deck $5d's is still raw, Func_4c4ba).
+; AI helper in bank $0e/$12 (deck $5d's is still raw, PsychicBattleDeckAIDecideProfessorOak).
 AIDecide_ProfessorOak_Deck57:
 	farcall ColorlessAltarAIDecideProfessorOak
 	ret
@@ -3468,7 +3468,7 @@ AIDecide_ProfessorOak_Deck5C:
 	farcall UltraRemovalDeckAIDecideProfessorOak
 	ret
 AIDecide_ProfessorOak_Deck5D:
-	farcall Func_4c4ba
+	farcall PsychicBattleDeckAIDecideProfessorOak
 	ret
 AIDecide_ProfessorOak_Deck6E:
 	farcall EverybodysFriendDeckAIDecideProfessorOak
@@ -4013,12 +4013,12 @@ AIDecide_EnergyRetrieval_Deck5A:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (Func_4c524,
+; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (PsychicBattleDeckAIDecideEnergyRetrieval,
 ; still raw) picks the target; on success rejoin AIDecide_EnergyRetrieval's
 ; shared commit tail (.got_target). Also carved out of the still-raw
 ; $57c8-$5a8c block.
 AIDecide_EnergyRetrieval_Deck5D:
-	farcall Func_4c524
+	farcall PsychicBattleDeckAIDecideEnergyRetrieval
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
@@ -4092,7 +4092,7 @@ AIDecide_EnergyRetrieval_Deck72:
 ; deck $73 (Damage Chaos) Energy Retrieval: a bank helper picks the target;
 ; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
 AIDecide_EnergyRetrieval_Deck73:
-	farcall AIDecideEnergyRetrieval_4b973
+	farcall DamageChaosDeckAIDecideEnergyRetrieval
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
@@ -4105,7 +4105,7 @@ AIDecide_EnergyRetrieval_Deck74:
 ; deck $75 (Power of Darkness) Energy Retrieval: a bank helper picks the
 ; target; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
 AIDecide_EnergyRetrieval_Deck75:
-	farcall AIDecideEnergyRetrieval_4bdb6
+	farcall PowerOfDarknessDeckAIDecideEnergyRetrieval
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
@@ -5386,7 +5386,7 @@ AIDecide_ScoopUp_Deck6E:
 ; deck $74 (Big Thunder) Scoop Up: delegated to a bank helper. (Carved out
 ; of the still-raw $6228-$632c block.)
 AIDecide_ScoopUp_Deck74:
-	farcall BigThunderDeckAI_4c7b5
+	farcall BigThunderDeckAIDecideScoopUp
 	ret
 
 ; Maintenance shuffles 2 cards from hand into the deck to draw 1.
@@ -7734,7 +7734,7 @@ AIDecide_PokemonTrader_Deck51:
 	ret
 
 ; Twelve more decks delegate Pokemon Trader to a per-deck AI helper in
-; bank $0e/$12 (deck $6d's is still raw, Func_487ff).
+; bank $0e/$12 (deck $6d's is still raw, RonaldsUltraDeckAIDecidePokemonTrader).
 AIDecide_PokemonTrader_Deck5A:
 	farcall BadGuysDeckAIDecidePokemonTraderForEvo
 	ret
@@ -7751,7 +7751,7 @@ AIDecide_PokemonTrader_Deck6C:
 	farcall RonaldsPsychicDeckAIDecidePokemonTrader
 	ret
 AIDecide_PokemonTrader_Deck6D:
-	farcall Func_487ff
+	farcall RonaldsUltraDeckAIDecidePokemonTrader
 	ret
 AIDecide_PokemonTrader_Deck6F:
 	farcall ImmortalPokemonDeckAIDecidePokemonTrader
@@ -9123,7 +9123,7 @@ AIDecide_MoonStone:
 	ret
 ; deck $6d (Ronald's Ultra) delegates to a bespoke bank-$48 helper.
 .deck_6d
-	farcall Func_487c7
+	farcall RonaldsUltraDeckAIDecideMoonStone
 	ret
 
 ; The Rocket's Trap has no targeting -- just execute the trainer effect.
