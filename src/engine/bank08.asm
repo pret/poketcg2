@@ -2965,7 +2965,7 @@ AIDecide_EnergyRetrieval:
 	cp DAMAGE_CHAOS_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck73
 	cp BIG_THUNDER_DECK_ID
-	jp z, $5a7e
+	jp z, AIDecide_EnergyRetrieval_Deck74
 	cp POWER_OF_DARKNESS_DECK_ID
 	jp z, $5a83
 .default
@@ -3236,6 +3236,13 @@ AIDecide_EnergyRetrieval_Deck73:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5a7e", ROMX[$5a7e], BANK[$8]
+
+; deck $74 (Big Thunder) Energy Retrieval: delegated to a bank helper.
+AIDecide_EnergyRetrieval_Deck74:
+	farcall BigThunderDeckAIDecideEnergyRetrieval
+	ret
 
 SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
 
@@ -3819,7 +3826,7 @@ AIDecide_ScoopUp:
 	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, $6241
 	cp BIG_THUNDER_DECK_ID
-	jp z, $6246
+	jp z, AIDecide_ScoopUp_Deck74
 ; default policy:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr c, .no_play
@@ -3979,6 +3986,14 @@ AIDecide_ScoopUp_Deck47:
 	jp c, AIDecide_ScoopUp.no_play
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
+
+SECTION "Bank 8@6246", ROMX[$6246], BANK[$8]
+
+; deck $74 (Big Thunder) Scoop Up: delegated to a bank helper. (Carved out
+; of the still-raw $6228-$632c block.)
+AIDecide_ScoopUp_Deck74:
+	farcall BigThunderDeckAI_4c7b5
+	ret
 
 SECTION "Bank 8@632c", ROMX[$632c], BANK[$8]
 
