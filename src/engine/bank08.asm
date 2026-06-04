@@ -4665,8 +4665,6 @@ LookForEnergyUsefulToPlayArea:
 	ret
 ; 0x21e0e
 
-SECTION "Bank 8@5e0e", ROMX[$5e0e], BANK[$8]
-
 ; Scan the turn duelist's play area for the first Fire- or Lightning-type
 ; Pokemon, then return (in a) the first card from the prepared wDuelTempList
 ; whose energy is useful to it; carry set if none found.
@@ -4896,8 +4894,6 @@ GetCardTypeFromDeckIndex:
 	pop de
 	pop bc
 	ret
-
-SECTION "Bank 8@5f63", ROMX[$5f63], BANK[$8]
 
 AIPlay_FullHeal:
 	ld a, [wAITrainerCardToPlay]
@@ -5393,8 +5389,6 @@ AIDecide_ScoopUp_Deck74:
 	farcall BigThunderDeckAI_4c7b5
 	ret
 
-SECTION "Bank 8@624b", ROMX[$624b], BANK[$8]
-
 ; Maintenance shuffles 2 cards from hand into the deck to draw 1.
 AIPlay_Maintenance:
 	ld a, [wCurrentAIFlags]
@@ -5512,8 +5506,6 @@ AIDecide_Recycle:
 .play
 	scf
 	ret
-
-SECTION "Bank 8@632c", ROMX[$632c], BANK[$8]
 
 ; Lass: both players reveal their hands and shuffle every Trainer card
 ; back into their decks. (Carved out of the still-raw $6228-$6373 block.)
@@ -6095,7 +6087,7 @@ AIDecide_Revive:
 ; deck $14: delegate to a still-raw helper with parameter $02.
 AIDecide_Revive_Deck14:
 	ld a, $02
-	call $6ca2
+	call LookForAnyPikachuInLocation
 	ret
 
 ; deck $40: first try card $5a in the discard pile. Otherwise look
@@ -6421,7 +6413,7 @@ AIDecide_Pokeball_Deck14:
 	or a
 	jr nz, .no_play
 	ld a, $00
-	call $6ca2
+	call LookForAnyPikachuInLocation
 	ret
 
 ; deck $24 (Max Energy) Poke Ball: with fewer than 3 basics in hand/play,
@@ -6789,7 +6781,43 @@ AIDecide_Pokeball_Deck53:
 	ret
 ; 0x22ca2
 
-SECTION "Bank 8@6cfd", ROMX[$6cfd], BANK[$8]
+; Search location `a` for any of the deck's Pikachu variants, returning
+; carry SET on the first one found. Used by the I Love Pikachu deck's
+; Poke Ball policy.
+LookForAnyPikachuInLocation:
+	ld [wd082], a
+	ld de, FLYING_PIKACHU_LV12
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, FLYING_PIKACHU_ALT_LV12
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, PIKACHU_LV16
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, PIKACHU_ALT_LV16
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, PIKACHU_LV5
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, PIKACHU_LV13
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, SURFING_PIKACHU_LV13
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret c
+	ld de, SURFING_PIKACHU_ALT_LV13
+	ld a, [wd082]
+	farcall FindCardIDInLocation
+	ret
 
 ; Forwards the two pre-chosen discard targets to Computer Search's
 ; trainer effect.
@@ -8587,8 +8615,6 @@ AIDecide_Sleep_Deck53:
 	ret
 ; 0x23a90
 
-SECTION "Bank 8@7a90", ROMX[$7a90], BANK[$8]
-
 ; Pokemon Recall returns a Pokemon from the play area (and its attached
 ; cards) to the hand. The play wrapper forwards the chosen target ($ff =
 ; let the effect pick).
@@ -8647,8 +8673,6 @@ AIDecide_PokemonRecall:
 	ld de, GENGAR_LV40
 	farcall LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea
 	ret
-
-SECTION "Bank 8@7b0a", ROMX[$7b0a], BANK[$8]
 
 AIPlay_MasterBall:
 	ld a, [wAITrainerCardToPlay]
@@ -9157,8 +9181,6 @@ AIDecide_GoopGasAttack:
 	ret
 ; 0x23ec3
 
-SECTION "Bank 8@7ec3", ROMX[$7ec3], BANK[$8]
-
 ; Imposter Oak's Revenge makes the OPPONENT shuffle their hand into the deck
 ; and draw 7 -- a disruption when their hand is large.
 AIPlay_ImposterOaksRevenge:
@@ -9233,8 +9255,6 @@ AIPlay_Digger:
 AIDecide_Digger:
 	scf
 	ret
-
-SECTION "Bank 8@7f3e", ROMX[$7f3e], BANK[$8]
 
 ; Computer Error's play has its own pre-step: SwapTurn so the
 ; trainer effect picks a card from the *player's* hand to swap,

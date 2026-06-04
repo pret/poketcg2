@@ -337,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 99.29% (~15.9 KiB of 16 KiB). All AITrainerCardLogic deciders/plays decompiled (Pokedex/Pokemon Recall/Imposter Oak Revenge/Digger landed from disassembly).
+**Source-defined**: 99.84% (~16.0 KiB of 16 KiB). Bank 8 is one contiguous section; only ~26B of end-of-bank padding remains undecompiled.
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
