@@ -282,6 +282,8 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$6d5e` | [`AIDecide_ComputerSearch_Deck3B`](../../../src/engine/bank08.asm) | sameboy_trace duel-steve (Legendary Fossil; fetch Aerodactyl/PlusPower/Oak/Bill) | 2026-06-03 |
 | `$08` | `$76d6` | [`AIDecide_NightlyGarbageRun_Deck3B`](../../../src/engine/bank08.asm) | sameboy_trace duel-steve (Legendary Fossil; recover 2 energy + Zapdos) | 2026-06-03 |
 | `$08` | `$79f5` | [`AIPlay_FossilExcavation`](../../../src/engine/bank08.asm) + [`AIDecide_FossilExcavation`](../../../src/engine/bank08.asm) ($7a13, inline `_Deck3BOr63`) | sameboy_trace duel-steve (whole trainer card; recover Mysterious Fossil from discard/deck) | 2026-06-03 |
+| `$08` | `$5a75` | [`AIDecide_EnergyRetrieval_Deck73`](../../../src/engine/bank08.asm) | sameboy_trace duel-anna (Damage Chaos; bank-helper delegate) | 2026-06-03 |
+| `$08` | `$75f9` | [`AIDecide_TheBosssWay_Deck73`](../../../src/engine/bank08.asm) | sameboy_trace duel-anna (Damage Chaos; delegate to DamageChaosDeckAIDecideTheBosssWay) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -322,7 +324,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 73.42% (~11.7 KiB of 16 KiB).
+**Source-defined**: 73.50% (~11.8 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)

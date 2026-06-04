@@ -2963,7 +2963,7 @@ AIDecide_EnergyRetrieval:
 	cp BLAZING_FLAME_DECK_ID
 	jp z, $5a70
 	cp DAMAGE_CHAOS_DECK_ID
-	jp z, $5a75
+	jp z, AIDecide_EnergyRetrieval_Deck73
 	cp BIG_THUNDER_DECK_ID
 	jp z, $5a7e
 	cp POWER_OF_DARKNESS_DECK_ID
@@ -3223,6 +3223,16 @@ SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
 ; commit tail (.got_target).
 AIDecide_EnergyRetrieval_Deck6C:
 	farcall RonaldsPsychicDeckAIDecideEnergyRetrieval
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5a75", ROMX[$5a75], BANK[$8]
+
+; deck $73 (Damage Chaos) Energy Retrieval: a bank helper picks the target;
+; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
+AIDecide_EnergyRetrieval_Deck73:
+	farcall AIDecideEnergyRetrieval_4b973
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
@@ -5904,7 +5914,7 @@ AIDecide_TheBosssWay:
 	cp RONALDS_GRX_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck6A
 	cp DAMAGE_CHAOS_DECK_ID
-	jp z, $75f9
+	jp z, AIDecide_TheBosssWay_Deck73
 	or a
 	ret
 ; deck $38: scan the deck for four specific evolution chain advances
@@ -6039,6 +6049,13 @@ AIDecide_TheBosssWay_Deck6A:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
 ; 0x235f9
+
+SECTION "Bank 8@75f9", ROMX[$75f9], BANK[$8]
+
+; deck $73 (Damage Chaos) The Boss's Way policy: delegated to a bank helper.
+AIDecide_TheBosssWay_Deck73:
+	farcall DamageChaosDeckAIDecideTheBosssWay
+	ret
 
 SECTION "Bank 8@75fe", ROMX[$75fe], BANK[$8]
 
