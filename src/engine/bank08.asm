@@ -2818,7 +2818,163 @@ AIDecide_ProfessorOak:
 	ret
 ; 0x21505
 
-SECTION "Bank 8@55cf", ROMX[$55cf], BANK[$8]
+; Searches the turn duelist's deck for a card that the play-area
+; Pokemon at position e evolves into.
+; Input:
+;   e = play-area position of the Pokemon (0 = arena, 1-5 = bench)
+; Output:
+;   carry = a matching evolution card was found in the duelist's hand.
+;   wd084 = $01 if any matching evolution exists in the deck regardless
+;           of location, else $00. Lets callers tell "evolution in hand
+;           right now" apart from "evolution buried in the deck" — the
+;           sole caller (AIDecide_ProfessorOak) uses this to choose between
+;           the Pokemon-target and non-Pokemon-target AI flags.
+LookForEvolutionInHand:
+	xor a
+	ld [wd084], a
+	ld d, $00
+.loop_deck
+	farcall CheckIfEvolvesInto
+	jr nc, .evolution_in_deck
+.next
+	inc d
+	ld a, DECK_SIZE
+	cp d
+	jr nz, .loop_deck
+	or a
+	ret
+.evolution_in_deck
+	ld a, $01
+	ld [wd084], a
+	ld a, DUELVARS_CARD_LOCATIONS
+	add d
+	get_turn_duelist_var
+	cp CARD_LOCATION_HAND
+	jr nz, .next
+	scf
+	ret
+; 0x21528
+
+; deck $11 (Electric Self-Destruct) Professor Oak decider: redraw only with
+; a small hand (under 5 cards) that is also clogged with all three of
+; Magnemite Lv13, Magnemite Lv15 and Voltorb Lv8 -- a hand of redundant
+; basics worth shuffling away. (Carved out of the still-raw $5528-$5643
+; block.)
+AIDecide_ProfessorOak_Deck11:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+	ld de, MAGNEMITE_LV13
+	farcall LookForCardIDInHand
+	ret nc
+	ld de, MAGNEMITE_LV15
+	farcall LookForCardIDInHand
+	ret nc
+	ld de, VOLTORB_LV8
+	farcall LookForCardIDInHand
+	ret
+
+; deck $2d (Rain Dance Confusion) Professor Oak decider. Bail if the hand is
+; large (>= $2b cards out of deck), then gate on board state -- needs no
+; energy in hand, 2+ Pokemon in play, and a hand under 5 -- before deferring
+; to the deck's bank helper for the final call. (Carved out of the still-raw
+; $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck2D:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $2b
+	ret nc
+	farcall CountEnergyCardsInHand
+	jr c, .delegate
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $02
+	jr c, .delegate
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+.delegate
+	farcall RainDanceConfusionDeckAIDecideProfessorOak
+	ret
+
+; deck $32 (Go Arcanine) Professor Oak decider. Two routes to "play": with a
+; small hand (< $29) holding Moltres but few basics (<6 cards and <5 basic
+; Pokemon), or -- the shared .check_energy path -- a hand under both the
+; $2d cards-not-in-deck and 5-card thresholds that still has an energy to
+; spare. (Carved out of the still-raw $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck32:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $29
+	jr nc, .check_energy
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $08
+	ret nc
+	push af
+	ld de, MOLTRES_LV40
+	farcall LookForCardIDInHandList
+	pop bc
+	jr nc, .play
+	ld a, $05
+	cp b
+	ret nc
+	farcall CountNumberOfBasicPokemonInHand
+	or a
+	jr z, .play
+.check_energy
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $2d
+	ret nc
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+	bank1call CreateEnergyCardListFromHand
+	ret nc
+.play
+	scf
+	ret
+
+; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
+; already holds a key attacker (Moltres, Rapidash or Ninetales) or three or
+; more energy cards. Otherwise play Oak when the opposing duelist is holding
+; fewer than 6 cards. (Carved out of the still-raw $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck3A:
+	ld de, MOLTRES_LV40
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	ld de, RAPIDASH_LV33
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	ld de, NINETALES_LV35
+	farcall LookForCardIDInHandList
+	jr c, .no_play
+	farcall CountEnergyCardsInHand
+	cp $03
+	jr nc, .no_play
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	call GetNonTurnDuelistVariable
+	cp $06
+	ret
+.no_play
+	or a
+	ret
+
+; deck $3b (Legendary Fossil) Professor Oak decider: redraw only once our
+; own hand has dwindled below 4 cards. (Carved out of the still-raw
+; $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck3B:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $04
+	ret
 
 ; Shared by decks $45 and $50: play Oak iff hand has fewer than 5
 ; cards.
@@ -2915,178 +3071,6 @@ AIDecide_ProfessorOak_Deck71:
 AIDecide_ProfessorOak_Deck72:
 	farcall BlazingFlameDeckAIDecideProfessorOak
 	ret
-
-SECTION "Bank 8@5505", ROMX[$5505], BANK[$8]
-
-; Searches the turn duelist's deck for a card that the play-area
-; Pokemon at position e evolves into.
-; Input:
-;   e = play-area position of the Pokemon (0 = arena, 1-5 = bench)
-; Output:
-;   carry = a matching evolution card was found in the duelist's hand.
-;   wd084 = $01 if any matching evolution exists in the deck regardless
-;           of location, else $00. Lets callers tell "evolution in hand
-;           right now" apart from "evolution buried in the deck" — the
-;           sole caller (AIDecide_ProfessorOak) uses this to choose between
-;           the Pokemon-target and non-Pokemon-target AI flags.
-LookForEvolutionInHand:
-	xor a
-	ld [wd084], a
-	ld d, $00
-.loop_deck
-	farcall CheckIfEvolvesInto
-	jr nc, .evolution_in_deck
-.next
-	inc d
-	ld a, DECK_SIZE
-	cp d
-	jr nz, .loop_deck
-	or a
-	ret
-.evolution_in_deck
-	ld a, $01
-	ld [wd084], a
-	ld a, DUELVARS_CARD_LOCATIONS
-	add d
-	get_turn_duelist_var
-	cp CARD_LOCATION_HAND
-	jr nz, .next
-	scf
-	ret
-; 0x21528
-
-SECTION "Bank 8@5528", ROMX[$5528], BANK[$8]
-
-; deck $11 (Electric Self-Destruct) Professor Oak decider: redraw only with
-; a small hand (under 5 cards) that is also clogged with all three of
-; Magnemite Lv13, Magnemite Lv15 and Voltorb Lv8 -- a hand of redundant
-; basics worth shuffling away. (Carved out of the still-raw $5528-$5643
-; block.)
-AIDecide_ProfessorOak_Deck11:
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	cp $05
-	ret nc
-	ld de, MAGNEMITE_LV13
-	farcall LookForCardIDInHand
-	ret nc
-	ld de, MAGNEMITE_LV15
-	farcall LookForCardIDInHand
-	ret nc
-	ld de, VOLTORB_LV8
-	farcall LookForCardIDInHand
-	ret
-
-SECTION "Bank 8@5546", ROMX[$5546], BANK[$8]
-
-; deck $2d (Rain Dance Confusion) Professor Oak decider. Bail if the hand is
-; large (>= $2b cards out of deck), then gate on board state -- needs no
-; energy in hand, 2+ Pokemon in play, and a hand under 5 -- before deferring
-; to the deck's bank helper for the final call. (Carved out of the still-raw
-; $5528-$5643 block.)
-AIDecide_ProfessorOak_Deck2D:
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	ld a, [hl]
-	cp $2b
-	ret nc
-	farcall CountEnergyCardsInHand
-	jr c, .delegate
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp $02
-	jr c, .delegate
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	cp $05
-	ret nc
-.delegate
-	farcall RainDanceConfusionDeckAIDecideProfessorOak
-	ret
-
-SECTION "Bank 8@5565", ROMX[$5565], BANK[$8]
-
-; deck $32 (Go Arcanine) Professor Oak decider. Two routes to "play": with a
-; small hand (< $29) holding Moltres but few basics (<6 cards and <5 basic
-; Pokemon), or -- the shared .check_energy path -- a hand under both the
-; $2d cards-not-in-deck and 5-card thresholds that still has an energy to
-; spare. (Carved out of the still-raw $5528-$5643 block.)
-AIDecide_ProfessorOak_Deck32:
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	ld a, [hl]
-	cp $29
-	jr nc, .check_energy
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	cp $08
-	ret nc
-	push af
-	ld de, MOLTRES_LV40
-	farcall LookForCardIDInHandList
-	pop bc
-	jr nc, .play
-	ld a, $05
-	cp b
-	ret nc
-	farcall CountNumberOfBasicPokemonInHand
-	or a
-	jr z, .play
-.check_energy
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	ld a, [hl]
-	cp $2d
-	ret nc
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	cp $05
-	ret nc
-	bank1call CreateEnergyCardListFromHand
-	ret nc
-.play
-	scf
-	ret
-
-SECTION "Bank 8@559c", ROMX[$559c], BANK[$8]
-
-; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
-; already holds a key attacker (Moltres, Rapidash or Ninetales) or three or
-; more energy cards. Otherwise play Oak when the opposing duelist is holding
-; fewer than 6 cards. (Carved out of the still-raw $5528-$5643 block.)
-AIDecide_ProfessorOak_Deck3A:
-	ld de, MOLTRES_LV40
-	farcall LookForCardIDInHandList
-	jr c, .no_play
-	ld de, RAPIDASH_LV33
-	farcall LookForCardIDInHandList
-	jr c, .no_play
-	ld de, NINETALES_LV35
-	farcall LookForCardIDInHandList
-	jr c, .no_play
-	farcall CountEnergyCardsInHand
-	cp $03
-	jr nc, .no_play
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	call GetNonTurnDuelistVariable
-	cp $06
-	ret
-.no_play
-	or a
-	ret
-
-SECTION "Bank 8@55c9", ROMX[$55c9], BANK[$8]
-
-; deck $3b (Legendary Fossil) Professor Oak decider: redraw only once our
-; own hand has dwindled below 4 cards. (Carved out of the still-raw
-; $5528-$5643 block.)
-AIDecide_ProfessorOak_Deck3B:
-	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
-	get_turn_duelist_var
-	cp $04
-	ret
-
-SECTION "Bank 8@5643", ROMX[$5643], BANK[$8]
 
 ; Packs the AI's pre-computed Energy Retrieval targets into the
 ; OPPACTION_EXECUTE_TRAINER_EFFECTS registers and dispatches. The
@@ -3297,8 +3281,6 @@ AIDecide_EnergyRetrieval:
 	ret
 ; 0x217c8
 
-SECTION "Bank 8@57c8", ROMX[$57c8], BANK[$8]
-
 ; deck $11 (Electric Self-Destruct) Energy Retrieval decider: only worth it
 ; when the hand is low on energy (fewer than 3 cards), in which case reuse
 ; the shared default target-finder. (Carved out of the still-raw
@@ -3308,8 +3290,6 @@ AIDecide_EnergyRetrieval_Deck11:
 	cp $03
 	ret nc
 	jp AIDecide_EnergyRetrieval.find_recharge_target
-
-SECTION "Bank 8@57d2", ROMX[$57d2], BANK[$8]
 
 ; deck $24 (Max Energy) Energy Retrieval decider. Requires a Grass Energy in
 ; hand plus a basic energy in the discard to pull (slots 1/2), then plays
@@ -3346,8 +3326,6 @@ AIDecide_EnergyRetrieval_Deck24:
 	ld a, b
 	scf
 	ret
-
-SECTION "Bank 8@581d", ROMX[$581d], BANK[$8]
 
 ; deck $2d (Rain Dance Confusion) Energy Retrieval policy. Carved out of
 ; the still-raw $57c8-$5a8c block. Pre-picks the first two basic energies
@@ -3434,8 +3412,6 @@ AIDecide_EnergyRetrieval_Deck2D:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@58cf", ROMX[$58cf], BANK[$8]
-
 ; deck $40 (Sticky Poison Gas) Energy Retrieval decider. Requires a basic
 ; energy in hand as fuel, then plays when there's a clear payoff: a Muk in
 ; either play area (ours or the opponent's) combined with a Goop Gas Attack
@@ -3475,8 +3451,6 @@ AIDecide_EnergyRetrieval_Deck40:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@591a", ROMX[$591a], BANK[$8]
-
 ; Shared Energy Retrieval commit tail used by decks $42 (Dangerous Bench)
 ; and $6e (Everybody's Friend): if a non-Pokemon AI target was pre-tagged,
 ; recharge that instead of the duplicate just found; otherwise decline.
@@ -3493,8 +3467,6 @@ AIDecide_EnergyRetrieval_UseTaggedNonPokemon:
 	or a
 	ret
 
-SECTION "Bank 8@592c", ROMX[$592c], BANK[$8]
-
 ; Shared Energy Retrieval commit tail used by decks $44 (This Is the Power
 ; of Electricity), $45 (Quick Attack) and $62 (Test Your Luck): commit the
 ; duplicate just found unless it is the already-tagged non-Pokemon target.
@@ -3506,8 +3478,6 @@ AIDecide_EnergyRetrieval_CommitUnlessTagged:
 	ret z
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@5937", ROMX[$5937], BANK[$8]
 
 ; deck $48 (Eevee Showdown) Energy Retrieval decider: requires a basic
 ; energy in hand, then plays if the hand can follow up with a Switch or
@@ -3536,8 +3506,6 @@ AIDecide_EnergyRetrieval_Deck48:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5969", ROMX[$5969], BANK[$8]
-
 ; decks $4a (Whirlpool Shower) and $4b (Paralyzed Paralyzed) Energy
 ; Retrieval decider: like deck $48 but the hand follow-up is a Switch or a
 ; Poke Ball. (Carved out of the still-raw $57c8-$5a8c block.)
@@ -3564,8 +3532,6 @@ AIDecide_EnergyRetrieval_Deck4AOr4B:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@599b", ROMX[$599b], BANK[$8]
-
 ; deck $4c (Bench Call) Energy Retrieval decider: like deck $48 but the hand
 ; follow-up is a Pokemon Flute or Gust of Wind. (Carved out of the still-raw
 ; $57c8-$5a8c block.)
@@ -3591,8 +3557,6 @@ AIDecide_EnergyRetrieval_Deck4C:
 .commit
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@59cd", ROMX[$59cd], BANK[$8]
 
 ; deck $4f (Full Strength) Energy Retrieval decider: requires a basic energy
 ; in hand, then plays only if the hand holds a duplicate of one of its key
@@ -3623,16 +3587,12 @@ AIDecide_EnergyRetrieval_Deck4F:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
-
 ; deck $57 (Eye of the Storm) Energy Retrieval: bank-$0e delegate. (One
 ; of AIDecide_EnergyRetrieval's many deck cases carved out of the
 ; otherwise-still-raw $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck57:
 	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
 	ret
-
-SECTION "Bank 8@5a10", ROMX[$5a10], BANK[$8]
 
 ; deck $5a (Bad Guys) Energy Retrieval: a bank helper picks the target; on
 ; success rejoin AIDecide_EnergyRetrieval's shared commit tail.
@@ -3641,8 +3601,6 @@ AIDecide_EnergyRetrieval_Deck5A:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@5a19", ROMX[$5a19], BANK[$8]
 
 ; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (Func_4c524,
 ; still raw) picks the target; on success rejoin AIDecide_EnergyRetrieval's
@@ -3654,8 +3612,6 @@ AIDecide_EnergyRetrieval_Deck5D:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5a22", ROMX[$5a22], BANK[$8]
-
 ; deck $5f (internal ScorcherDeck -- a Fire deck built around Dark
 ; Charizard) Energy Retrieval: a bank-$12 helper picks the target; on
 ; success rejoin the shared commit tail (.got_target). Also carved out
@@ -3666,8 +3622,6 @@ AIDecide_EnergyRetrieval_Deck5F:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5a2b", ROMX[$5a2b], BANK[$8]
-
 ; deck $63 (Protohistoric) Energy Retrieval: a bank helper picks the target;
 ; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
 AIDecide_EnergyRetrieval_Deck63:
@@ -3675,8 +3629,6 @@ AIDecide_EnergyRetrieval_Deck63:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@5a34", ROMX[$5a34], BANK[$8]
 
 ; deck $64 (Texture Tuner) Energy Retrieval decider: play if the same card
 ; appears in both hand and play area, otherwise recharge a duplicate Pokemon
@@ -3699,8 +3651,6 @@ AIDecide_EnergyRetrieval_Deck64:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
-
 ; deck $6c (Ronald's Super) Energy Retrieval: a bank-$12 helper picks
 ; the target; on success rejoin AIDecide_EnergyRetrieval's shared
 ; commit tail (.got_target).
@@ -3709,8 +3659,6 @@ AIDecide_EnergyRetrieval_Deck6C:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@5a5c", ROMX[$5a5c], BANK[$8]
 
 ; deck $70 (Torrential Flood) Energy Retrieval decider: proceed to the
 ; shared target-finder when the hand still has a basic energy, or when a
@@ -3725,14 +3673,10 @@ AIDecide_EnergyRetrieval_Deck70:
 	jp c, AIDecide_EnergyRetrieval.find_recharge_target
 	ret
 
-SECTION "Bank 8@5a70", ROMX[$5a70], BANK[$8]
-
 ; deck $72 (Blazing Flame) Energy Retrieval: delegated to a bank helper.
 AIDecide_EnergyRetrieval_Deck72:
 	farcall BlazingFlameDeckAIDecideEnergyRetrieval
 	ret
-
-SECTION "Bank 8@5a75", ROMX[$5a75], BANK[$8]
 
 ; deck $73 (Damage Chaos) Energy Retrieval: a bank helper picks the target;
 ; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
@@ -3742,14 +3686,10 @@ AIDecide_EnergyRetrieval_Deck73:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-SECTION "Bank 8@5a7e", ROMX[$5a7e], BANK[$8]
-
 ; deck $74 (Big Thunder) Energy Retrieval: delegated to a bank helper.
 AIDecide_EnergyRetrieval_Deck74:
 	farcall BigThunderDeckAIDecideEnergyRetrieval
 	ret
-
-SECTION "Bank 8@5a83", ROMX[$5a83], BANK[$8]
 
 ; deck $75 (Power of Darkness) Energy Retrieval: a bank helper picks the
 ; target; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
@@ -3758,8 +3698,6 @@ AIDecide_EnergyRetrieval_Deck75:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
-
-SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
 
 ; Removes the list entry just consumed from an $ff-terminated byte list.
 ; On entry hl points one past that entry (i.e. the caller just did
@@ -5871,15 +5809,11 @@ AIDecide_ComputerSearch:
 	or a
 	ret
 
-SECTION "Bank 8@6d59", ROMX[$6d59], BANK[$8]
-
 ; deck $2d (Rain Dance Confusion) Computer Search policy: delegated to a
 ; bank helper. (Carved out of the still-raw $6d59-$6e0a block.)
 AIDecide_ComputerSearch_Deck2D:
 	farcall RainDanceConfusionDeckAIDecideComputerSearch
 	ret
-
-SECTION "Bank 8@6d5e", ROMX[$6d5e], BANK[$8]
 
 ; deck $3b (Legendary Fossil) Computer Search decider. Pick the most
 ; valuable thing to fetch, in order: an Aerodactyl to evolve a Mysterious
@@ -5935,8 +5869,6 @@ AIDecide_ComputerSearch_Deck3B:
 	scf
 	ret
 
-SECTION "Bank 8@6dbe", ROMX[$6dbe], BANK[$8]
-
 ; deck $41 (Mad Petals) Computer Search: a bank helper picks the fetch
 ; target (stashed in wd082); then pull two cards from hand to pay the
 ; discard cost -- first two of the trainer card's own type, falling back to
@@ -5977,8 +5909,6 @@ AIDecide_ComputerSearch_Deck41:
 .no_play
 	or a
 	ret
-
-SECTION "Bank 8@6e0a", ROMX[$6e0a], BANK[$8]
 
 ; deck $55 (Spirited Away) Computer Search policy: delegated to a bank-13
 ; helper.
@@ -6081,8 +6011,6 @@ AIDecide_PokemonTrader:
 	ret
 ; 0x22eca
 
-SECTION "Bank 8@6eca", ROMX[$6eca], BANK[$8]
-
 ; deck $17 (Psychic Elite) Pokemon Trader policy: play to complete the
 ; Abra/Kadabra/Alakazam line (fetch the next stage of a line we've started,
 ; or dig the missing pre-evo when the evo is already in hand) or to pull a
@@ -6123,8 +6051,6 @@ AIDecide_PokemonTrader_Deck17:
 .play
 	scf
 	ret
-
-SECTION "Bank 8@6f1b", ROMX[$6f1b], BANK[$8]
 
 ; Deck $18's Pokemon Trader policy: only play when we can complete
 ; one of two specific evolution chains (by either fetching the next
@@ -6177,8 +6103,6 @@ AIDecide_PokemonTrader_Deck18:
 	scf
 	ret
 ; 0x22f88
-
-SECTION "Bank 8@6f88", ROMX[$6f88], BANK[$8]
 
 ; deck $2c (Gathering Nidoran) Pokemon Trader: like the deck's Poke Ball
 ; policy, advance the Nidoran-M (Nidoking) then Nidoran-F (Nidoqueen) lines;
@@ -6252,8 +6176,6 @@ AIDecide_PokemonTrader_Deck2C:
 	scf
 	ret
 
-SECTION "Bank 8@7040", ROMX[$7040], BANK[$8]
-
 ; deck $2d (Rain Dance Confusion) Pokemon Trader policy: play only when we
 ; can complete a Squirtle/Wartortle/Blastoise or Seel/Dewgong line, either
 ; by fetching the next stage of a line already started (evo-in-deck given
@@ -6303,8 +6225,6 @@ AIDecide_PokemonTrader_Deck2D:
 .play
 	scf
 	ret
-
-SECTION "Bank 8@70a7", ROMX[$70a7], BANK[$8]
 
 ; deck $32 (Go Arcanine) Pokemon Trader policy. Walk the deck's evolution
 ; lines in priority order — Magmar, the Growlithe/Arcanine line, the
@@ -6425,16 +6345,12 @@ AIDecide_PokemonTrader_Deck32:
 	farcall FindDifferentPokemonCardInHand
 	ret
 
-SECTION "Bank 8@71d4", ROMX[$71d4], BANK[$8]
-
 ; deck $41 ("Mad Petals") delegates Pokemon Trader entirely to a
 ; bespoke bank-$12 helper.
 AIDecide_PokemonTrader_Deck41:
 	farcall MadPetalsDeckAIDecidePokemonTrader
 	ret
 ; 0x231d9
-
-SECTION "Bank 8@71d9", ROMX[$71d9], BANK[$8]
 
 ; deck $42 (Dangerous Bench) Pokemon Trader: with fewer than 4 Pokemon in
 ; play, trade for a Pikachu pulled from the deck -- but only if the hand
@@ -6456,8 +6372,6 @@ AIDecide_PokemonTrader_Deck42:
 	ld de, DARK_DRAGONAIR
 	farcall CheckIfHandHasRepeatedCard
 	ret
-
-SECTION "Bank 8@71fc", ROMX[$71fc], BANK[$8]
 
 ; deck $48's Pokemon Trader policy. Splits on (a) whether we have
 ; only one Pokemon in play and (b) whether the opponent has a
@@ -6891,8 +6805,6 @@ AIDecide_TheBosssWay_Deck3F:
 	ret
 ; 0x2354f
 
-SECTION "Bank 8@754f", ROMX[$754f], BANK[$8]
-
 ; deck $42 (Dangerous Bench) The Boss's Way: play to complete the
 ; Dratini/Dark Dragonair/Dark Dragonite line or the Pikachu/Dark Raichu line
 ; by fetching the missing evolution stage. (Carved out of the still-raw
@@ -6910,8 +6822,6 @@ AIDecide_TheBosssWay_Deck42:
 	ld de, DARK_DRAGONITE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
-
-SECTION "Bank 8@7570", ROMX[$7570], BANK[$8]
 
 ; deck $4f's The Boss's Way policy: walk the Machop -> Dark Machoke ->
 ; Dark Machamp 3-stage evolution chain (same chain that deck $4f's
@@ -6989,14 +6899,10 @@ AIDecide_TheBosssWay_Deck6A:
 	ret c
 ; 0x235f9
 
-SECTION "Bank 8@75f9", ROMX[$75f9], BANK[$8]
-
 ; deck $73 (Damage Chaos) The Boss's Way policy: delegated to a bank helper.
 AIDecide_TheBosssWay_Deck73:
 	farcall DamageChaosDeckAIDecideTheBosssWay
 	ret
-
-SECTION "Bank 8@75fe", ROMX[$75fe], BANK[$8]
 
 AIPlay_NightlyGarbageRun:
 	ld a, [wAITrainerCardToPlay]
@@ -7044,8 +6950,6 @@ AIDecide_NightlyGarbageRun:
 	ret
 ; 0x2365e
 
-SECTION "Bank 8@765e", ROMX[$765e], BANK[$8]
-
 ; deck $17 (Psychic Elite) Nightly Garbage Run policy: recover the
 ; Abra/Kadabra/Alakazam line from the discard pile (Alakazam -> slot 2,
 ; Kadabra -> slot 1, Abra returns on the spot). Failing that, fall back to
@@ -7088,8 +6992,6 @@ AIDecide_NightlyGarbageRun_Deck17:
 	or a
 	ret
 
-SECTION "Bank 8@76ad", ROMX[$76ad], BANK[$8]
-
 ; deck $3a (Grand Fire) Nightly Garbage Run policy: only play once at least
 ; three basic energies are in the discard pile, then shuffle the first two
 ; back along with a discarded Moltres if one is there (else a third energy).
@@ -7115,8 +7017,6 @@ AIDecide_NightlyGarbageRun_Deck3A:
 	or a
 	ret
 
-SECTION "Bank 8@76d6", ROMX[$76d6], BANK[$8]
-
 ; deck $3b (Legendary Fossil) Nightly Garbage Run policy: only play once at
 ; least three basic energies are in the discard pile, then shuffle the first
 ; two back along with a discarded Zapdos if one is there (else a third
@@ -7141,8 +7041,6 @@ AIDecide_NightlyGarbageRun_Deck3B:
 .no_play
 	or a
 	ret
-
-SECTION "Bank 8@76ff", ROMX[$76ff], BANK[$8]
 
 ; deck $3d (Great Dragon) Nightly Garbage Run: bail unless the discard holds
 ; a Charizard (Lv76 either print) or Charmeleon, then multi-target-rescue
@@ -7207,8 +7105,6 @@ AIDecide_NightlyGarbageRun_Deck3D:
 	pop af
 	scf
 	ret
-
-SECTION "Bank 8@7789", ROMX[$7789], BANK[$8]
 
 ; deck $40 (Sticky Poison Gas) Nightly Garbage Run policy. First bail unless
 ; the discard pile holds at least one of the deck's evolution basics (Ekans,
@@ -7287,8 +7183,6 @@ AIDecide_NightlyGarbageRun_Deck40:
 	scf
 	ret
 
-SECTION "Bank 8@782f", ROMX[$782f], BANK[$8]
-
 ; deck $41 NGR policy. Empties the three multi-target slots, then
 ; tries to fill them with cards from the discard pile in priority
 ; order: card ID $39 (Dark Vileplume), card ID $37 (Dark Gloom), and
@@ -7338,34 +7232,6 @@ AIDecide_NightlyGarbageRun_Deck41:
 	ret
 ; 0x2387d
 
-SECTION "Bank 8@79df", ROMX[$79df], BANK[$8]
-
-; Helper for NIGHTLY_GARBAGE_RUN's deck-specific policies: given a
-; deck index in `a`, find the first $ff slot in
-; wTempAIMultiTargetCardDeckIndex1/2/3 and write `a` there. Returns
-; NC on success, carry SET if all three slots are already full.
-AddDeckIndexToAIMultiTargetSlots:
-	ld b, a
-	ld hl, wTempAIMultiTargetCardDeckIndex1
-	ld a, $ff
-	cp [hl]
-	jr z, .store
-	inc hl
-	cp [hl]
-	jr z, .store
-	inc hl
-	cp [hl]
-	jr z, .store
-	scf
-	ret
-.store
-	ld [hl], b
-	or a
-	ret
-; 0x239f5
-
-SECTION "Bank 8@787d", ROMX[$787d], BANK[$8]
-
 ; deck $46 (Complete Combustion) Nightly Garbage Run: only play if a Magmar
 ; is in the discard, then rescue it plus basic energies, re-packing the
 ; slots; decline if nothing landed in slot 1. (Carved out of the still-raw
@@ -7406,8 +7272,6 @@ AIDecide_NightlyGarbageRun_Deck46:
 	pop af
 	scf
 	ret
-
-SECTION "Bank 8@78c9", ROMX[$78c9], BANK[$8]
 
 ; deck $49 NGR policy: gather basic energies in the discard pile,
 ; require at least 3, then rescue the first two on the list plus
@@ -7563,7 +7427,29 @@ AIDecide_NightlyGarbageRun_Deck6F:
 	farcall ImmortalPokemonDeckAIDecideNightlyGarbageRun
 	ret
 
-SECTION "Bank 8@79f5", ROMX[$79f5], BANK[$8]
+; Helper for NIGHTLY_GARBAGE_RUN's deck-specific policies: given a
+; deck index in `a`, find the first $ff slot in
+; wTempAIMultiTargetCardDeckIndex1/2/3 and write `a` there. Returns
+; NC on success, carry SET if all three slots are already full.
+AddDeckIndexToAIMultiTargetSlots:
+	ld b, a
+	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld a, $ff
+	cp [hl]
+	jr z, .store
+	inc hl
+	cp [hl]
+	jr z, .store
+	inc hl
+	cp [hl]
+	jr z, .store
+	scf
+	ret
+.store
+	ld [hl], b
+	or a
+	ret
+; 0x239f5
 
 ; Fossil Excavation: shuffle your deck, then recover a Mysterious Fossil
 ; from the discard pile (or, if none, reveal one from the deck). The play
@@ -7615,8 +7501,6 @@ AIDecide_FossilExcavation_Deck3BOr63:
 	xor a
 	scf
 	ret
-
-SECTION "Bank 8@7a43", ROMX[$7a43], BANK[$8]
 
 AIPlay_Sleep:
 	ld a, [wAITrainerCardToPlay]
