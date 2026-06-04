@@ -2647,9 +2647,9 @@ AIDecide_ProfessorOak:
 	cp ELECTRIC_SELFDESTRUCT_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck11
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jp z, $5546
+	jp z, AIDecide_ProfessorOak_Deck2D
 	cp GO_ARCANINE_DECK_ID
-	jp z, $5565
+	jp z, AIDecide_ProfessorOak_Deck32
 	cp GRAND_FIRE_DECK_ID
 	jp z, AIDecide_ProfessorOak_Deck3A
 	cp LEGENDARY_FOSSIL_DECK_ID
@@ -2949,6 +2949,77 @@ AIDecide_ProfessorOak_Deck11:
 	farcall LookForCardIDInHand
 	ret
 
+SECTION "Bank 8@5546", ROMX[$5546], BANK[$8]
+
+; deck $2d (Rain Dance Confusion) Professor Oak decider. Bail if the hand is
+; large (>= $2b cards out of deck), then gate on board state -- needs no
+; energy in hand, 2+ Pokemon in play, and a hand under 5 -- before deferring
+; to the deck's bank helper for the final call. (Carved out of the still-raw
+; $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck2D:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $2b
+	ret nc
+	farcall CountEnergyCardsInHand
+	jr c, .delegate
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $02
+	jr c, .delegate
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+.delegate
+	farcall RainDanceConfusionDeckAIDecideProfessorOak
+	ret
+
+SECTION "Bank 8@5565", ROMX[$5565], BANK[$8]
+
+; deck $32 (Go Arcanine) Professor Oak decider. Two routes to "play": with a
+; small hand (< $29) holding Moltres but few basics (<6 cards and <5 basic
+; Pokemon), or -- the shared .check_energy path -- a hand under both the
+; $2d cards-not-in-deck and 5-card thresholds that still has an energy to
+; spare. (Carved out of the still-raw $5528-$5643 block.)
+AIDecide_ProfessorOak_Deck32:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $29
+	jr nc, .check_energy
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $08
+	ret nc
+	push af
+	ld de, MOLTRES_LV40
+	farcall LookForCardIDInHandList
+	pop bc
+	jr nc, .play
+	ld a, $05
+	cp b
+	ret nc
+	farcall CountNumberOfBasicPokemonInHand
+	or a
+	jr z, .play
+.check_energy
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	ld a, [hl]
+	cp $2d
+	ret nc
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp $05
+	ret nc
+	bank1call CreateEnergyCardListFromHand
+	ret nc
+.play
+	scf
+	ret
+
 SECTION "Bank 8@559c", ROMX[$559c], BANK[$8]
 
 ; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
@@ -3025,7 +3096,7 @@ AIDecide_EnergyRetrieval:
 	cp ELECTRIC_SELFDESTRUCT_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck11
 	cp MAX_ENERGY_DECK_ID
-	jp z, $57d2
+	jp z, AIDecide_EnergyRetrieval_Deck24
 	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck2D
 	cp ELECTRIC_CURRENT_SHOCK_DECK_ID
@@ -3033,15 +3104,15 @@ AIDecide_EnergyRetrieval:
 	cp STICKY_POISON_GAS_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck40
 	cp EEVEE_SHOWDOWN_DECK_ID
-	jp z, $5937
+	jp z, AIDecide_EnergyRetrieval_Deck48
 	cp WHIRLPOOL_SHOWER_DECK_ID
-	jp z, $5969
+	jp z, AIDecide_EnergyRetrieval_Deck4AOr4B
 	cp PARALYZED_PARALYZED_DECK_ID
-	jp z, $5969
+	jp z, AIDecide_EnergyRetrieval_Deck4AOr4B
 	cp BENCH_CALL_DECK_ID
-	jp z, $599b
+	jp z, AIDecide_EnergyRetrieval_Deck4C
 	cp FULL_STRENGTH_DECK_ID
-	jp z, $59cd
+	jp z, AIDecide_EnergyRetrieval_Deck4F
 	cp EYE_OF_THE_STORM_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck57
 	cp BAD_GUYS_DECK_ID
@@ -3053,11 +3124,11 @@ AIDecide_EnergyRetrieval:
 	cp PROTOHISTORIC_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck63
 	cp TEXTURE_TUNER7_DECK_ID
-	jp z, $5a34
+	jp z, AIDecide_EnergyRetrieval_Deck64
 	cp RONALDS_PSYCHIC_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck6C
 	cp TORRENTIAL_FLOOD_DECK_ID
-	jp z, $5a5c
+	jp z, AIDecide_EnergyRetrieval_Deck70
 	cp BLAZING_FLAME_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck72
 	cp DAMAGE_CHAOS_DECK_ID
@@ -3090,17 +3161,17 @@ AIDecide_EnergyRetrieval:
 	cp GO_ARCANINE_DECK_ID
 	jr z, .use_tagged_target
 	cp DANGEROUS_BENCH_DECK_ID
-	jp z, $591a
+	jp z, AIDecide_EnergyRetrieval_UseTaggedNonPokemon
 	cp THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
-	jp z, $592c
+	jp z, AIDecide_EnergyRetrieval_CommitUnlessTagged
 	cp QUICK_ATTACK_DECK_ID
-	jp z, $592c
+	jp z, AIDecide_EnergyRetrieval_CommitUnlessTagged
 	cp DIRECT_HIT_DECK_ID
 	jr z, .use_tagged_target
 	cp TEST_YOUR_LUCK_DECK_ID
-	jp z, $592c
+	jp z, AIDecide_EnergyRetrieval_CommitUnlessTagged
 	cp EVERYBODYS_FRIEND_DECK_ID
-	jp z, $591a
+	jp z, AIDecide_EnergyRetrieval_UseTaggedNonPokemon
 	jr .got_target
 .use_tagged_target
 	ld a, [wTempAITargetNonPokemonCardDeckIndex]
@@ -3209,6 +3280,44 @@ AIDecide_EnergyRetrieval_Deck11:
 	cp $03
 	ret nc
 	jp AIDecide_EnergyRetrieval.find_recharge_target
+
+SECTION "Bank 8@57d2", ROMX[$57d2], BANK[$8]
+
+; deck $24 (Max Energy) Energy Retrieval decider. Requires a Grass Energy in
+; hand plus a basic energy in the discard to pull (slots 1/2), then plays
+; only when there's a real grass-line payoff: a duplicated Metapod, Ivysaur
+; or Venusaur in hand, or an unusable evolution card (preferring one that
+; isn't Exeggutor). (Carved out of the still-raw $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck24:
+	ld de, GRASS_ENERGY
+	farcall CountCardIDInHand
+	jr nc, AIDecide_EnergyRetrieval.no_targets
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	jr c, AIDecide_EnergyRetrieval.no_targets
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld de, METAPOD_LV20
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, IVYSAUR_LV26
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, VENUSAUR_LV67
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	farcall FindUnusableEvolutionCardInHand
+	ret nc
+	push af
+	call GetCardIDFromDeckIndex
+	cp16 EXEGGUTOR
+	pop bc
+	ret z
+	ld a, b
+	scf
+	ret
 
 SECTION "Bank 8@581d", ROMX[$581d], BANK[$8]
 
@@ -3338,6 +3447,154 @@ AIDecide_EnergyRetrieval_Deck40:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
+SECTION "Bank 8@591a", ROMX[$591a], BANK[$8]
+
+; Shared Energy Retrieval commit tail used by decks $42 (Dangerous Bench)
+; and $6e (Everybody's Friend): if a non-Pokemon AI target was pre-tagged,
+; recharge that instead of the duplicate just found; otherwise decline.
+AIDecide_EnergyRetrieval_UseTaggedNonPokemon:
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	cp $ff
+	jr z, .skip
+	pop af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+.skip
+	pop af
+	or a
+	ret
+
+SECTION "Bank 8@592c", ROMX[$592c], BANK[$8]
+
+; Shared Energy Retrieval commit tail used by decks $44 (This Is the Power
+; of Electricity), $45 (Quick Attack) and $62 (Test Your Luck): commit the
+; duplicate just found unless it is the already-tagged non-Pokemon target.
+AIDecide_EnergyRetrieval_CommitUnlessTagged:
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5937", ROMX[$5937], BANK[$8]
+
+; deck $48 (Eevee Showdown) Energy Retrieval decider: requires a basic
+; energy in hand, then plays if the hand can follow up with a Switch or
+; Pokemon Trader, else recharges a duplicate Pokemon (unless it is the
+; tagged target). (Carved out of the still-raw $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck48:
+	farcall CountBasicEnergyCardsInHand
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	ld de, POKEMON_TRADER
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5969", ROMX[$5969], BANK[$8]
+
+; decks $4a (Whirlpool Shower) and $4b (Paralyzed Paralyzed) Energy
+; Retrieval decider: like deck $48 but the hand follow-up is a Switch or a
+; Poke Ball. (Carved out of the still-raw $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck4AOr4B:
+	farcall CountBasicEnergyCardsInHand
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	ld de, POKEBALL
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@599b", ROMX[$599b], BANK[$8]
+
+; deck $4c (Bench Call) Energy Retrieval decider: like deck $48 but the hand
+; follow-up is a Pokemon Flute or Gust of Wind. (Carved out of the still-raw
+; $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck4C:
+	farcall CountBasicEnergyCardsInHand
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+	ld de, POKEMON_FLUTE
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	ld de, GUST_OF_WIND
+	farcall LookForCardIDInHandList
+	jr c, .commit
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@59cd", ROMX[$59cd], BANK[$8]
+
+; deck $4f (Full Strength) Energy Retrieval decider: requires a basic energy
+; in hand, then plays only if the hand holds a duplicate of one of its key
+; cards (The Boss's Way, Pokemon Trader, Switch, Dark Fearow, Dark Machoke
+; or Dark Machamp). (Carved out of the still-raw $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck4F:
+	farcall CountBasicEnergyCardsInHand
+	ret nc
+	ld de, THE_BOSSS_WAY
+	farcall CheckIfHandHasRepeatedCard
+	jr c, .commit
+	ld de, POKEMON_TRADER
+	farcall CheckIfHandHasRepeatedCard
+	jr c, .commit
+	ld de, SWITCH
+	farcall CheckIfHandHasRepeatedCard
+	jr c, .commit
+	ld de, DARK_FEAROW
+	farcall CheckIfHandHasRepeatedCard
+	jr c, .commit
+	ld de, DARK_MACHOKE
+	farcall CheckIfHandHasRepeatedCard
+	jr c, .commit
+	ld de, DARK_MACHAMP
+	farcall CheckIfHandHasRepeatedCard
+	ret nc
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
 SECTION "Bank 8@5a0b", ROMX[$5a0b], BANK[$8]
 
 ; deck $57 (Eye of the Storm) Energy Retrieval: bank-$0e delegate. (One
@@ -3391,6 +3648,29 @@ AIDecide_EnergyRetrieval_Deck63:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
+SECTION "Bank 8@5a34", ROMX[$5a34], BANK[$8]
+
+; deck $64 (Texture Tuner) Energy Retrieval decider: play if the same card
+; appears in both hand and play area, otherwise recharge a duplicate Pokemon
+; in hand (unless it is the tagged target). (Carved out of the still-raw
+; $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck64:
+	farcall IsSameCardInHandAndPlayArea
+	jr c, .commit
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	ret z
+.commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
 SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
 
 ; deck $6c (Ronald's Super) Energy Retrieval: a bank-$12 helper picks
@@ -3401,6 +3681,21 @@ AIDecide_EnergyRetrieval_Deck6C:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5a5c", ROMX[$5a5c], BANK[$8]
+
+; deck $70 (Torrential Flood) Energy Retrieval decider: proceed to the
+; shared target-finder when the hand still has a basic energy, or when a
+; Blastoise is in our play area worth recharging; otherwise decline.
+; (Carved out of the still-raw $57c8-$5a8c block.)
+AIDecide_EnergyRetrieval_Deck70:
+	farcall CountBasicEnergyCardsInHand
+	jp c, AIDecide_EnergyRetrieval.find_recharge_target
+	ld de, BLASTOISE_LV52
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jp c, AIDecide_EnergyRetrieval.find_recharge_target
+	ret
 
 SECTION "Bank 8@5a70", ROMX[$5a70], BANK[$8]
 
