@@ -1537,7 +1537,7 @@ HandleSpecialAIAttacks:
 	jr nc, .is_cool_porygon_already_resistant
 
 	call AISelectSpecialAttackParameters.SelectAttackParameters
-	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh a, [hDuelActionArgs + 1]
 	cp $ff
 	jr z, .is_cool_porygon_already_resistant
 	call TranslateColorToWR

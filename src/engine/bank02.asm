@@ -1999,7 +1999,7 @@ _SelectPrizeCards::
 	xor a
 	call GetFirstSetPrizeCard
 	ld [wMultiDirectionalMenuCursorPosition], a
-	ld de, hTempPlayAreaLocation_ffa1
+	ld de, hDuelActionArgs + 1
 	ld hl, wSelectedPrizeCardListPtr
 	ld [hl], e
 	inc hl
@@ -2017,7 +2017,7 @@ _SelectPrizeCards::
 .selection_made
 	ld a, DUELVARS_PRIZES
 	get_turn_duelist_var
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wSelectedPrizeCardListPtr]
 	ld l, a
 	ld a, [wSelectedPrizeCardListPtr + 1]

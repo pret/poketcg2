@@ -46,7 +46,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                AIDecide_Recycle, AIPlay_Recycle
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   AIDecide_Lass, AIPlay_Lass
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             AIDecide_ItemFinder, AIPlay_ItemFinder
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_ImakuniCard, AIPlay_ImakuniCard
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, IMAKUNI_CARD,           AIDecide_Imakuni, AIPlay_Imakuni
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_01, GAMBLER,                AIDecide_Gambler, AIPlay_Gambler
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, REVIVE,                 AIDecide_Revive, AIPlay_Revive
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_FLUTE,          AIDecide_PokemonFlute, AIPlay_PokemonFlute
@@ -129,7 +129,7 @@ AIProcessHandTrainerCards:
 	push hl
 	push de
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 
 ; if Headache effects prevent playing card
 ; move on to the next item in list.
@@ -162,7 +162,7 @@ AIProcessHandTrainerCards:
 	push de
 	push hl
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	pop hl
@@ -274,16 +274,16 @@ CalculateBDividedByA_Bank08:
 ; makes AI use Potion card.
 AIPlay_Potion:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld e, a
 	call GetCardDamageAndMaxHP
 	cp 20
 	jr c, .play_card
 	ld a, 20
 .play_card
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -486,11 +486,11 @@ AIDecide_Potion_Phase11_Deck74:
 ; never overheals.
 AIPlay_SuperPotion:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	farcall AIPickEnergyCardToDiscard
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wAITrainerCardParameter]
 	ld e, a
 	call GetCardDamageAndMaxHP
@@ -498,7 +498,7 @@ AIPlay_SuperPotion:
 	jr c, .heal_amount ; heal min(damage, 40)
 	ld a, $28
 .heal_amount
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -699,13 +699,13 @@ AIDecide_SuperPotion_Phase13:
 	farcall BigThunderDeckAIDecideSuperPotion
 	ret
 
-; Shared by Phase_13 and Phase_14. Forwards hTemp_ffa0 = 0 since
+; Shared by Phase_13 and Phase_14. Forwards hDuelActionArgs + 0 = 0 since
 ; Defender doesn't need a target parameter beyond the active slot.
 AIPlay_Defender:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	xor a
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -952,7 +952,7 @@ AIPlay_PlusPower:
 	ld a, [wAITrainerCardParameter]
 	ld [wAIPlusPowerAttack], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1225,9 +1225,9 @@ AIPlay_Switch:
 	or AI_FLAG_USED_SWITCH
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	xor a
@@ -1488,9 +1488,9 @@ AIPlay_GustOfWind:
 	or AI_FLAG_USED_GUST_OF_WIND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1858,7 +1858,7 @@ CheckIfCanDamageBenchedPokemon:
 
 AIPlay_Bill:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1875,11 +1875,11 @@ AIDecide_Bill:
 
 AIPlay_EnergyRemoval:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -2339,15 +2339,15 @@ AIDecide_EnergyRemoval_Deck74:
 ; the list.
 AIPlay_SuperEnergyRemoval:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
 	ld a, [$d09a]
 	ldh [$ffa6], a
 	ld a, $ff
@@ -2584,20 +2584,20 @@ ScoreSuperEnergyRemovalTarget:
 ; bail out cleanly if the prior step rejected the choice.
 AIPlay_PokemonBreeder:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, [wcd15]
 	cp $ff
 	ret z
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld [wTempAIPokemonCard], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, $18
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -3055,7 +3055,7 @@ AIPlay_ProfessorOak:
 	or AI_FLAG_USED_PROFESSOR_OAK | AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -3492,17 +3492,17 @@ AIPlay_EnergyRetrieval:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	cp $ff
 	jr z, .single_target
 	ld a, $ff
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
 .single_target
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -4145,15 +4145,15 @@ AIPlay_SuperEnergyRetrieval:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
 	cp $ff
 	jr z, .done
 	ld a, [$d09a]
@@ -4384,7 +4384,7 @@ RemoveCardFromListByValue:
 ; Energy attached to them.
 AIPlay_PokemonCenter:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4461,7 +4461,7 @@ AIDecide_PokemonCenter:
 
 AIPlay_ImposterProfessorOak:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4514,9 +4514,9 @@ AIDecide_ImposterProfessorOak:
 
 AIPlay_EnergySearch:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4762,15 +4762,15 @@ LookForUsefulEnergyForGrassPokemon:
 ; The play wrapper forwards the chosen ordering (slots 1-3 plus $d09a/$d09b).
 AIPlay_Pokedex:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, [$d09a]
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
 	ld a, [$d09b]
 	ldh [$ffa6], a
 	ld a, $ff
@@ -4897,7 +4897,7 @@ GetCardTypeFromDeckIndex:
 
 AIPlay_FullHeal:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5028,9 +5028,9 @@ AIDecide_FullHeal_Deck53:
 
 AIPlay_MrFuji:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5141,11 +5141,11 @@ AIDecide_MrFuji_Deck6D:
 
 AIPlay_ScoopUp:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5395,11 +5395,11 @@ AIPlay_Maintenance:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5434,16 +5434,16 @@ AIDecide_Maintenance:
 ; (the parameter picks which), tails does nothing.
 AIPlay_Recycle:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld de, $10e
 	bank1call TossCoin
 	jr nc, .tails
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr .decide
 .tails
 	ld a, $ff
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 .decide
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -5514,7 +5514,7 @@ AIPlay_Lass:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5561,13 +5561,13 @@ AIPlay_ItemFinder:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5896,9 +5896,9 @@ StoreItemFinderDiscardTarget:
 	scf
 	ret
 
-AIPlay_ImakuniCard:
+AIPlay_Imakuni:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5909,7 +5909,7 @@ AIPlay_ImakuniCard:
 ; confusion is desirable -- but only if our Dark Primeape has 2+
 ; energy attached (so its "Fury Swipes" benefits) and isn't
 ; already confused.
-AIDecide_ImakuniCard:
+AIDecide_Imakuni:
 	ld a, [wOpponentDeckID]
 	cp RUNNING_WILD_DECK_ID
 	jr z, .deck_50_dark_primeape
@@ -5970,7 +5970,7 @@ AIPlay_Gambler:
 	ld [hld], a
 	ld [hl], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld hl, wRNGVars
@@ -5984,7 +5984,7 @@ AIPlay_Gambler:
 	ret
 .play_honestly
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6036,9 +6036,9 @@ AIDecide_Gambler:
 
 AIPlay_Revive:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6115,9 +6115,9 @@ AIDecide_Revive_Deck40:
 
 AIPlay_PokemonFlute:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6219,7 +6219,7 @@ AIDecide_PokemonFlute:
 ; both (their PHASE_05 table rows point here).
 AIPlay_ClefairyDollOrMysteriousFossil:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6280,17 +6280,17 @@ AIDecide_ClefairyDollOrMysteriousFossil:
 ; tails it forwards $ff so AIMakeDecision treats it as "no target".
 AIPlay_Pokeball:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .tails
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jr .commit
 .tails
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .commit
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -6826,13 +6826,13 @@ AIPlay_ComputerSearch:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6997,11 +6997,11 @@ AIDecide_ComputerSearch_Deck70:
 ; tell the AI has already traded this turn.
 AIPlay_PokemonTrader:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, $01
@@ -7774,11 +7774,11 @@ AIDecide_PokemonTrader_Deck74:
 
 AIPlay_TheBosssWay:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -7965,15 +7965,15 @@ AIDecide_TheBosssWay_Deck73:
 
 AIPlay_NightlyGarbageRun:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, $ff
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8520,11 +8520,11 @@ AIPlay_FossilExcavation:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8563,7 +8563,7 @@ AIDecide_FossilExcavation_Deck3BOr63:
 
 AIPlay_Sleep:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8620,11 +8620,11 @@ AIDecide_Sleep_Deck53:
 ; let the effect pick).
 AIPlay_PokemonRecall:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8676,11 +8676,11 @@ AIDecide_PokemonRecall:
 
 AIPlay_MasterBall:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9041,7 +9041,7 @@ AIDecide_MasterBall_Deck74:
 ; Bill's Teleporter has no targeting -- just execute the trainer effect.
 AIPlay_BillsTeleporter:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9057,12 +9057,12 @@ AIDecide_BillsTeleporter:
 
 ; Moon Stone evolves a Pokemon already in play. Stash the chosen
 ; play-area position (wAITrainerCardParameter, set by the decider) into
-; hTemp_ffa0, then execute the trainer effect.
+; hDuelActionArgs + 0, then execute the trainer effect.
 AIPlay_MoonStone:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9129,7 +9129,7 @@ AIDecide_MoonStone:
 ; The Rocket's Trap has no targeting -- just execute the trainer effect.
 AIPlay_TheRocketsTrap:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9156,7 +9156,7 @@ AIDecide_TheRocketsTrap:
 
 AIPlay_GoopGasAttack:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9185,9 +9185,9 @@ AIDecide_GoopGasAttack:
 ; and draw 7 -- a disruption when their hand is large.
 AIPlay_ImposterOaksRevenge:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9247,7 +9247,7 @@ AIDecide_ImposterOaksRevenge:
 ; Digger discards a card to draw 2 -- the AI always plays it when able.
 AIPlay_Digger:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9259,17 +9259,17 @@ AIDecide_Digger:
 ; Computer Error's play has its own pre-step: SwapTurn so the
 ; trainer effect picks a card from the *player's* hand to swap,
 ; then SwapTurn back, store the chosen index in
-; hTempPlayAreaLocation_ffa1, fire the effect, and bump wd033 to
+; hDuelActionArgs + 1, fire the effect, and bump wd033 to
 ; signal "AI used Computer Error this turn".
 AIPlay_ComputerError:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	farcall HandleComputerErrorPlayerSelection
 	call SwapTurn
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, $02
@@ -9320,19 +9320,19 @@ AIDecide_ComputerError:
 ; On tails the trainer effect treats $ff as "no target."
 AIPlay_SuperScoopUp:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .tails
 	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	jr .commit
 .tails
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .commit
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision

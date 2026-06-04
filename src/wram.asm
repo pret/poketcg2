@@ -444,7 +444,7 @@ wPlayAreaScreenLoaded:: ; cbcc
 wPlayAreaSelectAction:: ; cbcd
 	ds $1
 
-; low byte of the address of the next slot in the hTempRetreatCostCards array to be used
+; low byte of the address of the next slot in the hDuelActionArgs[2-] array to be used
 wTempRetreatCostCardsPos:: ; cbce
 	ds $1
 

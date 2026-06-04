@@ -124,13 +124,13 @@ AISamPerformScriptedTurn:
 .turn_2
 	ld de, POTION
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 20
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld de, GOLDEEN
@@ -143,15 +143,15 @@ AISamPerformScriptedTurn:
 	ld de, GOLDEEN
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld de, SEAKING
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EVOLVE_PKMN
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, SEAKING
@@ -163,13 +163,13 @@ AISamPerformScriptedTurn:
 .turn_4
 	ld de, POTION
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 20
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, SECOND_ATTACK
@@ -178,12 +178,12 @@ AISamPerformScriptedTurn:
 .turn_5
 	ld de, STARYU_LV15
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, STARYU_LV15
@@ -280,12 +280,12 @@ AIAaronStep2PerformScriptedTurn:
 .turn_2
 	ld de, ODDISH_LV8
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, GRIMER_LV10
@@ -351,33 +351,33 @@ AIAaronStep3PerformScriptedTurn:
 .turn_2
 	ld de, CHANSEY_LV55
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld de, ALAKAZAM_LV42
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, ABRA_LV10
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	push af
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, [wcd15]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld [wTempAIPokemonCard], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
@@ -400,7 +400,7 @@ AIAaronStep3PerformScriptedTurn:
 	farcall HandleAIDamageSwap
 	ld de, POKEMON_CENTER
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
@@ -439,24 +439,24 @@ AIAaronStep3PerformScriptedTurn:
 	jr nc, .asm_4839b
 	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld de, CHANSEY_LV55
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .unscripted
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld de, CHANSEY_LV55
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	farcall HandleAIDamageSwap
@@ -2028,12 +2028,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_dratini
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DRATINI_LV10
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_bulbasaur ; no Dratini in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_bulbasaur
@@ -2068,12 +2068,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_bulbasaur
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, BULBASAUR_LV12
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_or_scyther ; no Bulbasaur in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_or_scyther
@@ -2098,7 +2098,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_or_scyther
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2108,7 +2108,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_1
 .asm_490ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_1
@@ -2204,12 +2204,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_charmander
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, CHARMANDER_LV9
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_magmar_or_mr_mime ; no Charmander in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_magmar_or_mr_mime
@@ -2232,7 +2232,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_magmar_or_mr_mime
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2246,7 +2246,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_2
 .asm_49219
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_2
@@ -2336,12 +2336,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_squirtle
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, SQUIRTLE_LV8
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_scyther_mr_mime_or_lapras ; no Squirtle in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_scyther_mr_mime_or_lapras
@@ -2364,7 +2364,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_scyther_mr_mime_or_lapras
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, SCYTHER_LV25
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2378,7 +2378,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_3
 .asm_49329
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_3
@@ -2472,12 +2472,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_machop
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, MACHOP_LV20
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_magmar_or_chansey ; no Machop in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_magmar_or_chansey
@@ -2500,7 +2500,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_magmar_or_chansey
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2510,7 +2510,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_4
 .asm_49436
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_4
@@ -2583,7 +2583,7 @@ HandleAIDarkPokemonSearchStrategies:
 	call CanUseEvolutionaryLight
 	pop bc
 	ld a, b
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .asm_49508
 	ld de, GRS_MEWTWO
 	ld a, CARD_LOCATION_DECK
@@ -2621,7 +2621,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_5
 .asm_49534
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_5
@@ -2666,7 +2666,7 @@ HandleAIDarkPokemonSearchStrategies:
 ; input:
 ; - a = deck index of card to search in Deck
 AITryUseTheBossWayToSearchCard:
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
 	ccf
@@ -2681,11 +2681,11 @@ AITryUseTheBossWayToSearchCard:
 ; - a = deck index of card to search in Deck
 ; - de = card ID in Hand to avoid trading
 AITryUsePokemonTraderToSearchCard:
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ccf
 	ret c ; card in hand to trade not found
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 AITryUsePokemonTraderToSearchCard_GotCardToTrade:
 	ld de, POKEMON_TRADER
 	farcall LookForCardIDInHandList
@@ -2698,7 +2698,7 @@ AITryUsePokemonTraderToSearchCard_GotCardToTrade:
 ; expects the Trainer card index to be in [wAITrainerCardToPlay]
 AIUseTrainerCardToSearchCard:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	bank1call LoadNonPokemonCardEffectCommands
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
@@ -2715,20 +2715,20 @@ Func_495dd:
 	call CanUseEvolutionaryLight
 	ccf
 	ret c
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call FindAnyEvolutionCardInDeck
 	ccf
 	ret c ; evolution card not found
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh a, [hDuelActionArgs + 1]
 	ret
 
 StopLifeDeckAIDecideGustOfWind:
@@ -4800,19 +4800,19 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 .power_of_darkness
 	ldtx de, PowerOfDarknessCheckText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	ld e, PLAY_AREA_ARENA
 	call Func_4a3dc
 	call SwapTurn
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ret
 
 .sneak_attack
 	xor a
 	ld d, 10
 	farcall AIFindPlayAreaPkmnWithMinimumLeastRemainingHP
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 10
 	cp d
 	ret z ; will ko
@@ -4828,7 +4828,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	srl a
 	ret c ; odd number
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 .summon_minions
@@ -4851,9 +4851,9 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 
 .reel_in
 	ld a, $ff
-	ldh [hTemp_ffa0], a
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + 2], a
 	ldh [$ffa5], a
 	ld a, [wOpponentDeckID]
 	cp BAD_GUYS_DECK_ID
@@ -4900,7 +4900,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 .TryAddCardToList:
 	ld b, a
 	ld c, 0
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs + 0
 .asm_4a3bf
 	ld a, [hl]
 	cp $ff

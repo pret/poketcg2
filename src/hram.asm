@@ -1,3 +1,6 @@
+INCLUDE "macros.asm"
+INCLUDE "constants.asm"
+
 SECTION "HRAM", HRAM[$ff80]
 
 hBankROM:: ; ff80
@@ -74,54 +77,32 @@ hTempCardID_ff9b:: ; ff9d
 hTempPlayAreaLocation_ff9d:: ; ff9f
 	ds $1
 
+; $ff-terminated 10-byte buffer for the current in-duel action,
+; structured as DUEL_ACTION_STRUCT_* (action index, card index, 7 args, terminator).
+; mirrors poketcg (tcg1) PR #187; NOTE tcg2's addresses are shifted +2 vs tcg1.
+hDuelAction:: ; ffa0
+
 ; index for AIActionTable
 hOppActionTableIndex:: ; ffa0
 	ds $1
 
 ; deck index of a card (0-59)
-hTempCardIndex_ff9f:: ; ffa1
+hDuelActionCardIndex:: ; ffa1
 	ds $1
 
 UNION
 
-; multipurpose temp storage (card's deck index, selected attack index, status condition...)
-hTemp_ffa0:: ; ffa2
-	ds $1
-
-; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
-hTempPlayAreaLocation_ffa1:: ; ffa3
-	ds $1
-
-; $ff-terminated list of cards to be discarded upon retreat
-hTempRetreatCostCards:: ; ffa4
-	ds $6
+; $ff-terminated list of arguments of the current in-duel action.
+; indexed by the *_ARGS_* offset constants in duel_action_constants.asm.
+hDuelActionArgs:: ; ffa2
+	ds DUEL_ACTION_ARGS_SIZE + 1
 
 NEXTU
 
-	ds $1
-
-; parameter to be used by the AI's Pkmn Power effect
-hAIPkmnPowerEffectParam:: ; ffa3
-	ds $1
-
-; parameters chosen by AI in Energy Trans routine.
-; the deck index (0-59) of the energy card to transfer
-; and the Play Area location (PLAY_AREA_*) of card to receive that energy card.
-hAIEnergyTransEnergyCard:: ; ffa4
-
-; PLAY_AREA_*  of target selected for some Pkmn Powers,
-; (e.g. Curse, Damage Swap) and for trainer card effect.
-hPlayAreaEffectTarget:: ; ffa4
-	ds $1
-
-hAIEnergyTransPlayAreaLocation:: ; ffa5
-	ds $1
-
-NEXTU
-
-; list of various items, such as
-; cards selected for various effects,
+; list of various items, such as cards selected for various effects,
 ; Play Area locations, etc.
+; tcg2-specific: 15 bytes (vs tcg1's 8), kept as a separate union member
+; because tcg2's hCurSelectionItem follows the union at $ffb2.
 hTempList:: ; ffa2
 	ds 15
 

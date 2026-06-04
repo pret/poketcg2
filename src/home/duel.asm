@@ -1231,7 +1231,7 @@ GetNonTurnDuelistVariable::
 	ret
 
 ; copies, given a card identified by register hl (card ID):
-; - e into wSelectedAttack and d into hTempCardIndex_ff9f
+; - e into wSelectedAttack and d into hDuelActionCardIndex
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
@@ -1241,14 +1241,14 @@ CopyAttackDataAndDamage_FromCardID::
 	ld a, e
 	ld [wSelectedAttack], a
 	ld a, d
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop de
 	call LoadCardDataToBuffer1_FromCardID
 	pop de
 	jr CopyAttackDataAndDamage
 
 ; copies, given a card identified by register d (0-59 deck index):
-; - e into wSelectedAttack and d into hTempCardIndex_ff9f
+; - e into wSelectedAttack and d into hDuelActionCardIndex
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
@@ -1256,7 +1256,7 @@ CopyAttackDataAndDamage_FromDeckIndex::
 	ld a, e
 	ld [wSelectedAttack], a
 	ld a, d
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 ;	fallthrough
 
@@ -1292,7 +1292,7 @@ CopyAttackDataAndDamage:
 UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars::
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call UpdateTempDuelistCardIDs
 	call ClearTwoTurnDuelVars
 	ret
@@ -1336,7 +1336,7 @@ ClearTwoTurnDuelVars::
 UseAttackOrPokemonPower::
 	ld a, [wSelectedAttack]
 	ld [wPlayerAttackingAttackIndex], a
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld [wPlayerAttackingCardIndex], a
 	ld a, [wTempCardID_ccc2]
 	ld [wPlayerAttackingCardID], a
@@ -1371,7 +1371,7 @@ UseAttackOrPokemonPower::
 	; if we're here then it means that the Metronome attack
 	; does not have its requirements met to be used
 	ld a, $ff
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_ATTACK_ANIM_AND_DAMAGE
 	call SetOppAction_SerialSendDuelData
 	call ShowMetronomeUnsuccessfulText
@@ -1536,23 +1536,23 @@ SendAttackDataToLinkOpponent::
 	ld a, [wccec]
 	or a
 	ret nz
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	push af
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	push af
 	ld a, $1
 	ld [wccec], a
 	ld a, [wPlayerAttackingCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wPlayerAttackingAttackIndex]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_BEGIN_ATTACK
 	call SetOppAction_SerialSendDuelData
 	call ExchangeRNG
 	pop af
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 Func_189d:

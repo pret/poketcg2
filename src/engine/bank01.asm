@@ -560,7 +560,7 @@ DuelMenu_Retreat:
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
 	cp CONFUSED
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nz, .not_confused
 	ld a, [wGotHeadsFromConfusionCheckDuringRetreat]
 	or a
@@ -575,7 +575,7 @@ DuelMenu_Retreat:
 	jr c, .done
 	ld [wBenchSelectedPokemon], a
 	ld a, [wBenchSelectedPokemon] ; unnecessary
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_ATTEMPT_RETREAT
 	call SetOppAction_SerialSendDuelData
 	call AttemptRetreat
@@ -603,7 +603,7 @@ DuelMenu_Retreat:
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	ld [wBenchSelectedPokemon], a
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	push af
 	call ReturnRetreatCostCardsToArena
 	pop af
@@ -685,10 +685,10 @@ PlayEnergyCard:
 	ld [wAlreadyPlayedEnergy], a
 .play_energy
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld e, a
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call PutHandCardInPlayArea
 	call PrintPlayAreaCardList_EnableLCD
 	ld a, OPPACTION_PLAY_ENERGY
@@ -736,10 +736,10 @@ PlayPokemonCard:
 	cp [hl]
 	jr nc, .no_space
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call PutHandPokemonCardInPlayArea
 	ldh [hTempPlayAreaLocation_ff9d], a
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	add DUELVARS_ARENA_CARD_STAGE
 	get_turn_duelist_var
 	ld [hl], BASIC
@@ -809,9 +809,9 @@ PlayPokemonCard:
 	call OpenPlayAreaScreenForSelection
 	jr c, .done
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	call EvolvePokemonCardIfPossible
 	jr c, .try_evolve_loop ; jump if evolution wasn't successful somehow
 	ld a, OPPACTION_EVOLVE_PKMN
@@ -919,14 +919,14 @@ CheckIfEnoughEnergiesToRetreat:
 ; energy cards have been selected or if the player declines to retreat.
 DisplayRetreatScreen:
 	ld a, $ff
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 	ld a, [wEnergyCardsRequiredToRetreat]
 	or a
 	ret z ; return if no energy cards are required at all
 	xor a
 	ld [wNumRetreatEnergiesSelected], a
 	call CreateArenaOrBenchEnergyCardList
-	ld a, LOW(hTempRetreatCostCards)
+	ld a, LOW(hDuelActionArgs + RETREAT_ARGS_COST_LIST)
 	ld [wTempRetreatCostCardsPos], a
 	xor a
 	call DisplayEnergyDiscardMenu
@@ -939,7 +939,7 @@ DisplayRetreatScreen:
 	ret c
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardDataToBuffer2_FromDeckIndex
-	; append selected energy card to hTempRetreatCostCards
+	; append selected energy card to hDuelActionArgs + RETREAT_ARGS_COST_LIST
 	ld hl, wTempRetreatCostCardsPos
 	ld c, [hl]
 	inc [hl]
@@ -965,7 +965,7 @@ DisplayRetreatScreen:
 	call UpdateAttachedEnergyMenu
 	jr .select_energies_loop
 .enough
-	; terminate hTempRetreatCostCards array with $ff
+	; terminate hDuelActionArgs + RETREAT_ARGS_COST_LIST array with $ff
 	ld a, [wTempRetreatCostCardsPos]
 	ld c, a
 	ld a, $ff
@@ -1515,14 +1515,14 @@ HandleDuelSetup:
 	call SwapTurn
 	farcall PlayShuffleAndDrawCardsAnimation_BothDuelists
 	call ShuffleDeckAndDrawSevenCards
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	call ShuffleDeckAndDrawSevenCards
 	call SwapTurn
 	ld c, a
 
 ; check if any Basic Pokémon cards were drawn
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ld b, a
 	and c
 	jr nz, .hand_cards_ok
@@ -3061,7 +3061,7 @@ TurnDuelistTakePrizes:
 	call DrawWideTextBox_WaitForInput
 	ld a, [wNumberPrizeCardsToTake]
 	call SelectPrizeCards
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs + 0
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -4957,7 +4957,7 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	call YesOrNoMenu
 	jp c, .start
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	or a
 	ret
 .cancel
@@ -5042,9 +5042,9 @@ PrintAttackOrCardDescription:
 	call SetOneLineSeparation
 	ret
 
-; moves the cards loaded by deck index at hTempRetreatCostCards to the discard pile
+; moves the cards loaded by deck index at hDuelActionArgs + RETREAT_ARGS_COST_LIST to the discard pile
 DiscardRetreatCostCards:
-	ld hl, hTempRetreatCostCards
+	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .discard_loop
 	ld a, [hli]
 	cp $ff
@@ -5052,11 +5052,11 @@ DiscardRetreatCostCards:
 	call PutCardInDiscardPile
 	jr .discard_loop
 
-; moves the discard pile cards that were loaded to hTempRetreatCostCards back to the active Pokemon.
+; moves the discard pile cards that were loaded to hDuelActionArgs + RETREAT_ARGS_COST_LIST back to the active Pokemon.
 ; this exists because they will be discarded again during the call to AttemptRetreat, so
 ; it prevents the energy cards from being discarded twice.
 ReturnRetreatCostCardsToArena:
-	ld hl, hTempRetreatCostCards
+	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .loop
 	ld a, [hli]
 	cp $ff
@@ -5073,7 +5073,7 @@ ReturnRetreatCostCardsToArena:
 ; return carry if unable to retreat this turn due to unsuccessful confusion check
 ; if successful, the retreated card is replaced with a bench Pokemon card
 AttemptRetreat:
-	ld hl, hTempRetreatCostCards
+	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .discard_loop
 	ld a, [hli]
 	cp $ff
@@ -5082,7 +5082,7 @@ AttemptRetreat:
 	jr .discard_loop
 
 .asm_6033
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	and CNF_SLP_PRZ
 	cp CONFUSED
 	jr nz, .success
@@ -5102,7 +5102,7 @@ AttemptRetreat:
 	get_turn_duelist_var
 
 	push af
-	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh a, [hDuelActionArgs + 1]
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	call HandleDestinyBondAndBetweenTurnKnockOuts
@@ -5368,9 +5368,9 @@ LoadPlayAreaCardID:
 ; the player, and possibly to use it if it triggers when the card is played.
 ProcessPlayedPokemonCard:
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	call SetOppAction_SerialSendDuelData
 	call .Process
@@ -5383,15 +5383,15 @@ ProcessPlayedPokemonCard:
 	ret
 
 .Process:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ldh [hTempCardIndex_ff98], a
 	call ClearChangedTypesIfMuk
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call ClearTwoTurnDuelVars
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call GetCardIDFromDeckIndex
 	ld hl, wTempTurnDuelistCardID
 	ld [hl], e
@@ -5440,7 +5440,7 @@ ProcessPlayedPokemonCard:
 	call CheckMatchingCommand
 	jr c, .not_using_pkmn_power
 	call DrawDuelMainScene
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld de, wLoadedCard1Name
 	ld hl, wTxRam2
@@ -6129,7 +6129,7 @@ ReplaceKnockedOutPokemon:
 	cp DUELIST_TYPE_LINK_OPP
 	jr z, .link_opponent
 	call AIDoAction_KOSwitch
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ldh [hTempPlayAreaLocation_ff9d], a
 	jr .replace_pokemon
 
@@ -6669,7 +6669,7 @@ PlayTrainerCard:
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadNonPokemonCardEffectCommands
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
@@ -6694,7 +6694,7 @@ PlayTrainerCard:
 	call SetOppAction_SerialSendDuelData
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
 	call TryExecuteEffectCommandFunction
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call MoveHandCardToDiscardPile
 	call ExchangeRNG
 	ld a, [wcd15]
@@ -6706,10 +6706,10 @@ PlayTrainerCard:
 	or a
 	ret
 
-; loads the effect commands of a (trainer or energy) card with deck index (0-59) at hTempCardIndex_ff9f
+; loads the effect commands of a (trainer or energy) card with deck index (0-59) at hDuelActionCardIndex
 ; into wLoadedAttackEffectCommands. in practice, only used for trainer cards
 LoadNonPokemonCardEffectCommands:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld hl, wLoadedCard1EffectCommands
 	ld de, wLoadedAttackEffectCommands
@@ -6727,7 +6727,7 @@ LoadNonPokemonCardEffectCommands:
 
 Func_6986:
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadNonPokemonCardEffectCommands
 	ld hl, wLoadedAttackEffectCommands
 	ld a, [hli]

@@ -6431,9 +6431,9 @@ Func_167e5:
 	jr c, .dont_play_energy_card
 .asm_1682a
 	ld a, [wDuelTempList]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 
@@ -6447,9 +6447,9 @@ Func_167e5:
 	jp z, .mysterious_fossil_or_clefairy_doll
 
 ; if card is Asleep or Paralyzed, set carry and exit
-; else, load the status in hTemp_ffa0
+; else, load the status in hDuelActionArgs + 0
 	pop af
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	ld b, a
@@ -6459,9 +6459,9 @@ Func_167e5:
 	cp PARALYZED
 	jp z, .set_carry
 	ld a, b
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 
 ; check energy required to retreat
 ; if the cost is 0, retreat right away
@@ -6484,7 +6484,7 @@ Func_167e5:
 	cp c
 	jr nz, .choose_energy_discard
 
-	ld hl, hTempRetreatCostCards
+	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 	ld de, wDuelTempList
 .loop_select_all_cards
 	ld a, [de]
@@ -6513,7 +6513,7 @@ Func_167e5:
 
 ; first, look for and discard any Recycle energy cards
 	ld hl, wDuelTempList
-	ld de, hTempRetreatCostCards
+	ld de, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .loop_select_recycle_energy
 	ld a, [hli]
 	cp $ff
@@ -6633,13 +6633,13 @@ Func_167e5:
 .has_bench
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	pop af
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -6761,15 +6761,15 @@ AIDecidePlayPokemonCard:
 	cp 180
 	jr c, .skip
 	ld a, [wTempAIPokemonCard]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call CheckIfCardCanBePlayed
 	jr c, .skip
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ld a, [wTempAIPokemonCard]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -6838,15 +6838,15 @@ AIDecideEvolution:
 	jr nc, .done_bench_pokemon
 
 	ld a, [wTempAI]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIPokemonCard]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EVOLVE_PKMN
 	farcall AIMakeDecision
 	ld a, [wTempAIPokemonCard]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -8008,7 +8008,7 @@ AITryToPlayEnergyCard:
 ; in this case, Pokémon needs a specific basic energy card.
 ; look for basic energy card needed in hand and play it.
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jp nc, .play_energy_card
 
 ; it might be that there's no basic energy is not in hand,
@@ -8020,7 +8020,7 @@ AITryToPlayEnergyCard:
 	jr c, .colorless_energy
 	ld de, RAINBOW_ENERGY
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .play_energy_card
 
 ; in this case Pokémon just needs colorless (any basic energy card).
@@ -8040,7 +8040,7 @@ AITryToPlayEnergyCard:
 	ld a, [hli]
 	cp $ff
 	jr z, .check_recycle_energy
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
 	jr nz, .loop_1
@@ -8050,7 +8050,7 @@ AITryToPlayEnergyCard:
 .check_recycle_energy
 	ld de, RECYCLE_ENERGY
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .play_energy_card
 
 ; otherwise, try to play any Basic Energy card
@@ -8058,7 +8058,7 @@ AITryToPlayEnergyCard:
 	ld a, [wDuelTempList]
 	cp $ff
 	jr z, .no_basic_energy
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr .play_energy_card
 
 .no_basic_energy
@@ -8083,7 +8083,7 @@ AITryToPlayEnergyCard:
 	ld a, [hli]
 	cp $ff
 	jr z, .check_if_done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	push hl
 	farcall Func_4c25c
 	pop hl
@@ -8091,10 +8091,10 @@ AITryToPlayEnergyCard:
 	cp -1
 	jr nz, .asm_171d6
 
-; plays energy card loaded in hTemp_ffa0 and sets carry flag.
+; plays energy card loaded in hDuelActionArgs + 0 and sets carry flag.
 .play_energy_card
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 	scf
@@ -8168,7 +8168,7 @@ AICheckSpecialColorlessEnergyCards:
 	ld de, POTION_ENERGY
 	call LookForCardIDInHand
 	jr c, .done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8197,7 +8197,7 @@ AICheckSpecialColorlessEnergyCards:
 	ld de, FULLHEAL_ENERGY
 	call LookForCardIDInHand
 	jr c, .done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8261,7 +8261,7 @@ AICheckSpecialColorlessEnergyCards:
 	bank1call CreateEnergyCardListFromHand
 	ld a, [wDuelTempList]
 .has_double_colorless_in_hand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8281,7 +8281,7 @@ AICheckSpecialColorlessEnergyCards:
 	call LookForCardIDInHand
 	jp c, .done ; has no Double Colorless in hand
 	; pick double colorless
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -9454,11 +9454,11 @@ LoadDefendingPokemonColorWRAndPrizeCards:
 ; handles AI choosing parameters for certain attacks as well.
 AITryUseAttack:
 	ld a, [wSelectedAttack]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld e, a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld d, a
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, OPPACTION_BEGIN_ATTACK
@@ -9914,7 +9914,7 @@ ConvertColorToEnergyCardID:
 ; input:
 ;	a = card index to check
 CheckIfCardCanBePlayed:
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Type]
 	cp TYPE_ENERGY
@@ -9950,7 +9950,7 @@ CheckIfCardCanBePlayed:
 .loop
 	push bc
 	ld e, b
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
 	call CheckIfCanEvolveInto
 	pop bc

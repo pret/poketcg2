@@ -547,8 +547,8 @@ ExchangeRNG::
 	ret
 
 ; sets hOppActionTableIndex to an AI action specified in register a.
-; send 18 bytes of data to the other game from hOppActionTableIndex, hTempCardIndex_ff9f,
-; hTemp_ffa0, and hTempPlayAreaLocation_ffa1, and hTempRetreatCostCards.
+; send 18 bytes of data to the other game from hOppActionTableIndex, hDuelActionCardIndex,
+; hDuelActionArgs + 0, and hDuelActionArgs + 1, and hDuelActionArgs + RETREAT_ARGS_COST_LIST.
 ; finally exchange RNG data.
 ; the receiving side will use this data to read the OPPACTION_* value in
 ; [hOppActionTableIndex] and match it by calling the corresponding OppAction* function
@@ -559,7 +559,7 @@ SetOppAction_SerialSendDuelData::
 	ld a, [wDuelType]
 	cp DUELIST_TYPE_LINK_OPP
 	jr nz, .not_link
-	ld hl, hOppActionTableIndex
+	ld hl, hDuelAction
 	ld bc, 18
 	call SerialSendBytes
 	call ExchangeRNG
@@ -569,12 +569,12 @@ SetOppAction_SerialSendDuelData::
 	ret
 
 ; receive 18 bytes of data from wSerialRecvBuf and store them into hOppActionTableIndex,
-; hTempCardIndex_ff9f, hTemp_ffa0, and hTempPlayAreaLocation_ffa1,
-; and hTempRetreatCostCards. also exchange RNG data.
+; hDuelActionCardIndex, hDuelActionArgs + 0, and hDuelActionArgs + 1,
+; and hDuelActionArgs + RETREAT_ARGS_COST_LIST. also exchange RNG data.
 SerialRecvDuelData::
 	push hl
 	push bc
-	ld hl, hOppActionTableIndex
+	ld hl, hDuelAction
 	ld bc, 18
 	call SerialRecvBytes
 	call ExchangeRNG

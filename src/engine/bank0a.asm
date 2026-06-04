@@ -115,9 +115,9 @@ AIAttachEnergyInHandToCardInPlayArea:
 
 .attach
 	call FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 	ret
@@ -811,9 +811,9 @@ AISelectSpecialAttackParameters:
 
 .devolve_to_ko
 	ld a, $01 ; player's Play Area
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call LookForCardThatIsKnockedOutOnDevolution
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -826,11 +826,11 @@ AISelectSpecialAttackParameters:
 	; in own Play Area to devolve so it can reuse
 	; Power of Darkness on next turn
 	xor a ; AI's Play Area
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, GENGAR_LV40
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -842,20 +842,20 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 
 ; search for Psychic energy cards in Discard Pile
 	ld de, PSYCHIC_ENERGY
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
 
 ; find any energy card different from
 ; the one found by FindCardIDInLocation.
 ; since using this attack requires a Psychic energy card,
-; and another one is in hTemp_ffa0,
+; and another one is in hDuelActionArgs + 0,
 ; then any other energy card would account
 ; for the Energy Cost of Psyburn.
 	ld hl, wDuelTempList
@@ -864,13 +864,13 @@ AISelectSpecialAttackParameters:
 	cp $ff
 	jr z, .set_carry
 	ld b, a
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	cp b
 	jr z, .loop_energy_cards ; same card, keep looking
 
 ; store the deck index of energy card found
 	ld a, b
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 
 .set_carry
 	scf
@@ -884,7 +884,7 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	farcall AIDecideBenchPokemonToSwitchTo
 	jr c, .no_carry
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -899,7 +899,7 @@ AISelectSpecialAttackParameters:
 	ld a, CARD_LOCATION_DECK
 	ld de, LIGHTNING_ENERGY
 	call FindCardIDInLocation
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jp nc, .no_carry
 
 ; ...else find a suitable Play Area Pokemon to
@@ -907,7 +907,7 @@ AISelectSpecialAttackParameters:
 	farcall AIProcessButDontPlayEnergy_SkipEvolution
 	jp nc, .no_carry
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -919,7 +919,7 @@ AISelectSpecialAttackParameters:
 	; toss coin
 	ldtx de, IfHeadsAttachUpTo3WaterEnergyFromDeckText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 
 	; check number of Water energies attached to Kingler
 	ld e, PLAY_AREA_ARENA
@@ -931,7 +931,7 @@ AISelectSpecialAttackParameters:
 
 	; a = number of Water energies still needed
 	;     for Double-Edged Claw
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	jr c, .kingler_no_energy_required
 	jr z, .kingler_no_energy_required
 	ld de, WATER_ENERGY
@@ -943,7 +943,7 @@ AISelectSpecialAttackParameters:
 
 .WaterBomb:
 	ld a, MAX_PLAY_AREA_POKEMON + 1
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs + 0
 	farcall ClearNBytesFromHL
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -960,12 +960,12 @@ AISelectSpecialAttackParameters:
 	; can KO, store this location
 	ld c, a
 	ld b, $00
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	add hl, bc
 	ld [hl], 1
 	ld b, a
 	ld a, 1
-	ldh [hTemp_ffa0], a ; number of selected targets
+	ldh [hDuelActionArgs + 0], a ; number of selected targets
 
 	; look for another card to KO,
 	; other than the one already checked
@@ -983,13 +983,13 @@ AISelectSpecialAttackParameters:
 .can_ko_both
 	ld c, a
 	ld b, $00
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	add hl, bc
 	ld a, [hl]
 	inc a
 	ld [hl], a
 	ld a, 2
-	ldh [hTemp_ffa0], a ; number of selected targets
+	ldh [hDuelActionArgs + 0], a ; number of selected targets
 .made_water_bomb_selection
 	scf
 	ret
@@ -1003,11 +1003,11 @@ AISelectSpecialAttackParameters:
 	jr nc, .made_water_bomb_selection
 	ld c, a
 	ld b, $00
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	add hl, bc
 	ld [hl], 2
 	ld a, 2
-	ldh [hTemp_ffa0], a ; number of selected targets
+	ldh [hDuelActionArgs + 0], a ; number of selected targets
 	jr .made_water_bomb_selection
 
 .one_water_bomb_target
@@ -1018,11 +1018,11 @@ AISelectSpecialAttackParameters:
 	jr nc, .made_water_bomb_selection
 	ld c, a
 	ld b, $00
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	add hl, bc
 	ld [hl], 1
 	ld a, 1
-	ldh [hTemp_ffa0], a ; number of selected targets
+	ldh [hDuelActionArgs + 0], a ; number of selected targets
 	jr .made_water_bomb_selection
 
 .Foxfire:
@@ -1035,7 +1035,7 @@ AISelectSpecialAttackParameters:
 	jr c, .asm_285ff
 	farcall FindBenchCardThatCanBeDamaged
 .asm_285ff
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1043,13 +1043,13 @@ AISelectSpecialAttackParameters:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	call Random
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
 .select_foxfire_based_on_energies
 	farcall AIDecideFoxfireTarget
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1072,12 +1072,12 @@ AISelectSpecialAttackParameters:
 	farcall AIProcessButDontPlayEnergy_SkipEvolutionAndArena
 	jr nc, .asm_28661
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	xor a ; PLAY_AREA_ARENA
 	call CreateArenaOrBenchEnergyCardList
 	jr c, .energy_bomb_no_more_energies ; no energies
 	ld a, [wDuelTempList + 0] ; first energy card
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld b, 60
 .asm_2864a
 	call DoFrame
@@ -1093,10 +1093,10 @@ AISelectSpecialAttackParameters:
 	jr .asm_28633
 .asm_28661
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .asm_28664
 	ld a, DUELVARS_BENCH
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	add [hl]
 	get_turn_duelist_var
 	cp $ff
@@ -1105,7 +1105,7 @@ AISelectSpecialAttackParameters:
 	call CreateArenaOrBenchEnergyCardList
 	jr c, .energy_bomb_no_more_energies
 	ld a, [wDuelTempList + 0] ; first energy card
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld b, 60
 .asm_2867b
 	call DoFrame
@@ -1118,7 +1118,7 @@ AISelectSpecialAttackParameters:
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, OPPACTION_6B15
 	farcall AIMakeDecision
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	inc [hl]
 	jr .asm_28664
 .energy_bomb_no_more_energies
@@ -1144,11 +1144,11 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	ldtx de, IfTails30DamageTo1OfYourPokemonText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	or a
 	jr nz, .asm_286c7
 	call AIChooseRagingThunderTarget
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .asm_286c7
 	scf
 	ret
@@ -1161,7 +1161,7 @@ AISelectSpecialAttackParameters:
 	ld de, LIGHTNING_ENERGY
 	ld a, CARD_LOCATION_DECK
 	call FindCardIDInLocation
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1172,7 +1172,7 @@ AISelectSpecialAttackParameters:
 	; ...if not, then choose a target based on damage
 	call AIChooseShortCircuitTarget
 .got_short_circuit_target
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1184,13 +1184,13 @@ AISelectSpecialAttackParameters:
 	call CreateArenaOrBenchEnergyCardList
 	jp c, .no_carry ; no energies
 	ld a, [wDuelTempList + 0] ; first energy in list
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	; fetch a Clefairy Doll from the Discard Pile
 	ld de, CLEFAIRY_DOLL
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
 	jp nc, .no_carry
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -1200,7 +1200,7 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	ldtx de, AttackSuccessCheckText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	or a
 	jr z, .errand_running_tails
 	; find a Bill first
@@ -1217,7 +1217,7 @@ AISelectSpecialAttackParameters:
 .errand_running_tails
 	ld a, $ff
 .found_target_for_errand_running
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -1236,7 +1236,7 @@ AISelectSpecialAttackParameters:
 	; discard as many as possible
 	ld b, a ; number of energies available to discard
 	ld hl, wDuelTempList
-	ld de, hTemp_ffa0
+	ld de, hDuelActionArgs + 0
 	ld [de], a ; number of energies
 	inc de
 .loop_fill_flame_inferno_list
@@ -1254,10 +1254,10 @@ AISelectSpecialAttackParameters:
 	ret
 .dont_discard_for_flame_inferno
 	xor a ; 0 energies
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	; empty list
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -1269,7 +1269,7 @@ AISelectSpecialAttackParameters:
 	ld a, CARD_LOCATION_DISCARD_PILE ; bug, should be CARD_LOCATION_DISCARD_DECK
 	call FindCardIDInLocation
 	jp nc, .no_carry
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1279,10 +1279,10 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	farcall AIDecide_GustOfWind
 	jp nc, .no_carry
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ldtx de, AttackSuccessCheckText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1294,9 +1294,9 @@ AISelectSpecialAttackParameters:
 	; no Play Area Pokémon has damage
 	ldtx de, DamageCheckIfTailsNoDamageText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	xor a ; choose Arena card
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -1306,12 +1306,12 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	farcall HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	farcall AIDecideBenchPokemonToSwitchTo
 	jr nc, .got_stir_up_twister_decision
 	ld a, $ff ; no switch
 .got_stir_up_twister_decision
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	scf
 	ret
 
@@ -1337,7 +1337,7 @@ AISelectSpecialAttackParameters:
 .got_stare_target_to_ko
 	ld a, b
 .got_stare_target
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1409,7 +1409,7 @@ AISelectSpecialAttackParameters:
 	get_turn_duelist_var
 	dec a
 .got_num_food_counters_to_remove
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1425,11 +1425,11 @@ AISelectSpecialAttackParameters:
 	jp c, .no_carry
 	; attach it to Pokémon with least amount of HP remaining in Bench
 	ld a, [wDuelTempList + 0]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, PLAY_AREA_BENCH_1
 	ld d, 10
 	call AIFindPlayAreaPkmnWithMinimumLeastRemainingHP
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ret
 
 .FlamePillar:
@@ -1437,7 +1437,7 @@ AISelectSpecialAttackParameters:
 	ld d, 10
 	call AIFindPlayAreaPkmnWithMinimumLeastRemainingHP
 	jr nc, .dont_discard_for_flame_pillar
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 2], a
 	; discard if will KO bench card
 	ld a, 10
 	cp d
@@ -1447,7 +1447,7 @@ AISelectSpecialAttackParameters:
 	jr c, .discard_energy_for_flame_pillar
 .dont_discard_for_flame_pillar
 	ld a, $01
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 .discard_energy_for_flame_pillar
@@ -1456,9 +1456,9 @@ AISelectSpecialAttackParameters:
 	jr c, .dont_discard_for_flame_pillar
 	; choose first energy card
 	ld a, [wDuelTempList + 0]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	xor a
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1469,9 +1469,9 @@ AISelectSpecialAttackParameters:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .no_carry
 	ld a, $ff
-	ldh [hTemp_ffa0], a
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + 2], a
 	ldh [$ffa5], a
 	farcall CheckIfDefendingCardIsWeakToArenaCard
 	ld c, 10
@@ -1529,7 +1529,7 @@ AISelectSpecialAttackParameters:
 .got_cards_to_discard_for_burning_fire
 	ld b, a
 	ld hl, wDuelTempList
-	ld de, hTemp_ffa0
+	ld de, hDuelActionArgs + 0
 .loop_fill_burning_fire_list
 	ld a, [hli]
 	ld [de], a
@@ -1554,9 +1554,9 @@ AISelectSpecialAttackParameters:
 	jr c, .got_num_energy_discard_for_rock_blast
 	ld a, 5 ; maximum 5 energies
 .got_num_energy_discard_for_rock_blast
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld b, a
-	ld hl, hTempPlayAreaLocation_ffa1
+	ld hl, hDuelActionArgs + 1
 	ld de, wDuelTempList
 .loop_fill_rock_blast_energy_list
 	ld a, [de]
@@ -1571,7 +1571,7 @@ AISelectSpecialAttackParameters:
 	pop hl
 	jr c, .defending_is_invulnerable_to_rock_blast
 	; choose all of them on the Defending card
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ld [hli], a ; PLAY_AREA_ARENA
 	xor a
 	ld [hli], a ; PLAY_AREA_BENCH_1
@@ -1598,11 +1598,11 @@ AISelectSpecialAttackParameters:
 	ret z ; no Bench
 	dec a
 	ld c, a ; number of benched Pokémon
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	or a
 	jr z, .asm_28984 ; no energy cards to discard
 	; choose randomly from player's Bench,
-	; up to [hTemp_ffa0] number of cards
+	; up to [hDuelActionArgs + 0] number of cards
 	ld b, a
 	ld d, $00
 .loop_rock_blast_random_selection
@@ -1632,7 +1632,7 @@ AISelectSpecialAttackParameters:
 	call FindPlayAreaCardWithLeastRemainingHP
 	call SwapTurn
 .got_drag_off_target
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1650,7 +1650,7 @@ AISelectSpecialAttackParameters:
 .dont_switch_teleport_blast
 	ld a, $ff
 .got_teleport_blast_target
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1683,13 +1683,13 @@ AISelectSpecialAttackParameters:
 	ld a, e
 	ldh [$ffa5], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	farcall GetFirstBasicEnergyAttachedToPlayAreaCard
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 2], a
 	call SwapTurn
 	ldtx de, AttackSuccessCheckText
 	farcall TossCoin_Bank1a
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret c
 	farcall SetWasUnsuccessful
 	scf
@@ -1720,7 +1720,7 @@ AISelectSpecialAttackParameters:
 	ld a, PLAY_AREA_ARENA
 .got_telekinesis_target
 	farcall FindReplacementPkmnIfMrMime
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 .TextureMagic:
@@ -1731,7 +1731,7 @@ AISelectSpecialAttackParameters:
 	cp VERY_RARE_CARD_DECK_ID
 	jr z, .choose_color_of_strongest_pkmn
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	call SwapTurn
 	bank1call GetArenaCardWeakness
 	call SwapTurn
@@ -1739,7 +1739,7 @@ AISelectSpecialAttackParameters:
 	jr z, .choose_texture_magic_resistance
 	; always choose Grass as player's Arena card weakness
 	ld a, GRASS
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .choose_texture_magic_resistance
 	; choose arena card's color for Porygon's resistance
 	call SwapTurn
@@ -1750,7 +1750,7 @@ AISelectSpecialAttackParameters:
 	jr nz, .got_texture_magic_color
 	ld a, PSYCHIC
 .got_texture_magic_color
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1764,7 +1764,7 @@ AISelectSpecialAttackParameters:
 	jr c, .strongest_pkmn_is_valid_color
 	ld a, $ff
 .strongest_pkmn_is_valid_color
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jr .choose_texture_magic_resistance
 
 .Lure:
@@ -1773,7 +1773,7 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 	farcall AIChoosePlayerBenchPkmnWithNotEnoughEnergiesOrHighRetreatCost
 	ret nc
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1784,7 +1784,7 @@ AISelectSpecialAttackParameters:
 	ld a, FIGHTING
 	farcall AIChooseFollowMeTarget
 	ret nc ; no target
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1797,7 +1797,7 @@ AISelectSpecialAttackParameters:
 	jp z, .no_carry
 	; always choose Grass
 	ld a, GRASS
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 
@@ -1816,10 +1816,10 @@ AISelectSpecialAttackParameters:
 	; default to Arena card
 	xor a ; PLAY_AREA_ARENA
 .got_focus_blast_target
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ldtx de, IfHeads20DamageTo1OfOppPokemonText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	scf
 	ret
 

@@ -80,7 +80,7 @@ AIDoAction_ForcedSwitch::
 AIDoAction_KOSwitch::
 	ld a, AIACTION_KO_SWITCH
 	call AIDoAction
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 AIDoAction_TakePrize::
@@ -119,7 +119,7 @@ AIAcceptOrDeclineChallenge::
 	; AI always declines challenge, which
 	; corresponds to an output of TRUE
 	ld a, TRUE
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 ; looks like scrapped code to select Pokémon in the deck for AI
