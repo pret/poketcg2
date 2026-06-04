@@ -1545,7 +1545,7 @@ AIDecide_GustOfWind:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call CheckIfArenaCardCanPotentiallyDamageDefendingCard
-	jr c, .asm_20a79 ; Arena card cannot damage
+	jr c, .target_undefended_bench ; Arena card cannot damage
 	bank1call GetArenaCardColor
 	call TranslateColorToWR
 	ld b, a
@@ -1554,7 +1554,7 @@ AIDecide_GustOfWind:
 	call SwapTurn
 	and b
 	jr nz, .no_carry
-	call .Func_20ae8
+	call .find_bench_weak_to_arena
 	ret nc
 	scf
 	ret
@@ -1562,29 +1562,29 @@ AIDecide_GustOfWind:
 	or a
 	ret
 
-.asm_20a79
-	call .Func_20ae8
+.target_undefended_bench
+	call .find_bench_weak_to_arena
 	ret c
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	ld d, a
 	ld e, PLAY_AREA_BENCH_1 - 1
-.asm_20a85
+.undefended_loop
 	inc e
 	dec d
-	jr z, .asm_20aa0
+	jr z, .target_weakest_bench
 	call SwapTurn
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
 	or a
-	jr nz, .asm_20a85
-	call Func_20be6
-	jr nc, .asm_20a85
+	jr nz, .undefended_loop
+	call CheckIfCanDamageBenchedPokemon
+	jr nc, .undefended_loop
 	ld a, e
 	scf
 	ret
-.asm_20aa0
+.target_weakest_bench
 	ld a, $ff
 	ld [wd082], a
 	xor a
@@ -1593,10 +1593,10 @@ AIDecide_GustOfWind:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	ld d, a
-.asm_20ab0
+.weakest_loop
 	inc e
 	dec d
-	jr z, .asm_20ad2
+	jr z, .weakest_done
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
@@ -1604,23 +1604,23 @@ AIDecide_GustOfWind:
 	ld a, [wd082]
 	inc b
 	cp b
-	jr c, .asm_20ab0
-	call Func_20be6
-	jr nc, .asm_20ab0
+	jr c, .weakest_loop
+	call CheckIfCanDamageBenchedPokemon
+	jr nc, .weakest_loop
 	dec b
 	ld a, b
 	ld [wd082], a
 	ld a, e
 	ld [wd084], a
-	jr .asm_20ab0
-.asm_20ad2
+	jr .weakest_loop
+.weakest_done
 	ld a, [wd084]
 	or a
 	jr z, .no_carry
 	scf
 	ret
 
-.asm_20ada
+.verify_can_damage
 	push bc
 	push hl
 	xor a
@@ -1632,7 +1632,7 @@ AIDecide_GustOfWind:
 	scf
 	ret
 
-.Func_20ae8:
+.find_bench_weak_to_arena:
 	ld a, DUELVARS_BENCH
 	call GetNonTurnDuelistVariable
 	ld c, PLAY_AREA_BENCH_1 - 1
@@ -1646,7 +1646,7 @@ AIDecide_GustOfWind:
 	call SwapTurn
 	ld a, [wLoadedCard1Weakness]
 	and b
-	jr nz, .asm_20ada
+	jr nz, .verify_can_damage
 	jr .loop_bench
 
 .PoisonMistDeck:
@@ -1661,7 +1661,7 @@ AIDecide_GustOfWind:
 	farcall PsychicBattleDeckAIDecideGustOfWind
 	ret nc
 	cp $ff
-	jp z, .asm_20a79
+	jp z, .target_undefended_bench
 	scf
 	ret
 
@@ -1785,10 +1785,10 @@ FindBenchCardThatCanBeKnockedOut:
 ; e = PLAY_AREA_* constant
 .CheckIfAnyAttackCanKO:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
-	call .Func_20bd2
+	call .check_attack_kos
 	ret c
 	ld a, SECOND_ATTACK
-.Func_20bd2:
+.check_attack_kos:
 	push de
 	farcall EstimateDamage_VersusDefendingCard
 	pop de
@@ -1803,7 +1803,7 @@ FindBenchCardThatCanBeKnockedOut:
 	scf
 	ret
 
-Func_20be6:
+CheckIfCanDamageBenchedPokemon:
 	push bc
 	push de
 	push hl
