@@ -5381,11 +5381,11 @@ AIDecide_Pokeball:
 	cp REMAINING_GREEN_DECK_ID
 	jp z, AIDecide_Pokeball_Deck25
 	cp GATHERING_NIDORAN_DECK_ID
-	jp z, $6a68
+	jp z, AIDecide_Pokeball_Deck2C
 	cp BUG_COLLECTING_DECK_ID
-	jp z, $6b02
+	jp z, AIDecide_Pokeball_Deck3E
 	cp COMPLETE_COMBUSTION_DECK_ID
-	jp z, $6b2e
+	jp z, AIDecide_Pokeball_Deck46
 	cp FIREBALL_DECK_ID
 	jp z, AIDecide_Pokeball_Deck47
 	cp WHIRLPOOL_SHOWER_DECK_ID
@@ -5582,6 +5582,121 @@ AIDecide_Pokeball_Deck25:
 	ld a, e
 	ret
 ; 0x22a68
+
+SECTION "Bank 8@6a68", ROMX[$6a68], BANK[$8]
+
+; deck $2c (Gathering Nidoran) Poke Ball: try to advance the Nidoran-M line
+; (Nidoking) then the Nidoran-F line (Nidoqueen), by either fetching the next
+; evolution stage of a line already started or digging the missing pre-evo
+; when its evolution is in hand. (Carved out of the still-raw $691e-$6b60
+; block.)
+AIDecide_Pokeball_Deck2C:
+	ld bc, NIDORANM_LV22
+	ld de, NIDORINO_LV23
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, NIDORANM_LV22
+	ld de, NIDORINO_LV25
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, NIDORINO_LV23
+	ld de, NIDOKING
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, NIDORINO_LV25
+	ld de, NIDOKING
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, NIDORANM_LV22
+	ld bc, NIDORINO_LV23
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, NIDORANM_LV22
+	ld bc, NIDORINO_LV25
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, NIDORINO_LV23
+	ld bc, NIDOKING
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, NIDORINO_LV25
+	ld bc, NIDOKING
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld bc, NIDORANF_LV12
+	ld de, NIDORINA_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, NIDORANF_LV13
+	ld de, NIDORINA_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, NIDORINA_LV22
+	ld de, NIDOQUEEN
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, NIDORANF_LV12
+	ld bc, NIDORINA_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, NIDORANF_LV13
+	ld bc, NIDORINA_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, NIDORINA_LV22
+	ld bc, NIDOQUEEN
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+
+SECTION "Bank 8@6b02", ROMX[$6b02], BANK[$8]
+
+; deck $3e (Bug Collecting) Poke Ball: advance the Bulbasaur/Dark Ivysaur/
+; Dark Venusaur line, fetching the next stage or digging the missing pre-evo.
+; (Carved out of the still-raw $691e-$6b60 block.)
+AIDecide_Pokeball_Deck3E:
+	ld bc, BULBASAUR_LV15
+	ld de, DARK_IVYSAUR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, DARK_IVYSAUR
+	ld de, DARK_VENUSAUR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, BULBASAUR_LV15
+	ld bc, DARK_IVYSAUR
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, DARK_IVYSAUR
+	ld bc, DARK_VENUSAUR
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret
+
+SECTION "Bank 8@6b2e", ROMX[$6b2e], BANK[$8]
+
+; deck $46 (Complete Combustion) Poke Ball: dig the deck for a Magmar,
+; Ponyta, Growlithe, Kangaskhan or Meowth, in that order. (Carved out of the
+; still-raw $691e-$6b60 block.)
+AIDecide_Pokeball_Deck46:
+	ld de, MAGMAR_LV27
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, PONYTA_LV15
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, GROWLITHE_LV12
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, KANGASKHAN_LV40
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, MEOWTH_LV14
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret
 
 SECTION "Bank 8@6b60", ROMX[$6b60], BANK[$8]
 
@@ -5789,7 +5904,7 @@ AIDecide_ComputerSearch:
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck3B
 	cp MAD_PETALS_DECK_ID
-	jp z, $6dbe
+	jp z, AIDecide_ComputerSearch_Deck41
 	cp SPIRITED_AWAY_DECK_ID
 	jp z, AIDecide_ComputerSearch_Deck55
 	cp EYE_OF_THE_STORM_DECK_ID
@@ -5870,6 +5985,49 @@ AIDecide_ComputerSearch_Deck3B:
 	scf
 	ret
 
+SECTION "Bank 8@6dbe", ROMX[$6dbe], BANK[$8]
+
+; deck $41 (Mad Petals) Computer Search: a bank helper picks the fetch
+; target (stashed in wd082); then pull two cards from hand to pay the
+; discard cost -- first two of the trainer card's own type, falling back to
+; any two cards. (Carved out of the still-raw $6d5e-$6e0a block.)
+AIDecide_ComputerSearch_Deck41:
+	farcall MadPetalsDeckAIDecideComputerSearch_FindTarget
+	ret nc
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld d, $00
+	ld a, [wAITrainerCardToPlay]
+	ld e, a
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .any_first
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .any_second
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
+	ret
+.any_first
+	ld d, $01
+	ld e, $00
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+.any_second
+	ld d, $01
+	ld e, $00
+	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
+	jr nc, .no_play
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wd082]
+	scf
+	ret
+.no_play
+	or a
+	ret
+
 SECTION "Bank 8@6e0a", ROMX[$6e0a], BANK[$8]
 
 ; deck $55 (Spirited Away) Computer Search policy: delegated to a bank-13
@@ -5924,7 +6082,7 @@ AIDecide_PokemonTrader:
 	cp PSYCHOKINESIS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck18
 	cp GATHERING_NIDORAN_DECK_ID
-	jp z, $6f88
+	jp z, AIDecide_PokemonTrader_Deck2C
 	cp RAIN_DANCE_CONFUSION_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck2D
 	cp GO_ARCANINE_DECK_ID
@@ -5932,7 +6090,7 @@ AIDecide_PokemonTrader:
 	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck41
 	cp DANGEROUS_BENCH_DECK_ID
-	jp z, $71d9
+	jp z, AIDecide_PokemonTrader_Deck42
 	cp EEVEE_SHOWDOWN_DECK_ID
 	jp z, AIDecide_PokemonTrader_Deck48
 	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
@@ -6069,6 +6227,80 @@ AIDecide_PokemonTrader_Deck18:
 	scf
 	ret
 ; 0x22f88
+
+SECTION "Bank 8@6f88", ROMX[$6f88], BANK[$8]
+
+; deck $2c (Gathering Nidoran) Pokemon Trader: like the deck's Poke Ball
+; policy, advance the Nidoran-M (Nidoking) then Nidoran-F (Nidoqueen) lines;
+; on a hit, tag the deck index as the swap target and trade away a duplicate
+; Pokemon in hand. (Carved out of the still-raw $6f88-$71d4 block.)
+AIDecide_PokemonTrader_Deck2C:
+	ld bc, NIDORANM_LV22
+	ld de, NIDORINO_LV23
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jp c, .commit
+	ld bc, NIDORANM_LV22
+	ld de, NIDORINO_LV25
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jp c, .commit
+	ld bc, NIDORINO_LV23
+	ld de, NIDOKING
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jp c, .commit
+	ld bc, NIDORINO_LV25
+	ld de, NIDOKING
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, NIDORANM_LV22
+	ld bc, NIDORINO_LV23
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld de, NIDORANM_LV22
+	ld bc, NIDORINO_LV25
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld de, NIDORINO_LV23
+	ld bc, NIDOKING
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld de, NIDORINO_LV25
+	ld bc, NIDOKING
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld bc, NIDORANF_LV12
+	ld de, NIDORINA_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld bc, NIDORANF_LV13
+	ld de, NIDORINA_LV22
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld bc, NIDORINA_LV22
+	ld de, NIDOQUEEN
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .commit
+	ld de, NIDORANF_LV12
+	ld bc, NIDORINA_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld de, NIDORANF_LV13
+	ld bc, NIDORINA_LV22
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr c, .commit
+	ld de, NIDORINA_LV22
+	ld bc, NIDOQUEEN
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	jr nc, .no_match
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	farcall FindDuplicatePokemonCardsInHand
+	jr c, .play
+.no_match
+	or a
+	ret
+.play
+	scf
+	ret
 
 SECTION "Bank 8@7040", ROMX[$7040], BANK[$8]
 
@@ -6251,6 +6483,29 @@ AIDecide_PokemonTrader_Deck41:
 	farcall MadPetalsDeckAIDecidePokemonTrader
 	ret
 ; 0x231d9
+
+SECTION "Bank 8@71d9", ROMX[$71d9], BANK[$8]
+
+; deck $42 (Dangerous Bench) Pokemon Trader: with fewer than 4 Pokemon in
+; play, trade for a Pikachu pulled from the deck -- but only if the hand
+; already holds a duplicate Dark Dragonite or Dark Dragonair to spare.
+; (Carved out of the still-raw $6f88-$71d4 block tail.)
+AIDecide_PokemonTrader_Deck42:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $04
+	ret nc
+	ld a, CARD_LOCATION_DECK
+	ld de, PIKACHU_LV14
+	farcall FindCardIDInLocation
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld de, DARK_DRAGONITE
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+	ld de, DARK_DRAGONAIR
+	farcall CheckIfHandHasRepeatedCard
+	ret
 
 SECTION "Bank 8@71fc", ROMX[$71fc], BANK[$8]
 
@@ -6616,7 +6871,7 @@ AIDecide_TheBosssWay:
 	cp DEMONIC_FOREST_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck3F
 	cp DANGEROUS_BENCH_DECK_ID
-	jp z, $754f
+	jp z, AIDecide_TheBosssWay_Deck42
 	cp FULL_STRENGTH_DECK_ID
 	jp z, AIDecide_TheBosssWay_Deck4F
 	cp DIRECT_HIT_DECK_ID
@@ -6685,6 +6940,26 @@ AIDecide_TheBosssWay_Deck3F:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 ; 0x2354f
+
+SECTION "Bank 8@754f", ROMX[$754f], BANK[$8]
+
+; deck $42 (Dangerous Bench) The Boss's Way: play to complete the
+; Dratini/Dark Dragonair/Dark Dragonite line or the Pikachu/Dark Raichu line
+; by fetching the missing evolution stage. (Carved out of the still-raw
+; TheBosssWay deck-case block.)
+AIDecide_TheBosssWay_Deck42:
+	ld bc, DRATINI_LV12
+	ld de, DARK_DRAGONAIR
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, PIKACHU_LV14
+	ld de, DARK_RAICHU
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, DARK_DRAGONAIR
+	ld de, DARK_DRAGONITE
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
 
 SECTION "Bank 8@7570", ROMX[$7570], BANK[$8]
 
@@ -6798,13 +7073,13 @@ AIDecide_NightlyGarbageRun:
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck3B
 	cp GREAT_DRAGON_DECK_ID
-	jp z, $76ff
+	jp z, AIDecide_NightlyGarbageRun_Deck3D
 	cp STICKY_POISON_GAS_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck40
 	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck41
 	cp COMPLETE_COMBUSTION_DECK_ID
-	jp z, $787d
+	jp z, AIDecide_NightlyGarbageRun_Deck46
 	cp GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck49
 	cp SPIRITED_AWAY_DECK_ID
@@ -6915,6 +7190,72 @@ AIDecide_NightlyGarbageRun_Deck3B:
 	ret
 .no_play
 	or a
+	ret
+
+SECTION "Bank 8@76ff", ROMX[$76ff], BANK[$8]
+
+; deck $3d (Great Dragon) Nightly Garbage Run: bail unless the discard holds
+; a Charizard (Lv76 either print) or Charmeleon, then multi-target-rescue
+; those plus a Dragonite and basic energies, re-packing the slots so slot 1
+; holds the first rescue. (Carved out of the still-raw NGR deck-case block.)
+AIDecide_NightlyGarbageRun_Deck3D:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARIZARD_LV76
+	farcall FindCardIDInLocation
+	jr c, .recover
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARIZARD_ALT_LV76
+	farcall FindCardIDInLocation
+	jr c, .recover
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARMELEON
+	farcall FindCardIDInLocation
+	jr c, .recover
+	or a
+	ret
+.recover
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARIZARD_LV76
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARIZARD_ALT_LV76
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, CHARMELEON
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, DRAGONITE_LV41
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .repack
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .energy_loop
+.repack
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	pop af
+	scf
 	ret
 
 SECTION "Bank 8@7789", ROMX[$7789], BANK[$8]
@@ -7072,6 +7413,49 @@ AddDeckIndexToAIMultiTargetSlots:
 	or a
 	ret
 ; 0x239f5
+
+SECTION "Bank 8@787d", ROMX[$787d], BANK[$8]
+
+; deck $46 (Complete Combustion) Nightly Garbage Run: only play if a Magmar
+; is in the discard, then rescue it plus basic energies, re-packing the
+; slots; decline if nothing landed in slot 1. (Carved out of the still-raw
+; NGR deck-case block.)
+AIDecide_NightlyGarbageRun_Deck46:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MAGMAR_LV27
+	farcall FindCardIDInLocation
+	ret nc
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MAGMAR_LV27
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .repack
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .energy_loop
+.repack
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	cp $ff
+	ret z
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	pop af
+	scf
+	ret
 
 SECTION "Bank 8@78c9", ROMX[$78c9], BANK[$8]
 

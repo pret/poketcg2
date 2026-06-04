@@ -337,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 81.96% (~13.1 KiB of 16 KiB).
+**Source-defined**: 86.78% (~13.9 KiB of 16 KiB). All raw deck-ID dispatcher cases now decompiled.
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
