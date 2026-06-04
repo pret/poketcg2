@@ -1309,7 +1309,7 @@ AIDecide_Switch_Phase16:
 	cp LEGENDARY_FOSSIL_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck3AOr3B
 	cp GREAT_DRAGON_DECK_ID
-	jp z, $494f
+	jp z, AIDecide_Switch_Phase16_Deck3D
 	cp POISON_MIST_DECK_ID
 	jp z, AIDecide_Switch_Phase16_Deck5B
 	cp ULTRA_REMOVAL_DECK_ID
@@ -1406,6 +1406,46 @@ AIDecide_Switch_Phase16_Deck3AOr3B:
 	cp $02
 	jr nc, AIDecide_Switch_Phase16_CommitBenchTarget
 	jr AIDecide_Switch_Phase16.skip
+
+SECTION "Bank 8@494f", ROMX[$494f], BANK[$8]
+
+; deck $3d (Great Dragon) Switch_Phase16 decider. If the Arena is a Charizard
+; (either print) or Kangaskhan, only switch when it's statused/can't usefully
+; retreat -- and for Charizard, retreat toward a bench Charizard with energy;
+; for Kangaskhan flag AI_FLAG_UNK_5 and switch toward a benched Scyther.
+; (Carved out of the still-raw Switch_Phase16 sub-decider block.)
+AIDecide_Switch_Phase16_Deck3D:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 CHARIZARD_LV76
+	jr z, .charizard
+	cp16 CHARIZARD_ALT_LV76
+	jr z, .charizard
+	cp16 KANGASKHAN_LV40
+	jp nz, AIDecide_Switch_Phase16.skip
+	ld de, CHARIZARD_LV76
+	farcall CheckIfPokemonInBenchHasEnoughEnergy
+	ret c
+	ld de, CHARIZARD_ALT_LV76
+	farcall CheckIfPokemonInBenchHasEnoughEnergy
+	ret c
+	jp AIDecide_Switch_Phase16.skip
+.charizard
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	ret z
+	bank1call CheckUnableToRetreatDueToEffect
+	jp c, AIDecide_Switch_Phase16.skip
+	ld a, [wCurrentAIFlags]
+	or AI_FLAG_UNK_5
+	ld [wCurrentAIFlags], a
+	ld de, SCYTHER_LV25
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jp nc, AIDecide_Switch_Phase16_CommitBenchTarget
+	ret
 
 SECTION "Bank 8@49a7", ROMX[$49a7], BANK[$8]
 
@@ -4301,7 +4341,7 @@ AIDecide_ScoopUp:
 	cp PSYCHIC_ELITE_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck17
 	cp RAGING_BILLOW_OF_FISTS_DECK_ID
-	jp z, $61e7
+	jp z, AIDecide_ScoopUp_Deck1F
 	cp GRAND_FIRE_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck3A
 	cp WATER_LEGEND_DECK_ID
@@ -4309,7 +4349,7 @@ AIDecide_ScoopUp:
 	cp FIREBALL_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck47
 	cp TEXTURE_TUNER7_DECK_ID
-	jp z, $6228
+	jp z, AIDecide_ScoopUp_Deck64
 	cp EVERYBODYS_FRIEND_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck6E
 	cp BIG_THUNDER_DECK_ID
@@ -4436,6 +4476,23 @@ AIDecide_ScoopUp_Deck17:
 	farcall PsychicEliteDeckAIDecideScoopUp
 	ret
 
+SECTION "Bank 8@61e7", ROMX[$61e7], BANK[$8]
+
+; deck $1f (Raging Billow of Fists) Scoop Up: only scoop the Arena when it is
+; not winning the type matchup (defender not weak to us, or we're resistant
+; to it) AND there's a Mr. Mime on our bench to bring up instead.
+AIDecide_ScoopUp_Deck1F:
+	farcall CheckIfDefendingCardIsWeakToArenaCard
+	jr c, .check_mrmime
+	farcall CheckIfArenaCardIsResistantToDefendingCard
+	jp nc, AIDecide_ScoopUp.no_play
+.check_mrmime
+	ld de, MR_MIME_LV20
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jp nc, AIDecide_ScoopUp.no_play
+	ret
+
 SECTION "Bank 8@6201", ROMX[$6201], BANK[$8]
 
 ; deck $3a (Grand Fire) Scoop Up policy: only scoop if Moltres is sitting
@@ -4473,6 +4530,30 @@ AIDecide_ScoopUp_Deck47:
 	jp c, AIDecide_ScoopUp.no_play
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
+
+SECTION "Bank 8@6228", ROMX[$6228], BANK[$8]
+
+; deck $64 (Texture Tuner) Scoop Up: bail with 4+ Pokemon in play, then scoop
+; the play-area card with the least remaining HP if it's hurt enough (under
+; $15 HP left), committing with $ff so the effect picks the bench slot.
+; (Carved out of the still-raw $6228-$632c block.)
+AIDecide_ScoopUp_Deck64:
+	ld a, [hl]
+	cp $04
+	ccf
+	ret nc
+	ld a, $01
+	farcall FindPlayAreaCardWithLeastRemainingHP
+	ret nc
+	ld e, a
+	ld a, d
+	cp $15
+	ret nc
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, e
+	scf
+	ret
 
 SECTION "Bank 8@6241", ROMX[$6241], BANK[$8]
 
@@ -5292,11 +5373,11 @@ AIDecide_Pokeball:
 	cp GRAND_FIRE_DECK_ID
 	jp z, AIDecide_Pokeball_Deck3A
 	cp TRIPLE_ZAPDOS_DECK_ID
-	jp z, $6965
+	jp z, AIDecide_Pokeball_Deck13
 	cp I_LOVE_PIKACHU_DECK_ID
-	jp z, $699f
+	jp z, AIDecide_Pokeball_Deck14
 	cp MAX_ENERGY_DECK_ID
-	jp z, $69b5
+	jp z, AIDecide_Pokeball_Deck24
 	cp REMAINING_GREEN_DECK_ID
 	jp z, AIDecide_Pokeball_Deck25
 	cp GATHERING_NIDORAN_DECK_ID
@@ -5358,6 +5439,130 @@ AIDecide_Pokeball_Deck3A:
 	ld de, MOLTRES_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
+	ret
+
+SECTION "Bank 8@6965", ROMX[$6965], BANK[$8]
+
+; deck $13 (Triple Zapdos) Poke Ball: dig the deck for a Zapdos (Lv28/40/64),
+; else advance a Voltorb->Dark Electrode or Doduo->Dodrio line, else report
+; whether any basic Pokemon remains in the deck. (Carved out of the still-raw
+; $691e-$6a59 block.)
+AIDecide_Pokeball_Deck13:
+	ld de, ZAPDOS_LV28
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, ZAPDOS_LV40
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld de, ZAPDOS_LV64
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+	ld bc, VOLTORB_LV8
+	ld de, DARK_ELECTRODE
+	farcall CheckReelInEvoLineTarget
+	ret c
+	ld bc, DODUO_LV8
+	ld de, DODRIO_LV25
+	farcall CheckReelInEvoLineTarget
+	ret c
+	farcall CheckIfAnyBasicPokemonInDeck
+	ld a, e
+	ret
+
+SECTION "Bank 8@699f", ROMX[$699f], BANK[$8]
+
+; deck $14 (I Love Pikachu) Poke Ball: only when fewer than 3 Pokemon are in
+; play and the hand holds no basic Pokemon, defer to a bank-8 helper to pick
+; a basic to fetch. (Carved out of the still-raw $691e-$6a59 block.)
+AIDecide_Pokeball_Deck14:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp $03
+	jr c, .check_hand
+.no_play
+	or a
+	ret
+.check_hand
+	farcall CountNumberOfBasicPokemonInHand
+	or a
+	jr nz, .no_play
+	ld a, $00
+	call $6ca2
+	ret
+
+SECTION "Bank 8@69b5", ROMX[$69b5], BANK[$8]
+
+; deck $24 (Max Energy) Poke Ball: with fewer than 3 basics in hand/play,
+; fetch a Bulbasaur, Caterpie or Exeggcute (held or from deck); then try to
+; advance the Caterpie/Metapod/Butterfree, Exeggcute/Exeggutor and
+; Bulbasaur/Ivysaur/Venusaur lines. (Carved out of the still-raw $691e-$6a59
+; block.)
+AIDecide_Pokeball_Deck24:
+	farcall CountNumberOfBasicPokemonInHandOrPlayArea
+	cp $03
+	jr nc, .evo_lines
+	ld de, BULBASAUR_LV12
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .caterpie
+	ld de, BULBASAUR_LV12
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+.caterpie
+	ld de, CATERPIE
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .exeggcute
+	ld de, CATERPIE
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+.exeggcute
+	ld de, EXEGGCUTE
+	farcall IsCardIDInHandOrPlayArea
+	jr c, .evo_lines
+	ld de, EXEGGCUTE
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret c
+.evo_lines
+	ld bc, EXEGGCUTE
+	ld de, EXEGGUTOR
+	farcall CheckReelInEvoLineTarget
+	ret c
+	ld bc, CATERPIE
+	ld de, METAPOD_LV20
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, METAPOD_LV20
+	ld de, BUTTERFREE
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, CATERPIE
+	ld bc, METAPOD_LV20
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, METAPOD_LV20
+	ld bc, BUTTERFREE
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld bc, BULBASAUR_LV12
+	ld de, IVYSAUR_LV26
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, IVYSAUR_LV26
+	ld de, VENUSAUR_LV67
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld de, BULBASAUR_LV12
+	ld bc, IVYSAUR_LV26
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ret c
+	ld de, IVYSAUR_LV26
+	ld bc, VENUSAUR_LV67
+	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 
 SECTION "Bank 8@6a59", ROMX[$6a59], BANK[$8]

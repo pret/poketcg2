@@ -337,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 79.62% (~12.7 KiB of 16 KiB).
+**Source-defined**: 81.96% (~13.1 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
