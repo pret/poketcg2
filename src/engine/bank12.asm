@@ -6953,7 +6953,7 @@ BlazingFlameDeckAIDecideEnergyRetrieval:
 	ret
 
 ; a = PLAY_AREA_* location
-Func_4b3d8:
+CheckIfPlayAreaCardHasUsableAttack:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a

@@ -3620,7 +3620,7 @@ AIDecide_EnergyRetrieval:
 .play_area_loop
 	push de
 	ld a, e
-	farcall Func_4b3d8
+	farcall CheckIfPlayAreaCardHasUsableAttack
 	pop de
 	jr c, .next_play_area
 	ld a, DUELVARS_ARENA_CARD
@@ -4211,7 +4211,7 @@ AIDecide_SuperEnergyRetrieval:
 .play_area_loop
 	push de
 	ld a, e
-	farcall Func_4b3d8
+	farcall CheckIfPlayAreaCardHasUsableAttack
 	pop de
 	jr c, .next_play_area
 	ld a, DUELVARS_ARENA_CARD
@@ -4626,7 +4626,7 @@ LookForEnergyUsefulToPlayArea:
 .next_pokemon
 	push de
 	ld a, e
-	farcall Func_4b3d8
+	farcall CheckIfPlayAreaCardHasUsableAttack
 	pop de
 	jr c, .advance
 	ld a, DUELVARS_ARENA_CARD
