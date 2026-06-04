@@ -3031,7 +3031,7 @@ AIDecide_EnergyRetrieval:
 	cp ELECTRIC_CURRENT_SHOCK_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck2D.check_energy_count
 	cp STICKY_POISON_GAS_DECK_ID
-	jp z, $58cf
+	jp z, AIDecide_EnergyRetrieval_Deck40
 	cp EEVEE_SHOWDOWN_DECK_ID
 	jp z, $5937
 	cp WHIRLPOOL_SHOWER_DECK_ID
@@ -3294,6 +3294,47 @@ AIDecide_EnergyRetrieval_Deck2D:
 	cp b
 	ret z
 .commit
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@58cf", ROMX[$58cf], BANK[$8]
+
+; deck $40 (Sticky Poison Gas) Energy Retrieval decider. Requires a basic
+; energy in hand as fuel, then plays when there's a clear payoff: a Muk in
+; either play area (ours or the opponent's) combined with a Goop Gas Attack
+; in hand, or otherwise a duplicate Pokemon worth recharging. On success
+; rejoin the shared commit tail. (Carved out of the still-raw $57c8-$5a8c
+; block.)
+AIDecide_EnergyRetrieval_Deck40:
+	farcall CountBasicEnergyCardsInHand
+	jp nc, AIDecide_EnergyRetrieval.no_targets
+	ld de, MUK
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	jr c, .have_muk
+	ld de, MUK
+	ld b, $00
+	call SwapTurn
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	call SwapTurn
+	jr nc, .find_duplicate
+.have_muk
+	ld de, GOOP_GAS_ATTACK
+	farcall LookForCardIDInHandList
+	jr nc, .find_duplicate
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+.find_duplicate
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
+	jp c, AIDecide_EnergyRetrieval.no_targets
+	push af
+	ld a, [wTempAITargetNonPokemonCardDeckIndex]
+	ld b, a
+	pop af
+	cp b
+	jp z, AIDecide_EnergyRetrieval.no_targets
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
@@ -6215,7 +6256,7 @@ AIDecide_NightlyGarbageRun:
 	cp GREAT_DRAGON_DECK_ID
 	jp z, $76ff
 	cp STICKY_POISON_GAS_DECK_ID
-	jp z, $7789
+	jp z, AIDecide_NightlyGarbageRun_Deck40
 	cp MAD_PETALS_DECK_ID
 	jp z, AIDecide_NightlyGarbageRun_Deck41
 	cp COMPLETE_COMBUSTION_DECK_ID
@@ -6330,6 +6371,85 @@ AIDecide_NightlyGarbageRun_Deck3B:
 	ret
 .no_play
 	or a
+	ret
+
+SECTION "Bank 8@7789", ROMX[$7789], BANK[$8]
+
+; deck $40 (Sticky Poison Gas) Nightly Garbage Run policy. First bail unless
+; the discard pile holds at least one of the deck's evolution basics (Ekans,
+; Grimer or Koffing). When it does, empty the three target slots and refill
+; them in priority order -- the three basics, then Dark Arbok / Muk / Dark
+; Weezing, then any basic energies -- stopping once all three slots are
+; full. Finally re-pack slots downward so slot 1 holds the first rescue.
+; (Carved out of the still-raw $7789-$782f block.)
+AIDecide_NightlyGarbageRun_Deck40:
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, EKANS_LV15
+	farcall FindCardIDInLocation
+	jr c, .recover
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, GRIMER_LV10
+	farcall FindCardIDInLocation
+	jr c, .recover
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, KOFFING_LV12
+	farcall FindCardIDInLocation
+	jr c, .recover
+	or a
+	ret
+.recover
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, EKANS_LV15
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, GRIMER_LV10
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, KOFFING_LV12
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, DARK_ARBOK
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, MUK
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	ld de, DARK_WEEZING
+	farcall FindCardIDInLocation
+	call c, AddDeckIndexToAIMultiTargetSlots
+	jr c, .repack
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	ld hl, wDuelTempList
+.energy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .repack
+	push hl
+	call AddDeckIndexToAIMultiTargetSlots
+	pop hl
+	jr nc, .energy_loop
+.repack
+	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	push af
+	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	pop af
+	scf
 	ret
 
 SECTION "Bank 8@782f", ROMX[$782f], BANK[$8]
@@ -6715,7 +6835,7 @@ AIDecide_MasterBall:
 	cp DEMONIC_FOREST_DECK_ID
 	jp z, AIDecide_MasterBall_Deck3F
 	cp STICKY_POISON_GAS_DECK_ID
-	jp z, $7d61
+	jp z, AIDecide_MasterBall_Deck40
 	cp CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
 	jp z, AIDecide_MasterBall_Deck43
 	cp COMPLETE_COMBUSTION_DECK_ID
@@ -6962,6 +7082,54 @@ AIDecide_MasterBall_Deck3F:
 	farcall AITryMasterBall
 	ret
 ; 0x23d61
+
+SECTION "Bank 8@7d61", ROMX[$7d61], BANK[$8]
+
+; deck $40 (Sticky Poison Gas) Master Ball decider. Prefer to complete an
+; evolution line whose pre-evo we already hold -- Koffing->Dark Weezing,
+; Grimer->Muk, Ekans->Dark Arbok -- grabbing the evolution. Failing that,
+; fall back to fetching any of those Pokemon (Koffing, Grimer, Ekans,
+; Charmander) directly, and finally a generic Master Ball target.
+; (Carved out of the still-raw $7d61-$7dc2 block.)
+AIDecide_MasterBall_Deck40:
+	ld bc, KOFFING_LV12
+	ld de, DARK_WEEZING
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .line_muk
+	ld de, DARK_WEEZING
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.line_muk
+	ld bc, GRIMER_LV10
+	ld de, MUK
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .line_arbok
+	ld de, MUK
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.line_arbok
+	ld bc, EKANS_LV15
+	ld de, DARK_ARBOK
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .fallback
+	ld de, DARK_ARBOK
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.fallback
+	ld de, KOFFING_LV12
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, GRIMER_LV10
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, EKANS_LV15
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, CHARMANDER_LV10
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
 
 SECTION "Bank 8@7dc2", ROMX[$7dc2], BANK[$8]
 

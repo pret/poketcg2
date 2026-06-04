@@ -289,6 +289,9 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$4d6b` | [`AIDecide_EnergyRemoval_Deck11`](../../../src/engine/bank08.asm) | sameboy_trace duel-isaac (Electric Self-Destruct; strip bench Double Colorless, else KO-enabling arena removal) | 2026-06-03 |
 | `$08` | `$5528` | [`AIDecide_ProfessorOak_Deck11`](../../../src/engine/bank08.asm) | sameboy_trace duel-isaac (Electric Self-Destruct; redraw small hand clogged with Magnemite/Voltorb) | 2026-06-03 |
 | `$08` | `$57c8` | [`AIDecide_EnergyRetrieval_Deck11`](../../../src/engine/bank08.asm) | sameboy_trace duel-isaac (Electric Self-Destruct; <3 energy then shared finder via new .find_recharge_target) | 2026-06-03 |
+| `$08` | `$58cf` | [`AIDecide_EnergyRetrieval_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; Muk+Goop Gas Attack or duplicate) | 2026-06-03 |
+| `$08` | `$7789` | [`AIDecide_NightlyGarbageRun_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; multi-target rescue of Poison line + energy) | 2026-06-03 |
+| `$08` | `$7d61` | [`AIDecide_MasterBall_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; complete Koffing/Grimer/Ekans evo lines) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -329,7 +332,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 74.57% (~11.9 KiB of 16 KiB).
+**Source-defined**: 76.63% (~12.3 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
