@@ -337,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 86.78% (~13.9 KiB of 16 KiB). All raw deck-ID dispatcher cases now decompiled.
+**Source-defined**: 92.10% (~14.7 KiB of 16 KiB). All deck-ID dispatcher cases done; whole-card deciders Pokemon Breeder + Pokemon Center landed.
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)

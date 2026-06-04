@@ -31,11 +31,11 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, BILL,                   AIDecide_Bill, AIPlay_Bill
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, ENERGY_REMOVAL,         AIDecide_EnergyRemoval, AIPlay_EnergyRemoval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_05, SUPER_ENERGY_REMOVAL,   AIDecide_SuperEnergyRemoval, AIPlay_SuperEnergyRemoval
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        $50b6, AIPlay_PokemonBreeder
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, POKEMON_BREEDER,        AIDecide_PokemonBreeder, AIPlay_PokemonBreeder
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_15, PROFESSOR_OAK,          AIDecide_ProfessorOak, AIPlay_ProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, ENERGY_RETRIEVAL,       AIDecide_EnergyRetrieval, AIPlay_EnergyRetrieval
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_11, SUPER_ENERGY_RETRIEVAL, $5adf, AIPlay_SuperEnergyRetrieval
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         $5c65, $5c59
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_06, POKEMON_CENTER,         AIDecide_PokemonCenter, AIPlay_PokemonCenter
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, IMPOSTER_PROFESSOR_OAK, AIDecide_ImposterProfessorOak, AIPlay_ImposterProfessorOak
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_12, ENERGY_SEARCH,          AIDecide_EnergySearch, AIPlay_EnergySearch
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, POKEDEX,                $5ebd, $5e94
@@ -2611,6 +2611,325 @@ AIPlay_PokemonBreeder:
 	ret
 ; 0x210b6
 
+SECTION "Bank 8@50b6", ROMX[$50b6], BANK[$8]
+
+; Pokemon Breeder evolves a Basic directly into a Stage 2 (skipping Stage 1).
+; Several decks have bespoke policies; everyone else uses the generic scan
+; below. Never breed while a Prehistoric Power locks evolution.
+;
+; Generic policy (two passes over the hand, scored in wd084[0..6]):
+;   Pass 1 - look for a Stage 2 in hand (Venusaur/Blastoise/Vileplume/
+;     Alakazam/Gengar); for each play-area Basic that can evolve into it,
+;     score the slot (.score_candidate packs energy count + HP counters).
+;     If any candidate scored, pick the best and play.
+;   Pass 2 (.scan_basics) - if no Stage 2 in hand, instead look at our own
+;     Basics that could be bred, guarded by CheckBasicWorthBreeding (don't
+;     waste a breed on an undamaged Dragonite line), and require the chosen
+;     slot to already hold 2+ energy.
+AIDecide_PokemonBreeder:
+	bank1call IsPrehistoricPowerActive
+	jp c, .no_breed
+	ld a, [wOpponentDeckID]
+	cp GREAT_DRAGON_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck3D
+	cp MAD_PETALS_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck41
+	cp ROCK_BLAST_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck4E
+	cp BAD_DREAM_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck53
+	cp SPIRITED_AWAY_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck55
+	cp IMMORTAL_POKEMON_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck6F
+	cp TORRENTIAL_FLOOD_DECK_ID
+	jp z, AIDecide_PokemonBreeder_Deck70
+	ld a, $07
+	ld hl, wd084
+	farcall ClearNBytesFromHL
+	xor a
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+.scan_stage2
+	ld a, [hli]
+	cp $ff
+	jp z, .choose
+	ld d, a
+	push de
+	call GetCardIDFromDeckIndex
+	cp16 VENUSAUR_LV64
+	jr z, .found_stage2
+	cp16 VENUSAUR_LV67
+	jr z, .found_stage2
+	cp16 BLASTOISE_LV52
+	jr z, .found_stage2
+	cp16 VILEPLUME
+	jr z, .found_stage2
+	cp16 ALAKAZAM_LV42
+	jr z, .found_stage2
+	cp16 GENGAR_LV38
+	jr z, .found_stage2
+	pop de
+	jr .scan_stage2
+.found_stage2
+	pop de
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	push hl
+	get_turn_duelist_var
+	pop hl
+	ld c, a
+	ld e, $00
+.eval_basics
+	push hl
+	push bc
+	push de
+	call CheckIfCanEvolveInto_BasicToStage2
+	pop de
+	call nc, .score_candidate
+	pop bc
+	pop hl
+	inc e
+	dec c
+	jr nz, .eval_basics
+	jr .scan_stage2
+.score_candidate
+	ld a, DUELVARS_ARENA_CARD_HP
+	add e
+	get_turn_duelist_var
+	farcall ConvertHPToCounters
+	swap a
+	ld b, a
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp $10
+	jr c, .energy_capped
+	ld a, $0f
+.energy_capped
+	or b
+	ld hl, wd084
+	ld c, e
+	ld b, $00
+	add hl, bc
+	ld [hl], a
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, bc
+	ld [hl], d
+	ld hl, wd082
+	inc [hl]
+	ret
+.choose
+	ld a, [wd082]
+	or a
+	jr z, .scan_basics_init
+	xor a
+	ld [wd082], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld c, a
+	ld e, $00
+	ld d, $00
+.pick_loop
+	ld hl, wd084
+	add hl, de
+	ld a, [wd082]
+	cp [hl]
+	jr nc, .pick_next
+	ld a, [hl]
+	ld [wd082], a
+	ld a, e
+	ld [wAudio_d083], a
+.pick_next
+	inc e
+	dec c
+	jr nz, .pick_loop
+	ld a, [wAudio_d083]
+	ld e, a
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, de
+	ld a, [hl]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wAudio_d083]
+	scf
+	ret
+.scan_basics_init
+	ld a, $07
+	ld hl, wd084
+	farcall ClearNBytesFromHL
+	xor a
+	ld [wd082], a
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	push hl
+.scan_basics
+	pop hl
+	ld a, [hli]
+	cp $ff
+	jr z, .pick_best
+	push hl
+	push af
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	pop de
+	cp TYPE_ENERGY
+	jr nc, .scan_basics
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld c, a
+	ld e, $00
+.eval_basics2
+	push bc
+	push de
+	call CheckIfCanEvolveInto_BasicToStage2
+	pop de
+	call nc, PokemonBreeder_CheckBasicWorthBreeding
+	call nc, .score_candidate
+	pop bc
+	inc e
+	dec c
+	jr nz, .eval_basics2
+	jr .scan_basics
+.pick_best
+	ld a, [wd082]
+	or a
+	jr nz, .have_best
+	or a
+	ret
+.have_best
+	xor a
+	ld [wd082], a
+	ld a, $ff
+	ld [wAudio_d083], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld c, a
+	ld e, $00
+	ld d, $00
+.best_loop
+	ld hl, wd084
+	add hl, de
+	ld a, [wd082]
+	cp [hl]
+	jr nc, .best_next
+	ld a, [hl]
+	ld b, a
+	and $0f
+	cp $02
+	jr c, .best_next
+	ld a, b
+	ld [wd082], a
+	ld a, e
+	ld [wAudio_d083], a
+.best_next
+	inc e
+	dec c
+	jr nz, .best_loop
+	ld a, [wAudio_d083]
+	cp $ff
+	jr z, .no_breed
+	ld e, a
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	add hl, de
+	ld a, [hl]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wAudio_d083]
+	scf
+	ret
+.no_breed
+	or a
+	ret
+
+; deck $3d (Great Dragon) Pokemon Breeder: breed a Charizard onto a benched
+; Charmander.
+AIDecide_PokemonBreeder_Deck3D:
+	ld de, CHARIZARD_LV76
+	farcall LookForCardIDInHandList
+	jr c, .pick
+	ld de, CHARIZARD_ALT_LV76
+	farcall LookForCardIDInHandList
+	ret nc
+.pick
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld de, CHARMANDER_LV10
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret c
+	ld de, CHARMANDER_LV9
+	ld b, $01
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret
+
+; deck $41 (Mad Petals) Pokemon Breeder: breed a Vileplume (or Dark
+; Vileplume) onto a benched Oddish.
+AIDecide_PokemonBreeder_Deck41:
+	ld de, ODDISH_LV21
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld de, GLOOM
+	farcall LookForCardIDInHandList
+	jr c, .check_dark
+	ld de, VILEPLUME
+	farcall LookForCardIDInHandList
+	jr c, .commit
+.check_dark
+	ld de, DARK_GLOOM
+	farcall LookForCardIDInHandList
+	ccf
+	ret nc
+	ld de, DARK_VILEPLUME
+	farcall LookForCardIDInHandList
+	ccf
+	ret nc
+.commit
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
+; deck $4e (Rock Blast) Pokemon Breeder: breed a Golem onto a benched
+; Geodude that already holds 3+ energy.
+AIDecide_PokemonBreeder_Deck4E:
+	ld de, GEODUDE_LV16
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld e, a
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp $03
+	ccf
+	ret nc
+	ld de, GOLEM_LV37
+	farcall LookForCardIDInHandList
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
+; deck $53 (Bad Dream) Pokemon Breeder: breed a Gengar onto a Gastly that
+; already has a Haunter in play (the deck's main attacker line).
+AIDecide_PokemonBreeder_Deck53:
+	ld de, GASTLY_LV13
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld de, HAUNTER_LV22
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld de, GENGAR_LV40
+	farcall LookForCardIDInHandList
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
 SECTION "Bank 8@52fb", ROMX[$52fb], BANK[$8]
 
 ; deck $55 (Spirited Away) Pokemon Breeder case (reached from the still-
@@ -2634,6 +2953,108 @@ AIDecide_PokemonBreeder_Deck55:
 	ret nc
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld a, [wd082]
+	scf
+	ret
+
+SECTION "Bank 8@5323", ROMX[$5323], BANK[$8]
+
+; deck $6f (Immortal Pokemon) Pokemon Breeder: breed an Alakazam onto a
+; benched Abra -- but only if there isn't an Alakazam in play already.
+AIDecide_PokemonBreeder_Deck6F:
+	ld de, ALAKAZAM_LV42
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ccf
+	ret nc
+	ld de, ABRA_LV14
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld de, ALAKAZAM_LV42
+	farcall LookForCardIDInHandList
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
+; deck $70 (Torrential Flood) Pokemon Breeder: breed a Blastoise onto a
+; benched Squirtle.
+AIDecide_PokemonBreeder_Deck70:
+	ld de, SQUIRTLE_LV14
+	ld b, $00
+	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
+	ret nc
+	ld [wd082], a
+	ld de, BLASTOISE_LV52
+	farcall LookForCardIDInHandList
+	ret nc
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wd082]
+	scf
+	ret
+
+; Generic-policy guard (returns carry SET to SKIP scoring this candidate).
+; A non-Dragonite Stage-2 target is always allowed. For a Dragonite line,
+; only breed when it is worth it: on the bench, when the play area has taken
+; 8+ damage counters total; in the Arena, when the active has 5+ damage and
+; 3+ energy attached.
+PokemonBreeder_CheckBasicWorthBreeding:
+	push af
+	push bc
+	push de
+	push hl
+	push de
+	ld a, d
+	call GetCardIDFromDeckIndex
+	cp16 DRAGONITE_LV41
+	pop de
+	jr nz, .allow
+	ld a, e
+	or a
+	jr z, .arena
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld b, a
+	ld c, $00
+.sum_damage
+	dec b
+	ld e, b
+	push bc
+	call GetCardDamageAndMaxHP
+	pop bc
+	farcall ConvertHPToCounters
+	add c
+	ld c, a
+	ld a, b
+	or a
+	jr nz, .sum_damage
+	ld a, $07
+	cp c
+	jr c, .allow
+	jr .skip
+.arena
+	ld e, $00
+	call GetCardDamageAndMaxHP
+	cp $05
+	jr c, .skip
+	xor a
+	call CreateArenaOrBenchEnergyCardList
+	cp $03
+	jr c, .skip
+	jr .allow
+.allow
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+.skip
+	pop hl
+	pop de
+	pop bc
+	pop af
 	scf
 	ret
 
@@ -3776,6 +4197,87 @@ RemoveCardFromListByValue:
 	jr nz, .find
 	call RemoveCardFromListAtHL
 	pop hl
+	ret
+
+SECTION "Bank 8@5c59", ROMX[$5c59], BANK[$8]
+
+; Pokemon Center heals all of the player's Pokemon but discards every
+; Energy attached to them.
+AIPlay_PokemonCenter:
+	ld a, [wAITrainerCardToPlay]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
+	farcall AIMakeDecision
+	ret
+
+; Don't play if we can already KO from hand. The Immortal Pokemon deck has
+; its own policy. Otherwise tally, across the whole play area, total HP
+; counters (wd082), total damage counters (wd084) and total attached
+; energy (wTempAITargetPokemonCardDeckIndex); only heal when the board is
+; damaged enough to be worth wiping all that energy: damage must exceed
+; half the team's HP-counters AND exceed the energy-weighted threshold.
+AIDecide_PokemonCenter:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .no_play
+	ld a, [wOpponentDeckID]
+	cp IMMORTAL_POKEMON_DECK_ID
+	jr z, .deck_6f
+	xor a
+	ld [wd082], a
+	ld [wd084], a
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, $00
+.loop
+	ld a, DUELVARS_ARENA_CARD
+	add e
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, [wLoadedCard1HP]
+	farcall ConvertHPToCounters
+	ld b, a
+	ld a, [wd082]
+	add b
+	ld [wd082], a
+	call GetCardDamageAndMaxHP
+	farcall ConvertHPToCounters
+	ld b, a
+	ld a, [wd084]
+	add b
+	ld [wd084], a
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	ld b, a
+	ld a, [wTempAITargetPokemonCardDeckIndex]
+	add b
+	jr c, .no_play
+	ld [wTempAITargetPokemonCardDeckIndex], a
+	inc e
+	dec d
+	jr nz, .loop
+	ld a, [wd084]
+	srl a
+	ld hl, wTempAITargetPokemonCardDeckIndex
+	cp [hl]
+	jr c, .no_play
+	ld a, [wd082]
+	ld l, a
+	ld h, $06
+	call HtimesL
+	call CalculateWordTensDigit
+	ld a, l
+	ld hl, wd084
+	cp [hl]
+	jr nc, .no_play
+	scf
+	ret
+.no_play
+	or a
+	ret
+.deck_6f
+	farcall ImmortalPokemonDeckAIDecidePokemonCenter
 	ret
 
 SECTION "Bank 8@5ce2", ROMX[$5ce2], BANK[$8]
