@@ -9962,12 +9962,9 @@ CheckIfCardCanBePlayed:
 	ret
 
 .trainer_card
-	; bug, this seems like remnants from TCG1 code
-	; a call is made in the middle of another routine
-	; this seems like a branch that is never taken
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	call $6968
+	call LoadNonPokemonCardEffectCommands
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret
