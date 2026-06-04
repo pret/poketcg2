@@ -1352,8 +1352,6 @@ AIDecide_Switch_Phase16_CommitBenchTarget:
 	ccf
 	ret
 
-SECTION "Bank 8@4902", ROMX[$4902], BANK[$8]
-
 ; deck $32 (Go Arcanine) Switch_Phase16 decider. Don't switch a healthy,
 ; status-free Arena card. If the Arena is asleep/confused/etc. with the
 ; high status bit set, only proceed when it actually has a retreat cost.
@@ -1389,8 +1387,6 @@ AIDecide_Switch_Phase16_Deck32:
 	farcall CheckIfPokemonInBenchHasEnoughEnergy
 	ret
 
-SECTION "Bank 8@493d", ROMX[$493d], BANK[$8]
-
 ; decks $3a (Grand Fire) and $3b (Legendary Fossil) share this Switch_Phase16
 ; decider: never switch a status-free Arena card; otherwise only switch when
 ; the Arena's retreat cost is at least 2 (cheap retreats aren't worth a
@@ -1406,8 +1402,6 @@ AIDecide_Switch_Phase16_Deck3AOr3B:
 	cp $02
 	jr nc, AIDecide_Switch_Phase16_CommitBenchTarget
 	jr AIDecide_Switch_Phase16.skip
-
-SECTION "Bank 8@494f", ROMX[$494f], BANK[$8]
 
 ; deck $3d (Great Dragon) Switch_Phase16 decider. If the Arena is a Charizard
 ; (either print) or Kangaskhan, only switch when it's statused/can't usefully
@@ -1446,8 +1440,6 @@ AIDecide_Switch_Phase16_Deck3D:
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	jp nc, AIDecide_Switch_Phase16_CommitBenchTarget
 	ret
-
-SECTION "Bank 8@49a7", ROMX[$49a7], BANK[$8]
 
 ; Twelve decks delegate their Phase-16 Switch decision to a per-deck AI
 ; helper in bank $0e/$12.
@@ -2082,8 +2074,6 @@ ScoreBenchEnergyRemovalCandidate:
 	ret
 ; 0x20d6b
 
-SECTION "Bank 8@4d6b", ROMX[$4d6b], BANK[$8]
-
 ; deck $11 (Electric Self-Destruct) Energy Removal decider. First note
 ; whether we can already KO the defender from hand (wd082). Then scan the
 ; opponent's bench for a Pokemon carrying a Double Colorless and, if found,
@@ -2157,8 +2147,6 @@ AIDecide_EnergyRemoval_Deck11:
 	xor a
 	scf
 	ret
-
-SECTION "Bank 8@4de7", ROMX[$4de7], BANK[$8]
 
 ; Shared by deck $45 (Quick Attack) and deck $50 (Running Wild) -- two
 ; different archetypes that happen to use the same Energy Removal policy.
@@ -4469,14 +4457,10 @@ AIDecide_ScoopUp:
 	ret
 ; 0x221e2
 
-SECTION "Bank 8@61e2", ROMX[$61e2], BANK[$8]
-
 ; deck $17 (Psychic Elite) Scoop Up policy: delegated to a bank helper.
 AIDecide_ScoopUp_Deck17:
 	farcall PsychicEliteDeckAIDecideScoopUp
 	ret
-
-SECTION "Bank 8@61e7", ROMX[$61e7], BANK[$8]
 
 ; deck $1f (Raging Billow of Fists) Scoop Up: only scoop the Arena when it is
 ; not winning the type matchup (defender not weak to us, or we're resistant
@@ -4493,8 +4477,6 @@ AIDecide_ScoopUp_Deck1F:
 	jp nc, AIDecide_ScoopUp.no_play
 	ret
 
-SECTION "Bank 8@6201", ROMX[$6201], BANK[$8]
-
 ; deck $3a (Grand Fire) Scoop Up policy: only scoop if Moltres is sitting
 ; on the bench (a benched attacker worth re-setting up), then defer to the
 ; shared "scoop if energy is ready" tail; otherwise don't play.
@@ -4504,8 +4486,6 @@ AIDecide_ScoopUp_Deck3A:
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	jr c, AIDecide_ScoopUp.scoop_if_energy_ready
 	jp AIDecide_ScoopUp.no_play
-
-SECTION "Bank 8@620f", ROMX[$620f], BANK[$8]
 
 ; deck $47's Scoop Up policy: find the play-area card with the
 ; lowest remaining HP (returns slot in `e`, remaining HP in `d`).
@@ -4531,8 +4511,6 @@ AIDecide_ScoopUp_Deck47:
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
 
-SECTION "Bank 8@6228", ROMX[$6228], BANK[$8]
-
 ; deck $64 (Texture Tuner) Scoop Up: bail with 4+ Pokemon in play, then scoop
 ; the play-area card with the least remaining HP if it's hurt enough (under
 ; $15 HP left), committing with $ff so the effect picks the bench slot.
@@ -4555,14 +4533,10 @@ AIDecide_ScoopUp_Deck64:
 	scf
 	ret
 
-SECTION "Bank 8@6241", ROMX[$6241], BANK[$8]
-
 ; deck $6e (Everybody's Friend) Scoop Up: delegated to a bank helper.
 AIDecide_ScoopUp_Deck6E:
 	farcall EverybodysFriendDeckAIDecideScoopUp
 	ret
-
-SECTION "Bank 8@6246", ROMX[$6246], BANK[$8]
 
 ; deck $74 (Big Thunder) Scoop Up: delegated to a bank helper. (Carved out
 ; of the still-raw $6228-$632c block.)
@@ -4615,8 +4589,6 @@ AIDecide_Lass:
 .play
 	scf
 	ret
-
-SECTION "Bank 8@6373", ROMX[$6373], BANK[$8]
 
 ; Itemfinder discards two trainer cards from hand to recover one
 ; from the discard. The play wrapper sets AI_FLAG_MODIFIED_HAND
@@ -4827,8 +4799,6 @@ AIDecide_ItemFinder_Deck50:
 .no_play
 	or a
 	ret
-
-SECTION "Bank 8@6542", ROMX[$6542], BANK[$8]
 
 ; deck $55 (Spirited Away) Item Finder policy: fetch the most valuable
 ; trainer sitting in the discard, scanning in priority order -- Super
@@ -5342,8 +5312,6 @@ AIDecide_ClefairyDollOrMysteriousFossil:
 	farcall FindCardIDInTurnDuelistsPlayArea.loop_play_area
 	ret
 
-SECTION "Bank 8@68b7", ROMX[$68b7], BANK[$8]
-
 ; Poké Ball is a coin-flip card: heads → search the deck for a basic
 ; Pokemon, tails → nothing happens. The AI tosses the coin first so
 ; it knows the outcome before committing the target — on heads it
@@ -5400,8 +5368,6 @@ AIDecide_Pokeball:
 	ret
 ; 0x2291e
 
-SECTION "Bank 8@691e", ROMX[$691e], BANK[$8]
-
 ; deck $3a (Grand Fire) Poke Ball decider. With fewer than 2 Pokemon in
 ; play, dig for a Magmar to get something on the board (else report whether
 ; the deck even has a basic to find). With a bench established, instead try
@@ -5441,8 +5407,6 @@ AIDecide_Pokeball_Deck3A:
 	farcall FindCardIDInLocation
 	ret
 
-SECTION "Bank 8@6965", ROMX[$6965], BANK[$8]
-
 ; deck $13 (Triple Zapdos) Poke Ball: dig the deck for a Zapdos (Lv28/40/64),
 ; else advance a Voltorb->Dark Electrode or Doduo->Dodrio line, else report
 ; whether any basic Pokemon remains in the deck. (Carved out of the still-raw
@@ -5472,8 +5436,6 @@ AIDecide_Pokeball_Deck13:
 	ld a, e
 	ret
 
-SECTION "Bank 8@699f", ROMX[$699f], BANK[$8]
-
 ; deck $14 (I Love Pikachu) Poke Ball: only when fewer than 3 Pokemon are in
 ; play and the hand holds no basic Pokemon, defer to a bank-8 helper to pick
 ; a basic to fetch. (Carved out of the still-raw $691e-$6a59 block.)
@@ -5492,8 +5454,6 @@ AIDecide_Pokeball_Deck14:
 	ld a, $00
 	call $6ca2
 	ret
-
-SECTION "Bank 8@69b5", ROMX[$69b5], BANK[$8]
 
 ; deck $24 (Max Energy) Poke Ball: with fewer than 3 basics in hand/play,
 ; fetch a Bulbasaur, Caterpie or Exeggcute (held or from deck); then try to
@@ -5565,8 +5525,6 @@ AIDecide_Pokeball_Deck24:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 
-SECTION "Bank 8@6a59", ROMX[$6a59], BANK[$8]
-
 ; Deck $25's Poké Ball policy: don't play if our play area is already
 ; full (6 Pokemon); otherwise search the deck for any basic Pokemon
 ; and return its result (carry SET + deck index in `a` on success).
@@ -5582,8 +5540,6 @@ AIDecide_Pokeball_Deck25:
 	ld a, e
 	ret
 ; 0x22a68
-
-SECTION "Bank 8@6a68", ROMX[$6a68], BANK[$8]
 
 ; deck $2c (Gathering Nidoran) Poke Ball: try to advance the Nidoran-M line
 ; (Nidoking) then the Nidoran-F line (Nidoqueen), by either fetching the next
@@ -5648,8 +5604,6 @@ AIDecide_Pokeball_Deck2C:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
 
-SECTION "Bank 8@6b02", ROMX[$6b02], BANK[$8]
-
 ; deck $3e (Bug Collecting) Poke Ball: advance the Bulbasaur/Dark Ivysaur/
 ; Dark Venusaur line, fetching the next stage or digging the missing pre-evo.
 ; (Carved out of the still-raw $691e-$6b60 block.)
@@ -5670,8 +5624,6 @@ AIDecide_Pokeball_Deck3E:
 	ld bc, DARK_VENUSAUR
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ret
-
-SECTION "Bank 8@6b2e", ROMX[$6b2e], BANK[$8]
 
 ; deck $46 (Complete Combustion) Poke Ball: dig the deck for a Magmar,
 ; Ponyta, Growlithe, Kangaskhan or Meowth, in that order. (Carved out of the
@@ -5697,8 +5649,6 @@ AIDecide_Pokeball_Deck46:
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret
-
-SECTION "Bank 8@6b60", ROMX[$6b60], BANK[$8]
 
 ; deck $47's Poké Ball policy. If we have only one Pokemon left in
 ; play, scramble: search the deck for any of card IDs $59, $7f, $f3,
@@ -7992,8 +7942,6 @@ AIDecide_MasterBall_Deck3E:
 	farcall AITryMasterBall
 	ret
 
-SECTION "Bank 8@7d44", ROMX[$7d44], BANK[$8]
-
 ; deck $3f's Master Ball policy: priority targets are the same three
 ; card IDs deck $3f's Boss's Way decider walks ($11 then $15 then
 ; $e), then fall through to a generic AITryMasterBall.
@@ -8010,8 +7958,6 @@ AIDecide_MasterBall_Deck3F:
 	farcall AITryMasterBall
 	ret
 ; 0x23d61
-
-SECTION "Bank 8@7d61", ROMX[$7d61], BANK[$8]
 
 ; deck $40 (Sticky Poison Gas) Master Ball decider. Prefer to complete an
 ; evolution line whose pre-evo we already hold -- Koffing->Dark Weezing,
@@ -8058,8 +8004,6 @@ AIDecide_MasterBall_Deck40:
 	ret c
 	farcall AITryMasterBall
 	ret
-
-SECTION "Bank 8@7dc2", ROMX[$7dc2], BANK[$8]
 
 ; deck $43 ("Chain Lightning by Pikachu") delegates Master Ball
 ; entirely to a bespoke bank-$12 helper.
