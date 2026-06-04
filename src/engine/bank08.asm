@@ -3045,13 +3045,13 @@ AIDecide_EnergyRetrieval:
 	cp EYE_OF_THE_STORM_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck57
 	cp BAD_GUYS_DECK_ID
-	jp z, $5a10
+	jp z, AIDecide_EnergyRetrieval_Deck5A
 	cp PSYCHIC_BATTLE_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck5D
 	cp SCORCHER_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck5F
 	cp PROTOHISTORIC_DECK_ID
-	jp z, $5a2b
+	jp z, AIDecide_EnergyRetrieval_Deck63
 	cp TEXTURE_TUNER7_DECK_ID
 	jp z, $5a34
 	cp RONALDS_PSYCHIC_DECK_ID
@@ -3059,13 +3059,13 @@ AIDecide_EnergyRetrieval:
 	cp TORRENTIAL_FLOOD_DECK_ID
 	jp z, $5a5c
 	cp BLAZING_FLAME_DECK_ID
-	jp z, $5a70
+	jp z, AIDecide_EnergyRetrieval_Deck72
 	cp DAMAGE_CHAOS_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck73
 	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_EnergyRetrieval_Deck74
 	cp POWER_OF_DARKNESS_DECK_ID
-	jp z, $5a83
+	jp z, AIDecide_EnergyRetrieval_Deck75
 .default
 	farcall CountBasicEnergyCardsInHand
 	ret nc
@@ -3347,6 +3347,16 @@ AIDecide_EnergyRetrieval_Deck57:
 	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
 	ret
 
+SECTION "Bank 8@5a10", ROMX[$5a10], BANK[$8]
+
+; deck $5a (Bad Guys) Energy Retrieval: a bank helper picks the target; on
+; success rejoin AIDecide_EnergyRetrieval's shared commit tail.
+AIDecide_EnergyRetrieval_Deck5A:
+	farcall BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
 SECTION "Bank 8@5a19", ROMX[$5a19], BANK[$8]
 
 ; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (Func_4c524,
@@ -3371,6 +3381,16 @@ AIDecide_EnergyRetrieval_Deck5F:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
+SECTION "Bank 8@5a2b", ROMX[$5a2b], BANK[$8]
+
+; deck $63 (Protohistoric) Energy Retrieval: a bank helper picks the target;
+; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
+AIDecide_EnergyRetrieval_Deck63:
+	farcall SearchHandForEvoCardAlreadyInTurnDuelistPlayArea
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
+
 SECTION "Bank 8@5a53", ROMX[$5a53], BANK[$8]
 
 ; deck $6c (Ronald's Super) Energy Retrieval: a bank-$12 helper picks
@@ -3381,6 +3401,13 @@ AIDecide_EnergyRetrieval_Deck6C:
 	ret nc
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
+
+SECTION "Bank 8@5a70", ROMX[$5a70], BANK[$8]
+
+; deck $72 (Blazing Flame) Energy Retrieval: delegated to a bank helper.
+AIDecide_EnergyRetrieval_Deck72:
+	farcall BlazingFlameDeckAIDecideEnergyRetrieval
+	ret
 
 SECTION "Bank 8@5a75", ROMX[$5a75], BANK[$8]
 
@@ -3398,6 +3425,16 @@ SECTION "Bank 8@5a7e", ROMX[$5a7e], BANK[$8]
 AIDecide_EnergyRetrieval_Deck74:
 	farcall BigThunderDeckAIDecideEnergyRetrieval
 	ret
+
+SECTION "Bank 8@5a83", ROMX[$5a83], BANK[$8]
+
+; deck $75 (Power of Darkness) Energy Retrieval: a bank helper picks the
+; target; on success rejoin AIDecide_EnergyRetrieval's shared commit tail.
+AIDecide_EnergyRetrieval_Deck75:
+	farcall AIDecideEnergyRetrieval_4bdb6
+	ret nc
+	push af
+	jp AIDecide_EnergyRetrieval.got_target
 
 SECTION "Bank 8@5a8c", ROMX[$5a8c], BANK[$8]
 
@@ -3979,7 +4016,7 @@ AIDecide_ScoopUp:
 	cp TEXTURE_TUNER7_DECK_ID
 	jp z, $6228
 	cp EVERYBODYS_FRIEND_DECK_ID
-	jp z, $6241
+	jp z, AIDecide_ScoopUp_Deck6E
 	cp BIG_THUNDER_DECK_ID
 	jp z, AIDecide_ScoopUp_Deck74
 ; default policy:
@@ -4141,6 +4178,13 @@ AIDecide_ScoopUp_Deck47:
 	jp c, AIDecide_ScoopUp.no_play
 	jp AIDecide_ScoopUp.pick_bench
 ; 0x22228
+
+SECTION "Bank 8@6241", ROMX[$6241], BANK[$8]
+
+; deck $6e (Everybody's Friend) Scoop Up: delegated to a bank helper.
+AIDecide_ScoopUp_Deck6E:
+	farcall EverybodysFriendDeckAIDecideScoopUp
+	ret
 
 SECTION "Bank 8@6246", ROMX[$6246], BANK[$8]
 

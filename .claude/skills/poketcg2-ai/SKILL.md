@@ -292,6 +292,11 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$58cf` | [`AIDecide_EnergyRetrieval_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; Muk+Goop Gas Attack or duplicate) | 2026-06-03 |
 | `$08` | `$7789` | [`AIDecide_NightlyGarbageRun_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; multi-target rescue of Poison line + energy) | 2026-06-03 |
 | `$08` | `$7d61` | [`AIDecide_MasterBall_Deck40`](../../../src/engine/bank08.asm) | sameboy_trace duel-miyuki (Sticky Poison Gas; complete Koffing/Grimer/Ekans evo lines) | 2026-06-03 |
+| `$08` | `$5a10` | [`AIDecide_EnergyRetrieval_Deck5A`](../../../src/engine/bank08.asm) | pattern-inferred pure delegate (Bad Guys) | 2026-06-03 |
+| `$08` | `$5a2b` | [`AIDecide_EnergyRetrieval_Deck63`](../../../src/engine/bank08.asm) | pattern-inferred pure delegate (Protohistoric) | 2026-06-03 |
+| `$08` | `$5a70` | [`AIDecide_EnergyRetrieval_Deck72`](../../../src/engine/bank08.asm) | pattern-inferred pure delegate (Blazing Flame) | 2026-06-03 |
+| `$08` | `$5a83` | [`AIDecide_EnergyRetrieval_Deck75`](../../../src/engine/bank08.asm) | pattern-inferred pure delegate (Power of Darkness) | 2026-06-03 |
+| `$08` | `$6241` | [`AIDecide_ScoopUp_Deck6E`](../../../src/engine/bank08.asm) | pattern-inferred pure delegate (Everybody's Friend) | 2026-06-03 |
 | `$08` | `$71d4` | [`AIDecide_PokemonTrader_Deck41`](../../../src/engine/bank08.asm) | sameboy_trace duel-morino (Mad Petals deck) | 2026-06-01 |
 | `$08` | `$71fc` | [`AIDecide_PokemonTrader_Deck48`](../../../src/engine/bank08.asm) | sameboy_trace duel-shoro (4-way split on play-area count + opponent Water type) | 2026-06-02 |
 | `$08` | `$7274` | [`AIDecide_PokemonTrader_Deck49`](../../../src/engine/bank08.asm) | sameboy_trace duel-hidero | 2026-06-02 |
@@ -332,7 +337,7 @@ the target (helps justify future decomp prioritization).
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 76.63% (~12.3 KiB of 16 KiB).
+**Source-defined**: 76.86% (~12.3 KiB of 16 KiB).
 **Last updated**: 2026-06-03.
 
 ### Decompiled regions (named, in source)
