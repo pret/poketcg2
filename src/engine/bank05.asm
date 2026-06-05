@@ -6635,10 +6635,9 @@ Func_167e5:
 	get_turn_duelist_var
 	ldh [hDuelActionCardIndex], a
 	xor a ; PLAY_AREA_ARENA
-; $6968: the trainer-card AI path (.trainer_card, far below) has a leftover `call`
-; that targets here, in the middle of this routine -- it then hits the unbalanced
-; `pop af` and corrupts the stack. normal flow simply falls through from .has_bench.
-.weird_jump
+; bank05:$6968 -- the buggy plain `call` in .trainer_card (a missing bank1call to
+; bank01:LoadNonPokemonCardEffectCommands) lands here at runtime. Normal flow just
+; falls through from .has_bench.
 	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -9968,11 +9967,13 @@ CheckIfCardCanBePlayed:
 .trainer_card
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	; leftover/dead code: this calls into the middle of Func_167e5 at .weird_jump
-	; (bank05:$6968 -- this path runs with bank05 mapped, NOT bank01), which then
-	; executes an unbalanced `pop af` and corrupts the stack. the branch is not
-	; taken in normal play. preserved byte-for-byte.
-	call Func_167e5.weird_jump
+	; BUG (in the original game): this should be a `bank1call` to bank01's
+	; LoadNonPokemonCardEffectCommands. As a plain `call` it runs with bank05
+	; mapped, so instead of bank01:$6968 it jumps to bank05:$6968 -- the middle
+	; of Func_167e5 -- whose unbalanced `pop af` corrupts the stack. The branch
+	; is not taken in normal play. Byte-faithful: LoadNonPokemonCardEffectCommands
+	; sits at $6968, so this still assembles to `call $6968`.
+	call LoadNonPokemonCardEffectCommands
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret
