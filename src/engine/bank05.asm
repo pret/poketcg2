@@ -6635,6 +6635,10 @@ Func_167e5:
 	get_turn_duelist_var
 	ldh [hDuelActionCardIndex], a
 	xor a ; PLAY_AREA_ARENA
+; $6968: the trainer-card AI path (.trainer_card, far below) has a leftover `call`
+; that targets here, in the middle of this routine -- it then hits the unbalanced
+; `pop af` and corrupts the stack. normal flow simply falls through from .has_bench.
+.weird_jump
 	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -9964,7 +9968,11 @@ CheckIfCardCanBePlayed:
 .trainer_card
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	call LoadNonPokemonCardEffectCommands
+	; leftover/dead code: this calls into the middle of Func_167e5 at .weird_jump
+	; (bank05:$6968 -- this path runs with bank05 mapped, NOT bank01), which then
+	; executes an unbalanced `pop af` and corrupts the stack. the branch is not
+	; taken in normal play. preserved byte-for-byte.
+	call Func_167e5.weird_jump
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret
