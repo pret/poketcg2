@@ -591,11 +591,11 @@ LightningClub_NPCs:
 	db $ff
 
 LightningClub_NPCInteractions:
-	npc_script NPC_ISAAC, Func_2c645
-	npc_script NPC_JENNIFER, Func_2c73b
-	npc_script NPC_NICHOLAS, Func_2c79d
-	npc_script NPC_BRANDON, Func_2c897
-	npc_script NPC_GR_4, Func_2c90e
+	npc_script NPC_ISAAC, Script_Isaac
+	npc_script NPC_JENNIFER, Script_LightningClubJennifer
+	npc_script NPC_NICHOLAS, Script_Nicholas
+	npc_script NPC_BRANDON, Script_Brandon
+	npc_script NPC_GR_4, Script_LightningClubGR4
 	db $ff
 
 LightningClub_MapScripts:
@@ -690,10 +690,10 @@ LightningClub_AfterDuel:
 	ret
 
 LightningClub_AfterDuelScripts:
-	npc_script NPC_ISAAC, Func_2c6ec
-	npc_script NPC_JENNIFER, Func_2c781
-	npc_script NPC_NICHOLAS, Func_2c847
-	npc_script NPC_BRANDON, Func_2c8dd
+	npc_script NPC_ISAAC, Script_IsaacAfterDuel
+	npc_script NPC_JENNIFER, Script_LightningClubJenniferAfterDuel
+	npc_script NPC_NICHOLAS, Script_NicholasAfterDuel
+	npc_script NPC_BRANDON, Script_BrandonAfterDuel
 	db $ff
 
 Func_2c584:
@@ -797,7 +797,7 @@ Script_2c5f5:
 	db SOUTH, MOVE_8
 	db $ff
 
-Func_2c645:
+Script_Isaac:
 	ld a, NPC_ISAAC
 	ld [wScriptNPC], a
 	ldtx hl, DialogIsaacText
@@ -887,7 +887,7 @@ Func_2c645:
 	end_script
 	ret
 
-Func_2c6ec:
+Script_IsaacAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -932,7 +932,7 @@ Func_2c6ec:
 	end_script
 	ret
 
-Func_2c73b:
+Script_LightningClubJennifer:
 	ld a, NPC_JENNIFER
 	ld [wScriptNPC], a
 	ldtx hl, DialogJenniferText
@@ -971,7 +971,7 @@ Func_2c73b:
 	end_script
 	ret
 
-Func_2c781:
+Script_LightningClubJenniferAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -988,7 +988,7 @@ Func_2c781:
 	end_script
 	ret
 
-Func_2c79d:
+Script_Nicholas:
 	ld a, NPC_NICHOLAS
 	ld [wScriptNPC], a
 	ldtx hl, DialogNicholasText
@@ -1079,7 +1079,7 @@ Func_2c79d:
 	end_script
 	ret
 
-Func_2c847:
+Script_NicholasAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1125,7 +1125,7 @@ Func_2c847:
 	end_script
 	ret
 
-Func_2c897:
+Script_Brandon:
 	ld a, NPC_BRANDON
 	ld [wScriptNPC], a
 	ldtx hl, DialogBrandonText
@@ -1164,7 +1164,7 @@ Func_2c897:
 	end_script
 	ret
 
-Func_2c8dd:
+Script_BrandonAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1195,7 +1195,7 @@ Func_2c8f9:
 	scf
 	ret
 
-Func_2c90e:
+Script_LightningClubGR4:
 	ld a, NPC_GR_4
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR4Text
@@ -1751,11 +1751,11 @@ PsychicClub_NPCs:
 	db $ff
 
 PsychicClub_NPCInteractions:
-	npc_script NPC_MURRAY, Func_2ce88
-	npc_script NPC_ROBERT, Func_2cfcc
-	npc_script NPC_DANIEL, Func_2d046
-	npc_script NPC_STEPHANIE, Func_2d0b3
-	npc_script NPC_GR_4, Func_2d190
+	npc_script NPC_MURRAY, Script_Murray
+	npc_script NPC_ROBERT, Script_Robert
+	npc_script NPC_DANIEL, Script_Daniel
+	npc_script NPC_STEPHANIE, Script_Stephanie
+	npc_script NPC_GR_4, Script_PsychicClubGR4
 	db $ff
 
 PsychicClub_MapScripts:
@@ -1848,11 +1848,11 @@ PsychicClub_AfterDuel:
 	ret
 
 PsychicClub_AfterDuelScripts:
-	npc_script NPC_MURRAY, Func_2cf73
-	npc_script NPC_ROBERT, Func_2d02a
-	npc_script NPC_DANIEL, Func_2d097
-	npc_script NPC_STEPHANIE, Func_2d142
-	npc_script NPC_GR_4, Func_2d20e
+	npc_script NPC_MURRAY, Script_MurrayAfterDuel
+	npc_script NPC_ROBERT, Script_RobertAfterDuel
+	npc_script NPC_DANIEL, Script_DanielAfterDuel
+	npc_script NPC_STEPHANIE, Script_StephanieAfterDuel
+	npc_script NPC_GR_4, Script_PsychicClubGR4AfterDuel
 	db $ff
 
 Func_2ce39:
@@ -1896,7 +1896,7 @@ Func_2ce39:
 	db SOUTH, MOVE_4
 	db $ff
 
-Func_2ce88:
+Script_Murray:
 	ld a, NPC_MURRAY
 	ld [wScriptNPC], a
 	ldtx hl, DialogMurrayText
@@ -2016,7 +2016,7 @@ Func_2ce88:
 	end_script
 	ret
 
-Func_2cf73:
+Script_MurrayAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2066,7 +2066,7 @@ Func_2cf73:
 	end_script
 	ret
 
-Func_2cfcc:
+Script_Robert:
 	ld a, NPC_ROBERT
 	ld [wScriptNPC], a
 	ldtx hl, DialogRobertText
@@ -2119,7 +2119,7 @@ Func_2cfcc:
 	end_script
 	ret
 
-Func_2d02a:
+Script_RobertAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2136,7 +2136,7 @@ Func_2d02a:
 	end_script
 	ret
 
-Func_2d046:
+Script_Daniel:
 	ld a, NPC_DANIEL
 	ld [wScriptNPC], a
 	ldtx hl, DialogDanielText
@@ -2182,7 +2182,7 @@ Func_2d046:
 	end_script
 	ret
 
-Func_2d097:
+Script_DanielAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2199,7 +2199,7 @@ Func_2d097:
 	end_script
 	ret
 
-Func_2d0b3:
+Script_Stephanie:
 	ld a, NPC_STEPHANIE
 	ld [wScriptNPC], a
 	ldtx hl, DialogStephanieText
@@ -2276,7 +2276,7 @@ Func_2d0b3:
 	end_script
 	ret
 
-Func_2d142:
+Script_StephanieAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2321,7 +2321,7 @@ Func_2d142:
 	end_script
 	ret
 
-Func_2d190:
+Script_PsychicClubGR4:
 	ld a, NPC_GR_4
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR4Text
@@ -2383,7 +2383,7 @@ Func_2d190:
 	end_script
 	ret
 
-Func_2d20e:
+Script_PsychicClubGR4AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3771,11 +3771,11 @@ FightingClub_NPCs:
 	db $ff
 
 FightingClub_NPCInteractions:
-	npc_script NPC_MITCH, Func_2dd62
-	npc_script NPC_MICHAEL, Func_2ddf1
-	npc_script NPC_CHRIS, Func_2dead
-	npc_script NPC_JESSICA, Func_2df3a
-	npc_script NPC_GR_1, Func_2dfb1
+	npc_script NPC_MITCH, Script_Mitch
+	npc_script NPC_MICHAEL, Script_Michael
+	npc_script NPC_CHRIS, Script_Chris
+	npc_script NPC_JESSICA, Script_Jessica
+	npc_script NPC_GR_1, Script_FightingClubGR1
 	db $ff
 
 FightingClub_MapScripts:
@@ -3838,14 +3838,14 @@ FightingClub_AfterDuel:
 	ret
 
 FightingClub_AfterDuelScripts:
-	npc_script NPC_MITCH, Func_2ddc8
-	npc_script NPC_MICHAEL, Func_2de75
-	npc_script NPC_CHRIS, Func_2df1e
-	npc_script NPC_JESSICA, Func_2df80
-	npc_script NPC_GR_1, Func_2e008
+	npc_script NPC_MITCH, Script_MitchAfterDuel
+	npc_script NPC_MICHAEL, Script_MichaelAfterDuel
+	npc_script NPC_CHRIS, Script_ChrisAfterDuel
+	npc_script NPC_JESSICA, Script_JessicaAfterDuel
+	npc_script NPC_GR_1, Script_FightingClubGR1AfterDuel
 	db $ff
 
-Func_2dd62:
+Script_Mitch:
 	ld a, NPC_MITCH
 	ld [wScriptNPC], a
 	ldtx hl, DialogMitchText
@@ -3900,7 +3900,7 @@ Func_2dd62:
 	end_script
 	ret
 
-Func_2ddc8:
+Script_MitchAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3928,7 +3928,7 @@ Func_2dde4:
 	ccf
 	ret
 
-Func_2ddf1:
+Script_Michael:
 	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
 	ldtx hl, DialogMichaelText
@@ -3999,7 +3999,7 @@ Func_2ddf1:
 	end_script
 	ret
 
-Func_2de75:
+Script_MichaelAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4031,7 +4031,7 @@ Func_2de75:
 	end_script
 	ret
 
-Func_2dead:
+Script_Chris:
 	ld a, NPC_CHRIS
 	ld [wScriptNPC], a
 	ldtx hl, DialogChrisText
@@ -4093,7 +4093,7 @@ Func_2dead:
 	end_script
 	ret
 
-Func_2df1e:
+Script_ChrisAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4110,7 +4110,7 @@ Func_2df1e:
 	end_script
 	ret
 
-Func_2df3a:
+Script_Jessica:
 	ld a, NPC_JESSICA
 	ld [wScriptNPC], a
 	ldtx hl, DialogJessicaText
@@ -4149,7 +4149,7 @@ Func_2df3a:
 	end_script
 	ret
 
-Func_2df80:
+Script_JessicaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4180,7 +4180,7 @@ Func_2df9c:
 	scf
 	ret
 
-Func_2dfb1:
+Script_FightingClubGR1:
 	ld a, NPC_GR_1
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR1Text
@@ -4228,7 +4228,7 @@ Func_2dfb1:
 	end_script
 	ret
 
-Func_2e008:
+Script_FightingClubGR1AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4444,11 +4444,11 @@ GrassClub_NPCs:
 	db $ff
 
 GrassClub_NPCInteractions:
-	npc_script NPC_NIKKI, Func_2e226
-	npc_script NPC_BRITTANY, Func_2e28c
-	npc_script NPC_KRISTIN, Func_2e332
-	npc_script NPC_HEATHER, Func_2e394
-	npc_script NPC_GR_2, Func_2e40b
+	npc_script NPC_NIKKI, Script_Nikki
+	npc_script NPC_BRITTANY, Script_GrassClubBrittany
+	npc_script NPC_KRISTIN, Script_Kristin
+	npc_script NPC_HEATHER, Script_Heather
+	npc_script NPC_GR_2, Script_GrassClubGR2
 	db $ff
 
 GrassClub_MapScripts:
@@ -4511,14 +4511,14 @@ GrassClub_AfterDuel:
 	ret
 
 GrassClub_AfterDuelScripts:
-	npc_script NPC_NIKKI, Func_2e26e
-	npc_script NPC_BRITTANY, Func_2e2f6
-	npc_script NPC_KRISTIN, Func_2e378
-	npc_script NPC_HEATHER, Func_2e3da
-	npc_script NPC_GR_2, Func_2e449
+	npc_script NPC_NIKKI, Script_NikkiAfterDuel
+	npc_script NPC_BRITTANY, Script_GrassClubBrittanyAfterDuel
+	npc_script NPC_KRISTIN, Script_KristinAfterDuel
+	npc_script NPC_HEATHER, Script_HeatherAfterDuel
+	npc_script NPC_GR_2, Script_GrassClubGR2AfterDuel
 	db $ff
 
-Func_2e226:
+Script_Nikki:
 	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogNikkiText
@@ -4558,7 +4558,7 @@ Func_2e226:
 	end_script
 	ret
 
-Func_2e26e:
+Script_NikkiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4576,7 +4576,7 @@ Func_2e26e:
 	end_script
 	ret
 
-Func_2e28c:
+Script_GrassClubBrittany:
 	ld a, NPC_BRITTANY
 	ld [wScriptNPC], a
 	ldtx hl, DialogBrittanyText
@@ -4633,7 +4633,7 @@ Func_2e28c:
 	end_script
 	ret
 
-Func_2e2f6:
+Script_GrassClubBrittanyAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4667,7 +4667,7 @@ Func_2e2f6:
 	end_script
 	ret
 
-Func_2e332:
+Script_Kristin:
 	ld a, NPC_KRISTIN
 	ld [wScriptNPC], a
 	ldtx hl, DialogKristinText
@@ -4706,7 +4706,7 @@ Func_2e332:
 	end_script
 	ret
 
-Func_2e378:
+Script_KristinAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4723,7 +4723,7 @@ Func_2e378:
 	end_script
 	ret
 
-Func_2e394:
+Script_Heather:
 	ld a, NPC_HEATHER
 	ld [wScriptNPC], a
 	ldtx hl, DialogHeatherText
@@ -4762,7 +4762,7 @@ Func_2e394:
 	end_script
 	ret
 
-Func_2e3da:
+Script_HeatherAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4793,7 +4793,7 @@ Func_2e3f6:
 	scf
 	ret
 
-Func_2e40b:
+Script_GrassClubGR2:
 	ld a, NPC_GR_2
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR2Text
@@ -4826,7 +4826,7 @@ Func_2e40b:
 	end_script
 	ret
 
-Func_2e449:
+Script_GrassClubGR2AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5465,11 +5465,11 @@ ScienceClub_NPCs:
 	db $ff
 
 ScienceClub_NPCInteractions:
-	npc_script NPC_RICK, Func_2e9c7
-	npc_script NPC_DAVID, Func_2ea94
-	npc_script NPC_JOSEPH, Func_2eaef
-	npc_script NPC_ERIK, Func_2eba5
-	npc_script NPC_GR_2, Func_2ec1c
+	npc_script NPC_RICK, Script_Rick
+	npc_script NPC_DAVID, Script_David
+	npc_script NPC_JOSEPH, Script_Joseph
+	npc_script NPC_ERIK, Script_Erik
+	npc_script NPC_GR_2, Script_ScienceClubGR2
 	db $ff
 
 ScienceClub_MapScripts:
@@ -5541,14 +5541,14 @@ ScienceClub_AfterDuel:
 	ret
 
 ScienceClub_AfterDuelScripts:
-	npc_script NPC_RICK, Func_2ea4b
-	npc_script NPC_DAVID, Func_2ead1
-	npc_script NPC_JOSEPH, Func_2eb6d
-	npc_script NPC_ERIK, Func_2ebeb
-	npc_script NPC_GR_2, Func_2ec5a
+	npc_script NPC_RICK, Script_RickAfterDuel
+	npc_script NPC_DAVID, Script_DavidAfterDuel
+	npc_script NPC_JOSEPH, Script_JosephAfterDuel
+	npc_script NPC_ERIK, Script_ErikAfterDuel
+	npc_script NPC_GR_2, Script_ScienceClubGR2AfterDuel
 	db $ff
 
-Func_2e9c7:
+Script_Rick:
 	ld a, NPC_RICK
 	ld [wScriptNPC], a
 	ldtx hl, DialogRickText
@@ -5615,7 +5615,7 @@ Func_2e9c7:
 	end_script
 	ret
 
-Func_2ea4b:
+Script_RickAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5660,7 +5660,7 @@ Func_2ea87:
 	scf
 	ret
 
-Func_2ea94:
+Script_David:
 	ld a, NPC_DAVID
 	ld [wScriptNPC], a
 	ldtx hl, DialogDavidText
@@ -5693,7 +5693,7 @@ Func_2ea94:
 	end_script
 	ret
 
-Func_2ead1:
+Script_DavidAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5711,7 +5711,7 @@ Func_2ead1:
 	end_script
 	ret
 
-Func_2eaef:
+Script_Joseph:
 	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
 	ldtx hl, DialogJosephText
@@ -5780,7 +5780,7 @@ Func_2eaef:
 	end_script
 	ret
 
-Func_2eb6d:
+Script_JosephAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5812,7 +5812,7 @@ Func_2eb6d:
 	end_script
 	ret
 
-Func_2eba5:
+Script_Erik:
 	ld a, NPC_ERIK
 	ld [wScriptNPC], a
 	ldtx hl, DialogErikText
@@ -5851,7 +5851,7 @@ Func_2eba5:
 	end_script
 	ret
 
-Func_2ebeb:
+Script_ErikAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5882,7 +5882,7 @@ Func_2ec07:
 	scf
 	ret
 
-Func_2ec1c:
+Script_ScienceClubGR2:
 	ld a, NPC_GR_2
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR2Text
@@ -5915,7 +5915,7 @@ Func_2ec1c:
 	end_script
 	ret
 
-Func_2ec5a:
+Script_ScienceClubGR2AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6420,16 +6420,16 @@ WaterClub_NPCs:
 	db $ff
 
 WaterClub_NPCInteractions:
-	npc_script NPC_AMY_LOUNGE, Func_2f1fa
-	npc_script NPC_JOSHUA, Func_2f2cf
-	npc_script NPC_SARA, Func_2f382
-	npc_script NPC_AMANDA, Func_2f3f1
-	npc_script NPC_AMY, Func_2f1d2
-	npc_script NPC_GR_3, Func_2f485
+	npc_script NPC_AMY_LOUNGE, Script_AmyLounge
+	npc_script NPC_JOSHUA, Script_Joshua
+	npc_script NPC_SARA, Script_Sara
+	npc_script NPC_AMANDA, Script_Amanda
+	npc_script NPC_AMY, Script_Amy
+	npc_script NPC_GR_3, Script_WaterClubGR3
 	db $ff
 
 WaterClub_OWInteractions:
-	ow_script 12, 3, Func_2f1fa
+	ow_script 12, 3, Script_AmyLounge
 	db $ff
 
 WaterClub_MapScripts:
@@ -6515,11 +6515,11 @@ WaterClub_AfterDuel:
 	ret
 
 WaterClub_AfterDuelScripts:
-	npc_script NPC_AMY_LOUNGE, Func_2f28a
-	npc_script NPC_JOSHUA, Func_2f335
-	npc_script NPC_SARA, Func_2f3d5
-	npc_script NPC_AMANDA, Func_2f44f
-	npc_script NPC_GR_3, Func_2f4d9
+	npc_script NPC_AMY_LOUNGE, Script_AmyLoungeAfterDuel
+	npc_script NPC_JOSHUA, Script_JoshuaAfterDuel
+	npc_script NPC_SARA, Script_SaraAfterDuel
+	npc_script NPC_AMANDA, Script_AmandaAfterDuel
+	npc_script NPC_GR_3, Script_WaterClubGR3AfterDuel
 	db $ff
 
 Script_2f127:
@@ -6609,7 +6609,7 @@ Script_2f19d:
 	end_script
 	ret
 
-Func_2f1d2:
+Script_Amy:
 	ld a, NPC_AMY
 	ld [wScriptNPC], a
 	ldtx hl, DialogAmyText
@@ -6636,7 +6636,7 @@ Func_2f1ed:
 	ccf
 	ret
 
-Func_2f1fa:
+Script_AmyLounge:
 	ld a, NPC_AMY_LOUNGE
 	ld [wScriptNPC], a
 	ldtx hl, DialogAmyText
@@ -6713,7 +6713,7 @@ Func_2f1fa:
 	end_script
 	ret
 
-Func_2f28a:
+Script_AmyLoungeAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6751,7 +6751,7 @@ Func_2f28a:
 	end_script
 	ret
 
-Func_2f2cf:
+Script_Joshua:
 	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
 	ldtx hl, DialogJoshuaText
@@ -6806,7 +6806,7 @@ Func_2f2cf:
 	end_script
 	ret
 
-Func_2f335:
+Script_JoshuaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6852,7 +6852,7 @@ Func_2f36d:
 	scf
 	ret
 
-Func_2f382:
+Script_Sara:
 	ld a, NPC_SARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogSaraText
@@ -6898,7 +6898,7 @@ Func_2f382:
 	end_script
 	ret
 
-Func_2f3d5:
+Script_SaraAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6915,7 +6915,7 @@ Func_2f3d5:
 	end_script
 	ret
 
-Func_2f3f1:
+Script_Amanda:
 	ld a, NPC_AMANDA
 	ld [wScriptNPC], a
 	ldtx hl, DialogAmandaText
@@ -6968,7 +6968,7 @@ Func_2f3f1:
 	end_script
 	ret
 
-Func_2f44f:
+Script_AmandaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7002,7 +7002,7 @@ Func_2f478:
 	scf
 	ret
 
-Func_2f485:
+Script_WaterClubGR3:
 	ld a, NPC_GR_3
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR3Text
@@ -7048,7 +7048,7 @@ Func_2f485:
 	end_script
 	ret
 
-Func_2f4d9:
+Script_WaterClubGR3AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7450,11 +7450,11 @@ FireClub_NPCs:
 	db $ff
 
 FireClub_NPCInteractions:
-	npc_script NPC_KEN, Func_2f926
-	npc_script NPC_JOHN, Func_2fa25
-	npc_script NPC_ADAM, Func_2faa1
-	npc_script NPC_JONATHAN, Func_2fb4e
-	npc_script NPC_GR_3, Func_2fbd3
+	npc_script NPC_KEN, Script_Ken
+	npc_script NPC_JOHN, Script_John
+	npc_script NPC_ADAM, Script_Adam
+	npc_script NPC_JONATHAN, Script_Jonathan
+	npc_script NPC_GR_3, Script_FireClubGR3
 	db $ff
 
 FireClub_OWInteractions:
@@ -7547,11 +7547,11 @@ FireClub_AfterDuel:
 	ret
 
 FireClub_AfterDuelScripts:
-	npc_script NPC_KEN, Func_2f9ed
-	npc_script NPC_JOHN, Func_2fa85
-	npc_script NPC_ADAM, Func_2fb32
-	npc_script NPC_JONATHAN, Func_2fbb7
-	npc_script NPC_GR_3, Func_2fc0e
+	npc_script NPC_KEN, Script_KenAfterDuel
+	npc_script NPC_JOHN, Script_JohnAfterDuel
+	npc_script NPC_ADAM, Script_AdamAfterDuel
+	npc_script NPC_JONATHAN, Script_JonathanAfterDuel
+	npc_script NPC_GR_3, Script_FireClubGR3AfterDuel
 	db $ff
 
 Script_2f8f8:
@@ -7580,7 +7580,7 @@ Script_2f8f8:
 	db SOUTH, MOVE_3
 	db $ff
 
-Func_2f926:
+Script_Ken:
 	ld a, NPC_KEN
 	ld [wScriptNPC], a
 	ldtx hl, DialogKenText
@@ -7688,7 +7688,7 @@ Func_2f926:
 	end_script
 	ret
 
-Func_2f9ed:
+Script_KenAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7720,7 +7720,7 @@ Func_2f9ed:
 	end_script
 	ret
 
-Func_2fa25:
+Script_John:
 	ld a, NPC_JOHN
 	ld [wScriptNPC], a
 	ldtx hl, DialogJohnText
@@ -7774,7 +7774,7 @@ Func_2fa25:
 	end_script
 	ret
 
-Func_2fa85:
+Script_JohnAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7791,7 +7791,7 @@ Func_2fa85:
 	end_script
 	ret
 
-Func_2faa1:
+Script_Adam:
 	ld a, NPC_ADAM
 	ld [wScriptNPC], a
 	ldtx hl, DialogAdamText
@@ -7869,7 +7869,7 @@ Func_2faa1:
 	end_script
 	ret
 
-Func_2fb32:
+Script_AdamAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7886,7 +7886,7 @@ Func_2fb32:
 	end_script
 	ret
 
-Func_2fb4e:
+Script_Jonathan:
 	ld a, NPC_JONATHAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogJonathanText
@@ -7944,7 +7944,7 @@ Func_2fb4e:
 	end_script
 	ret
 
-Func_2fbb7:
+Script_JonathanAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7961,7 +7961,7 @@ Func_2fbb7:
 	end_script
 	ret
 
-Func_2fbd3:
+Script_FireClubGR3:
 	ld a, NPC_GR_3
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR3Text
@@ -7993,7 +7993,7 @@ Func_2fbd3:
 	end_script
 	ret
 
-Func_2fc0e:
+Script_FireClubGR3AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -8083,25 +8083,25 @@ Func_2fcad:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
-	jp Func_2f926
+	jp Script_Ken
 
 Func_2fcb7:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
-	jp Func_2fa25
+	jp Script_John
 
 Func_2fcc1:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
-	jp Func_2faa1
+	jp Script_Adam
 
 Func_2fccb:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
-	jp Func_2fb4e
+	jp Script_Jonathan
 
 PokemonDomeEntrance_MapHeader:
 	db MAP_GFX_POKEMON_DOME_ENTRANCE

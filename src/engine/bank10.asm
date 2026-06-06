@@ -1329,13 +1329,13 @@ MasonLaboratoryMain_NPCs:
 	db $ff
 
 MasonLaboratoryMain_NPCInteractions:
-	npc_script NPC_DR_MASON, Func_41188
-	npc_script NPC_SAM, Func_41233
-	npc_script NPC_LAB_TECH_PC_GUIDE, Func_41370
-	npc_script NPC_LAB_TECH_CLUB_GUIDE, Func_41396
-	npc_script NPC_LAB_TECH_BOOSTER_GUIDE, Func_413bc
-	npc_script NPC_LAB_TECH_ROOM_GUIDE, Func_413e2
-	npc_script NPC_RONALD, Func_411f2
+	npc_script NPC_DR_MASON, Script_DrMason
+	npc_script NPC_SAM, Script_SamMasonLab
+	npc_script NPC_LAB_TECH_PC_GUIDE, Script_LabTechPCGuide
+	npc_script NPC_LAB_TECH_CLUB_GUIDE, Script_LabTechClubGuide
+	npc_script NPC_LAB_TECH_BOOSTER_GUIDE, Script_LabTechBoosterGuide
+	npc_script NPC_LAB_TECH_ROOM_GUIDE, Script_LabTechRoomGuide
+	npc_script NPC_RONALD, Script_RonaldMasonLab
 	db $ff
 
 MasonLaboratoryMain_OWInteractions:
@@ -1467,8 +1467,8 @@ MasonLaboratoryMain_AfterDuel:
 	ret
 
 MasonLaboratoryMain_AfterDuelScripts:
-	npc_script NPC_DR_MASON, Func_4133e
-	npc_script NPC_SAM, Func_412c0
+	npc_script NPC_DR_MASON, Script_DrMasonAfterDuel
+	npc_script NPC_SAM, Script_SamMasonLabAfterDuel
 	db $ff
 
 Func_40f46:
@@ -1760,7 +1760,7 @@ Script_DrMason_50WinStreak:
 	end_script
 	ret
 
-Func_41188:
+Script_DrMason:
 	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
 	ldtx hl, DialogDrMasonText
@@ -1813,7 +1813,7 @@ Func_41188:
 	end_script
 	ret
 
-Func_411f2:
+Script_RonaldMasonLab:
 	ld a, NPC_RONALD
 	ld [wScriptNPC], a
 	ldtx hl, DialogRonaldText
@@ -1852,7 +1852,7 @@ Func_4121d:
 	ccf
 	ret
 
-Func_41233:
+Script_SamMasonLab:
 	ld a, NPC_SAM
 	ld [wScriptNPC], a
 	ldtx hl, DialogSamText
@@ -1925,7 +1925,7 @@ Func_41233:
 	end_script
 	ret
 
-Func_412c0:
+Script_SamMasonLabAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1990,7 +1990,7 @@ Script_412f8:
 	end_script
 	ret
 
-Func_4133e:
+Script_DrMasonAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2019,7 +2019,7 @@ Func_4133e:
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_41370:
+Script_LabTechPCGuide:
 	ld a, NPC_LAB_TECH_PC_GUIDE
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -2041,7 +2041,7 @@ Func_41370:
 	end_script
 	ret
 
-Func_41396:
+Script_LabTechClubGuide:
 	ld a, NPC_LAB_TECH_CLUB_GUIDE
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -2063,7 +2063,7 @@ Func_41396:
 	end_script
 	ret
 
-Func_413bc:
+Script_LabTechBoosterGuide:
 	ld a, NPC_LAB_TECH_BOOSTER_GUIDE
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -2085,7 +2085,7 @@ Func_413bc:
 	end_script
 	ret
 
-Func_413e2:
+Script_LabTechRoomGuide:
 	ld a, NPC_LAB_TECH_ROOM_GUIDE
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText

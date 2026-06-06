@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 79 named. 450 remaining. NEW SEAM: the `npc_script NPC_*, handler` tables
+  (<Map>_NPCInteractions / _AfterDuelScripts) reference 256 unnamed handlers, map-local, keyed
+  by NPC constant. Unlike MapScripts these need READING (existing convention is hand-curated
+  Script_<Role>, not a mechanical transform), so 8 subagents each took one club/lab map and named
+  its full handler set: the 7 elemental Club masters + members (Amy/Murray/Mitch/Nikki/Rick/Ken/
+  Isaac and their members) and MasonLaboratoryMain (DrMason/Sam/Ronald/4 LabTech guides).
+  Convention: Script_<Npc> / Script_<Npc>AfterDuel; map-PREFIX the shared generic NPCs
+  (NPC_GR_1..4 grunts recur across clubs -> Script_<Map>GR<n>; likewise Jennifer/Brittany/Sam/
+  Ronald that recur). ~177 npc_script handlers still remain (lobbies, forts, strongholds, etc.).
 - 2026-06-06: 23 named. 529 remaining. Batch analyzed in PARALLEL by 8 subagents. Hot generic
   NPC-interact dispatcher TurnNPCToFacePlayerAndRunScript (83 callers; the turn-to-face variant of
   ExecuteFacingNPCScript). OWModePostprocess slots (HandleOWModeIdleInput, UpdateOWModePlayerMovement),
