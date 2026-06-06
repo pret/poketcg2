@@ -7,7 +7,8 @@ rom_obj := \
 	src/text.o \
 	src/audio.o \
 	src/wram.o \
-	src/hram.o
+	src/hram.o \
+	src/padding.o
 
 
 ### Build tools
@@ -98,7 +99,7 @@ endif
 RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
 
 

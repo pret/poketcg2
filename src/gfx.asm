@@ -78,6 +78,53 @@ Pals_6f0f0::
 	rgb 13,  9,  0
 ; 0x6f108
 
+Pals_6f108::
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb  0,  0,  0
+	rgb  0, 10, 28
+
+	rgb 31, 31, 31
+	rgb 31, 22,  9
+	rgb 27,  9,  4
+	rgb 18,  0,  0
+
+	rgb 31, 31, 31
+	rgb 16, 24, 29
+	rgb  6, 11, 24
+	rgb  0,  0, 16
+
+	rgb 31, 31, 31
+	rgb 21, 27, 13
+	rgb  7, 16,  0
+	rgb  0,  7,  0
+
+	rgb 31, 31, 31
+	rgb 26, 22,  7
+	rgb 19, 13,  0
+	rgb  6,  2,  0
+
+	rgb 31, 31, 31
+	rgb 31, 16, 20
+	rgb 21,  6, 14
+	rgb 10,  0,  4
+
+	rgb 31, 31, 31
+	rgb 20, 29,  0
+	rgb 11, 18,  0
+	rgb  7,  6,  0
+
+	rgb 31, 31, 31
+	rgb 18, 30, 31
+	rgb  8, 20, 27
+	rgb  0,  7, 14
+
+	rgb 31, 31, 31
+	rgb  0,  0, 31
+	rgb 31,  0,  0
+	rgb  0,  0,  0
+; 0x6f150
+
 SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
 
 SymbolsFont::
