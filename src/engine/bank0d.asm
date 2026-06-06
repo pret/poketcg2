@@ -2409,10 +2409,10 @@ GrChallengeHallLobby_NPCs:
 	db $ff
 
 GrChallengeHallLobby_NPCInteractions:
-	npc_script NPC_GR_CHALLENGE_HALL_GR_GRANNY, Func_35342
+	npc_script NPC_GR_CHALLENGE_HALL_GR_GRANNY, Script_GRChallengeHallGRGranny
 	npc_script NPC_CUP_HOST, Script_CupHostGRLobby
-	npc_script NPC_GR_CHALLENGE_HALL_GR_WOMAN, Func_35451
-	npc_script NPC_GR_CHALLENGE_HALL_GR_CHAP, Func_353e5
+	npc_script NPC_GR_CHALLENGE_HALL_GR_WOMAN, Script_GRChallengeHallGRWoman
+	npc_script NPC_GR_CHALLENGE_HALL_GR_CHAP, Script_GRChallengeHallGRChap
 	db $ff
 
 GrChallengeHallLobby_OWInteractions:
@@ -2468,7 +2468,7 @@ GrChallengeHallLobby_Interact:
 	scf
 	ret
 
-Func_35342:
+Script_GRChallengeHallGRGranny:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_GRANNY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRPersonText
@@ -2555,7 +2555,7 @@ GrChallengeHallLobby_DisappearDuringGRCups:
 	scf
 	ret
 
-Func_353e5:
+Script_GRChallengeHallGRChap:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_CHAP
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRChapText
@@ -2618,7 +2618,7 @@ Func_35444:
 	scf
 	ret
 
-Func_35451:
+Script_GRChallengeHallGRWoman:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_WOMAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRWomanText
@@ -2854,7 +2854,7 @@ WaterFortSenta_NPCs:
 	db $ff
 
 WaterFortSenta_NPCInteractions:
-	npc_script NPC_SENTA, Func_35679
+	npc_script NPC_SENTA, Script_Senta
 	db $ff
 
 WaterFortSenta_MapScripts:
@@ -2910,10 +2910,10 @@ WaterFortSenta_AfterDuel:
 	ret
 
 WaterFortSenta_AfterDuelScripts:
-	npc_script NPC_SENTA, Func_356e8
+	npc_script NPC_SENTA, Script_SentaAfterDuel
 	db $ff
 
-Func_35679:
+Script_Senta:
 	ld a, NPC_SENTA
 	ld [wScriptNPC], a
 	ldtx hl, DialogSentaText
@@ -2973,7 +2973,7 @@ Func_35679:
 	end_script
 	ret
 
-Func_356e8:
+Script_SentaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3148,7 +3148,7 @@ WaterFortAira_NPCs:
 	db $ff
 
 WaterFortAira_NPCInteractions:
-	npc_script NPC_AIRA, Func_3589a
+	npc_script NPC_AIRA, Script_Aira
 	db $ff
 
 WaterFortAira_MapScripts:
@@ -3199,10 +3199,10 @@ WaterFortAira_AfterDuel:
 	ret
 
 WaterFortAira_AfterDuelScripts:
-	npc_script NPC_AIRA, Func_358f3
+	npc_script NPC_AIRA, Script_AiraAfterDuel
 	db $ff
 
-Func_3589a:
+Script_Aira:
 	ld a, NPC_AIRA
 	ld [wScriptNPC], a
 	ldtx hl, DialogAiraText
@@ -3250,7 +3250,7 @@ Func_3589a:
 	end_script
 	ret
 
-Func_358f3:
+Script_AiraAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3353,7 +3353,7 @@ FightingFort_NPCs:
 	db $ff
 
 FightingFort_NPCInteractions:
-	npc_script NPC_KAMIYA, Func_35b16
+	npc_script NPC_KAMIYA, Script_Kamiya
 	db $ff
 
 FightingFort_OWInteractions:
@@ -3448,7 +3448,7 @@ FightingFort_AfterDuel:
 	ret
 
 FightingFort_AfterDuelScripts:
-	npc_script NPC_KAMIYA, Func_35b82
+	npc_script NPC_KAMIYA, Script_KamiyaAfterDuel
 	db $ff
 
 Func_35a9c:
@@ -3514,7 +3514,7 @@ Func_35a9c:
 	db NORTH, MOVE_2
 	db $ff
 
-Func_35b16:
+Script_Kamiya:
 	ld a, NPC_KAMIYA
 	ld [wScriptNPC], a
 	ldtx hl, DialogKamiyaText
@@ -3573,7 +3573,7 @@ Func_35b16:
 	end_script
 	ret
 
-Func_35b82:
+Script_KamiyaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3778,7 +3778,7 @@ FightingFortGoda_NPCs:
 	db $ff
 
 FightingFortGoda_NPCInteractions:
-	npc_script NPC_GODA, Func_35def
+	npc_script NPC_GODA, Script_Goda
 	db $ff
 
 FightingFortGoda_OWInteractions:
@@ -3836,7 +3836,7 @@ FightingFortGoda_AfterDuel:
 	ret
 
 FightingFortGoda_AfterDuelScripts:
-	npc_script NPC_GODA, Func_35e5e
+	npc_script NPC_GODA, Script_GodaAfterDuel
 	db $ff
 
 Func_35dc0:
@@ -3869,7 +3869,7 @@ Func_35de2:
 	ccf
 	ret
 
-Func_35def:
+Script_Goda:
 	ld a, NPC_GODA
 	ld [wScriptNPC], a
 	ldtx hl, DialogGodaText
@@ -3929,7 +3929,7 @@ Func_35def:
 	end_script
 	ret
 
-Func_35e5e:
+Script_GodaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4034,9 +4034,9 @@ FightingFortGrace_NPCs:
 	db $ff
 
 FightingFortGrace_NPCInteractions:
-	npc_script NPC_GRACE, Func_35f81
-	npc_script NPC_CHEST_CLOSED, Func_36049
-	npc_script NPC_CHEST_OPENED, Func_36077
+	npc_script NPC_GRACE, Script_Grace
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortGraceChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortGraceChestOpened
 	db $ff
 
 FightingFortGrace_MapScripts:
@@ -4072,10 +4072,10 @@ FightingFortGrace_AfterDuel:
 	ret
 
 FightingFortGrace_AfterDuelScripts:
-	npc_script NPC_GRACE, Func_35ffb
+	npc_script NPC_GRACE, Script_GraceAfterDuel
 	db $ff
 
-Func_35f81:
+Script_Grace:
 	ld a, NPC_GRACE
 	ld [wScriptNPC], a
 	ldtx hl, DialogGraceText
@@ -4142,7 +4142,7 @@ Func_35f81:
 	end_script
 	ret
 
-Func_35ffb:
+Script_GraceAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4185,7 +4185,7 @@ Func_35ffb:
 	end_script
 	ret
 
-Func_36049:
+Script_FightingFortGraceChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -4213,7 +4213,7 @@ Func_36062:
 	scf
 	ret
 
-Func_36077:
+Script_FightingFortGraceChestOpened:
 	xor a
 	start_script
 	start_dialog
@@ -4255,7 +4255,7 @@ PsychicStrongholdEntrance_NPCs:
 	db $ff
 
 PsychicStrongholdEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_PSYCHIC_STRONGHOLD, Func_36148
+	npc_script NPC_GR_CLERK_PSYCHIC_STRONGHOLD, Script_PsychicStrongholdGRClerk
 	db $ff
 
 PsychicStrongholdEntrance_MapScripts:
@@ -4320,7 +4320,7 @@ PsychicStrongholdEntrance_Interact:
 	scf
 	ret
 
-Func_36148:
+Script_PsychicStrongholdGRClerk:
 	ld a, NPC_GR_CLERK_PSYCHIC_STRONGHOLD
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -4365,10 +4365,10 @@ PsychicStrongholdLobby_NPCs:
 	db $ff
 
 PsychicStrongholdLobby_NPCInteractions:
-	npc_script NPC_PSYCHIC_STRONGHOLD_LADY, Func_36250
-	npc_script NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, Func_362c4
-	npc_script NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, Func_362ea
-	npc_script NPC_IMAKUNI_RED, Func_3c4e0
+	npc_script NPC_PSYCHIC_STRONGHOLD_LADY, Script_PsychicStrongholdLady
+	npc_script NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, Script_PsychicStrongholdUncappedLad
+	npc_script NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, Script_GRPsychicStrongholdGRLass
+	npc_script NPC_IMAKUNI_RED, Script_ImakuniRed
 	db $ff
 
 PsychicStrongholdLobby_OWInteractions:
@@ -4442,7 +4442,7 @@ PsychicStrongholdLobby_ContinueOW:
 	scf
 	ret
 
-Func_36250:
+Script_PsychicStrongholdLady:
 	ld a, NPC_PSYCHIC_STRONGHOLD_LADY
 	ld [wScriptNPC], a
 	ldtx hl, DialogLadyText
@@ -4495,7 +4495,7 @@ Func_36250:
 	end_script
 	ret
 
-Func_362c4:
+Script_PsychicStrongholdUncappedLad:
 	ld a, NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD
 	ld [wScriptNPC], a
 	ldtx hl, DialogLadText
@@ -4517,7 +4517,7 @@ Func_362c4:
 	end_script
 	ret
 
-Func_362ea:
+Script_GRPsychicStrongholdGRLass:
 	ld a, NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -5761,8 +5761,8 @@ PsychicStrongholdMami_NPCs:
 	db $ff
 
 PsychicStrongholdMami_NPCInteractions:
-	npc_script NPC_MAMI, Func_36e18
-	npc_script NPC_ROD, Func_36de8
+	npc_script NPC_MAMI, Script_Mami
+	npc_script NPC_ROD, Script_RodPsychicStronghold
 	db $ff
 
 PsychicStrongholdMami_MapScripts:
@@ -5854,7 +5854,7 @@ PsychicStrongholdMami_AfterDuel:
 	ret
 
 PsychicStrongholdMami_AfterDuelScripts:
-	npc_script NPC_MAMI, Func_36e9b
+	npc_script NPC_MAMI, Script_MamiAfterDuel
 	db $ff
 
 Script_36d75:
@@ -5913,7 +5913,7 @@ Script_36d75:
 	db SOUTH, MOVE_7
 	db $ff
 
-Func_36de8:
+Script_RodPsychicStronghold:
 	ld a, NPC_ROD
 	ld [wScriptNPC], a
 	ldtx hl, DialogRodText
@@ -5943,7 +5943,7 @@ Func_36e03:
 	scf
 	ret
 
-Func_36e18:
+Script_Mami:
 	ld a, NPC_MAMI
 	ld [wScriptNPC], a
 	ldtx hl, DialogMamiText
@@ -6007,7 +6007,7 @@ Func_36e18:
 	end_script
 	ret
 
-Func_36e9b:
+Script_MamiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6665,8 +6665,8 @@ GrCastleEntrance_NPCs:
 	db $ff
 
 GrCastleEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_CASTLE_RIGHT, Func_37493
-	npc_script NPC_GR_CLERK_CASTLE_LEFT, Func_37534
+	npc_script NPC_GR_CLERK_CASTLE_RIGHT, Script_GrCastleEntranceGRClerkRight
+	npc_script NPC_GR_CLERK_CASTLE_LEFT, Script_GrCastleEntranceGRClerkLeft
 	db $ff
 
 GrCastleEntrance_OWInteractions:
@@ -6789,7 +6789,7 @@ Func_37480:
 	end_script
 	ret
 
-Func_37493:
+Script_GrCastleEntranceGRClerkRight:
 	ld a, NPC_GR_CLERK_CASTLE_RIGHT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -6874,7 +6874,7 @@ Func_37493:
 	end_script
 	ret
 
-Func_37534:
+Script_GrCastleEntranceGRClerkLeft:
 	ld a, NPC_GR_CLERK_CASTLE_LEFT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -6992,8 +6992,8 @@ GrCastle_NPCs:
 	db $ff
 
 GrCastle_NPCInteractions:
-	npc_script NPC_KANZAKI, Func_37809
-	npc_script NPC_RUI, Func_3792d
+	npc_script NPC_KANZAKI, Script_Kanzaki
+	npc_script NPC_RUI, Script_RuiGrCastle
 	db $ff
 
 GrCastle_MapScripts:
@@ -7084,8 +7084,8 @@ GrCastle_AfterDuel:
 	ret
 
 GrCastle_AfterDuelScripts:
-	npc_script NPC_KANZAKI, Func_378cf
-	npc_script NPC_RUI, Func_37a21
+	npc_script NPC_KANZAKI, Script_KanzakiAfterDuel
+	npc_script NPC_RUI, Script_RuiGrCastleAfterDuel
 	db $ff
 
 Func_37709:
@@ -7160,7 +7160,7 @@ Func_37709:
 	move_npc NPC_RUI, .NPCMovement_377bf
 	wait_for_player_animation
 	do_frames 30
-	script_jump Func_37809.ows_3782d
+	script_jump Script_Kanzaki.ows_3782d
 .NPCMovement_377aa:
 	db NORTH, MOVE_4
 	db $ff
@@ -7219,7 +7219,7 @@ Script_377c4:
 	db NORTH, MOVE_7
 	db $ff
 
-Func_37809:
+Script_Kanzaki:
 	ld a, NPC_KANZAKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogKanzakiText
@@ -7323,7 +7323,7 @@ Func_37809:
 	end_script
 	ret
 
-Func_378cf:
+Script_KanzakiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -7372,7 +7372,7 @@ Func_378cf:
 	end_script
 	ret
 
-Func_3792d:
+Script_RuiGrCastle:
 	ld a, NPC_RUI
 	ld [wScriptNPC], a
 	ldtx hl, DialogRuiText
@@ -7497,7 +7497,7 @@ Script_379d7:
 	end_script
 	ret
 
-Func_37a21:
+Script_RuiGrCastleAfterDuel:
 	xor a
 	start_script
 	start_dialog

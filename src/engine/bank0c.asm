@@ -1384,7 +1384,7 @@ GrassFortEntrance_NPCs:
 	db $ff
 
 GrassFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_GRASS_FORT, Func_315ad
+	npc_script NPC_GR_CLERK_GRASS_FORT, Script_GrassFortGRClerk
 	db $ff
 
 GrassFortEntrance_MapScripts:
@@ -1451,7 +1451,7 @@ GrassFortEntrance_AfterDuel:
 	scf
 	ret
 
-Func_315ad:
+Script_GrassFortGRClerk:
 	ld a, NPC_GR_CLERK_GRASS_FORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -1496,10 +1496,10 @@ GrassFortLobby_NPCs:
 	db $ff
 
 GrassFortLobby_NPCInteractions:
-	npc_script NPC_GRASS_FORT_GR_GRUNT, Func_316b5
-	npc_script NPC_GRASS_FORT_GR_PAPPY, Func_3171f
-	npc_script NPC_GRASS_FORT_GR_LASS, Func_31745
-	npc_script NPC_IMAKUNI_RED, Func_3c4e0
+	npc_script NPC_GRASS_FORT_GR_GRUNT, Script_GrassFortGRGrunt
+	npc_script NPC_GRASS_FORT_GR_PAPPY, Script_GrassFortGRPappy
+	npc_script NPC_GRASS_FORT_GR_LASS, Script_GrassFortGRLass
+	npc_script NPC_IMAKUNI_RED, Script_ImakuniRed
 	db $ff
 
 GrassFortLobby_OWInteractions:
@@ -1573,7 +1573,7 @@ GrassFortLobby_ContinueOW:
 	scf
 	ret
 
-Func_316b5:
+Script_GrassFortGRGrunt:
 	ld a, NPC_GRASS_FORT_GR_GRUNT
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRGruntText
@@ -1623,7 +1623,7 @@ Func_316b5:
 	end_script
 	ret
 
-Func_3171f:
+Script_GrassFortGRPappy:
 	ld a, NPC_GRASS_FORT_GR_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy1Text
@@ -1645,7 +1645,7 @@ Func_3171f:
 	end_script
 	ret
 
-Func_31745:
+Script_GrassFortGRLass:
 	ld a, NPC_GRASS_FORT_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -1702,7 +1702,7 @@ GrassFortMidori_NPCs:
 	db $ff
 
 GrassFortMidori_NPCInteractions:
-	npc_script NPC_MIDORI, Func_31871
+	npc_script NPC_MIDORI, Script_Midori
 	db $ff
 
 GrassFortMidori_OWInteractions:
@@ -1768,7 +1768,7 @@ GrassFortMidori_AfterDuel:
 	ret
 
 GrassFortMidori_AfterDuelScripts:
-	npc_script NPC_MIDORI, Func_318e2
+	npc_script NPC_MIDORI, Script_MidoriAfterDuel
 	db $ff
 
 Func_31835:
@@ -1808,7 +1808,7 @@ Func_31864:
 	ccf
 	ret
 
-Func_31871:
+Script_Midori:
 	ld a, NPC_MIDORI
 	ld [wScriptNPC], a
 	ldtx hl, DialogMidoriText
@@ -1870,7 +1870,7 @@ Func_31871:
 	end_script
 	ret
 
-Func_318e2:
+Script_MidoriAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1963,7 +1963,7 @@ GrassFortYuta_NPCs:
 	db $ff
 
 GrassFortYuta_NPCInteractions:
-	npc_script NPC_YUTA, Func_31a12
+	npc_script NPC_YUTA, Script_Yuta
 	db $ff
 
 GrassFortYuta_OWInteractions:
@@ -2022,10 +2022,10 @@ GrassFortYuta_AfterDuel:
 	ret
 
 GrassFortYuta_AfterDuelScripts:
-	npc_script NPC_YUTA, Func_31aa7
+	npc_script NPC_YUTA, Script_YutaAfterDuel
 	db $ff
 
-Func_31a12:
+Script_Yuta:
 	ld a, NPC_YUTA
 	ld [wScriptNPC], a
 	ldtx hl, DialogYutaText
@@ -2097,7 +2097,7 @@ Func_31a12:
 	end_script
 	ret
 
-Func_31aa7:
+Script_YutaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2187,7 +2187,7 @@ GrassFortMiyuki_NPCs:
 	db $ff
 
 GrassFortMiyuki_NPCInteractions:
-	npc_script NPC_MIYUKI, Func_31bc8
+	npc_script NPC_MIYUKI, Script_Miyuki
 	db $ff
 
 GrassFortMiyuki_OWInteractions:
@@ -2246,10 +2246,10 @@ GrassFortMiyuki_AfterDuel:
 	ret
 
 GrassFortMiyuki_AfterDuelScripts:
-	npc_script NPC_MIYUKI, Func_31c37
+	npc_script NPC_MIYUKI, Script_MiyukiAfterDuel
 	db $ff
 
-Func_31bc8:
+Script_Miyuki:
 	ld a, NPC_MIYUKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogMiyukiText
@@ -2309,7 +2309,7 @@ Func_31bc8:
 	end_script
 	ret
 
-Func_31c37:
+Script_MiyukiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2406,7 +2406,7 @@ LightningFortEntrance_NPCs:
 	db $ff
 
 LightningFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_LIGHTNING_FORT, Func_31d6e
+	npc_script NPC_GR_CLERK_LIGHTNING_FORT, Script_LightningFortGRClerk
 	db $ff
 
 LightningFortEntrance_OWInteractions:
@@ -2462,7 +2462,7 @@ LightningFortEntrance_Interact:
 	scf
 	ret
 
-Func_31d6e:
+Script_LightningFortGRClerk:
 	ld a, NPC_GR_CLERK_LIGHTNING_FORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -2538,10 +2538,10 @@ LightningFortLobby_NPCs:
 	db $ff
 
 LightningFortLobby_NPCInteractions:
-	npc_script NPC_LIGHTNING_FORT_GR_LASS, Func_31e82
-	npc_script NPC_LIGHTNING_FORT_GR_WOMAN, Func_31ee8
-	npc_script NPC_LIGHTNING_FORT_CHUBBY_KID, Func_31f2c
-	npc_script NPC_TAP, Func_31f52
+	npc_script NPC_LIGHTNING_FORT_GR_LASS, Script_LightningFortGRLass
+	npc_script NPC_LIGHTNING_FORT_GR_WOMAN, Script_LightningFortGRWoman
+	npc_script NPC_LIGHTNING_FORT_CHUBBY_KID, Script_LightningFortChubbyKid
+	npc_script NPC_TAP, Script_Tap
 	db $ff
 
 LightningFortLobby_OWInteractions:
@@ -2588,10 +2588,10 @@ LightningFortLobby_AfterDuel:
 	ret
 
 LightningFortLobby_AfterDuelScripts:
-	npc_script NPC_TAP, Func_31f8f
+	npc_script NPC_TAP, Script_TapAfterDuel
 	db $ff
 
-Func_31e82:
+Script_LightningFortGRLass:
 	ld a, NPC_LIGHTNING_FORT_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRKidText
@@ -2640,7 +2640,7 @@ Func_31e82:
 	end_script
 	ret
 
-Func_31ee8:
+Script_LightningFortGRWoman:
 	ld a, NPC_LIGHTNING_FORT_GR_WOMAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRLightningWomanText
@@ -2676,7 +2676,7 @@ Func_31ee8:
 	end_script
 	ret
 
-Func_31f2c:
+Script_LightningFortChubbyKid:
 	ld a, NPC_LIGHTNING_FORT_CHUBBY_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogChubbyKidText
@@ -2698,7 +2698,7 @@ Func_31f2c:
 	end_script
 	ret
 
-Func_31f52:
+Script_Tap:
 	ld a, NPC_TAP
 	ld [wScriptNPC], a
 	ldtx hl, DialogTapText
@@ -2731,7 +2731,7 @@ Func_31f52:
 	end_script
 	ret
 
-Func_31f8f:
+Script_TapAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2766,7 +2766,7 @@ LightningFortRenna_NPCs:
 	db $ff
 
 LightningFortRenna_NPCInteractions:
-	npc_script NPC_RENNA, Func_32057
+	npc_script NPC_RENNA, Script_Renna
 	db $ff
 
 LightningFortRenna_OWInteractions:
@@ -2830,10 +2830,10 @@ LightningFortRenna_AfterDuel:
 	ret
 
 LightningFortRenna_AfterDuelScripts:
-	npc_script NPC_RENNA, Func_320bb
+	npc_script NPC_RENNA, Script_RennaAfterDuel
 	db $ff
 
-Func_32057:
+Script_Renna:
 	ld a, NPC_RENNA
 	ld [wScriptNPC], a
 	ldtx hl, DialogRennaText
@@ -2887,7 +2887,7 @@ Func_32057:
 	end_script
 	ret
 
-Func_320bb:
+Script_RennaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2981,7 +2981,7 @@ LightningFortIchikawa_NPCs:
 	db $ff
 
 LightningFortIchikawa_NPCInteractions:
-	npc_script NPC_ICHIKAWA, Func_32204
+	npc_script NPC_ICHIKAWA, Script_Ichikawa
 	db $ff
 
 LightningFortIchikawa_OWInteractions:
@@ -3047,10 +3047,10 @@ LightningFortIchikawa_AfterDuel:
 	ret
 
 LightningFortIchikawa_AfterDuelScripts:
-	npc_script NPC_ICHIKAWA, Func_322a1
+	npc_script NPC_ICHIKAWA, Script_IchikawaAfterDuel
 	db $ff
 
-Func_32204:
+Script_Ichikawa:
 	ld a, NPC_ICHIKAWA
 	ld [wScriptNPC], a
 	ldtx hl, DialogIchikawaText
@@ -3130,7 +3130,7 @@ Func_32204:
 	end_script
 	ret
 
-Func_322a1:
+Script_IchikawaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3341,7 +3341,7 @@ LightningFortCatherine_NPCs:
 	db $ff
 
 LightningFortCatherine_NPCInteractions:
-	npc_script NPC_CATHERINE, Func_32477
+	npc_script NPC_CATHERINE, Script_Catherine
 	db $ff
 
 LightningFortCatherine_MapScripts:
@@ -3377,10 +3377,10 @@ LightningFortCatherine_AfterDuel:
 	ret
 
 LightningFortCatherine_AfterDuelScripts:
-	npc_script NPC_CATHERINE, Func_324e1
+	npc_script NPC_CATHERINE, Script_CatherineAfterDuel
 	db $ff
 
-Func_32477:
+Script_Catherine:
 	ld a, NPC_CATHERINE
 	ld [wScriptNPC], a
 	ldtx hl, DialogCatherineText
@@ -3440,7 +3440,7 @@ Func_32477:
 	end_script
 	ret
 
-Func_324e1:
+Script_CatherineAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3503,7 +3503,7 @@ FireFortEntrance_NPCs:
 	db $ff
 
 FireFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_FIRE_FORT, Func_32632
+	npc_script NPC_GR_CLERK_FIRE_FORT, Script_FireFortGRClerk
 	db $ff
 
 FireFortEntrance_OWInteractions:
@@ -3602,7 +3602,7 @@ FireFortEntrance_AfterDuel:
 	scf
 	ret
 
-Func_32632:
+Script_FireFortGRClerk:
 	ld a, NPC_GR_CLERK_FIRE_FORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -3677,9 +3677,9 @@ FireFortLobby_NPCs:
 	db $ff
 
 FireFortLobby_NPCInteractions:
-	npc_script NPC_FIRE_FORT_GRAMPY, Func_32769
-	npc_script NPC_FIRE_FORT_YOUNGSTER, Func_327cf
-	npc_script NPC_IMAKUNI_RED, Func_3c4e0
+	npc_script NPC_FIRE_FORT_GRAMPY, Script_FireFortGrampy
+	npc_script NPC_FIRE_FORT_YOUNGSTER, Script_FireFortYoungster
+	npc_script NPC_IMAKUNI_RED, Script_ImakuniRed
 	db $ff
 
 FireFortLobby_OWInteractions:
@@ -3753,7 +3753,7 @@ FireFortLobby_ContinueOW:
 	scf
 	ret
 
-Func_32769:
+Script_FireFortGrampy:
 	ld a, NPC_FIRE_FORT_GRAMPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRampyText
@@ -3802,7 +3802,7 @@ Func_32769:
 	end_script
 	ret
 
-Func_327cf:
+Script_FireFortYoungster:
 	ld a, NPC_FIRE_FORT_YOUNGSTER
 	ld [wScriptNPC], a
 	ldtx hl, DialogYoungsterText
@@ -3853,7 +3853,7 @@ FireFortJes_NPCs:
 	db $ff
 
 FireFortJes_NPCInteractions:
-	npc_script NPC_JES, Func_328ae
+	npc_script NPC_JES, Script_Jes
 	db $ff
 
 FireFortJes_OWInteractions:
@@ -3917,10 +3917,10 @@ FireFortJes_AfterDuel:
 	ret
 
 FireFortJes_AfterDuelScripts:
-	npc_script NPC_JES, Func_32907
+	npc_script NPC_JES, Script_JesAfterDuel
 	db $ff
 
-Func_328ae:
+Script_Jes:
 	ld a, NPC_JES
 	ld [wScriptNPC], a
 	ldtx hl, DialogJesText
@@ -3968,7 +3968,7 @@ Func_328ae:
 	end_script
 	ret
 
-Func_32907:
+Script_JesAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4044,7 +4044,7 @@ FireFortYuki_NPCs:
 	db $ff
 
 FireFortYuki_NPCInteractions:
-	npc_script NPC_YUKI, Func_32a76
+	npc_script NPC_YUKI, Script_Yuki
 	db $ff
 
 FireFortYuki_OWInteractions:
@@ -4121,7 +4121,7 @@ FireFortYuki_AfterDuel:
 	ret
 
 FireFortYuki_AfterDuelScripts:
-	npc_script NPC_YUKI, Func_32b43
+	npc_script NPC_YUKI, Script_YukiAfterDuel
 	db $ff
 
 Func_32a38:
@@ -4160,7 +4160,7 @@ Func_32a38:
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_32a76:
+Script_Yuki:
 	ld a, NPC_YUKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogYukiText
@@ -4278,7 +4278,7 @@ Func_32a76:
 	end_script
 	ret
 
-Func_32b43:
+Script_YukiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4397,7 +4397,7 @@ FireFortShoko_NPCs:
 	db $ff
 
 FireFortShoko_NPCInteractions:
-	npc_script NPC_SHOKO, Func_32c9a
+	npc_script NPC_SHOKO, Script_Shoko
 	db $ff
 
 FireFortShoko_OWInteractions:
@@ -4459,10 +4459,10 @@ FireFortShoko_AfterDuel:
 	ret
 
 FireFortShoko_AfterDuelScripts:
-	npc_script NPC_SHOKO, Func_32d1f
+	npc_script NPC_SHOKO, Script_ShokoAfterDuel
 	db $ff
 
-Func_32c9a:
+Script_Shoko:
 	ld a, NPC_SHOKO
 	ld [wScriptNPC], a
 	ldtx hl, DialogShokoText
@@ -4535,7 +4535,7 @@ Func_32c9a:
 	end_script
 	ret
 
-Func_32d1f:
+Script_ShokoAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4693,7 +4693,7 @@ FireFortHidero_NPCs:
 	db $ff
 
 FireFortHidero_NPCInteractions:
-	npc_script NPC_HIDERO, Func_32e79
+	npc_script NPC_HIDERO, Script_Hidero
 	db $ff
 
 FireFortHidero_MapScripts:
@@ -4729,10 +4729,10 @@ FireFortHidero_AfterDuel:
 	ret
 
 FireFortHidero_AfterDuelScripts:
-	npc_script NPC_HIDERO, Func_32efd
+	npc_script NPC_HIDERO, Script_HideroAfterDuel
 	db $ff
 
-Func_32e79:
+Script_Hidero:
 	ld a, NPC_HIDERO
 	ld [wScriptNPC], a
 	ldtx hl, DialogHideroText
@@ -4803,7 +4803,7 @@ Func_32e79:
 	end_script
 	ret
 
-Func_32efd:
+Script_HideroAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -4872,7 +4872,7 @@ WaterFortEntrance_NPCs:
 	db $ff
 
 WaterFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_WATER_FORT, Func_3305c
+	npc_script NPC_GR_CLERK_WATER_FORT, Script_WaterFortGRClerk
 	db $ff
 
 WaterFortEntrance_OWInteractions:
@@ -4971,7 +4971,7 @@ WaterFortEntrance_AfterDuel:
 	scf
 	ret
 
-Func_3305c:
+Script_WaterFortGRClerk:
 	ld a, NPC_GR_CLERK_WATER_FORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -5044,7 +5044,7 @@ WaterFortMiyajima_NPCs:
 	db $ff
 
 WaterFortMiyajima_NPCInteractions:
-	npc_script NPC_MIYAJIMA, Func_3316a
+	npc_script NPC_MIYAJIMA, Script_Miyajima
 	db $ff
 
 WaterFortMiyajima_OWInteractions:
@@ -5108,10 +5108,10 @@ WaterFortMiyajima_AfterDuel:
 	ret
 
 WaterFortMiyajima_AfterDuelScripts:
-	npc_script NPC_MIYAJIMA, Func_331d9
+	npc_script NPC_MIYAJIMA, Script_MiyajimaAfterDuel
 	db $ff
 
-Func_3316a:
+Script_Miyajima:
 	ld a, NPC_MIYAJIMA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMiyajimaText
@@ -5171,7 +5171,7 @@ Func_3316a:
 	end_script
 	ret
 
-Func_331d9:
+Script_MiyajimaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5250,7 +5250,7 @@ WaterFortKanoko_NPCs:
 	db $ff
 
 WaterFortKanoko_NPCInteractions:
-	npc_script NPC_KANOKO, Func_332a6
+	npc_script NPC_KANOKO, Script_Kanoko
 	db $ff
 
 WaterFortKanoko_MapScripts:
@@ -5286,10 +5286,10 @@ WaterFortKanoko_AfterDuel:
 	ret
 
 WaterFortKanoko_AfterDuelScripts:
-	npc_script NPC_KANOKO, Func_332ff
+	npc_script NPC_KANOKO, Script_KanokoAfterDuel
 	db $ff
 
-Func_332a6:
+Script_Kanoko:
 	ld a, NPC_KANOKO
 	ld [wScriptNPC], a
 	ldtx hl, DialogKanokoText
@@ -5337,7 +5337,7 @@ Func_332a6:
 	end_script
 	ret
 
-Func_332ff:
+Script_KanokoAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5402,7 +5402,7 @@ FightingFortEntrance_NPCs:
 	db $ff
 
 FightingFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_FIGHTING_FORT, Func_33434
+	npc_script NPC_GR_CLERK_FIGHTING_FORT, Script_FightingFortGRClerk
 	db $ff
 
 FightingFortEntrance_OWInteractions:
@@ -5483,7 +5483,7 @@ FightingFortEntrance_Interact:
 	scf
 	ret
 
-Func_33434:
+Script_FightingFortGRClerk:
 	ld a, NPC_GR_CLERK_FIGHTING_FORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -5612,8 +5612,8 @@ FightingFortMaze2_NPCs:
 	db $ff
 
 FightingFortMaze2_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_33589
-	npc_script NPC_CHEST_OPENED, Func_335af
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortMaze2ChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortMaze2ChestOpened
 	db $ff
 
 FightingFortMaze2_MapScripts:
@@ -5652,7 +5652,7 @@ FightingFortMaze2_Interact:
 	scf
 	ret
 
-Func_33589:
+Script_FightingFortMaze2ChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -5677,7 +5677,7 @@ Func_335a2:
 	scf
 	ret
 
-Func_335af:
+Script_FightingFortMaze2ChestOpened:
 	xor a
 	start_script
 	start_dialog
@@ -5759,8 +5759,8 @@ FightingFortMaze4_NPCs:
 	db $ff
 
 FightingFortMaze4_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_336d2
-	npc_script NPC_CHEST_OPENED, Func_336f8
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortMaze4ChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortMaze4ChestOpened
 	db $ff
 
 FightingFortMaze4_MapScripts:
@@ -5807,7 +5807,7 @@ FightingFortMaze4_Interact:
 	scf
 	ret
 
-Func_336d2:
+Script_FightingFortMaze4ChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -5832,7 +5832,7 @@ Func_336eb:
 	scf
 	ret
 
-Func_336f8:
+Script_FightingFortMaze4ChestOpened:
 	xor a
 	start_script
 	start_dialog
@@ -5978,8 +5978,8 @@ FightingFortMaze8_NPCs:
 	db $ff
 
 FightingFortMaze8_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_338d7
-	npc_script NPC_CHEST_OPENED, Func_338fd
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortMaze8ChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortMaze8ChestOpened
 	db $ff
 
 FightingFortMaze8_MapScripts:
@@ -6026,7 +6026,7 @@ FightingFortMaze8_Interact:
 	scf
 	ret
 
-Func_338d7:
+Script_FightingFortMaze8ChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -6051,7 +6051,7 @@ Func_338f0:
 	scf
 	ret
 
-Func_338fd:
+Script_FightingFortMaze8ChestOpened:
 	xor a
 	start_script
 	start_dialog
@@ -6361,8 +6361,8 @@ FightingFortMaze17_NPCs:
 	db $ff
 
 FightingFortMaze17_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_33cba
-	npc_script NPC_CHEST_OPENED, Func_33ce0
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortMaze17ChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortMaze17ChestOpened
 	db $ff
 
 FightingFortMaze17_MapScripts:
@@ -6424,7 +6424,7 @@ FightingFortMaze17_Interact:
 	scf
 	ret
 
-Func_33cba:
+Script_FightingFortMaze17ChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -6449,7 +6449,7 @@ Func_33cd3:
 	scf
 	ret
 
-Func_33ce0:
+Script_FightingFortMaze17ChestOpened:
 	xor a
 	start_script
 	start_dialog

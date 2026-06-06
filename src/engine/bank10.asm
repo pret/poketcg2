@@ -3190,7 +3190,7 @@ GrAirport_NPCs:
 	db $ff
 
 GrAirport_NPCInteractions:
-	npc_script NPC_GR_5, Func_41cd3
+	npc_script NPC_GR_5, Script_GR5_GrAirport
 	db $ff
 
 GrAirport_MapScripts:
@@ -3278,7 +3278,7 @@ GrAirport_Interact:
 	scf
 	ret
 
-Func_41cd3:
+Script_GR5_GrAirport:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -5553,7 +5553,7 @@ GrCastleBiruritchi_NPCs:
 	db $ff
 
 GrCastleBiruritchi_NPCInteractions:
-	npc_script NPC_BIRURITCHI, Func_43136
+	npc_script NPC_BIRURITCHI, Script_Biruritchi
 	db $ff
 
 GrCastleBiruritchi_OWInteractions:
@@ -5660,7 +5660,7 @@ GrCastleBiruritchi_AfterDuel:
 	ret
 
 GrCastleBiruritchi_AfterDuelScripts:
-	npc_script NPC_BIRURITCHI, Func_431a6
+	npc_script NPC_BIRURITCHI, Script_BiruritchiAfterDuel
 	db $ff
 
 GrCastleBiruritchi_ContinueOW:
@@ -5803,7 +5803,7 @@ Func_43050:
 	end_script
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
-	jp Func_43136
+	jp Script_Biruritchi
 .NPCMovement_430f4:
 	db NORTH, MOVE_6
 	db WEST, MOVE_2
@@ -5850,7 +5850,7 @@ Func_43050:
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_43136:
+Script_Biruritchi:
 	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
 	ldtx hl, DialogBiruritchiText
@@ -5904,7 +5904,7 @@ Func_43136:
 	end_script
 	ret
 
-Func_431a6:
+Script_BiruritchiAfterDuel:
 	xor a
 	start_script
 	start_dialog

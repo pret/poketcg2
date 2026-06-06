@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 108 named. 285 remaining. npc_script seam COMPLETE (0 npc_script Func_* left).
+  8 subagents swept the fort trainer maps (the GR団 fort bosses Midori/Renna/Catherine/Yuki/
+  Kanoko/Kamiya/Mami/Kanzaki/Biruritchi... matching the AI skill's per-deck duel names),
+  the 6 FightingFort maze treasure chests (Script_<Map>ChestClosed/Opened, named by the
+  NPC_CHEST_* state not the action — both subagents' chest sets normalized to this), remaining
+  club/fort lobby generics (Script_<Place><Role>), challenge-hall lobbies, the Mason computer-room
+  lab techs, and all fort/club entrance GR clerks. Shared 5-map Imakuni Red -> Script_ImakuniRed
+  (central). Collisions auto-disambiguated with map suffixes (Script_RuiGrCastle vs villa Rui,
+  Script_RodPsychicStronghold vs Dome Rod, Script_StephaniePsychicClubEntrance vs club Stephanie).
 - 2026-06-06: 57 named. 393 remaining. npc_script seam batch 2 (8 subagents): the 6 club LOBBIES
   + PsychicStronghold + ColorlessAltar + MasonLab TrainingRoom + RockClub members. Recurring
   trainers whose club-MAIN handler already took the bare name get a map suffix here

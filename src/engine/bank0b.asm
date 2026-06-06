@@ -1243,7 +1243,7 @@ PsychicClubEntrance_NPCs:
 	db $ff
 
 PsychicClubEntrance_NPCInteractions:
-	npc_script NPC_STEPHANIE, Func_2caa0
+	npc_script NPC_STEPHANIE, Script_StephaniePsychicClubEntrance
 	db $ff
 
 PsychicClubEntrance_MapScripts:
@@ -1405,7 +1405,7 @@ PsychicClubEntrance_MoveStephanieOutOfPath:
 	ret
 
 ; beating GR4 at Lightning Club unlocks Psychic Club sequence
-Func_2caa0:
+Script_StephaniePsychicClubEntrance:
 	ld a, NPC_STEPHANIE
 	ld [wScriptNPC], a
 	ldtx hl, DialogStephanieText
@@ -1489,11 +1489,11 @@ PsychicClubLobby_NPCs:
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
-	npc_script NPC_PSYCHIC_CLUB_GLASSES_LAD, Func_2cc11
-	npc_script NPC_PSYCHIC_CLUB_LASS, Func_2cc7d
+	npc_script NPC_PSYCHIC_CLUB_GLASSES_LAD, Script_PsychicClubGlassesLad
+	npc_script NPC_PSYCHIC_CLUB_LASS, Script_PsychicClubLass
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
-	npc_script NPC_PSYCHIC_CLUB_CAPPED_LAD, Func_2ccb7
-	npc_script NPC_PSYCHIC_CLUB_GR_LASS, Func_2cce8
+	npc_script NPC_PSYCHIC_CLUB_CAPPED_LAD, Script_PsychicClubCappedLad
+	npc_script NPC_PSYCHIC_CLUB_GR_LASS, Script_PsychicClubGRLass
 	db $ff
 
 PsychicClubLobby_OWInteractions:
@@ -1583,7 +1583,7 @@ PsychicClubLobby_ContinueOW:
 	scf
 	ret
 
-Func_2cc11:
+Script_PsychicClubGlassesLad:
 	ld a, NPC_PSYCHIC_CLUB_GLASSES_LAD
 	ld [wScriptNPC], a
 	ldtx hl, DialogGlassesLadText
@@ -1634,7 +1634,7 @@ Func_2cc11:
 	end_script
 	ret
 
-Func_2cc7d:
+Script_PsychicClubLass:
 	ld a, NPC_PSYCHIC_CLUB_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -1669,7 +1669,7 @@ Func_2cca8:
 	ccf
 	ret
 
-Func_2ccb7:
+Script_PsychicClubCappedLad:
 	ld a, NPC_PSYCHIC_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedKidText
@@ -1696,7 +1696,7 @@ Func_2ccb7:
 	end_script
 	ret
 
-Func_2cce8:
+Script_PsychicClubGRLass:
 	ld a, NPC_PSYCHIC_CLUB_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRKidText
@@ -2643,11 +2643,11 @@ RockClubLobby_NPCs:
 	db $ff
 
 RockClubLobby_NPCInteractions:
-	npc_script NPC_ROCK_CLUB_LASS, Func_2d4e0
-	npc_script NPC_ROCK_CLUB_WOMAN, Func_2d546
+	npc_script NPC_ROCK_CLUB_LASS, Script_RockClubLass
+	npc_script NPC_ROCK_CLUB_WOMAN, Script_RockClubWoman
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
-	npc_script NPC_ROCK_CLUB_CHAP, Func_2d58b
-	npc_script NPC_ROCK_CLUB_CAPPED_LAD, Func_2d5c7
+	npc_script NPC_ROCK_CLUB_CHAP, Script_RockClubChap
+	npc_script NPC_ROCK_CLUB_CAPPED_LAD, Script_RockClubCappedLad
 	db $ff
 
 RockClubLobby_OWInteractions:
@@ -2739,7 +2739,7 @@ RockClubLobby_ContinueOW:
 	scf
 	ret
 
-Func_2d4e0:
+Script_RockClubLass:
 	ld a, NPC_ROCK_CLUB_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -2788,7 +2788,7 @@ Func_2d4e0:
 	end_script
 	ret
 
-Func_2d546:
+Script_RockClubWoman:
 	ld a, NPC_ROCK_CLUB_WOMAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogWomanText
@@ -2828,7 +2828,7 @@ Func_2d57c:
 	ccf
 	ret
 
-Func_2d58b:
+Script_RockClubChap:
 	ld a, NPC_ROCK_CLUB_CHAP
 	ld [wScriptNPC], a
 	ldtx hl, DialogChap1Text
@@ -2860,7 +2860,7 @@ Func_2d58b:
 	end_script
 	ret
 
-Func_2d5c7:
+Script_RockClubCappedLad:
 	ld a, NPC_ROCK_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedKidText
@@ -4907,7 +4907,7 @@ ScienceClubEntrance_NPCs:
 	db $ff
 
 ScienceClubEntrance_NPCInteractions:
-	npc_script NPC_JOSEPH, Func_2e5d0
+	npc_script NPC_JOSEPH, Script_JosephScienceClubEntrance
 	db $ff
 
 ScienceClubEntrance_MapScripts:
@@ -5046,7 +5046,7 @@ ScienceClubEntrance_ShouldRonaldAppear:
 	ccf
 	ret
 
-Func_2e5d0:
+Script_JosephScienceClubEntrance:
 	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
 	ldtx hl, DialogJosephText
@@ -7233,10 +7233,10 @@ FireClubLobby_NPCs:
 	db $ff
 
 FireClubLobby_NPCInteractions:
-	npc_script NPC_FIRE_CLUB_PUNK_GUY, Func_2f709
+	npc_script NPC_FIRE_CLUB_PUNK_GUY, Script_FireClubPunkGuy
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
-	npc_script NPC_FIRE_CLUB_MARTIAL_ARTIST, Func_2f77e
-	npc_script NPC_FIRE_CLUB_GAL, Func_2f7a4
+	npc_script NPC_FIRE_CLUB_MARTIAL_ARTIST, Script_FireClubMartialArtist
+	npc_script NPC_FIRE_CLUB_GAL, Script_FireClubGal
 	db $ff
 
 FireClubLobby_OWInteractions:
@@ -7326,7 +7326,7 @@ FireClubLobby_ContinueOW:
 	scf
 	ret
 
-Func_2f709:
+Script_FireClubPunkGuy:
 	ld a, NPC_FIRE_CLUB_PUNK_GUY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPunkGuyText
@@ -7387,7 +7387,7 @@ Func_2f76f:
 	ccf
 	ret
 
-Func_2f77e:
+Script_FireClubMartialArtist:
 	ld a, NPC_FIRE_CLUB_MARTIAL_ARTIST
 	ld [wScriptNPC], a
 	ldtx hl, DialogMartialArtistText
@@ -7409,7 +7409,7 @@ Func_2f77e:
 	end_script
 	ret
 
-Func_2f7a4:
+Script_FireClubGal:
 	ld a, NPC_FIRE_CLUB_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogGal1Text

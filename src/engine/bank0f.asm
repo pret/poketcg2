@@ -610,7 +610,7 @@ Script_3c497:
 	farcall PlayAfterCurrentSong
 	ret
 
-Func_3c4e0:
+Script_ImakuniRed:
 	ld a, NPC_IMAKUNI_RED
 	ld [wScriptNPC], a
 	ldtx hl, DialogImakuniText
@@ -775,10 +775,10 @@ MasonLaboratoryComputerRoom_NPCs:
 	db $ff
 
 MasonLaboratoryComputerRoom_NPCInteractions:
-	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_1, Func_3c739
-	npc_script NPC_LAB_TECH_DECK_SAVE_MACHINE, Func_3c75f
-	npc_script NPC_LAB_TECH_COMPUTER_ROOM, Func_3c77a
-	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_2, Func_3c7ab
+	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_1, Script_LabTechAutoDeckMachine1
+	npc_script NPC_LAB_TECH_DECK_SAVE_MACHINE, Script_LabTechDeckSaveMachine
+	npc_script NPC_LAB_TECH_COMPUTER_ROOM, Script_LabTechComputerRoom
+	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_2, Script_LabTechAutoDeckMachine2
 	db $ff
 
 MasonLaboratoryComputerRoom_OWInteractions:
@@ -896,7 +896,7 @@ Script_DeckSaveMachine:
 	end_script
 	ret
 
-Func_3c739:
+Script_LabTechAutoDeckMachine1:
 	ld a, NPC_LAB_TECH_AUTO_DECK_MACHINE_1
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -918,7 +918,7 @@ Func_3c739:
 	end_script
 	ret
 
-Func_3c75f:
+Script_LabTechDeckSaveMachine:
 	ld a, NPC_LAB_TECH_DECK_SAVE_MACHINE
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -934,7 +934,7 @@ Func_3c75f:
 	end_script
 	ret
 
-Func_3c77a:
+Script_LabTechComputerRoom:
 	ld a, NPC_LAB_TECH_COMPUTER_ROOM
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -961,7 +961,7 @@ Func_3c77a:
 	end_script
 	ret
 
-Func_3c7ab:
+Script_LabTechAutoDeckMachine2:
 	ld a, NPC_LAB_TECH_AUTO_DECK_MACHINE_2
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -2440,12 +2440,12 @@ TcgChallengeHallLobby_NPCs:
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
-	npc_script NPC_TCG_CHALLENGE_HALL_CHAP, Func_3d3c0
+	npc_script NPC_TCG_CHALLENGE_HALL_CHAP, Script_TCGChallengeHallChap
 	npc_script NPC_CUP_HOST, Script_CupHostTCGLobby
-	npc_script NPC_TCG_CHALLENGE_HALL_PUNK, Func_3d511
-	npc_script NPC_TCG_CHALLENGE_HALL_PAPPY, Func_3d539
-	npc_script NPC_TCG_CHALLENGE_HALL_TECH, Func_3d56d
-	npc_script NPC_TCG_CHALLENGE_HALL_GIRL, Func_3d588
+	npc_script NPC_TCG_CHALLENGE_HALL_PUNK, Script_TCGChallengeHallPunk
+	npc_script NPC_TCG_CHALLENGE_HALL_PAPPY, Script_TCGChallengeHallPappy
+	npc_script NPC_TCG_CHALLENGE_HALL_TECH, Script_TCGChallengeHallTech
+	npc_script NPC_TCG_CHALLENGE_HALL_GIRL, Script_TCGChallengeHallGirl
 	db $ff
 
 TcgChallengeHallLobby_OWInteractions:
@@ -2504,7 +2504,7 @@ TcgChallengeHallLobby_Interact:
 	scf
 	ret
 
-Func_3d3c0:
+Script_TCGChallengeHallChap:
 	ld a, NPC_TCG_CHALLENGE_HALL_CHAP
 	ld [wScriptNPC], a
 	ldtx hl, DialogChap2Text
@@ -2667,7 +2667,7 @@ Script_CupHostTCGLobby:
 	end_script
 	ret
 
-Func_3d511:
+Script_TCGChallengeHallPunk:
 	ld a, NPC_TCG_CHALLENGE_HALL_PUNK
 	ld [wScriptNPC], a
 	ldtx hl, DialogPunkText
@@ -2690,7 +2690,7 @@ Func_3d511:
 	end_script
 	ret
 
-Func_3d539:
+Script_TCGChallengeHallPappy:
 	ld a, NPC_TCG_CHALLENGE_HALL_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy2Text
@@ -2717,7 +2717,7 @@ Func_3d539:
 	end_script
 	ret
 
-Func_3d56d:
+Script_TCGChallengeHallTech:
 	ld a, NPC_TCG_CHALLENGE_HALL_TECH
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -2733,7 +2733,7 @@ Func_3d56d:
 	end_script
 	ret
 
-Func_3d588:
+Script_TCGChallengeHallGirl:
 	ld a, NPC_TCG_CHALLENGE_HALL_GIRL
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedKidText
@@ -6101,7 +6101,7 @@ GameCenterLobby_NPCInteractions:
 	npc_script NPC_GAME_CENTER_TECH, Script_GameCenterLobbyTech
 	npc_script NPC_GAME_CENTER_GR_LASS, Script_GameCenterLobbyGRLass
 	npc_script NPC_GAME_CENTER_GR_PAPPY, Script_GameCenterLobbyGRPappy
-	npc_script NPC_IMAKUNI_RED, Func_3c4e0
+	npc_script NPC_IMAKUNI_RED, Script_ImakuniRed
 	db $ff
 
 GameCenterLobby_OWInteractions:
@@ -6978,11 +6978,11 @@ WaterFortLobby_NPCs:
 	db $ff
 
 WaterFortLobby_NPCInteractions:
-	npc_script NPC_WATER_FORT_GLASSES_KID, Func_3f691
-	npc_script NPC_WATER_FORT_GR_LAD, Func_3f691
-	npc_script NPC_WATER_FORT_GR_GRANNY, Func_3f752
-	npc_script NPC_WATER_FORT_GR_GAL, Func_3f780
-	npc_script NPC_IMAKUNI_RED, Func_3c4e0
+	npc_script NPC_WATER_FORT_GLASSES_KID, Script_WaterFortGlassesKid
+	npc_script NPC_WATER_FORT_GR_LAD, Script_WaterFortGlassesKid
+	npc_script NPC_WATER_FORT_GR_GRANNY, Script_WaterFortGRGranny
+	npc_script NPC_WATER_FORT_GR_GAL, Script_WaterFortGRGal
+	npc_script NPC_IMAKUNI_RED, Script_ImakuniRed
 	db $ff
 
 WaterFortLobby_OWInteractions:
@@ -7056,7 +7056,7 @@ WaterFortLobby_ContinueOW:
 	scf
 	ret
 
-Func_3f691:
+Script_WaterFortGlassesKid:
 	ld a, NPC_WATER_FORT_GLASSES_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogGlassesKid1Text
@@ -7156,7 +7156,7 @@ Func_3f735:
 	ccf
 	ret
 
-Func_3f752:
+Script_WaterFortGRGranny:
 	ld a, NPC_WATER_FORT_GR_GRANNY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGrannyText
@@ -7182,7 +7182,7 @@ Func_3f752:
 	end_script
 	ret
 
-Func_3f780:
+Script_WaterFortGRGal:
 	ld a, NPC_WATER_FORT_GR_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogGal2Text
@@ -7234,8 +7234,8 @@ FightingFortMaze19_NPCs:
 	db $ff
 
 FightingFortMaze19_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_3f817
-	npc_script NPC_CHEST_OPENED, Func_3f83d
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortMaze19ChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortMaze19ChestOpened
 	db $ff
 
 FightingFortMaze19_MapScripts:
@@ -7262,7 +7262,7 @@ FightingFortMaze19_Interact:
 	scf
 	ret
 
-Func_3f817:
+Script_FightingFortMaze19ChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -7287,7 +7287,7 @@ Func_3f830:
 	scf
 	ret
 
-Func_3f83d:
+Script_FightingFortMaze19ChestOpened:
 	xor a
 	start_script
 	start_dialog
@@ -7342,8 +7342,8 @@ FightingFortBasement_NPCs:
 	db $ff
 
 FightingFortBasement_NPCInteractions:
-	npc_script NPC_CHEST_CLOSED, Func_3f90c
-	npc_script NPC_CHEST_OPENED, Func_3f932
+	npc_script NPC_CHEST_CLOSED, Script_FightingFortBasementChestClosed
+	npc_script NPC_CHEST_OPENED, Script_FightingFortBasementChestOpened
 	db $ff
 
 FightingFortBasement_MapScripts:
@@ -7399,7 +7399,7 @@ FightingFortBasement_Interact:
 	scf
 	ret
 
-Func_3f90c:
+Script_FightingFortBasementChestClosed:
 	xor a
 	start_script
 	start_dialog
@@ -7424,7 +7424,7 @@ Func_3f925:
 	scf
 	ret
 
-Func_3f932:
+Script_FightingFortBasementChestOpened:
 	xor a
 	start_script
 	start_dialog
