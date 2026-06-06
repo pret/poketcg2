@@ -1158,9 +1158,9 @@ SealedFortEntrance_StepEvents:
 	db $ff
 
 SealedFortEntrance_OWInteractions:
-	ow_script 4, 1, Func_313bc
-	ow_script 5, 1, Func_313bc
-	ow_script 6, 1, Func_313bc
+	ow_script 4, 1, Script_SealedFortEntranceDoor
+	ow_script 5, 1, Script_SealedFortEntranceDoor
+	ow_script 6, 1, Script_SealedFortEntranceDoor
 	db $ff
 
 SealedFortEntrance_MapScripts:
@@ -1199,7 +1199,7 @@ SealedFortEntrance_WarpFadeInPreload:
 	scf
 	ret
 
-Func_313bc:
+Script_SealedFortEntranceDoor:
 	ld a, EVENT_SEALED_FORT_DOOR_STATE
 	farcall GetEventValue
 	ret nz
@@ -1490,7 +1490,7 @@ GrassFortLobby_NPCs:
 	npc NPC_GRASS_FORT_GR_GRUNT, 3, 4, SOUTH, NULL
 	npc NPC_GRASS_FORT_GR_PAPPY, 3, 9, WEST, NULL
 	npc NPC_GRASS_FORT_GR_LASS, 7, 7, NORTH, NULL
-	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_31776
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, GrassFortLobby_ImakuniRedAppearanceCheck
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
@@ -1672,7 +1672,7 @@ Script_GrassFortGRLass:
 	end_script
 	ret
 
-Func_31776:
+GrassFortLobby_ImakuniRedAppearanceCheck:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $05
@@ -1698,7 +1698,7 @@ GrassFortMidori_StepEvents:
 
 GrassFortMidori_NPCs:
 	npc NPC_MIDORI, 5, 4, SOUTH, NULL
-	npc NPC_RICK, 6, 2, SOUTH, Func_31864
+	npc NPC_RICK, 6, 2, SOUTH, GrassFortMidori_RickAppearanceCheck
 	db $ff
 
 GrassFortMidori_NPCInteractions:
@@ -1706,7 +1706,7 @@ GrassFortMidori_NPCInteractions:
 	db $ff
 
 GrassFortMidori_OWInteractions:
-	ow_script 6, 4, Func_31835
+	ow_script 6, 4, Script_GrassFortMidoriLockedDoor
 	db $ff
 
 GrassFortMidori_MapScripts:
@@ -1771,7 +1771,7 @@ GrassFortMidori_AfterDuelScripts:
 	npc_script NPC_MIDORI, Script_MidoriAfterDuel
 	db $ff
 
-Func_31835:
+Script_GrassFortMidoriLockedDoor:
 	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	ret nz
@@ -1797,7 +1797,7 @@ Func_31835:
 	end_script
 	ret
 
-Func_31864:
+GrassFortMidori_RickAppearanceCheck:
 	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_3186e
@@ -1967,8 +1967,8 @@ GrassFortYuta_NPCInteractions:
 	db $ff
 
 GrassFortYuta_OWInteractions:
-	ow_script 4, 1, Func_31ae1
-	ow_script 5, 1, Func_31ae1
+	ow_script 4, 1, Script_GrassFortYutaLockedDoor
+	ow_script 5, 1, Script_GrassFortYutaLockedDoor
 	db $ff
 
 GrassFortYuta_MapScripts:
@@ -2129,7 +2129,7 @@ Script_YutaAfterDuel:
 	end_script
 	ret
 
-Func_31ae1:
+Script_GrassFortYutaLockedDoor:
 	ld a, EVENT_YUTAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31b05
@@ -2191,8 +2191,8 @@ GrassFortMiyuki_NPCInteractions:
 	db $ff
 
 GrassFortMiyuki_OWInteractions:
-	ow_script 5, 1, Func_31ca8
-	ow_script 6, 1, Func_31ca8
+	ow_script 5, 1, Script_GrassFortMiyukiLockedDoor
+	ow_script 6, 1, Script_GrassFortMiyukiLockedDoor
 	db $ff
 
 GrassFortMiyuki_MapScripts:
@@ -2373,7 +2373,7 @@ Script_MiyukiAfterDuel:
 	db SOUTH, MOVE_3
 	db $ff
 
-Func_31ca8:
+Script_GrassFortMiyukiLockedDoor:
 	ld a, EVENT_MIYUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31cba
@@ -2410,8 +2410,8 @@ LightningFortEntrance_NPCInteractions:
 	db $ff
 
 LightningFortEntrance_OWInteractions:
-	ow_script 4, 8, Func_31da0
-	ow_script 5, 8, Func_31da0
+	ow_script 4, 8, Script_LightningFortEntranceDoor
+	ow_script 5, 8, Script_LightningFortEntranceDoor
 	db $ff
 
 LightningFortEntrance_MapScripts:
@@ -2489,7 +2489,7 @@ Script_LightningFortGRClerk:
 	end_script
 	ret
 
-Func_31da0:
+Script_LightningFortEntranceDoor:
 	ld a, EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31dcd
@@ -2770,8 +2770,8 @@ LightningFortRenna_NPCInteractions:
 	db $ff
 
 LightningFortRenna_OWInteractions:
-	ow_script 4, 1, Func_320f5
-	ow_script 5, 1, Func_320f5
+	ow_script 4, 1, Script_LightningFortRennaLockedDoor
+	ow_script 5, 1, Script_LightningFortRennaLockedDoor
 	db $ff
 
 LightningFortRenna_MapScripts:
@@ -2919,7 +2919,7 @@ Script_RennaAfterDuel:
 	end_script
 	ret
 
-Func_320f5:
+Script_LightningFortRennaLockedDoor:
 	ld a, EVENT_RENNAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32119
@@ -2985,9 +2985,9 @@ LightningFortIchikawa_NPCInteractions:
 	db $ff
 
 LightningFortIchikawa_OWInteractions:
-	ow_script 4, 1, Func_323f0
-	ow_script 5, 1, Func_323f0
-	ow_script 3, 3, Func_32407
+	ow_script 4, 1, Script_LightningFortIchikawaLockedDoor
+	ow_script 5, 1, Script_LightningFortIchikawaLockedDoor
+	ow_script 3, 3, Script_LightningFortIchikawaSteveCell
 	db $ff
 
 LightningFortIchikawa_MapScripts:
@@ -3298,7 +3298,7 @@ Script_323b5:
 	db EAST, MOVE_0
 	db $ff
 
-Func_323f0:
+Script_LightningFortIchikawaLockedDoor:
 	ld a, EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32402
@@ -3312,7 +3312,7 @@ Func_323f0:
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_32407:
+Script_LightningFortIchikawaSteveCell:
 	ld a, EVENT_FREED_STEVE
 	farcall GetEventValue
 	jr nz, .asm_32419
@@ -3507,8 +3507,8 @@ FireFortEntrance_NPCInteractions:
 	db $ff
 
 FireFortEntrance_OWInteractions:
-	ow_script 4, 8, Func_32664
-	ow_script 5, 8, Func_32664
+	ow_script 4, 8, Script_FireFortEntranceDoor
+	ow_script 5, 8, Script_FireFortEntranceDoor
 	db $ff
 
 FireFortEntrance_MapScripts:
@@ -3629,7 +3629,7 @@ Script_FireFortGRClerk:
 	end_script
 	ret
 
-Func_32664:
+Script_FireFortEntranceDoor:
 	ld a, EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32691
@@ -3671,7 +3671,7 @@ FireFortLobby_StepEvents:
 FireFortLobby_NPCs:
 	npc NPC_FIRE_FORT_GRAMPY, 2, 10, SOUTH, NULL
 	npc NPC_FIRE_FORT_YOUNGSTER, 7, 6, WEST, NULL
-	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_327f5
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, FireFortLobby_ImakuniRedAppearanceCheck
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
@@ -3824,7 +3824,7 @@ Script_FireFortYoungster:
 	end_script
 	ret
 
-Func_327f5:
+FireFortLobby_ImakuniRedAppearanceCheck:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $07
@@ -3857,8 +3857,8 @@ FireFortJes_NPCInteractions:
 	db $ff
 
 FireFortJes_OWInteractions:
-	ow_script 4, 1, Func_32956
-	ow_script 5, 1, Func_32956
+	ow_script 4, 1, Script_FireFortJesLockedDoor
+	ow_script 5, 1, Script_FireFortJesLockedDoor
 	db $ff
 
 FireFortJes_MapScripts:
@@ -4013,7 +4013,7 @@ Script_JesAfterDuel:
 	end_script
 	ret
 
-Func_32956:
+Script_FireFortJesLockedDoor:
 	ld a, EVENT_JES_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32968
@@ -4048,8 +4048,8 @@ FireFortYuki_NPCInteractions:
 	db $ff
 
 FireFortYuki_OWInteractions:
-	ow_script 5, 1, Func_32bd4
-	ow_script 6, 1, Func_32bd4
+	ow_script 5, 1, Script_FireFortYukiLockedDoor
+	ow_script 6, 1, Script_FireFortYukiLockedDoor
 	db $ff
 
 FireFortYuki_MapScripts:
@@ -4365,7 +4365,7 @@ Script_YukiAfterDuel:
 	end_script
 	ret
 
-Func_32bd4:
+Script_FireFortYukiLockedDoor:
 	ld a, EVENT_YUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32be6
@@ -4393,7 +4393,7 @@ FireFortShoko_StepEvents:
 
 FireFortShoko_NPCs:
 	npc NPC_SHOKO, 3, 4, EAST, NULL
-	npc NPC_COURTNEY, 3, 7, SOUTH, Func_32d82
+	npc NPC_COURTNEY, 3, 7, SOUTH, FireFortShoko_CourtneyAppearanceCheck
 	db $ff
 
 FireFortShoko_NPCInteractions:
@@ -4401,8 +4401,8 @@ FireFortShoko_NPCInteractions:
 	db $ff
 
 FireFortShoko_OWInteractions:
-	ow_script 4, 1, Func_32d59
-	ow_script 5, 1, Func_32d59
+	ow_script 4, 1, Script_FireFortShokoLockedDoor
+	ow_script 5, 1, Script_FireFortShokoLockedDoor
 	db $ff
 
 FireFortShoko_MapScripts:
@@ -4567,7 +4567,7 @@ Script_ShokoAfterDuel:
 	end_script
 	ret
 
-Func_32d59:
+Script_FireFortShokoLockedDoor:
 	ld a, EVENT_SHOKOS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32d7d
@@ -4589,7 +4589,7 @@ Func_32d59:
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_32d82:
+FireFortShoko_CourtneyAppearanceCheck:
 	ld a, EVENT_FREED_COURTNEY
 	farcall GetEventValue
 	jr z, .asm_32d8c
@@ -4876,8 +4876,8 @@ WaterFortEntrance_NPCInteractions:
 	db $ff
 
 WaterFortEntrance_OWInteractions:
-	ow_script 4, 8, Func_3308e
-	ow_script 5, 8, Func_3308e
+	ow_script 4, 8, Script_WaterFortEntranceDoor
+	ow_script 5, 8, Script_WaterFortEntranceDoor
 	db $ff
 
 WaterFortEntrance_MapScripts:
@@ -4998,7 +4998,7 @@ Script_WaterFortGRClerk:
 	end_script
 	ret
 
-Func_3308e:
+Script_WaterFortEntranceDoor:
 	ld a, EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_330bb
@@ -5048,8 +5048,8 @@ WaterFortMiyajima_NPCInteractions:
 	db $ff
 
 WaterFortMiyajima_OWInteractions:
-	ow_script 4, 1, Func_33236
-	ow_script 5, 1, Func_33236
+	ow_script 4, 1, Script_WaterFortMiyajimaLockedDoor
+	ow_script 5, 1, Script_WaterFortMiyajimaLockedDoor
 	db $ff
 
 WaterFortMiyajima_MapScripts:
@@ -5221,7 +5221,7 @@ Script_MiyajimaAfterDuel:
 	end_script
 	ret
 
-Func_33236:
+Script_WaterFortMiyajimaLockedDoor:
 	ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_33248
@@ -5406,8 +5406,8 @@ FightingFortEntrance_NPCInteractions:
 	db $ff
 
 FightingFortEntrance_OWInteractions:
-	ow_script 4, 8, Func_33470
-	ow_script 5, 8, Func_334b3
+	ow_script 4, 8, Script_FightingFortEntranceLeftDoor
+	ow_script 5, 8, Script_FightingFortEntranceRightDoor
 	db $ff
 
 FightingFortEntrance_MapScripts:
@@ -5514,7 +5514,7 @@ Script_FightingFortGRClerk:
 	call Func_30065
 	ret
 
-Func_33470:
+Script_FightingFortEntranceLeftDoor:
 	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_334b2
@@ -5547,7 +5547,7 @@ Func_33470:
 .asm_334b2
 	ret
 
-Func_334b3:
+Script_FightingFortEntranceRightDoor:
 	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_334f5
@@ -5607,8 +5607,8 @@ FightingFortMaze2_StepEvents:
 	db $ff
 
 FightingFortMaze2_NPCs:
-	npc NPC_CHEST_CLOSED, 5, 2, SOUTH, Func_335a2
-	npc NPC_CHEST_OPENED, 5, 2, SOUTH, Func_335ba
+	npc NPC_CHEST_CLOSED, 5, 2, SOUTH, FightingFortMaze2_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 5, 2, SOUTH, FightingFortMaze2_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortMaze2_NPCInteractions:
@@ -5666,7 +5666,7 @@ Script_FightingFortMaze2ChestClosed:
 	end_script
 	ret
 
-Func_335a2:
+FightingFortMaze2_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_1
 	farcall GetEventValue
 	jr nz, .asm_335ad
@@ -5686,7 +5686,7 @@ Script_FightingFortMaze2ChestOpened:
 	end_script
 	ret
 
-Func_335ba:
+FightingFortMaze2_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_1
 	farcall GetEventValue
 	jr z, .asm_335c5
@@ -5754,8 +5754,8 @@ FightingFortMaze4_StepEvents:
 	db $ff
 
 FightingFortMaze4_NPCs:
-	npc NPC_CHEST_CLOSED, 3, 3, SOUTH, Func_336eb
-	npc NPC_CHEST_OPENED, 3, 3, SOUTH, Func_33703
+	npc NPC_CHEST_CLOSED, 3, 3, SOUTH, FightingFortMaze4_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 3, 3, SOUTH, FightingFortMaze4_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortMaze4_NPCInteractions:
@@ -5821,7 +5821,7 @@ Script_FightingFortMaze4ChestClosed:
 	end_script
 	ret
 
-Func_336eb:
+FightingFortMaze4_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_2
 	farcall GetEventValue
 	jr nz, .asm_336f6
@@ -5841,7 +5841,7 @@ Script_FightingFortMaze4ChestOpened:
 	end_script
 	ret
 
-Func_33703:
+FightingFortMaze4_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_2
 	farcall GetEventValue
 	jr z, .asm_3370e
@@ -5973,8 +5973,8 @@ FightingFortMaze8_StepEvents:
 	db $ff
 
 FightingFortMaze8_NPCs:
-	npc NPC_CHEST_CLOSED, 2, 3, SOUTH, Func_338f0
-	npc NPC_CHEST_OPENED, 2, 3, SOUTH, Func_33908
+	npc NPC_CHEST_CLOSED, 2, 3, SOUTH, FightingFortMaze8_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 2, 3, SOUTH, FightingFortMaze8_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortMaze8_NPCInteractions:
@@ -6040,7 +6040,7 @@ Script_FightingFortMaze8ChestClosed:
 	end_script
 	ret
 
-Func_338f0:
+FightingFortMaze8_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_3
 	farcall GetEventValue
 	jr nz, .asm_338fb
@@ -6060,7 +6060,7 @@ Script_FightingFortMaze8ChestOpened:
 	end_script
 	ret
 
-Func_33908:
+FightingFortMaze8_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_3
 	farcall GetEventValue
 	jr z, .asm_33913
@@ -6356,8 +6356,8 @@ FightingFortMaze17_StepEvents:
 	db $ff
 
 FightingFortMaze17_NPCs:
-	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, Func_33cd3
-	npc NPC_CHEST_OPENED, 1, 1, SOUTH, Func_33ceb
+	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, FightingFortMaze17_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 1, 1, SOUTH, FightingFortMaze17_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortMaze17_NPCInteractions:
@@ -6438,7 +6438,7 @@ Script_FightingFortMaze17ChestClosed:
 	end_script
 	ret
 
-Func_33cd3:
+FightingFortMaze17_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_4
 	farcall GetEventValue
 	jr nz, .asm_33cde
@@ -6458,7 +6458,7 @@ Script_FightingFortMaze17ChestOpened:
 	end_script
 	ret
 
-Func_33ceb:
+FightingFortMaze17_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_4
 	farcall GetEventValue
 	jr z, .asm_33cf6

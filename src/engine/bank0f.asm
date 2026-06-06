@@ -1619,12 +1619,12 @@ LightningClubLobby_StepEvents:
 	db $ff
 
 LightningClubLobby_NPCs:
-	npc NPC_JENNIFER, 9, 8, EAST, Func_3cdb1
-	npc NPC_BRANDON, 9, 6, EAST, Func_3cdb1
+	npc NPC_JENNIFER, 9, 8, EAST, LightningClubLobby_MembersAppearanceCheck
+	npc NPC_BRANDON, 9, 6, EAST, LightningClubLobby_MembersAppearanceCheck
 	npc NPC_LIGHTNING_CLUB_LASS, 11, 2, NORTH, NULL
 	npc NPC_LIGHTNING_CLUB_PUNK_KID, 9, 4, SOUTH, NULL
-	npc NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, 5, 6, EAST, Func_3ce9b
-	npc NPC_LIGHTNING_CLUB_GR_LASS, 5, 6, EAST, Func_3cea8
+	npc NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, 5, 6, EAST, LightningClubLobby_LightningClubLonghairedLassAppearanceCheck
+	npc NPC_LIGHTNING_CLUB_GR_LASS, 5, 6, EAST, LightningClubLobby_LightningClubGRLassAppearanceCheck
 	npc NPC_LIGHTNING_CLUB_BRO, 8, 9, WEST, NULL
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
@@ -1746,7 +1746,7 @@ Script_BrandonLightningClubLobby:
 	end_script
 	ret
 
-Func_3cdb1:
+LightningClubLobby_MembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3cdc3
@@ -1868,7 +1868,7 @@ Script_LightningClubLonghairedLass:
 	end_script
 	ret
 
-Func_3ce9b:
+LightningClubLobby_LightningClubLonghairedLassAppearanceCheck:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3cea5
@@ -1879,7 +1879,7 @@ Func_3ce9b:
 	ccf
 	ret
 
-Func_3cea8:
+LightningClubLobby_LightningClubGRLassAppearanceCheck:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3ceb2
@@ -1928,12 +1928,12 @@ GrassClubLobby_StepEvents:
 	db $ff
 
 GrassClubLobby_NPCs:
-	npc NPC_BRITTANY, 7, 9, WEST, Func_3d0ec
-	npc NPC_KRISTIN, 6, 6, EAST, Func_3d0ec
-	npc NPC_HEATHER, 10, 8, EAST, Func_3d0ec
-	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, Func_3d189
-	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, Func_3d189
-	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, Func_3d189
+	npc NPC_BRITTANY, 7, 9, WEST, GrassClubLobby_MembersAppearanceCheck
+	npc NPC_KRISTIN, 6, 6, EAST, GrassClubLobby_MembersAppearanceCheck
+	npc NPC_HEATHER, 10, 8, EAST, GrassClubLobby_MembersAppearanceCheck
+	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, GrassClubLobby_GRMembersAppearanceCheck
+	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, GrassClubLobby_GRMembersAppearanceCheck
+	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, GrassClubLobby_GRMembersAppearanceCheck
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
@@ -2156,7 +2156,7 @@ Script_HeatherGrassClubLobby:
 	end_script
 	ret
 
-Func_3d0ec:
+GrassClubLobby_MembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d0fe
@@ -2246,7 +2246,7 @@ Script_GrassClubCappedLass:
 	end_script
 	ret
 
-Func_3d189:
+GrassClubLobby_GRMembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d19c
@@ -6092,7 +6092,7 @@ GameCenterLobby_NPCs:
 	npc NPC_GAME_CENTER_TECH, 10, 4, WEST, NULL
 	npc NPC_GAME_CENTER_GR_LASS, 8, 9, EAST, NULL
 	npc NPC_GAME_CENTER_GR_PAPPY, 3, 7, SOUTH, NULL
-	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_3f03d
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, GameCenterLobby_ImakuniRedAppearanceCheck
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
@@ -6235,7 +6235,7 @@ Script_GameCenterLobbyGRPappy:
 	end_script
 	ret
 
-Func_3f03d:
+GameCenterLobby_ImakuniRedAppearanceCheck:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $02
@@ -6968,11 +6968,11 @@ WaterFortLobby_StepEvents:
 	db $ff
 
 WaterFortLobby_NPCs:
-	npc NPC_WATER_FORT_GLASSES_KID, 10, 10, WEST, Func_3f718
-	npc NPC_WATER_FORT_GR_LAD, 10, 10, WEST, Func_3f735
+	npc NPC_WATER_FORT_GLASSES_KID, 10, 10, WEST, WaterFortLobby_WaterFortGlassesKidAppearanceCheck
+	npc NPC_WATER_FORT_GR_LAD, 10, 10, WEST, WaterFortLobby_WaterFortGRLadAppearanceCheck
 	npc NPC_WATER_FORT_GR_GRANNY, 2, 7, SOUTH, NULL
 	npc NPC_WATER_FORT_GR_GAL, 5, 9, NORTH, NULL
-	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_3f7a6
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, WaterFortLobby_ImakuniRedAppearanceCheck
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
@@ -7121,7 +7121,7 @@ Script_WaterFortGlassesKid:
 	end_script
 	ret
 
-Func_3f718:
+WaterFortLobby_WaterFortGlassesKidAppearanceCheck:
 	ld a, EVENT_TRADED_CARDS_WATER_FORT
 	farcall GetEventValue
 	jr z, .asm_3f732
@@ -7138,7 +7138,7 @@ Func_3f718:
 	ccf
 	ret
 
-Func_3f735:
+WaterFortLobby_WaterFortGRLadAppearanceCheck:
 	ld a, EVENT_TRADED_CARDS_WATER_FORT
 	farcall GetEventValue
 	jr z, .asm_3f74d
@@ -7204,7 +7204,7 @@ Script_WaterFortGRGal:
 	end_script
 	ret
 
-Func_3f7a6:
+WaterFortLobby_ImakuniRedAppearanceCheck:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $08
@@ -7229,8 +7229,8 @@ FightingFortMaze19_StepEvents:
 	db $ff
 
 FightingFortMaze19_NPCs:
-	npc NPC_CHEST_CLOSED, 5, 3, SOUTH, Func_3f830
-	npc NPC_CHEST_OPENED, 5, 3, SOUTH, Func_3f84b
+	npc NPC_CHEST_CLOSED, 5, 3, SOUTH, FightingFortMaze19_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 5, 3, SOUTH, FightingFortMaze19_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortMaze19_NPCInteractions:
@@ -7276,7 +7276,7 @@ Script_FightingFortMaze19ChestClosed:
 	end_script
 	ret
 
-Func_3f830:
+FightingFortMaze19_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	farcall GetEventValue
 	jr nz, .asm_3f83b
@@ -7297,7 +7297,7 @@ Script_FightingFortMaze19ChestOpened:
 	call Func_3f858
 	ret
 
-Func_3f84b:
+FightingFortMaze19_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	farcall GetEventValue
 	jr z, .asm_3f856
@@ -7337,8 +7337,8 @@ FightingFortBasement_StepEvents:
 	db $ff
 
 FightingFortBasement_NPCs:
-	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, Func_3f925
-	npc NPC_CHEST_OPENED, 1, 1, SOUTH, Func_3f951
+	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, FightingFortBasement_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 1, 1, SOUTH, FightingFortBasement_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortBasement_NPCInteractions:
@@ -7413,7 +7413,7 @@ Script_FightingFortBasementChestClosed:
 	end_script
 	ret
 
-Func_3f925:
+FightingFortBasement_ChestClosedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	farcall GetEventValue
 	jr nz, .asm_3f930
@@ -7441,7 +7441,7 @@ Script_FightingFortBasementChestOpened:
 	farcall SetVarValue
 	ret
 
-Func_3f951:
+FightingFortBasement_ChestOpenedAppearanceCheck:
 	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	farcall GetEventValue
 	jr z, .asm_3f95c

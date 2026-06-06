@@ -737,7 +737,7 @@ TcgAirportEntrance_StepEvents:
 	db $ff
 
 TcgAirportEntrance_NPCs:
-	npc NPC_GR_5, 10, 7, WEST, Func_346bc
+	npc NPC_GR_5, 10, 7, WEST, TcgAirportEntrance_GR5AppearanceCheck
 	npc NPC_GR_CLERK_TCG_AIRPORT, 7, 3, SOUTH, NULL
 	npc NPC_TCG_AIRPORT_GR_SIS, 3, 2, NORTH, NULL
 	npc NPC_TCG_AIRPORT_MARTIAL_ARTIST, 1, 7, EAST, NULL
@@ -876,7 +876,7 @@ Script_GR5_TCGAirportEntrance:
 	end_script
 	ret
 
-Func_346bc:
+TcgAirportEntrance_GR5AppearanceCheck:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr z, .asm_346c6
@@ -2402,7 +2402,7 @@ GrChallengeHallLobby_StepEvents:
 GrChallengeHallLobby_NPCs:
 	npc NPC_GR_CHALLENGE_HALL_GR_GRANNY, 3, 5, WEST, NULL
 	npc NPC_CUP_HOST, 2, 10, NORTH, GrChallengeHallLobby_DisappearDuringGRCups
-	npc NPC_GR_CHALLENGE_HALL_GR_CHAP, 8, 9, EAST, Func_35444
+	npc NPC_GR_CHALLENGE_HALL_GR_CHAP, 8, 9, EAST, GrChallengeHallLobby_GRChallengeHallGRChapAppearanceCheck
 	npc NPC_GR_CHALLENGE_HALL_GR_WOMAN, 12, 8, WEST, NULL
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
@@ -2607,7 +2607,7 @@ Script_GRChallengeHallGRChap:
 	db EAST, MOVE_6
 	db $ff
 
-Func_35444:
+GrChallengeHallLobby_GRChallengeHallGRChapAppearanceCheck:
 	ld a, EVENT_94
 	farcall GetEventValue
 	jr nz, .disappear
@@ -2675,7 +2675,7 @@ GrassFortMorino_NPCs:
 	db $ff
 
 GrassFortMorino_NPCInteractions:
-	npc_script NPC_MORINO, Func_354fb
+	npc_script NPC_MORINO, Script_Morino
 	db $ff
 
 GrassFortMorino_MapScripts:
@@ -2711,10 +2711,10 @@ GrassFortMorino_AfterDuel:
 	ret
 
 GrassFortMorino_AfterDuelScripts:
-	npc_script NPC_MORINO, Func_35596
+	npc_script NPC_MORINO, Script_MorinoAfterDuel
 	db $ff
 
-Func_354fb:
+Script_Morino:
 	ld a, NPC_MORINO
 	ld [wScriptNPC], a
 	ldtx hl, DialogMorinoText
@@ -2796,7 +2796,7 @@ Func_354fb:
 	end_script
 	ret
 
-Func_35596:
+Script_MorinoAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3357,8 +3357,8 @@ FightingFort_NPCInteractions:
 	db $ff
 
 FightingFort_OWInteractions:
-	ow_script 7, 1, Func_35be4
-	ow_script 8, 1, Func_35be4
+	ow_script 7, 1, Script_FightingFortGate
+	ow_script 8, 1, Script_FightingFortGate
 	db $ff
 
 FightingFort_MapScripts:
@@ -3628,7 +3628,7 @@ Script_KamiyaAfterDuel:
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_35be4:
+Script_FightingFortGate:
 	ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
 	farcall GetEventValue
 	jr nz, .asm_35c0f
@@ -3774,7 +3774,7 @@ FightingFortGoda_StepEvents:
 
 FightingFortGoda_NPCs:
 	npc NPC_GODA, 5, 4, SOUTH, NULL
-	npc NPC_MITCH, 6, 2, SOUTH, Func_35de2
+	npc NPC_MITCH, 6, 2, SOUTH, FightingFortGoda_MitchAppearanceCheck
 	db $ff
 
 FightingFortGoda_NPCInteractions:
@@ -3782,7 +3782,7 @@ FightingFortGoda_NPCInteractions:
 	db $ff
 
 FightingFortGoda_OWInteractions:
-	ow_script 6, 4, Func_35dc0
+	ow_script 6, 4, Script_FightingFortMitchCage
 	db $ff
 
 FightingFortGoda_MapScripts:
@@ -3839,7 +3839,7 @@ FightingFortGoda_AfterDuelScripts:
 	npc_script NPC_GODA, Script_GodaAfterDuel
 	db $ff
 
-Func_35dc0:
+Script_FightingFortMitchCage:
 	ld a, EVENT_GODAS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	ret nz
@@ -3858,7 +3858,7 @@ Func_35dc0:
 	end_script
 	ret
 
-Func_35de2:
+FightingFortGoda_MitchAppearanceCheck:
 	ld a, EVENT_GODAS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_35dec
@@ -4029,8 +4029,8 @@ FightingFortGrace_StepEvents:
 
 FightingFortGrace_NPCs:
 	npc NPC_GRACE, 4, 2, SOUTH, NULL
-	npc NPC_CHEST_CLOSED, 5, 1, SOUTH, Func_36062
-	npc NPC_CHEST_OPENED, 5, 1, SOUTH, Func_36082
+	npc NPC_CHEST_CLOSED, 5, 1, SOUTH, FightingFortGrace_ChestClosedAppearanceCheck
+	npc NPC_CHEST_OPENED, 5, 1, SOUTH, FightingFortGrace_ChestOpenedAppearanceCheck
 	db $ff
 
 FightingFortGrace_NPCInteractions:
@@ -4199,7 +4199,7 @@ Script_FightingFortGraceChestClosed:
 	end_script
 	ret
 
-Func_36062:
+FightingFortGrace_ChestClosedAppearanceCheck:
 	ld a, EVENT_GRACES_ROOM_CHEST_STATE
 	farcall GetEventValue
 	jr z, .asm_36075
@@ -4222,7 +4222,7 @@ Script_FightingFortGraceChestOpened:
 	end_script
 	ret
 
-Func_36082:
+FightingFortGrace_ChestOpenedAppearanceCheck:
 	ld a, EVENT_GRACES_ROOM_CHEST_STATE
 	farcall GetEventValue
 	jr z, .asm_36095
@@ -4359,7 +4359,7 @@ PsychicStrongholdLobby_NPCs:
 	npc NPC_PSYCHIC_STRONGHOLD_LADY, 2, 6, WEST, NULL
 	npc NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, 5, 9, EAST, NULL
 	npc NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, 10, 4, EAST, NULL
-	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_36310
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, PsychicStrongholdLobby_ImakuniRedAppearanceCheck
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
 	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
@@ -4539,7 +4539,7 @@ Script_GRPsychicStrongholdGRLass:
 	end_script
 	ret
 
-Func_36310:
+PsychicStrongholdLobby_ImakuniRedAppearanceCheck:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $0a
@@ -4568,7 +4568,7 @@ PsychicStronghold_NPCs:
 	npc NPC_KEVIN, 3, 5, SOUTH, NULL
 	npc NPC_YOSUKE, 10, 7, SOUTH, NULL
 	npc NPC_RYOKO, 12, 5, SOUTH, NULL
-	npc NPC_STRONGHOLD_PLATFORM, 6, 3, SOUTH, Func_36b8f
+	npc NPC_STRONGHOLD_PLATFORM, 6, 3, SOUTH, PsychicStronghold_StrongholdPlatformAppearanceCheck
 	db $ff
 
 PsychicStronghold_NPCInteractions:
@@ -5608,7 +5608,7 @@ Script_36b76:
 .ows_36b8e
 	script_ret
 
-Func_36b8f:
+PsychicStronghold_StrongholdPlatformAppearanceCheck:
 	ld a, EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
 	farcall GetEventValue
 	jr z, .asm_36ba4
@@ -5756,7 +5756,7 @@ PsychicStrongholdMami_StepEvents:
 
 PsychicStrongholdMami_NPCs:
 	npc NPC_MAMI, 7, 2, NORTH, NULL
-	npc NPC_ROD, 8, 2, SOUTH, Func_36e03
+	npc NPC_ROD, 8, 2, SOUTH, PsychicStrongholdMami_RodAppearanceCheck
 	npc NPC_STRONGHOLD_PLATFORM, 6, 10, SOUTH, NULL
 	db $ff
 
@@ -5929,7 +5929,7 @@ Script_RodPsychicStronghold:
 	end_script
 	ret
 
-Func_36e03:
+PsychicStrongholdMami_RodAppearanceCheck:
 	ld a, EVENT_MET_MAMI_AND_ROD
 	farcall GetEventValue
 	jr z, .asm_36e16
@@ -6670,9 +6670,9 @@ GrCastleEntrance_NPCInteractions:
 	db $ff
 
 GrCastleEntrance_OWInteractions:
-	ow_script 4, 3, Func_37480
-	ow_script 5, 3, Func_37480
-	ow_script 6, 3, Func_37480
+	ow_script 4, 3, Script_GrCastleEntranceDoor
+	ow_script 5, 3, Script_GrCastleEntranceDoor
+	ow_script 6, 3, Script_GrCastleEntranceDoor
 	db $ff
 
 GrCastleEntrance_MapScripts:
@@ -6776,7 +6776,7 @@ GrCastleEntrance_AfterDuel:
 	scf
 	ret
 
-Func_37480:
+Script_GrCastleEntranceDoor:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_37490 ; this jump target is likely a bug. should jump to 'ret'

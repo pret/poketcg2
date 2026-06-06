@@ -584,10 +584,10 @@ LightningClub_StepEvents:
 
 LightningClub_NPCs:
 	npc NPC_ISAAC, 6, 2, SOUTH, NULL
-	npc NPC_JENNIFER, 7, 9, SOUTH, Func_2c8f9
+	npc NPC_JENNIFER, 7, 9, SOUTH, LightningClub_MembersAppearanceCheck
 	npc NPC_NICHOLAS, 3, 5, SOUTH, NULL
-	npc NPC_BRANDON, 11, 6, SOUTH, Func_2c8f9
-	npc NPC_GR_4, 7, 4, SOUTH, Func_2c929
+	npc NPC_BRANDON, 11, 6, SOUTH, LightningClub_MembersAppearanceCheck
+	npc NPC_GR_4, 7, 4, SOUTH, LightningClub_GR4AppearanceCheck
 	db $ff
 
 LightningClub_NPCInteractions:
@@ -1181,7 +1181,7 @@ Script_BrandonAfterDuel:
 	end_script
 	ret
 
-Func_2c8f9:
+LightningClub_MembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c90c
@@ -1211,7 +1211,7 @@ Script_LightningClubGR4:
 	end_script
 	ret
 
-Func_2c929:
+LightningClub_GR4AppearanceCheck:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr z, .asm_2c933
@@ -1239,7 +1239,7 @@ PsychicClubEntrance_StepEvents:
 	db $ff
 
 PsychicClubEntrance_NPCs:
-	npc NPC_STEPHANIE, 5, 1, SOUTH, Func_2cabb
+	npc NPC_STEPHANIE, 5, 1, SOUTH, PsychicClubEntrance_StephanieAppearanceCheck
 	db $ff
 
 PsychicClubEntrance_NPCInteractions:
@@ -1421,7 +1421,7 @@ Script_StephaniePsychicClubEntrance:
 	end_script
 	ret
 
-Func_2cabb:
+PsychicClubEntrance_StephanieAppearanceCheck:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr z, .asm_2cac5
@@ -1481,9 +1481,9 @@ PsychicClubLobby_StepEvents:
 PsychicClubLobby_NPCs:
 	npc NPC_PSYCHIC_CLUB_GLASSES_LAD, 8, 8, EAST, NULL
 	npc NPC_PSYCHIC_CLUB_LASS, 10, 9, WEST, NULL
-	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, Func_2cca8
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, PsychicClubLobby_ImakuniBlackAppearanceCheck
 	npc NPC_PSYCHIC_CLUB_CAPPED_LAD, 7, 6, EAST, NULL
-	npc NPC_PSYCHIC_CLUB_GR_LASS, 14, 4, SOUTH, Func_2cd0e
+	npc NPC_PSYCHIC_CLUB_GR_LASS, 14, 4, SOUTH, PsychicClubLobby_PsychicClubGRLassAppearanceCheck
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
@@ -1657,7 +1657,7 @@ Script_PsychicClubLass:
 	end_script
 	ret
 
-Func_2cca8:
+PsychicClubLobby_ImakuniBlackAppearanceCheck:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp $03
@@ -1718,7 +1718,7 @@ Script_PsychicClubGRLass:
 	end_script
 	ret
 
-Func_2cd0e:
+PsychicClubLobby_PsychicClubGRLassAppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr z, .asm_2cd20
@@ -1747,7 +1747,7 @@ PsychicClub_NPCs:
 	npc NPC_ROBERT, 3, 10, WEST, NULL
 	npc NPC_DANIEL, 4, 5, NORTH, NULL
 	npc NPC_STEPHANIE, 11, 6, EAST, NULL
-	npc NPC_GR_4, 7, 3, SOUTH, Func_2d23c
+	npc NPC_GR_4, 7, 3, SOUTH, PsychicClub_GR4AppearanceCheck
 	db $ff
 
 PsychicClub_NPCInteractions:
@@ -2408,7 +2408,7 @@ Script_PsychicClubGR4AfterDuel:
 	end_script
 	ret
 
-Func_2d23c:
+PsychicClub_GR4AppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2d246
@@ -2635,7 +2635,7 @@ RockClubLobby_StepEvents:
 RockClubLobby_NPCs:
 	npc NPC_ROCK_CLUB_LASS, 5, 6, EAST, NULL
 	npc NPC_ROCK_CLUB_WOMAN, 12, 10, NORTH, NULL
-	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, Func_2d57c
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, RockClubLobby_ImakuniBlackAppearanceCheck
 	npc NPC_ROCK_CLUB_CHAP, 8, 9, WEST, NULL
 	npc NPC_ROCK_CLUB_CAPPED_LAD, 10, 3, SOUTH, NULL
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
@@ -2816,7 +2816,7 @@ Script_RockClubWoman:
 	end_script
 	ret
 
-Func_2d57c:
+RockClubLobby_ImakuniBlackAppearanceCheck:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp $04
@@ -3465,7 +3465,7 @@ FightingClubLobby_NPCs:
 	npc NPC_FIGHTING_CLUB_CAPPED_LASS, 6, 8, SOUTH, NULL
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
-	npc NPC_MICHAEL, 11, 6, EAST, Func_2db97
+	npc NPC_MICHAEL, 11, 6, EAST, FightingClubLobby_MichaelAppearanceCheck
 	db $ff
 
 FightingClubLobby_NPCInteractions:
@@ -3611,7 +3611,7 @@ Script_MichaelFightingClubLobbyAfterDuel:
 	end_script
 	ret
 
-Func_2db97:
+FightingClubLobby_MichaelAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2dba9
@@ -3763,11 +3763,11 @@ FightingClub_StepEvents:
 	db $ff
 
 FightingClub_NPCs:
-	npc NPC_MITCH, 5, 2, SOUTH, Func_2dde4
-	npc NPC_MICHAEL, 7, 7, SOUTH, Func_2df9c
-	npc NPC_CHRIS, 2, 5, SOUTH, Func_2df9c
-	npc NPC_JESSICA, 9, 4, SOUTH, Func_2df9c
-	npc NPC_GR_1, 6, 2, SOUTH, Func_2e023
+	npc NPC_MITCH, 5, 2, SOUTH, FightingClub_MitchAppearanceCheck
+	npc NPC_MICHAEL, 7, 7, SOUTH, FightingClub_MembersAppearanceCheck
+	npc NPC_CHRIS, 2, 5, SOUTH, FightingClub_MembersAppearanceCheck
+	npc NPC_JESSICA, 9, 4, SOUTH, FightingClub_MembersAppearanceCheck
+	npc NPC_GR_1, 6, 2, SOUTH, FightingClub_GR1AppearanceCheck
 	db $ff
 
 FightingClub_NPCInteractions:
@@ -3917,7 +3917,7 @@ Script_MitchAfterDuel:
 	end_script
 	ret
 
-Func_2dde4:
+FightingClub_MitchAppearanceCheck:
 	ld a, EVENT_GODAS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_2ddee
@@ -4166,7 +4166,7 @@ Script_JessicaAfterDuel:
 	end_script
 	ret
 
-Func_2df9c:
+FightingClub_MembersAppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr z, .asm_2dfaf
@@ -4244,7 +4244,7 @@ Script_FightingClubGR1AfterDuel:
 	end_script
 	ret
 
-Func_2e023:
+FightingClub_GR1AppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2e036
@@ -4436,11 +4436,11 @@ GrassClub_StepEvents:
 	db $ff
 
 GrassClub_NPCs:
-	npc NPC_NIKKI, 6, 2, SOUTH, Func_2e3f6
-	npc NPC_BRITTANY, 10, 4, NORTH, Func_2e3f6
-	npc NPC_KRISTIN, 2, 7, EAST, Func_2e3f6
-	npc NPC_HEATHER, 7, 9, SOUTH, Func_2e3f6
-	npc NPC_GR_2, 7, 8, SOUTH, Func_2e498
+	npc NPC_NIKKI, 6, 2, SOUTH, GrassClub_MembersAppearanceCheck
+	npc NPC_BRITTANY, 10, 4, NORTH, GrassClub_MembersAppearanceCheck
+	npc NPC_KRISTIN, 2, 7, EAST, GrassClub_MembersAppearanceCheck
+	npc NPC_HEATHER, 7, 9, SOUTH, GrassClub_MembersAppearanceCheck
+	npc NPC_GR_2, 7, 8, SOUTH, GrassClub_GR2AppearanceCheck
 	db $ff
 
 GrassClub_NPCInteractions:
@@ -4779,7 +4779,7 @@ Script_HeatherAfterDuel:
 	end_script
 	ret
 
-Func_2e3f6:
+GrassClub_MembersAppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e409
@@ -4870,7 +4870,7 @@ Script_GrassClubGR2AfterDuel:
 	db SOUTH, MOVE_7
 	db $ff
 
-Func_2e498:
+GrassClub_GR2AppearanceCheck:
 	ld a, EVENT_GOT_ODDISH_COIN
 	farcall GetEventValue
 	jr z, .asm_2e4b5
@@ -4903,7 +4903,7 @@ ScienceClubEntrance_StepEvents:
 	db $ff
 
 ScienceClubEntrance_NPCs:
-	npc NPC_JOSEPH, 6, 1, SOUTH, Func_2e62a
+	npc NPC_JOSEPH, 6, 1, SOUTH, ScienceClubEntrance_JosephAppearanceCheck
 	db $ff
 
 ScienceClubEntrance_NPCInteractions:
@@ -5091,7 +5091,7 @@ Script_JosephScienceClubEntrance:
 	end_script
 	ret
 
-Func_2e62a:
+ScienceClubEntrance_JosephAppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e63c
@@ -5116,12 +5116,12 @@ ScienceClubLobby_StepEvents:
 	db $ff
 
 ScienceClubLobby_NPCs:
-	npc NPC_DAVID, 9, 6, EAST, Func_2e80d
-	npc NPC_ERIK, 4, 9, EAST, Func_2e80d
-	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, Func_2e822
-	npc NPC_SCIENCE_CLUB_MAN, 3, 9, WEST, Func_2e8d1
-	npc NPC_SCIENCE_CLUB_GLASSES_KID, 13, 4, SOUTH, Func_2e8d1
-	npc NPC_SCIENCE_CLUB_TECH, 7, 9, WEST, Func_2e8d1
+	npc NPC_DAVID, 9, 6, EAST, ScienceClubLobby_MembersAppearanceCheck
+	npc NPC_ERIK, 4, 9, EAST, ScienceClubLobby_MembersAppearanceCheck
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, ScienceClubLobby_ImakuniBlackAppearanceCheck
+	npc NPC_SCIENCE_CLUB_MAN, 3, 9, WEST, ScienceClubLobby_GRMembersAppearanceCheck
+	npc NPC_SCIENCE_CLUB_GLASSES_KID, 13, 4, SOUTH, ScienceClubLobby_GRMembersAppearanceCheck
+	npc NPC_SCIENCE_CLUB_TECH, 7, 9, WEST, ScienceClubLobby_GRMembersAppearanceCheck
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
@@ -5319,7 +5319,7 @@ Script_ScienceClubLobbyErik:
 	end_script
 	ret
 
-Func_2e80d:
+ScienceClubLobby_MembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e81f
@@ -5333,7 +5333,7 @@ Func_2e80d:
 	ccf
 	ret
 
-Func_2e822:
+ScienceClubLobby_ImakuniBlackAppearanceCheck:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp $07
@@ -5432,7 +5432,7 @@ Script_ScienceClubTech:
 	end_script
 	ret
 
-Func_2e8d1:
+ScienceClubLobby_GRMembersAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e8e4
@@ -5457,11 +5457,11 @@ ScienceClub_StepEvents:
 	db $ff
 
 ScienceClub_NPCs:
-	npc NPC_RICK, 2, 2, NORTH, Func_2ea87
-	npc NPC_DAVID, 10, 2, NORTH, Func_2ec07
-	npc NPC_JOSEPH, 6, 5, WEST, Func_2ec07
-	npc NPC_ERIK, 3, 8, EAST, Func_2ec07
-	npc NPC_GR_2, 6, 8, SOUTH, Func_2eca9
+	npc NPC_RICK, 2, 2, NORTH, ScienceClub_RickAppearanceCheck
+	npc NPC_DAVID, 10, 2, NORTH, ScienceClub_MembersAppearanceCheck
+	npc NPC_JOSEPH, 6, 5, WEST, ScienceClub_MembersAppearanceCheck
+	npc NPC_ERIK, 3, 8, EAST, ScienceClub_MembersAppearanceCheck
+	npc NPC_GR_2, 6, 8, SOUTH, ScienceClub_GR2AppearanceCheck
 	db $ff
 
 ScienceClub_NPCInteractions:
@@ -5649,7 +5649,7 @@ Script_RickAfterDuel:
 	end_script
 	ret
 
-Func_2ea87:
+ScienceClub_RickAppearanceCheck:
 	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_2ea92
@@ -5868,7 +5868,7 @@ Script_ErikAfterDuel:
 	end_script
 	ret
 
-Func_2ec07:
+ScienceClub_MembersAppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2ec1a
@@ -5959,7 +5959,7 @@ Script_ScienceClubGR2AfterDuel:
 	db SOUTH, MOVE_6
 	db $ff
 
-Func_2eca9:
+ScienceClub_GR2AppearanceCheck:
 	ld a, EVENT_GOT_ODDISH_COIN
 	farcall GetEventValue
 	jr z, .asm_2ecc6
@@ -6120,9 +6120,9 @@ WaterClubLobby_StepEvents:
 	db $ff
 
 WaterClubLobby_NPCs:
-	npc NPC_JOSHUA, 8, 6, WEST, Func_2ef5f
+	npc NPC_JOSHUA, 8, 6, WEST, WaterClubLobby_JoshuaAppearanceCheck
 	npc NPC_WATER_CLUB_LASS, 11, 1, WEST, NULL
-	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, Func_2ef9f
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, WaterClubLobby_ImakuniBlackAppearanceCheck
 	npc NPC_WATER_CLUB_PAPPY, 12, 11, EAST, NULL
 	npc NPC_WATER_CLUB_LONGHAIRED_LASS, 4, 9, SOUTH, NULL
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
@@ -6296,7 +6296,7 @@ Script_JoshuaWaterClubLobbyAfterDuel:
 	end_script
 	ret
 
-Func_2ef5f:
+WaterClubLobby_JoshuaAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2ef71
@@ -6333,7 +6333,7 @@ Script_WaterClubLass:
 	end_script
 	ret
 
-Func_2ef9f:
+WaterClubLobby_ImakuniBlackAppearanceCheck:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp $08
@@ -6411,12 +6411,12 @@ WaterClub_StepEvents:
 	db $ff
 
 WaterClub_NPCs:
-	npc NPC_AMY_LOUNGE, 11, 2, SOUTH, Func_2f36d
-	npc NPC_JOSHUA, 10, 4, SOUTH, Func_2f36d
-	npc NPC_SARA, 4, 9, EAST, Func_2f478
-	npc NPC_AMANDA, 11, 10, WEST, Func_2f478
-	npc NPC_AMY, 4, 6, SOUTH, Func_2f1ed
-	npc NPC_GR_3, 8, 6, SOUTH, Func_2f4f2
+	npc NPC_AMY_LOUNGE, 11, 2, SOUTH, WaterClub_LoungeMembersAppearanceCheck
+	npc NPC_JOSHUA, 10, 4, SOUTH, WaterClub_LoungeMembersAppearanceCheck
+	npc NPC_SARA, 4, 9, EAST, WaterClub_SaraAmandaAppearanceCheck
+	npc NPC_AMANDA, 11, 10, WEST, WaterClub_SaraAmandaAppearanceCheck
+	npc NPC_AMY, 4, 6, SOUTH, WaterClub_AmyAppearanceCheck
+	npc NPC_GR_3, 8, 6, SOUTH, WaterClub_GR3AppearanceCheck
 	db $ff
 
 WaterClub_NPCInteractions:
@@ -6625,7 +6625,7 @@ Script_Amy:
 	end_script
 	ret
 
-Func_2f1ed:
+WaterClub_AmyAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f1f7
@@ -6838,7 +6838,7 @@ Script_JoshuaAfterDuel:
 	end_script
 	ret
 
-Func_2f36d:
+WaterClub_LoungeMembersAppearanceCheck:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f380
@@ -6991,7 +6991,7 @@ Script_AmandaAfterDuel:
 	end_script
 	ret
 
-Func_2f478:
+WaterClub_SaraAmandaAppearanceCheck:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f483
@@ -7063,7 +7063,7 @@ Script_WaterClubGR3AfterDuel:
 	end_script
 	ret
 
-Func_2f4f2:
+WaterClub_GR3AppearanceCheck:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f4fc
@@ -7225,7 +7225,7 @@ FireClubLobby_StepEvents:
 
 FireClubLobby_NPCs:
 	npc NPC_FIRE_CLUB_PUNK_GUY, 8, 4, NORTH, NULL
-	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, Func_2f76f
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, FireClubLobby_ImakuniBlackAppearanceCheck
 	npc NPC_FIRE_CLUB_MARTIAL_ARTIST, 10, 9, NORTH, NULL
 	npc NPC_FIRE_CLUB_GAL, 5, 8, SOUTH, NULL
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
@@ -7375,7 +7375,7 @@ Script_FireClubPunkGuy:
 	end_script
 	ret
 
-Func_2f76f:
+FireClubLobby_ImakuniBlackAppearanceCheck:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp $09
@@ -7446,7 +7446,7 @@ FireClub_NPCs:
 	npc NPC_JOHN, 6, 9, SOUTH, NULL
 	npc NPC_ADAM, 5, 7, SOUTH, NULL
 	npc NPC_JONATHAN, 10, 5, SOUTH, NULL
-	npc NPC_GR_3, 7, 5, SOUTH, Func_2fc29
+	npc NPC_GR_3, 7, 5, SOUTH, FireClub_GR3AppearanceCheck
 	db $ff
 
 FireClub_NPCInteractions:
@@ -7458,10 +7458,10 @@ FireClub_NPCInteractions:
 	db $ff
 
 FireClub_OWInteractions:
-	ow_script 7, 12, Func_2fcad
-	ow_script 6, 12, Func_2fcb7
-	ow_script 5, 12, Func_2fcc1
-	ow_script 8, 12, Func_2fccb
+	ow_script 7, 12, Script_FireClubKenTrigger
+	ow_script 6, 12, Script_FireClubJohnTrigger
+	ow_script 5, 12, Script_FireClubAdamTrigger
+	ow_script 8, 12, Script_FireClubJonathanTrigger
 	db $ff
 
 FireClub_MapScripts:
@@ -8009,7 +8009,7 @@ Script_FireClubGR3AfterDuel:
 	end_script
 	ret
 
-Func_2fc29:
+FireClub_GR3AppearanceCheck:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2fc3c
@@ -8079,25 +8079,25 @@ Script_2fc3e:
 	db SOUTH, MOVE_4
 	db $ff
 
-Func_2fcad:
+Script_FireClubKenTrigger:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Script_Ken
 
-Func_2fcb7:
+Script_FireClubJohnTrigger:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Script_John
 
-Func_2fcc1:
+Script_FireClubAdamTrigger:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Script_Adam
 
-Func_2fccb:
+Script_FireClubJonathanTrigger:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz

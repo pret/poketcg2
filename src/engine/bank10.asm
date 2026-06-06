@@ -1325,7 +1325,7 @@ MasonLaboratoryMain_NPCs:
 	npc NPC_LAB_TECH_CLUB_GUIDE, 11, 8, SOUTH, NULL
 	npc NPC_LAB_TECH_BOOSTER_GUIDE, 9, 10, WEST, NULL
 	npc NPC_LAB_TECH_ROOM_GUIDE, 10, 4, WEST, NULL
-	npc NPC_RONALD, 3, 6, SOUTH, Func_4121d
+	npc NPC_RONALD, 3, 6, SOUTH, MasonLaboratoryMain_RonaldAppearanceCheck
 	db $ff
 
 MasonLaboratoryMain_NPCInteractions:
@@ -1837,7 +1837,7 @@ Script_RonaldMasonLab:
 	end_script
 	ret
 
-Func_4121d:
+MasonLaboratoryMain_RonaldAppearanceCheck:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_41230
@@ -5557,8 +5557,8 @@ GrCastleBiruritchi_NPCInteractions:
 	db $ff
 
 GrCastleBiruritchi_OWInteractions:
-	ow_script 4, 12, Func_431bf
-	ow_script 10, 12, Func_431bf
+	ow_script 4, 12, Script_BiruritchiStatue
+	ow_script 10, 12, Script_BiruritchiStatue
 	db $ff
 
 GrCastleBiruritchi_MapScripts:
@@ -5919,7 +5919,7 @@ Script_BiruritchiAfterDuel:
 	script_jump_if_b0nz Script_4324b
 	script_jump Script_432a0
 
-Func_431bf:
+Script_BiruritchiStatue:
 	xor a
 	start_script
 	start_dialog

@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 88 named. 197 remaining. Cleared the remaining overworld-table seams:
+  (a) the `npc ...,AppearanceCheck` seam (62 funcs): 51 UNIQUE ones named MECHANICALLY
+  <Map>_<Npc>AppearanceCheck (tool-generated, like MapScripts, 0 collisions); the 11 SHARED
+  ones (one check used by a GROUP of NPCs) read+named by condition (<Club>_MembersAppearanceCheck,
+  _GRMembersAppearanceCheck for the GR-takeover-phase variant). (b) the `ow_script` coordinate
+  seam (24 distinct funcs): fort-entrance coin-doors (Script_<Fort>EntranceDoor), in-room
+  locked doors gated on beating the trainer (Script_<Map><Trainer>LockedDoor), FireClub member
+  coord-triggers, FightingFort gate/cages, Biruritchi statue. Plus the 2 stray Morino npc_scripts.
+  All overworld macro-table seams (MapScripts/npc_script/AppearanceCheck/ow_script) now COMPLETE.
 - 2026-06-06: 108 named. 285 remaining. npc_script seam COMPLETE (0 npc_script Func_* left).
   8 subagents swept the fort trainer maps (the GR団 fort bosses Midori/Renna/Catherine/Yuki/
   Kanoko/Kamiya/Mami/Kanzaki/Biruritchi... matching the AI skill's per-deck duel names),
