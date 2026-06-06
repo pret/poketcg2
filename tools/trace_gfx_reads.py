@@ -4,14 +4,24 @@
 Capture procedure (SameBoy, `tools/sameboy_trace/sameboy_trace -s poketcg2.gbc`;
 poketcg2.sym is auto-loaded for label names):
 
-    breakpoint CopyGfxData        # $00:06dd -- the actual tile read, AFTER the
-                                  #            bank switch, so `mbc` = true bank
+  Do NOT break on CopyGfxData directly -- it serves every tile copy (fonts,
+  all card portraits) and fires constantly. Instead break on the specific
+  duel-gfx loaders, which fire only when their screen element loads:
+
+    breakpoint LoadDuelCardSymbolTiles     # card rarity/type symbols
+    breakpoint DrawDuelBoxMessage          # the $1c box messages (banking probe)
+    breakpoint LoadDuelDrawCardsScreenTiles# the DuelOtherGraphics reads
+    breakpoint LoadCardTypeHeaderTiles     # TRAINER/ENERGY/POKEMON headers
     continue
-    # ... navigate the game to a screen that loads duel gfx ...
-    # on each breakpoint hit, run:
-    mbc                           # prints the mapped ROM bank
-    p hl                          # prints the source address
-    continue
+
+  When one hits, catch the single read it triggers:
+
+    breakpoint CopyGfxData    # the actual read, AFTER the bank switch
+    continue                  # -> stops at this loader's CopyGfxData
+    mbc                       # true mapped ROM bank
+    p hl                      # source address
+    delete <the CopyGfxData breakpoint #>   # so it stops firing
+    continue                  # back to waiting for the next loader
 
 Collect the (bank, address) pairs into a file, one "BANK ADDR" per line in hex
 (e.g. "1c 4a30"), then:
