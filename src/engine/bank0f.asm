@@ -791,23 +791,23 @@ MasonLaboratoryComputerRoom_OWInteractions:
 	db $ff
 
 MasonLaboratoryComputerRoom_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3c689
-	dbw OWMODE_INTERACT, Func_3c6b3
-	dbw OWMODE_NPC_POSITION, Func_3c690
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3c697
+	dbw OWMODE_STEP_EVENT, MasonLaboratoryComputerRoom_StepEvent
+	dbw OWMODE_INTERACT, MasonLaboratoryComputerRoom_Interact
+	dbw OWMODE_NPC_POSITION, MasonLaboratoryComputerRoom_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, MasonLaboratoryComputerRoom_WarpFadeInPreload
 	db $ff
 
-Func_3c689:
+MasonLaboratoryComputerRoom_StepEvent:
 	ld hl, MasonLaboratoryComputerRoom_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3c690:
+MasonLaboratoryComputerRoom_LoadNPCs:
 	ld hl, MasonLaboratoryComputerRoom_NPCs
 	call LoadNPCs
 	ret
 
-Func_3c697:
+MasonLaboratoryComputerRoom_WarpFadeInPreload:
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr z, .asm_3c6b1
@@ -821,7 +821,7 @@ Func_3c697:
 	scf
 	ret
 
-Func_3c6b3:
+MasonLaboratoryComputerRoom_Interact:
 	ld hl, MasonLaboratoryComputerRoom_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3c6c1
@@ -1009,29 +1009,29 @@ MasonLaboratoryTrainingRoom_NPCInteractions:
 	db $ff
 
 MasonLaboratoryTrainingRoom_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3c817
-	dbw OWMODE_INTERACT, Func_3c825
-	dbw OWMODE_AFTER_DUEL, Func_3c82d
-	dbw OWMODE_NPC_POSITION, Func_3c81e
+	dbw OWMODE_STEP_EVENT, MasonLaboratoryTrainingRoom_StepEvent
+	dbw OWMODE_INTERACT, MasonLaboratoryTrainingRoom_Interact
+	dbw OWMODE_AFTER_DUEL, MasonLaboratoryTrainingRoom_AfterDuel
+	dbw OWMODE_NPC_POSITION, MasonLaboratoryTrainingRoom_LoadNPCs
 	db $ff
 
-Func_3c817:
+MasonLaboratoryTrainingRoom_StepEvent:
 	ld hl, MasonLaboratoryTrainingRoom_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3c81e:
+MasonLaboratoryTrainingRoom_LoadNPCs:
 	ld hl, MasonLaboratoryTrainingRoom_NPCs
 	call LoadNPCs
 	ret
 
-Func_3c825:
+MasonLaboratoryTrainingRoom_Interact:
 	ld hl, MasonLaboratoryTrainingRoom_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_3c82d:
+MasonLaboratoryTrainingRoom_AfterDuel:
 	ld hl, MasonLaboratoryTrainingRoom_AfterDuelScripts
 	ld a, VAR_3B
 	farcall GetVarValue
@@ -1519,14 +1519,14 @@ LightningClubEntrance_StepEvents:
 	db $ff
 
 LightningClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3cbf4
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3cbfb
-	dbw OWMODE_CONTINUE_OW, Func_3cc37
-	dbw OWMODE_MUSIC_PRELOAD, Func_3cbd4
-	dbw OWMODE_MUSIC_POSTLOAD, Func_3cbe4
+	dbw OWMODE_STEP_EVENT, LightningClubEntrance_StepEvent
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, LightningClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, LightningClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, LightningClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, LightningClubEntrance_MusicPostload
 	db $ff
 
-Func_3cbd4:
+LightningClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cbe1
@@ -1537,7 +1537,7 @@ Func_3cbd4:
 	ccf
 	ret
 
-Func_3cbe4:
+LightningClubEntrance_MusicPostload:
 	call Func_3cc53
 	jr nc, .asm_3cbeb
 	scf
@@ -1549,12 +1549,12 @@ Func_3cbe4:
 	ccf
 	ret
 
-Func_3cbf4:
+LightningClubEntrance_StepEvent:
 	ld hl, LightningClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3cbfb:
+LightningClubEntrance_WarpFadeInPreload:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3cc0b
@@ -1582,7 +1582,7 @@ Func_3cbfb:
 	scf
 	ret
 
-Func_3cc37:
+LightningClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3cc51
@@ -1651,13 +1651,13 @@ LightningClubLobby_OWInteractions:
 	db $ff
 
 LightningClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3cd2b
-	dbw OWMODE_INTERACT, Func_3cd3b
-	dbw OWMODE_NPC_POSITION, Func_3cd32
-	dbw OWMODE_MUSIC_PRELOAD, Func_3cd1b
+	dbw OWMODE_STEP_EVENT, LightningClubLobby_StepEvent
+	dbw OWMODE_INTERACT, LightningClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, LightningClubLobby_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, LightningClubLobby_MusicPreload
 	db $ff
 
-Func_3cd1b:
+LightningClubLobby_MusicPreload:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cd28
@@ -1668,19 +1668,19 @@ Func_3cd1b:
 	ccf
 	ret
 
-Func_3cd2b:
+LightningClubLobby_StepEvent:
 	ld hl, LightningClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3cd32:
+LightningClubLobby_LoadNPCs:
 	ld hl, LightningClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3cd3b:
+LightningClubLobby_Interact:
 	ld hl, LightningClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3cd49
@@ -1958,14 +1958,14 @@ GrassClubLobby_OWInteractions:
 	db $ff
 
 GrassClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3cfa8
-	dbw OWMODE_INTERACT, Func_3cfb8
-	dbw OWMODE_NPC_POSITION, Func_3cfaf
-	dbw OWMODE_AFTER_DUEL, Func_3cfc8
-	dbw OWMODE_MUSIC_PRELOAD, Func_3cf98
+	dbw OWMODE_STEP_EVENT, GrassClubLobby_StepEvent
+	dbw OWMODE_INTERACT, GrassClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, GrassClubLobby_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, GrassClubLobby_AfterDuel
+	dbw OWMODE_MUSIC_PRELOAD, GrassClubLobby_MusicPreload
 	db $ff
 
-Func_3cf98:
+GrassClubLobby_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_3cfa5
@@ -1976,19 +1976,19 @@ Func_3cf98:
 	ccf
 	ret
 
-Func_3cfa8:
+GrassClubLobby_StepEvent:
 	ld hl, GrassClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3cfaf:
+GrassClubLobby_LoadNPCs:
 	ld hl, GrassClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3cfb8:
+GrassClubLobby_Interact:
 	ld hl, GrassClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3cfc6
@@ -1998,7 +1998,7 @@ Func_3cfb8:
 	scf
 	ret
 
-Func_3cfc8:
+GrassClubLobby_AfterDuel:
 	ld hl, GrassClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -2283,14 +2283,14 @@ TcgChallengeHallEntrance_NPCInteractions:
 	db $ff
 
 TcgChallengeHallEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3d259
-	dbw OWMODE_INTERACT, Func_3d269
-	dbw OWMODE_NPC_POSITION, Func_3d260
-	dbw OWMODE_MUSIC_PRELOAD, Func_3d1f6
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d210
+	dbw OWMODE_STEP_EVENT, TcgChallengeHallEntrance_StepEvent
+	dbw OWMODE_INTERACT, TcgChallengeHallEntrance_Interact
+	dbw OWMODE_NPC_POSITION, TcgChallengeHallEntrance_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, TcgChallengeHallEntrance_MusicPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, TcgChallengeHallEntrance_WarpFadeOutPreload
 	db $ff
 
-Func_3d1f6:
+TcgChallengeHallEntrance_MusicPreload:
 	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
 	cp CHALLENGE_CUP_1_START
@@ -2307,7 +2307,7 @@ Func_3d1f6:
 	ccf
 	ret
 
-Func_3d210:
+TcgChallengeHallEntrance_WarpFadeOutPreload:
 	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr nz, .done
@@ -2349,19 +2349,19 @@ Func_3d210:
 	scf
 	ret
 
-Func_3d259:
+TcgChallengeHallEntrance_StepEvent:
 	ld hl, TcgChallengeHallEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3d260:
+TcgChallengeHallEntrance_LoadNPCs:
 	ld hl, TcgChallengeHallEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3d269:
+TcgChallengeHallEntrance_Interact:
 	ld hl, TcgChallengeHallEntrance_NPCInteractions
 	call Func_328c
 	scf
@@ -2459,13 +2459,13 @@ TcgChallengeHallLobby_OWInteractions:
 	db $ff
 
 TcgChallengeHallLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3d3a0
-	dbw OWMODE_INTERACT, Func_3d3b0
-	dbw OWMODE_NPC_POSITION, Func_3d3a7
-	dbw OWMODE_MUSIC_PRELOAD, Func_3d386
+	dbw OWMODE_STEP_EVENT, TcgChallengeHallLobby_StepEvent
+	dbw OWMODE_INTERACT, TcgChallengeHallLobby_Interact
+	dbw OWMODE_NPC_POSITION, TcgChallengeHallLobby_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, TcgChallengeHallLobby_MusicPreload
 	db $ff
 
-Func_3d386:
+TcgChallengeHallLobby_MusicPreload:
 	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
 	cp CHALLENGE_CUP_1_START
@@ -2482,19 +2482,19 @@ Func_3d386:
 	ccf
 	ret
 
-Func_3d3a0:
+TcgChallengeHallLobby_StepEvent:
 	ld hl, TcgChallengeHallLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3d3a7:
+TcgChallengeHallLobby_LoadNPCs:
 	ld hl, TcgChallengeHallLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3d3b0:
+TcgChallengeHallLobby_Interact:
 	ld hl, TcgChallengeHallLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3d3be
@@ -2823,17 +2823,17 @@ PokemonDome_OWInteractions:
 	db $ff
 
 PokemonDome_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3d6ba
-	dbw OWMODE_INTERACT, Func_3d740
-	dbw OWMODE_AFTER_DUEL, Func_3d750
-	dbw OWMODE_NPC_POSITION, Func_3d6c1
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3d6ca
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d719
-	dbw OWMODE_WARP_END_SFX, Func_3d734
-	dbw OWMODE_MUSIC_PRELOAD, Func_3d67b
+	dbw OWMODE_STEP_EVENT, PokemonDome_StepEvent
+	dbw OWMODE_INTERACT, PokemonDome_Interact
+	dbw OWMODE_AFTER_DUEL, PokemonDome_AfterDuel
+	dbw OWMODE_NPC_POSITION, PokemonDome_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PokemonDome_WarpFadeInPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, PokemonDome_WarpFadeOutPreload
+	dbw OWMODE_WARP_END_SFX, PokemonDome_WarpEndSFX
+	dbw OWMODE_MUSIC_PRELOAD, PokemonDome_MusicPreload
 	db $ff
 
-Func_3d67b:
+PokemonDome_MusicPreload:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .check_grand_master_cup
@@ -2866,19 +2866,19 @@ Func_3d67b:
 	ccf
 	ret
 
-Func_3d6ba:
+PokemonDome_StepEvent:
 	ld hl, PokemonDome_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3d6c1:
+PokemonDome_LoadNPCs:
 	ld hl, PokemonDome_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3d6ca:
+PokemonDome_WarpFadeInPreload:
 	ld bc, TILEMAP_037
 	lb de, 7, 0
 	farcall Func_12c0ce
@@ -2919,7 +2919,7 @@ Func_3d6ca:
 	ccf
 	ret
 
-Func_3d719:
+PokemonDome_WarpFadeOutPreload:
 	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .cup_played
@@ -2938,7 +2938,7 @@ Func_3d719:
 	ccf
 	ret
 
-Func_3d734:
+PokemonDome_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .silent
@@ -2949,7 +2949,7 @@ Func_3d734:
 	ccf
 	ret
 
-Func_3d740:
+PokemonDome_Interact:
 	ld hl, PokemonDome_NPCInteractions
 	call Func_328c
 	jr nc, .done
@@ -2959,7 +2959,7 @@ Func_3d740:
 	scf
 	ret
 
-Func_3d750:
+PokemonDome_AfterDuel:
 	ld hl, PokemonDome_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3816,29 +3816,29 @@ PokemonDomeBack_NPCs:
 	db $ff
 
 PokemonDomeBack_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3dda8
+	dbw OWMODE_STEP_EVENT, PokemonDomeBack_StepEvent
 	dbw OWMODE_AFTER_DUEL, PokemonDomeBack_AfterDuel
-	dbw OWMODE_NPC_POSITION, Func_3ddaf
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3ddb8
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3de67
-	dbw OWMODE_CONTINUE_OW, Func_3de91
-	dbw OWMODE_CONTINUE_DUEL, Func_3deca
-	dbw OWMODE_WARP_END_SFX, Func_3de6f
+	dbw OWMODE_NPC_POSITION, PokemonDomeBack_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PokemonDomeBack_WarpFadeInPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, PokemonDomeBack_WarpFadeOutPreload
+	dbw OWMODE_CONTINUE_OW, PokemonDomeBack_ContinueOW
+	dbw OWMODE_CONTINUE_DUEL, PokemonDomeBack_ContinueDuel
+	dbw OWMODE_WARP_END_SFX, PokemonDomeBack_WarpEndSFX
 	db $ff
 
-Func_3dda8:
+PokemonDomeBack_StepEvent:
 	ld hl, PokemonDomeBack_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3ddaf:
+PokemonDomeBack_LoadNPCs:
 	ld hl, PokemonDomeBack_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3ddb8:
+PokemonDomeBack_WarpFadeInPreload:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .grand_master_cup
@@ -3908,14 +3908,14 @@ Func_3ddb8:
 	ccf
 	ret
 
-Func_3de67:
+PokemonDomeBack_WarpFadeOutPreload:
 	ld a, $00
 	call Func_33a3
 	scf
 	ccf
 	ret
 
-Func_3de6f:
+PokemonDomeBack_WarpEndSFX:
 	scf
 	ccf
 	ret
@@ -3936,7 +3936,7 @@ PokemonDomeBack_AfterDuel:
 	jp z, Script_FinalCupRound3AfterDuel
 	jp Script_FinalCupRound4AfterDuel
 
-Func_3de91:
+PokemonDomeBack_ContinueOW:
 	farcall OverworldResumeWithCurSong
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
@@ -3969,7 +3969,7 @@ Func_3de91:
 	ccf
 	ret
 
-Func_3deca:
+PokemonDomeBack_ContinueDuel:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
@@ -5007,17 +5007,17 @@ IshiharasVillaMain_OWInteractions:
 	db $ff
 
 IshiharasVillaMain_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3e72a
-	dbw OWMODE_INTERACT, Func_3e73a
-	dbw OWMODE_AFTER_DUEL, Func_3e7bb
-	dbw OWMODE_NPC_POSITION, Func_3e731
-	dbw OWMODE_SAVE_PRELOAD, Func_3e74a
-	dbw OWMODE_SAVE_POSTLOAD, Func_3e778
-	dbw OWMODE_CONTINUE_OW, Func_3e787
-	dbw OWMODE_MUSIC_PRELOAD, Func_3e704
+	dbw OWMODE_STEP_EVENT, IshiharasVillaMain_StepEvent
+	dbw OWMODE_INTERACT, IshiharasVillaMain_Interact
+	dbw OWMODE_AFTER_DUEL, IshiharasVillaMain_AfterDuel
+	dbw OWMODE_NPC_POSITION, IshiharasVillaMain_LoadNPCs
+	dbw OWMODE_SAVE_PRELOAD, IshiharasVillaMain_SavePreload
+	dbw OWMODE_SAVE_POSTLOAD, IshiharasVillaMain_SavePostload
+	dbw OWMODE_CONTINUE_OW, IshiharasVillaMain_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, IshiharasVillaMain_MusicPreload
 	db $ff
 
-Func_3e704:
+IshiharasVillaMain_MusicPreload:
 	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
 	cp ISHIHARA_TRADE_3_DONE
@@ -5039,19 +5039,19 @@ Func_3e704:
 	ccf
 	ret
 
-Func_3e72a:
+IshiharasVillaMain_StepEvent:
 	ld hl, IshiharasVillaMain_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3e731:
+IshiharasVillaMain_LoadNPCs:
 	ld hl, IshiharasVillaMain_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3e73a:
+IshiharasVillaMain_Interact:
 	ld hl, IshiharasVillaMain_NPCInteractions
 	call Func_32aa
 	jr nc, .asm_3e748
@@ -5061,7 +5061,7 @@ Func_3e73a:
 	scf
 	ret
 
-Func_3e74a:
+IshiharasVillaMain_SavePreload:
 	xor a
 	push af
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
@@ -5091,7 +5091,7 @@ Func_3e74a:
 	ccf
 	ret
 
-Func_3e778:
+IshiharasVillaMain_SavePostload:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5100,7 +5100,7 @@ Func_3e778:
 	ccf
 	ret
 
-Func_3e787:
+IshiharasVillaMain_ContinueOW:
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5128,7 +5128,7 @@ Func_3e787:
 	farcall MaxOutEventValue
 	ret
 
-Func_3e7bb:
+IshiharasVillaMain_AfterDuel:
 	call Script_IshiharaAfterDuel
 	scf
 	ret
@@ -5333,16 +5333,16 @@ IshiharasVillaLibrary_OWInteractions:
 	db $ff
 
 IshiharasVillaLibrary_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3e981
-	dbw OWMODE_INTERACT, Func_3e991
-	dbw OWMODE_NPC_POSITION, Func_3e988
-	dbw OWMODE_SAVE_PRELOAD, Func_3e9a1
-	dbw OWMODE_SAVE_POSTLOAD, Func_3e9cf
-	dbw OWMODE_CONTINUE_OW, Func_3e9de
-	dbw OWMODE_MUSIC_PRELOAD, Func_3e95b
+	dbw OWMODE_STEP_EVENT, IshiharasVillaLibrary_StepEvent
+	dbw OWMODE_INTERACT, IshiharasVillaLibrary_Interact
+	dbw OWMODE_NPC_POSITION, IshiharasVillaLibrary_LoadNPCs
+	dbw OWMODE_SAVE_PRELOAD, IshiharasVillaLibrary_SavePreload
+	dbw OWMODE_SAVE_POSTLOAD, IshiharasVillaLibrary_SavePostload
+	dbw OWMODE_CONTINUE_OW, IshiharasVillaLibrary_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, IshiharasVillaLibrary_MusicPreload
 	db $ff
 
-Func_3e95b:
+IshiharasVillaLibrary_MusicPreload:
 	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
 	cp ISHIHARA_TRADE_3_DONE
@@ -5364,19 +5364,19 @@ Func_3e95b:
 	ccf
 	ret
 
-Func_3e981:
+IshiharasVillaLibrary_StepEvent:
 	ld hl, IshiharasVillaLibrary_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3e988:
+IshiharasVillaLibrary_LoadNPCs:
 	ld hl, IshiharasVillaLibrary_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3e991:
+IshiharasVillaLibrary_Interact:
 	ld hl, IshiharasVillaLibrary_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3e99f
@@ -5386,7 +5386,7 @@ Func_3e991:
 	scf
 	ret
 
-Func_3e9a1:
+IshiharasVillaLibrary_SavePreload:
 	xor a
 	push af
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
@@ -5416,7 +5416,7 @@ Func_3e9a1:
 	ccf
 	ret
 
-Func_3e9cf:
+IshiharasVillaLibrary_SavePostload:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5425,7 +5425,7 @@ Func_3e9cf:
 	ccf
 	ret
 
-Func_3e9de:
+IshiharasVillaLibrary_ContinueOW:
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5863,24 +5863,24 @@ GameCenterEntrance_OWInteractions:
 	db $ff
 
 GameCenterEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3ed92
-	dbw OWMODE_INTERACT, Func_3eda2
-	dbw OWMODE_NPC_POSITION, Func_3ed99
+	dbw OWMODE_STEP_EVENT, GameCenterEntrance_StepEvent
+	dbw OWMODE_INTERACT, GameCenterEntrance_Interact
+	dbw OWMODE_NPC_POSITION, GameCenterEntrance_LoadNPCs
 	db $ff
 
-Func_3ed92:
+GameCenterEntrance_StepEvent:
 	ld hl, GameCenterEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3ed99:
+GameCenterEntrance_LoadNPCs:
 	ld hl, GameCenterEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3eda2:
+GameCenterEntrance_Interact:
 	ld hl, GameCenterEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .done
@@ -6112,15 +6112,15 @@ GameCenterLobby_OWInteractions:
 	db $ff
 
 GameCenterLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3ef95
-	dbw OWMODE_INTERACT, Func_3efa5
-	dbw OWMODE_AFTER_DUEL, Func_3efb5
-	dbw OWMODE_CONTINUE_OW, Func_3efba
-	dbw OWMODE_NPC_POSITION, Func_3ef9c
-	dbw OWMODE_MUSIC_POSTLOAD, Func_3ef80
+	dbw OWMODE_STEP_EVENT, GameCenterLobby_StepEvent
+	dbw OWMODE_INTERACT, GameCenterLobby_Interact
+	dbw OWMODE_AFTER_DUEL, GameCenterLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, GameCenterLobby_ContinueOW
+	dbw OWMODE_NPC_POSITION, GameCenterLobby_LoadNPCs
+	dbw OWMODE_MUSIC_POSTLOAD, GameCenterLobby_MusicPostload
 	db $ff
 
-Func_3ef80:
+GameCenterLobby_MusicPostload:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $02
@@ -6134,19 +6134,19 @@ Func_3ef80:
 	ccf
 	ret
 
-Func_3ef95:
+GameCenterLobby_StepEvent:
 	ld hl, GameCenterLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3ef9c:
+GameCenterLobby_LoadNPCs:
 	ld hl, GameCenterLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3efa5:
+GameCenterLobby_Interact:
 	ld hl, GameCenterLobby_NPCInteractions
 	call Func_328c
 	jr nc, .done
@@ -6156,12 +6156,12 @@ Func_3efa5:
 	scf
 	ret
 
-Func_3efb5:
+GameCenterLobby_AfterDuel:
 	call Func_3c52d
 	scf
 	ret
 
-Func_3efba:
+GameCenterLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3efd4
@@ -6271,26 +6271,26 @@ CardDungeonPawn_OWInteractions:
 	db $ff
 
 CardDungeonPawn_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f093
-	dbw OWMODE_INTERACT, Func_3f0a3
-	dbw OWMODE_AFTER_DUEL, Func_3f0d4
-	dbw OWMODE_NPC_POSITION, Func_3f09a
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f0b3
+	dbw OWMODE_STEP_EVENT, CardDungeonPawn_StepEvent
+	dbw OWMODE_INTERACT, CardDungeonPawn_Interact
+	dbw OWMODE_AFTER_DUEL, CardDungeonPawn_AfterDuel
+	dbw OWMODE_NPC_POSITION, CardDungeonPawn_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, CardDungeonPawn_WarpFadeInPreload
 	db $ff
 
-Func_3f093:
+CardDungeonPawn_StepEvent:
 	ld hl, CardDungeonPawn_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f09a:
+CardDungeonPawn_LoadNPCs:
 	ld hl, CardDungeonPawn_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f0a3:
+CardDungeonPawn_Interact:
 	ld hl, CardDungeonPawn_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3f0b1
@@ -6300,7 +6300,7 @@ Func_3f0a3:
 	scf
 	ret
 
-Func_3f0b3:
+CardDungeonPawn_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
@@ -6316,7 +6316,7 @@ Func_3f0b3:
 	scf
 	ret
 
-Func_3f0d4:
+CardDungeonPawn_AfterDuel:
 	call Script_PawnAfterDuel
 	scf
 	ret
@@ -6490,26 +6490,26 @@ CardDungeonKnight_OWInteractions:
 	db $ff
 
 CardDungeonKnight_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f239
-	dbw OWMODE_INTERACT, Func_3f249
-	dbw OWMODE_AFTER_DUEL, Func_3f27a
-	dbw OWMODE_NPC_POSITION, Func_3f240
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f259
+	dbw OWMODE_STEP_EVENT, CardDungeonKnight_StepEvent
+	dbw OWMODE_INTERACT, CardDungeonKnight_Interact
+	dbw OWMODE_AFTER_DUEL, CardDungeonKnight_AfterDuel
+	dbw OWMODE_NPC_POSITION, CardDungeonKnight_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, CardDungeonKnight_WarpFadeInPreload
 	db $ff
 
-Func_3f239:
+CardDungeonKnight_StepEvent:
 	ld hl, CardDungeonKnight_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f240:
+CardDungeonKnight_LoadNPCs:
 	ld hl, CardDungeonKnight_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f249:
+CardDungeonKnight_Interact:
 	ld hl, CardDungeonKnight_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3f257
@@ -6519,7 +6519,7 @@ Func_3f249:
 	scf
 	ret
 
-Func_3f259:
+CardDungeonKnight_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
@@ -6535,7 +6535,7 @@ Func_3f259:
 	scf
 	ret
 
-Func_3f27a:
+CardDungeonKnight_AfterDuel:
 	call Script_KnightAfterDuel
 	scf
 	ret
@@ -6731,26 +6731,26 @@ CardDungeonRook_OWInteractions:
 	db $ff
 
 CardDungeonRook_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f409
-	dbw OWMODE_INTERACT, Func_3f419
-	dbw OWMODE_AFTER_DUEL, Func_3f44a
-	dbw OWMODE_NPC_POSITION, Func_3f410
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f429
+	dbw OWMODE_STEP_EVENT, CardDungeonRook_StepEvent
+	dbw OWMODE_INTERACT, CardDungeonRook_Interact
+	dbw OWMODE_AFTER_DUEL, CardDungeonRook_AfterDuel
+	dbw OWMODE_NPC_POSITION, CardDungeonRook_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, CardDungeonRook_WarpFadeInPreload
 	db $ff
 
-Func_3f409:
+CardDungeonRook_StepEvent:
 	ld hl, CardDungeonRook_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f410:
+CardDungeonRook_LoadNPCs:
 	ld hl, CardDungeonRook_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f419:
+CardDungeonRook_Interact:
 	ld hl, CardDungeonRook_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3f427
@@ -6760,7 +6760,7 @@ Func_3f419:
 	scf
 	ret
 
-Func_3f429:
+CardDungeonRook_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
@@ -6776,7 +6776,7 @@ Func_3f429:
 	scf
 	ret
 
-Func_3f44a:
+CardDungeonRook_AfterDuel:
 	call Script_RookAfterDuel
 	scf
 	ret
@@ -6993,15 +6993,15 @@ WaterFortLobby_OWInteractions:
 	db $ff
 
 WaterFortLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f650
-	dbw OWMODE_INTERACT, Func_3f660
-	dbw OWMODE_AFTER_DUEL, Func_3f670
-	dbw OWMODE_CONTINUE_OW, Func_3f675
-	dbw OWMODE_NPC_POSITION, Func_3f657
-	dbw OWMODE_MUSIC_POSTLOAD, Func_3f63b
+	dbw OWMODE_STEP_EVENT, WaterFortLobby_StepEvent
+	dbw OWMODE_INTERACT, WaterFortLobby_Interact
+	dbw OWMODE_AFTER_DUEL, WaterFortLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, WaterFortLobby_ContinueOW
+	dbw OWMODE_NPC_POSITION, WaterFortLobby_LoadNPCs
+	dbw OWMODE_MUSIC_POSTLOAD, WaterFortLobby_MusicPostload
 	db $ff
 
-Func_3f63b:
+WaterFortLobby_MusicPostload:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $08
@@ -7015,19 +7015,19 @@ Func_3f63b:
 	ccf
 	ret
 
-Func_3f650:
+WaterFortLobby_StepEvent:
 	ld hl, WaterFortLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f657:
+WaterFortLobby_LoadNPCs:
 	ld hl, WaterFortLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f660:
+WaterFortLobby_Interact:
 	ld hl, WaterFortLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3f66e
@@ -7037,12 +7037,12 @@ Func_3f660:
 	scf
 	ret
 
-Func_3f670:
+WaterFortLobby_AfterDuel:
 	call Func_3c52d
 	scf
 	ret
 
-Func_3f675:
+WaterFortLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3f68f
@@ -7239,24 +7239,24 @@ FightingFortMaze19_NPCInteractions:
 	db $ff
 
 FightingFortMaze19_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f7ff
-	dbw OWMODE_INTERACT, Func_3f80f
-	dbw OWMODE_NPC_POSITION, Func_3f806
+	dbw OWMODE_STEP_EVENT, FightingFortMaze19_StepEvent
+	dbw OWMODE_INTERACT, FightingFortMaze19_Interact
+	dbw OWMODE_NPC_POSITION, FightingFortMaze19_LoadNPCs
 	db $ff
 
-Func_3f7ff:
+FightingFortMaze19_StepEvent:
 	ld hl, FightingFortMaze19_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f806:
+FightingFortMaze19_LoadNPCs:
 	ld hl, FightingFortMaze19_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f80f:
+FightingFortMaze19_Interact:
 	ld hl, FightingFortMaze19_NPCInteractions
 	call Func_328c
 	scf
@@ -7347,25 +7347,25 @@ FightingFortBasement_NPCInteractions:
 	db $ff
 
 FightingFortBasement_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3f8b6
-	dbw OWMODE_INTERACT, Func_3f904
-	dbw OWMODE_NPC_POSITION, Func_3f8bd
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f8c6
+	dbw OWMODE_STEP_EVENT, FightingFortBasement_StepEvent
+	dbw OWMODE_INTERACT, FightingFortBasement_Interact
+	dbw OWMODE_NPC_POSITION, FightingFortBasement_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortBasement_WarpFadeInPreload
 	db $ff
 
-Func_3f8b6:
+FightingFortBasement_StepEvent:
 	ld hl, FightingFortBasement_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3f8bd:
+FightingFortBasement_LoadNPCs:
 	ld hl, FightingFortBasement_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3f8c6:
+FightingFortBasement_WarpFadeInPreload:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
@@ -7393,7 +7393,7 @@ Func_3f8c6:
 	scf
 	ret
 
-Func_3f904:
+FightingFortBasement_Interact:
 	ld hl, FightingFortBasement_NPCInteractions
 	call Func_328c
 	scf

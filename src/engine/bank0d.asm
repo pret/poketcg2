@@ -754,14 +754,14 @@ TcgAirportEntrance_OWInteractions:
 	db $ff
 
 TcgAirportEntrance_MapScripts:
-	dbw OWMODE_IDLE, Func_345f1
-	dbw OWMODE_STEP_EVENT, Func_3460d
-	dbw OWMODE_INTERACT, Func_3461d
-	dbw OWMODE_NPC_POSITION, Func_34614
-	dbw OWMODE_MUSIC_PRELOAD, Func_345fd
+	dbw OWMODE_IDLE, TcgAirportEntrance_Idle
+	dbw OWMODE_STEP_EVENT, TcgAirportEntrance_StepEvent
+	dbw OWMODE_INTERACT, TcgAirportEntrance_Interact
+	dbw OWMODE_NPC_POSITION, TcgAirportEntrance_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, TcgAirportEntrance_MusicPreload
 	db $ff
 
-Func_345f1:
+TcgAirportEntrance_Idle:
 	call DoFrame
 	call Func_34635
 	call HandleOverworldPlayerInput
@@ -769,7 +769,7 @@ Func_345f1:
 	ccf
 	ret
 
-Func_345fd:
+TcgAirportEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_3460a
@@ -780,19 +780,19 @@ Func_345fd:
 	ccf
 	ret
 
-Func_3460d:
+TcgAirportEntrance_StepEvent:
 	ld hl, TcgAirportEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_34614:
+TcgAirportEntrance_LoadNPCs:
 	ld hl, TcgAirportEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3461d:
+TcgAirportEntrance_Interact:
 	ld hl, TcgAirportEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3462b
@@ -1005,15 +1005,15 @@ TcgAirport_NPCInteractions:
 	db $ff
 
 TcgAirport_MapScripts:
-	dbw OWMODE_IDLE, Func_347ce
-	dbw OWMODE_STEP_EVENT, Func_347da
-	dbw OWMODE_INTERACT, Func_3489d
-	dbw OWMODE_NPC_POSITION, Func_347e1
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_347ea
-	dbw OWMODE_WARP_END_SFX, Func_34873
+	dbw OWMODE_IDLE, TcgAirport_Idle
+	dbw OWMODE_STEP_EVENT, TcgAirport_StepEvent
+	dbw OWMODE_INTERACT, TcgAirport_Interact
+	dbw OWMODE_NPC_POSITION, TcgAirport_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, TcgAirport_WarpFadeInPreload
+	dbw OWMODE_WARP_END_SFX, TcgAirport_WarpEndSFX
 	db $ff
 
-Func_347ce:
+TcgAirport_Idle:
 	call DoFrame
 	call Func_349d5
 	call HandleOverworldPlayerInput
@@ -1021,19 +1021,19 @@ Func_347ce:
 	ccf
 	ret
 
-Func_347da:
+TcgAirport_StepEvent:
 	ld hl, TcgAirport_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_347e1:
+TcgAirport_LoadNPCs:
 	ld hl, TcgAirport_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_347ea:
+TcgAirport_WarpFadeInPreload:
 	farcall ClearwD986
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
@@ -1092,7 +1092,7 @@ Func_347ea:
 	scf
 	ret
 
-Func_34873:
+TcgAirport_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr z, .asm_3487c
@@ -1114,7 +1114,7 @@ Func_34873:
 	ccf
 	ret
 
-Func_3489d:
+TcgAirport_Interact:
 	ld hl, TcgAirport_NPCInteractions
 	call Func_328c
 	scf
@@ -1411,24 +1411,24 @@ GrAirportEntrance_OWInteractions:
 	db $ff
 
 GrAirportEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_34b16
-	dbw OWMODE_INTERACT, Func_34b26
-	dbw OWMODE_NPC_POSITION, Func_34b1d
+	dbw OWMODE_STEP_EVENT, GrAirportEntrance_StepEvent
+	dbw OWMODE_INTERACT, GrAirportEntrance_Interact
+	dbw OWMODE_NPC_POSITION, GrAirportEntrance_LoadNPCs
 	db $ff
 
-Func_34b16:
+GrAirportEntrance_StepEvent:
 	ld hl, GrAirportEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_34b1d:
+GrAirportEntrance_LoadNPCs:
 	ld hl, GrAirportEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_34b26:
+GrAirportEntrance_Interact:
 	ld hl, GrAirportEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .asm_34b34
@@ -1542,24 +1542,24 @@ GameCenter1_OWInteractions:
 	db $ff
 
 GameCenter1_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_34c2c
-	dbw OWMODE_INTERACT, Func_34c3c
-	dbw OWMODE_NPC_POSITION, Func_34c33
+	dbw OWMODE_STEP_EVENT, GameCenter1_StepEvent
+	dbw OWMODE_INTERACT, GameCenter1_Interact
+	dbw OWMODE_NPC_POSITION, GameCenter1_LoadNPCs
 	db $ff
 
-Func_34c2c:
+GameCenter1_StepEvent:
 	ld hl, GameCenter1_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_34c33:
+GameCenter1_LoadNPCs:
 	ld hl, GameCenter1_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_34c3c:
+GameCenter1_Interact:
 	ld hl, GameCenter1_NPCInteractions
 	call Func_32aa
 	jr nc, .asm_34c4a
@@ -1885,25 +1885,25 @@ GameCenter2_OWInteractions:
 	db $ff
 
 GameCenter2_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_34ee7
-	dbw OWMODE_INTERACT, Func_34ef7
-	dbw OWMODE_NPC_POSITION, Func_34eee
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_34f07
+	dbw OWMODE_STEP_EVENT, GameCenter2_StepEvent
+	dbw OWMODE_INTERACT, GameCenter2_Interact
+	dbw OWMODE_NPC_POSITION, GameCenter2_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GameCenter2_WarpFadeInPreload
 	db $ff
 
-Func_34ee7:
+GameCenter2_StepEvent:
 	ld hl, GameCenter2_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_34eee:
+GameCenter2_LoadNPCs:
 	ld hl, GameCenter2_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_34ef7:
+GameCenter2_Interact:
 	ld hl, GameCenter2_NPCInteractions
 	call Func_328c
 	jr nc, .asm_34f05
@@ -1913,7 +1913,7 @@ Func_34ef7:
 	scf
 	ret
 
-Func_34f07:
+GameCenter2_WarpFadeInPreload:
 	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
 	jr z, .done
@@ -2160,26 +2160,26 @@ CardDungeonBishop_OWInteractions:
 	db $ff
 
 CardDungeonBishop_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_350e6
-	dbw OWMODE_INTERACT, Func_350f6
-	dbw OWMODE_AFTER_DUEL, Func_35127
-	dbw OWMODE_NPC_POSITION, Func_350ed
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35106
+	dbw OWMODE_STEP_EVENT, CardDungeonBishop_StepEvent
+	dbw OWMODE_INTERACT, CardDungeonBishop_Interact
+	dbw OWMODE_AFTER_DUEL, CardDungeonBishop_AfterDuel
+	dbw OWMODE_NPC_POSITION, CardDungeonBishop_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, CardDungeonBishop_WarpFadeInPreload
 	db $ff
 
-Func_350e6:
+CardDungeonBishop_StepEvent:
 	ld hl, CardDungeonBishop_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_350ed:
+CardDungeonBishop_LoadNPCs:
 	ld hl, CardDungeonBishop_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_350f6:
+CardDungeonBishop_Interact:
 	ld hl, CardDungeonBishop_NPCInteractions
 	call Func_328c
 	jr nc, .asm_35104
@@ -2189,7 +2189,7 @@ Func_350f6:
 	scf
 	ret
 
-Func_35106:
+CardDungeonBishop_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
@@ -2205,7 +2205,7 @@ Func_35106:
 	scf
 	ret
 
-Func_35127:
+CardDungeonBishop_AfterDuel:
 	call Script_BishopAfterDuel
 	scf
 	ret
@@ -2423,13 +2423,13 @@ GrChallengeHallLobby_OWInteractions:
 	db $ff
 
 GrChallengeHallLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35322
-	dbw OWMODE_INTERACT, Func_35332
-	dbw OWMODE_NPC_POSITION, Func_35329
-	dbw OWMODE_MUSIC_PRELOAD, Func_35308
+	dbw OWMODE_STEP_EVENT, GrChallengeHallLobby_StepEvent
+	dbw OWMODE_INTERACT, GrChallengeHallLobby_Interact
+	dbw OWMODE_NPC_POSITION, GrChallengeHallLobby_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, GrChallengeHallLobby_MusicPreload
 	db $ff
 
-Func_35308:
+GrChallengeHallLobby_MusicPreload:
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
 	cp CHALLENGE_CUP_1_START
@@ -2446,19 +2446,19 @@ Func_35308:
 	ccf
 	ret
 
-Func_35322:
+GrChallengeHallLobby_StepEvent:
 	ld hl, GrChallengeHallLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35329:
+GrChallengeHallLobby_LoadNPCs:
 	ld hl, GrChallengeHallLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35332:
+GrChallengeHallLobby_Interact:
 	ld hl, GrChallengeHallLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_35340
@@ -2679,31 +2679,31 @@ GrassFortMorino_NPCInteractions:
 	db $ff
 
 GrassFortMorino_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_354d3
-	dbw OWMODE_INTERACT, Func_354e3
-	dbw OWMODE_AFTER_DUEL, Func_354eb
-	dbw OWMODE_NPC_POSITION, Func_354da
+	dbw OWMODE_STEP_EVENT, GrassFortMorino_StepEvent
+	dbw OWMODE_INTERACT, GrassFortMorino_Interact
+	dbw OWMODE_AFTER_DUEL, GrassFortMorino_AfterDuel
+	dbw OWMODE_NPC_POSITION, GrassFortMorino_LoadNPCs
 	db $ff
 
-Func_354d3:
+GrassFortMorino_StepEvent:
 	ld hl, GrassFortMorino_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_354da:
+GrassFortMorino_LoadNPCs:
 	ld hl, GrassFortMorino_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_354e3:
+GrassFortMorino_Interact:
 	ld hl, GrassFortMorino_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_354eb:
+GrassFortMorino_AfterDuel:
 	ld hl, GrassFortMorino_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -2858,26 +2858,26 @@ WaterFortSenta_NPCInteractions:
 	db $ff
 
 WaterFortSenta_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35624
-	dbw OWMODE_INTERACT, Func_35661
-	dbw OWMODE_AFTER_DUEL, Func_35669
-	dbw OWMODE_NPC_POSITION, Func_3562b
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35634
+	dbw OWMODE_STEP_EVENT, WaterFortSenta_StepEvent
+	dbw OWMODE_INTERACT, WaterFortSenta_Interact
+	dbw OWMODE_AFTER_DUEL, WaterFortSenta_AfterDuel
+	dbw OWMODE_NPC_POSITION, WaterFortSenta_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, WaterFortSenta_WarpFadeInPreload
 	db $ff
 
-Func_35624:
+WaterFortSenta_StepEvent:
 	ld hl, WaterFortSenta_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3562b:
+WaterFortSenta_LoadNPCs:
 	ld hl, WaterFortSenta_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35634:
+WaterFortSenta_WarpFadeInPreload:
 	ld bc, TILEMAP_08A
 	lb de, 5, 0
 	farcall Func_12c0ce
@@ -2896,13 +2896,13 @@ Func_35634:
 	scf
 	ret
 
-Func_35661:
+WaterFortSenta_Interact:
 	ld hl, WaterFortSenta_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_35669:
+WaterFortSenta_AfterDuel:
 	ld hl, WaterFortSenta_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3152,26 +3152,26 @@ WaterFortAira_NPCInteractions:
 	db $ff
 
 WaterFortAira_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35855
-	dbw OWMODE_INTERACT, Func_35882
-	dbw OWMODE_AFTER_DUEL, Func_3588a
-	dbw OWMODE_NPC_POSITION, Func_3585c
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35865
+	dbw OWMODE_STEP_EVENT, WaterFortAira_StepEvent
+	dbw OWMODE_INTERACT, WaterFortAira_Interact
+	dbw OWMODE_AFTER_DUEL, WaterFortAira_AfterDuel
+	dbw OWMODE_NPC_POSITION, WaterFortAira_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, WaterFortAira_WarpFadeInPreload
 	db $ff
 
-Func_35855:
+WaterFortAira_StepEvent:
 	ld hl, WaterFortAira_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3585c:
+WaterFortAira_LoadNPCs:
 	ld hl, WaterFortAira_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35865:
+WaterFortAira_WarpFadeInPreload:
 	ld a, EVENT_AIRAS_ROOM_BRIDGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_35880
@@ -3185,13 +3185,13 @@ Func_35865:
 	scf
 	ret
 
-Func_35882:
+WaterFortAira_Interact:
 	ld hl, WaterFortAira_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_3588a:
+WaterFortAira_AfterDuel:
 	ld hl, WaterFortAira_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3362,26 +3362,26 @@ FightingFort_OWInteractions:
 	db $ff
 
 FightingFort_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_359fd
-	dbw OWMODE_INTERACT, Func_35a7c
-	dbw OWMODE_AFTER_DUEL, Func_35a8c
-	dbw OWMODE_NPC_POSITION, Func_35a04
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35a0d
+	dbw OWMODE_STEP_EVENT, FightingFort_StepEvent
+	dbw OWMODE_INTERACT, FightingFort_Interact
+	dbw OWMODE_AFTER_DUEL, FightingFort_AfterDuel
+	dbw OWMODE_NPC_POSITION, FightingFort_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFort_WarpFadeInPreload
 	db $ff
 
-Func_359fd:
+FightingFort_StepEvent:
 	ld hl, FightingFort_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35a04:
+FightingFort_LoadNPCs:
 	ld hl, FightingFort_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35a0d:
+FightingFort_WarpFadeInPreload:
 	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT_ENTRANCE
 	jr nz, .asm_35a18
@@ -3430,7 +3430,7 @@ Func_35a0d:
 	scf
 	ret
 
-Func_35a7c:
+FightingFort_Interact:
 	ld hl, FightingFort_NPCInteractions
 	call Func_328c
 	jr nc, .asm_35a8a
@@ -3440,7 +3440,7 @@ Func_35a7c:
 	scf
 	ret
 
-Func_35a8c:
+FightingFort_AfterDuel:
 	ld hl, FightingFort_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3669,17 +3669,17 @@ FightingFortMaze16_StepEvents:
 	db $ff
 
 FightingFortMaze16_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35c68
-	dbw OWMODE_WARP_END_SFX, Func_35c6f
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35c7b
+	dbw OWMODE_STEP_EVENT, FightingFortMaze16_StepEvent
+	dbw OWMODE_WARP_END_SFX, FightingFortMaze16_WarpEndSFX
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortMaze16_WarpFadeInPreload
 	db $ff
 
-Func_35c68:
+FightingFortMaze16_StepEvent:
 	ld hl, FightingFortMaze16_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35c6f:
+FightingFortMaze16_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35c78
@@ -3690,7 +3690,7 @@ Func_35c6f:
 	ccf
 	ret
 
-Func_35c7b:
+FightingFortMaze16_WarpFadeInPreload:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
@@ -3725,17 +3725,17 @@ FightingFortMaze18_StepEvents:
 	db $ff
 
 FightingFortMaze18_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35d04
-	dbw OWMODE_WARP_END_SFX, Func_35d0b
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35d17
+	dbw OWMODE_STEP_EVENT, FightingFortMaze18_StepEvent
+	dbw OWMODE_WARP_END_SFX, FightingFortMaze18_WarpEndSFX
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortMaze18_WarpFadeInPreload
 	db $ff
 
-Func_35d04:
+FightingFortMaze18_StepEvent:
 	ld hl, FightingFortMaze18_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35d0b:
+FightingFortMaze18_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35d14
@@ -3746,7 +3746,7 @@ Func_35d0b:
 	ccf
 	ret
 
-Func_35d17:
+FightingFortMaze18_WarpFadeInPreload:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
@@ -3786,26 +3786,26 @@ FightingFortGoda_OWInteractions:
 	db $ff
 
 FightingFortGoda_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35d7a
-	dbw OWMODE_INTERACT, Func_35da0
-	dbw OWMODE_AFTER_DUEL, Func_35db0
-	dbw OWMODE_NPC_POSITION, Func_35d81
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35d8a
+	dbw OWMODE_STEP_EVENT, FightingFortGoda_StepEvent
+	dbw OWMODE_INTERACT, FightingFortGoda_Interact
+	dbw OWMODE_AFTER_DUEL, FightingFortGoda_AfterDuel
+	dbw OWMODE_NPC_POSITION, FightingFortGoda_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortGoda_WarpFadeInPreload
 	db $ff
 
-Func_35d7a:
+FightingFortGoda_StepEvent:
 	ld hl, FightingFortGoda_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35d81:
+FightingFortGoda_LoadNPCs:
 	ld hl, FightingFortGoda_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35d8a:
+FightingFortGoda_WarpFadeInPreload:
 	ld a, EVENT_GODAS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_35d94
@@ -3818,7 +3818,7 @@ Func_35d8a:
 	scf
 	ret
 
-Func_35da0:
+FightingFortGoda_Interact:
 	ld hl, FightingFortGoda_NPCInteractions
 	call Func_328c
 	jr nc, .asm_35dae
@@ -3828,7 +3828,7 @@ Func_35da0:
 	scf
 	ret
 
-Func_35db0:
+FightingFortGoda_AfterDuel:
 	ld hl, FightingFortGoda_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -4040,31 +4040,31 @@ FightingFortGrace_NPCInteractions:
 	db $ff
 
 FightingFortGrace_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_35f59
-	dbw OWMODE_INTERACT, Func_35f69
-	dbw OWMODE_AFTER_DUEL, Func_35f71
-	dbw OWMODE_NPC_POSITION, Func_35f60
+	dbw OWMODE_STEP_EVENT, FightingFortGrace_StepEvent
+	dbw OWMODE_INTERACT, FightingFortGrace_Interact
+	dbw OWMODE_AFTER_DUEL, FightingFortGrace_AfterDuel
+	dbw OWMODE_NPC_POSITION, FightingFortGrace_LoadNPCs
 	db $ff
 
-Func_35f59:
+FightingFortGrace_StepEvent:
 	ld hl, FightingFortGrace_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_35f60:
+FightingFortGrace_LoadNPCs:
 	ld hl, FightingFortGrace_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_35f69:
+FightingFortGrace_Interact:
 	ld hl, FightingFortGrace_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_35f71:
+FightingFortGrace_AfterDuel:
 	ld hl, FightingFortGrace_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -4259,14 +4259,14 @@ PsychicStrongholdEntrance_NPCInteractions:
 	db $ff
 
 PsychicStrongholdEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_36104
-	dbw OWMODE_INTERACT, Func_36140
-	dbw OWMODE_NPC_POSITION, Func_3610b
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36114
-	dbw OWMODE_MUSIC_POSTLOAD, Func_360ef
+	dbw OWMODE_STEP_EVENT, PsychicStrongholdEntrance_StepEvent
+	dbw OWMODE_INTERACT, PsychicStrongholdEntrance_Interact
+	dbw OWMODE_NPC_POSITION, PsychicStrongholdEntrance_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PsychicStrongholdEntrance_WarpFadeInPreload
+	dbw OWMODE_MUSIC_POSTLOAD, PsychicStrongholdEntrance_MusicPostload
 	db $ff
 
-Func_360ef:
+PsychicStrongholdEntrance_MusicPostload:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $07
@@ -4280,19 +4280,19 @@ Func_360ef:
 	ccf
 	ret
 
-Func_36104:
+PsychicStrongholdEntrance_StepEvent:
 	ld hl, PsychicStrongholdEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_3610b:
+PsychicStrongholdEntrance_LoadNPCs:
 	ld hl, PsychicStrongholdEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_36114:
+PsychicStrongholdEntrance_WarpFadeInPreload:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $07
@@ -4314,7 +4314,7 @@ Func_36114:
 	scf
 	ret
 
-Func_36140:
+PsychicStrongholdEntrance_Interact:
 	ld hl, PsychicStrongholdEntrance_NPCInteractions
 	call Func_328c
 	scf
@@ -4379,15 +4379,15 @@ PsychicStrongholdLobby_OWInteractions:
 	db $ff
 
 PsychicStrongholdLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3620e
-	dbw OWMODE_INTERACT, Func_3621e
-	dbw OWMODE_AFTER_DUEL, Func_3622e
-	dbw OWMODE_CONTINUE_OW, Func_36234
-	dbw OWMODE_NPC_POSITION, Func_36215
-	dbw OWMODE_MUSIC_POSTLOAD, Func_361f9
+	dbw OWMODE_STEP_EVENT, PsychicStrongholdLobby_StepEvent
+	dbw OWMODE_INTERACT, PsychicStrongholdLobby_Interact
+	dbw OWMODE_AFTER_DUEL, PsychicStrongholdLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, PsychicStrongholdLobby_ContinueOW
+	dbw OWMODE_NPC_POSITION, PsychicStrongholdLobby_LoadNPCs
+	dbw OWMODE_MUSIC_POSTLOAD, PsychicStrongholdLobby_MusicPostload
 	db $ff
 
-Func_361f9:
+PsychicStrongholdLobby_MusicPostload:
 	ld a, VAR_26
 	farcall GetVarValue
 	cp $0a
@@ -4401,19 +4401,19 @@ Func_361f9:
 	ccf
 	ret
 
-Func_3620e:
+PsychicStrongholdLobby_StepEvent:
 	ld hl, PsychicStrongholdLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_36215:
+PsychicStrongholdLobby_LoadNPCs:
 	ld hl, PsychicStrongholdLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3621e:
+PsychicStrongholdLobby_Interact:
 	ld hl, PsychicStrongholdLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_3622c
@@ -4423,12 +4423,12 @@ Func_3621e:
 	scf
 	ret
 
-Func_3622e:
+PsychicStrongholdLobby_AfterDuel:
 	farcall Func_3c52d
 	scf
 	ret
 
-Func_36234:
+PsychicStrongholdLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3624e
@@ -4579,28 +4579,28 @@ PsychicStronghold_NPCInteractions:
 	db $ff
 
 PsychicStronghold_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3638f
-	dbw OWMODE_INTERACT, Func_36440
-	dbw OWMODE_PAUSE_MENU, Func_36448
-	dbw OWMODE_AFTER_DUEL, Func_36490
-	dbw OWMODE_NPC_POSITION, Func_36396
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3639f
-	dbw OWMODE_WARP_END_SFX, Func_36434
+	dbw OWMODE_STEP_EVENT, PsychicStronghold_StepEvent
+	dbw OWMODE_INTERACT, PsychicStronghold_Interact
+	dbw OWMODE_PAUSE_MENU, PsychicStronghold_PauseMenu
+	dbw OWMODE_AFTER_DUEL, PsychicStronghold_AfterDuel
+	dbw OWMODE_NPC_POSITION, PsychicStronghold_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PsychicStronghold_WarpFadeInPreload
+	dbw OWMODE_WARP_END_SFX, PsychicStronghold_WarpEndSFX
 	db $ff
 
-Func_3638f:
+PsychicStronghold_StepEvent:
 	ld hl, PsychicStronghold_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_36396:
+PsychicStronghold_LoadNPCs:
 	ld hl, PsychicStronghold_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3639f:
+PsychicStronghold_WarpFadeInPreload:
 	ld a, [wPrevMap]
 	cp MAP_PSYCHIC_STRONGHOLD_ENTRANCE
 	jr nz, .asm_363aa
@@ -4666,7 +4666,7 @@ Func_3639f:
 	script_call Script_36b76
 	script_ret
 
-Func_36434:
+PsychicStronghold_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp MAP_PSYCHIC_STRONGHOLD_MAMI
 	jr z, .asm_3643d
@@ -4677,13 +4677,13 @@ Func_36434:
 	ccf
 	ret
 
-Func_36440:
+PsychicStronghold_Interact:
 	ld hl, PsychicStronghold_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_36448:
+PsychicStronghold_PauseMenu:
 	ld a, VAR_03
 	farcall GetVarValue
 	cp $03
@@ -4719,7 +4719,7 @@ Func_36448:
 	ccf
 	ret
 
-Func_36490:
+PsychicStronghold_AfterDuel:
 	ld hl, PsychicStronghold_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -5766,28 +5766,28 @@ PsychicStrongholdMami_NPCInteractions:
 	db $ff
 
 PsychicStrongholdMami_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_36ce5
-	dbw OWMODE_INTERACT, Func_36d21
-	dbw OWMODE_PAUSE_MENU, Func_36d29
-	dbw OWMODE_AFTER_DUEL, Func_36d65
-	dbw OWMODE_NPC_POSITION, Func_36cec
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36cf5
-	dbw OWMODE_WARP_END_SFX, Func_36d1e
+	dbw OWMODE_STEP_EVENT, PsychicStrongholdMami_StepEvent
+	dbw OWMODE_INTERACT, PsychicStrongholdMami_Interact
+	dbw OWMODE_PAUSE_MENU, PsychicStrongholdMami_PauseMenu
+	dbw OWMODE_AFTER_DUEL, PsychicStrongholdMami_AfterDuel
+	dbw OWMODE_NPC_POSITION, PsychicStrongholdMami_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PsychicStrongholdMami_WarpFadeInPreload
+	dbw OWMODE_WARP_END_SFX, PsychicStrongholdMami_WarpEndSFX
 	db $ff
 
-Func_36ce5:
+PsychicStrongholdMami_StepEvent:
 	ld hl, PsychicStrongholdMami_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_36cec:
+PsychicStrongholdMami_LoadNPCs:
 	ld hl, PsychicStrongholdMami_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_36cf5:
+PsychicStrongholdMami_WarpFadeInPreload:
 	ld bc, $5f
 	ld a, $02
 	farcall SetwD896
@@ -5806,18 +5806,18 @@ Func_36cf5:
 	scf
 	ret
 
-Func_36d1e:
+PsychicStrongholdMami_WarpEndSFX:
 	scf
 	ccf
 	ret
 
-Func_36d21:
+PsychicStrongholdMami_Interact:
 	ld hl, PsychicStrongholdMami_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_36d29:
+PsychicStrongholdMami_PauseMenu:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, e
@@ -5846,7 +5846,7 @@ Func_36d29:
 	ccf
 	ret
 
-Func_36d65:
+PsychicStrongholdMami_AfterDuel:
 	ld hl, PsychicStrongholdMami_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -6161,26 +6161,26 @@ ColorlessAltar_NPCInteractions:
 	db $ff
 
 ColorlessAltar_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_36fe2
-	dbw OWMODE_INTERACT, Func_37011
-	dbw OWMODE_AFTER_DUEL, Func_37019
-	dbw OWMODE_NPC_POSITION, Func_36fe9
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36ff2
+	dbw OWMODE_STEP_EVENT, ColorlessAltar_StepEvent
+	dbw OWMODE_INTERACT, ColorlessAltar_Interact
+	dbw OWMODE_AFTER_DUEL, ColorlessAltar_AfterDuel
+	dbw OWMODE_NPC_POSITION, ColorlessAltar_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, ColorlessAltar_WarpFadeInPreload
 	db $ff
 
-Func_36fe2:
+ColorlessAltar_StepEvent:
 	ld hl, ColorlessAltar_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_36fe9:
+ColorlessAltar_LoadNPCs:
 	ld hl, ColorlessAltar_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_36ff2:
+ColorlessAltar_WarpFadeInPreload:
 	farcall DeliverMailFromQueue
 	ld a, EVENT_MET_COLORLESS_ALTAR_MEMBERS
 	farcall GetEventValue
@@ -6195,13 +6195,13 @@ Func_36ff2:
 	scf
 	ret
 
-Func_37011:
+ColorlessAltar_Interact:
 	ld hl, ColorlessAltar_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_37019:
+ColorlessAltar_AfterDuel:
 	ld hl, ColorlessAltar_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -6676,15 +6676,15 @@ GrCastleEntrance_OWInteractions:
 	db $ff
 
 GrCastleEntrance_MapScripts:
-	dbw OWMODE_IDLE, Func_373cb
-	dbw OWMODE_STEP_EVENT, Func_3740f
-	dbw OWMODE_INTERACT, Func_3746b
-	dbw OWMODE_NPC_POSITION, Func_37416
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3741f
-	dbw OWMODE_AFTER_DUEL, Func_3747b
+	dbw OWMODE_IDLE, GrCastleEntrance_Idle
+	dbw OWMODE_STEP_EVENT, GrCastleEntrance_StepEvent
+	dbw OWMODE_INTERACT, GrCastleEntrance_Interact
+	dbw OWMODE_NPC_POSITION, GrCastleEntrance_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrCastleEntrance_WarpFadeInPreload
+	dbw OWMODE_AFTER_DUEL, GrCastleEntrance_AfterDuel
 	db $ff
 
-Func_373cb:
+GrCastleEntrance_Idle:
 	call Func_3332
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
@@ -6717,19 +6717,19 @@ Func_373cb:
 	ccf
 	ret
 
-Func_3740f:
+GrCastleEntrance_StepEvent:
 	ld hl, GrCastleEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_37416:
+GrCastleEntrance_LoadNPCs:
 	ld hl, GrCastleEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3741f:
+GrCastleEntrance_WarpFadeInPreload:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_37469
@@ -6761,7 +6761,7 @@ Func_3741f:
 	scf
 	ret
 
-Func_3746b:
+GrCastleEntrance_Interact:
 	ld hl, GrCastleEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .asm_37479
@@ -6771,7 +6771,7 @@ Func_3746b:
 	scf
 	ret
 
-Func_3747b:
+GrCastleEntrance_AfterDuel:
 	call Func_344da
 	scf
 	ret
@@ -6997,26 +6997,26 @@ GrCastle_NPCInteractions:
 	db $ff
 
 GrCastle_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_3765c
-	dbw OWMODE_INTERACT, Func_376ed
-	dbw OWMODE_AFTER_DUEL, Func_376f5
-	dbw OWMODE_NPC_POSITION, Func_37663
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3766c
+	dbw OWMODE_STEP_EVENT, GrCastle_StepEvent
+	dbw OWMODE_INTERACT, GrCastle_Interact
+	dbw OWMODE_AFTER_DUEL, GrCastle_AfterDuel
+	dbw OWMODE_NPC_POSITION, GrCastle_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrCastle_WarpFadeInPreload
 	db $ff
 
-Func_3765c:
+GrCastle_StepEvent:
 	ld hl, GrCastle_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_37663:
+GrCastle_LoadNPCs:
 	ld hl, GrCastle_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_3766c:
+GrCastle_WarpFadeInPreload:
 	ld a, [wPrevMap]
 	cp MAP_GR_CASTLE_ENTRANCE
 	jr nz, .asm_37677
@@ -7070,13 +7070,13 @@ Func_3766c:
 	scf
 	ret
 
-Func_376ed:
+GrCastle_Interact:
 	ld hl, GrCastle_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_376f5:
+GrCastle_AfterDuel:
 	ld hl, GrCastle_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript

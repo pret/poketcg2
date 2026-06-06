@@ -100,6 +100,12 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_2d66a` | `0b:566a` | `RockClub_LoadNPCs` | OWMODE_NPC_POSITION -> loads RockClub_NPCs (tcg1 RockClubNPCS) | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: ~602 named. ~607 remaining. **Big seam:** `tools/name_mapscripts.py` named 554
+  overworld map-script handlers across 116 `<Map>_MapScripts` OWMODE tables as
+  `<Map>_<OWMODEAction>` (tcg1's `<Map><Slot>` convention generalized). Deterministic generator,
+  not subagents; only Func_2c4db needed a manual touch (a duplicate in-table entry, = LightningClub_MusicPreload).
+  This is tcg2's version of tcg1's fixed-8-slot MapScripts table (tcg2 uses a variable-length
+  `dbw OWMODE_*, handler` list with finer modes).
 - 2026-06-06: 48 named. 1,161 remaining. Batch (14) via 8 parallel subagents. Key discovery:
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.

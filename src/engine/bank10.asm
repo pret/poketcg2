@@ -718,13 +718,13 @@ OverworldTcg_MapHeader:
 	db MUSIC_OVERWORLD
 
 OverworldTcg_MapScripts:
-	dbw OWMODE_MUSIC_PRELOAD, Func_40474
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4048a
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_4053b
-	dbw OWMODE_WARP_END_SFX, Func_4053e
+	dbw OWMODE_MUSIC_PRELOAD, OverworldTcg_MusicPreload
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, OverworldTcg_WarpFadeInPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, OverworldTcg_WarpFadeOutPreload
+	dbw OWMODE_WARP_END_SFX, OverworldTcg_WarpEndSFX
 	db $ff ; end
 
-Func_40474:
+OverworldTcg_MusicPreload:
 	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40482
@@ -741,7 +741,7 @@ Func_40474:
 	ccf
 	ret
 
-Func_4048a:
+OverworldTcg_WarpFadeInPreload:
 	xor a
 	farcall InitOWObjects
 	lb de,  1, 1
@@ -827,12 +827,12 @@ Func_4048a:
 	ccf
 	ret
 
-Func_4053b:
+OverworldTcg_WarpFadeOutPreload:
 	scf
 	ccf
 	ret
 
-Func_4053e:
+OverworldTcg_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_4054b
@@ -1346,16 +1346,16 @@ MasonLaboratoryMain_OWInteractions:
 	db $ff
 
 MasonLaboratoryMain_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_40e83
-	dbw OWMODE_INTERACT, Func_40f04
-	dbw OWMODE_AFTER_DUEL, Func_40f21
-	dbw OWMODE_AFTER_DUEL_PRELOAD, Func_40f14
-	dbw OWMODE_NPC_POSITION, Func_40e8a
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_40e91
-	dbw OWMODE_MUSIC_PRELOAD, Func_40e72
+	dbw OWMODE_STEP_EVENT, MasonLaboratoryMain_StepEvent
+	dbw OWMODE_INTERACT, MasonLaboratoryMain_Interact
+	dbw OWMODE_AFTER_DUEL, MasonLaboratoryMain_AfterDuel
+	dbw OWMODE_AFTER_DUEL_PRELOAD, MasonLaboratoryMain_AfterDuelPreload
+	dbw OWMODE_NPC_POSITION, MasonLaboratoryMain_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, MasonLaboratoryMain_WarpFadeInPreload
+	dbw OWMODE_MUSIC_PRELOAD, MasonLaboratoryMain_MusicPreload
 	db $ff
 
-Func_40e72:
+MasonLaboratoryMain_MusicPreload:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	or a
@@ -1367,17 +1367,17 @@ Func_40e72:
 	ccf
 	ret
 
-Func_40e83:
+MasonLaboratoryMain_StepEvent:
 	ld hl, MasonLaboratoryMain_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_40e8a:
+MasonLaboratoryMain_LoadNPCs:
 	ld hl, MasonLaboratoryMain_NPCs
 	call LoadNPCs
 	ret
 
-Func_40e91:
+MasonLaboratoryMain_WarpFadeInPreload:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	or a
@@ -1430,7 +1430,7 @@ Func_40ef9:
 	farcall Func_12c0ce
 	ret
 
-Func_40f04:
+MasonLaboratoryMain_Interact:
 	ld hl, MasonLaboratoryMain_NPCInteractions
 	call Func_328c
 	jr nc, .asm_40f12
@@ -1440,7 +1440,7 @@ Func_40f04:
 	scf
 	ret
 
-Func_40f14:
+MasonLaboratoryMain_AfterDuelPreload:
 	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_40f1e
@@ -1451,7 +1451,7 @@ Func_40f14:
 	ccf
 	ret
 
-Func_40f21:
+MasonLaboratoryMain_AfterDuel:
 	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_40f34
@@ -2363,16 +2363,16 @@ TcgChallengeHall_NPCInteractions:
 	db $ff
 
 TcgChallengeHall_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_415f3
-	dbw OWMODE_INTERACT, Func_41622
-	dbw OWMODE_AFTER_DUEL, Func_4162a
-	dbw OWMODE_NPC_POSITION, Func_415fa
-	dbw OWMODE_MUSIC_PRELOAD, Func_415e6
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41603
-	dbw OWMODE_CONTINUE_OW, Func_4163b
+	dbw OWMODE_STEP_EVENT, TcgChallengeHall_StepEvent
+	dbw OWMODE_INTERACT, TcgChallengeHall_Interact
+	dbw OWMODE_AFTER_DUEL, TcgChallengeHall_AfterDuel
+	dbw OWMODE_NPC_POSITION, TcgChallengeHall_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, TcgChallengeHall_MusicPreload
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, TcgChallengeHall_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, TcgChallengeHall_ContinueOW
 	db $ff
 
-Func_415e6:
+TcgChallengeHall_MusicPreload:
 	call CheckIfTCGCupIsActive
 	jr c, .inactive
 	ld a, MUSIC_CHALLENGE_HALL
@@ -2382,19 +2382,19 @@ Func_415e6:
 	ccf
 	ret
 
-Func_415f3:
+TcgChallengeHall_StepEvent:
 	ld hl, TcgChallengeHall_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_415fa:
+TcgChallengeHall_LoadNPCs:
 	ld hl, TcgChallengeHall_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_41603:
+TcgChallengeHall_WarpFadeInPreload:
 	call CheckIfTCGCupIsActive
 	jr c, .inactive
 	xor a ; TCG_ISLAND
@@ -2409,13 +2409,13 @@ Func_41603:
 	scf
 	ret
 
-Func_41622:
+TcgChallengeHall_Interact:
 	ld hl, TcgChallengeHall_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_4162a:
+TcgChallengeHall_AfterDuel:
 	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
 	cp 2
@@ -2423,7 +2423,7 @@ Func_4162a:
 	jp z, Script_TCGCupRound2AfterDuel
 	jp Script_TCGCupRound3AfterDuel
 
-Func_4163b:
+TcgChallengeHall_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_41645
@@ -3194,15 +3194,15 @@ GrAirport_NPCInteractions:
 	db $ff
 
 GrAirport_MapScripts:
-	dbw OWMODE_IDLE, Func_41c44
-	dbw OWMODE_STEP_EVENT, Func_41c50
-	dbw OWMODE_INTERACT, Func_41ccb
-	dbw OWMODE_NPC_POSITION, Func_41c57
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41c60
-	dbw OWMODE_WARP_END_SFX, Func_41ca1
+	dbw OWMODE_IDLE, GrAirport_Idle
+	dbw OWMODE_STEP_EVENT, GrAirport_StepEvent
+	dbw OWMODE_INTERACT, GrAirport_Interact
+	dbw OWMODE_NPC_POSITION, GrAirport_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrAirport_WarpFadeInPreload
+	dbw OWMODE_WARP_END_SFX, GrAirport_WarpEndSFX
 	db $ff
 
-Func_41c44:
+GrAirport_Idle:
 	call DoFrame
 	call Func_41db4
 	call HandleOverworldPlayerInput
@@ -3210,19 +3210,19 @@ Func_41c44:
 	ccf
 	ret
 
-Func_41c50:
+GrAirport_StepEvent:
 	ld hl, GrAirport_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_41c57:
+GrAirport_LoadNPCs:
 	ld hl, GrAirport_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_41c60:
+GrAirport_WarpFadeInPreload:
 	farcall ClearwD986
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
@@ -3250,7 +3250,7 @@ Func_41c60:
 	scf
 	ret
 
-Func_41ca1:
+GrAirport_WarpEndSFX:
 	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr z, .asm_41caa
@@ -3272,7 +3272,7 @@ Func_41ca1:
 	ccf
 	ret
 
-Func_41ccb:
+GrAirport_Interact:
 	ld hl, GrAirport_NPCInteractions
 	call Func_328c
 	scf
@@ -3517,17 +3517,17 @@ SealedFort_OWInteractions:
 	db $ff
 
 SealedFort_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_41f14
-	dbw OWMODE_INTERACT, Func_41f1b
-	dbw OWMODE_AFTER_DUEL, Func_41f36
+	dbw OWMODE_STEP_EVENT, SealedFort_StepEvent
+	dbw OWMODE_INTERACT, SealedFort_Interact
+	dbw OWMODE_AFTER_DUEL, SealedFort_AfterDuel
 	db $ff
 
-Func_41f14:
+SealedFort_StepEvent:
 	ld hl, SealedFort_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_41f1b:
+SealedFort_Interact:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
@@ -3541,7 +3541,7 @@ Func_41f1b:
 	scf
 	ret
 
-Func_41f36:
+SealedFort_AfterDuel:
 	ld hl, SealedFort_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -4446,29 +4446,29 @@ GrChallengeHall_OWInteractions:
 	db $ff
 
 GrChallengeHall_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_42639
-	dbw OWMODE_INTERACT, Func_426b9
-	dbw OWMODE_AFTER_DUEL, Func_426d6
-	dbw OWMODE_AFTER_DUEL_PRELOAD, Func_426c9
-	dbw OWMODE_NPC_POSITION, Func_42640
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4266e
-	dbw OWMODE_MUSIC_PRELOAD, Func_42649
-	dbw OWMODE_CONTINUE_OW, Func_426f8
+	dbw OWMODE_STEP_EVENT, GrChallengeHall_StepEvent
+	dbw OWMODE_INTERACT, GrChallengeHall_Interact
+	dbw OWMODE_AFTER_DUEL, GrChallengeHall_AfterDuel
+	dbw OWMODE_AFTER_DUEL_PRELOAD, GrChallengeHall_AfterDuelPreload
+	dbw OWMODE_NPC_POSITION, GrChallengeHall_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrChallengeHall_WarpFadeInPreload
+	dbw OWMODE_MUSIC_PRELOAD, GrChallengeHall_MusicPreload
+	dbw OWMODE_CONTINUE_OW, GrChallengeHall_ContinueOW
 	db $ff
 
-Func_42639:
+GrChallengeHall_StepEvent:
 	ld hl, GrChallengeHall_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_42640:
+GrChallengeHall_LoadNPCs:
 	ld hl, GrChallengeHall_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_42649:
+GrChallengeHall_MusicPreload:
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
 	cp CHALLENGE_CUP_1_START
@@ -4492,7 +4492,7 @@ Func_42649:
 	ccf
 	ret
 
-Func_4266e:
+GrChallengeHall_WarpFadeInPreload:
 	call CheckIfGRCupIsActive
 	jr nc, .active
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
@@ -4526,7 +4526,7 @@ Func_4266e:
 	scf
 	ret
 
-Func_426b9:
+GrChallengeHall_Interact:
 	ld hl, GrChallengeHall_NPCInteractions
 	call Func_328c
 	jr nc, .asm_426c7
@@ -4536,7 +4536,7 @@ Func_426b9:
 	scf
 	ret
 
-Func_426c9:
+GrChallengeHall_AfterDuelPreload:
 	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_426d3
@@ -4547,7 +4547,7 @@ Func_426c9:
 	ccf
 	ret
 
-Func_426d6:
+GrChallengeHall_AfterDuel:
 	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_426ef
@@ -4563,7 +4563,7 @@ Func_426d6:
 	scf
 	ret
 
-Func_426f8:
+GrChallengeHall_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_42702
@@ -5490,16 +5490,16 @@ FightingFortMaze1_StepEvents:
 	db $ff
 
 FightingFortMaze1_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_42e6e
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42e75
+	dbw OWMODE_STEP_EVENT, FightingFortMaze1_StepEvent
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortMaze1_WarpFadeInPreload
 	db $ff
 
-Func_42e6e:
+FightingFortMaze1_StepEvent:
 	ld hl, FightingFortMaze1_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_42e75:
+FightingFortMaze1_WarpFadeInPreload:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
@@ -5521,16 +5521,16 @@ FightingFortMaze21_StepEvents:
 	db $ff
 
 FightingFortMaze21_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_42ec3
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42eca
+	dbw OWMODE_STEP_EVENT, FightingFortMaze21_StepEvent
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingFortMaze21_WarpFadeInPreload
 	db $ff
 
-Func_42ec3:
+FightingFortMaze21_StepEvent:
 	ld hl, FightingFortMaze21_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_42eca:
+FightingFortMaze21_WarpFadeInPreload:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
@@ -5562,29 +5562,29 @@ GrCastleBiruritchi_OWInteractions:
 	db $ff
 
 GrCastleBiruritchi_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_42f2e
-	dbw OWMODE_INTERACT, Func_42fad
-	dbw OWMODE_AFTER_DUEL, Func_42fbd
-	dbw OWMODE_NPC_POSITION, Func_42f35
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42f3e
-	dbw OWMODE_CONTINUE_OW, Func_42fcd
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_42f86
-	dbw OWMODE_WARP_END_SFX, Func_42fa1
+	dbw OWMODE_STEP_EVENT, GrCastleBiruritchi_StepEvent
+	dbw OWMODE_INTERACT, GrCastleBiruritchi_Interact
+	dbw OWMODE_AFTER_DUEL, GrCastleBiruritchi_AfterDuel
+	dbw OWMODE_NPC_POSITION, GrCastleBiruritchi_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrCastleBiruritchi_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, GrCastleBiruritchi_ContinueOW
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, GrCastleBiruritchi_WarpFadeOutPreload
+	dbw OWMODE_WARP_END_SFX, GrCastleBiruritchi_WarpEndSFX
 	db $ff
 
-Func_42f2e:
+GrCastleBiruritchi_StepEvent:
 	ld hl, GrCastleBiruritchi_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_42f35:
+GrCastleBiruritchi_LoadNPCs:
 	ld hl, GrCastleBiruritchi_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_42f3e:
+GrCastleBiruritchi_WarpFadeInPreload:
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
 	jr nz, .asm_42f84
@@ -5615,7 +5615,7 @@ Func_42f3e:
 	scf
 	ret
 
-Func_42f86:
+GrCastleBiruritchi_WarpFadeOutPreload:
 	ld a, [wNextGameEvent]
 	cp GAME_EVENT_CREDITS
 	jr z, .asm_42f8f
@@ -5631,7 +5631,7 @@ Func_42f86:
 	ccf
 	ret
 
-Func_42fa1:
+GrCastleBiruritchi_WarpEndSFX:
 	ld a, [wNextGameEvent]
 	cp GAME_EVENT_CREDITS
 	jr z, .asm_42faa
@@ -5642,7 +5642,7 @@ Func_42fa1:
 	ccf
 	ret
 
-Func_42fad:
+GrCastleBiruritchi_Interact:
 	ld hl, GrCastleBiruritchi_NPCInteractions
 	call Func_328c
 	jr nc, .asm_42fbb
@@ -5652,7 +5652,7 @@ Func_42fad:
 	scf
 	ret
 
-Func_42fbd:
+GrCastleBiruritchi_AfterDuel:
 	ld hl, GrCastleBiruritchi_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -5663,7 +5663,7 @@ GrCastleBiruritchi_AfterDuelScripts:
 	npc_script NPC_BIRURITCHI, Func_431a6
 	db $ff
 
-Func_42fcd:
+GrCastleBiruritchi_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_42fd7

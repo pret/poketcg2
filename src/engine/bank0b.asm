@@ -34,17 +34,17 @@ IshiharasHouse_OWInteractions:
 	db $ff
 
 IshiharasHouse_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2c0c1
-	dbw OWMODE_INTERACT, Func_2c0f1
-	dbw OWMODE_NPC_POSITION, Func_2c0c8
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2c0d1
-	dbw OWMODE_SAVE_PRELOAD, Func_2c101
-	dbw OWMODE_SAVE_POSTLOAD, Func_2c12f
-	dbw OWMODE_CONTINUE_OW, Func_2c13e
-	dbw OWMODE_MUSIC_PRELOAD, Func_2c0b4
+	dbw OWMODE_STEP_EVENT, IshiharasHouse_StepEvent
+	dbw OWMODE_INTERACT, IshiharasHouse_Interact
+	dbw OWMODE_NPC_POSITION, IshiharasHouse_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, IshiharasHouse_WarpFadeInPreload
+	dbw OWMODE_SAVE_PRELOAD, IshiharasHouse_SavePreload
+	dbw OWMODE_SAVE_POSTLOAD, IshiharasHouse_SavePostload
+	dbw OWMODE_CONTINUE_OW, IshiharasHouse_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, IshiharasHouse_MusicPreload
 	db $ff
 
-Func_2c0b4:
+IshiharasHouse_MusicPreload:
 	call IshiharasHouse_IshiharaAppearanceCheck
 	jr nc, .asm_2c0be
 	ld a, MUSIC_OVERWORLD
@@ -54,19 +54,19 @@ Func_2c0b4:
 	ccf
 	ret
 
-Func_2c0c1:
+IshiharasHouse_StepEvent:
 	ld hl, IshiharasHouse_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2c0c8:
+IshiharasHouse_LoadNPCs:
 	ld hl, IshiharasHouse_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2c0d1:
+IshiharasHouse_WarpFadeInPreload:
 	xor a
 	start_script
 	send_mail $11
@@ -83,7 +83,7 @@ Func_2c0d1:
 	scf
 	ret
 
-Func_2c0f1:
+IshiharasHouse_Interact:
 	ld hl, IshiharasHouse_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2c0ff
@@ -93,7 +93,7 @@ Func_2c0f1:
 	scf
 	ret
 
-Func_2c101:
+IshiharasHouse_SavePreload:
 	xor a
 	push af
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
@@ -123,7 +123,7 @@ Func_2c101:
 	ccf
 	ret
 
-Func_2c12f:
+IshiharasHouse_SavePostload:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -132,7 +132,7 @@ Func_2c12f:
 	ccf
 	ret
 
-Func_2c13e:
+IshiharasHouse_ContinueOW:
 	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -599,16 +599,16 @@ LightningClub_NPCInteractions:
 	db $ff
 
 LightningClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2c4fa
-	dbw OWMODE_INTERACT, Func_2c560
-	dbw OWMODE_AFTER_DUEL, Func_2c568
-	dbw OWMODE_NPC_POSITION, Func_2c501
-	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2c50a
-	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
+	dbw OWMODE_STEP_EVENT, LightningClub_StepEvent
+	dbw OWMODE_INTERACT, LightningClub_Interact
+	dbw OWMODE_AFTER_DUEL, LightningClub_AfterDuel
+	dbw OWMODE_NPC_POSITION, LightningClub_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, LightningClub_MusicPreload
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, LightningClub_WarpFadeInPreload
+	dbw OWMODE_MUSIC_PRELOAD, LightningClub_MusicPreload
 	db $ff
 
-Func_2c4db:
+LightningClub_MusicPreload:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_2c4ea
@@ -626,19 +626,19 @@ Func_2c4db:
 	ccf
 	ret
 
-Func_2c4fa:
+LightningClub_StepEvent:
 	ld hl, LightningClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2c501:
+LightningClub_LoadNPCs:
 	ld hl, LightningClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2c50a:
+LightningClub_WarpFadeInPreload:
 	ld a, EVENT_MET_GR4_LIGHTNING_CLUB
 	farcall GetEventValue
 	jr z, .asm_2c524
@@ -676,13 +676,13 @@ Func_2c50a:
 	scf
 	ret
 
-Func_2c560:
+LightningClub_Interact:
 	ld hl, LightningClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2c568:
+LightningClub_AfterDuel:
 	ld hl, LightningClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -1247,18 +1247,18 @@ PsychicClubEntrance_NPCInteractions:
 	db $ff
 
 PsychicClubEntrance_MapScripts:
-	dbw OWMODE_IDLE, Func_2c9ac
-	dbw OWMODE_STEP_EVENT, Func_2c9d8
-	dbw OWMODE_INTERACT, Func_2ca14
-	dbw OWMODE_AFTER_DUEL, Func_2ca1c
-	dbw OWMODE_NPC_POSITION, Func_2c9df
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2c9e8
-	dbw OWMODE_CONTINUE_OW, Func_2ca22
-	dbw OWMODE_MUSIC_PRELOAD, Func_2c9b8
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2c9c8
+	dbw OWMODE_IDLE, PsychicClubEntrance_Idle
+	dbw OWMODE_STEP_EVENT, PsychicClubEntrance_StepEvent
+	dbw OWMODE_INTERACT, PsychicClubEntrance_Interact
+	dbw OWMODE_AFTER_DUEL, PsychicClubEntrance_AfterDuel
+	dbw OWMODE_NPC_POSITION, PsychicClubEntrance_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PsychicClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, PsychicClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, PsychicClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, PsychicClubEntrance_MusicPostload
 	db $ff
 
-Func_2c9ac:
+PsychicClubEntrance_Idle:
 	call Func_3332
 	call Func_2ca46
 	call HandleOverworldPlayerInput
@@ -1266,7 +1266,7 @@ Func_2c9ac:
 	ccf
 	ret
 
-Func_2c9b8:
+PsychicClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2c9c5
@@ -1277,7 +1277,7 @@ Func_2c9b8:
 	ccf
 	ret
 
-Func_2c9c8:
+PsychicClubEntrance_MusicPostload:
 	call PsychicClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -1289,19 +1289,19 @@ Func_2c9c8:
 	ccf
 	ret
 
-Func_2c9d8:
+PsychicClubEntrance_StepEvent:
 	ld hl, PsychicClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2c9df:
+PsychicClubEntrance_LoadNPCs:
 	ld hl, PsychicClubEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2c9e8:
+PsychicClubEntrance_WarpFadeInPreload:
 	call PsychicClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 	cp RONALD_DUEL_GC_PIECES_2
@@ -1330,18 +1330,18 @@ Func_2c9e8:
 	scf
 	ret
 
-Func_2ca14:
+PsychicClubEntrance_Interact:
 	ld hl, PsychicClubEntrance_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2ca1c:
+PsychicClubEntrance_AfterDuel:
 	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
-Func_2ca22:
+PsychicClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2ca3c
@@ -1507,16 +1507,16 @@ PsychicClubLobby_OWInteractions:
 	db $ff
 
 PsychicClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2cbcf
-	dbw OWMODE_INTERACT, Func_2cbdf
-	dbw OWMODE_NPC_POSITION, Func_2cbd6
-	dbw OWMODE_AFTER_DUEL, Func_2cbef
-	dbw OWMODE_CONTINUE_OW, Func_2cbf5
-	dbw OWMODE_MUSIC_PRELOAD, Func_2cba8
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2cbba
+	dbw OWMODE_STEP_EVENT, PsychicClubLobby_StepEvent
+	dbw OWMODE_INTERACT, PsychicClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, PsychicClubLobby_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, PsychicClubLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, PsychicClubLobby_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, PsychicClubLobby_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, PsychicClubLobby_MusicPostload
 	db $ff
 
-Func_2cba8:
+PsychicClubLobby_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cbb7
@@ -1528,7 +1528,7 @@ Func_2cba8:
 	ccf
 	ret
 
-Func_2cbba:
+PsychicClubLobby_MusicPostload:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp 3
@@ -1542,19 +1542,19 @@ Func_2cbba:
 	ccf
 	ret
 
-Func_2cbcf:
+PsychicClubLobby_StepEvent:
 	ld hl, PsychicClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2cbd6:
+PsychicClubLobby_LoadNPCs:
 	ld hl, PsychicClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2cbdf:
+PsychicClubLobby_Interact:
 	ld hl, PsychicClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2cbed
@@ -1564,12 +1564,12 @@ Func_2cbdf:
 	scf
 	ret
 
-Func_2cbef:
+PsychicClubLobby_AfterDuel:
 	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 
-Func_2cbf5:
+PsychicClubLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2cc0f
@@ -1759,15 +1759,15 @@ PsychicClub_NPCInteractions:
 	db $ff
 
 PsychicClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2cd92
-	dbw OWMODE_INTERACT, Func_2ce11
-	dbw OWMODE_AFTER_DUEL, Func_2ce19
-	dbw OWMODE_NPC_POSITION, Func_2cd99
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2cda2
-	dbw OWMODE_MUSIC_PRELOAD, Func_2cd82
+	dbw OWMODE_STEP_EVENT, PsychicClub_StepEvent
+	dbw OWMODE_INTERACT, PsychicClub_Interact
+	dbw OWMODE_AFTER_DUEL, PsychicClub_AfterDuel
+	dbw OWMODE_NPC_POSITION, PsychicClub_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, PsychicClub_WarpFadeInPreload
+	dbw OWMODE_MUSIC_PRELOAD, PsychicClub_MusicPreload
 	db $ff
 
-Func_2cd82:
+PsychicClub_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cd8f
@@ -1778,19 +1778,19 @@ Func_2cd82:
 	ccf
 	ret
 
-Func_2cd92:
+PsychicClub_StepEvent:
 	ld hl, PsychicClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2cd99:
+PsychicClub_LoadNPCs:
 	ld hl, PsychicClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2cda2:
+PsychicClub_WarpFadeInPreload:
 	ld a, EVENT_MET_GR4_PSYCHIC_CLUB
 	farcall GetEventValue
 	jr z, .asm_2cdc6
@@ -1834,13 +1834,13 @@ Func_2cda2:
 	scf
 	ret
 
-Func_2ce11:
+PsychicClub_Interact:
 	ld hl, PsychicClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2ce19:
+PsychicClub_AfterDuel:
 	ld hl, PsychicClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -2544,7 +2544,7 @@ RockClubEntrance_StepEvents:
 RockClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, RockClubEntrance_StepEvent
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, RockClubEntrance_WarpFadeInPreload
-	dbw OWMODE_CONTINUE_OW, Func_2d399
+	dbw OWMODE_CONTINUE_OW, RockClubEntrance_ContinueOW
 	dbw OWMODE_MUSIC_PRELOAD, RockClubEntrance_MusicPreload
 	dbw OWMODE_MUSIC_POSTLOAD, RockClubEntrance_MusicPostload
 	db $ff
@@ -2594,7 +2594,7 @@ RockClubEntrance_WarpFadeInPreload:
 	scf
 	ret
 
-Func_2d399:
+RockClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d3b3
@@ -2661,16 +2661,16 @@ RockClubLobby_OWInteractions:
 	db $ff
 
 RockClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2d49e
-	dbw OWMODE_INTERACT, Func_2d4ae
-	dbw OWMODE_NPC_POSITION, Func_2d4a5
-	dbw OWMODE_AFTER_DUEL, Func_2d4be
-	dbw OWMODE_CONTINUE_OW, Func_2d4c4
-	dbw OWMODE_MUSIC_PRELOAD, Func_2d472
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2d489
+	dbw OWMODE_STEP_EVENT, RockClubLobby_StepEvent
+	dbw OWMODE_INTERACT, RockClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, RockClubLobby_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, RockClubLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, RockClubLobby_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, RockClubLobby_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, RockClubLobby_MusicPostload
 	db $ff
 
-Func_2d472:
+RockClubLobby_MusicPreload:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d486
@@ -2684,7 +2684,7 @@ Func_2d472:
 	ccf
 	ret
 
-Func_2d489:
+RockClubLobby_MusicPostload:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp 4
@@ -2698,19 +2698,19 @@ Func_2d489:
 	ccf
 	ret
 
-Func_2d49e:
+RockClubLobby_StepEvent:
 	ld hl, RockClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2d4a5:
+RockClubLobby_LoadNPCs:
 	ld hl, RockClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2d4ae:
+RockClubLobby_Interact:
 	ld hl, RockClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2d4bc
@@ -2720,12 +2720,12 @@ Func_2d4ae:
 	scf
 	ret
 
-Func_2d4be:
+RockClubLobby_AfterDuel:
 	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 
-Func_2d4c4:
+RockClubLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d4de
@@ -2914,10 +2914,10 @@ RockClub_NPCInteractions:
 
 RockClub_MapScripts:
 	dbw OWMODE_STEP_EVENT, RockClub_StepEvent
-	dbw OWMODE_INTERACT, Func_2d6a6
+	dbw OWMODE_INTERACT, RockClub_Interact
 	dbw OWMODE_NPC_POSITION, RockClub_LoadNPCs
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d673
-	dbw OWMODE_AFTER_DUEL, Func_2d6ae
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, RockClub_WarpFadeInPreload
+	dbw OWMODE_AFTER_DUEL, RockClub_AfterDuel
 	dbw OWMODE_MUSIC_PRELOAD, RockClub_MusicPreload
 	db $ff
 
@@ -2944,7 +2944,7 @@ RockClub_LoadNPCs:
 	ccf
 	ret
 
-Func_2d673:
+RockClub_WarpFadeInPreload:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d6a4
@@ -2967,13 +2967,13 @@ Func_2d673:
 	scf
 	ret
 
-Func_2d6a6:
+RockClub_Interact:
 	ld hl, RockClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2d6ae:
+RockClub_AfterDuel:
 	ld hl, RockClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3328,15 +3328,15 @@ FightingClubEntrance_StepEvents:
 	db $ff
 
 FightingClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2d99f
-	dbw OWMODE_AFTER_DUEL, Func_2d9d2
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d9a6
-	dbw OWMODE_CONTINUE_OW, Func_2d9d8
-	dbw OWMODE_MUSIC_PRELOAD, Func_2d97f
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2d98f
+	dbw OWMODE_STEP_EVENT, FightingClubEntrance_StepEvent
+	dbw OWMODE_AFTER_DUEL, FightingClubEntrance_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, FightingClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, FightingClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, FightingClubEntrance_MusicPostload
 	db $ff
 
-Func_2d97f:
+FightingClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2d98c
@@ -3347,7 +3347,7 @@ Func_2d97f:
 	ccf
 	ret
 
-Func_2d98f:
+FightingClubEntrance_MusicPostload:
 	call FightingClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -3359,12 +3359,12 @@ Func_2d98f:
 	ccf
 	ret
 
-Func_2d99f:
+FightingClubEntrance_StepEvent:
 	ld hl, FightingClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2d9a6:
+FightingClubEntrance_WarpFadeInPreload:
 	call FightingClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 	cp RONALD_DUEL_GC_PIECES_2
@@ -3393,12 +3393,12 @@ Func_2d9a6:
 	scf
 	ret
 
-Func_2d9d2:
+FightingClubEntrance_AfterDuel:
 	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
-Func_2d9d8:
+FightingClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d9f2
@@ -3487,14 +3487,14 @@ FightingClubLobby_OWInteractions:
 	db $ff
 
 FightingClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2dade
-	dbw OWMODE_INTERACT, Func_2daee
-	dbw OWMODE_NPC_POSITION, Func_2dae5
-	dbw OWMODE_AFTER_DUEL, Func_2dafe
-	dbw OWMODE_MUSIC_PRELOAD, Func_2dace
+	dbw OWMODE_STEP_EVENT, FightingClubLobby_StepEvent
+	dbw OWMODE_INTERACT, FightingClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, FightingClubLobby_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, FightingClubLobby_AfterDuel
+	dbw OWMODE_MUSIC_PRELOAD, FightingClubLobby_MusicPreload
 	db $ff
 
-Func_2dace:
+FightingClubLobby_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dadb
@@ -3505,19 +3505,19 @@ Func_2dace:
 	ccf
 	ret
 
-Func_2dade:
+FightingClubLobby_StepEvent:
 	ld hl, FightingClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2dae5:
+FightingClubLobby_LoadNPCs:
 	ld hl, FightingClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2daee:
+FightingClubLobby_Interact:
 	ld hl, FightingClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2dafc
@@ -3527,7 +3527,7 @@ Func_2daee:
 	scf
 	ret
 
-Func_2dafe:
+FightingClubLobby_AfterDuel:
 	ld hl, FightingClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -3779,15 +3779,15 @@ FightingClub_NPCInteractions:
 	db $ff
 
 FightingClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2dd0e
-	dbw OWMODE_INTERACT, Func_2dd3a
-	dbw OWMODE_NPC_POSITION, Func_2dd31
-	dbw OWMODE_AFTER_DUEL, Func_2dd42
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2dd15
-	dbw OWMODE_MUSIC_PRELOAD, Func_2dcfe
+	dbw OWMODE_STEP_EVENT, FightingClub_StepEvent
+	dbw OWMODE_INTERACT, FightingClub_Interact
+	dbw OWMODE_NPC_POSITION, FightingClub_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, FightingClub_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FightingClub_WarpFadeInPreload
+	dbw OWMODE_MUSIC_PRELOAD, FightingClub_MusicPreload
 	db $ff
 
-Func_2dcfe:
+FightingClub_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dd0b
@@ -3798,12 +3798,12 @@ Func_2dcfe:
 	ccf
 	ret
 
-Func_2dd0e:
+FightingClub_StepEvent:
 	ld hl, FightingClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2dd15:
+FightingClub_WarpFadeInPreload:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2dd2f
@@ -3817,20 +3817,20 @@ Func_2dd15:
 	scf
 	ret
 
-Func_2dd31:
+FightingClub_LoadNPCs:
 	ld hl, FightingClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2dd3a:
+FightingClub_Interact:
 	ld hl, FightingClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2dd42:
+FightingClub_AfterDuel:
 	ld hl, FightingClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -4305,15 +4305,15 @@ GrassClubEntrance_StepEvents:
 	db $ff
 
 GrassClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2e0dc
-	dbw OWMODE_AFTER_DUEL, Func_2e10f
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e0e3
-	dbw OWMODE_CONTINUE_OW, Func_2e115
-	dbw OWMODE_MUSIC_PRELOAD, Func_2e0bc
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2e0cc
+	dbw OWMODE_STEP_EVENT, GrassClubEntrance_StepEvent
+	dbw OWMODE_AFTER_DUEL, GrassClubEntrance_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrassClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, GrassClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, GrassClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, GrassClubEntrance_MusicPostload
 	db $ff
 
-Func_2e0bc:
+GrassClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e0c9
@@ -4324,7 +4324,7 @@ Func_2e0bc:
 	ccf
 	ret
 
-Func_2e0cc:
+GrassClubEntrance_MusicPostload:
 	call GrassClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -4336,12 +4336,12 @@ Func_2e0cc:
 	ccf
 	ret
 
-Func_2e0dc:
+GrassClubEntrance_StepEvent:
 	ld hl, GrassClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2e0e3:
+GrassClubEntrance_WarpFadeInPreload:
 	call GrassClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 	cp RONALD_DUEL_GC_PIECES_2
@@ -4370,12 +4370,12 @@ Func_2e0e3:
 	scf
 	ret
 
-Func_2e10f:
+GrassClubEntrance_AfterDuel:
 	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
-Func_2e115:
+GrassClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e12f
@@ -4452,15 +4452,15 @@ GrassClub_NPCInteractions:
 	db $ff
 
 GrassClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2e1d2
-	dbw OWMODE_INTERACT, Func_2e1fe
-	dbw OWMODE_AFTER_DUEL, Func_2e206
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e1d9
-	dbw OWMODE_NPC_POSITION, Func_2e1f5
-	dbw OWMODE_MUSIC_PRELOAD, Func_2e1c2
+	dbw OWMODE_STEP_EVENT, GrassClub_StepEvent
+	dbw OWMODE_INTERACT, GrassClub_Interact
+	dbw OWMODE_AFTER_DUEL, GrassClub_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, GrassClub_WarpFadeInPreload
+	dbw OWMODE_NPC_POSITION, GrassClub_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, GrassClub_MusicPreload
 	db $ff
 
-	Func_2e1c2:
+	GrassClub_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e1cf
@@ -4471,12 +4471,12 @@ GrassClub_MapScripts:
 	ccf
 	ret
 
-Func_2e1d2:
+GrassClub_StepEvent:
 	ld hl, GrassClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2e1d9:
+GrassClub_WarpFadeInPreload:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e1f3
@@ -4490,20 +4490,20 @@ Func_2e1d9:
 	scf
 	ret
 
-Func_2e1f5:
+GrassClub_LoadNPCs:
 	ld hl, GrassClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2e1fe:
+GrassClub_Interact:
 	ld hl, GrassClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2e206:
+GrassClub_AfterDuel:
 	ld hl, GrassClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -4911,17 +4911,17 @@ ScienceClubEntrance_NPCInteractions:
 	db $ff
 
 ScienceClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2e538
-	dbw OWMODE_INTERACT, Func_2e574
-	dbw OWMODE_AFTER_DUEL, Func_2e57c
-	dbw OWMODE_NPC_POSITION, Func_2e53f
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e548
-	dbw OWMODE_CONTINUE_OW, Func_2e582
-	dbw OWMODE_MUSIC_PRELOAD, Func_2e518
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2e528
+	dbw OWMODE_STEP_EVENT, ScienceClubEntrance_StepEvent
+	dbw OWMODE_INTERACT, ScienceClubEntrance_Interact
+	dbw OWMODE_AFTER_DUEL, ScienceClubEntrance_AfterDuel
+	dbw OWMODE_NPC_POSITION, ScienceClubEntrance_LoadNPCs
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, ScienceClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, ScienceClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, ScienceClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, ScienceClubEntrance_MusicPostload
 	db $ff
 
-Func_2e518:
+ScienceClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e525
@@ -4932,7 +4932,7 @@ Func_2e518:
 	ccf
 	ret
 
-Func_2e528:
+ScienceClubEntrance_MusicPostload:
 	call ScienceClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -4944,19 +4944,19 @@ Func_2e528:
 	ccf
 	ret
 
-Func_2e538:
+ScienceClubEntrance_StepEvent:
 	ld hl, ScienceClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2e53f:
+ScienceClubEntrance_LoadNPCs:
 	ld hl, ScienceClubEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2e548:
+ScienceClubEntrance_WarpFadeInPreload:
 	call ScienceClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 	cp RONALD_DUEL_GC_PIECES_2
@@ -4985,18 +4985,18 @@ Func_2e548:
 	scf
 	ret
 
-Func_2e574:
+ScienceClubEntrance_Interact:
 	ld hl, ScienceClubEntrance_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2e57c:
+ScienceClubEntrance_AfterDuel:
 	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
-Func_2e582:
+ScienceClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e59c
@@ -5146,16 +5146,16 @@ ScienceClubLobby_OWInteractions:
 	db $ff
 
 ScienceClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2e71e
-	dbw OWMODE_INTERACT, Func_2e72e
-	dbw OWMODE_AFTER_DUEL, Func_2e73e
-	dbw OWMODE_NPC_POSITION, Func_2e725
-	dbw OWMODE_CONTINUE_OW, Func_2e752
-	dbw OWMODE_MUSIC_PRELOAD, Func_2e6f7
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2e709
+	dbw OWMODE_STEP_EVENT, ScienceClubLobby_StepEvent
+	dbw OWMODE_INTERACT, ScienceClubLobby_Interact
+	dbw OWMODE_AFTER_DUEL, ScienceClubLobby_AfterDuel
+	dbw OWMODE_NPC_POSITION, ScienceClubLobby_LoadNPCs
+	dbw OWMODE_CONTINUE_OW, ScienceClubLobby_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, ScienceClubLobby_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, ScienceClubLobby_MusicPostload
 	db $ff
 
-Func_2e6f7:
+ScienceClubLobby_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e706
@@ -5167,7 +5167,7 @@ Func_2e6f7:
 	ccf
 	ret
 
-Func_2e709:
+ScienceClubLobby_MusicPostload:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp 7
@@ -5181,19 +5181,19 @@ Func_2e709:
 	ccf
 	ret
 
-Func_2e71e:
+ScienceClubLobby_StepEvent:
 	ld hl, ScienceClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2e725:
+ScienceClubLobby_LoadNPCs:
 	ld hl, ScienceClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2e72e:
+ScienceClubLobby_Interact:
 	ld hl, ScienceClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2e73c
@@ -5203,7 +5203,7 @@ Func_2e72e:
 	scf
 	ret
 
-Func_2e73e:
+ScienceClubLobby_AfterDuel:
 	ld hl, ScienceClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -5215,7 +5215,7 @@ ScienceClubLobby_AfterDuelScripts:
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
-Func_2e752:
+ScienceClubLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e76c
@@ -5473,15 +5473,15 @@ ScienceClub_NPCInteractions:
 	db $ff
 
 ScienceClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2e955
-	dbw OWMODE_INTERACT, Func_2e99f
-	dbw OWMODE_AFTER_DUEL, Func_2e9a7
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e95c
-	dbw OWMODE_NPC_POSITION, Func_2e996
-	dbw OWMODE_MUSIC_PRELOAD, Func_2e945
+	dbw OWMODE_STEP_EVENT, ScienceClub_StepEvent
+	dbw OWMODE_INTERACT, ScienceClub_Interact
+	dbw OWMODE_AFTER_DUEL, ScienceClub_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, ScienceClub_WarpFadeInPreload
+	dbw OWMODE_NPC_POSITION, ScienceClub_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, ScienceClub_MusicPreload
 	db $ff
 
-Func_2e945:
+ScienceClub_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e952
@@ -5492,12 +5492,12 @@ Func_2e945:
 	ccf
 	ret
 
-Func_2e955:
+ScienceClub_StepEvent:
 	ld hl, ScienceClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2e95c:
+ScienceClub_WarpFadeInPreload:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e994
@@ -5520,20 +5520,20 @@ Func_2e95c:
 	scf
 	ret
 
-Func_2e996:
+ScienceClub_LoadNPCs:
 	ld hl, ScienceClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2e99f:
+ScienceClub_Interact:
 	ld hl, ScienceClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
-Func_2e9a7:
+ScienceClub_AfterDuel:
 	ld hl, ScienceClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -5992,15 +5992,15 @@ WaterClubEntrance_StepEvents:
 	db $ff
 
 WaterClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2ed37
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2ed3e
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_2ed75
-	dbw OWMODE_CONTINUE_OW, Func_2ed8c
-	dbw OWMODE_MUSIC_PRELOAD, Func_2ed17
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2ed27
+	dbw OWMODE_STEP_EVENT, WaterClubEntrance_StepEvent
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, WaterClubEntrance_WarpFadeInPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, WaterClubEntrance_WarpFadeOutPreload
+	dbw OWMODE_CONTINUE_OW, WaterClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, WaterClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, WaterClubEntrance_MusicPostload
 	db $ff
 
-Func_2ed17:
+WaterClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ed24
@@ -6011,7 +6011,7 @@ Func_2ed17:
 	ccf
 	ret
 
-Func_2ed27:
+WaterClubEntrance_MusicPostload:
 	call WaterClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -6023,12 +6023,12 @@ Func_2ed27:
 	ccf
 	ret
 
-Func_2ed37:
+WaterClubEntrance_StepEvent:
 	ld hl, WaterClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2ed3e:
+WaterClubEntrance_WarpFadeInPreload:
 	xor a
 	start_script
 	send_mail $12
@@ -6059,7 +6059,7 @@ Func_2ed3e:
 	scf
 	ret
 
-Func_2ed75:
+WaterClubEntrance_WarpFadeOutPreload:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_2ed8a
@@ -6072,7 +6072,7 @@ Func_2ed75:
 	scf
 	ret
 
-Func_2ed8c:
+WaterClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eda6
@@ -6148,16 +6148,16 @@ WaterClubLobby_OWInteractions:
 	db $ff
 
 WaterClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2ee9a
-	dbw OWMODE_INTERACT, Func_2eeaa
-	dbw OWMODE_AFTER_DUEL, Func_2eeba
-	dbw OWMODE_NPC_POSITION, Func_2eea1
-	dbw OWMODE_CONTINUE_OW, Func_2eece
-	dbw OWMODE_MUSIC_PRELOAD, Func_2ee73
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2ee85
+	dbw OWMODE_STEP_EVENT, WaterClubLobby_StepEvent
+	dbw OWMODE_INTERACT, WaterClubLobby_Interact
+	dbw OWMODE_AFTER_DUEL, WaterClubLobby_AfterDuel
+	dbw OWMODE_NPC_POSITION, WaterClubLobby_LoadNPCs
+	dbw OWMODE_CONTINUE_OW, WaterClubLobby_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, WaterClubLobby_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, WaterClubLobby_MusicPostload
 	db $ff
 
-Func_2ee73:
+WaterClubLobby_MusicPreload:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ee82
@@ -6169,7 +6169,7 @@ Func_2ee73:
 	ccf
 	ret
 
-Func_2ee85:
+WaterClubLobby_MusicPostload:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp 8
@@ -6183,19 +6183,19 @@ Func_2ee85:
 	ccf
 	ret
 
-Func_2ee9a:
+WaterClubLobby_StepEvent:
 	ld hl, WaterClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2eea1:
+WaterClubLobby_LoadNPCs:
 	ld hl, WaterClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2eeaa:
+WaterClubLobby_Interact:
 	ld hl, WaterClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2eeb8
@@ -6205,7 +6205,7 @@ Func_2eeaa:
 	scf
 	ret
 
-Func_2eeba:
+WaterClubLobby_AfterDuel:
 	ld hl, WaterClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -6217,7 +6217,7 @@ WaterClubLobby_AfterDuelScripts:
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
-Func_2eece:
+WaterClubLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eee8
@@ -6433,15 +6433,15 @@ WaterClub_OWInteractions:
 	db $ff
 
 WaterClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2f095
-	dbw OWMODE_INTERACT, Func_2f0f7
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2f0a5
-	dbw OWMODE_AFTER_DUEL, Func_2f107
-	dbw OWMODE_NPC_POSITION, Func_2f09c
-	dbw OWMODE_MUSIC_PRELOAD, Func_2f085
+	dbw OWMODE_STEP_EVENT, WaterClub_StepEvent
+	dbw OWMODE_INTERACT, WaterClub_Interact
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, WaterClub_WarpFadeInPreload
+	dbw OWMODE_AFTER_DUEL, WaterClub_AfterDuel
+	dbw OWMODE_NPC_POSITION, WaterClub_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, WaterClub_MusicPreload
 	db $ff
 
-Func_2f085:
+WaterClub_MusicPreload:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f092
@@ -6452,19 +6452,19 @@ Func_2f085:
 	ccf
 	ret
 
-Func_2f095:
+WaterClub_StepEvent:
 	ld hl, WaterClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2f09c:
+WaterClub_LoadNPCs:
 	ld hl, WaterClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2f0a5:
+WaterClub_WarpFadeInPreload:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f0c3
@@ -6497,7 +6497,7 @@ Func_2f0a5:
 	scf
 	ret
 
-Func_2f0f7:
+WaterClub_Interact:
 	ld hl, WaterClub_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f105
@@ -6507,7 +6507,7 @@ Func_2f0f7:
 	scf
 	ret
 
-Func_2f107:
+WaterClub_AfterDuel:
 	ld hl, WaterClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -7089,15 +7089,15 @@ FireClubEntrance_StepEvents:
 	db $ff
 
 FireClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2f56e
-	dbw OWMODE_AFTER_DUEL, Func_2f5a8
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2f575
-	dbw OWMODE_CONTINUE_OW, Func_2f5ae
-	dbw OWMODE_MUSIC_PRELOAD, Func_2f54e
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2f55e
+	dbw OWMODE_STEP_EVENT, FireClubEntrance_StepEvent
+	dbw OWMODE_AFTER_DUEL, FireClubEntrance_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FireClubEntrance_WarpFadeInPreload
+	dbw OWMODE_CONTINUE_OW, FireClubEntrance_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, FireClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, FireClubEntrance_MusicPostload
 	db $ff
 
-Func_2f54e:
+FireClubEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f55b
@@ -7108,7 +7108,7 @@ Func_2f54e:
 	ccf
 	ret
 
-Func_2f55e:
+FireClubEntrance_MusicPostload:
 	call FireClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -7120,12 +7120,12 @@ Func_2f55e:
 	ccf
 	ret
 
-Func_2f56e:
+FireClubEntrance_StepEvent:
 	ld hl, FireClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2f575:
+FireClubEntrance_WarpFadeInPreload:
 	xor a
 	start_script
 	send_mail $12
@@ -7158,12 +7158,12 @@ Func_2f575:
 	scf
 	ret
 
-Func_2f5a8:
+FireClubEntrance_AfterDuel:
 	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
-Func_2f5ae:
+FireClubEntrance_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f5c8
@@ -7250,16 +7250,16 @@ FireClubLobby_OWInteractions:
 	db $ff
 
 FireClubLobby_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2f6c7
-	dbw OWMODE_INTERACT, Func_2f6d7
-	dbw OWMODE_NPC_POSITION, Func_2f6ce
-	dbw OWMODE_AFTER_DUEL, Func_2f6e7
-	dbw OWMODE_CONTINUE_OW, Func_2f6ed
-	dbw OWMODE_MUSIC_PRELOAD, Func_2f6a0
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2f6b2
+	dbw OWMODE_STEP_EVENT, FireClubLobby_StepEvent
+	dbw OWMODE_INTERACT, FireClubLobby_Interact
+	dbw OWMODE_NPC_POSITION, FireClubLobby_LoadNPCs
+	dbw OWMODE_AFTER_DUEL, FireClubLobby_AfterDuel
+	dbw OWMODE_CONTINUE_OW, FireClubLobby_ContinueOW
+	dbw OWMODE_MUSIC_PRELOAD, FireClubLobby_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, FireClubLobby_MusicPostload
 	db $ff
 
-Func_2f6a0:
+FireClubLobby_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f6af
@@ -7271,7 +7271,7 @@ Func_2f6a0:
 	ccf
 	ret
 
-Func_2f6b2:
+FireClubLobby_MusicPostload:
 	ld a, VAR_25
 	farcall GetVarValue
 	cp 9
@@ -7285,19 +7285,19 @@ Func_2f6b2:
 	ccf
 	ret
 
-Func_2f6c7:
+FireClubLobby_StepEvent:
 	ld hl, FireClubLobby_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2f6ce:
+FireClubLobby_LoadNPCs:
 	ld hl, FireClubLobby_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2f6d7:
+FireClubLobby_Interact:
 	ld hl, FireClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f6e5
@@ -7307,12 +7307,12 @@ Func_2f6d7:
 	scf
 	ret
 
-Func_2f6e7:
+FireClubLobby_AfterDuel:
 	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 
-Func_2f6ed:
+FireClubLobby_ContinueOW:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f707
@@ -7465,15 +7465,15 @@ FireClub_OWInteractions:
 	db $ff
 
 FireClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2f85e
-	dbw OWMODE_INTERACT, Func_2f8c8
-	dbw OWMODE_AFTER_DUEL, Func_2f8d8
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2f86e
-	dbw OWMODE_NPC_POSITION, Func_2f865
-	dbw OWMODE_MUSIC_PRELOAD, Func_2f84e
+	dbw OWMODE_STEP_EVENT, FireClub_StepEvent
+	dbw OWMODE_INTERACT, FireClub_Interact
+	dbw OWMODE_AFTER_DUEL, FireClub_AfterDuel
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, FireClub_WarpFadeInPreload
+	dbw OWMODE_NPC_POSITION, FireClub_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, FireClub_MusicPreload
 	db $ff
 
-Func_2f84e:
+FireClub_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f85b
@@ -7484,19 +7484,19 @@ Func_2f84e:
 	ccf
 	ret
 
-Func_2f85e:
+FireClub_StepEvent:
 	ld hl, FireClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2f865:
+FireClub_LoadNPCs:
 	ld hl, FireClub_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2f86e:
+FireClub_WarpFadeInPreload:
 	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f891
@@ -7529,7 +7529,7 @@ Func_2f86e:
 	scf
 	ret
 
-Func_2f8c8:
+FireClub_Interact:
 	ld hl, FireClub_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f8d6
@@ -7539,7 +7539,7 @@ Func_2f8c8:
 	scf
 	ret
 
-Func_2f8d8:
+FireClub_AfterDuel:
 	ld hl, FireClub_AfterDuelScripts
 	ld a, [wScriptNPC]
 	call ExecuteNPCScript
@@ -8137,13 +8137,13 @@ PokemonDomeEntrance_OWInteractions:
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2fd83
-	dbw OWMODE_INTERACT, Func_2fd93
-	dbw OWMODE_NPC_POSITION, Func_2fd8a
-	dbw OWMODE_MUSIC_PRELOAD, Func_2fd73
+	dbw OWMODE_STEP_EVENT, PokemonDomeEntrance_StepEvent
+	dbw OWMODE_INTERACT, PokemonDomeEntrance_Interact
+	dbw OWMODE_NPC_POSITION, PokemonDomeEntrance_LoadNPCs
+	dbw OWMODE_MUSIC_PRELOAD, PokemonDomeEntrance_MusicPreload
 	db $ff
 
-Func_2fd73:
+PokemonDomeEntrance_MusicPreload:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .done
@@ -8154,19 +8154,19 @@ Func_2fd73:
 	ccf
 	ret
 
-Func_2fd83:
+PokemonDomeEntrance_StepEvent:
 	ld hl, PokemonDomeEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2fd8a:
+PokemonDomeEntrance_LoadNPCs:
 	ld hl, PokemonDomeEntrance_NPCs
 	call LoadNPCs
 	scf
 	ccf
 	ret
 
-Func_2fd93:
+PokemonDomeEntrance_Interact:
 	ld hl, PokemonDomeEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .done
@@ -8285,12 +8285,12 @@ OverheadIslands_MapHeader:
 	db MUSIC_GR_BLIMP
 
 OverheadIslands_MapScripts:
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2fe54
-	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_2fe94
-	dbw OWMODE_WARP_END_SFX, Func_2fe97
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, OverheadIslands_WarpFadeInPreload
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, OverheadIslands_WarpFadeOutPreload
+	dbw OWMODE_WARP_END_SFX, OverheadIslands_WarpEndSFX
 	db $ff
 
-Func_2fe54:
+OverheadIslands_WarpFadeInPreload:
 	farcall InitOWObjects
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
@@ -8322,12 +8322,12 @@ Func_2fe54:
 	ccf
 	ret
 
-Func_2fe94:
+OverheadIslands_WarpFadeOutPreload:
 	scf
 	ccf
 	ret
 
-Func_2fe97:
+OverheadIslands_WarpEndSFX:
 	scf
 	ccf
 	ret
