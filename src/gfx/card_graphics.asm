@@ -10,29 +10,29 @@
 
 SECTION "Gfx 1b Tail", ROMX[$74d0], BANK[$1b]
 DuelCardHeaderGraphics::
-	INCBIN "gfx/duel/card_type_headers.bin"
+	INCBIN "gfx/duel/card_type_headers.2bpp"
 DuelCgbSymbolGraphics::
-	INCBIN "gfx/duel/cgb_card_symbols.bin"
+	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
 DuelDmgSgbSymbolGraphics::
-	INCBIN "gfx/duel/dmg_sgb_card_symbols.bin"
+	INCBIN "gfx/duel/dmg_sgb_card_symbols.2bpp"
 DuelOtherGraphics::
-	INCBIN "gfx/duel/duel_other_gfx.bin"
+	INCBIN "gfx/duel/duel_other_gfx.2bpp"
 
 SECTION "Gfx 1c", ROMX[$4000], BANK[$1c]
 DuelCheckPokemonScreenGfx::
-	INCBIN "gfx/duel/check_pokemon_screen.bin"
+	INCBIN "gfx/duel/check_pokemon_screen.2bpp"
 DuelPlayAreaScreenGfx::
-	INCBIN "gfx/duel/play_area_screen.bin"
+	INCBIN "gfx/duel/play_area_screen.2bpp"
 DuelPlayAreaScreenGfxDMG::
-	INCBIN "gfx/duel/play_area_screen_dmg.bin"
+	INCBIN "gfx/duel/play_area_screen_dmg.2bpp"
 DuelDeckAndDiscardPileIcons::
-	INCBIN "gfx/duel/deck_discard_icons.bin"
+	INCBIN "gfx/duel/deck_discard_icons.2bpp"
 DuelCoinTossResultTiles::
-	INCBIN "gfx/duel/coin_toss_result_symbols.bin"
+	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
 DuelMenuAndCardPicBorderTiles::
-	INCBIN "gfx/duel/menu_card_pic_border.bin"
+	INCBIN "gfx/duel/menu_card_pic_border.2bpp"
 DuelDrawCardsScreenIcons::
-	INCBIN "gfx/duel/draw_cards_icons.bin"
+	INCBIN "gfx/duel/draw_cards_icons.2bpp"
 DuelBoxMessages::
 	INCBIN "gfx/duel/box_messages.2bpp"
 	ds $2450, $ff
