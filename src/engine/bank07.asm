@@ -5090,7 +5090,7 @@ Func_1e5a2::
 
 RunDuelFromSRAM:
 	farcall Stub_10cfe
-	farcall Func_1109f
+	farcall SetOverworldFrameFunc
 	farcall Func_1022a
 	bank1call StartDuelFromSRAM
 	farcall Func_10252

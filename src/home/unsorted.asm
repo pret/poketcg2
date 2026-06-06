@@ -556,7 +556,7 @@ WaitForOWObjectAnimation::
 Func_338f::
 	push af
 	farcall SaveTargetFadePals
-	farcall Func_1109f
+	farcall SetOverworldFrameFunc
 	call DoFrame
 	pop af
 	ld b, $00
@@ -567,7 +567,7 @@ Func_33a3::
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ld a, EVENT_EF
 	farcall ZeroOutEventValue
 	ret
@@ -1901,7 +1901,9 @@ FrameFunc_FadePals::
 	pop af
 	ret
 
-Func_3a39::
+; per-frame overworld update (set as the frame function via SetOverworldFrameFunc):
+; scrolls the map, updates the OW object / sprite animations, and fades palettes
+FrameFunc_Overworld::
 	push af
 	push bc
 	push de
@@ -1942,7 +1944,9 @@ FrameFunc_SpriteAnimationAndFadePals::
 	pop af
 	ret
 
-Func_3a81::
+; per-frame update while queued screen animations play (set via
+; SetAnimationQueueFrameFunc); only updates sprite anims when none is active
+FrameFunc_AnimationQueue::
 	push af
 	push bc
 	push de
@@ -2292,7 +2296,7 @@ ResetAnimationQueue::
 	push af
 	call FinishQueuedAnimations
 	farcall Func_1dfb9
-	farcall Func_110b9
+	farcall SetAnimationQueueFrameFunc
 	ld a, $01
 	ld [wdc57], a
 	pop af
@@ -2303,7 +2307,7 @@ FinishQueuedAnimations::
 	ld a, [wdc57]
 	and a
 	jr z, .asm_3c60
-	farcall Func_110c2
+	farcall UnsetAnimationQueueFrameFunc
 .asm_3c60
 	xor a
 	ld [wdc57], a

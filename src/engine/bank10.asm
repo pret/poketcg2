@@ -1160,7 +1160,7 @@ Func_406d1:
 	farcall StartPalFadeToBlackOrWhite
 .wait_fade
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ret
 
 TCGIslandLocationPositions:
@@ -1264,7 +1264,7 @@ DoGRBlimpMovement_TCGIsland:
 	call .FadeOut
 .finish
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ret
 
 ; fades out to white or black
@@ -5626,7 +5626,7 @@ Func_42f86:
 	ld b, $04
 	farcall StartPalFadeToBlackOrWhite
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	scf
 	ccf
 	ret

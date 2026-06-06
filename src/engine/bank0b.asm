@@ -8415,7 +8415,7 @@ Func_2fe9a:
 	call .FadeToWhite
 .exit
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ret
 
 .FadeToWhite:

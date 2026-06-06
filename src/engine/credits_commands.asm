@@ -389,11 +389,11 @@ CreditsCmd_LoadMap:
 
 CreditsCmd_InitOW:
 	call InitOWObjects
-	call Func_1109f
+	call SetOverworldFrameFunc
 	ret
 
 CreditsCmd_DeinitOW:
-	call Func_110a8
+	call UnsetOverworldFrameFunc
 	ret
 
 CreditsCmd_LoadTilemap:

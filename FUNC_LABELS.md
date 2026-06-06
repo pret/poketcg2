@@ -40,3 +40,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | Func_ | @bank:addr | new name | evidence | date |
 |---|---|---|---|---|
 | `Func_8f10` | `02:4f10` | `InitBoosterPacksAndDeckCounterSaveData` | tcg1 exact match (InitPromotionalCardAndDeckCounterSaveData), adapted to tcg2 SRAM | 2026-06-06 |
+| `Func_3a39` | `00:3a39` | `FrameFunc_Overworld` | per-frame OW update (UpdateOWScroll + sprite anims + FadePalettes); set by SetOverworldFrameFunc | 2026-06-06 |
+| `Func_1109f` | `04:509f` | `SetOverworldFrameFunc` | pushes FrameFunc_Overworld; callers OverworldLoop/CreditsCmd_InitOW | 2026-06-06 |
+| `Func_110a8` | `04:50a8` | `UnsetOverworldFrameFunc` | pops it; callers CreditsCmd_DeinitOW etc. | 2026-06-06 |
+| `Func_3a81` | `00:3a81` | `FrameFunc_AnimationQueue` | per-frame update during queued screen anims (gated on wActiveScreenAnim) | 2026-06-06 |
+| `Func_110b9` | `04:50b9` | `SetAnimationQueueFrameFunc` | pushes FrameFunc_AnimationQueue; caller ResetAnimationQueue | 2026-06-06 |
+| `Func_110c2` | `04:50c2` | `UnsetAnimationQueueFrameFunc` | pops it; caller FinishQueuedAnimations | 2026-06-06 |
+
+## Progress
+- 2026-06-06: 7 named (1 tcg1-match + 6 overworld/animation frame-function cluster). 1,202 remaining.
+  Pilot confirmed the xref workflow: callers + named callees + the frame-func convention
+  resolve a cluster cleanly and byte-neutrally. The higher-level transition orchestrators
+  (Func_1022a/10252/102a4/102c4) need their leaf callees named first (bottom-up).

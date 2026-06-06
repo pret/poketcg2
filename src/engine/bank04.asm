@@ -292,7 +292,7 @@ Func_1022a:
 	farcall SetAllOBPaletteFadeConfigsToEnabled
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	call Func_110a8
+	call UnsetOverworldFrameFunc
 	call Func_10ea7
 	call Func_1059f
 	call Func_10d40
@@ -317,7 +317,7 @@ Func_10252:
 	call Func_1055e
 	call UpdateOWScroll
 	call EnableLCD
-	call Func_1109f
+	call SetOverworldFrameFunc
 	farcall SetAllBGPaletteFadeConfigsToEnabled
 	farcall SetAllOBPaletteFadeConfigsToEnabled
 	farcall StartFadeFromWhite
@@ -3219,14 +3219,14 @@ UnsetFadePalsFrameFunc:
 	call PopFrameFunction
 	ret
 
-Func_1109f::
+SetOverworldFrameFunc::
 	push hl
-	ld hl, Func_3a39
+	ld hl, FrameFunc_Overworld
 	call PushFrameFunction
 	pop hl
 	ret
 
-Func_110a8::
+UnsetOverworldFrameFunc::
 	call PopFrameFunction
 	ret
 
@@ -3241,14 +3241,14 @@ UnsetSpriteAnimationAndFadePalsFrameFunc::
 	call PopFrameFunction
 	ret
 
-Func_110b9::
+SetAnimationQueueFrameFunc::
 	push hl
-	ld hl, Func_3a81
+	ld hl, FrameFunc_AnimationQueue
 	call PushFrameFunction
 	pop hl
 	ret
 
-Func_110c2::
+UnsetAnimationQueueFrameFunc::
 	call PopFrameFunction
 	ret
 

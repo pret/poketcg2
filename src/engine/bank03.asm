@@ -99,7 +99,7 @@ StartMenu_ContinueFromDiary:
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
-	farcall Func_1109f
+	farcall SetOverworldFrameFunc
 	call DoFrame
 	ld a, OWMODE_CONTINUE_DUEL
 	call ExecuteOWModeScript
@@ -1242,7 +1242,7 @@ OverworldLoop::
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
-	farcall Func_1109f
+	farcall SetOverworldFrameFunc
 	call DoFrame
 	ld a, FALSE
 	ld b, $00

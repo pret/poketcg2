@@ -748,7 +748,7 @@ Func_30452:
 	farcall StartPalFadeToBlackOrWhite
 .wait_fade
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ret
 
 .data
@@ -873,7 +873,7 @@ DoGRBlimpMovement_GRIsland:
 	call .FadeOut
 .finish
 	call WaitPalFading
-	farcall Func_110a8
+	farcall UnsetOverworldFrameFunc
 	ret
 
 ; fades out to white or black
