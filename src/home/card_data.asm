@@ -222,9 +222,9 @@ LoadCardGfxRemapped::
 	push af
 	call LoadCardPalettes ; loads palettes + attr map; returns hl = card's tile base
 	ld a, l
-	ld [wcde5 + 0], a
+	ld [wCardGfxTileBase + 0], a
 	ld a, h
-	ld [wcde5 + 1], a ; wcde5 = base address of the card's tiles
+	ld [wCardGfxTileBase + 1], a ; wCardGfxTileBase = base address of the card's tiles
 	ld hl, wCardAttrMap
 	lb bc, $30, 0 ; b = 48 tiles to emit, c = output position (0..47)
 .loop_copy
@@ -240,10 +240,10 @@ LoadCardGfxRemapped::
 	add hl, hl
 	add hl, hl
 	add hl, hl ; *TILE_SIZE
-	ld a, [wcde5 + 0]
+	ld a, [wCardGfxTileBase + 0]
 	add l
 	ld l, a
-	ld a, [wcde5 + 1]
+	ld a, [wCardGfxTileBase + 1]
 	adc h
 	ld h, a ; hl = tile base + tile number * TILE_SIZE = source tile address
 	ld b, TILE_SIZE

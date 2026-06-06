@@ -1187,7 +1187,8 @@ wIsTextBoxLabeled:: ; cde2
 wTextBoxLabel:: ; cde3
 	ds $2
 
-wcde5:: ; cde5
+; base address of the card's tiles, set up by LoadCardGfxRemapped
+wCardGfxTileBase:: ; cde5
 	ds $2
 
 wCoinTossScreenTextID:: ; cde7
