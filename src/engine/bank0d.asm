@@ -32,7 +32,7 @@ Script_34000:
 	db NORTH, MOVE_2
 	db $ff
 
-Func_34037:
+Script_RonaldClubEntranceCardPop:
 	xor a
 	start_script
 	wait_for_fade
@@ -85,7 +85,7 @@ Func_34037:
 	db WEST, MOVE_0
 	db $ff
 
-Func_340a4:
+Script_RonaldWaterLightningClubEntranceCardPop:
 	xor a
 	start_script
 	wait_for_fade
@@ -138,7 +138,7 @@ Func_340a4:
 	db WEST, MOVE_0
 	db $ff
 
-Func_34111:
+Script_RonaldRockClubEntranceCardPop:
 	xor a
 	start_script
 	wait_for_fade
@@ -191,7 +191,7 @@ Func_34111:
 	db WEST, MOVE_0
 	db $ff
 
-Func_3417e:
+Script_RonaldPsychicClubEntranceDuel:
 	xor a
 	start_script
 	wait_for_fade
@@ -261,7 +261,7 @@ Script_RonaldGCPieces2AfterDuel:
 	db SOUTH, MOVE_5
 	db $ff
 
-Func_341f7:
+Script_RonaldPsychicClubEntranceGift:
 	xor a
 	start_script
 	wait_for_fade
@@ -390,7 +390,7 @@ Script_RonaldGameCenter:
 	db NORTH, MOVE_2
 	db $ff
 
-Func_342ef:
+Script_RonaldGrassFortScene:
 	xor a
 	start_script
 	wait_for_fade
@@ -471,7 +471,7 @@ DoRonaldGrassFortAfterDuelScene:
 	db SOUTH, MOVE_6
 	db $ff
 
-Func_34391:
+Script_RonaldPowerFortScene:
 	xor a
 	start_script
 	wait_for_fade
@@ -550,7 +550,7 @@ DoRonaldAfterDuelScene:
 	db SOUTH, MOVE_8
 	db $ff
 
-Func_3442d:
+Script_RonaldAltarScene:
 	ld a, NPC_GR_X
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRXText
@@ -598,7 +598,7 @@ Func_3442d:
 	db SOUTH, MOVE_6
 	db $ff
 
-Func_3448d:
+Script_RonaldGrCastleScene:
 	xor a
 	start_script
 	send_mail $1b
@@ -673,7 +673,7 @@ DoRonaldGrCastleAfterDuelScene:
 	db SOUTH, MOVE_2
 	db $ff
 
-Func_3451d:
+Script_RonaldWaterClubGiftScene:
 	xor a
 	start_script
 	wait_for_fade
@@ -732,8 +732,8 @@ TcgAirportEntrance_StepEvents:
 	map_exit 6, 12, OVERWORLD_MAP_TCG, 5, 7, SOUTH
 	map_exit 11, 6, MAP_TCG_AIRPORT, 1, 9, EAST
 	map_exit 11, 7, MAP_TCG_AIRPORT, 1, 10, EAST
-	ow_script 9, 6, Func_3462d
-	ow_script 9, 7, Func_3462d
+	ow_script 9, 6, TcgAirportEntrance_ResumeAfterMoveGR5
+	ow_script 9, 7, TcgAirportEntrance_ResumeAfterMoveGR5
 	db $ff
 
 TcgAirportEntrance_NPCs:
@@ -802,7 +802,7 @@ TcgAirportEntrance_Interact:
 	scf
 	ret
 
-Func_3462d:
+TcgAirportEntrance_ResumeAfterMoveGR5:
 	call TcgAirportEntrance_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
@@ -1015,7 +1015,7 @@ TcgAirport_MapScripts:
 
 TcgAirport_Idle:
 	call DoFrame
-	call Func_349d5
+	call TcgAirport_MoveGR5OutOfPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -1289,11 +1289,11 @@ Script_GR5_TCGAirportLanded:
 	db $ff
 
 Func_349cd:
-	call Func_349d5
+	call TcgAirport_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_349d5:
+TcgAirport_MoveGR5OutOfPath:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	cpcoord 11, 8
@@ -1315,7 +1315,7 @@ Func_349d5:
 	ld a, NPC_GR_5
 	ld b, EAST
 	farcall SetOWObjectDirection
-	call Func_34a96
+	call TcgAirport_StepGR5AsideEast
 	jr .asm_34a7c
 .asm_34a2a
 	ldh a, [hKeysHeld]
@@ -1327,7 +1327,7 @@ Func_349d5:
 	ld a, NPC_GR_5
 	ld b, SOUTH
 	farcall SetOWObjectDirection
-	call Func_34a96
+	call TcgAirport_StepGR5AsideEast
 	jr .asm_34a7c
 .asm_34a46
 	ldh a, [hKeysHeld]
@@ -1339,7 +1339,7 @@ Func_349d5:
 	ld a, NPC_GR_5
 	ld b, SOUTH
 	farcall SetOWObjectDirection
-	call Func_34a7d
+	call TcgAirport_StepGR5AsideWest
 	jr .asm_34a7c
 .asm_34a62
 	ldh a, [hKeysHeld]
@@ -1351,11 +1351,11 @@ Func_349d5:
 	ld a, NPC_GR_5
 	ld b, WEST
 	farcall SetOWObjectDirection
-	call Func_34a7d
+	call TcgAirport_StepGR5AsideWest
 .asm_34a7c
 	ret
 
-Func_34a7d:
+TcgAirport_StepGR5AsideWest:
 	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $09
@@ -1368,7 +1368,7 @@ Func_34a7d:
 	call WaitForOWObjectMovement
 	ret
 
-Func_34a96:
+TcgAirport_StepGR5AsideEast:
 	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $0a
@@ -2293,7 +2293,7 @@ Script_Bishop:
 	end_dialog
 	end_script
 
-Func_351d4:
+CardDungeonBishop_WarpToGameCenter:
 	jp CardDungeonBishop_SetWarp
 
 Script_CardDungeonBishopProceedRepeat:
@@ -3664,8 +3664,8 @@ FightingFortMaze16_StepEvents:
 	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_20, 5, 7, NORTH
 	map_exit 0, 3, MAP_FIGHTING_FORT_MAZE_15, 8, 3, WEST
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_15, 8, 4, WEST
-	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Func_35c86
-	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Func_35c86
+	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Script_FightingFortMaze16OpenDoor
+	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Script_FightingFortMaze16OpenDoor
 	db $ff
 
 FightingFortMaze16_MapScripts:
@@ -3697,13 +3697,13 @@ FightingFortMaze16_WarpFadeInPreload:
 	scf
 	ret
 
-Func_35c86:
+Script_FightingFortMaze16OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall Func_30005
+	farcall WarpPlayerToFightingFortBasement
 	ret
 
 FightingFortMaze18_MapHeader:
@@ -3720,8 +3720,8 @@ FightingFortMaze18_StepEvents:
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_17, 8, 4, WEST
 	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_19, 1, 3, EAST
 	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_19, 1, 4, EAST
-	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Func_35d22
-	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Func_35d22
+	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Script_FightingFortMaze18OpenDoor
+	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Script_FightingFortMaze18OpenDoor
 	db $ff
 
 FightingFortMaze18_MapScripts:
@@ -3753,13 +3753,13 @@ FightingFortMaze18_WarpFadeInPreload:
 	scf
 	ret
 
-Func_35d22:
+Script_FightingFortMaze18OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall Func_30005
+	farcall WarpPlayerToFightingFortBasement
 	ret
 
 FightingFortGoda_MapHeader:
@@ -4303,9 +4303,9 @@ PsychicStrongholdEntrance_WarpFadeInPreload:
 	farcall LoadOWObjectInMap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3442d)
+	ld a, BANK(Script_RonaldAltarScene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3442d
+	ld hl, Script_RonaldAltarScene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -4557,10 +4557,10 @@ PsychicStronghold_MapHeader:
 	db MUSIC_FORT_2
 
 PsychicStronghold_StepEvents:
-	_ow_coordinate_function 7, 12, 107, 4, 1, 2, Func_36bc8
-	_ow_coordinate_function 8, 12, 107, 5, 1, 2, Func_36bc8
-	_ow_coordinate_function 7, 3, 110, 7, 10, 0, Func_36be5
-	_ow_coordinate_function 8, 3, 110, 8, 10, 0, Func_36be5
+	_ow_coordinate_function 7, 12, 107, 4, 1, 2, PsychicStronghold_PlatformWarpOrBlock
+	_ow_coordinate_function 8, 12, 107, 5, 1, 2, PsychicStronghold_PlatformWarpOrBlock
+	_ow_coordinate_function 7, 3, 110, 7, 10, 0, PsychicStronghold_RaisePlatformScript
+	_ow_coordinate_function 8, 3, 110, 8, 10, 0, PsychicStronghold_RaisePlatformScript
 	db $ff
 
 PsychicStronghold_NPCs:
@@ -4639,9 +4639,9 @@ PsychicStronghold_WarpFadeInPreload:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_36c36)
+	ld a, BANK(PsychicStronghold_LowerPlatformFromMami)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_36c36
+	ld hl, PsychicStronghold_LowerPlatformFromMami
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -5636,7 +5636,7 @@ Script_36ba6:
 .ows_36bc7
 	script_ret
 
-Func_36bc8:
+PsychicStronghold_PlatformWarpOrBlock:
 	push af
 	push bc
 	push de
@@ -5658,7 +5658,7 @@ Func_36bc8:
 	farcall SetWarpData
 	ret
 
-Func_36be5:
+PsychicStronghold_RaisePlatformScript:
 	push af
 	push bc
 	push de
@@ -5703,7 +5703,7 @@ Func_36be5:
 	db NORTH, RUN_3
 	db $ff
 
-Func_36c36:
+PsychicStronghold_LowerPlatformFromMami:
 	ld a, $02
 	farcall SetOWScrollState
 	ld a, [wPlayerOWObject]
@@ -5750,8 +5750,8 @@ PsychicStrongholdMami_MapHeader:
 	db MUSIC_FORT_2
 
 PsychicStrongholdMami_StepEvents:
-	_ow_coordinate_function 7, 10, 109, 7, 3, 2, Func_36f7f
-	_ow_coordinate_function 8, 10, 109, 8, 3, 2, Func_36f7f
+	_ow_coordinate_function 7, 10, 109, 7, 3, 2, PsychicStrongholdMami_DescendPlatformExit
+	_ow_coordinate_function 8, 10, 109, 8, 3, 2, PsychicStrongholdMami_DescendPlatformExit
 	db $ff
 
 PsychicStrongholdMami_NPCs:
@@ -5793,9 +5793,9 @@ PsychicStrongholdMami_WarpFadeInPreload:
 	farcall SetwD896
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_36f43)
+	ld a, BANK(PsychicStrongholdMami_WarpInPlatformScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_36f43
+	ld hl, PsychicStrongholdMami_WarpInPlatformScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -6093,7 +6093,7 @@ Func_36ed7:
 	db NORTH, MOVE_4
 	db $ff
 
-Func_36f43:
+PsychicStrongholdMami_WarpInPlatformScript:
 	call WaitPalFading
 	xor a
 	start_script
@@ -6121,7 +6121,7 @@ Func_36f43:
 	ld [wOverworldScriptPointer + 1], a
 	ret
 
-Func_36f7f:
+PsychicStrongholdMami_DescendPlatformExit:
 	push af
 	push bc
 	push de
@@ -6853,7 +6853,7 @@ Script_GrCastleEntranceGRClerkRight:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	ret z
-	call Func_3448d
+	call Script_RonaldGrCastleScene
 	ret
 .ows_3751e
 	print_npc_text Text08e7
@@ -6938,7 +6938,7 @@ Script_GrCastleEntranceGRClerkLeft:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	ret z
-	call Func_3448d
+	call Script_RonaldGrCastleScene
 	ret
 .ows_375bf
 	print_npc_text Text08ed
@@ -6981,9 +6981,9 @@ GrCastle_StepEvents:
 	map_exit 6, 0, MAP_GR_CASTLE_BIRURITCHI, 6, 14, NORTH
 	map_exit 7, 0, MAP_GR_CASTLE_BIRURITCHI, 7, 14, NORTH
 	map_exit 8, 0, MAP_GR_CASTLE_BIRURITCHI, 8, 14, NORTH
-	ow_script 6, 5, Func_37a5f
-	ow_script 7, 5, Func_37a5f
-	ow_script 8, 5, Func_37a5f
+	ow_script 6, 5, GrCastle_CastleStairsStepScript
+	ow_script 7, 5, GrCastle_CastleStairsStepScript
+	ow_script 8, 5, GrCastle_CastleStairsStepScript
 	db $ff
 
 GrCastle_NPCs:
@@ -7088,7 +7088,7 @@ GrCastle_AfterDuelScripts:
 	npc_script NPC_RUI, Script_RuiGrCastleAfterDuel
 	db $ff
 
-Func_37709:
+GrCastle_BiruritchiEncounterScript:
 	ld a, EVENT_MET_BIRURITCHI_AND_ADMINS
 	farcall MaxOutEventValue
 	ld a, NPC_BIRURITCHI
@@ -7530,17 +7530,17 @@ Script_RuiGrCastleAfterDuel:
 	end_script
 	ret
 
-Func_37a5f:
+GrCastle_CastleStairsStepScript:
 	ld a, EVENT_MET_BIRURITCHI_AND_ADMINS
 	farcall GetEventValue
-	jp z, Func_37709
+	jp z, GrCastle_BiruritchiEncounterScript
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
-	jp z, Func_37a76
+	jp z, GrCastle_RuiKanzakiStairsBlock
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_37a76:
+GrCastle_RuiKanzakiStairsBlock:
 	ld a, EVENT_BEAT_KANZAKI
 	farcall GetEventValue
 	jr nz, .asm_37a9b

@@ -1571,9 +1571,9 @@ LightningClubEntrance_WarpFadeInPreload:
 	call LoadTxRam2
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_340a4)
+	ld a, BANK(Script_RonaldWaterLightningClubEntranceCardPop)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_340a4
+	ld hl, Script_RonaldWaterLightningClubEntranceCardPop
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -7294,7 +7294,7 @@ Script_FightingFortMaze19ChestOpened:
 	print_text TreasureBoxWasEmptyText
 	end_dialog
 	end_script
-	call Func_3f858
+	call TriggerDebugCardViewerIfUnlocked
 	ret
 
 FightingFortMaze19_ChestOpenedAppearanceCheck:
@@ -7308,7 +7308,7 @@ FightingFortMaze19_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_3f858:
+TriggerDebugCardViewerIfUnlocked:
 	ld a, VAR_3B
 	farcall GetVarValue
 	cp $03
@@ -7432,7 +7432,7 @@ Script_FightingFortBasementChestOpened:
 	end_dialog
 	end_script
 	ld a, $02
-	farcall Func_30065
+	farcall AdvanceFightingFortBasementVar
 	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	ret z

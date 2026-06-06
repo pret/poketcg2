@@ -118,6 +118,16 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 51 named. 146 remaining. Into the non-table TAIL (indirectly-dispatched OW
+  scripts + engine helpers), 8 subagents reading bodies + following references. Clusters resolved:
+  FightingFort maze door-open coord scripts (Script_<Map>OpenDoor), the Ronald club/fort-entrance
+  OWMODE_SCRIPT cutscenes (Script_Ronald<Place><CardPop/Duel/Gift/Scene>; Func_34037 card-pop is
+  SHARED by 5 club entrances -> generic name), the GR-island world-map navigation loop
+  (RunGRIslandMapLoop/MoveGRIslandMapCursor/ScrollGRIslandMap/MovePlayerAlongGRIslandPath),
+  PsychicStronghold platform raise/lower scripts, GrCastle stairs scene chain, airport GR5
+  movers, and engine helpers (GenerateAndPlaceTextTile, FillVRAMTilesSolid, UpdateOWTileAnimations,
+  GetOppositeDirectionToFacePlayer). Notable find: Func_3f858 = TriggerDebugCardViewerIfUnlocked
+  (hidden debug card viewer gated behind a maze chest + secret settings combo).
 - 2026-06-06: 88 named. 197 remaining. Cleared the remaining overworld-table seams:
   (a) the `npc ...,AppearanceCheck` seam (62 funcs): 51 UNIQUE ones named MECHANICALLY
   <Map>_<Npc>AppearanceCheck (tool-generated, like MapScripts, 0 collisions); the 11 SHARED

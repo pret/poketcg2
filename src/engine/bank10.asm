@@ -3204,7 +3204,7 @@ GrAirport_MapScripts:
 
 GrAirport_Idle:
 	call DoFrame
-	call Func_41db4
+	call GrAirport_MoveGR5OutOfPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -3400,11 +3400,11 @@ Script_GR5_GRAirportLanded:
 	db $ff
 
 Func_41dac:
-	call Func_41db4
+	call GrAirport_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_41db4:
+GrAirport_MoveGR5OutOfPath:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	cpcoord 5, 8

@@ -1308,19 +1308,19 @@ PsychicClubEntrance_WarpFadeInPreload:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, Func_34037
+	ld hl, Script_RonaldClubEntranceCardPop
 	jr .got_event
 .duel
-	ld hl, Func_3417e
+	ld hl, Script_RonaldPsychicClubEntranceDuel
 	jr .got_event
 .gift
-	ld hl, Func_341f7
+	ld hl, Script_RonaldPsychicClubEntranceGift
 .got_event
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34037)
-	ASSERT BANK(Func_34037) == BANK(Func_3417e)
-	ASSERT BANK(Func_34037) == BANK(Func_341f7)
+	ld a, BANK(Script_RonaldClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceDuel)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceGift)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a
@@ -2583,9 +2583,9 @@ RockClubEntrance_WarpFadeInPreload:
 ; card pop
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34111)
+	ld a, BANK(Script_RonaldRockClubEntranceCardPop)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_34111
+	ld hl, Script_RonaldRockClubEntranceCardPop
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -3371,19 +3371,19 @@ FightingClubEntrance_WarpFadeInPreload:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, Func_34037
+	ld hl, Script_RonaldClubEntranceCardPop
 	jr .got_event
 .duel
-	ld hl, Func_3417e
+	ld hl, Script_RonaldPsychicClubEntranceDuel
 	jr .got_event
 .gift
-	ld hl, Func_341f7
+	ld hl, Script_RonaldPsychicClubEntranceGift
 .got_event
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34037)
-	ASSERT BANK(Func_34037) == BANK(Func_3417e)
-	ASSERT BANK(Func_34037) == BANK(Func_341f7)
+	ld a, BANK(Script_RonaldClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceDuel)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceGift)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a
@@ -4348,19 +4348,19 @@ GrassClubEntrance_WarpFadeInPreload:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, Func_34037
+	ld hl, Script_RonaldClubEntranceCardPop
 	jr .got_event
 .duel
-	ld hl, Func_3417e
+	ld hl, Script_RonaldPsychicClubEntranceDuel
 	jr .got_event
 .gift
-	ld hl, Func_341f7
+	ld hl, Script_RonaldPsychicClubEntranceGift
 .got_event
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34037)
-	ASSERT BANK(Func_34037) == BANK(Func_3417e)
-	ASSERT BANK(Func_34037) == BANK(Func_341f7)
+	ld a, BANK(Script_RonaldClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceDuel)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceGift)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a
@@ -4963,19 +4963,19 @@ ScienceClubEntrance_WarpFadeInPreload:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, Func_34037
+	ld hl, Script_RonaldClubEntranceCardPop
 	jr .got_event
 .duel
-	ld hl, Func_3417e
+	ld hl, Script_RonaldPsychicClubEntranceDuel
 	jr .got_event
 .gift
-	ld hl, Func_341f7
+	ld hl, Script_RonaldPsychicClubEntranceGift
 .got_event
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34037)
-	ASSERT BANK(Func_34037) == BANK(Func_3417e)
-	ASSERT BANK(Func_34037) == BANK(Func_341f7)
+	ld a, BANK(Script_RonaldClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceDuel)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceGift)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a
@@ -6039,17 +6039,17 @@ WaterClubEntrance_WarpFadeInPreload:
 	jr nz, .gift
 	ldtx hl, DialogGR3Text
 	call LoadTxRam2
-	ld hl, Func_340a4
+	ld hl, Script_RonaldWaterLightningClubEntranceCardPop
 	jr .got_event
 .gift
 	ld a, EVENT_EE
 	farcall ZeroOutEventValue
-	ld hl, Func_3451d
+	ld hl, Script_RonaldWaterClubGiftScene
 .got_event
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_340a4)
-	ASSERT BANK(Func_340a4) == BANK(Func_3451d)
+	ld a, BANK(Script_RonaldWaterLightningClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldWaterLightningClubEntranceCardPop) == BANK(Script_RonaldWaterClubGiftScene)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a
@@ -7136,19 +7136,19 @@ FireClubEntrance_WarpFadeInPreload:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, Func_34037
+	ld hl, Script_RonaldClubEntranceCardPop
 	jr .asm_2f594
 .duel
-	ld hl, Func_3417e
+	ld hl, Script_RonaldPsychicClubEntranceDuel
 	jr .asm_2f594
 .gift
-	ld hl, Func_341f7
+	ld hl, Script_RonaldPsychicClubEntranceGift
 .asm_2f594
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34037)
-	ASSERT BANK(Func_34037) == BANK(Func_3417e)
-	ASSERT BANK(Func_34037) == BANK(Func_341f7)
+	ld a, BANK(Script_RonaldClubEntranceCardPop)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceDuel)
+	ASSERT BANK(Script_RonaldClubEntranceCardPop) == BANK(Script_RonaldPsychicClubEntranceGift)
 	ld [wOverworldScriptBank], a
 	ld a, l
 	ld [wOverworldScriptPointer], a

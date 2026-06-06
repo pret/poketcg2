@@ -354,11 +354,11 @@ InitNewGameSaveState:
 	jr nc, .asm_c299
 	call InitChallengeMachine
 .asm_c299
-	call Func_c2a7
+	call InitCupAndEventStates
 	ret
 
 Func_c29d:
-	call Func_c2a7
+	call InitCupAndEventStates
 	ret
 
 EnablePlayTimeCounter:
@@ -366,7 +366,7 @@ EnablePlayTimeCounter:
 	ld [wPlayTimeCounterEnable], a
 	ret
 
-Func_c2a7:
+InitCupAndEventStates:
 	ld a, TRUE
 	ld [wPlayTimeCounterEnable], a
 	call Func_c2d6

@@ -118,7 +118,7 @@ CalculateDecimalDigits:
 	inc de
 	ret
 
-Func_1c08b::
+FillVRAMTilesSolid::
 	push af
 	push bc
 	push de
@@ -4311,7 +4311,7 @@ UpdateScreenAnimations::
 	call InitScreenAnimation
 	jr .asm_1e122
 .not_screen_anim
-	call Func_1e171
+	call LoadAnimationAndPlay
 .asm_1e122
 	ret
 
@@ -4365,7 +4365,7 @@ GetAnimationData:
 	pop af
 	ret
 
-Func_1e171:
+LoadAnimationAndPlay:
 	push af
 	push bc
 	push de
@@ -4577,7 +4577,7 @@ Func_1e2b1:
 	jr z, .done
 	push de
 	push bc
-	call Func_1e171
+	call LoadAnimationAndPlay
 	push hl
 	ld a, [de]
 	ld c, a
@@ -4613,7 +4613,7 @@ Func_1e2b1:
 	db        -16,         -8,              0
 
 Func_1e30d:
-	call Func_1e171
+	call LoadAnimationAndPlay
 	ld bc, FRAMESET_014
 	farcall SetAndInitSpriteAnimFrameset
 	farcall GetSpriteAnimPosition
@@ -4624,7 +4624,7 @@ Func_1e30d:
 	ret
 
 Func_1e324:
-	call Func_1e171
+	call LoadAnimationAndPlay
 	ld bc, FRAMESET_013
 	farcall SetAndInitSpriteAnimFrameset
 	farcall GetSpriteAnimPosition
@@ -4639,7 +4639,7 @@ Func_1e324:
 	ret
 
 Func_1e347:
-	call Func_1e171
+	call LoadAnimationAndPlay
 	ld bc, FRAMESET_012
 	farcall SetAndInitSpriteAnimFrameset
 	farcall GetSpriteAnimPosition

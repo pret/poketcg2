@@ -2,9 +2,9 @@ Func_30000:
 	scf
 	ccf
 	push af
-	jr Func_30005.asm_30007
+	jr WarpPlayerToFightingFortBasement.asm_30007
 
-Func_30005:
+WarpPlayerToFightingFortBasement:
 	scf
 	push af
 .asm_30007:
@@ -51,7 +51,7 @@ SetFightingFortClearedVar:
 	farcall SetVarValue
 	ret
 
-Func_30065:
+AdvanceFightingFortBasementVar:
 	ld c, a
 	ld a, VAR_3B
 	farcall GetVarValue
@@ -101,7 +101,7 @@ OverworldGr_WarpFadeInPreload:
 	ld a, $02
 	farcall SetOWScrollState
 	farcall ShowOWMapLocationBox
-	call Func_30343
+	call LoadGRIslandLocationScroll
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
@@ -145,9 +145,9 @@ OverworldGr_WarpFadeInPreload:
 	call PlaceGRIslandMapCursor
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_301c0)
+	ld a, BANK(RunGRIslandMapLoop)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_301c0
+	ld hl, RunGRIslandMapLoop
 	ld a, l
 	ld [wOverworldScriptPointer + 0], a
 	ld a, h
@@ -232,24 +232,24 @@ OverworldGr_WarpEndSFX:
 	ccf
 	ret
 
-Func_301c0:
+RunGRIslandMapLoop:
 	farcall ResetTCGIslandEventState
 	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop
 	call DoFrame
 	call UpdateRNGSources
-	call Func_30242
+	call MoveGRIslandMapCursor
 	ldh a, [hKeysPressed]
 	bit B_PAD_A, a
 	jr z, .loop
 	ld a, [wCurOWLocation]
 	call CheckGRMapLocationLocked
 	jr c, .loop
-	call Func_30452
+	call MovePlayerAlongGRIslandPath
 	xor a
 	call PlaySFX
-	call Func_303c7
+	call SetGRIslandDestinationWarp
 	ret
 
 PlacePlayerInGRIslandLocation:
@@ -298,7 +298,7 @@ PlaceGRIslandMapCursor:
 .done
 	ret
 
-Func_30242:
+MoveGRIslandMapCursor:
 	lb bc, 4, 0
 	ldh a, [hKeysPressed]
 .loop_shift
@@ -326,7 +326,7 @@ Func_30242:
 	call PlaceGRIslandMapCursor
 	ld a, [wCurOWLocation]
 	call PrintGRIslandLocationName
-	call Func_30398
+	call GRIslandMapAutoScroll
 .done
 	ret
 
@@ -484,7 +484,7 @@ CheckGRMapLocationLocked:
 	scf
 	ret
 
-Func_30343:
+LoadGRIslandLocationScroll:
 	ld a, [wCurOWLocation]
 	sla a
 	sla a ; *4
@@ -498,7 +498,7 @@ Func_30343:
 	ld [wOWScrollY], a
 	ret
 
-Func_3035f:
+ScrollGRIslandMap:
 	sla a
 	sla a ; *4
 	ld hl, Data_3056a
@@ -529,7 +529,7 @@ Func_3035f:
 	jr c, .loop_frame
 	ret
 
-Func_30398:
+GRIslandMapAutoScroll:
 	ld a, [wd680]
 	cp 2
 	jr z, .scroll_if_challenge_hall
@@ -554,11 +554,11 @@ Func_30398:
 	jr nz, .done
 .scroll
 	ld c, 2 ; speed
-	call Func_3035f
+	call ScrollGRIslandMap
 .done
 	ret
 
-Func_303c7:
+SetGRIslandDestinationWarp:
 	ld a, [wCurOWLocation]
 	cp OWMAP_GR_FIGHTING_FORT
 	jr z, .fighting_fort
@@ -621,13 +621,13 @@ Func_303c7:
 	db MAP_COLORLESS_ALTAR_ENTRANCE,    4, 11, NORTH ; OWMAP_COLORLESS_ALTAR
 	db MAP_GR_CASTLE_ENTRANCE,          5,  7, NORTH ; OWMAP_GR_CASTLE
 
-Func_30452:
+MovePlayerAlongGRIslandPath:
 	ld a, [wPlayerOWObject]
 	ld b, $01
 	farcall _SetOWObjectAnimStruct1Flag2
 	ld a, [wPlayerOWLocation]
 	ld c, 3 ; speed
-	call Func_3035f
+	call ScrollGRIslandMap
 
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
@@ -952,9 +952,9 @@ CardDungeonQueen_Interact:
 CardDungeonQueen_WarpFadeInPreload:
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_312d2)
+	ld a, BANK(CardDungeonQueen_ShutFrontDoorsScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_312d2
+	ld hl, CardDungeonQueen_ShutFrontDoorsScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -1052,7 +1052,7 @@ Script_Queen:
 	end_dialog
 	end_script
 
-Func_31281:
+CardDungeonQueen_WarpToGameCenter:
 	jp CardDungeonQueen_SetWarp
 	ret
 
@@ -1096,7 +1096,7 @@ CardDungeonQueen_SetWarp:
 	farcall SetWarpData
 	ret
 
-Func_312d2:
+CardDungeonQueen_ShutFrontDoorsScript:
 	xor a
 	start_script
 	animate_player_movement $00, $01
@@ -1429,9 +1429,9 @@ GrassFortEntrance_WarpFadeInPreload:
 	jr nc, .asm_3159d
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_342ef)
+	ld a, BANK(Script_RonaldGrassFortScene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_342ef
+	ld hl, Script_RonaldGrassFortScene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -3576,9 +3576,9 @@ FireFortEntrance_WarpFadeInPreload:
 	jr z, .asm_3261a
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34391)
+	ld a, BANK(Script_RonaldPowerFortScene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_34391
+	ld hl, Script_RonaldPowerFortScene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -4945,9 +4945,9 @@ WaterFortEntrance_WarpFadeInPreload:
 	jr z, .asm_33044
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_34391)
+	ld a, BANK(Script_RonaldPowerFortScene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_34391
+	ld hl, Script_RonaldPowerFortScene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -5511,7 +5511,7 @@ Script_FightingFortGRClerk:
 	end_dialog
 	end_script
 	ld a, $01
-	call Func_30065
+	call AdvanceFightingFortBasementVar
 	ret
 
 Script_FightingFortEntranceLeftDoor:
@@ -5602,8 +5602,8 @@ FightingFortMaze2_StepEvents:
 	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_7, 5, 7, NORTH
 	map_exit 0, 3, MAP_FIGHTING_FORT_MAZE_1, 8, 3, WEST
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_1, 8, 4, WEST
-	_ow_coordinate_function 3, 3, 104, 10, 1, 2, Func_335c7
-	_ow_coordinate_function 3, 4, 104, 10, 1, 2, Func_335c7
+	_ow_coordinate_function 3, 3, 104, 10, 1, 2, Script_FightingFortMaze2OpenDoor
+	_ow_coordinate_function 3, 4, 104, 10, 1, 2, Script_FightingFortMaze2OpenDoor
 	db $ff
 
 FightingFortMaze2_NPCs:
@@ -5697,7 +5697,7 @@ FightingFortMaze2_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_335c7:
+Script_FightingFortMaze2OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_09A
@@ -5749,8 +5749,8 @@ FightingFortMaze4_StepEvents:
 	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_9, 5, 7, NORTH
 	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_5, 1, 3, EAST
 	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_5, 1, 4, EAST
-	_ow_coordinate_function 2, 3, 104, 10, 1, 2, Func_33710
-	_ow_coordinate_function 2, 4, 104, 10, 1, 2, Func_33710
+	_ow_coordinate_function 2, 3, 104, 10, 1, 2, Script_FightingFortMaze4OpenDoor
+	_ow_coordinate_function 2, 4, 104, 10, 1, 2, Script_FightingFortMaze4OpenDoor
 	db $ff
 
 FightingFortMaze4_NPCs:
@@ -5852,7 +5852,7 @@ FightingFortMaze4_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_33710:
+Script_FightingFortMaze4OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_09D
@@ -5968,8 +5968,8 @@ FightingFortMaze8_StepEvents:
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_7, 8, 4, WEST
 	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_9, 1, 3, EAST
 	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_9, 1, 4, EAST
-	_ow_coordinate_function 3, 3, 104, 10, 1, 2, Func_33915
-	_ow_coordinate_function 3, 4, 104, 10, 1, 2, Func_33915
+	_ow_coordinate_function 3, 3, 104, 10, 1, 2, Script_FightingFortMaze8OpenDoor
+	_ow_coordinate_function 3, 4, 104, 10, 1, 2, Script_FightingFortMaze8OpenDoor
 	db $ff
 
 FightingFortMaze8_NPCs:
@@ -6071,7 +6071,7 @@ FightingFortMaze8_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_33915:
+Script_FightingFortMaze8OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0BC
@@ -6179,8 +6179,8 @@ FightingFortMaze12_StepEvents:
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_11, 8, 4, WEST
 	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_13, 1, 3, EAST
 	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_13, 1, 4, EAST
-	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Func_33aa1
-	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Func_33aa1
+	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Script_FightingFortMaze12OpenDoor
+	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Script_FightingFortMaze12OpenDoor
 	db $ff
 
 FightingFortMaze12_MapScripts:
@@ -6212,13 +6212,13 @@ FightingFortMaze12_WarpFadeInPreload:
 	scf
 	ret
 
-Func_33aa1:
+Script_FightingFortMaze12OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C1
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30005
+	call WarpPlayerToFightingFortBasement
 	ret
 
 FightingFortMaze13_MapHeader:
@@ -6266,8 +6266,8 @@ FightingFortMaze14_StepEvents:
 	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_19, 5, 7, NORTH
 	map_exit 0, 3, MAP_FIGHTING_FORT_MAZE_13, 8, 3, WEST
 	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_13, 8, 4, WEST
-	_ow_coordinate_function 2, 3, 104, 10, 1, 2, Func_33b91
-	_ow_coordinate_function 2, 4, 104, 10, 1, 2, Func_33b91
+	_ow_coordinate_function 2, 3, 104, 10, 1, 2, Script_FightingFortMaze14OpenDoor
+	_ow_coordinate_function 2, 4, 104, 10, 1, 2, Script_FightingFortMaze14OpenDoor
 	db $ff
 
 FightingFortMaze14_MapScripts:
@@ -6299,7 +6299,7 @@ FightingFortMaze14_WarpFadeInPreload:
 	scf
 	ret
 
-Func_33b91:
+Script_FightingFortMaze14OpenDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C4
@@ -6349,10 +6349,10 @@ FightingFortMaze17_StepEvents:
 	map_exit 5, 8, MAP_FIGHTING_FORT_MAZE_12, 5, 1, SOUTH
 	map_exit 4, 0, MAP_FIGHTING_FORT_MAZE_21, 4, 7, NORTH
 	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_21, 5, 7, NORTH
-	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Func_33d1b
-	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Func_33d1b
-	_ow_coordinate_function 8, 3, 104, 10, 1, 2, Func_33cf8
-	_ow_coordinate_function 8, 4, 104, 10, 1, 2, Func_33cf8
+	_ow_coordinate_function 4, 6, 104, 10, 1, 2, Script_FightingFortMaze17OpenNorthDoor
+	_ow_coordinate_function 5, 6, 104, 10, 1, 2, Script_FightingFortMaze17OpenNorthDoor
+	_ow_coordinate_function 8, 3, 104, 10, 1, 2, Script_FightingFortMaze17OpenEastDoor
+	_ow_coordinate_function 8, 4, 104, 10, 1, 2, Script_FightingFortMaze17OpenEastDoor
 	db $ff
 
 FightingFortMaze17_NPCs:
@@ -6390,9 +6390,9 @@ FightingFortMaze17_WarpFadeInPreload:
 .asm_33c86
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_33cf8)
+	ld a, BANK(Script_FightingFortMaze17OpenEastDoor)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_33cf8
+	ld hl, Script_FightingFortMaze17OpenEastDoor
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -6469,7 +6469,7 @@ FightingFortMaze17_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_33cf8:
+Script_FightingFortMaze17OpenEastDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C9
@@ -6483,16 +6483,16 @@ Func_33cf8:
 	call Func_30000
 	ret
 .asm_33d17
-	call Func_30005
+	call WarpPlayerToFightingFortBasement
 	ret
 
-Func_33d1b:
+Script_FightingFortMaze17OpenNorthDoor:
 	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0CA
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30005
+	call WarpPlayerToFightingFortBasement
 	ret
 
 FightingFortMaze20_MapHeader:
@@ -6585,9 +6585,9 @@ ColorlessAltarEntrance_WarpFadeInPreload:
 	farcall LoadOWObjectInMap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3442d)
+	ld a, BANK(Script_RonaldAltarScene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3442d
+	ld hl, Script_RonaldAltarScene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h

@@ -210,7 +210,7 @@ ExecuteOWModeScript::
 	ld l, a
 	jp hl
 
-Func_3195::
+GetOppositeDirectionToFacePlayer::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
@@ -394,7 +394,7 @@ TurnNPCToFacePlayerAndRunScript::
 	cp NPC_NONE
 	jr z, .set_carry
 	push af
-	call Func_3195
+	call GetOppositeDirectionToFacePlayer
 	pop af
 	farcall SetOWObjectDirection
 	pop hl
@@ -1052,7 +1052,7 @@ PrintGRLocationNameText::
 	push de
 	ld bc, $c0 tiles
 	ld de, $40 ; number of tiles
-	farcall Func_1c08b
+	farcall FillVRAMTilesSolid
 	pop de
 	pop bc
 	ret
@@ -1200,7 +1200,7 @@ DecompressDataFromBank::
 	pop bc
 	ret
 
-Func_3698::
+UpdateOWTileAnimations::
 	push af
 	push bc
 	push de
@@ -1921,7 +1921,7 @@ FrameFunc_Overworld::
 .asm_3a56
 	farcall Func_1f57b
 	farcall UpdateSpriteAnims
-	call Func_3698
+	call UpdateOWTileAnimations
 	call UpdateOverworldPaletteCycle
 	farcall FadePalettes
 	pop hl

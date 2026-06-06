@@ -7778,7 +7778,7 @@ ENDR
 
 .cannot_build
 	ldfw de, " "
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 
 ; figure out how many cards are being used on the other decks
 	push bc
@@ -7826,7 +7826,7 @@ ENDR
 	ld d, 16
 	call InitTextPrinting
 	ldfw de, "×" ; "missing" symbol
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 	ld a, [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
@@ -7844,7 +7844,7 @@ ENDR
 	ld d, 12
 	call InitTextPrinting
 	ldfw de, "※" ; REF_MARK, "used" symbol
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
@@ -7858,7 +7858,7 @@ ENDR
 
 ; clear the card-shortfall text area
 .padding
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 	pop de
 	ld d, 12
 	inc e

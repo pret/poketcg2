@@ -4677,7 +4677,7 @@ PrintCardList:
 	or a
 	jr z, .asm_1a2c2
 	lb de, 4, 85
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 .asm_1a2c2
 	ld a, $ff
 	ld [wCurPrinterCardType], a
