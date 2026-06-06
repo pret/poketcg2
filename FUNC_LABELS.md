@@ -100,6 +100,14 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_2d66a` | `0b:566a` | `RockClub_LoadNPCs` | OWMODE_NPC_POSITION -> loads RockClub_NPCs (tcg1 RockClubNPCS) | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: ~622 named. ~587 remaining. Batch (20) via 8 parallel subagents:
+  duel-effect (ApplyStrikesBackOrPoisonFluid [tcg1], SubtractHPAndPrintReceivedDamage,
+  ApplyMirrorShellDamageModifiers, LoadAttackerCardNameLevelToTxRam2), OW fade/anim
+  (StartOverworldFadeIn/Out, UpdateOverworldPaletteCycle, ApplyCreditsFadeConfig,
+  ExecutePlayerInteractScript, LoadAndQueueOWMapTilemap, WriteTileAndAttrToBGMap0AtCoord),
+  Mason/GRChallengeMachineAfterDuel, DrawColorChangeScreen [tcg1], DisplayDeckDiagnosisAdvice,
+  SelectDeckToCheck, WalkPlayerAlongTCGIslandPath, ReceiveCardIntoCollection, GiveDeckToPlayer,
+  HandleImakuniAfterDuel.
 - 2026-06-06: ~602 named. ~607 remaining. **Big seam:** `tools/name_mapscripts.py` named 554
   overworld map-script handlers across 116 `<Map>_MapScripts` OWMODE tables as
   `<Map>_<OWMODEAction>` (tcg1's `<Map><Slot>` convention generalized). Deterministic generator,

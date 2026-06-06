@@ -895,7 +895,7 @@ Func_1055e:
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	pop bc
 	dec c
 	jr nz, .asm_10589
@@ -1321,7 +1321,7 @@ HandlePauseMenu:
 	lb bc, 18, 8
 	ld d, SYM_REF_MARK
 	ld e, $00 ; priority
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 .done_show_menu
 	pop hl
 	pop de

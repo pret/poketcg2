@@ -422,7 +422,7 @@ Func_32aa::
 
 ; if player's anim struct flag 0 or 1 is set, set carry
 ; else, execute player's coord script with the script list in hl
-Func_32bf::
+ExecutePlayerInteractScript::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, 0
@@ -553,7 +553,7 @@ WaitForOWObjectAnimation::
 	pop af
 	ret
 
-Func_338f::
+StartOverworldFadeIn::
 	push af
 	farcall SaveTargetFadePals
 	farcall SetOverworldFrameFunc
@@ -563,7 +563,7 @@ Func_338f::
 	farcall StartPalFadeFromBlackOrWhite
 	ret
 
-Func_33a3::
+StartOverworldFadeOut::
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 	call WaitPalFading
@@ -1425,7 +1425,7 @@ Func_3792::
 	pop af
 	ret
 
-Func_37ce::
+UpdateOverworldPaletteCycle::
 	push af
 	push bc
 	push de
@@ -1498,7 +1498,7 @@ BankswitchVRAM::
 ; bc = coordinates
 ; d = VRAM0 tile index
 ; e = VRAM1 tile attributes
-Func_383b::
+WriteTileAndAttrToBGMap0AtCoord::
 	push af
 	push de
 	ld d, b
@@ -1922,7 +1922,7 @@ FrameFunc_Overworld::
 	farcall Func_1f57b
 	farcall UpdateSpriteAnims
 	call Func_3698
-	call Func_37ce
+	call UpdateOverworldPaletteCycle
 	farcall FadePalettes
 	pop hl
 	pop de

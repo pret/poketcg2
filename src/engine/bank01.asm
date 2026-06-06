@@ -7522,7 +7522,7 @@ HandleStrikesBackAndPoisonFluid_AgainstDamagingAttack::
 	or a
 	ret z ; is Arena, skip
 
-Func_6dc4:
+ApplyStrikesBackOrPoisonFluid:
 	ld hl, wTempNonTurnDuelistCardID
 	cphl MACHAMP_LV67
 	jr z, .strikes_back
@@ -8518,7 +8518,7 @@ ProcessFinalBeam:
 	ld hl, 0 ; at least 0 damage
 .non_negative
 	ldtx de, ReceivedDamageDueToFinalBeamText
-	call Func_7518
+	call SubtractHPAndPrintReceivedDamage
 	call nc, WaitForWideTextBoxInput
 	ret
 
@@ -8598,7 +8598,7 @@ ProcessEffectsTriggeredByTakingDamage::
 .strikes_back
 	ld hl, 10
 	ldtx de, ReceivedDamageDueToStrikesBackText
-	call Func_7518
+	call SubtractHPAndPrintReceivedDamage
 	call nc, WaitForWideTextBoxInput
 	ret
 
@@ -8673,7 +8673,7 @@ ProcessEffectsTriggeredByTakingDamage::
 	ld [wTxRam2 + 1], a
 
 	push hl
-	call Func_74ca
+	call ApplyMirrorShellDamageModifiers
 	ld a, e
 	or d
 	jr z, .no_mirror_shell_damage ; no damage
@@ -8741,12 +8741,12 @@ ProcessEffectsTriggeredByTakingDamage::
 	push af
 	ld a, [wForcedSwitchPlayAreaLocation]
 	ld [wcd0a], a
-	call Func_6dc4
+	call ApplyStrikesBackOrPoisonFluid
 	pop af
 	ld [wcd0a], a
 	ret
 
-Func_74ca:
+ApplyMirrorShellDamageModifiers:
 	call SwapTurn
 	call SetDarkWaveDamageModifiers
 	ld hl, wDealtDamage
@@ -8795,7 +8795,7 @@ Func_74ef:
 
 ; hl = damage
 ; de = text ID
-Func_7518:
+SubtractHPAndPrintReceivedDamage:
 	push hl
 	call LoadTxRam3
 	ld a, e

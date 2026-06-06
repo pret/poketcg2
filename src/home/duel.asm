@@ -2083,7 +2083,7 @@ PrintFailedEffectText::
 	ret z
 	cp $1
 	jr z, .no_effect_from_status
-	call Func_19fd
+	call LoadAttackerCardNameLevelToTxRam2
 	ldtx hl, WasUnsuccessfulText
 	call DrawWideTextBox_PrintText
 	scf
@@ -2094,7 +2094,7 @@ PrintFailedEffectText::
 	scf
 	ret
 
-Func_19fd:
+LoadAttackerCardNameLevelToTxRam2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -2116,7 +2116,7 @@ Func_19fd:
 
 ShowMetronomeUnsuccessfulText::
 	bank1call ClearNonTurnTemporaryDuelvars
-	call Func_19fd
+	call LoadAttackerCardNameLevelToTxRam2
 	ldtx hl, MetronomeWasUnsuccessfulText
 	jp DrawWideTextBox_WaitForInput
 

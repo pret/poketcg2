@@ -3320,7 +3320,7 @@ ReadCurAutoDeckName:
 	ret
 
 ; de = text ID
-Func_2bc4f:
+SelectDeckToCheck:
 	ld hl, wd548
 	ld [hl], e
 	inc hl

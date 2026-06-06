@@ -88,7 +88,7 @@ IshiharasHouse_Interact:
 	call Func_328c
 	jr nc, .asm_2c0ff
 	ld hl, IshiharasHouse_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2c0ff
 	scf
 	ret
@@ -1559,7 +1559,7 @@ PsychicClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2cbed
 	ld hl, PsychicClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2cbed
 	scf
 	ret
@@ -1802,7 +1802,7 @@ PsychicClub_WarpFadeInPreload:
 	jr z, .asm_2cdf6
 	ld bc, TILEMAP_013
 	lb de, 5, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	jr .asm_2ce0f
 .asm_2cdc6
 	ld a, OWMODE_SCRIPT
@@ -2715,7 +2715,7 @@ RockClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2d4bc
 	ld hl, RockClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2d4bc
 	scf
 	ret
@@ -3522,7 +3522,7 @@ FightingClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2dafc
 	ld hl, FightingClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2dafc
 	scf
 	ret
@@ -3812,7 +3812,7 @@ FightingClub_WarpFadeInPreload:
 	jr z, .asm_2dd2f
 	ld bc, TILEMAP_01A
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_2dd2f
 	scf
 	ret
@@ -4485,7 +4485,7 @@ GrassClub_WarpFadeInPreload:
 	jr z, .asm_2e1f3
 	ld bc, TILEMAP_01E
 	lb de, 5, 11
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_2e1f3
 	scf
 	ret
@@ -5198,7 +5198,7 @@ ScienceClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2e73c
 	ld hl, ScienceClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2e73c
 	scf
 	ret
@@ -5506,16 +5506,16 @@ ScienceClub_WarpFadeInPreload:
 	jr z, .asm_2e994
 	ld bc, TILEMAP_022
 	lb de, 4, 1
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld bc, TILEMAP_023
 	lb de, 9, 1
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld bc, TILEMAP_024
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld bc, TILEMAP_025
 	lb de, 5, 12
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_2e994
 	scf
 	ret
@@ -6200,7 +6200,7 @@ WaterClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2eeb8
 	ld hl, WaterClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2eeb8
 	scf
 	ret
@@ -6478,13 +6478,13 @@ WaterClub_WarpFadeInPreload:
 .asm_2f0c3
 	ld bc, TILEMAP_02A
 	lb de, 2, 4
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f0e1
 	ld bc, TILEMAP_029
 	lb de, 5, 12
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	jr .asm_2f0f5
 .asm_2f0e1
 	xor a
@@ -6502,7 +6502,7 @@ WaterClub_Interact:
 	call Func_328c
 	jr nc, .asm_2f105
 	ld hl, WaterClub_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2f105
 	scf
 	ret
@@ -7302,7 +7302,7 @@ FireClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_2f6e5
 	ld hl, FireClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2f6e5
 	scf
 	ret
@@ -7511,10 +7511,10 @@ FireClub_WarpFadeInPreload:
 .asm_2f891
 	ld bc, TILEMAP_02E
 	lb de, 5, 11
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld bc, TILEMAP_02F
 	lb de, 5, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_2f8c6
@@ -7534,7 +7534,7 @@ FireClub_Interact:
 	call Func_328c
 	jr nc, .asm_2f8d6
 	ld hl, FireClub_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_2f8d6
 	scf
 	ret
@@ -8171,7 +8171,7 @@ PokemonDomeEntrance_Interact:
 	call Func_328c
 	jr nc, .done
 	ld hl, PokemonDomeEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .done
 	scf
 	ret
@@ -8317,7 +8317,7 @@ OverheadIslands_WarpFadeInPreload:
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
 	ld a, 0
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret

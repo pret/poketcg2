@@ -18,9 +18,9 @@ Prologue::
 	farcall LoadOWMap
 	ld bc, TILEMAP_001
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, $00
-	call Func_338f
+	call StartOverworldFadeIn
 	call WaitPalFading
 	call EnableLCD
 
@@ -106,7 +106,7 @@ Prologue::
 
 	ld bc, TILEMAP_002
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 
 	lb de,  1, 1
 	lb bc, 11, 1
@@ -138,7 +138,7 @@ Prologue::
 	xor a
 	call PlaySFX
 	ld a, $01
-	call Func_33a3
+	call StartOverworldFadeOut
 	ld a, SFX_WARP
 	call PlaySFX
 	ret
@@ -650,7 +650,7 @@ Func_3c4e0:
 	end_script
 	ret
 
-Func_3c52d:
+HandleImakuniAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -816,7 +816,7 @@ MasonLaboratoryComputerRoom_WarpFadeInPreload:
 	farcall SetOWObjectDirection
 	ld bc, TILEMAP_008
 	lb de, 7, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_3c6b1
 	scf
 	ret
@@ -826,7 +826,7 @@ MasonLaboratoryComputerRoom_Interact:
 	call Func_328c
 	jr nc, .asm_3c6c1
 	ld hl, MasonLaboratoryComputerRoom_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3c6c1
 	scf
 	ret
@@ -1564,7 +1564,7 @@ LightningClubEntrance_WarpFadeInPreload:
 .asm_3cc0b
 	ld bc, TILEMAP_00C
 	lb de, 1, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_3cc53
 	jr c, .asm_3cc35
 	ldtx hl, DialogGR4Text
@@ -1685,7 +1685,7 @@ LightningClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_3cd49
 	ld hl, LightningClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3cd49
 	scf
 	ret
@@ -1993,7 +1993,7 @@ GrassClubLobby_Interact:
 	call Func_328c
 	jr nc, .asm_3cfc6
 	ld hl, GrassClubLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3cfc6
 	scf
 	ret
@@ -2499,7 +2499,7 @@ TcgChallengeHallLobby_Interact:
 	call Func_328c
 	jr nc, .asm_3d3be
 	ld hl, TcgChallengeHallLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3d3be
 	scf
 	ret
@@ -2881,7 +2881,7 @@ PokemonDome_LoadNPCs:
 PokemonDome_WarpFadeInPreload:
 	ld bc, TILEMAP_037
 	lb de, 7, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, [wPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .cup_played
@@ -2914,7 +2914,7 @@ PokemonDome_WarpFadeInPreload:
 	ld [wOverworldScriptPointer + 1], a
 .loaded_ow_script
 	ld a, $00
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
@@ -2933,7 +2933,7 @@ PokemonDome_WarpFadeOutPreload:
 	ret
 .after_grand_master_cup
 	ld a, $00
-	call Func_33a3
+	call StartOverworldFadeOut
 	scf
 	ccf
 	ret
@@ -2954,7 +2954,7 @@ PokemonDome_Interact:
 	call Func_328c
 	jr nc, .done
 	ld hl, PokemonDome_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .done
 	scf
 	ret
@@ -3864,7 +3864,7 @@ PokemonDomeBack_WarpFadeInPreload:
 .grand_master_cup
 	ld bc, TILEMAP_0B9
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, NPC_COURTNEY
 	lb de, 3, 5
 	ld b, EAST
@@ -3903,14 +3903,14 @@ PokemonDomeBack_WarpFadeInPreload:
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
 	ld a, $00
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
 
 PokemonDomeBack_WarpFadeOutPreload:
 	ld a, $00
-	call Func_33a3
+	call StartOverworldFadeOut
 	scf
 	ccf
 	ret
@@ -4244,13 +4244,13 @@ Script_FinalCupRound4AfterDuel:
 	quit_script
 	farcall Func_1022a
 	ld de, MOLTRES_LV40
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	ld de, ZAPDOS_LV68
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	ld de, ARTICUNO_LV37
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	ld de, DRAGONITE_LV41
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
 	ld a, $01
@@ -4907,13 +4907,13 @@ Script_GrandMasterCupChampion:
 	farcall GetGrandMasterCupPrizeCardID
 	ld e, c
 	ld d, b
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	pop bc
 	ld a, c
 	farcall GetGrandMasterCupPrizeCardID
 	ld e, c
 	ld d, b
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
 
@@ -5056,7 +5056,7 @@ IshiharasVillaMain_Interact:
 	call Func_32aa
 	jr nc, .asm_3e748
 	ld hl, IshiharasVillaMain_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3e748
 	scf
 	ret
@@ -5381,7 +5381,7 @@ IshiharasVillaLibrary_Interact:
 	call Func_328c
 	jr nc, .asm_3e99f
 	ld hl, IshiharasVillaLibrary_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3e99f
 	scf
 	ret
@@ -5885,7 +5885,7 @@ GameCenterEntrance_Interact:
 	call Func_328c
 	jr nc, .done
 	ld hl, GameCenterEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .done
 	scf
 	ret
@@ -6151,13 +6151,13 @@ GameCenterLobby_Interact:
 	call Func_328c
 	jr nc, .done
 	ld hl, GameCenterLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .done
 	scf
 	ret
 
 GameCenterLobby_AfterDuel:
-	call Func_3c52d
+	call HandleImakuniAfterDuel
 	scf
 	ret
 
@@ -6295,7 +6295,7 @@ CardDungeonPawn_Interact:
 	call Func_328c
 	jr nc, .asm_3f0b1
 	ld hl, CardDungeonPawn_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3f0b1
 	scf
 	ret
@@ -6303,7 +6303,7 @@ CardDungeonPawn_Interact:
 CardDungeonPawn_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f1c6)
@@ -6514,7 +6514,7 @@ CardDungeonKnight_Interact:
 	call Func_328c
 	jr nc, .asm_3f257
 	ld hl, CardDungeonKnight_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3f257
 	scf
 	ret
@@ -6522,7 +6522,7 @@ CardDungeonKnight_Interact:
 CardDungeonKnight_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f395)
@@ -6755,7 +6755,7 @@ CardDungeonRook_Interact:
 	call Func_328c
 	jr nc, .asm_3f427
 	ld hl, CardDungeonRook_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3f427
 	scf
 	ret
@@ -6763,7 +6763,7 @@ CardDungeonRook_Interact:
 CardDungeonRook_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f57e)
@@ -7032,13 +7032,13 @@ WaterFortLobby_Interact:
 	call Func_328c
 	jr nc, .asm_3f66e
 	ld hl, WaterFortLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3f66e
 	scf
 	ret
 
 WaterFortLobby_AfterDuel:
-	call Func_3c52d
+	call HandleImakuniAfterDuel
 	scf
 	ret
 

@@ -1971,7 +1971,7 @@ HandleColorChangeScreen:
 	or a
 	call z, SwapTurn
 	push af
-	call Func_24ef5
+	call DrawColorChangeScreen
 	pop af
 	call z, SwapTurn
 
@@ -2000,7 +2000,7 @@ HandleColorChangeScreen:
 .menu_params
 	menu_params 1, 1, 2, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
-Func_24ef5:
+DrawColorChangeScreen:
 	push hl
 	push af
 	call EmptyScreen
@@ -2172,7 +2172,7 @@ DeckDiagnosis:
 	cp MENU_CANCEL
 	jr z, .loop_menu
 	ld [wcd29], a
-	call Func_2517f
+	call DisplayDeckDiagnosisAdvice
 	call EmptyScreen
 	call LoadDeckDiagnosisScene
 	jr .selected_step_menu
@@ -2414,7 +2414,7 @@ DrawDrMasonsPortrait:
 	call FlushAllPalettes
 	ret
 
-Func_2517f:
+DisplayDeckDiagnosisAdvice:
 	call EmptyScreen
 	ldh a, [hCurScrollMenuItem]
 	ld [wDeckDiagnosisAdvice], a
@@ -2615,7 +2615,7 @@ ENDM
 CheckDeck:
 .start
 	ldtx de, DeckDiagnosisChooseDeckToCheckText
-	farcall Func_2bc4f
+	farcall SelectDeckToCheck
 	ret c
 	ld l, a
 	ld h, DECK_COMPRESSED_STRUCT_SIZE

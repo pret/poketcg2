@@ -198,13 +198,13 @@ PlayNextMusic:
 ; fade in to black + some processing
 OverworldFadeInToBlack:
 	ld a, $01
-	call Func_338f
+	call StartOverworldFadeIn
 	ret
 
 ; fade out to black + some processing
 OverworldFadeOutToBlack:
 	ld a, $01
-	call Func_33a3
+	call StartOverworldFadeOut
 	ret
 
 OverworldResumeAfterDuel:
@@ -952,7 +952,7 @@ Func_c63e:
 	ret
 
 ; de = card id
-Func_c646:
+ReceiveCardIntoCollection:
 	call AddCardToCollection
 	call GetReceivedCardText
 	farcall _ShowReceivedCard
@@ -3140,7 +3140,7 @@ ScriptCommand_LoadTilemap:
 	ld d, c
 	ld e, b
 	pop bc
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	jp IncreaseScriptPointerBy5
 
 ScriptCommand_ShowCardReceivedScreen:
@@ -4325,7 +4325,7 @@ ScriptCommand_CheckNPCLoaded:
 
 ScriptCommand_GiveDeck:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_1acbf
+	farcall GiveDeckToPlayer
 	ld hl, wScriptFlags
 	jr c, .invalid
 ; valid
@@ -4387,7 +4387,7 @@ ScriptCommand_ReceiveCard:
 	ld e, c
 	ld d, b
 	farcall Func_1022a
-	call Func_c646
+	call ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3

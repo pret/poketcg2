@@ -797,7 +797,7 @@ TcgAirportEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_3462b
 	ld hl, TcgAirportEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3462b
 	scf
 	ret
@@ -1433,7 +1433,7 @@ GrAirportEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_34b34
 	ld hl, GrAirportEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_34b34
 	scf
 	ret
@@ -1564,7 +1564,7 @@ GameCenter1_Interact:
 	call Func_32aa
 	jr nc, .asm_34c4a
 	ld hl, GameCenter1_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_34c4a
 	scf
 	ret
@@ -1908,7 +1908,7 @@ GameCenter2_Interact:
 	call Func_328c
 	jr nc, .asm_34f05
 	ld hl, GameCenter2_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_34f05
 	scf
 	ret
@@ -2184,7 +2184,7 @@ CardDungeonBishop_Interact:
 	call Func_328c
 	jr nc, .asm_35104
 	ld hl, CardDungeonBishop_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_35104
 	scf
 	ret
@@ -2192,7 +2192,7 @@ CardDungeonBishop_Interact:
 CardDungeonBishop_WarpFadeInPreload:
 	ld bc, TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3525b)
@@ -2463,7 +2463,7 @@ GrChallengeHallLobby_Interact:
 	call Func_328c
 	jr nc, .asm_35340
 	ld hl, GrChallengeHallLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_35340
 	scf
 	ret
@@ -2880,13 +2880,13 @@ WaterFortSenta_LoadNPCs:
 WaterFortSenta_WarpFadeInPreload:
 	ld bc, TILEMAP_08A
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_SENTAS_ROOM_BRIDGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3565f
 	ld bc, TILEMAP_08B
 	lb de, 12, 5
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, NPC_SENTA
 	lb de, 11, 6
 	farcall SetOWObjectTilePosition
@@ -3177,7 +3177,7 @@ WaterFortAira_WarpFadeInPreload:
 	jr nz, .asm_35880
 	ld bc, TILEMAP_08F
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, NPC_AIRA
 	lb de, 5, 5
 	farcall SetOWObjectTilePosition
@@ -3403,7 +3403,7 @@ FightingFort_WarpFadeInPreload:
 .asm_35a37
 	ld bc, TILEMAP_096
 	lb de, 7, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
 	farcall GetEventValue
 	jr nz, .asm_35a7a
@@ -3435,7 +3435,7 @@ FightingFort_Interact:
 	call Func_328c
 	jr nc, .asm_35a8a
 	ld hl, FightingFort_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_35a8a
 	scf
 	ret
@@ -3702,7 +3702,7 @@ Func_35c86:
 	call PlaySFX
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	farcall Func_30005
 	ret
 
@@ -3758,7 +3758,7 @@ Func_35d22:
 	call PlaySFX
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	farcall Func_30005
 	ret
 
@@ -3814,7 +3814,7 @@ FightingFortGoda_WarpFadeInPreload:
 .asm_35d94
 	ld bc, TILEMAP_0A1
 	lb de, 4, 2
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -3823,7 +3823,7 @@ FightingFortGoda_Interact:
 	call Func_328c
 	jr nc, .asm_35dae
 	ld hl, FightingFortGoda_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_35dae
 	scf
 	ret
@@ -4418,13 +4418,13 @@ PsychicStrongholdLobby_Interact:
 	call Func_328c
 	jr nc, .asm_3622c
 	ld hl, PsychicStrongholdLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3622c
 	scf
 	ret
 
 PsychicStrongholdLobby_AfterDuel:
-	farcall Func_3c52d
+	farcall HandleImakuniAfterDuel
 	scf
 	ret
 
@@ -6735,7 +6735,7 @@ GrCastleEntrance_WarpFadeInPreload:
 	jr nz, .asm_37469
 	ld bc, TILEMAP_0B4
 	lb de, 4, 2
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
 	farcall GetEventValue
 	jr z, .asm_3744d
@@ -6766,7 +6766,7 @@ GrCastleEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_37479
 	ld hl, GrCastleEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_37479
 	scf
 	ret

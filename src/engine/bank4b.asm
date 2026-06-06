@@ -174,7 +174,7 @@ LoadOWMapTilemap:
 
 ; bc = TILEMAP_* constant
 ; de = OW coordinates
-Func_12c0ce::
+LoadAndQueueOWMapTilemap::
 	push af
 	push bc
 	push de

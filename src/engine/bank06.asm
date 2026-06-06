@@ -5301,7 +5301,7 @@ _SetUpAndStartLinkDuel:
 	jr z, .loop_input
 	ret
 
-Func_1acbf:
+GiveDeckToPlayer:
 	ld [wNPCDuelDeckID], a
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a

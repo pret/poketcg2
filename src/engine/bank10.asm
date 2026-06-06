@@ -795,7 +795,7 @@ OverworldTcg_WarpFadeInPreload:
 .gr_blimp_cutscene
 	ld bc, TILEMAP_001
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
@@ -822,7 +822,7 @@ OverworldTcg_WarpFadeInPreload:
 	ld b, WEST
 	farcall LoadOWObject
 	ld a, $00
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
@@ -869,7 +869,7 @@ HandleTCGIslandInput:
 	ldh a, [hKeysPressed]
 	bit B_PAD_A, a
 	jr z, .loop_input
-	call Func_406d1
+	call WalkPlayerAlongTCGIslandPath
 	xor a
 	call PlaySFX
 	call Func_40682
@@ -1077,7 +1077,7 @@ Func_40682:
 	db MAP_TCG_CHALLENGE_HALL_ENTRANCE, 4,  7, NORTH ; OWMAP_TCG_CHALLENGE_HALL
 	db MAP_POKEMON_DOME_ENTRANCE,       7,  7, NORTH ; OWMAP_POKEMON_DOME
 
-Func_406d1:
+WalkPlayerAlongTCGIslandPath:
 	ld a, [wPlayerOWObject]
 	ld b, $01
 	farcall _SetOWObjectAnimStruct1Flag2
@@ -1419,7 +1419,7 @@ MasonLaboratoryMain_WarpFadeInPreload:
 	farcall ZeroOutEventValue
 	call Func_40ef9
 	ld a, $00
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
@@ -1427,7 +1427,7 @@ MasonLaboratoryMain_WarpFadeInPreload:
 Func_40ef9:
 	ld bc, TILEMAP_006
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ret
 
 MasonLaboratoryMain_Interact:
@@ -1435,7 +1435,7 @@ MasonLaboratoryMain_Interact:
 	call Func_328c
 	jr nc, .asm_40f12
 	ld hl, MasonLaboratoryMain_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_40f12
 	scf
 	ret
@@ -1462,7 +1462,7 @@ MasonLaboratoryMain_AfterDuel:
 	ret
 .asm_40f34
 	farcall LoadChallengeMachineSave
-	call Func_41074
+	call MasonChallengeMachineAfterDuel
 	scf
 	ret
 
@@ -1628,7 +1628,7 @@ Script_TCGChallengeMachine:
 .done
 	ret
 
-Func_41074:
+MasonChallengeMachineAfterDuel:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .quit
@@ -3076,7 +3076,7 @@ Script_TCGCupRound3AfterDuel:
 	ld e, c
 	ld d, b
 	farcall Func_1022a
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
 	ld a, $01
@@ -4512,7 +4512,7 @@ GrChallengeHall_WarpFadeInPreload:
 	jr nz, .set_opponents_draw_round1
 	ld bc, TILEMAP_057
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .set_opponents_draw_round1
 	ld a, GR_ISLAND
 	farcall SetChallengeCupOpponents
@@ -4531,7 +4531,7 @@ GrChallengeHall_Interact:
 	call Func_328c
 	jr nc, .asm_426c7
 	ld hl, GrChallengeHall_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_426c7
 	scf
 	ret
@@ -4559,7 +4559,7 @@ GrChallengeHall_AfterDuel:
 	jp Script_GRCupRound3AfterDuel
 .asm_426ef
 	farcall LoadChallengeMachineSave
-	call Func_42776
+	call GRChallengeMachineAfterDuel
 	scf
 	ret
 
@@ -4627,7 +4627,7 @@ Script_GRChallengeMachine:
 .done
 	ret
 
-Func_42776:
+GRChallengeMachineAfterDuel:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .quit
@@ -5244,7 +5244,7 @@ Script_GRCupRound3AfterDuel:
 	ld e, c
 	ld d, b
 	farcall Func_1022a
-	farcall Func_c646
+	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
 	ld a, $01
@@ -5647,7 +5647,7 @@ GrCastleBiruritchi_Interact:
 	call Func_328c
 	jr nc, .asm_42fbb
 	ld hl, GrCastleBiruritchi_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_42fbb
 	scf
 	ret

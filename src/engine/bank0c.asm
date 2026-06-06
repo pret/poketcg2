@@ -185,7 +185,7 @@ OverworldGr_WarpFadeInPreload:
 	farcall GetEventValue
 	call z, .asm_30175
 	ld a, 0
-	call Func_338f
+	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
@@ -1194,7 +1194,7 @@ SealedFortEntrance_WarpFadeInPreload:
 	jr nz, .asm_313ba
 	ld bc, TILEMAP_051
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_313ba
 	scf
 	ret
@@ -1549,13 +1549,13 @@ GrassFortLobby_Interact:
 	call Func_328c
 	jr nc, .asm_31691
 	ld hl, GrassFortLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31691
 	scf
 	ret
 
 GrassFortLobby_AfterDuel:
-	farcall Func_3c52d
+	farcall HandleImakuniAfterDuel
 	scf
 	ret
 
@@ -1746,7 +1746,7 @@ GrassFortMidori_WarpFadeInPreload:
 .asm_31809
 	ld bc, TILEMAP_05B
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -1755,7 +1755,7 @@ GrassFortMidori_Interact:
 	call Func_328c
 	jr nc, .asm_31823
 	ld hl, GrassFortMidori_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31823
 	scf
 	ret
@@ -2000,7 +2000,7 @@ GrassFortYuta_WarpFadeInPreload:
 .asm_319e6
 	ld bc, TILEMAP_05E
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -2009,7 +2009,7 @@ GrassFortYuta_Interact:
 	call Func_328c
 	jr nc, .asm_31a00
 	ld hl, GrassFortYuta_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31a00
 	scf
 	ret
@@ -2224,7 +2224,7 @@ GrassFortMiyuki_WarpFadeInPreload:
 .asm_31b9c
 	ld bc, TILEMAP_061
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -2233,7 +2233,7 @@ GrassFortMiyuki_Interact:
 	call Func_328c
 	jr nc, .asm_31bb6
 	ld hl, GrassFortMiyuki_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31bb6
 	scf
 	ret
@@ -2441,7 +2441,7 @@ LightningFortEntrance_WarpFadeInPreload:
 .asm_31d41
 	ld bc, TILEMAP_065
 	lb de, 4, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr nz, .asm_31d5c
@@ -2457,7 +2457,7 @@ LightningFortEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_31d6c
 	ld hl, LightningFortEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31d6c
 	scf
 	ret
@@ -2575,7 +2575,7 @@ LightningFortLobby_Interact:
 	call Func_328c
 	jr nc, .asm_31e70
 	ld hl, LightningFortLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_31e70
 	scf
 	ret
@@ -2808,7 +2808,7 @@ LightningFortRenna_WarpFadeInPreload:
 .asm_3202b
 	ld bc, TILEMAP_069
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -2817,7 +2817,7 @@ LightningFortRenna_Interact:
 	call Func_328c
 	jr nc, .asm_32045
 	ld hl, LightningFortRenna_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_32045
 	scf
 	ret
@@ -3013,18 +3013,18 @@ LightningFortIchikawa_LoadNPCs:
 LightningFortIchikawa_WarpFadeInPreload:
 	ld bc, TILEMAP_06C
 	lb de, 3, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_321d8
 	ld bc, TILEMAP_06D
 	lb de, 1, 2
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	jr .asm_321e2
 .asm_321d8
 	ld bc, TILEMAP_06E
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 .asm_321e2
 	scf
 	ret
@@ -3034,7 +3034,7 @@ LightningFortIchikawa_Interact:
 	call Func_328c
 	jr nc, .asm_321f2
 	ld hl, LightningFortIchikawa_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_321f2
 	scf
 	ret
@@ -3562,7 +3562,7 @@ FireFortEntrance_WarpFadeInPreload:
 .asm_325e0
 	ld bc, TILEMAP_073
 	lb de, 4, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_3261a
@@ -3592,7 +3592,7 @@ FireFortEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_3262a
 	ld hl, FireFortEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3262a
 	scf
 	ret
@@ -3729,13 +3729,13 @@ FireFortLobby_Interact:
 	call Func_328c
 	jr nc, .asm_32745
 	ld hl, FireFortLobby_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_32745
 	scf
 	ret
 
 FireFortLobby_AfterDuel:
-	farcall Func_3c52d
+	farcall HandleImakuniAfterDuel
 	scf
 	ret
 
@@ -3895,7 +3895,7 @@ FireFortJes_WarpFadeInPreload:
 .asm_32882
 	ld bc, TILEMAP_077
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -3904,7 +3904,7 @@ FireFortJes_Interact:
 	call Func_328c
 	jr nc, .asm_3289c
 	ld hl, FireFortJes_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_3289c
 	scf
 	ret
@@ -4081,7 +4081,7 @@ FireFortYuki_WarpFadeInPreload:
 .asm_329e0
 	ld bc, TILEMAP_07A
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall GetEventValue
 	jr nz, .asm_32a16
@@ -4108,7 +4108,7 @@ FireFortYuki_Interact:
 	call Func_328c
 	jr nc, .asm_32a26
 	ld hl, FireFortYuki_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_32a26
 	scf
 	ret
@@ -4434,10 +4434,10 @@ FireFortShoko_WarpFadeInPreload:
 .asm_32c64
 	ld bc, TILEMAP_07D
 	lb de, 3, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld bc, TILEMAP_07E
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -4446,7 +4446,7 @@ FireFortShoko_Interact:
 	call Func_328c
 	jr nc, .asm_32c88
 	ld hl, FireFortShoko_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_32c88
 	scf
 	ret
@@ -4931,7 +4931,7 @@ WaterFortEntrance_WarpFadeInPreload:
 .asm_3300a
 	ld bc, TILEMAP_083
 	lb de, 4, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_33044
@@ -4961,7 +4961,7 @@ WaterFortEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_33054
 	ld hl, WaterFortEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_33054
 	scf
 	ret
@@ -5086,7 +5086,7 @@ WaterFortMiyajima_WarpFadeInPreload:
 .asm_3313e
 	ld bc, TILEMAP_087
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	scf
 	ret
 
@@ -5095,7 +5095,7 @@ WaterFortMiyajima_Interact:
 	call Func_328c
 	jr nc, .asm_33158
 	ld hl, WaterFortMiyajima_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_33158
 	scf
 	ret
@@ -5437,7 +5437,7 @@ FightingFortEntrance_WarpFadeInPreload:
 .asm_333c7
 	ld bc, TILEMAP_093
 	lb de, 4, 7
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, EVENT_INSERTED_LEFT_COIN_IN_FIGHTING_FORT_DOOR
 	farcall GetEventValue
 	jr z, .asm_333ed
@@ -5478,7 +5478,7 @@ FightingFortEntrance_Interact:
 	call Func_328c
 	jr nc, .asm_33432
 	ld hl, FightingFortEntrance_OWInteractions
-	call Func_32bf
+	call ExecutePlayerInteractScript
 .asm_33432
 	scf
 	ret
@@ -5702,7 +5702,7 @@ Func_335c7:
 	call PlaySFX
 	ld bc, TILEMAP_09A
 	lb de, 3, 3
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30000
 	ret
 
@@ -5857,7 +5857,7 @@ Func_33710:
 	call PlaySFX
 	ld bc, TILEMAP_09D
 	lb de, 2, 3
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30000
 	ret
 
@@ -6076,7 +6076,7 @@ Func_33915:
 	call PlaySFX
 	ld bc, TILEMAP_0BC
 	lb de, 3, 3
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30000
 	ret
 
@@ -6217,7 +6217,7 @@ Func_33aa1:
 	call PlaySFX
 	ld bc, TILEMAP_0C1
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30005
 	ret
 
@@ -6304,7 +6304,7 @@ Func_33b91:
 	call PlaySFX
 	ld bc, TILEMAP_0C4
 	lb de, 2, 3
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30000
 	ret
 
@@ -6474,7 +6474,7 @@ Func_33cf8:
 	call PlaySFX
 	ld bc, TILEMAP_0C9
 	lb de, 8, 3
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, $03
@@ -6491,7 +6491,7 @@ Func_33d1b:
 	call PlaySFX
 	ld bc, TILEMAP_0CA
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	call Func_30005
 	ret
 

@@ -3104,7 +3104,7 @@ ShowOWMapLocationBox:
 	ldh [hWY], a
 	ld bc, TILEMAP_004
 	lb de, 0, 16
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	lb de,  1, 33
 	lb bc, 11,  1
 	farcall FillBoxInBGMapWithZero
@@ -3764,13 +3764,13 @@ ShowCoinMenuPage:
 	inc hl
 	ld e, [hl]
 	lb bc, 0, 8
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	inc hl
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
 	lb bc, 19, 8
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	pop bc
 
 ; prepare highlight box
@@ -5791,7 +5791,7 @@ DrawGrandMasterCupBracketAdvancementLines:
 	inc hl
 	ld e, [hl]
 	inc hl
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	jr .Draw
 	ret
 
@@ -6394,18 +6394,18 @@ Func_1ee97:
 	lb bc, 1, 17
 	ld d, $1d
 	ld e, $01
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	ld a, [wMailboxPage]
 	cp $01
 	jr nz, .asm_1eebd
 	lb bc, 1, 4
 	ld d, $2f
 	ld e, $41
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	lb bc, 1, 17
 	ld d, $1d
 	ld e, $01
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	ret
 .asm_1eebd
 	ld a, [wMailCount]
@@ -6414,11 +6414,11 @@ Func_1ee97:
 	lb bc, 1, 17
 	ld d, $2f
 	ld e, $01
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	lb bc, 1, 4
 	ld d, $1d
 	ld e, $01
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	ret
 
 ; a menu box with blank text items that line up with mail items on screen
@@ -6605,7 +6605,7 @@ _ReadMail:
 	lb bc, 1, 17
 	ld d, $1d
 	ld e, $01
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	call GetSelectedMailPosition
 	ld c, a
 	ld b, $00
@@ -7521,7 +7521,7 @@ _SelectGrandMasterCupPrizes:
 	add 4
 	ld c, a
 	ld b, 3 ; x coord
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	pop af
 	ret
 

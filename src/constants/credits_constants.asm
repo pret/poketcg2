@@ -28,7 +28,7 @@
 	const_def $ff
 	const CREDITS_END                    ; $ff
 
-; constants for Func_138c6
+; constants for ApplyCreditsFadeConfig
 ; used to select what is affected by
 ; fade in/out credits commands
 	const_def

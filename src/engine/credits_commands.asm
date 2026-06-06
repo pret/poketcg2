@@ -33,7 +33,7 @@ _PlayCredits::
 	call Func_3f61 ; repeated
 	ret
 
-Func_138c6:
+ApplyCreditsFadeConfig:
 	push af
 	push bc
 	push de
@@ -133,7 +133,7 @@ CreditsCmd_FadeOut:
 	ld a, [wCreditsCmdArg2]
 	ld b, a
 	ld a, [wCreditsCmdArg1]
-	call Func_138c6
+	call ApplyCreditsFadeConfig
 	xor a
 	farcall StartPalFadeToBlackOrWhite
 	ret
@@ -142,7 +142,7 @@ CreditsCmd_FadeIn:
 	ld a, [wCreditsCmdArg2]
 	ld b, a
 	ld a, [wCreditsCmdArg1]
-	call Func_138c6
+	call ApplyCreditsFadeConfig
 	farcall SaveTargetFadePals
 	xor a
 	farcall StartPalFadeFromBlackOrWhite
@@ -405,7 +405,7 @@ CreditsCmd_LoadTilemap:
 	ld d, a
 	ld a, [wCreditsCmdArg5]
 	ld e, a
-	farcall Func_12c0ce
+	farcall LoadAndQueueOWMapTilemap
 	ret
 
 CreditsCmd_LoadOWObject:
@@ -447,5 +447,5 @@ CreditsCmd_ShowTile:
 	ld d, a
 	ld a, [wCreditsCmdArg5]
 	ld e, a
-	call Func_383b
+	call WriteTileAndAttrToBGMap0AtCoord
 	ret
