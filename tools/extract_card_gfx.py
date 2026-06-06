@@ -63,17 +63,51 @@ def header_asm(hdr):
         out.append('\tdb ' + ', '.join(f'${b:02x}' for b in tm[i:i+16]) + '\n')
     return out
 
-def build_segments(card_starts, byaddr):
-    """Tile the region into card / misc segments, split at 0x4000 bank bounds."""
-    segs = []; pos = REGION_START; cs = card_starts; ci = 0
-    while pos < REGION_END:
-        while ci < len(cs) and cs[ci] < pos: ci += 1
-        nxt = cs[ci] if ci < len(cs) else REGION_END
-        if pos == nxt:
-            segs.append((pos, pos+CARD_SIZE, 'card', byaddr[pos])); pos += CARD_SIZE
-        else:
-            end = min(nxt, REGION_END, (pos & ~0x3fff) + 0x4000)
-            segs.append((pos, end, 'misc', None)); pos = end
+def extra_tile_bytes(rom, a):
+    """bytes of printer tiles a card references past its 48-tile portrait.
+       LoadCardGfxRemapped reads source tile (attr[i]&$3f)+i; anything above 47
+       lives in the card's extra tiles right after the portrait."""
+    attr = rom[a+24:a+72]
+    return max(0, max((b & 0x3f) + j for j, b in enumerate(attr)) - 47) * 16
+
+def card_addrs(rom):
+    """addr -> card label, from the `dw` indices if present, else the built sym
+       (so this stays runnable after the gfx field is rewritten to `gfx <...>`)."""
+    cards = parse_cards()
+    if cards:
+        return {a: lbl for a, lbl, _ in cards}
+    out = {}
+    for line in open(os.path.join(ROOT, 'poketcg2.sym')):
+        m = re.match(r'^([0-9a-f]{2}):([0-9a-f]{4}) ([A-Za-z0-9_]+Card)Gfx$', line.strip())
+        if m:
+            a = int(m.group(1), 16)*0x4000 + (int(m.group(2), 16) - 0x4000)
+            if CG <= a < REGION_END: out[a] = m.group(3)
+    return out
+
+def build_segments(rom, byaddr):
+    """Walk the region into typed segments:
+         pre   - un-indexed gfx before CardGraphics ($1b tail, $1c)
+         card  - the 840-byte portrait blob
+         extra - the card's printer tiles (read by LoadCardGfxRemapped)
+         pad   - 0x00/0xff alignment between cards
+       Misc/pad are split at 0x4000 bank boundaries."""
+    starts = sorted(byaddr)
+    segs = []; pos = REGION_START
+    while pos < starts[0]:                          # pre-region
+        end = min(starts[0], (pos & ~0x3fff) + 0x4000)
+        segs.append((pos, end, 'pre', None)); pos = end
+    for i, a in enumerate(starts):
+        assert pos == a, f"misaligned card at {a:#x}"
+        name = byaddr[a]
+        segs.append((a, a+CARD_SIZE, 'card', name)); pos = a + CARD_SIZE
+        nxt = starts[i+1] if i+1 < len(starts) else REGION_END
+        if pos >= nxt: continue
+        eb = min(extra_tile_bytes(rom, a), nxt - pos)
+        if eb:
+            segs.append((pos, pos+eb, 'extra', name)); pos += eb
+        while pos < nxt:                            # alignment padding
+            end = min(nxt, (pos & ~0x3fff) + 0x4000)
+            segs.append((pos, end, 'pad', name)); pos = end
     return segs
 
 def main():
@@ -85,10 +119,8 @@ def main():
     args = ap.parse_args()
 
     rom = open(args.baserom, 'rb').read()
-    cards = parse_cards()
-    byaddr = {a: lbl for a, lbl, _ in cards}
-    card_starts = sorted(byaddr)
-    segs = build_segments(card_starts, byaddr)
+    byaddr = card_addrs(rom)
+    segs = build_segments(rom, byaddr)
 
     # self-check: planned pieces reconstruct the region byte-identically
     recon = bytearray(); p = REGION_START
@@ -109,8 +141,11 @@ def main():
                                 '-o', tiles, os.path.join(GFXDIR, fn+'.png')],
                                check=True)
                 os.remove(tiles)            # .png is the source; make rebuilds .2bpp
-            else:
+            elif kind == 'extra':
+                open(os.path.join(GFXDIR, card_filename(name)+'_extra.bin'), 'wb').write(rom[s:e])
+            elif kind == 'pre':
                 open(os.path.join(GFXDIR, 'misc', f'gfx_{s:06x}.bin'), 'wb').write(rom[s:e])
+            # 'pad' is emitted inline as `ds` -- no file
 
     if args.emit_asm:
         L = []
@@ -130,22 +165,34 @@ def main():
                 L.append(f'{name}Gfx::\n')
                 L += header_asm(rom[s:s+HDR])
                 L.append(f'\tINCBIN "gfx/cards/{fn}.2bpp"\n')
-            else:
+            elif kind == 'extra':
+                L.append(f'{name}GfxExtra::\n')
+                L.append(f'\tINCBIN "gfx/cards/{card_filename(name)}_extra.bin"\n')
+            elif kind == 'pad':
+                seg = rom[s:e]; j = 0          # alignment padding -> ds runs
+                while j < len(seg):
+                    v = seg[j]; k = j
+                    while k < len(seg) and seg[k] == v: k += 1
+                    L.append(f'\tds ${k-j:x}, ${v:02x}\n'); j = k
+            else:  # pre
                 L.append(f'\tINCBIN "gfx/cards/misc/gfx_{s:06x}.bin"\n')
         header = (
-            "; Card graphics. 445 portraits, each \"<Name>CardGfx\": 3 GBC palettes (rgb)\n"
-            "; + a 48-entry attribute map (db; high 2 bits = each tile's palette, low 6\n"
-            "; bits = a tile index for the alternate LoadCardGfxRemapped renderer), then INCBIN of\n"
-            "; the 48 portrait tiles (built from gfx/cards/<name>.png). The tiles are\n"
-            "; stored as 4-shade grayscale PNGs and the colour data is emitted here as asm\n"
-            "; for simplicity/byte-exactness; these are standard CGB multi-palette images,\n"
-            "; so colour PNGs are also possible (see tools/extract_card_gfx.py).\n"
-            "; gfx/cards/misc/*.bin are un-indexed graphics sharing these banks.\n"
+            "; Card graphics. Each \"<Name>CardGfx\": 3 GBC palettes (rgb) + a 48-entry\n"
+            "; attribute map (db; high 2 bits = each tile's palette, low 6 = a tile index\n"
+            "; for the alternate LoadCardGfxRemapped renderer), then INCBIN of the 48\n"
+            "; portrait tiles (built from gfx/cards/<name>.png, 4-shade grayscale, column-\n"
+            "; major). A \"<Name>CardGfxExtra\" + INCBIN follows for cards whose printer\n"
+            "; rendering pulls in extra tiles past the portrait; `ds` runs are inter-card\n"
+            "; alignment padding. gfx/cards/misc/*.bin are the still-unlabeled gfx that\n"
+            "; share these banks ahead of CardGraphics. Generated by\n"
+            "; tools/extract_card_gfx.py.\n"
         )
         open(args.emit_asm, 'w').write(header + ''.join(L))
 
-    print(f"OK: {len(cards)} cards, {sum(1 for *_,k,_ in [(s,e,k,n) for s,e,k,n in segs] if k=='misc')} "
-          f"misc blobs; region reconstructs byte-identical")
+    counts = {k: sum(1 for *_, kk, _ in [(s, e, kk, n) for s, e, kk, n in segs] if kk == k)
+              for k in ('card', 'extra', 'pre')}
+    print(f"OK: {counts['card']} cards, {counts['extra']} extra-tile blobs, "
+          f"{counts['pre']} pre-region blobs; region reconstructs byte-identical")
 
     if args.apply_carddata:
         for f in sorted(glob.glob(os.path.join(ROOT, "src/data/cards*.asm"))):
