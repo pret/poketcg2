@@ -71,8 +71,13 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_6c12` | `01:6c12` | `LoadDuelScreenBGPalettes` | loads Pals_6f0d8 into BG pals 2-4; 12 duel-screen callers (resolves a gfx-work TODO) | 2026-06-06 |
 | `Func_6c15` | `01:6c15` | `LoadDuelBGPalettesFromHL` | shared core: copy 3 palettes hl -> BG pals 2-4 | 2026-06-06 |
 | `Func_6c1d` | `01:6c1d` | `LoadCardPictureBGPalettes` | loads Pals_6f0f0; used with a drawn/placed card pic | 2026-06-06 |
+| `Func_17fb` | `00:17fb` | `HandleAfterDamageEffects` | tcg1 name (home/duel); AFTER_DAMAGE effect + status + knockouts cascade | 2026-06-06 |
+| `Func_83b3` | `02:43b3` | `DrawCurrentPlayAreaPrizeCards` | player/opp prize-card draw; caller TurnDuelistTakePrizes (tcg1 Func_82b6) | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: 23 named. 1,186 remaining. Batch (2): HandleAfterDamageEffects (tcg1-confirmed
+  core duel routine) + DrawCurrentPlayAreaPrizeCards. Deferred Func_189d / Func_2c4b (tcg2-
+  specific effect-feedback / ambiguous text helper) pending more study.
 - 2026-06-06: 21 named. 1,188 remaining. Batch (8): bank07 palette-fade quad + screen-anim
   runner + the bank01 BG-palette loader trio (the Func_6c12/Func_6c1d flagged during the gfx work).
 - 2026-06-06: 13 named. 1,196 remaining. Latest batch (6) used the dynamic call graph

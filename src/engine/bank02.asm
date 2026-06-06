@@ -604,8 +604,9 @@ DrawYourOrOppPlayAreaScreen_EmptiedScreen:
 	call EnableLCD
 	ret
 
+; draws the prize cards for the play area currently shown (player or opponent layout)
 ; Func_82b6 in tcg1
-Func_83b3:
+DrawCurrentPlayAreaPrizeCards:
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
 	ld b, a
 	ld a, [wCheckMenuPlayAreaWhichLayout]

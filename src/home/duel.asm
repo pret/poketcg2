@@ -1428,7 +1428,7 @@ PlayAttackAnimation_DealAttackDamage::
 	bank1call DrawDuelHUDs
 	pop hl
 	call PrintKnockedOutIfHLZero
-	jr Func_17fb
+	jr HandleAfterDamageEffects
 
 Func_17ed:
 	call DrawWideTextBox_WaitForInput
@@ -1438,7 +1438,9 @@ Func_17ed:
 	ld [hl], a
 ;	fallthrough
 
-Func_17fb:
+; after attack damage is dealt: run the defending card's AFTER_DAMAGE effect, then
+; process damage-triggered effects, status conditions, last-turn damage and knockouts
+HandleAfterDamageEffects:
 	ld a, [wNoDamageOrEffect]
 	push af
 	ld hl, wTempNonTurnDuelistCardID

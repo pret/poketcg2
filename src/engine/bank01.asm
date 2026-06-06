@@ -3114,7 +3114,7 @@ TurnDuelistTakePrizes:
 	ld h, $00
 	call LoadTxRam3
 .asm_587e
-	farcall Func_83b3
+	farcall DrawCurrentPlayAreaPrizeCards
 	ldtx hl, DrewXPrizesText
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
