@@ -884,11 +884,11 @@ SaveGamePrompt:
 	push bc
 	push de
 	push hl
-	farcall Func_10ed3
-	farcall Func_105de
+	farcall PullOWObjectsAndExtraByteFromBank3
+	farcall RestoreOverworldStateFromWRAM3
 	call SaveGame
-	farcall Func_10ea7
-	farcall Func_1059f
+	farcall PushOWObjectsAndExtraByteToBank3
+	farcall BackupOverworldStateToWRAM3
 	pop hl
 	pop de
 	pop bc
@@ -4079,7 +4079,7 @@ GetSelectedCoin:
 	ld a, [wSelectedCoin]
 	ret
 
-Func_1dfb9::
+ClearDuelAnimationState::
 	push af
 	push bc
 	push de

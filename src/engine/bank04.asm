@@ -293,9 +293,9 @@ Func_1022a:
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetOverworldFrameFunc
-	call Func_10ea7
-	call Func_1059f
-	call Func_10d40
+	call PushOWObjectsAndExtraByteToBank3
+	call BackupOverworldStateToWRAM3
+	call InitOverworldObjectState
 	call Func_102ef
 	pop hl
 	pop de
@@ -308,12 +308,12 @@ Func_10252:
 	push bc
 	push de
 	push hl
-	call Func_10d40
+	call InitOverworldObjectState
 	call Func_102ef
-	call Func_10ed3
-	call Func_105de
+	call PullOWObjectsAndExtraByteFromBank3
+	call RestoreOverworldStateFromWRAM3
 	call DisableLCD
-	call Func_10b9c
+	call ReloadSpriteAnimTilesets
 	call Func_1055e
 	call UpdateOWScroll
 	call EnableLCD
@@ -353,10 +353,10 @@ Func_102a4:
 	push hl
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	call Func_10ea7
-	call Func_1059f
+	call PushOWObjectsAndExtraByteToBank3
+	call BackupOverworldStateToWRAM3
 	call SetSpriteAnimationAndFadePalsFrameFunc
-	call Func_10d40
+	call InitOverworldObjectState
 	call Func_102ef
 	pop hl
 	pop de
@@ -369,12 +369,12 @@ Func_102c4:
 	push bc
 	push de
 	push hl
-	call Func_10d40
+	call InitOverworldObjectState
 	call Func_102ef
-	call Func_10ed3
-	call Func_105de
+	call PullOWObjectsAndExtraByteFromBank3
+	call RestoreOverworldStateFromWRAM3
 	call DisableLCD
-	call Func_10b9c
+	call ReloadSpriteAnimTilesets
 	call Func_1055e
 	call UpdateOWScroll
 	call EnableLCD
@@ -906,7 +906,7 @@ Func_1055e:
 	pop af
 	ret
 
-Func_1059f:
+BackupOverworldStateToWRAM3:
 	push af
 	push bc
 	push de
@@ -944,7 +944,7 @@ Func_1059f:
 	pop af
 	ret
 
-Func_105de:
+RestoreOverworldStateFromWRAM3:
 	push af
 	push bc
 	push de
@@ -2102,7 +2102,7 @@ ENDR
 
 ; load all sprite tilesets and their sprite anim gfx
 ; also clear wNumSpriteTilesets and wCurVRAMTile
-Func_10b9c:
+ReloadSpriteAnimTilesets:
 	push af
 	push bc
 	push de
@@ -2492,7 +2492,7 @@ GetPalettesWithID:
 	pop bc
 	ret
 
-Func_10d40::
+InitOverworldObjectState::
 	call InitOWObjects
 	ld a, 1
 	call SetwD8A1
@@ -2785,7 +2785,7 @@ Func_10ea3::
 	call Func_11384
 	ret
 
-Func_10ea7:
+PushOWObjectsAndExtraByteToBank3:
 	ei
 	di
 	push af
@@ -2817,7 +2817,7 @@ Func_10ea7:
 	call PushOWObjectsAndAnimTileToBank3
 	ret
 
-Func_10ed3:
+PullOWObjectsAndExtraByteFromBank3:
 	ei
 	di
 	push af
@@ -2897,7 +2897,7 @@ ClearwD986:
 	ld [wd986], a
 	ret
 
-Func_10f32:
+SaveOWObjectStates:
 	push af
 	push bc
 	push de
@@ -2959,7 +2959,7 @@ Func_10f78:
 	push bc
 	push de
 	push hl
-	call Func_10d40
+	call InitOverworldObjectState
 	ld hl, wd98b
 	ld c, MAX_NUM_OW_OBJECTS
 .loop
@@ -6502,7 +6502,7 @@ GetPlayerGender:
 
 Func_13dfa:
 	call DisableLCD
-	call Func_10d40
+	call InitOverworldObjectState
 	call Func_102ef
 	call EnableLCD
 	ld a, BANK("WRAM1")
@@ -6513,6 +6513,6 @@ Func_13dfa:
 	ld a, $ff
 	farcall InitFadePalettes
 	call Func_3f61
-	farcall Func_1dfb9
+	farcall ClearDuelAnimationState
 	farcall EnableAnimations
 	ret

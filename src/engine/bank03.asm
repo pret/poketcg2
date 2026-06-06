@@ -95,7 +95,7 @@ StartMenu_ContinueFromDiary:
 	ld a, TRUE
 	farcall ReadOrInitSaveData
 	call DisableLCD
-	farcall Func_10b9c
+	farcall ReloadSpriteAnimTilesets
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
@@ -1156,7 +1156,7 @@ OverworldLoop::
 	call ExecuteOWModeScript
 	farcall Func_102ef
 	xor a
-	farcall Func_10d40
+	farcall InitOverworldObjectState
 	ld a, $01
 	farcall SetOWScrollState
 	ld b, $00
@@ -1238,7 +1238,7 @@ OverworldLoop::
 	jr .wait_input
 
 .fade
-	farcall Func_10b9c
+	farcall ReloadSpriteAnimTilesets
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
@@ -5070,7 +5070,7 @@ DebugEffectViewer:
 	ld [wAnimationsDisabled], a
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	farcall Func_10d40
+	farcall InitOverworldObjectState
 	farcall SetInitialGraphicsConfiguration
 	lb de, 0, 0
 	lb bc, 20, 18

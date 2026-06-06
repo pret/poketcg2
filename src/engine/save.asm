@@ -259,7 +259,7 @@ LoadGeneralSaveDataChecksumSeed:
 _SaveGame::
 	ld a, OWMODE_SAVE_PRELOAD
 	call ExecuteOWModeScript
-	farcall Func_10f32
+	farcall SaveOWObjectStates
 	xor a ; BANK(sGeneralSaveData)
 	ld [wSaveDataCurBankSRAM], a
 .save
@@ -313,7 +313,7 @@ _SaveGame::
 	jr .save
 
 SaveGame_NoBackup:
-	farcall Func_10f32
+	farcall SaveOWObjectStates
 	xor a ; BANK(sGeneralSaveData)
 	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)

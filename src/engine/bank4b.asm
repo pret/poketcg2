@@ -154,7 +154,7 @@ GetOWObjectFrameset::
 	ret
 
 ; b:hl = tilemap pointer
-Func_12c0b7:
+LoadOWMapTilemap:
 	push af
 	push bc
 	push de
@@ -343,7 +343,7 @@ LoadTilemap::
 	ld h, a
 	or l
 	jr z, .null
-	call Func_12c1c1
+	call DecompressPermissionMap
 .null
 	ld a, [wBGMapWidth]
 	ld b, a
@@ -357,7 +357,7 @@ LoadTilemap::
 	ret
 
 ; decompress permission data?
-Func_12c1c1:
+DecompressPermissionMap:
 	call InitDataDecompressionFromBank
 	srl d
 	srl e
@@ -429,7 +429,7 @@ LoadOWMap::
 	push hl
 	call GetTilemapGfxPointer
 	lb de, 0, 0
-	call Func_12c0b7
+	call LoadOWMapTilemap
 	pop hl
 
 	ld c, [hl] ; tileset

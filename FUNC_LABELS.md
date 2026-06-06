@@ -73,8 +73,23 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_6c1d` | `01:6c1d` | `LoadCardPictureBGPalettes` | loads Pals_6f0f0; used with a drawn/placed card pic | 2026-06-06 |
 | `Func_17fb` | `00:17fb` | `HandleAfterDamageEffects` | tcg1 name (home/duel); AFTER_DAMAGE effect + status + knockouts cascade | 2026-06-06 |
 | `Func_83b3` | `02:43b3` | `DrawCurrentPlayAreaPrizeCards` | player/opp prize-card draw; caller TurnDuelistTakePrizes (tcg1 Func_82b6) | 2026-06-06 |
+| `Func_1059f` | `04:459f` | `BackupOverworldStateToWRAM3` | copies live OW state block (wOWMap..d89c) to WRAM3 scratch; brackets SaveGame/OW transitions | 2026-06-06 |
+| `Func_105de` | `04:45de` | `RestoreOverworldStateFromWRAM3` | inverse of the above | 2026-06-06 |
+| `Func_10ea7` | `04:4ea7` | `PushOWObjectsAndExtraByteToBank3` | saves wOWObjects (+1 byte to w3d563) to WRAM bank 3 | 2026-06-06 |
+| `Func_10ed3` | `04:4ed3` | `PullOWObjectsAndExtraByteFromBank3` | restores them from WRAM bank 3 | 2026-06-06 |
+| `Func_10d40` | `04:4d40` | `InitOverworldObjectState` | InitOWObjects + sets wd8a1=1, wd986=$ff (OW-entry reset) | 2026-06-06 |
+| `Func_10f32` | `04:4f32` | `SaveOWObjectStates` | snapshots active OW objects (5 B/obj) into wd98b for the save; inverse Func_10f78 | 2026-06-06 |
+| `Func_12c0b7` | `4b:40b7` | `LoadOWMapTilemap` | LoadTilemap (Tiles0) + stores tilemap width/height (wd7dc/dd); caller LoadOWMap | 2026-06-06 |
+| `Func_12c1c1` | `4b:41c1` | `DecompressPermissionMap` | **tcg1 name**; decompresses permission data into wd6d4 (wPermissionMap) | 2026-06-06 |
+| `Func_10b9c` | `04:4b9c` | `ReloadSpriteAnimTilesets` | re-loads cached wSpriteTilesets into VRAM after DisableLCD/screen rebuild | 2026-06-06 |
+| `Func_1dfb9` | `07:5fb9` | `ClearDuelAnimationState` | ClearSpriteAnims + zeroes wDuelAnimBuffer/vars; shared by Reset/FinishQueuedAnimations | 2026-06-06 |
+| `Func_189d` | `00:16cf` | `CheckAndDisplayDefenderTransparency` | after damage: if defender affected, run HandleTransparency + show its text | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: 34 named. 1,175 remaining. Batch (11) analyzed in PARALLEL by 7 subagents
+  (each read body + checked tcg1, returned a structured name proposal; I verified + applied).
+  Mostly OW save/restore + map/tilemap + sprite-anim engine; resolved the deferred Func_189d
+  (CheckAndDisplayDefenderTransparency) and found a tcg1 match (DecompressPermissionMap).
 - 2026-06-06: 23 named. 1,186 remaining. Batch (2): HandleAfterDamageEffects (tcg1-confirmed
   core duel routine) + DrawCurrentPlayAreaPrizeCards. Deferred Func_189d / Func_2c4b (tcg2-
   specific effect-feedback / ambiguous text helper) pending more study.

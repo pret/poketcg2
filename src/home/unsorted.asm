@@ -2295,7 +2295,7 @@ Func_3c3d::
 ResetAnimationQueue::
 	push af
 	call FinishQueuedAnimations
-	farcall Func_1dfb9
+	farcall ClearDuelAnimationState
 	farcall SetAnimationQueueFrameFunc
 	ld a, $01
 	ld [wdc57], a
@@ -2313,7 +2313,7 @@ FinishQueuedAnimations::
 	ld [wdc57], a
 	ld [wDuelAnimBufferSize], a
 	ld [wDuelAnimBufferCurPos], a
-	farcall Func_1dfb9
+	farcall ClearDuelAnimationState
 	pop af
 	ret
 
@@ -2673,7 +2673,7 @@ Func_3e4f::
 
 Func_3e54::
 	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
-	farcall Func_10d40
+	farcall InitOverworldObjectState
 	ret
 
 ; input

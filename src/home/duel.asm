@@ -1402,7 +1402,7 @@ PlayAttackAnimation_DealAttackDamage::
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
 	call TryExecuteEffectCommandFunction
 	call ApplyDamageModifiers_DamageToTarget
-	call Func_189d
+	call CheckAndDisplayDefenderTransparency
 	ld a, e
 	or d
 	jr z, .asm_15dc
@@ -1557,7 +1557,7 @@ SendAttackDataToLinkOpponent::
 	ldh [hDuelActionArgs + 0], a
 	ret
 
-Func_189d:
+CheckAndDisplayDefenderTransparency:
 	ld a, [wLoadedAttackCategory]
 	bit RESIDUAL_F, a
 	ret nz
