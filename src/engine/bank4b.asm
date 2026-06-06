@@ -184,7 +184,7 @@ Func_12c0ce::
 	call GetTilemapGfxPointer
 	sla d ; *2
 	sla e ; *2
-	call Func_12c0fc
+	call LoadOWMapTilemapNoDimensions
 	ld hl, wd852
 	ld a, [hl]
 	inc [hl]
@@ -210,7 +210,7 @@ Func_12c0ce::
 	ret
 
 ; b:hl = tilemap pointer
-Func_12c0fc:
+LoadOWMapTilemapNoDimensions:
 	push af
 	push bc
 	push de
@@ -564,7 +564,7 @@ UpdateSpriteAnim::
 	call LoadSpriteAnim
 	call DecrementSpriteAnimStartDelay
 	jr nz, .apply_changes ; still delaying
-	call Func_12c35c
+	call LoadFirstSpriteAnimFrame
 	ld hl, wCurSpriteAnim
 	bit SPRITEANIMSTRUCT_ANIMATING_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
 	jr z, .asm_12c2fe
@@ -625,7 +625,7 @@ DecrementSpriteAnimFrameDuration:
 	call AdvanceToNextSpriteAnimFrame
 	ret
 
-Func_12c35c:
+LoadFirstSpriteAnimFrame:
 	ld a, [wCurSpriteAnimFrameIndex]
 	ld b, a
 	ld a, [wCurSpriteAnimFrameDuration]

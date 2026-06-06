@@ -343,7 +343,7 @@ RestoreBackupSave:
 	call LoadBackupSave
 	xor a
 	call BulkCopySRAM
-	farcall Func_10f78
+	farcall LoadOWObjectStates
 	ret
 
 LoadBackupSave:
@@ -374,7 +374,7 @@ LoadMainSave:
 	ld [wSaveDataSRAMOffset + 1], a
 	call LoadGeneralSaveDataChecksumSeed
 	call LoadSaveDataFromSRAM
-	farcall Func_10f78
+	farcall LoadOWObjectStates
 	ret
 
 InitChallengeMachine:

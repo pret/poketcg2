@@ -7527,7 +7527,7 @@ SetDeckMachineTitleText:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	ret
 
 CopyBBytesFromHLToDE_Bank0e:
@@ -9646,7 +9646,7 @@ _HandleAutoDeckSelectionMenu:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	farcall ReadAutoDeckConfiguration
 	call CreateAutoDeckPointerList
 	call PrintVisibleAutoDeckMachineEntries

@@ -140,7 +140,7 @@ PlayCoinFlipGame:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterCoinFlipTitleText
 	lb de, 1, 12
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	ldtx hl, GameCenterCoinFlipDialogText
 	lb de, 1, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
@@ -227,7 +227,7 @@ ShowCoinFlipGameDescription:
 .PrintDescription:
 	ldtx hl, GameCenterCoinFlipTitleText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	ldtx hl, GameCenterCoinFlipDescriptionText
 	lb de, 1, 2
 	call InitTextPrinting_ProcessTextFromIDVRAM0

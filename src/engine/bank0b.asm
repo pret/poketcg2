@@ -2542,14 +2542,14 @@ RockClubEntrance_StepEvents:
 	db $ff
 
 RockClubEntrance_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2d376
-	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d37d
+	dbw OWMODE_STEP_EVENT, RockClubEntrance_StepEvent
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, RockClubEntrance_WarpFadeInPreload
 	dbw OWMODE_CONTINUE_OW, Func_2d399
-	dbw OWMODE_MUSIC_PRELOAD, Func_2d356
-	dbw OWMODE_MUSIC_POSTLOAD, Func_2d366
+	dbw OWMODE_MUSIC_PRELOAD, RockClubEntrance_MusicPreload
+	dbw OWMODE_MUSIC_POSTLOAD, RockClubEntrance_MusicPostload
 	db $ff
 
-Func_2d356:
+RockClubEntrance_MusicPreload:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d363
@@ -2560,7 +2560,7 @@ Func_2d356:
 	ccf
 	ret
 
-Func_2d366:
+RockClubEntrance_MusicPostload:
 	call RockClubEntrance_ShouldRonaldAppear
 	jr nc, .appear
 	scf
@@ -2572,12 +2572,12 @@ Func_2d366:
 	ccf
 	ret
 
-Func_2d376:
+RockClubEntrance_StepEvent:
 	ld hl, RockClubEntrance_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2d37d:
+RockClubEntrance_WarpFadeInPreload:
 	call RockClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 ; card pop
@@ -2913,15 +2913,15 @@ RockClub_NPCInteractions:
 	db $ff
 
 RockClub_MapScripts:
-	dbw OWMODE_STEP_EVENT, Func_2d663
+	dbw OWMODE_STEP_EVENT, RockClub_StepEvent
 	dbw OWMODE_INTERACT, Func_2d6a6
-	dbw OWMODE_NPC_POSITION, Func_2d66a
+	dbw OWMODE_NPC_POSITION, RockClub_LoadNPCs
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d673
 	dbw OWMODE_AFTER_DUEL, Func_2d6ae
-	dbw OWMODE_MUSIC_PRELOAD, Func_2d653
+	dbw OWMODE_MUSIC_PRELOAD, RockClub_MusicPreload
 	db $ff
 
-Func_2d653:
+RockClub_MusicPreload:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d660
@@ -2932,12 +2932,12 @@ Func_2d653:
 	ccf
 	ret
 
-Func_2d663:
+RockClub_StepEvent:
 	ld hl, RockClub_StepEvents
 	call ExecutePlayerCoordScript
 	ret
 
-Func_2d66a:
+RockClub_LoadNPCs:
 	ld hl, RockClub_NPCs
 	call LoadNPCs
 	scf

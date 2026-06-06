@@ -64,7 +64,7 @@ DrawGameCenterPrizeExchangeMenu:
 ; draw chip HUD
 	ldtx hl, PlayersChipsText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	lb de, 14, 0
 	lb bc, 5, 1
 	farcall FillBoxInBGMapWithZero

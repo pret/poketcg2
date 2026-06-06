@@ -7,10 +7,10 @@ _BillsPC:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, GameCenterBillsPCTitleText
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	lb de, 13, 0
 	ldtx hl, GameCenterBillsPC20ChipsPerPlayText
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	lb de, 2, 2
 	ldtx hl, GameCenterBillsPCDescriptionText
 	call InitTextPrinting_ProcessTextFromID

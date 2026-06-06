@@ -60,12 +60,12 @@ BlackBox:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterBlackBoxTitleText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	ld hl, CHIPS_BET_BLACK_BOX
 	call LoadTxRam3
 	ldtx hl, GameCenterXChipsPerPlayText
 	lb de, 14, 0
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	ret
 
 .StartPrompt:

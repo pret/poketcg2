@@ -2246,7 +2246,7 @@ PracticeDuel_PrintTurnInstructions:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, PracticeDuelHeaderPlayersTurnNumberText
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	call EnableLCD
 	ld a, [wDuelTurns]
 	ld hl, wPracticeDuelTurn
@@ -2303,7 +2303,7 @@ PracticeDuel_PlayNidoranMFromBench:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, PracticeDuelHeaderKnockedOutReplaceText
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	call EnableLCD
 	ld hl, PracticeDuelText_SamTurn4
 	jp PrintPracticeDuelInstructions

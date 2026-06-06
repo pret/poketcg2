@@ -84,8 +84,26 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_10b9c` | `04:4b9c` | `ReloadSpriteAnimTilesets` | re-loads cached wSpriteTilesets into VRAM after DisableLCD/screen rebuild | 2026-06-06 |
 | `Func_1dfb9` | `07:5fb9` | `ClearDuelAnimationState` | ClearSpriteAnims + zeroes wDuelAnimBuffer/vars; shared by Reset/FinishQueuedAnimations | 2026-06-06 |
 | `Func_189d` | `00:16cf` | `CheckAndDisplayDefenderTransparency` | after damage: if defender affected, run HandleTransparency + show its text | 2026-06-06 |
+| `Func_10f78` | `04:4f78` | `LoadOWObjectStates` | load-time inverse of SaveOWObjectStates (respawns OW objects from wd98b) | 2026-06-06 |
+| `Func_1132e` | `04:532e` | `SetOWObjectSpriteAnimMovement` | sets an OW object's sprite-anim direction + motion (speed/duration) | 2026-06-06 |
+| `Func_12c0fc` | `4b:40fc` | `LoadOWMapTilemapNoDimensions` | LoadOWMapTilemap variant that skips storing width/height | 2026-06-06 |
+| `Func_12c35c` | `4b:435c` | `LoadFirstSpriteAnimFrame` | first-update guard; primes frame 0, falls into AdvanceToNextSpriteAnimFrame | 2026-06-06 |
+| `Func_1e60c` | `07:660c` | `PlayDuelistIntroScene` | pre-duel duelist intro cutscene (portrait + intro text + theme) | 2026-06-06 |
+| `Func_1e73a` | `07:673a` | `LoadNPCDuelConfiguration` | reloads opponent duel config from wNPCDuelDeckID (tcg1 _GetNPCDuelConfigurations) | 2026-06-06 |
+| `Func_2c4b` | `00:2c4b` | `PrintTextNoDelay_ZeroAttributes` | print no-delay text at de, then clear its CGB attribute bytes; ~30 callers | 2026-06-06 |
+| `Func_2d356` | `0b:5356` | `RockClubEntrance_MusicPreload` | OWMODE_MUSIC_PRELOAD handler (GR theme if boss unmet) | 2026-06-06 |
+| `Func_2d366` | `0b:5366` | `RockClubEntrance_MusicPostload` | OWMODE_MUSIC_POSTLOAD (Ronald music) | 2026-06-06 |
+| `Func_2d376` | `0b:5376` | `RockClubEntrance_StepEvent` | OWMODE_STEP_EVENT -> RockClubEntrance_StepEvents | 2026-06-06 |
+| `Func_2d37d` | `0b:537d` | `RockClubEntrance_WarpFadeInPreload` | OWMODE_WARP_FADE_IN_PRELOAD (queues Ronald cutscene script) | 2026-06-06 |
+| `Func_2d653` | `0b:5653` | `RockClub_MusicPreload` | OWMODE_MUSIC_PRELOAD handler (RockClub map) | 2026-06-06 |
+| `Func_2d663` | `0b:5663` | `RockClub_StepEvent` | OWMODE_STEP_EVENT -> RockClub_StepEvents | 2026-06-06 |
+| `Func_2d66a` | `0b:566a` | `RockClub_LoadNPCs` | OWMODE_NPC_POSITION -> loads RockClub_NPCs (tcg1 RockClubNPCS) | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: 48 named. 1,161 remaining. Batch (14) via 8 parallel subagents. Key discovery:
+  the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
+  a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
+  Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
 - 2026-06-06: 34 named. 1,175 remaining. Batch (11) analyzed in PARALLEL by 7 subagents
   (each read body + checked tcg1, returned a structured name proposal; I verified + applied).
   Mostly OW save/restore + map/tilemap + sprite-anim engine; resolved the deferred Func_189d

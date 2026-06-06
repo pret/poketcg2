@@ -8207,7 +8207,7 @@ CardAlbum:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, BoosterPackTitleText ; title
-	call Func_2c4b
+	call PrintTextNoDelay_ZeroAttributes
 	farcall FillBoosterPackMenuItems
 	ldtx hl, ViewWhichCardFileText
 	call DrawWideTextBox_PrintText

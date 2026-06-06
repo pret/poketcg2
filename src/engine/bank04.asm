@@ -2775,7 +2775,7 @@ Func_10e3c::
 	ld a, [wd98a]
 	ld e, a
 	ld a, [wd989]
-	call Func_1132e
+	call SetOWObjectSpriteAnimMovement
 	pop hl
 	pop de
 	pop bc
@@ -2954,7 +2954,7 @@ SaveOWObjectStates:
 	pop bc
 	ret
 
-Func_10f78:
+LoadOWObjectStates:
 	push af
 	push bc
 	push de
@@ -3655,7 +3655,7 @@ _GetOWObjectSpeedAndMoveDuration:
 ; a = NPC_* ID
 ; b = direction
 ; c = speed
-Func_1132e:
+SetOWObjectSpriteAnimMovement:
 	push bc
 	push de
 	push hl
@@ -3777,7 +3777,7 @@ ENDR
 	cp $ff
 	jr z, .asm_113cb
 	ld a, d
-	call Func_1132e
+	call SetOWObjectSpriteAnimMovement
 	ret
 
 .asm_113cb
