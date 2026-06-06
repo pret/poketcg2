@@ -9,7 +9,14 @@
 ; tools/extract_card_gfx.py.
 
 SECTION "Gfx 1b Tail", ROMX[$74d0], BANK[$1b]
-	INCBIN "gfx/cards/misc/gfx_06f4d0.bin"
+DuelCardHeaderGraphics::
+	INCBIN "gfx/duel/card_type_headers.bin"
+DuelCgbSymbolGraphics::
+	INCBIN "gfx/duel/cgb_card_symbols.bin"
+DuelDmgSgbSymbolGraphics::
+	INCBIN "gfx/duel/dmg_sgb_card_symbols.bin"
+DuelOtherGraphics::
+	INCBIN "gfx/duel/duel_other_gfx.bin"
 
 SECTION "Gfx 1c", ROMX[$4000], BANK[$1c]
 	INCBIN "gfx/cards/misc/gfx_070000.bin"

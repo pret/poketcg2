@@ -31,10 +31,18 @@ CARD_W = 8              # card tiles are 8 wide (48 tiles = 8x6)
 REGION_START = 0x6f4d0  # $1b:74d0, first overlay byte after SymbolsFont
 REGION_END   = 0xd9818  # end of last card; rest of region is 0xff pad
 
-# known graphics carved out of the pre-region and labelled:
-#   (file offset, size, label, gfx path stem, png width in tiles)
+# known graphics carved out of the pre-region and labelled. Names come from the
+# load-site comments in src/home/tiles.asm; offsets/sizes are the `- $4000`
+# operands and the tile counts loaded there (the $1b tail sums to exactly 179
+# tiles = 48+48+19+64). The loaders keep their raw operands; these labels just
+# document and source the data.
+#   (file offset, size, label, gfx path stem, png width in tiles | None for raw .bin)
 KNOWN_PRE = [
-    (0x70a30, 7*40*16, 'DuelBoxMessages', 'gfx/duel/box_messages', 10),  # 7 box msgs, 10x4 each
+    (0x6f4d0, 48*16,   'DuelCardHeaderGraphics',   'gfx/duel/card_type_headers',    None),  # TRAINER/ENERGY/POKEMON
+    (0x6f7d0, 48*16,   'DuelCgbSymbolGraphics',    'gfx/duel/cgb_card_symbols',     None),  # CGB rarity/type symbols
+    (0x6fad0, 19*16,   'DuelDmgSgbSymbolGraphics', 'gfx/duel/dmg_sgb_card_symbols', None),  # DMG/SGB symbols
+    (0x6fc00, 64*16,   'DuelOtherGraphics',        'gfx/duel/duel_other_gfx',       None),
+    (0x70a30, 7*40*16, 'DuelBoxMessages',          'gfx/duel/box_messages',         10),    # 7 box msgs, 10x4
 ]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GFXDIR = os.path.join(ROOT, "src/gfx/cards")
@@ -159,12 +167,16 @@ def main():
                 open(os.path.join(GFXDIR, card_filename(name)+'_extra.bin'), 'wb').write(rom[s:e])
             elif kind == 'known':
                 klabel, stem, w = name
-                png = os.path.join(ROOT, 'src', stem + '.png')
-                os.makedirs(os.path.dirname(png), exist_ok=True)
-                tmp = os.path.join(GFXDIR, '_known.2bpp')
-                open(tmp, 'wb').write(rom[s:e])
-                subprocess.run([RGBGFX, '-r', str(w), '--colors', 'dmg', '-o', tmp, png], check=True)
-                os.remove(tmp)
+                dst = os.path.join(ROOT, 'src', stem)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                if w:                                    # png-built tiles
+                    tmp = os.path.join(GFXDIR, '_known.2bpp')
+                    open(tmp, 'wb').write(rom[s:e])
+                    subprocess.run([RGBGFX, '-r', str(w), '--colors', 'dmg',
+                                    '-o', tmp, dst+'.png'], check=True)
+                    os.remove(tmp)
+                else:                                    # raw tile data
+                    open(dst+'.bin', 'wb').write(rom[s:e])
             elif kind == 'pre':
                 open(os.path.join(GFXDIR, 'misc', f'gfx_{s:06x}.bin'), 'wb').write(rom[s:e])
             # 'pad' is emitted inline as `ds` -- no file
@@ -193,7 +205,7 @@ def main():
             elif kind == 'known':
                 klabel, stem, w = name
                 L.append(f'{klabel}::\n')
-                L.append(f'\tINCBIN "{stem}.2bpp"\n')
+                L.append(f'\tINCBIN "{stem}{".2bpp" if w else ".bin"}"\n')
             elif kind == 'pad':
                 seg = rom[s:e]; j = 0          # alignment padding -> ds runs
                 while j < len(seg):
