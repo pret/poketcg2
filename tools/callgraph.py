@@ -42,6 +42,10 @@ def pc_to_func(sym, bank, pc):
     i = bisect.bisect_right(addrs, pc) - 1
     return labels[i] if i >= 0 else f"{bank:02x}:{pc:04x}"
 
+# bank-0 interrupt vectors: a target here means an IRQ preempted the instruction
+# after a CALL/RST, not a real call target -- drop those false edges.
+IRQ_VECTORS = {0x40, 0x48, 0x50, 0x58, 0x60}
+
 def load_dyn_edges(path, sym):
     """dynamic edge dump (cbank:cpc tbank:tpc) -> (callers, callees) func maps."""
     dcallers, dcallees = {}, {}
@@ -49,6 +53,7 @@ def load_dyn_edges(path, sym):
         m = re.match(r'([0-9a-f]{2}):([0-9a-f]{4})\s+([0-9a-f]{2}):([0-9a-f]{4})', line.strip())
         if not m: continue
         cb, cp, tb, tp = (int(m.group(i), 16) for i in (1, 2, 3, 4))
+        if tb == 0 and tp in IRQ_VECTORS: continue   # interrupt preemption, not a call
         caller = pc_to_func(sym, cb, cp); callee = pc_to_func(sym, tb, tp)
         if caller == callee: continue
         dcallees.setdefault(caller, set()).add(callee)
