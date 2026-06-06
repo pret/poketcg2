@@ -100,7 +100,7 @@ _BillsPC:
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex5
 	ld de, v0Tiles1
-	ld hl, $34d0 ; DuelCardHeaderGraphics - $4000
+	ld hl, DuelCardHeaderGraphics - $4000
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
 	ld a, $80 ; v0Tiles1

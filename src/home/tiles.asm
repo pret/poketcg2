@@ -121,7 +121,7 @@ LoadCardOrDuelMenuBorderTiles::
 LoadCardTypeHeaderTiles::
 	ld d, a
 	ld e, 0
-	ld hl, $34d0 ; DuelCardHeaderGraphics - $4000
+	ld hl, DuelCardHeaderGraphics - $4000
 	add hl, de
 	ld de, v0Tiles1 + $60 tiles
 	ld b, $10
@@ -131,7 +131,7 @@ LoadCardTypeHeaderTiles::
 
 ; loads the symbols that are displayed near the names of a list of cards in the hand or discard pile
 LoadDuelCardSymbolTiles::
-	ld hl, $37d0 ; DuelCgbSymbolGraphics - $4000
+	ld hl, DuelCgbSymbolGraphics - $4000
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
@@ -139,7 +139,7 @@ LoadDuelCardSymbolTiles::
 ; loads the symbols for Stage 1 Pkmn card, Stage 2 Pkmn card, and Trainer card.
 ; unlike LoadDuelCardSymbolTiles excludes the symbols for Basic Pkmn and all energies.
 LoadDuelCardSymbolTiles2::
-	ld hl, $3810 ; DuelCgbSymbolGraphics + $4 tiles - $4000
+	ld hl, DuelCgbSymbolGraphics + $4 tiles - $4000
 	ld de, v0Tiles1 + $54 tiles
 	ld b, $c
 	jr CopyFontsOrDuelGraphicsTiles
@@ -215,12 +215,12 @@ Func_212f::
 	add hl, hl
 	add hl, hl
 	add hl, hl ; *16
-	ld de, $3ad0 ; DuelDmgSgbSymbolGraphics - $4000
+	ld de, DuelDmgSgbSymbolGraphics - $4000
 	add hl, de
 	ld de, sGfxBuffer1 + $38 tiles
 	ld b, $4
 	call CopyFontsOrDuelGraphicsTiles
-	ld hl, $3ad0 ; DuelDmgSgbSymbolGraphics - $4000
+	ld hl, DuelDmgSgbSymbolGraphics - $4000
 	ld de, sGfxBuffer4 + $10 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
@@ -250,7 +250,7 @@ DrawDuelBoxMessage::
 	add hl, hl
 	add hl, hl
 	; hl = a * 40 tiles
-	ld de, $4a30 ; DuelBoxMessages
+	ld de, DuelBoxMessages
 	add hl, de
 	ld de, v0Tiles1 + $20 tiles
 	ld b, 40
