@@ -8726,7 +8726,7 @@ ProcessEffectsTriggeredByTakingDamage::
 	call PrintPlayAreaCardKnockedOutIfNoHP
 	call DrawDuelMainScene
 	call DrawDuelHUDs
-	call Func_74ef
+	call ProcessFinalBeamWhenKnockedOut
 	ret
 
 .Func_74ab:
@@ -8766,7 +8766,7 @@ ApplyMirrorShellDamageModifiers:
 	ld de, 0
 	ret
 
-Func_74ef:
+ProcessFinalBeamWhenKnockedOut:
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	or a
@@ -9853,7 +9853,7 @@ GetDefendingCardType:
 	ret nc
 	ld a, [wccd9]
 ;	fallthrough
-Func_7b0a:
+GetChangedTypeAttackingCardColor:
 	call GetPlayAreaCardColor
 	ret
 
@@ -9863,7 +9863,7 @@ GetAttackingCardType:
 	ret nc
 	; is Venomoth, get its color
 	ld a, [wccd8]
-	jr Func_7b0a
+	jr GetChangedTypeAttackingCardColor
 
 ; gets type of Pokémon with ID given in [hl]
 ; if it's Venomoth lv28, then get its color

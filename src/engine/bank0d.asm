@@ -419,7 +419,7 @@ Func_342ef:
 	db NORTH, MOVE_3
 	db $ff
 
-Func_34323:
+DoRonaldGrassFortAfterDuelScene:
 	xor a
 	start_script
 	start_dialog
@@ -636,7 +636,7 @@ Func_3448d:
 	end_script
 	ret
 
-Func_344da:
+DoRonaldGrCastleAfterDuelScene:
 	xor a
 	start_script
 	start_dialog
@@ -794,7 +794,7 @@ TcgAirportEntrance_LoadNPCs:
 
 TcgAirportEntrance_Interact:
 	ld hl, TcgAirportEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3462b
 	ld hl, TcgAirportEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -847,7 +847,7 @@ TcgAirportEntrance_MoveGR5OutOfPath:
 	farcall TryMoveOWObjectInDirection
 .asm_34689
 	ld a, NPC_GR_5
-	call Func_336d
+	call WaitForOWObjectMovement
 .asm_3468e
 	ret
 
@@ -1116,7 +1116,7 @@ TcgAirport_WarpEndSFX:
 
 TcgAirport_Interact:
 	ld hl, TcgAirport_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1365,7 +1365,7 @@ Func_34a7d:
 	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
-	call Func_336d
+	call WaitForOWObjectMovement
 	ret
 
 Func_34a96:
@@ -1378,7 +1378,7 @@ Func_34a96:
 	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
-	call Func_336d
+	call WaitForOWObjectMovement
 	ret
 
 GrAirportEntrance_MapHeader:
@@ -1430,7 +1430,7 @@ GrAirportEntrance_LoadNPCs:
 
 GrAirportEntrance_Interact:
 	ld hl, GrAirportEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_34b34
 	ld hl, GrAirportEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1905,7 +1905,7 @@ GameCenter2_LoadNPCs:
 
 GameCenter2_Interact:
 	ld hl, GameCenter2_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_34f05
 	ld hl, GameCenter2_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2181,7 +2181,7 @@ CardDungeonBishop_LoadNPCs:
 
 CardDungeonBishop_Interact:
 	ld hl, CardDungeonBishop_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_35104
 	ld hl, CardDungeonBishop_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2460,7 +2460,7 @@ GrChallengeHallLobby_LoadNPCs:
 
 GrChallengeHallLobby_Interact:
 	ld hl, GrChallengeHallLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_35340
 	ld hl, GrChallengeHallLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2699,7 +2699,7 @@ GrassFortMorino_LoadNPCs:
 
 GrassFortMorino_Interact:
 	ld hl, GrassFortMorino_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -2898,7 +2898,7 @@ WaterFortSenta_WarpFadeInPreload:
 
 WaterFortSenta_Interact:
 	ld hl, WaterFortSenta_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -3187,7 +3187,7 @@ WaterFortAira_WarpFadeInPreload:
 
 WaterFortAira_Interact:
 	ld hl, WaterFortAira_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -3393,7 +3393,7 @@ FightingFort_WarpFadeInPreload:
 	ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
 	farcall GetEventValue
 	jr z, .asm_35a37
-	farcall Func_30056
+	farcall SetFightingFortClearedVar
 	scf
 	ret
 .asm_35a2e
@@ -3432,7 +3432,7 @@ FightingFort_WarpFadeInPreload:
 
 FightingFort_Interact:
 	ld hl, FightingFort_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_35a8a
 	ld hl, FightingFort_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3820,7 +3820,7 @@ FightingFortGoda_WarpFadeInPreload:
 
 FightingFortGoda_Interact:
 	ld hl, FightingFortGoda_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_35dae
 	ld hl, FightingFortGoda_OWInteractions
 	call ExecutePlayerInteractScript
@@ -4060,7 +4060,7 @@ FightingFortGrace_LoadNPCs:
 
 FightingFortGrace_Interact:
 	ld hl, FightingFortGrace_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -4316,7 +4316,7 @@ PsychicStrongholdEntrance_WarpFadeInPreload:
 
 PsychicStrongholdEntrance_Interact:
 	ld hl, PsychicStrongholdEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -4415,7 +4415,7 @@ PsychicStrongholdLobby_LoadNPCs:
 
 PsychicStrongholdLobby_Interact:
 	ld hl, PsychicStrongholdLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3622c
 	ld hl, PsychicStrongholdLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -4679,7 +4679,7 @@ PsychicStronghold_WarpEndSFX:
 
 PsychicStronghold_Interact:
 	ld hl, PsychicStronghold_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -5813,7 +5813,7 @@ PsychicStrongholdMami_WarpEndSFX:
 
 PsychicStrongholdMami_Interact:
 	ld hl, PsychicStrongholdMami_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -6197,7 +6197,7 @@ ColorlessAltar_WarpFadeInPreload:
 
 ColorlessAltar_Interact:
 	ld hl, ColorlessAltar_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -6763,7 +6763,7 @@ GrCastleEntrance_WarpFadeInPreload:
 
 GrCastleEntrance_Interact:
 	ld hl, GrCastleEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_37479
 	ld hl, GrCastleEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6772,7 +6772,7 @@ GrCastleEntrance_Interact:
 	ret
 
 GrCastleEntrance_AfterDuel:
-	call Func_344da
+	call DoRonaldGrCastleAfterDuelScene
 	scf
 	ret
 
@@ -7072,7 +7072,7 @@ GrCastle_WarpFadeInPreload:
 
 GrCastle_Interact:
 	ld hl, GrCastle_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 

@@ -872,7 +872,7 @@ HandleTCGIslandInput:
 	call WalkPlayerAlongTCGIslandPath
 	xor a
 	call PlaySFX
-	call Func_40682
+	call SetWarpToTCGIslandLocation
 	ret
 
 PlacePlayerInTCGIslandLocation:
@@ -1046,7 +1046,7 @@ PrintTCGIslandLocationName:
 	textitem 1, 3, MapPokemonDomeText      ; OWMAP_POKEMON_DOME
 	; no sentinels
 
-Func_40682:
+SetWarpToTCGIslandLocation:
 	ld a, [wCurOWLocation]
 	sla a
 	sla a ; *4
@@ -1310,8 +1310,8 @@ MasonLaboratoryMain_MapHeader:
 	db MUSIC_OVERWORLD
 
 MasonLaboratoryMain_StepEvents:
-	_ow_coordinate_function 6, 14, 0, 1, 7, 2, Func_40fff
-	_ow_coordinate_function 7, 14, 0, 1, 7, 2, Func_40fff
+	_ow_coordinate_function 6, 14, 0, 1, 7, 2, WarpFromMasonLabIfMapReloadEvent
+	_ow_coordinate_function 7, 14, 0, 1, 7, 2, WarpFromMasonLabIfMapReloadEvent
 	map_exit 0, 5, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 11, WEST
 	map_exit 0, 6, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 12, WEST
 	map_exit 13, 5, MAP_MASON_LABORATORY_COMPUTER_ROOM, 1, 5, EAST
@@ -1387,7 +1387,7 @@ MasonLaboratoryMain_WarpFadeInPreload:
 	jr nz, .asm_40ee8
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	call nz, Func_40ef9
+	call nz, QueueMasonLabChallengeMachineTilemap
 	scf
 	ret
 .asm_40ead
@@ -1417,14 +1417,14 @@ MasonLaboratoryMain_WarpFadeInPreload:
 .asm_40ee8
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	call Func_40ef9
+	call QueueMasonLabChallengeMachineTilemap
 	ld a, $00
 	call StartOverworldFadeIn
 	scf
 	ccf
 	ret
 
-Func_40ef9:
+QueueMasonLabChallengeMachineTilemap:
 	ld bc, TILEMAP_006
 	lb de, 5, 0
 	farcall LoadAndQueueOWMapTilemap
@@ -1432,7 +1432,7 @@ Func_40ef9:
 
 MasonLaboratoryMain_Interact:
 	ld hl, MasonLaboratoryMain_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_40f12
 	ld hl, MasonLaboratoryMain_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1571,7 +1571,7 @@ Func_40fbc:
 	db NORTH, MOVE_8
 	db $ff
 
-Func_40fff:
+WarpFromMasonLabIfMapReloadEvent:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41013
@@ -2411,7 +2411,7 @@ TcgChallengeHall_WarpFadeInPreload:
 
 TcgChallengeHall_Interact:
 	ld hl, TcgChallengeHall_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -3274,7 +3274,7 @@ GrAirport_WarpEndSFX:
 
 GrAirport_Interact:
 	ld hl, GrAirport_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -3476,7 +3476,7 @@ Func_41e5c:
 	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
-	call Func_336d
+	call WaitForOWObjectMovement
 	ret
 
 Func_41e75:
@@ -3489,7 +3489,7 @@ Func_41e75:
 	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
-	call Func_336d
+	call WaitForOWObjectMovement
 	ret
 
 SealedFort_MapHeader:
@@ -4528,7 +4528,7 @@ GrChallengeHall_WarpFadeInPreload:
 
 GrChallengeHall_Interact:
 	ld hl, GrChallengeHall_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_426c7
 	ld hl, GrChallengeHall_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5644,7 +5644,7 @@ GrCastleBiruritchi_WarpEndSFX:
 
 GrCastleBiruritchi_Interact:
 	ld hl, GrCastleBiruritchi_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_42fbb
 	ld hl, GrCastleBiruritchi_OWInteractions
 	call ExecutePlayerInteractScript

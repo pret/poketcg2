@@ -118,6 +118,16 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 23 named. 529 remaining. Batch analyzed in PARALLEL by 8 subagents. Hot generic
+  NPC-interact dispatcher TurnNPCToFacePlayerAndRunScript (83 callers; the turn-to-face variant of
+  ExecuteFacingNPCScript). OWModePostprocess slots (HandleOWModeIdleInput, UpdateOWModePlayerMovement),
+  the far-data bankswitch helpers behind LoadTilemap/LoadOWMap/UpdateSpriteAnim/UpdateAllOWObjectMovement
+  (GetTilemapDimensions, CopyOWMapTileset, DrawOWSpriteAnimFrame [tcg1 DrawSpriteAnimationFrame],
+  ReadOWMovementStep), sprite-anim frame-func enable/disable pair, warp/event setters
+  (SetWarpToTCGIslandLocation, QueueMasonLabChallengeMachineTilemap, SetFightingFortClearedVar),
+  two Ronald after-duel scenes, InitNewGameSaveState, plus two DUEL-engine funcs:
+  ProcessFinalBeamWhenKnockedOut (Dark Gyarados dying-trigger) + GetChangedTypeAttackingCardColor.
+  Func_3332 RETIRED from candidate list (pure DoFrame alias, intentionally left unnamed).
 - 2026-06-06: 24 named. 552 remaining. Batch analyzed in PARALLEL by 8 subagents. Completed
   the OW sub-screen suspend/resume brackets bottom-up: ResumeOverworldFromSubScreen /
   ResumeOverworldKeepingSpriteAnims (exit pairs of last batch's Suspend*), plus the overworld

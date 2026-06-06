@@ -218,12 +218,12 @@ Func_3195::
 	ld b, a
 	ret
 
-Func_31a1::
+HandleOWModeIdleInput::
 	call Func_3332
 	call HandleOverworldPlayerInput
 	ret
 
-Func_31a8::
+UpdateOWModePlayerMovement::
 	call Func_3332
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectSpriteAnimFlags
@@ -387,7 +387,7 @@ ExecuteCoordScript::
 	jr .loop_lookup
 
 ; hl = npc script list (*_NPCInteractions)
-Func_328c::
+TurnNPCToFacePlayerAndRunScript::
 	push hl
 	farcall GetPlayerFacingTilePosition
 	farcall FindNPCAtLocation
@@ -526,7 +526,7 @@ WaitForPlayerOWObjectAnimation::
 	ret
 
 ; a = NPC_* ID
-Func_336d::
+WaitForOWObjectMovement::
 	push af
 .loop_wait
 	call DoFrame
@@ -1046,7 +1046,7 @@ PlaceTextItemsVRAM0::
 
 ; hl = text ID
 ; de = coordinates
-Func_35df::
+PrintGRLocationNameText::
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	push bc
 	push de
@@ -1146,7 +1146,7 @@ CopyTilesToTiles0::
 
 ; input:
 ; b:hl = tilemap pointer
-Func_365b::
+GetTilemapDimensions::
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -1382,7 +1382,7 @@ CopyCGBBGPalsFromSource_BeginWithPal2::
 	call CopyCGBBGPalsFromSource_WithPalOffset
 	ret
 
-Func_3792::
+CopyOWMapTileset::
 	push af
 	push bc
 	push de
@@ -1683,7 +1683,7 @@ LoadGfxFromTileset::
 ; c = frame number
 ; d = x position
 ; e = y position
-Func_3924::
+DrawOWSpriteAnimFrame::
 	push af
 	push bc
 	push de
@@ -1917,7 +1917,7 @@ FrameFunc_Overworld::
 	jr .asm_3a56
 .asm_3a50
 	ld e, $10
-	farcall Func_10ea3
+	farcall UpdateAllOWObjectMovementFast
 .asm_3a56
 	farcall Func_1f57b
 	farcall UpdateSpriteAnims
@@ -2209,7 +2209,7 @@ GetNPCOverworldSprite::
 	ret
 
 ; e = ?
-Func_3be0::
+ReadOWMovementStep::
 	push af
 	push hl
 	ldh a, [hBankROM]
@@ -2423,7 +2423,7 @@ CallPlaySFX::
 	call PlaySFX
 	ret
 
-Func_3d02::
+StopSFX::
 	push af
 	xor a
 	call CallPlaySFX
@@ -2667,11 +2667,11 @@ CreateSpriteAnim::
 	pop af
 	ret
 
-Func_3e4f::
+EnableSpriteAnimationAndFadePalsFrameFunc::
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	ret
 
-Func_3e54::
+DisableSpriteAnimationAndFadePalsFrameFunc::
 	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
 	farcall InitOverworldObjectState
 	ret

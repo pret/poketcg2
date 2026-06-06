@@ -2781,7 +2781,7 @@ TryMoveOWObjectInDirection::
 	pop bc
 	ret
 
-Func_10ea3::
+UpdateAllOWObjectMovementFast::
 	call UpdateAllOWObjectMovement
 	ret
 
@@ -3770,7 +3770,7 @@ ENDR
 	ld a, [hli] ;  LOW(OWOBJSTRUCT_MOVEMENT_PTR)
 	ld h, [hl]  ; HIGH(OWOBJSTRUCT_MOVEMENT_PTR)
 	ld l, a
-	call Func_3be0
+	call ReadOWMovementStep
 	pop hl
 	inc [hl] ; OWOBJSTRUCT_4
 	ld a, b
@@ -4264,7 +4264,7 @@ IntroAndTitleScreen:
 	call FadeInTitleScreen
 
 .title_screen_idle
-	call Func_3d02
+	call StopSFX
 	push af
 	ld a, MUSIC_TITLE_SCREEN
 	call SetMusic

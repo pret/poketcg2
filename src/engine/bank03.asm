@@ -33,7 +33,7 @@ StartMenu_NewGame:
 .no_save_data
 	farcall InitSaveData
 	call ClearSaveData
-	call Func_c24d
+	call InitNewGameSaveState
 	call ClearChallengeMachineRecords
 	xor a ; FALSE
 	farcall ReadOrInitSaveData
@@ -152,12 +152,12 @@ OWModePostprocess::
 	jp hl
 
 .PointerTable
-	dw Func_31a1                               ; OWMODE_IDLE
+	dw HandleOWModeIdleInput                               ; OWMODE_IDLE
 	dw .Exit                                   ; OWMODE_MUSIC_PRELOAD
 	dw OverworldFadeInToBlack                  ; OWMODE_WARP_FADE_IN_PRELOAD
 	dw Overworld10FramesWarpInterval           ; OWMODE_WARP_INTERVAL
 	dw OverworldFadeOutToBlack                 ; OWMODE_WARP_FADE_OUT_PRELOAD
-	dw Func_31a8                               ; OWMODE_MOVE
+	dw UpdateOWModePlayerMovement                               ; OWMODE_MOVE
 	dw OverworldResumeAndHandlePlayerMoveInput ; OWMODE_STEP_EVENT
 	dw .Exit                                   ; OWMODE_NPC_POSITION
 	dw OverworldResumeFromInteract             ; OWMODE_INTERACT
@@ -324,7 +324,7 @@ InitEvents:
 	call ClearEvents
 	ret
 
-Func_c24d:
+InitNewGameSaveState:
 	call ClearEvents
 	; reset play time
 	xor a
@@ -946,7 +946,7 @@ ENDR
 	ret
 
 ; de = card id
-Func_c63e:
+ShowReceivedCardWithText:
 	call GetReceivedCardText
 	farcall _ShowReceivedCard
 	ret
@@ -3148,7 +3148,7 @@ ScriptCommand_ShowCardReceivedScreen:
 	ld e, c
 	ld d, b
 	farcall SuspendOverworldForSubScreen
-	call Func_c63e
+	call ShowReceivedCardWithText
 	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3

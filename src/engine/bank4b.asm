@@ -243,7 +243,7 @@ LoadTilemap::
 	push de
 	push bc
 	push hl
-	call Func_365b
+	call GetTilemapDimensions
 	ld a, b
 	ld [wBGMapWidth], a
 	ld a, c
@@ -444,7 +444,7 @@ LoadOWMap::
 	ld [wd7df + 0], a
 	ld a, h
 	ld [wd7df + 1], a
-	call Func_3792
+	call CopyOWMapTileset
 	pop hl
 
 	ld c, [hl] ; palette
@@ -597,7 +597,7 @@ UpdateSpriteAnim::
 	ld a, [wCurSpriteAnimYPos]
 	ld e, a
 	ld a, [wCurSpriteAnimTileOffset]
-	call Func_3924
+	call DrawOWSpriteAnimFrame
 .apply_changes
 	pop hl
 	call WriteCurSpriteAnim

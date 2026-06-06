@@ -42,7 +42,7 @@ Func_30005:
 	call PlaySFX
 	ret
 
-Func_30056:
+SetFightingFortClearedVar:
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
 	ret nz
@@ -412,7 +412,7 @@ Func_30242:
 PrintGRIslandLocationName:
 	lb de, 1, 33
 	ldtx hl, EmptyLocationNameText
-	call Func_35df
+	call PrintGRLocationNameText
 	ld a, [wCurOWLocation]
 	sla a
 	sla a ; *4
@@ -425,7 +425,7 @@ PrintGRIslandLocationName:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35df
+	call PrintGRLocationNameText
 	ret
 
 .data
@@ -945,7 +945,7 @@ CardDungeonQueen_LoadNPCs:
 
 CardDungeonQueen_Interact:
 	ld hl, CardDungeonQueen_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1314,7 +1314,7 @@ GrChallengeHallEntrance_LoadNPCs:
 
 GrChallengeHallEntrance_Interact:
 	ld hl, GrChallengeHallEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1442,12 +1442,12 @@ GrassFortEntrance_WarpFadeInPreload:
 
 GrassFortEntrance_Interact:
 	ld hl, GrassFortEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
 GrassFortEntrance_AfterDuel:
-	farcall Func_34323
+	farcall DoRonaldGrassFortAfterDuelScene
 	scf
 	ret
 
@@ -1546,7 +1546,7 @@ GrassFortLobby_LoadNPCs:
 
 GrassFortLobby_Interact:
 	ld hl, GrassFortLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31691
 	ld hl, GrassFortLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1752,7 +1752,7 @@ GrassFortMidori_WarpFadeInPreload:
 
 GrassFortMidori_Interact:
 	ld hl, GrassFortMidori_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31823
 	ld hl, GrassFortMidori_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2006,7 +2006,7 @@ GrassFortYuta_WarpFadeInPreload:
 
 GrassFortYuta_Interact:
 	ld hl, GrassFortYuta_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31a00
 	ld hl, GrassFortYuta_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2230,7 +2230,7 @@ GrassFortMiyuki_WarpFadeInPreload:
 
 GrassFortMiyuki_Interact:
 	ld hl, GrassFortMiyuki_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31bb6
 	ld hl, GrassFortMiyuki_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2454,7 +2454,7 @@ LightningFortEntrance_WarpFadeInPreload:
 
 LightningFortEntrance_Interact:
 	ld hl, LightningFortEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31d6c
 	ld hl, LightningFortEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2572,7 +2572,7 @@ LightningFortLobby_LoadNPCs:
 
 LightningFortLobby_Interact:
 	ld hl, LightningFortLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_31e70
 	ld hl, LightningFortLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2814,7 +2814,7 @@ LightningFortRenna_WarpFadeInPreload:
 
 LightningFortRenna_Interact:
 	ld hl, LightningFortRenna_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_32045
 	ld hl, LightningFortRenna_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3031,7 +3031,7 @@ LightningFortIchikawa_WarpFadeInPreload:
 
 LightningFortIchikawa_Interact:
 	ld hl, LightningFortIchikawa_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_321f2
 	ld hl, LightningFortIchikawa_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3589,7 +3589,7 @@ FireFortEntrance_WarpFadeInPreload:
 
 FireFortEntrance_Interact:
 	ld hl, FireFortEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3262a
 	ld hl, FireFortEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3726,7 +3726,7 @@ FireFortLobby_LoadNPCs:
 
 FireFortLobby_Interact:
 	ld hl, FireFortLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_32745
 	ld hl, FireFortLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3901,7 +3901,7 @@ FireFortJes_WarpFadeInPreload:
 
 FireFortJes_Interact:
 	ld hl, FireFortJes_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3289c
 	ld hl, FireFortJes_OWInteractions
 	call ExecutePlayerInteractScript
@@ -4105,7 +4105,7 @@ FireFortYuki_WarpFadeInPreload:
 
 FireFortYuki_Interact:
 	ld hl, FireFortYuki_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_32a26
 	ld hl, FireFortYuki_OWInteractions
 	call ExecutePlayerInteractScript
@@ -4443,7 +4443,7 @@ FireFortShoko_WarpFadeInPreload:
 
 FireFortShoko_Interact:
 	ld hl, FireFortShoko_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_32c88
 	ld hl, FireFortShoko_OWInteractions
 	call ExecutePlayerInteractScript
@@ -4717,7 +4717,7 @@ FireFortHidero_LoadNPCs:
 
 FireFortHidero_Interact:
 	ld hl, FireFortHidero_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -4958,7 +4958,7 @@ WaterFortEntrance_WarpFadeInPreload:
 
 WaterFortEntrance_Interact:
 	ld hl, WaterFortEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_33054
 	ld hl, WaterFortEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5092,7 +5092,7 @@ WaterFortMiyajima_WarpFadeInPreload:
 
 WaterFortMiyajima_Interact:
 	ld hl, WaterFortMiyajima_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_33158
 	ld hl, WaterFortMiyajima_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5274,7 +5274,7 @@ WaterFortKanoko_LoadNPCs:
 
 WaterFortKanoko_Interact:
 	ld hl, WaterFortKanoko_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -5475,7 +5475,7 @@ FightingFortEntrance_WarpFadeInPreload:
 
 FightingFortEntrance_Interact:
 	ld hl, FightingFortEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_33432
 	ld hl, FightingFortEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5648,7 +5648,7 @@ FightingFortMaze2_LoadNPCs:
 
 FightingFortMaze2_Interact:
 	ld hl, FightingFortMaze2_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -5803,7 +5803,7 @@ FightingFortMaze4_LoadNPCs:
 
 FightingFortMaze4_Interact:
 	ld hl, FightingFortMaze4_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -6022,7 +6022,7 @@ FightingFortMaze8_LoadNPCs:
 
 FightingFortMaze8_Interact:
 	ld hl, FightingFortMaze8_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -6420,7 +6420,7 @@ FightingFortMaze17_LoadNPCs:
 
 FightingFortMaze17_Interact:
 	ld hl, FightingFortMaze17_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 

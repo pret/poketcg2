@@ -823,7 +823,7 @@ MasonLaboratoryComputerRoom_WarpFadeInPreload:
 
 MasonLaboratoryComputerRoom_Interact:
 	ld hl, MasonLaboratoryComputerRoom_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3c6c1
 	ld hl, MasonLaboratoryComputerRoom_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1027,7 +1027,7 @@ MasonLaboratoryTrainingRoom_LoadNPCs:
 
 MasonLaboratoryTrainingRoom_Interact:
 	ld hl, MasonLaboratoryTrainingRoom_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1682,7 +1682,7 @@ LightningClubLobby_LoadNPCs:
 
 LightningClubLobby_Interact:
 	ld hl, LightningClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3cd49
 	ld hl, LightningClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1990,7 +1990,7 @@ GrassClubLobby_LoadNPCs:
 
 GrassClubLobby_Interact:
 	ld hl, GrassClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3cfc6
 	ld hl, GrassClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2363,7 +2363,7 @@ TcgChallengeHallEntrance_LoadNPCs:
 
 TcgChallengeHallEntrance_Interact:
 	ld hl, TcgChallengeHallEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -2496,7 +2496,7 @@ TcgChallengeHallLobby_LoadNPCs:
 
 TcgChallengeHallLobby_Interact:
 	ld hl, TcgChallengeHallLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3d3be
 	ld hl, TcgChallengeHallLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2951,7 +2951,7 @@ PokemonDome_WarpEndSFX:
 
 PokemonDome_Interact:
 	ld hl, PokemonDome_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .done
 	ld hl, PokemonDome_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5378,7 +5378,7 @@ IshiharasVillaLibrary_LoadNPCs:
 
 IshiharasVillaLibrary_Interact:
 	ld hl, IshiharasVillaLibrary_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3e99f
 	ld hl, IshiharasVillaLibrary_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5882,7 +5882,7 @@ GameCenterEntrance_LoadNPCs:
 
 GameCenterEntrance_Interact:
 	ld hl, GameCenterEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .done
 	ld hl, GameCenterEntrance_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6148,7 +6148,7 @@ GameCenterLobby_LoadNPCs:
 
 GameCenterLobby_Interact:
 	ld hl, GameCenterLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .done
 	ld hl, GameCenterLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6292,7 +6292,7 @@ CardDungeonPawn_LoadNPCs:
 
 CardDungeonPawn_Interact:
 	ld hl, CardDungeonPawn_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3f0b1
 	ld hl, CardDungeonPawn_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6511,7 +6511,7 @@ CardDungeonKnight_LoadNPCs:
 
 CardDungeonKnight_Interact:
 	ld hl, CardDungeonKnight_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3f257
 	ld hl, CardDungeonKnight_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6752,7 +6752,7 @@ CardDungeonRook_LoadNPCs:
 
 CardDungeonRook_Interact:
 	ld hl, CardDungeonRook_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3f427
 	ld hl, CardDungeonRook_OWInteractions
 	call ExecutePlayerInteractScript
@@ -7029,7 +7029,7 @@ WaterFortLobby_LoadNPCs:
 
 WaterFortLobby_Interact:
 	ld hl, WaterFortLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_3f66e
 	ld hl, WaterFortLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -7258,7 +7258,7 @@ FightingFortMaze19_LoadNPCs:
 
 FightingFortMaze19_Interact:
 	ld hl, FightingFortMaze19_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -7395,7 +7395,7 @@ FightingFortBasement_WarpFadeInPreload:
 
 FightingFortBasement_Interact:
 	ld hl, FightingFortBasement_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 

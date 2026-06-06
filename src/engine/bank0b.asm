@@ -85,7 +85,7 @@ IshiharasHouse_WarpFadeInPreload:
 
 IshiharasHouse_Interact:
 	ld hl, IshiharasHouse_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2c0ff
 	ld hl, IshiharasHouse_OWInteractions
 	call ExecutePlayerInteractScript
@@ -678,7 +678,7 @@ LightningClub_WarpFadeInPreload:
 
 LightningClub_Interact:
 	ld hl, LightningClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1332,7 +1332,7 @@ PsychicClubEntrance_WarpFadeInPreload:
 
 PsychicClubEntrance_Interact:
 	ld hl, PsychicClubEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -1400,7 +1400,7 @@ PsychicClubEntrance_MoveStephanieOutOfPath:
 	farcall TryMoveOWObjectInDirection
 .asm_2ca9a
 	ld a, NPC_STEPHANIE
-	call Func_336d
+	call WaitForOWObjectMovement
 .exit
 	ret
 
@@ -1556,7 +1556,7 @@ PsychicClubLobby_LoadNPCs:
 
 PsychicClubLobby_Interact:
 	ld hl, PsychicClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2cbed
 	ld hl, PsychicClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -1836,7 +1836,7 @@ PsychicClub_WarpFadeInPreload:
 
 PsychicClub_Interact:
 	ld hl, PsychicClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -2712,7 +2712,7 @@ RockClubLobby_LoadNPCs:
 
 RockClubLobby_Interact:
 	ld hl, RockClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2d4bc
 	ld hl, RockClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -2969,7 +2969,7 @@ RockClub_WarpFadeInPreload:
 
 RockClub_Interact:
 	ld hl, RockClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -3519,7 +3519,7 @@ FightingClubLobby_LoadNPCs:
 
 FightingClubLobby_Interact:
 	ld hl, FightingClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2dafc
 	ld hl, FightingClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -3826,7 +3826,7 @@ FightingClub_LoadNPCs:
 
 FightingClub_Interact:
 	ld hl, FightingClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -4499,7 +4499,7 @@ GrassClub_LoadNPCs:
 
 GrassClub_Interact:
 	ld hl, GrassClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -4987,7 +4987,7 @@ ScienceClubEntrance_WarpFadeInPreload:
 
 ScienceClubEntrance_Interact:
 	ld hl, ScienceClubEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -5195,7 +5195,7 @@ ScienceClubLobby_LoadNPCs:
 
 ScienceClubLobby_Interact:
 	ld hl, ScienceClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2e73c
 	ld hl, ScienceClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -5529,7 +5529,7 @@ ScienceClub_LoadNPCs:
 
 ScienceClub_Interact:
 	ld hl, ScienceClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	scf
 	ret
 
@@ -6197,7 +6197,7 @@ WaterClubLobby_LoadNPCs:
 
 WaterClubLobby_Interact:
 	ld hl, WaterClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2eeb8
 	ld hl, WaterClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6499,7 +6499,7 @@ WaterClub_WarpFadeInPreload:
 
 WaterClub_Interact:
 	ld hl, WaterClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2f105
 	ld hl, WaterClub_OWInteractions
 	call ExecutePlayerInteractScript
@@ -7299,7 +7299,7 @@ FireClubLobby_LoadNPCs:
 
 FireClubLobby_Interact:
 	ld hl, FireClubLobby_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2f6e5
 	ld hl, FireClubLobby_OWInteractions
 	call ExecutePlayerInteractScript
@@ -7531,7 +7531,7 @@ FireClub_WarpFadeInPreload:
 
 FireClub_Interact:
 	ld hl, FireClub_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .asm_2f8d6
 	ld hl, FireClub_OWInteractions
 	call ExecutePlayerInteractScript
@@ -8168,7 +8168,7 @@ PokemonDomeEntrance_LoadNPCs:
 
 PokemonDomeEntrance_Interact:
 	ld hl, PokemonDomeEntrance_NPCInteractions
-	call Func_328c
+	call TurnNPCToFacePlayerAndRunScript
 	jr nc, .done
 	ld hl, PokemonDomeEntrance_OWInteractions
 	call ExecutePlayerInteractScript
