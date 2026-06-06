@@ -16,9 +16,44 @@ Usage:
   python3 tools/callgraph.py Func_2c0c1      # detail for one function
   python3 tools/callgraph.py --bank 0b       # Func_* in bank, by ref count
 """
-import sys, os, re, glob, argparse
+import sys, os, re, glob, argparse, bisect
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def load_sym(path):
+    """bank -> (sorted addrs, labels) for ROM, for pc->enclosing-function lookup."""
+    banks = {}
+    for line in open(path):
+        line = line.strip()
+        if not line or line.startswith(';'): continue
+        try:
+            loc, label = line.split(None, 1)
+            bs, as_ = loc.split(':'); bank = int(bs, 16); addr = int(as_, 16)
+        except ValueError:
+            continue
+        if addr >= 0x8000 or '.' in label: continue   # ROM, top-level only
+        banks.setdefault(bank, []).append((addr, label))
+    return {b: ([a for a, _ in sorted(v)], [l for _, l in sorted(v)]) for b, v in banks.items()}
+
+def pc_to_func(sym, bank, pc):
+    """enclosing top-level function label for bank:pc."""
+    if bank not in sym: return f"{bank:02x}:{pc:04x}"
+    addrs, labels = sym[bank]
+    i = bisect.bisect_right(addrs, pc) - 1
+    return labels[i] if i >= 0 else f"{bank:02x}:{pc:04x}"
+
+def load_dyn_edges(path, sym):
+    """dynamic edge dump (cbank:cpc tbank:tpc) -> (callers, callees) func maps."""
+    dcallers, dcallees = {}, {}
+    for line in open(path):
+        m = re.match(r'([0-9a-f]{2}):([0-9a-f]{4})\s+([0-9a-f]{2}):([0-9a-f]{4})', line.strip())
+        if not m: continue
+        cb, cp, tb, tp = (int(m.group(i), 16) for i in (1, 2, 3, 4))
+        caller = pc_to_func(sym, cb, cp); callee = pc_to_func(sym, tb, tp)
+        if caller == callee: continue
+        dcallees.setdefault(caller, set()).add(callee)
+        dcallers.setdefault(callee, set()).add(caller)
+    return dcallers, dcallees
 CALL = re.compile(r'^\s*(?:call|jp|jr|farcall|callfar|bank1call|bank3call)\s+(?:[a-z]+,\s*)?([A-Za-z_][A-Za-z0-9_]*)')
 REFW = re.compile(r'\b([A-Za-z_][A-Za-z0-9_]+)\b')
 LABEL = re.compile(r'^([A-Za-z_][A-Za-z0-9_]*)::?\s*(?:;.*)?$')
@@ -47,17 +82,31 @@ def main():
     ap.add_argument('target', nargs='?', help='a label to show detail for')
     ap.add_argument('--bank', help='hex bank to list Func_* for (e.g. 0b)')
     ap.add_argument('--min-refs', type=int, default=0)
+    ap.add_argument('--dyn', help='dynamic call-graph dump from sameboy_trace (SAMEBOY_CALLGRAPH)')
     args = ap.parse_args()
     callers, callees, defined = build()
+    dcallers = dcallees = {}
+    if args.dyn:
+        sym = load_sym(os.path.join(ROOT, 'poketcg2.sym'))
+        dcallers, dcallees = load_dyn_edges(args.dyn, sym)
 
     if args.target:
         t = args.target
         cs = sorted(callers.get(t, []))
-        print(f"{t}: {len(cs)} caller(s)")
+        print(f"{t}: {len(cs)} static caller(s)")
         for c in cs: print(f"  <- {c}")
+        if args.dyn:
+            extra = sorted(dcallers.get(t, set()) - set(cs))
+            print(f"  + {len(extra)} dynamic-only caller(s) (indirect dispatch):")
+            for c in extra: print(f"  <-* {c}")
         named = [c for c in callees.get(t, []) if not c.startswith('Func_') and c in defined]
-        print(f"calls {len(callees.get(t,[]))} target(s); named callees:")
+        print(f"calls {len(callees.get(t,[]))} static target(s); named callees:")
         for c in dict.fromkeys(named): print(f"  -> {c}")
+        if args.dyn:
+            dyn_only = sorted(dcallees.get(t, set()) - set(callees.get(t, [])))
+            if dyn_only:
+                print(f"  + {len(dyn_only)} dynamic-only callee(s):")
+                for c in dyn_only: print(f"  ->* {c}")
         return
 
     funcs = sorted(f for f in defined if f.startswith('Func_'))

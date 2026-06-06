@@ -13,7 +13,18 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 - `tools/match_tcg1.py` — fingerprints function bodies (opcode stream, 16-bit address
   operands masked) and proposes byte-identical tcg1 names.
 - `tools/callgraph.py` — caller/callee graph; `Func_X` detail shows callers + named callees;
-  `--bank NN` lists a bank's Func_* by reference count.
+  `--bank NN` lists a bank's Func_* by reference count. `--dyn <dump>` merges a dynamic
+  graph and flags dynamic-only edges (the indirect dispatch static can't see).
+- **Dynamic call graph** (resolves indirect dispatch / jump tables, the ~974 tail):
+  the patched `tools/sameboy_trace/sameboy_trace` accumulates a *deduplicated* set of
+  `(caller -> callee)` edges (taken CALL/RST/`jp hl`), bounded by distinct edges, not a
+  per-call log. Built from `/Users/andrew/coding/sameboy` (SDL/main.c patch; `make sdl`).
+  Usage:
+    1. `SAMEBOY_CALLGRAPH=cg.txt tools/sameboy_trace/sameboy_trace poketcg2.gbc`
+    2. play through the subsystems you want covered (more play = more edges)
+    3. quit normally, or `kill -TERM <pid>` (SIGINT is left for the debugger) -> dumps cg.txt
+    4. `python3 tools/callgraph.py Func_X --dyn cg.txt` -> static + dynamic callers/callees,
+       with `<-*` / `->*` marking dynamic-only (indirectly-dispatched) edges.
 
 ## Reality check — what each lever actually yields
 1. **tcg1 byte-port: ~10 functions.** tcg1 is 95% labeled, BUT the engine code that's
