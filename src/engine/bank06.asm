@@ -2529,7 +2529,7 @@ InitSaveData:
 	ld [hli], a ; sLinkDuelCounter
 	ld [hli], a
 
-	farcall Func_8f10
+	farcall InitBoosterPacksAndDeckCounterSaveData
 	call DisableSRAM
 	ret
 

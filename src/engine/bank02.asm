@@ -2418,7 +2418,9 @@ WriteCardListsTerminatorBytes:
 	ld [hl], a ; terminating byte
 	ret
 
-Func_8f10:
+; zeroes the booster-packs-obtained flags and the deck counter in SRAM
+; (tcg1's InitPromotionalCardAndDeckCounterSaveData; tcg2 inits sBoosterPacksObtained)
+InitBoosterPacksAndDeckCounterSaveData:
 	call EnableSRAM
 	xor a
 	ld hl, sBoosterPacksObtained
