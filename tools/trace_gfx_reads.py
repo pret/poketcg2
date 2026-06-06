@@ -56,10 +56,18 @@ def classify(bank, addr):
             if lo <= addr < hi:
                 return off, f"{name} + ${addr-lo:x} ($1b:{addr:04x})"
     if bank == 0x1c:
-        if 0x4000 <= addr < 0x4a30:
-            return off, f"$1c:4000-4a30 UNLABELED blob (gfx_070000) + ${addr-0x4000:x}"
-        if 0x4a30 <= addr < 0x5bb0:
-            return off, f"DuelBoxMessages + ${addr-0x4a30:x} ($1c:{addr:04x})"
+        for lo, hi, name in [
+            (0x4000, 0x4240, "DuelCheckPokemonScreenGfx"),
+            (0x4240, 0x4510, "DuelPlayAreaScreenGfx"),
+            (0x4510, 0x47e0, "DuelPlayAreaScreenGfxDMG"),
+            (0x47e0, 0x48b0, "DuelDeckAndDiscardPileIcons"),
+            (0x48b0, 0x4930, "DuelCoinTossResultTiles"),
+            (0x4930, 0x49b0, "DuelMenuAndCardPicBorderTiles"),
+            (0x49b0, 0x4a30, "DuelDrawCardsScreenIcons"),
+            (0x4a30, 0x5bb0, "DuelBoxMessages"),
+        ]:
+            if lo <= addr < hi:
+                return off, f"{name} + ${addr-lo:x} ($1c:{addr:04x})"
         return off, f"$1c:{addr:04x} (padding region)"
     if 0x1d <= bank <= 0x36:
         idx = (off - CG) // 8

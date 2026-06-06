@@ -76,7 +76,7 @@ _BillsPC:
 	call SetupText
 
 	call EmptyScreen
-	ld hl, $4930 ; DuelOtherGraphics + $30 tiles
+	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, v0Tiles2 + $30 tiles
 	ld b, 8
 	call CopyFontsOrDuelGraphicsTiles

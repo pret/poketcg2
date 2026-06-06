@@ -543,7 +543,7 @@ _DrawYourOrOppPlayAreaScreen::
 
 DrawYourOrOppPlayAreaScreen_EmptiedScreen:
 	call LoadSymbolsFont
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 	bank1call SetDefaultPalettes
 	lb de, 6, 0
 	call InitTextPrinting
@@ -637,7 +637,7 @@ DrawInPlayAreaScreen::
 	push af
 	ld a, CONSOLE_DMG
 	ld [wConsole], a
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 	pop af
 	ld [wConsole], a
 	bank1call SetDefaultPalettes
@@ -694,7 +694,7 @@ _DrawPlayersPrizeAndBenchCards::
 	call DoFrame
 	call EmptyScreen
 	call LoadSymbolsFont
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 ; player cards
 	ld a, PLAYER_TURN
 	ld [wCheckMenuPlayAreaWhichDuelist], a

@@ -37,12 +37,26 @@ REGION_END   = 0xd9818  # end of last card; rest of region is 0xff pad
 # tiles = 48+48+19+64). The loaders keep their raw operands; these labels just
 # document and source the data.
 #   (file offset, size, label, gfx path stem, png width in tiles | None for raw .bin)
+# Bank-layout note: these duel graphics are reached through CopyFontsOrDuelGraphicsTiles,
+# whose BankpushROM (src/home/switch_rom.asm) sets bank = BANK(Fonts) + hl's top 2 bits and
+# masks the address into $4000-$7fff. So an operand hl<$4000 reads Gfx1 (bank $1b) at hl+$4000,
+# while $4000<=hl<$8000 reads Gfx2 (bank $1c) at hl. That's why the $1b tail (file 0x6f4d0..0x70000)
+# and the $1c block (file 0x70000..) are one logical duel-gfx region split across two banks.
 KNOWN_PRE = [
+    # --- Gfx1 tail (bank $1b), referenced as `<label> - $4000` -------------------------------
     (0x6f4d0, 48*16,   'DuelCardHeaderGraphics',   'gfx/duel/card_type_headers',    None),  # TRAINER/ENERGY/POKEMON
     (0x6f7d0, 48*16,   'DuelCgbSymbolGraphics',    'gfx/duel/cgb_card_symbols',     None),  # CGB rarity/type symbols
     (0x6fad0, 19*16,   'DuelDmgSgbSymbolGraphics', 'gfx/duel/dmg_sgb_card_symbols', None),  # DMG/SGB symbols
-    (0x6fc00, 64*16,   'DuelOtherGraphics',        'gfx/duel/duel_other_gfx',       None),
-    (0x70a30, 7*40*16, 'DuelBoxMessages',          'gfx/duel/box_messages',         10),    # 7 box msgs, 10x4
+    (0x6fc00, 64*16,   'DuelOtherGraphics',        'gfx/duel/duel_other_gfx',       None),  # incl. card set 2 icons (LoadCardSet2Tiles)
+    # --- Gfx2 ($1c:4000..4a30), referenced by the raw $4xxx operands directly ----------------
+    (0x70000, 36*16,   'DuelCheckPokemonScreenGfx',     'gfx/duel/check_pokemon_screen', None),  # face-down cards + ACT/BPx (LoadDuelCheckPokemonScreenTiles)
+    (0x70240, 45*16,   'DuelPlayAreaScreenGfx',         'gfx/duel/play_area_screen',     None),  # CGB play-area screen (Func_1dff)
+    (0x70510, 45*16,   'DuelPlayAreaScreenGfxDMG',      'gfx/duel/play_area_screen_dmg', None),  # DMG/SGB variant
+    (0x707e0, 13*16,   'DuelDeckAndDiscardPileIcons',   'gfx/duel/deck_discard_icons',   None),  # LoadDeckAndDiscardPileIcons
+    (0x708b0,  8*16,   'DuelCoinTossResultTiles',       'gfx/duel/coin_toss_result_symbols', None),  # [O]/[X] (LoadDuelCoinTossResultTiles); distinct from CoinTossResultGfx
+    (0x70930,  8*16,   'DuelMenuAndCardPicBorderTiles', 'gfx/duel/menu_card_pic_border', None),  # LoadCardOrDuelMenuBorderTiles
+    (0x709b0,  8*16,   'DuelDrawCardsScreenIcons',      'gfx/duel/draw_cards_icons',     None),  # Deck/Hand (LoadDuelDrawCardsScreenTiles)
+    (0x70a30, 7*40*16, 'DuelBoxMessages',               'gfx/duel/box_messages',         10),    # 7 box msgs, 10x4
 ]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GFXDIR = os.path.join(ROOT, "src/gfx/cards")

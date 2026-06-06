@@ -64,7 +64,7 @@ LoadCardSet2Tiles::
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, $3dd0 ; DuelOtherGraphics + $1d tiles
+	ld de, DuelOtherGraphics + $1d tiles - $4000 ; card set 2 icons
 	add hl, de
 	ld de, v0Tiles1 + $7c tiles
 	ld b, $04
@@ -86,7 +86,7 @@ LoadCardSet2Tiles::
 
 ; loads the Deck and Hand icons for the "Draw X card(s) from the deck." screen
 LoadDuelDrawCardsScreenTiles::
-	ld hl, $49b0 ; DuelOtherGraphics + $29 tiles
+	ld hl, DuelDrawCardsScreenIcons
 	ld de, v0Tiles1 + $74 tiles
 	ld b, $08
 	jp CopyFontsOrDuelGraphicsTiles
@@ -102,7 +102,7 @@ LoadDuelCheckPokemonScreenTiles::
 ;	fallthrough
 
 .got_num_tiles
-	ld hl, $4000
+	ld hl, DuelCheckPokemonScreenGfx
 	ld de, v0Tiles1 + $50 tiles
 	call CopyFontsOrDuelGraphicsTiles
 	bank1call Func_6c12
@@ -111,7 +111,7 @@ LoadDuelCheckPokemonScreenTiles::
 ; loads the 8 tiles that make up the border of the main duel menu as well as the border
 ; of a large card picture (displayed after drawing the card or placing it in the arena).
 LoadCardOrDuelMenuBorderTiles::
-	ld hl, $4930 ; DuelOtherGraphics + $15 tiles
+	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $08
 	jr CopyFontsOrDuelGraphicsTiles
@@ -150,16 +150,18 @@ LoadDeckAndDiscardPileIcons::
 	ld de, $cb16
 	ld c, $08
 	call CopyFontsOrDuelGraphicsBytes
-	ld hl, $47e0
+	ld hl, DuelDeckAndDiscardPileIcons
 	ld de, $8a00
 	ld b, $0d
 	call CopyFontsOrDuelGraphicsTiles
-Func_1dff::
-	ld hl, $4240
+; load the tiles for the player's / opponent's Play Area screen
+; (uses a separate set of tiles on CGB vs DMG/SGB)
+LoadDuelPlayAreaScreenTiles::
+	ld hl, DuelPlayAreaScreenGfx
 	ld a, [wConsole]
 	cp CONSOLE_CGB
 	jr z, .copy
-	ld hl, $4510
+	ld hl, DuelPlayAreaScreenGfxDMG
 .copy
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
@@ -171,7 +173,7 @@ LoadDuelCoinTossResultTiles::
 	ld de, $cafe
 	ld c, $08
 	call CopyFontsOrDuelGraphicsBytes
-	ld hl, $48b0 ; DuelOtherGraphics + $d tiles
+	ld hl, DuelCoinTossResultTiles
 	ld de, v0Tiles2 + $30 tiles
 	ld b, $08
 	jr CopyFontsOrDuelGraphicsTiles
@@ -203,7 +205,7 @@ Func_212f::
 	ld b, $30
 	call CopyFontsOrDuelGraphicsTiles
 ; text box frame tiles
-	ld hl, $4930 ; DuelOtherGraphics + $15 tiles
+	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, sGfxBuffer1 + $30 tiles
 	ld b, $8
 	call CopyFontsOrDuelGraphicsTiles
