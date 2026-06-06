@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 57 named. 393 remaining. npc_script seam batch 2 (8 subagents): the 6 club LOBBIES
+  + PsychicStronghold + ColorlessAltar + MasonLab TrainingRoom + RockClub members. Recurring
+  trainers whose club-MAIN handler already took the bare name get a map suffix here
+  (Script_ScienceClubLobbyDavid, Script_MichaelFightingClubLobby, Script_JoshuaWaterClubLobby...);
+  generic lobby NPCs use the descriptive Script_<Club><Role> style (Script_GrassClubGranny,
+  Script_LightningClubBro). Named the SHARED 5-lobby Imakuni handler CENTRALLY: Func_3c30c ->
+  Script_ImakuniBlack (interaction counterpart of existing Script_ImakuniBlackAfterDuel).
+  Func_3ce6a is one handler shared by two npc entries (longhaired/GR lass) -> one name.
+  AARON_STEP_1..4 after-duel steps -> Script_AaronStepNAfterDuel. ~120 npc_script handlers remain.
 - 2026-06-06: 79 named. 450 remaining. NEW SEAM: the `npc_script NPC_*, handler` tables
   (<Map>_NPCInteractions / _AfterDuelScripts) reference 256 unnamed handlers, map-local, keyed
   by NPC constant. Unlike MapScripts these need READING (existing convention is hand-curated

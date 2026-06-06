@@ -4572,10 +4572,10 @@ PsychicStronghold_NPCs:
 	db $ff
 
 PsychicStronghold_NPCInteractions:
-	npc_script NPC_MIWA, Func_36712
-	npc_script NPC_KEVIN, Func_3682a
-	npc_script NPC_YOSUKE, Func_36921
-	npc_script NPC_RYOKO, Func_36a2a
+	npc_script NPC_MIWA, Script_Miwa
+	npc_script NPC_KEVIN, Script_Kevin
+	npc_script NPC_YOSUKE, Script_Yosuke
+	npc_script NPC_RYOKO, Script_Ryoko
 	db $ff
 
 PsychicStronghold_MapScripts:
@@ -4727,10 +4727,10 @@ PsychicStronghold_AfterDuel:
 	ret
 
 PsychicStronghold_AfterDuelScripts:
-	npc_script NPC_MIWA, Func_3678e
-	npc_script NPC_KEVIN, Func_36887
-	npc_script NPC_YOSUKE, Func_36990
-	npc_script NPC_RYOKO, Func_36ad3
+	npc_script NPC_MIWA, Script_MiwaAfterDuel
+	npc_script NPC_KEVIN, Script_KevinAfterDuel
+	npc_script NPC_YOSUKE, Script_YosukeAfterDuel
+	npc_script NPC_RYOKO, Script_RyokoAfterDuel
 	db $ff
 
 Func_364ac:
@@ -5007,7 +5007,7 @@ Script_3663f:
 	db NORTH, RUN_3
 	db $ff
 
-Func_36712:
+Script_Miwa:
 	ld a, NPC_MIWA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMiwaText
@@ -5074,7 +5074,7 @@ Func_36712:
 	end_script
 	ret
 
-Func_3678e:
+Script_MiwaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5154,7 +5154,7 @@ Func_3678e:
 	script_call Script_36ba6
 	script_ret
 
-Func_3682a:
+Script_Kevin:
 	ld a, NPC_KEVIN
 	ld [wScriptNPC], a
 	ldtx hl, DialogKevinText
@@ -5204,7 +5204,7 @@ Func_3682a:
 	end_script
 	ret
 
-Func_36887:
+Script_KevinAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5283,7 +5283,7 @@ Func_36887:
 	script_call Script_36ba6
 	script_ret
 
-Func_36921:
+Script_Yosuke:
 	ld a, NPC_YOSUKE
 	ld [wScriptNPC], a
 	ldtx hl, DialogYosukeText
@@ -5343,7 +5343,7 @@ Func_36921:
 	end_script
 	ret
 
-Func_36990:
+Script_YosukeAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5422,7 +5422,7 @@ Func_36990:
 	script_call Script_36ba6
 	script_ret
 
-Func_36a2a:
+Script_Ryoko:
 	ld a, NPC_RYOKO
 	ld [wScriptNPC], a
 	ldtx hl, DialogRyokoText
@@ -5512,7 +5512,7 @@ Func_36a2a:
 	end_script
 	ret
 
-Func_36ad3:
+Script_RyokoAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6155,9 +6155,9 @@ ColorlessAltar_NPCs:
 	db $ff
 
 ColorlessAltar_NPCInteractions:
-	npc_script NPC_NISHIJIMA, Func_37082
-	npc_script NPC_ISHII, Func_37179
-	npc_script NPC_SAMEJIMA, Func_3728d
+	npc_script NPC_NISHIJIMA, Script_Nishijima
+	npc_script NPC_ISHII, Script_Ishii
+	npc_script NPC_SAMEJIMA, Script_Samejima
 	db $ff
 
 ColorlessAltar_MapScripts:
@@ -6209,9 +6209,9 @@ ColorlessAltar_AfterDuel:
 	ret
 
 ColorlessAltar_AfterDuelScripts:
-	npc_script NPC_NISHIJIMA, Func_3713b
-	npc_script NPC_ISHII, Func_3724a
-	npc_script NPC_SAMEJIMA, Func_37329
+	npc_script NPC_NISHIJIMA, Script_NishijimaAfterDuel
+	npc_script NPC_ISHII, Script_IshiiAfterDuel
+	npc_script NPC_SAMEJIMA, Script_SamejimaAfterDuel
 	db $ff
 
 Script_37031:
@@ -6256,7 +6256,7 @@ Script_37071:
 	end_script
 	ret
 
-Func_37082:
+Script_Nishijima:
 	ld a, NPC_NISHIJIMA
 	ld [wScriptNPC], a
 	ldtx hl, DialogNishijimaText
@@ -6351,7 +6351,7 @@ Func_37082:
 	end_script
 	ret
 
-Func_3713b:
+Script_NishijimaAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6386,7 +6386,7 @@ Func_3713b:
 	end_script
 	ret
 
-Func_37179:
+Script_Ishii:
 	ld a, NPC_ISHII
 	ld [wScriptNPC], a
 	ldtx hl, DialogIshiiText
@@ -6494,7 +6494,7 @@ Func_37179:
 	end_script
 	ret
 
-Func_3724a:
+Script_IshiiAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6531,7 +6531,7 @@ Func_3724a:
 	end_script
 	ret
 
-Func_3728d:
+Script_Samejima:
 	ld a, NPC_SAMEJIMA
 	ld [wScriptNPC], a
 	ldtx hl, DialogSamejimaText
@@ -6614,7 +6614,7 @@ Func_3728d:
 	end_script
 	ret
 
-Func_37329:
+Script_SamejimaAfterDuel:
 	xor a
 	start_script
 	start_dialog

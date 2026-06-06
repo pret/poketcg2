@@ -1491,7 +1491,7 @@ PsychicClubLobby_NPCs:
 PsychicClubLobby_NPCInteractions:
 	npc_script NPC_PSYCHIC_CLUB_GLASSES_LAD, Func_2cc11
 	npc_script NPC_PSYCHIC_CLUB_LASS, Func_2cc7d
-	npc_script NPC_IMAKUNI_BLACK, Func_3c30c
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
 	npc_script NPC_PSYCHIC_CLUB_CAPPED_LAD, Func_2ccb7
 	npc_script NPC_PSYCHIC_CLUB_GR_LASS, Func_2cce8
 	db $ff
@@ -2645,7 +2645,7 @@ RockClubLobby_NPCs:
 RockClubLobby_NPCInteractions:
 	npc_script NPC_ROCK_CLUB_LASS, Func_2d4e0
 	npc_script NPC_ROCK_CLUB_WOMAN, Func_2d546
-	npc_script NPC_IMAKUNI_BLACK, Func_3c30c
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
 	npc_script NPC_ROCK_CLUB_CHAP, Func_2d58b
 	npc_script NPC_ROCK_CLUB_CAPPED_LAD, Func_2d5c7
 	db $ff
@@ -2907,9 +2907,9 @@ RockClub_NPCs:
 
 RockClub_NPCInteractions:
 	npc_script NPC_GENE, Script_Gene
-	npc_script NPC_MATTHEW, Func_2d7ea
-	npc_script NPC_RYAN, Func_2d841
-	npc_script NPC_ANDREW, Func_2d89c
+	npc_script NPC_MATTHEW, Script_Matthew
+	npc_script NPC_RYAN, Script_Ryan
+	npc_script NPC_ANDREW, Script_Andrew
 	db $ff
 
 RockClub_MapScripts:
@@ -2982,9 +2982,9 @@ RockClub_AfterDuel:
 
 RockClub_AfterDuelScripts:
 	npc_script NPC_GENE, Script_GeneAfterDuel
-	npc_script NPC_MATTHEW, Func_2d825
-	npc_script NPC_RYAN, Func_2d87e
-	npc_script NPC_ANDREW, Func_2d8d7
+	npc_script NPC_MATTHEW, Script_MatthewAfterDuel
+	npc_script NPC_RYAN, Script_RyanAfterDuel
+	npc_script NPC_ANDREW, Script_AndrewAfterDuel
 	db $ff
 
 Func_2d6ca:
@@ -3126,7 +3126,7 @@ Script_GeneAfterDuel:
 	end_script
 	ret
 
-Func_2d7ea:
+Script_Matthew:
 	ld a, NPC_MATTHEW
 	ld [wScriptNPC], a
 	ldtx hl, DialogMatthewText
@@ -3158,7 +3158,7 @@ Func_2d7ea:
 	end_script
 	ret
 
-Func_2d825:
+Script_MatthewAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3175,7 +3175,7 @@ Func_2d825:
 	end_script
 	ret
 
-Func_2d841:
+Script_Ryan:
 	ld a, NPC_RYAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogRyanText
@@ -3208,7 +3208,7 @@ Func_2d841:
 	end_script
 	ret
 
-Func_2d87e:
+Script_RyanAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3226,7 +3226,7 @@ Func_2d87e:
 	end_script
 	ret
 
-Func_2d89c:
+Script_Andrew:
 	ld a, NPC_ANDREW
 	ld [wScriptNPC], a
 	ldtx hl, DialogAndrewText
@@ -3258,7 +3258,7 @@ Func_2d89c:
 	end_script
 	ret
 
-Func_2d8d7:
+Script_AndrewAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3469,11 +3469,11 @@ FightingClubLobby_NPCs:
 	db $ff
 
 FightingClubLobby_NPCInteractions:
-	npc_script NPC_FIGHTING_CLUB_PAPPY, Func_2dbac
-	npc_script NPC_FIGHTING_CLUB_GLASSES_KID, Func_2dc17
-	npc_script NPC_FIGHTING_CLUB_CAPPED_GUY, Func_2dc48
-	npc_script NPC_FIGHTING_CLUB_CAPPED_LASS, Func_2dc79
-	npc_script NPC_MICHAEL, Func_2db0e
+	npc_script NPC_FIGHTING_CLUB_PAPPY, Script_FightingClubPappy
+	npc_script NPC_FIGHTING_CLUB_GLASSES_KID, Script_FightingClubGlassesKid
+	npc_script NPC_FIGHTING_CLUB_CAPPED_GUY, Script_FightingClubCappedGuy
+	npc_script NPC_FIGHTING_CLUB_CAPPED_LASS, Script_FightingClubCappedLass
+	npc_script NPC_MICHAEL, Script_MichaelFightingClubLobby
 	db $ff
 
 FightingClubLobby_OWInteractions:
@@ -3535,10 +3535,10 @@ FightingClubLobby_AfterDuel:
 	ret
 
 FightingClubLobby_AfterDuelScripts:
-	npc_script NPC_MICHAEL, Func_2db7b
+	npc_script NPC_MICHAEL, Script_MichaelFightingClubLobbyAfterDuel
 	db $ff
 
-Func_2db0e:
+Script_MichaelFightingClubLobby:
 	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
 	ldtx hl, DialogMichaelText
@@ -3594,7 +3594,7 @@ Func_2db0e:
 	end_script
 	ret
 
-Func_2db7b:
+Script_MichaelFightingClubLobbyAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3625,7 +3625,7 @@ Func_2db97:
 	ccf
 	ret
 
-Func_2dbac:
+Script_FightingClubPappy:
 	ld a, NPC_FIGHTING_CLUB_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy3Text
@@ -3676,7 +3676,7 @@ Func_2dbac:
 	end_script
 	ret
 
-Func_2dc17:
+Script_FightingClubGlassesKid:
 	ld a, NPC_FIGHTING_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogGlassesKid2Text
@@ -3703,7 +3703,7 @@ Func_2dc17:
 	end_script
 	ret
 
-Func_2dc48:
+Script_FightingClubCappedGuy:
 	ld a, NPC_FIGHTING_CLUB_CAPPED_GUY
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedGuyText
@@ -3730,7 +3730,7 @@ Func_2dc48:
 	end_script
 	ret
 
-Func_2dc79:
+Script_FightingClubCappedLass:
 	ld a, NPC_FIGHTING_CLUB_CAPPED_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedKidText
@@ -5127,12 +5127,12 @@ ScienceClubLobby_NPCs:
 	db $ff
 
 ScienceClubLobby_NPCInteractions:
-	npc_script NPC_DAVID, Func_2e76e
-	npc_script NPC_ERIK, Func_2e7e3
-	npc_script NPC_IMAKUNI_BLACK, Func_3c30c
-	npc_script NPC_SCIENCE_CLUB_MAN, Func_2e831
-	npc_script NPC_SCIENCE_CLUB_GLASSES_KID, Func_2e862
-	npc_script NPC_SCIENCE_CLUB_TECH, Func_2e8a0
+	npc_script NPC_DAVID, Script_ScienceClubLobbyDavid
+	npc_script NPC_ERIK, Script_ScienceClubLobbyErik
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
+	npc_script NPC_SCIENCE_CLUB_MAN, Script_ScienceClubMan
+	npc_script NPC_SCIENCE_CLUB_GLASSES_KID, Script_ScienceClubGlassesKid
+	npc_script NPC_SCIENCE_CLUB_TECH, Script_ScienceClubTech
 	db $ff
 
 ScienceClubLobby_OWInteractions:
@@ -5211,7 +5211,7 @@ ScienceClubLobby_AfterDuel:
 	ret
 
 ScienceClubLobby_AfterDuelScripts:
-	npc_script NPC_DAVID, Func_2e7c7
+	npc_script NPC_DAVID, Script_ScienceClubLobbyDavidAfterDuel
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
@@ -5229,7 +5229,7 @@ ScienceClubLobby_ContinueOW:
 	scf
 	ret
 
-Func_2e76e:
+Script_ScienceClubLobbyDavid:
 	ld a, NPC_DAVID
 	ld [wScriptNPC], a
 	ldtx hl, DialogDavidText
@@ -5277,7 +5277,7 @@ Func_2e76e:
 	end_script
 	ret
 
-Func_2e7c7:
+Script_ScienceClubLobbyDavidAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -5294,7 +5294,7 @@ Func_2e7c7:
 	end_script
 	ret
 
-Func_2e7e3:
+Script_ScienceClubLobbyErik:
 	ld a, NPC_ERIK
 	ld [wScriptNPC], a
 	ldtx hl, DialogErikText
@@ -5345,7 +5345,7 @@ Func_2e822:
 	ccf
 	ret
 
-Func_2e831:
+Script_ScienceClubMan:
 	ld a, NPC_SCIENCE_CLUB_MAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogManText
@@ -5372,7 +5372,7 @@ Func_2e831:
 	end_script
 	ret
 
-Func_2e862:
+Script_ScienceClubGlassesKid:
 	ld a, NPC_SCIENCE_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogGlassesKid1Text
@@ -5405,7 +5405,7 @@ Func_2e862:
 	end_script
 	ret
 
-Func_2e8a0:
+Script_ScienceClubTech:
 	ld a, NPC_SCIENCE_CLUB_TECH
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -6130,11 +6130,11 @@ WaterClubLobby_NPCs:
 	db $ff
 
 WaterClubLobby_NPCInteractions:
-	npc_script NPC_JOSHUA, Func_2eeea
-	npc_script NPC_WATER_CLUB_LASS, Func_2ef74
-	npc_script NPC_IMAKUNI_BLACK, Func_3c30c
-	npc_script NPC_WATER_CLUB_PAPPY, Func_2efae
-	npc_script NPC_WATER_CLUB_LONGHAIRED_LASS, Func_2efe1
+	npc_script NPC_JOSHUA, Script_JoshuaWaterClubLobby
+	npc_script NPC_WATER_CLUB_LASS, Script_WaterClubLass
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
+	npc_script NPC_WATER_CLUB_PAPPY, Script_WaterClubPappy
+	npc_script NPC_WATER_CLUB_LONGHAIRED_LASS, Script_WaterClubLonghairedLass
 	db $ff
 
 WaterClubLobby_OWInteractions:
@@ -6213,7 +6213,7 @@ WaterClubLobby_AfterDuel:
 	ret
 
 WaterClubLobby_AfterDuelScripts:
-	npc_script NPC_JOSHUA, Func_2ef43
+	npc_script NPC_JOSHUA, Script_JoshuaWaterClubLobbyAfterDuel
 	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
@@ -6231,7 +6231,7 @@ WaterClubLobby_ContinueOW:
 	scf
 	ret
 
-Func_2eeea:
+Script_JoshuaWaterClubLobby:
 	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
 	ldtx hl, DialogJoshuaText
@@ -6279,7 +6279,7 @@ Func_2eeea:
 	end_script
 	ret
 
-Func_2ef43:
+Script_JoshuaWaterClubLobbyAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6310,7 +6310,7 @@ Func_2ef5f:
 	ccf
 	ret
 
-Func_2ef74:
+Script_WaterClubLass:
 	ld a, NPC_WATER_CLUB_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -6345,7 +6345,7 @@ Func_2ef9f:
 	ccf
 	ret
 
-Func_2efae:
+Script_WaterClubPappy:
 	ld a, NPC_WATER_CLUB_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy1Text
@@ -6373,7 +6373,7 @@ Func_2efae:
 	end_script
 	ret
 
-Func_2efe1:
+Script_WaterClubLonghairedLass:
 	ld a, NPC_WATER_CLUB_LONGHAIRED_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLonghairedKidText
@@ -7234,7 +7234,7 @@ FireClubLobby_NPCs:
 
 FireClubLobby_NPCInteractions:
 	npc_script NPC_FIRE_CLUB_PUNK_GUY, Func_2f709
-	npc_script NPC_IMAKUNI_BLACK, Func_3c30c
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlack
 	npc_script NPC_FIRE_CLUB_MARTIAL_ARTIST, Func_2f77e
 	npc_script NPC_FIRE_CLUB_GAL, Func_2f7a4
 	db $ff

@@ -366,7 +366,7 @@ Script_3c2f0:
 .ows_3c30b
 	script_retfar
 
-Func_3c30c:
+Script_ImakuniBlack:
 	ld a, NPC_IMAKUNI_BLACK
 	ld [wScriptNPC], a
 	ldtx hl, DialogImakuniText
@@ -1004,8 +1004,8 @@ MasonLaboratoryTrainingRoom_NPCs:
 	db $ff
 
 MasonLaboratoryTrainingRoom_NPCInteractions:
-	npc_script NPC_AARON, Func_3c84c
-	npc_script NPC_LAB_TECH_TRAINING_ROOM, Func_3ca4d
+	npc_script NPC_AARON, Script_Aaron
+	npc_script NPC_LAB_TECH_TRAINING_ROOM, Script_LabTechTrainingRoom
 	db $ff
 
 MasonLaboratoryTrainingRoom_MapScripts:
@@ -1041,13 +1041,13 @@ MasonLaboratoryTrainingRoom_AfterDuel:
 
 ; use VAR_3B instead of npc id
 MasonLaboratoryTrainingRoom_AfterDuelScripts:
-	npc_script AARON_STEP_1, Func_3c931
-	npc_script AARON_STEP_2, Func_3c97e
-	npc_script AARON_STEP_3, Func_3c9cb
-	npc_script AARON_STEP_4, Func_3ca28
+	npc_script AARON_STEP_1, Script_AaronStep1AfterDuel
+	npc_script AARON_STEP_2, Script_AaronStep2AfterDuel
+	npc_script AARON_STEP_3, Script_AaronStep3AfterDuel
+	npc_script AARON_STEP_4, Script_AaronStep4AfterDuel
 	db $ff
 
-Func_3c84c:
+Script_Aaron:
 	ld a, NPC_AARON
 	ld [wScriptNPC], a
 	ldtx hl, DialogAaronText
@@ -1158,7 +1158,7 @@ Func_3c917:
 	end_script
 	ret
 
-Func_3c931:
+Script_AaronStep1AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1201,7 +1201,7 @@ Func_3c964:
 	end_script
 	ret
 
-Func_3c97e:
+Script_AaronStep2AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1244,7 +1244,7 @@ Func_3c9b1:
 	end_script
 	ret
 
-Func_3c9cb:
+Script_AaronStep3AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1295,7 +1295,7 @@ Func_3ca02:
 	end_script
 	ret
 
-Func_3ca28:
+Script_AaronStep4AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -1318,7 +1318,7 @@ Func_3ca28:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_3ca4d:
+Script_LabTechTrainingRoom:
 	ld a, NPC_LAB_TECH_TRAINING_ROOM
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -1631,13 +1631,13 @@ LightningClubLobby_NPCs:
 	db $ff
 
 LightningClubLobby_NPCInteractions:
-	npc_script NPC_JENNIFER, Func_3cd4b
-	npc_script NPC_BRANDON, Func_3cd7e
-	npc_script NPC_LIGHTNING_CLUB_LASS, Func_3cdc6
-	npc_script NPC_LIGHTNING_CLUB_PUNK_KID, Func_3ce39
-	npc_script NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, Func_3ce6a
-	npc_script NPC_LIGHTNING_CLUB_GR_LASS, Func_3ce6a
-	npc_script NPC_LIGHTNING_CLUB_BRO, Func_3ceb5
+	npc_script NPC_JENNIFER, Script_JenniferLightningClubLobby
+	npc_script NPC_BRANDON, Script_BrandonLightningClubLobby
+	npc_script NPC_LIGHTNING_CLUB_LASS, Script_LightningClubLass
+	npc_script NPC_LIGHTNING_CLUB_PUNK_KID, Script_LightningClubPunkKid
+	npc_script NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, Script_LightningClubLonghairedLass
+	npc_script NPC_LIGHTNING_CLUB_GR_LASS, Script_LightningClubLonghairedLass
+	npc_script NPC_LIGHTNING_CLUB_BRO, Script_LightningClubBro
 	db $ff
 
 LightningClubLobby_OWInteractions:
@@ -1690,7 +1690,7 @@ LightningClubLobby_Interact:
 	scf
 	ret
 
-Func_3cd4b:
+Script_JenniferLightningClubLobby:
 	ld a, NPC_JENNIFER
 	ld [wScriptNPC], a
 	ldtx hl, DialogJenniferText
@@ -1718,7 +1718,7 @@ Func_3cd4b:
 	end_script
 	ret
 
-Func_3cd7e:
+Script_BrandonLightningClubLobby:
 	ld a, NPC_BRANDON
 	ld [wScriptNPC], a
 	ldtx hl, DialogBrandonText
@@ -1760,7 +1760,7 @@ Func_3cdb1:
 	ccf
 	ret
 
-Func_3cdc6:
+Script_LightningClubLass:
 	ld a, NPC_LIGHTNING_CLUB_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -1814,7 +1814,7 @@ Func_3cdc6:
 	end_script
 	ret
 
-Func_3ce39:
+Script_LightningClubPunkKid:
 	ld a, NPC_LIGHTNING_CLUB_PUNK_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogPunkKidText
@@ -1841,7 +1841,7 @@ Func_3ce39:
 	end_script
 	ret
 
-Func_3ce6a:
+Script_LightningClubLonghairedLass:
 	ld a, NPC_LIGHTNING_CLUB_LONGHAIRED_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLonghairedKidText
@@ -1890,7 +1890,7 @@ Func_3cea8:
 	ccf
 	ret
 
-Func_3ceb5:
+Script_LightningClubBro:
 	ld a, NPC_LIGHTNING_CLUB_BRO
 	ld [wScriptNPC], a
 	ldtx hl, DialogBroText
@@ -1939,12 +1939,12 @@ GrassClubLobby_NPCs:
 	db $ff
 
 GrassClubLobby_NPCInteractions:
-	npc_script NPC_BRITTANY, Func_3cfd8
-	npc_script NPC_KRISTIN, Func_3d064
-	npc_script NPC_HEATHER, Func_3d0a8
-	npc_script NPC_GRASS_CLUB_GRANNY, Func_3d101
-	npc_script NPC_GRASS_CLUB_LASS, Func_3d127
-	npc_script NPC_GRASS_CLUB_CAPPED_LASS, Func_3d158
+	npc_script NPC_BRITTANY, Script_BrittanyGrassClubLobby
+	npc_script NPC_KRISTIN, Script_KristinGrassClubLobby
+	npc_script NPC_HEATHER, Script_HeatherGrassClubLobby
+	npc_script NPC_GRASS_CLUB_GRANNY, Script_GrassClubGranny
+	npc_script NPC_GRASS_CLUB_LASS, Script_GrassClubLass
+	npc_script NPC_GRASS_CLUB_CAPPED_LASS, Script_GrassClubCappedLass
 	db $ff
 
 GrassClubLobby_OWInteractions:
@@ -2006,10 +2006,10 @@ GrassClubLobby_AfterDuel:
 	ret
 
 GrassClubLobby_AfterDuelScripts:
-	npc_script NPC_BRITTANY, Func_3d02b
+	npc_script NPC_BRITTANY, Script_BrittanyGrassClubLobbyAfterDuel
 	db $ff
 
-Func_3cfd8:
+Script_BrittanyGrassClubLobby:
 	ld a, NPC_BRITTANY
 	ld [wScriptNPC], a
 	ldtx hl, DialogBrittanyText
@@ -2052,7 +2052,7 @@ Func_3cfd8:
 	end_script
 	ret
 
-Func_3d02b:
+Script_BrittanyGrassClubLobbyAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2082,7 +2082,7 @@ Func_3d02b:
 	end_script
 	ret
 
-Func_3d064:
+Script_KristinGrassClubLobby:
 	ld a, NPC_KRISTIN
 	ld [wScriptNPC], a
 	ldtx hl, DialogKristinText
@@ -2119,7 +2119,7 @@ Func_3d064:
 	end_script
 	ret
 
-Func_3d0a8:
+Script_HeatherGrassClubLobby:
 	ld a, NPC_HEATHER
 	ld [wScriptNPC], a
 	ldtx hl, DialogHeatherText
@@ -2170,7 +2170,7 @@ Func_3d0ec:
 	ccf
 	ret
 
-Func_3d101:
+Script_GrassClubGranny:
 	ld a, NPC_GRASS_CLUB_GRANNY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGrannyText
@@ -2192,7 +2192,7 @@ Func_3d101:
 	end_script
 	ret
 
-Func_3d127:
+Script_GrassClubLass:
 	ld a, NPC_GRASS_CLUB_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -2219,7 +2219,7 @@ Func_3d127:
 	end_script
 	ret
 
-Func_3d158:
+Script_GrassClubCappedLass:
 	ld a, NPC_GRASS_CLUB_CAPPED_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogCappedKidText
