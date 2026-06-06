@@ -90,7 +90,7 @@ _BillsPC:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	ld de, v0Tiles1 + $20 tiles
 	call LoadCardGfx
 	ld a, $a0 ; v0Tiles1 + $20 tiles
@@ -112,7 +112,7 @@ _BillsPC:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	ld de, v0Tiles1 + $50 tiles
 	call LoadCardGfx
 	ld a, $d0 ; v0Tiles1 + $50 tiles

@@ -195,7 +195,7 @@ GetCardPointer:
 ; input:
 ; hl = card_gfx_index
 ; de = where to load the card gfx to
-; bc are supposed to be $30 (number of tiles of a card gfx) and TILE_SIZE respectively
+; bc are supposed to be CARD_TILE_COUNT (number of tiles of a card gfx) and TILE_SIZE respectively
 ; card_gfx_index = (<Name>CardGfx - CardGraphics) / 8  (using absolute ROM addresses)
 ; also copies the card's palette to wCardPalette
 LoadCardGfx::
@@ -216,7 +216,7 @@ LoadCardGfx::
 ; are stripped, leaving just the indices in wCardAttrMap. Used to build the card
 ; picture for the Game Boy Printer (see BuildPrintableCardPic /
 ; DrawCardPicInSRAMGfxBuffer2).
-; input: hl = card_gfx_index, de = destination, bc = $30 (tiles), TILE_SIZE
+; input: hl = card_gfx_index, de = destination, bc = CARD_TILE_COUNT (tiles), TILE_SIZE
 LoadCardGfxRemapped::
 	ldh a, [hBankROM]
 	push af
@@ -226,7 +226,7 @@ LoadCardGfxRemapped::
 	ld a, h
 	ld [wCardGfxTileBase + 1], a ; wCardGfxTileBase = base address of the card's tiles
 	ld hl, wCardAttrMap
-	lb bc, $30, 0 ; b = 48 tiles to emit, c = output position (0..47)
+	lb bc, CARD_TILE_COUNT, 0 ; b = tiles to emit, c = output position (0..47)
 .loop_copy
 	ld a, [hl]
 	and $3f ; keep the relative tile index, drop the palette bits
@@ -273,7 +273,7 @@ LoadCardPalettes:
 	add hl, hl ; *8
 	res 7, h
 	set 6, h ; $4000 ≤ hl ≤ $7fff
-	ld b, 3 palettes + $30 ; palettes + attributes
+	ld b, 3 palettes + CARD_TILE_COUNT ; palettes + 1 attribute byte per tile
 	ld de, wCardPalettes
 .loop_copy
 	ld a, [hli]

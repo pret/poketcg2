@@ -5868,7 +5868,7 @@ LoadCardGfx_FromCardID:
 	pop hl
 	xor a
 	call BankswitchVRAM
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	pop hl
 	pop de

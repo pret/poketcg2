@@ -5476,7 +5476,7 @@ DisplayBoosterContent:
 BuildPrintableCardPic:
 	push de
 	ld de, wc000
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfxRemapped ; load the 48 (remapped) card tiles into wc000
 	pop de ; de = output buffer
 	ld hl, wc000 ; hl = loaded tiles

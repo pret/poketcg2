@@ -3414,7 +3414,7 @@ LoadLoadedCard1Gfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	ret
 

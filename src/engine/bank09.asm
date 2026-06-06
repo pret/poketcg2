@@ -2022,7 +2022,7 @@ Func_24ef5:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	lb de, 9, 2
 	bank1call DrawCardGfxToDE_BGPalIndex5

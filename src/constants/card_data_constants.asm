@@ -29,6 +29,11 @@ DEF MAX_UNNAMED_DECK_NUM        EQU 999
 DEF MAX_NUM_AUTO_DECK_LIST_DIFFERENT_CARDS EQU 43
 DEF AUTO_DECK_LIST_BUFFER_SIZE             EQU 3 * MAX_NUM_AUTO_DECK_LIST_DIFFERENT_CARDS + 1
 
+; card gfx: a 72-byte header (3 palettes + a CARD_TILE_COUNT-entry attribute
+; map, one byte per tile) followed by CARD_TILE_COUNT uncompressed tiles.
+; see LoadCardGfx / CardGraphics.
+DEF CARD_TILE_COUNT EQU $30 ; 48
+
 ; card data offsets (data/cards.asm and card_data_struct)
 
 RSRESET

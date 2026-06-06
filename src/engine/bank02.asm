@@ -749,7 +749,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	pop de
 	push de
@@ -795,7 +795,7 @@ DrawInPlayArea_ActiveCardGfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	lb de, 6, 9
 	bank1call DrawCardGfxToDE_BGPalIndex5
@@ -819,7 +819,7 @@ DrawInPlayArea_ActiveCardGfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, CARD_TILE_COUNT, TILE_SIZE
 	call LoadCardGfx
 	lb de, 6, 2
 	bank1call DrawCardGfxToDE_BGPalIndex2
