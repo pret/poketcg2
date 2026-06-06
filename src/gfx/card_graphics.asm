@@ -13,6 +13,9 @@ SECTION "Gfx 1b Tail", ROMX[$74d0], BANK[$1b]
 
 SECTION "Gfx 1c", ROMX[$4000], BANK[$1c]
 	INCBIN "gfx/cards/misc/gfx_070000.bin"
+DuelBoxMessages::
+	INCBIN "gfx/duel/box_messages.2bpp"
+	ds $2450, $ff
 
 SECTION "Card Gfx 1", ROMX[$4000], BANK[$1d]
 CardGraphics::

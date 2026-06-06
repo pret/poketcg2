@@ -30,6 +30,12 @@ HDR = 72
 CARD_W = 8              # card tiles are 8 wide (48 tiles = 8x6)
 REGION_START = 0x6f4d0  # $1b:74d0, first overlay byte after SymbolsFont
 REGION_END   = 0xd9818  # end of last card; rest of region is 0xff pad
+
+# known graphics carved out of the pre-region and labelled:
+#   (file offset, size, label, gfx path stem, png width in tiles)
+KNOWN_PRE = [
+    (0x70a30, 7*40*16, 'DuelBoxMessages', 'gfx/duel/box_messages', 10),  # 7 box msgs, 10x4 each
+]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GFXDIR = os.path.join(ROOT, "src/gfx/cards")
 RGBGFX = os.environ.get("RGBGFX", "rgbgfx")
@@ -93,9 +99,17 @@ def build_segments(rom, byaddr):
        Misc/pad are split at 0x4000 bank boundaries."""
     starts = sorted(byaddr)
     segs = []; pos = REGION_START
+    known = sorted(KNOWN_PRE); ki = 0
     while pos < starts[0]:                          # pre-region
-        end = min(starts[0], (pos & ~0x3fff) + 0x4000)
-        segs.append((pos, end, 'pre', None)); pos = end
+        kstart = known[ki][0] if ki < len(known) else starts[0]
+        if pos == kstart:
+            _, ksz, klabel, stem, w = known[ki]
+            segs.append((pos, pos+ksz, 'known', (klabel, stem, w))); pos += ksz; ki += 1
+            continue
+        end = min(kstart, (pos & ~0x3fff) + 0x4000)
+        chunk = rom[pos:end]
+        segs.append((pos, end, 'pad' if set(chunk) <= {0, 0xff} else 'pre', None))
+        pos = end
     for i, a in enumerate(starts):
         assert pos == a, f"misaligned card at {a:#x}"
         name = byaddr[a]
@@ -143,6 +157,14 @@ def main():
                 os.remove(tiles)            # .png is the source; make rebuilds .2bpp
             elif kind == 'extra':
                 open(os.path.join(GFXDIR, card_filename(name)+'_extra.bin'), 'wb').write(rom[s:e])
+            elif kind == 'known':
+                klabel, stem, w = name
+                png = os.path.join(ROOT, 'src', stem + '.png')
+                os.makedirs(os.path.dirname(png), exist_ok=True)
+                tmp = os.path.join(GFXDIR, '_known.2bpp')
+                open(tmp, 'wb').write(rom[s:e])
+                subprocess.run([RGBGFX, '-r', str(w), '--colors', 'dmg', '-o', tmp, png], check=True)
+                os.remove(tmp)
             elif kind == 'pre':
                 open(os.path.join(GFXDIR, 'misc', f'gfx_{s:06x}.bin'), 'wb').write(rom[s:e])
             # 'pad' is emitted inline as `ds` -- no file
@@ -168,6 +190,10 @@ def main():
             elif kind == 'extra':
                 L.append(f'{name}GfxExtra::\n')
                 L.append(f'\tINCBIN "gfx/cards/{card_filename(name)}_extra.bin"\n')
+            elif kind == 'known':
+                klabel, stem, w = name
+                L.append(f'{klabel}::\n')
+                L.append(f'\tINCBIN "{stem}.2bpp"\n')
             elif kind == 'pad':
                 seg = rom[s:e]; j = 0          # alignment padding -> ds runs
                 while j < len(seg):
