@@ -63,8 +63,18 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_12c36a` | `4b:436a` | `AdvanceToNextSpriteAnimFrame` | inc frame index + GetFramesetData; caller DecrementSpriteAnimFrameDuration | 2026-06-06 |
 | `Func_fc094` | `7e:40ec` | `ExecuteNextSFXCommand` | tcg1 exact match; SFX command dispatcher | 2026-06-06 |
 | `Func_fc094_2` | `7f:40ec` | `ExecuteNextSFX2Command` | bank-$7f SFX2 copy of the above | 2026-06-06 |
+| `Func_1c735` | `07:5735` | `FadeBGPalsToTarget` | FadeColorToTarget over wTargetBGPalettes (parallels FadeBGPalsToWhiteOrBlack) | 2026-06-06 |
+| `Func_1c767` | `07:5767` | `FadeOBPalsToTarget` | FadeColorToTarget over wTargetOBPalettes | 2026-06-06 |
+| `Func_1c799` | `07:5799` | `UpdatePaletteFadeToWhiteOrBlack` | calls FadeBG/OBPalsToWhiteOrBlack per wPaletteFadeFlags | 2026-06-06 |
+| `Func_1c7b6` | `07:57b6` | `UpdatePaletteFadeToTarget` | calls FadeBG/OBPalsToTarget per wPaletteFadeFlags | 2026-06-06 |
+| `Func_1e088` | `07:6088` | `UpdateScreenAnimations` | runs active screen-anim update fn or processes the anim queue | 2026-06-06 |
+| `Func_6c12` | `01:6c12` | `LoadDuelScreenBGPalettes` | loads Pals_6f0d8 into BG pals 2-4; 12 duel-screen callers (resolves a gfx-work TODO) | 2026-06-06 |
+| `Func_6c15` | `01:6c15` | `LoadDuelBGPalettesFromHL` | shared core: copy 3 palettes hl -> BG pals 2-4 | 2026-06-06 |
+| `Func_6c1d` | `01:6c1d` | `LoadCardPictureBGPalettes` | loads Pals_6f0f0; used with a drawn/placed card pic | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: 21 named. 1,188 remaining. Batch (8): bank07 palette-fade quad + screen-anim
+  runner + the bank01 BG-palette loader trio (the Func_6c12/Func_6c1d flagged during the gfx work).
 - 2026-06-06: 13 named. 1,196 remaining. Latest batch (6) used the dynamic call graph
   (cg.txt from a duel session) + tcg1 as a semantic reference for the duel-engine funcs.
 - 2026-06-06: 7 named (1 tcg1-match + 6 overworld/animation frame-function cluster). 1,202 remaining.

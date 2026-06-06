@@ -330,7 +330,7 @@ DisplayUsePokemonPowerScreen:
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
 	call LoadDuelCheckPokemonScreenTiles
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	pop hl
 	call PrintTextToDescriptionScreenTextBox
 	bank1call PrintPlayAreaCardInformationAndLocation
@@ -2006,7 +2006,7 @@ Func_24ef5:
 	call EmptyScreen
 	call ZeroObjectPositions
 	call LoadDuelCardSymbolTiles
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 
 ; load card data
 	pop af

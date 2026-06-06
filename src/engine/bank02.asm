@@ -754,7 +754,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	pop de
 	push de
 	bank1call DrawCardGfxToDE_BGPalIndex5
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	bank1call FlushAllPalettesIfNotDMG
 	pop de
 
@@ -767,7 +767,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	ret
 
 .no_pokemon
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	pop de
 	ret
 
@@ -6298,7 +6298,7 @@ GetCardTypeIconPalette:
 	push hl
 	push de
 	push af
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	pop af
 	pop de
 	ld b, a

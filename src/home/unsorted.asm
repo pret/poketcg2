@@ -1951,7 +1951,7 @@ FrameFunc_AnimationQueue::
 	push bc
 	push de
 	push hl
-	farcall Func_1e088
+	farcall UpdateScreenAnimations
 	ld a, [wActiveScreenAnim]
 	cp $ff
 	jr nz, .done

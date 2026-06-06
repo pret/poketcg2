@@ -994,7 +994,7 @@ DisplayAttachedEnergyMenu:
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
 	call LoadDuelFaceDownCardTiles
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ld a, [wAttachedEnergyMenuPlayAreaLocation]
 	ld hl, wCurPlayAreaSlot
@@ -1167,7 +1167,7 @@ OpenAttackPage:
 	ld de, v0Tiles1 + $20 tiles
 	call LoadLoadedCard1Gfx
 	call DrawCardPageCardGfx
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ldh a, [hCurScrollMenuItem]
 	ld [wSelectedDuelSubMenuItem], a
@@ -1852,7 +1852,7 @@ PrintReturnCardsToDeckDrawAgain:
 ; used to let the player know that there are no basic Pokemon in the hand and need to redraw
 DisplayNoBasicPokemonInHandScreen:
 	call EmptyScreen
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call LoadDuelCardSymbolTiles
 	lb de, 0, 0
 	lb bc, 20, 18
@@ -1878,7 +1878,7 @@ DisplayPracticeDuelPlayerHandScreen:
 	call CreateHandCardList
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	lb de, 0, 0
 	lb bc, 20, 13
 	call DrawRegularTextBox
@@ -2656,7 +2656,7 @@ DrawCardListScreenLayout:
 	call EmptyScreen
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	; draw the surrounding box
 	lb de, 0, 0
 	lb bc, 20, 13
@@ -2967,7 +2967,7 @@ OpenCardPage:
 	call LoadLoadedCard1Gfx
 	lb de, 6, 4
 	call DrawCardGfxToDE_BGPalIndex5
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	; display the initial card page for the card at wLoadedCard1
 	xor a
@@ -3170,7 +3170,7 @@ LoadSelectedCardGfx:
 	call LoadLoadedCard1Gfx
 	lb de, 12, 12
 	call DrawCardGfxToDE_BGPalIndex5
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ret
 
@@ -7204,15 +7204,18 @@ SetFontAndTextBoxFrameColor:
 	call CopyFontsOrDuelGraphicsBytes
 	ret
 
-Func_6c12::
+; load the duel-screen BG palettes (Pals_6f0d8) into BG palettes 2-4
+LoadDuelScreenBGPalettes::
 	ld hl, Pals_6f0d8 - $4000
-Func_6c15:
+; copy the 3 palettes at hl into BG palettes 2-4
+LoadDuelBGPalettesFromHL:
 	ld de, wBackgroundPalettesCGB + 2 * PAL_SIZE
 	ld c, 3 palettes
 	jp CopyFontsOrDuelGraphicsBytes
-Func_6c1d::
+; load the card-picture BG palettes (Pals_6f0f0), shown with a drawn/placed card
+LoadCardPictureBGPalettes::
 	ld hl, Pals_6f0f0 - $4000
-	jr Func_6c15
+	jr LoadDuelBGPalettesFromHL
 
 HandleDamageModifiersEffects::
 	call HandlePrehistoricDreamDamageBoost

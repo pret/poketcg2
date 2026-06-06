@@ -1006,11 +1006,11 @@ FadePalettes::
 	dec a
 	jr nz, .asm_1c6e1
 ; wPaletteFadeMode == 1
-	call Func_1c7b6
+	call UpdatePaletteFadeToTarget
 	jr .decrement_counter
 .asm_1c6e1
 ; wPaletteFadeMode != 1
-	call Func_1c799
+	call UpdatePaletteFadeToWhiteOrBlack
 .decrement_counter
 	ld hl, wPaletteFadeCounter
 	ld a, [hl]
@@ -1079,7 +1079,7 @@ FadeOBPalsToWhiteOrBlack:
 	jr nz, .asm_1c71f
 	ret
 
-Func_1c735:
+FadeBGPalsToTarget:
 	ld bc, wBGColorFadeConfigList
 	ld hl, wTargetBGPalettes
 	ld de, wBackgroundPalettesCGB
@@ -1122,7 +1122,7 @@ Func_1c735:
 	jr nz, .asm_1c740
 	ret
 
-Func_1c767:
+FadeOBPalsToTarget:
 	ld bc, wOBColorFadeConfigList
 	ld hl, wTargetOBPalettes
 	ld de, wObjectPalettesCGB
@@ -1165,7 +1165,7 @@ Func_1c767:
 	jr nz, .asm_1c772
 	ret
 
-Func_1c799:
+UpdatePaletteFadeToWhiteOrBlack:
 	ld hl, wPaletteFadeFlags
 	bit 0, [hl]
 	jr z, .asm_1c7a3
@@ -1181,16 +1181,16 @@ Func_1c799:
 	ld [wd9de], a
 	ret
 
-Func_1c7b6:
+UpdatePaletteFadeToTarget:
 	ld hl, wPaletteFadeFlags
 	bit 0, [hl]
 	jr z, .asm_1c7c0
-	call Func_1c735
+	call FadeBGPalsToTarget
 .asm_1c7c0
 	ld hl, wPaletteFadeFlags
 	bit 7, [hl]
 	jr z, .asm_1c7ca
-	call Func_1c767
+	call FadeOBPalsToTarget
 .asm_1c7ca
 	call FlushAllPalettes
 	ld a, $01
@@ -4214,7 +4214,7 @@ LoadBufferedDuelAnimation:
 	pop af
 	ret
 
-Func_1e088::
+UpdateScreenAnimations::
 	push af
 	push bc
 	push de

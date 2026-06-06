@@ -105,7 +105,7 @@ LoadDuelCheckPokemonScreenTiles::
 	ld hl, DuelCheckPokemonScreenGfx
 	ld de, v0Tiles1 + $50 tiles
 	call CopyFontsOrDuelGraphicsTiles
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	ret
 
 ; loads the 8 tiles that make up the border of the main duel menu as well as the border
@@ -126,7 +126,7 @@ LoadCardTypeHeaderTiles::
 	ld de, v0Tiles1 + $60 tiles
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
-	bank1call Func_6c1d
+	bank1call LoadCardPictureBGPalettes
 	ret
 
 ; loads the symbols that are displayed near the names of a list of cards in the hand or discard pile
