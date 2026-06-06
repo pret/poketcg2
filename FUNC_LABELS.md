@@ -57,8 +57,16 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 | `Func_3a81` | `00:3a81` | `FrameFunc_AnimationQueue` | per-frame update during queued screen anims (gated on wActiveScreenAnim) | 2026-06-06 |
 | `Func_110b9` | `04:50b9` | `SetAnimationQueueFrameFunc` | pushes FrameFunc_AnimationQueue; caller ResetAnimationQueue | 2026-06-06 |
 | `Func_110c2` | `04:50c2` | `UnsetAnimationQueueFrameFunc` | pops it; caller FinishQueuedAnimations | 2026-06-06 |
+| `Func_6fa5` | `01:6fa5` | `TakePrizesForKnockedOutPokemon` | body: CountKnockedOutPokemon + TurnDuelistTakePrizes + "Took all the Prizes"; caller HandleBetweenTurnKnockOuts | 2026-06-06 |
+| `Func_6986` | `01:6986` | `TriggerPlayedEnergyCardEffect` | runs played card's PKMN_POWER_TRIGGER effect; callers PlayEnergyCard / OppAction_PlayEnergyCard | 2026-06-06 |
+| `Func_1bb4` | `00:1bb4` | `RedrawDuelSceneAndPrintFailedEffect` | DrawDuelMainScene/HUDs + PrintFailedEffectText; caller HandleConfusionDamageToSelf | 2026-06-06 |
+| `Func_12c36a` | `4b:436a` | `AdvanceToNextSpriteAnimFrame` | inc frame index + GetFramesetData; caller DecrementSpriteAnimFrameDuration | 2026-06-06 |
+| `Func_fc094` | `7e:40ec` | `ExecuteNextSFXCommand` | tcg1 exact match; SFX command dispatcher | 2026-06-06 |
+| `Func_fc094_2` | `7f:40ec` | `ExecuteNextSFX2Command` | bank-$7f SFX2 copy of the above | 2026-06-06 |
 
 ## Progress
+- 2026-06-06: 13 named. 1,196 remaining. Latest batch (6) used the dynamic call graph
+  (cg.txt from a duel session) + tcg1 as a semantic reference for the duel-engine funcs.
 - 2026-06-06: 7 named (1 tcg1-match + 6 overworld/animation frame-function cluster). 1,202 remaining.
   Pilot confirmed the xref workflow: callers + named callees + the frame-func convention
   resolve a cluster cleanly and byte-neutrally. The higher-level transition orchestrators

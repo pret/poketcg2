@@ -622,7 +622,7 @@ DecrementSpriteAnimFrameDuration:
 	ld [wCurSpriteAnimFrameDuration], a
 	and a
 	ret nz
-	call Func_12c36a
+	call AdvanceToNextSpriteAnimFrame
 	ret
 
 Func_12c35c:
@@ -633,7 +633,8 @@ Func_12c35c:
 	ret nz
 	ld a, -1
 	ld [wCurSpriteAnimFrameIndex], a
-Func_12c36a:
+; advance the current sprite animation to its next frame and reload that frame's data
+AdvanceToNextSpriteAnimFrame:
 	ld a, [wCurSpriteAnimFrameIndex]
 	inc a
 	ld [wCurSpriteAnimFrameIndex], a

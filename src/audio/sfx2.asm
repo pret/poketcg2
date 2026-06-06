@@ -140,7 +140,7 @@ SFX2_Update:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_fc094_2
+	call ExecuteNextSFX2Command
 .asm_fc08d
 	inc c
 	ld a, c
@@ -148,7 +148,7 @@ SFX2_Update:
 	jr nz, .asm_fc06c
 	ret
 
-Func_fc094_2:
+ExecuteNextSFX2Command:
 	ld a, [hl]
 	and $f0
 	swap a
@@ -186,7 +186,7 @@ SFX2_CommandTable:
 	dw SFX2_end
 
 SFX2_unused:
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_frequency:
 	ld d, a
@@ -260,7 +260,7 @@ SFX2_envelope:
 	ld l, a
 	ld [hl], e
 	pop hl
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_duty:
 	swap a
@@ -274,7 +274,7 @@ SFX2_duty:
 	ld l, a
 	ld [hl], e
 	pop hl
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_loop:
 	ld hl, wde43
@@ -291,7 +291,7 @@ SFX2_loop:
 	ld [hl], a
 	ld l, e
 	ld h, d
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_endloop:
 	ld hl, wde3f
@@ -307,10 +307,10 @@ SFX2_endloop:
 	ld h, [hl]
 	ld l, a
 	pop de
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 .asm_fc162
 	pop hl
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_pitch_offset:
 	ld hl, wde2f
@@ -320,7 +320,7 @@ SFX2_pitch_offset:
 	pop hl
 	ld a, [hli]
 	ld [de], a
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_wait:
 	ld a, c
@@ -465,7 +465,7 @@ SFX2_wave:
 	ldh [rAUD3ENA], a
 	ld b, $0
 	pop hl
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_pan:
 	pop hl
@@ -489,13 +489,13 @@ SFX2_pan:
 	ld [hl], a
 	pop bc
 	pop hl
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_sweep:
 	pop hl
 	ld a, [hli]
 	ldh [rAUD1SWEEP], a
-	jp Func_fc094_2
+	jp ExecuteNextSFX2Command
 
 SFX2_end:
 	ld e, c

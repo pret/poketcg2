@@ -1458,7 +1458,7 @@ Func_17fb:
 	ld [wNoDamageOrEffect], a
 	bank1call ProcessEffectsTriggeredByTakingDamage
 	bank1call ApplyStatusConditionQueue
-	call Func_1bb4
+	call RedrawDuelSceneAndPrintFailedEffect
 	bank1call UpdateArenaCardLastTurnDamage
 	bank1call HandleDestinyBondAndBetweenTurnKnockOuts
 	or a
@@ -1496,7 +1496,7 @@ HandleConfusionDamageToSelf::
 	pop hl
 	ld a, l
 	call DealConfusionDamageToSelf
-	call Func_1bb4
+	call RedrawDuelSceneAndPrintFailedEffect
 	bank1call HandleDestinyBondAndBetweenTurnKnockOuts
 	bank1call ClearNonTurnTemporaryDuelvars
 	or a
@@ -2061,7 +2061,8 @@ DealDamageToPlayAreaPokemon_GotPlayAreaLocation::
 	pop hl
 	ret
 
-Func_1bb4:
+; redraws the duel scene + HUDs and prints the arena Pokemon's "failed effect" text
+RedrawDuelSceneAndPrintFailedEffect:
 	call FinishQueuedAnimations
 	bank1call DrawDuelMainScene
 	bank1call DrawDuelHUDs

@@ -583,7 +583,7 @@ OppAction_PlayEnergyCard:
 	ld a, TRUE
 	ld [wAlreadyPlayedEnergy], a
 	bank1call DrawDuelMainScene
-	bank1call Func_6986
+	bank1call TriggerPlayedEnergyCardEffect
 	ret
 
 OppAction_EvolvePokemonCard:

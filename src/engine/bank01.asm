@@ -694,7 +694,7 @@ PlayEnergyCard:
 	ld a, OPPACTION_PLAY_ENERGY
 	call SetOppAction_SerialSendDuelData
 	farcall PrintAttachedEnergyToPokemon
-	call Func_6986
+	call TriggerPlayedEnergyCardEffect
 	jp DuelMainInterface
 
 .rain_dance_active
@@ -6032,7 +6032,7 @@ HandleBetweenTurnKnockOuts:
 	ret
 
 .Func_6ef6:
-	call Func_6fa5
+	call TakePrizesForKnockedOutPokemon
 	ld hl, wDuelFinishParam
 	rl [hl]
 	ret
@@ -6142,7 +6142,9 @@ ReplaceKnockedOutPokemon:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	jr .replace_pokemon
 
-Func_6fa5:
+; has the (swapped-to) turn duelist take prizes for the just-knocked-out Pokemon;
+; prints "Took all the Prizes" and returns carry if that claimed their last prize
+TakePrizesForKnockedOutPokemon:
 	call CountKnockedOutPokemon
 	ret nc
 	; at least one Pokemon knocked out
@@ -6725,7 +6727,8 @@ LoadNonPokemonCardEffectCommands:
 	ld [wcd15], a
 	ret
 
-Func_6986:
+; runs the just-played energy card's on-play (PKMN_POWER_TRIGGER) effect command, if it has one
+TriggerPlayedEnergyCardEffect:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hDuelActionCardIndex], a
 	call LoadNonPokemonCardEffectCommands
