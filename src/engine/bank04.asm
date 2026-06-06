@@ -283,7 +283,7 @@ WaitForButtonPress:
 	jr z, .loop
 	ret
 
-Func_1022a:
+SuspendOverworldForSubScreen:
 	push af
 	push bc
 	push de
@@ -296,7 +296,7 @@ Func_1022a:
 	call PushOWObjectsAndExtraByteToBank3
 	call BackupOverworldStateToWRAM3
 	call InitOverworldObjectState
-	call Func_102ef
+	call InitOverworldGraphics
 	pop hl
 	pop de
 	pop bc
@@ -309,12 +309,12 @@ Func_10252:
 	push de
 	push hl
 	call InitOverworldObjectState
-	call Func_102ef
+	call InitOverworldGraphics
 	call PullOWObjectsAndExtraByteFromBank3
 	call RestoreOverworldStateFromWRAM3
 	call DisableLCD
 	call ReloadSpriteAnimTilesets
-	call Func_1055e
+	call ReloadOWMapAndTiles
 	call UpdateOWScroll
 	call EnableLCD
 	call SetOverworldFrameFunc
@@ -346,7 +346,7 @@ ClearSpriteAnimsAndSetInitialGraphicsConfiguration::
 	call SetInitialGraphicsConfiguration
 	ret
 
-Func_102a4:
+SuspendOverworldKeepingSpriteAnims:
 	push af
 	push bc
 	push de
@@ -357,7 +357,7 @@ Func_102a4:
 	call BackupOverworldStateToWRAM3
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	call InitOverworldObjectState
-	call Func_102ef
+	call InitOverworldGraphics
 	pop hl
 	pop de
 	pop bc
@@ -370,12 +370,12 @@ Func_102c4:
 	push de
 	push hl
 	call InitOverworldObjectState
-	call Func_102ef
+	call InitOverworldGraphics
 	call PullOWObjectsAndExtraByteFromBank3
 	call RestoreOverworldStateFromWRAM3
 	call DisableLCD
 	call ReloadSpriteAnimTilesets
-	call Func_1055e
+	call ReloadOWMapAndTiles
 	call UpdateOWScroll
 	call EnableLCD
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
@@ -386,7 +386,7 @@ Func_102c4:
 	pop af
 	ret
 
-Func_102ef:
+InitOverworldGraphics:
 	push af
 	push bc
 	push de
@@ -719,7 +719,7 @@ ENDR
 ; [wd7e8] = min(x_2 * 8, x_n),
 ; [wd7e9] = min(y_2 * 8, y_n),
 ; [wOWScrollState] = 0
-Func_104ad:
+ClampOWScrollTarget:
 	push af
 	push bc
 	push de
@@ -862,7 +862,7 @@ ENDR
 	pop bc
 	ret
 
-Func_1055e:
+ReloadOWMapAndTiles:
 	push af
 	push bc
 	push de
@@ -1015,7 +1015,7 @@ SetInitialGraphicsConfiguration:
 	ld [wTileMapFill], a
 	bank1call SetOneLineSeparation
 	call LoadSymbolsFont
-	call Func_35a0
+	call SetupTextDefault
 	call SetZeroScroll
 	call SafeClearBGMap
 	ld a, $01
@@ -1219,7 +1219,7 @@ FillBoxInBGMapWithZero:
 ; e = y
 ; b = width
 ; c = height
-Func_10742:
+SetOWMapRegionTilePriority:
 	push af
 	push bc
 	push de
@@ -1377,7 +1377,7 @@ HandlePauseMenu:
 .RestoreNPCs:
 	farcall ShowNPCAnimsUnderMenuBox
 	call LoadSymbolsFont
-	call Func_35a0
+	call SetupTextDefault
 	ret
 
 ; unreferenced?
@@ -1385,7 +1385,7 @@ HandlePauseMenu:
 	ret
 
 PauseMenuDeckScreen:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call ShowDeckSelectionMenuFromPauseMenu
 	call Func_10252
 	ret
@@ -2709,7 +2709,7 @@ FindNPCAtLocation::
 ; a = NPC_* ID
 ; b = direction
 ; c = speed
-Func_10e3c::
+TryMoveOWObjectInDirection::
 	push bc
 	push de
 	push hl
@@ -2782,7 +2782,7 @@ Func_10e3c::
 	ret
 
 Func_10ea3::
-	call Func_11384
+	call UpdateAllOWObjectMovement
 	ret
 
 PushOWObjectsAndExtraByteToBank3:
@@ -3359,7 +3359,7 @@ _PCMenu:
 	ret
 
 .CardAlbum:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call SetFadePalsFrameFunc
 	farcall CardAlbum
 	farcall StartFadeToWhite
@@ -3369,7 +3369,7 @@ _PCMenu:
 	ret
 
 .Glossary:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call SetFadePalsFrameFunc
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call FlushAllPalettes
@@ -3381,7 +3381,7 @@ _PCMenu:
 	ret
 
 .Printer:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call SetFadePalsFrameFunc
 	farcall PrinterMenu
 	farcall StartFadeToWhite
@@ -3391,7 +3391,7 @@ _PCMenu:
 	ret
 
 .DeckDiagnosis:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call SetFadePalsFrameFunc
 	farcall DeckDiagnosis
 	farcall StartFadeToWhite
@@ -3723,7 +3723,7 @@ _MoveNPC:
 	ret
 
 ; e = ?
-Func_11384::
+UpdateAllOWObjectMovement::
 	push af
 	push bc
 	push de
@@ -5717,7 +5717,7 @@ HandlePopupMenu:
 
 ; unused
 CoinFlipGameDescriptionScreen:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	farcall ShowCoinFlipGameDescription
 	call Func_10252
 	ret
@@ -6110,7 +6110,7 @@ INCLUDE "engine/challenge_machine.asm"
 INCLUDE "engine/credits_commands.asm"
 
 ShowProloguePortraitAndText_WithFade:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call ShowProloguePortraitAndText
 	call Func_10252
 	ret
@@ -6204,7 +6204,7 @@ ShowProloguePortraitAndText:
 	dw $ffff
 
 PlayerNameSelectionScreen:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call PlayerNameSelection
 	call Func_10252
 	ret
@@ -6503,7 +6503,7 @@ GetPlayerGender:
 Func_13dfa:
 	call DisableLCD
 	call InitOverworldObjectState
-	call Func_102ef
+	call InitOverworldGraphics
 	call EnableLCD
 	ld a, BANK("WRAM1")
 	ld [wWRAMBank], a

@@ -406,7 +406,7 @@ Func_328c::
 	ret
 
 ; hl = npc script list (*_NPCInteractions)
-Func_32aa::
+ExecuteFacingNPCScript::
 	push hl
 	farcall Func_d3e9
 	farcall FindNPCAtLocation
@@ -479,7 +479,7 @@ HandleOverworldPlayerMoveInput::
 	inc c ; MOVE_SPEED_RUN
 .got_speed
 	ld a, [wPlayerOWObject]
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	or a
 	jr z, .set_carry
 	ld a, OWMODE_MOVE
@@ -505,7 +505,7 @@ WaitPalFading::
 	jr nz, .loop
 	ret
 
-Func_3340::
+WaitForPlayerOWObjectAnimation::
 .asm_3340
 	call DoFrame
 	farcall Func_10df3
@@ -572,7 +572,7 @@ StartOverworldFadeOut::
 	farcall ZeroOutEventValue
 	ret
 
-Func_33b7::
+LoadCurMapScriptPointers::
 	ld a, [wCurMap]
 	ld c, a
 	ld b, $00
@@ -980,7 +980,7 @@ Func_3594::
 	pop af
 	ret
 
-Func_35a0::
+SetupTextDefault::
 	push af
 	push bc
 	push de
@@ -1913,7 +1913,7 @@ FrameFunc_Overworld::
 	and a
 	jr nz, .asm_3a50
 	ld e, $01
-	farcall Func_11384
+	farcall UpdateAllOWObjectMovement
 	jr .asm_3a56
 .asm_3a50
 	ld e, $10
@@ -2186,7 +2186,7 @@ LoadMenuBoxParams::
 	ret
 
 ; a = ?
-Func_3bc1::
+GetNPCOverworldSprite::
 	push af
 	push hl
 	ld c, a

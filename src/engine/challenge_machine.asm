@@ -2,7 +2,7 @@
 ; b -> wChallengeMachineCurRound [0, 4]
 ; c -> wChallengeMachineDuelResult
 ChallengeMachine:
-	call Func_102a4
+	call SuspendOverworldKeepingSpriteAnims
 	call _ChallengeMachine
 	call Func_102c4
 	ret

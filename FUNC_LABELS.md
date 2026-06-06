@@ -118,6 +118,13 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 21 named. 576 remaining. Batch analyzed in PARALLEL by 8 subagents over the
+  callgraph candidate set (still-Func_, named caller AND callee, exclude AI banks). OW screen
+  save/restore pair (SuspendOverworldForSubScreen / ...KeepingSpriteAnims), OW object movement
+  (TryMoveOWObjectInDirection, UpdateAllOWObjectMovement), map/tile reload (InitOverworldGraphics,
+  ReloadOWMapAndTiles), interact/script (ExecuteFacingNPCScript, LoadCurMapScriptPointers),
+  GR-island UI (PlaceGRIslandMapCursor, HideOWMapLocationBox, CheckMetRonaldAtLeastTwice),
+  plus mail/event helpers. Deferred Func_3332 (trivial DoFrame wrapper, no semantic name).
 - 2026-06-06: 34 named. 1,175 remaining. Batch (11) analyzed in PARALLEL by 7 subagents
   (each read body + checked tcg1, returned a structured name proposal; I verified + applied).
   Mostly OW save/restore + map/tilemap + sprite-anim engine; resolved the deferred Func_189d

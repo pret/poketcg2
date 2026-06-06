@@ -1,5 +1,5 @@
 BlackBoxScreen:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call BlackBox
 	call Func_10252
 	ret

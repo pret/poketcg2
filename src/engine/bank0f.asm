@@ -7,7 +7,7 @@ Prologue::
 	xor a
 	farcall ShowProloguePortraitAndText
 
-	farcall Func_102ef
+	farcall InitOverworldGraphics
 	xor a
 	farcall InitOWObjects
 
@@ -1538,7 +1538,7 @@ LightningClubEntrance_MusicPreload:
 	ret
 
 LightningClubEntrance_MusicPostload:
-	call Func_3cc53
+	call CheckMetRonaldAtLeastTwice
 	jr nc, .asm_3cbeb
 	scf
 	ret
@@ -1565,7 +1565,7 @@ LightningClubEntrance_WarpFadeInPreload:
 	ld bc, TILEMAP_00C
 	lb de, 1, 0
 	farcall LoadAndQueueOWMapTilemap
-	call Func_3cc53
+	call CheckMetRonaldAtLeastTwice
 	jr c, .asm_3cc35
 	ldtx hl, DialogGR4Text
 	call LoadTxRam2
@@ -1596,7 +1596,7 @@ LightningClubEntrance_ContinueOW:
 	scf
 	ret
 
-Func_3cc53:
+CheckMetRonaldAtLeastTwice:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
@@ -4242,7 +4242,7 @@ Script_FinalCupRound4AfterDuel:
 	start_dialog
 	print_npc_text RodYouDeserveLegendaryCardsText
 	quit_script
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	ld de, MOLTRES_LV40
 	farcall ReceiveCardIntoCollection
 	ld de, ZAPDOS_LV68
@@ -4524,7 +4524,7 @@ Script_GrandMasterCupAfterDuel:
 	ld a, NPC_CUP_HOST
 	ld hl, .NPCMovement_3e338
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, $01
@@ -4611,7 +4611,7 @@ Script_GrandMasterCupAfterDuel:
 	ld a, NPC_CUP_HOST
 	ld hl, .NPCMovement_3e40a
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, $01
@@ -4901,7 +4901,7 @@ Script_GrandMasterCupChampion:
 	ldtx hl, CupHostGrandMasterCupChampionPrizesText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	pop bc
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	push bc
 	ld a, b
 	farcall GetGrandMasterCupPrizeCardID
@@ -5053,7 +5053,7 @@ IshiharasVillaMain_LoadNPCs:
 
 IshiharasVillaMain_Interact:
 	ld hl, IshiharasVillaMain_NPCInteractions
-	call Func_32aa
+	call ExecuteFacingNPCScript
 	jr nc, .asm_3e748
 	ld hl, IshiharasVillaMain_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6863,7 +6863,7 @@ Script_Rook:
 	hide_chips_hud
 	end_dialog
 	end_script
-	jp Func_3f572
+	jp SetGameCenterWarpData
 .proceed_repeat
 	print_npc_text RookProceedRepeatText
 	end_dialog
@@ -6899,7 +6899,7 @@ Script_RookAfterDuel:
 	print_npc_text RookPlayerLostText
 	end_dialog
 	end_script
-	jp Func_3f572
+	jp SetGameCenterWarpData
 .proceed
 	ask_question RookProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
@@ -6918,13 +6918,13 @@ Script_RookAfterDuel:
 	print_npc_text RookPlayerWithdrewText
 	end_dialog
 	end_script
-	jp Func_3f572
+	jp SetGameCenterWarpData
 .done
 	end_dialog
 	end_script
 	ret
 
-Func_3f572:
+SetGameCenterWarpData:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
@@ -7457,7 +7457,7 @@ Func_3f95e:
 	ld b, BANK(.NPCMovement_3f980)
 	ld hl, .NPCMovement_3f980
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectFlag5_WithID
 	ld a, $01

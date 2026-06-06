@@ -34,7 +34,7 @@ Func_30005:
 	ld a, [wPlayerOWObject]
 	ld b, SOUTH | MOVE_BACKWARDS
 	ld c, MOVE_SPEED_RUN
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	ld a, $05
 	call WaitAFrames
 .asm_30050
@@ -142,7 +142,7 @@ OverworldGr_WarpFadeInPreload:
 	ld a, [wCurOWLocation]
 	call PlacePlayerInGRIslandLocation
 	ld a, [wCurOWLocation]
-	call Func_30202
+	call PlaceGRIslandMapCursor
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_301c0)
@@ -156,7 +156,7 @@ OverworldGr_WarpFadeInPreload:
 	ret
 
 .asm_3012c
-	farcall Func_1d51e
+	farcall HideOWMapLocationBox
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(DoGRBlimpMovement_GRIsland)
@@ -201,7 +201,7 @@ OverworldGr_WarpFadeInPreload:
 	ret
 
 OverworldGr_WarpFadeOutPreload:
-	farcall Func_1d51e
+	farcall HideOWMapLocationBox
 	scf
 	ccf
 	ret
@@ -233,7 +233,7 @@ OverworldGr_WarpEndSFX:
 	ret
 
 Func_301c0:
-	farcall Func_d683
+	farcall ResetTCGIslandEventState
 	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop
@@ -263,7 +263,7 @@ PlacePlayerInGRIslandLocation:
 	farcall SetOWObjectPosition
 	ret
 
-Func_30202:
+PlaceGRIslandMapCursor:
 	push af
 	sla a ; *2
 	ld hl, GRIslandLocationPositions
@@ -323,7 +323,7 @@ Func_30242:
 	cp b
 	jr z, .done
 	ld [wCurOWLocation], a
-	call Func_30202
+	call PlaceGRIslandMapCursor
 	ld a, [wCurOWLocation]
 	call PrintGRIslandLocationName
 	call Func_30398
@@ -3365,7 +3365,7 @@ LightningFortCatherine_LoadNPCs:
 
 LightningFortCatherine_Interact:
 	ld hl, LightningFortCatherine_NPCInteractions
-	call Func_32aa
+	call ExecuteFacingNPCScript
 	scf
 	ret
 
@@ -3598,7 +3598,7 @@ FireFortEntrance_Interact:
 	ret
 
 FireFortEntrance_AfterDuel:
-	farcall Func_343ef
+	farcall DoRonaldAfterDuelScene
 	scf
 	ret
 
@@ -4967,7 +4967,7 @@ WaterFortEntrance_Interact:
 	ret
 
 WaterFortEntrance_AfterDuel:
-	farcall Func_343ef
+	farcall DoRonaldAfterDuelScene
 	scf
 	ret
 

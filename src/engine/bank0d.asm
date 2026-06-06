@@ -519,7 +519,7 @@ Func_34391:
 	db SOUTH, MOVE_1
 	db $ff
 
-Func_343ef:
+DoRonaldAfterDuelScene:
 	xor a
 	start_script
 	start_dialog
@@ -834,7 +834,7 @@ Func_34635:
 	jr z, .asm_3468e
 	ld a, NPC_GR_5
 	lb bc, SOUTH | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	jr .asm_34689
 .asm_34675
 	ld a, NPC_GR_5
@@ -844,7 +844,7 @@ Func_34635:
 	jr z, .asm_3468e
 	ld a, NPC_GR_5
 	lb bc, NORTH | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 .asm_34689
 	ld a, NPC_GR_5
 	call Func_336d
@@ -1363,7 +1363,7 @@ Func_34a7d:
 	ret z
 	ld a, NPC_GR_5
 	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
 	call Func_336d
 	ret
@@ -1376,7 +1376,7 @@ Func_34a96:
 	ret z
 	ld a, NPC_GR_5
 	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
 	call Func_336d
 	ret
@@ -1561,7 +1561,7 @@ GameCenter1_LoadNPCs:
 
 GameCenter1_Interact:
 	ld hl, GameCenter1_NPCInteractions
-	call Func_32aa
+	call ExecuteFacingNPCScript
 	jr nc, .asm_34c4a
 	ld hl, GameCenter1_OWInteractions
 	call ExecutePlayerInteractScript
@@ -6708,7 +6708,7 @@ GrCastleEntrance_Idle:
 	farcall StartOWObjectAnimation
 	ld b, NORTH
 	ld c, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	jr .asm_3740c
 .asm_37409
 	call HandleOverworldPlayerInput

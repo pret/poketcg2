@@ -1387,7 +1387,7 @@ Func_2ca46:
 	jr z, .exit
 	ld a, NPC_STEPHANIE
 	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	jr .asm_2ca9a
 .asm_2ca86
 	ld a, NPC_STEPHANIE
@@ -1397,7 +1397,7 @@ Func_2ca46:
 	jr z, .exit
 	ld a, NPC_STEPHANIE
 	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 .asm_2ca9a
 	ld a, NPC_STEPHANIE
 	call Func_336d

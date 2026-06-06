@@ -859,7 +859,7 @@ OverworldTcg_WarpEndSFX:
 	ret
 
 HandleTCGIslandInput:
-	farcall Func_d683
+	farcall ResetTCGIslandEventState
 	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop_input
@@ -2715,7 +2715,7 @@ Script_TCGCupRound1AfterDuel:
 	ld b, BANK(.NPCMovement_418a1)
 	ld hl, .NPCMovement_418a1
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	ld a, $01
 	start_script
 	start_dialog
@@ -2736,7 +2736,7 @@ Script_TCGCupRound1AfterDuel:
 	ld b, BANK(.NPCMovement_4189c)
 	ld hl, .NPCMovement_4189c
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, $01
@@ -2842,7 +2842,7 @@ Script_TCGCupRound2AfterDuel:
 	ld b, BANK(.NPCMovement_419a6)
 	ld hl, .NPCMovement_419a6
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	ld a, $01
 	start_script
 	start_dialog
@@ -2863,7 +2863,7 @@ Script_TCGCupRound2AfterDuel:
 	ld b, BANK(.NPCMovement_419a1)
 	ld hl, .NPCMovement_419a1
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, $01
@@ -3019,7 +3019,7 @@ Script_TCGCupRound3AfterDuel:
 	ld b, BANK(.NPCMovement_41ae0)
 	ld hl, .NPCMovement_41ae0
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, $01
@@ -3075,7 +3075,7 @@ Script_TCGCupRound3AfterDuel:
 	farcall GetTCGChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
@@ -3474,7 +3474,7 @@ Func_41e5c:
 	ret z
 	ld a, NPC_GR_5
 	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
 	call Func_336d
 	ret
@@ -3487,7 +3487,7 @@ Func_41e75:
 	ret z
 	ld a, NPC_GR_5
 	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 	ld a, NPC_GR_5
 	call Func_336d
 	ret
@@ -5243,7 +5243,7 @@ Script_GRCupRound3AfterDuel:
 	farcall GetGRChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	farcall ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
@@ -5365,7 +5365,7 @@ Script_GRCupOpponentEliminated:
 	ld b, BANK(.NPCMovement_42d9b)
 	ld hl, .NPCMovement_42d9b
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	push af
 	ld b, BANK(.NPCMovement_42da0)
@@ -5375,14 +5375,14 @@ Script_GRCupOpponentEliminated:
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, .NPCMovement_42da3
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	farcall ClearOWObject
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld b, BANK(.NPCMovement_42da8)
 	ld hl, .NPCMovement_42da8
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	ld a, $01
 	start_script
 	start_dialog
@@ -5427,7 +5427,7 @@ Script_GRCupNewChallenger:
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, .NPCMovement_42e0a
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	pop af
 	ld b, BANK(.NPCMovement_42e05)
 	ASSERT BANK(.NPCMovement_42e05) == BANK(.NPCMovement_42e0f)
@@ -5436,7 +5436,7 @@ Script_GRCupNewChallenger:
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, .NPCMovement_42e0f
 	farcall MoveNPC
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	ld a, $01
 	start_script
 	start_dialog

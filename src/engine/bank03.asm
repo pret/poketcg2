@@ -65,7 +65,7 @@ StartMenu_ContinueFromDiary:
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	call Func_33b7
+	call LoadCurMapScriptPointers
 	call Func_c29d
 	call InitSaveDataState
 	ld a, TRUE
@@ -89,14 +89,14 @@ StartMenu_ContinueFromDiary:
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	call Func_33b7
+	call LoadCurMapScriptPointers
 	call Func_c29d
 	call InitSaveDataState
 	ld a, TRUE
 	farcall ReadOrInitSaveData
 	call DisableLCD
 	farcall ReloadSpriteAnimTilesets
-	farcall Func_1055e
+	farcall ReloadOWMapAndTiles
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall SetOverworldFrameFunc
@@ -122,7 +122,7 @@ StartMenu_ContinueDuel:
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	call Func_33b7
+	call LoadCurMapScriptPointers
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
 	call MaxOutEventValue
@@ -958,7 +958,7 @@ ReceiveCardIntoCollection:
 	farcall _ShowReceivedCard
 	ret
 
-; bank and offset table of data for LoadMapHeader and Func_33b7
+; bank and offset table of data for LoadMapHeader and LoadCurMapScriptPointers
 ; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
 MapHeaderPtrs::
 	dba OverworldTcg_MapHeader
@@ -1154,7 +1154,7 @@ OverworldLoop::
 	ld [wCurMapScriptsPointer + 1], a
 	ld a, OWMODE_MUSIC_PRELOAD
 	call ExecuteOWModeScript
-	farcall Func_102ef
+	farcall InitOverworldGraphics
 	xor a
 	farcall InitOverworldObjectState
 	ld a, $01
@@ -1239,7 +1239,7 @@ OverworldLoop::
 
 .fade
 	farcall ReloadSpriteAnimTilesets
-	farcall Func_1055e
+	farcall ReloadOWMapAndTiles
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall SetOverworldFrameFunc
@@ -1696,7 +1696,7 @@ ClearEvents:
 	pop bc
 	ret
 
-Func_d683:
+ResetTCGIslandEventState:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	call ZeroOutEventValue
 	ld a, EVENT_EE
@@ -3147,7 +3147,7 @@ ScriptCommand_ShowCardReceivedScreen:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	call Func_c63e
 	farcall Func_10252
 	call WaitPalFading
@@ -3180,7 +3180,7 @@ ScriptCommand_ScrollToPosition:
 	sla b
 	ld d, c
 	ld e, b
-	farcall Func_104ad
+	farcall ClampOWScrollTarget
 .delay_loop
 	call DoFrame
 	farcall CheckOWScroll
@@ -3275,7 +3275,7 @@ ScriptCommand_AnimatePlayerMovement:
 	ld a, [wPlayerOWObject]
 	farcall StartOWObjectAnimation
 	farcall ResetOWObjectFlag5_WithID
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 .delay_loop
 	call DoFrame
 	ld a, [wPlayerOWObject]
@@ -3296,7 +3296,7 @@ ScriptCommand_AnimateNPCMovement:
 	ld c, a
 	pop af
 	push af
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 .delay_loop
 	call DoFrame
 	pop af
@@ -3313,7 +3313,7 @@ ScriptCommand_AnimateActiveNPCMovement:
 	ld b, c
 	ld c, a
 	ld a, [wScriptNPC]
-	farcall Func_10e3c
+	farcall TryMoveOWObjectInDirection
 .delay_loop
 	call DoFrame
 	ld a, [wScriptNPC]
@@ -3372,7 +3372,7 @@ ScriptCommand_StartDuel:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_WaitForPlayerAnimation:
-	call Func_3340
+	call WaitForPlayerOWObjectAnimation
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_WaitForFade:
@@ -4109,7 +4109,7 @@ ScriptCommand_GiveBoosterPacks:
 
 	ld hl, wBoosterPacksToGive
 .give_boosters
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	ld a, [wNumBoosterPacksToGive]
 	ld c, a
 	xor a
@@ -4386,7 +4386,7 @@ ScriptCommand_ReceiveCard:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	call ReceiveCardIntoCollection
 	farcall Func_10252
 	call WaitPalFading
@@ -4728,7 +4728,7 @@ DebugBackgroundFontViewerScreen:
 	push bc
 	push de
 	push hl
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	farcall SetFrameFuncAndFadeFromWhite
 	call FlushAllPalettes
 	lb de, 2, 1
@@ -4802,7 +4802,7 @@ DebugBackgroundPortraitViewerScreen:
 	push bc
 	push de
 	push hl
-	farcall Func_102a4
+	farcall SuspendOverworldKeepingSpriteAnims
 	farcall SetInitialGraphicsConfiguration
 	farcall ZeroObjectPositionsAndEnableOBPFading
 ; player's
@@ -4943,7 +4943,7 @@ DebugNPCObjectViewerScreen:
 	push bc
 	push de
 	push hl
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	ld a, NUM_MAPS_GFX_DEBUG
 	call Random
@@ -5055,7 +5055,7 @@ DebugNPCObjectViewerScreen:
 	jr .wait_input
 
 DebugEffectViewerScreen:
-	farcall Func_102a4
+	farcall SuspendOverworldKeepingSpriteAnims
 	call DebugEffectViewer
 	farcall Func_102c4
 	ret
@@ -5293,7 +5293,7 @@ DebugSendMailScreen:
 	push bc
 	push de
 	push hl
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	lb de, 0, 0
 	ld b, BANK(.menu_params)

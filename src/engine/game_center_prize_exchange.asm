@@ -4,7 +4,7 @@ GameCenterPrizeExchange:
 	call .PrintExchangePrompt
 	jr c, .exit
 	farcall ShowNPCAnimsUnderDialogBox
-	farcall Func_1022a
+	farcall SuspendOverworldForSubScreen
 	call .ShowMenu
 	farcall Func_10252
 	farcall HideNPCAnimsUnderDialogBox

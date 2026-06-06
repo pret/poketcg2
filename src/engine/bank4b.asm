@@ -703,7 +703,7 @@ WriteCurSpriteAnim:
 	ret
 
 Func_12c3dc:
-	call Func_3bc1
+	call GetNPCOverworldSprite
 	ret
 
 ; input:
@@ -773,7 +773,7 @@ _LoadOWObject::
 	ld a, [wda8d]
 	farcall SetSpriteAnimDirection
 	ld a, [wda8c]
-	call Func_3bc1
+	call GetNPCOverworldSprite
 	push hl
 	ld h, b
 	ld l, c

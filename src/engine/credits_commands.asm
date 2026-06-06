@@ -1,5 +1,5 @@
 CreditsScreen:
-	call Func_1022a
+	call SuspendOverworldForSubScreen
 	call _PlayCredits
 	call Func_10252
 	ret
