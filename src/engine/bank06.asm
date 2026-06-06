@@ -4084,7 +4084,7 @@ RequestToPrintCard:
 	ld h, [hl]
 	ld l, a
 	ld de, sGfxBuffer2
-	call Func_1adbd
+	call BuildPrintableCardPic
 	ld a, $40
 	lb hl, 12,  1
 	lb de,  2, 68
@@ -5468,69 +5468,74 @@ DisplayBoosterContent:
 	bank1call DisplayCardList
 	ret
 
-Func_1adbd:
+; builds the card's picture for the Game Boy Printer into the buffer at de.
+; loads the card's tiles (LoadCardGfxRemapped) into wc000, then walks the
+; 8x6-tile portrait in column-major order and repacks each tile's pixel rows
+; (through the rr/rra/sra bit sequence) into the print-buffer layout. The
+; per-tile palette is dropped, so the printout is a flat grayscale of the card.
+BuildPrintableCardPic:
 	push de
 	ld de, wc000
 	lb bc, $30, TILE_SIZE
-	call Func_2dc4
-	pop de
-	ld hl, wc000
-	ld c, $08
-.asm_1adcd
-	ld b, $06
-.asm_1adcf
+	call LoadCardGfxRemapped ; load the 48 (remapped) card tiles into wc000
+	pop de ; de = output buffer
+	ld hl, wc000 ; hl = loaded tiles
+	ld c, $08 ; 8 tile columns
+.col
+	ld b, $06 ; 6 tile rows (8x6 = 48 tiles)
+.row
 	push bc
-	ld c, $08
-.asm_1add2
-	ld b, $02
-.asm_1add4
+	ld c, $08 ; 8 pixel rows per tile
+.pixel_row
+	ld b, $02 ; 2 bytes (bitplanes) per pixel row
+.plane
 	push bc
 	push hl
-	ld c, [hl]
+	ld c, [hl] ; c = one bitplane byte (8 pixels)
 	ld b, $04
-.asm_1add9
-	rr c
+.repack_lo
+	rr c ; pull a source pixel bit...
 	rra
-	sra a
+	sra a ; ...and pack it into a
 	dec b
-	jr nz, .asm_1add9
+	jr nz, .repack_lo ; the low 4 bits of the byte
 	ld hl, $c0
 	add hl, de
 	ld [hli], a
 	inc hl
-	ld [hl], a
+	ld [hl], a ; write the packed value to de+$c0 and de+$c0+2
 	ld b, $04
-.asm_1adea
+.repack_hi
 	rr c
 	rra
 	sra a
 	dec b
-	jr nz, .asm_1adea
+	jr nz, .repack_hi ; the high 4 bits of the byte
 	ld [de], a
 	ld hl, $2
 	add hl, de
-	ld [hl], a
+	ld [hl], a ; write the packed value to de and de+2
 	pop hl
 	pop bc
 	inc de
 	inc hl
 	dec b
-	jr nz, .asm_1add4
+	jr nz, .plane
 	inc de
 	inc de
 	dec c
-	jr nz, .asm_1add2
+	jr nz, .pixel_row
 	pop bc
 	dec b
-	jr nz, .asm_1adcf
+	jr nz, .row
 	ld a, $c0
 	add e
 	ld e, a
 	ld a, $00
 	adc d
-	ld d, a
+	ld d, a ; advance de by $c0 to the next tile-column block
 	dec c
-	jr nz, .asm_1adcd
+	jr nz, .col
 	ret
 
 LoadHandCardsIcon:

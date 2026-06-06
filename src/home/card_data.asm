@@ -207,23 +207,33 @@ LoadCardGfx::
 	call BankswitchROM
 	ret
 
-Func_2dc4::
+; like LoadCardGfx, but reconstructs the 48 card tiles through the card's
+; attribute map instead of copying them 1:1. The low 6 bits of each attribute-
+; map byte are a tile index relative to that tile's position, so output tile i
+; comes from source tile ((wCardAttrMap[i] & $3f) + i) -- identity (= the plain
+; portrait) for most cards, but some (e.g. Energy cards) point at extra tiles
+; stored right after their portrait. The palette bits (high 2 of each map byte)
+; are stripped, leaving just the indices in wCardAttrMap. Used to build the card
+; picture for the Game Boy Printer (see BuildPrintableCardPic /
+; DrawCardPicInSRAMGfxBuffer2).
+; input: hl = card_gfx_index, de = destination, bc = $30 (tiles), TILE_SIZE
+LoadCardGfxRemapped::
 	ldh a, [hBankROM]
 	push af
-	call LoadCardPalettes
+	call LoadCardPalettes ; loads palettes + attr map; returns hl = card's tile base
 	ld a, l
 	ld [wcde5 + 0], a
 	ld a, h
-	ld [wcde5 + 1], a
+	ld [wcde5 + 1], a ; wcde5 = base address of the card's tiles
 	ld hl, wCardAttrMap
-	lb bc, $30, 0
+	lb bc, $30, 0 ; b = 48 tiles to emit, c = output position (0..47)
 .loop_copy
 	ld a, [hl]
-	and $3f
-	ld [hli], a
+	and $3f ; keep the relative tile index, drop the palette bits
+	ld [hli], a ; store the stripped index back into wCardAttrMap
 	push hl
 	push bc
-	add c
+	add c ; relative index + position = absolute source tile number
 	ld l, a
 	ld h, $00
 	add hl, hl
@@ -235,12 +245,12 @@ Func_2dc4::
 	ld l, a
 	ld a, [wcde5 + 1]
 	adc h
-	ld h, a
+	ld h, a ; hl = tile base + tile number * TILE_SIZE = source tile address
 	ld b, TILE_SIZE
-	call SafeCopyDataHLtoDE
+	call SafeCopyDataHLtoDE ; copy this tile to de, advancing de
 	pop bc
 	pop hl
-	inc c
+	inc c ; advance output position
 	dec b
 	jr nz, .loop_copy
 	pop af

@@ -5,7 +5,7 @@ baserom overlay into per-card sources + an asm layout.
 Card format (uncompressed, fixed 840 B), starting at CardGraphics + index*8:
   72-byte header = 3 GBC palettes (24 B) + a 48-entry attribute map.
                    Each map byte's high 2 bits pick that tile's palette; the
-                   low 6 bits are a tile index used by the alternate (Func_2dc4)
+                   low 6 bits are a tile index used by the alternate (LoadCardGfxRemapped)
                    renderer. The portrait loader copies the 48 tiles 1:1, so for
                    the portrait each tile uses exactly one palette.
   768-byte tiles = 48 stored tiles x TILE_SIZE (column-major).
@@ -135,7 +135,7 @@ def main():
         header = (
             "; Card graphics. 445 portraits, each \"<Name>CardGfx\": 3 GBC palettes (rgb)\n"
             "; + a 48-entry attribute map (db; high 2 bits = each tile's palette, low 6\n"
-            "; bits = a tile index for the alternate Func_2dc4 renderer), then INCBIN of\n"
+            "; bits = a tile index for the alternate LoadCardGfxRemapped renderer), then INCBIN of\n"
             "; the 48 portrait tiles (built from gfx/cards/<name>.png). The tiles are\n"
             "; stored as 4-shade grayscale PNGs and the colour data is emitted here as asm\n"
             "; for simplicity/byte-exactness; these are standard CGB multi-palette images,\n"

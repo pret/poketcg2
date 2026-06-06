@@ -1,6 +1,6 @@
 ; Card graphics. 445 portraits, each "<Name>CardGfx": 3 GBC palettes (rgb)
 ; + a 48-entry attribute map (db; high 2 bits = each tile's palette, low 6
-; bits = a tile index for the alternate Func_2dc4 renderer), then INCBIN of
+; bits = a tile index for the alternate LoadCardGfxRemapped renderer), then INCBIN of
 ; the 48 portrait tiles (built from gfx/cards/<name>.png). The tiles are
 ; stored as 4-shade grayscale PNGs and the colour data is emitted here as asm
 ; for simplicity/byte-exactness; these are standard CGB multi-palette images,
