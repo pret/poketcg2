@@ -84,10 +84,8 @@ ROMX $1a
 	"Effect Functions 1"
 ROMX $1b
 	"Gfx 1"
-; ROMX $1c not started
-ROMX $1d
-	"Card Gfx 1"
-; ROMX $1e-$36 not started
+; Card graphics ($1b:74d0-$36) are pinned via BANK[]/ROMX[] in
+; gfx/card_graphics.asm, so they are not assigned here.
 ROMX $37
 	"Text Offsets"
 ROMX $38

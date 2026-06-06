@@ -98,6 +98,11 @@ MACRO? gfx_ptr
 	db $0 ; padding
 ENDM
 
+; card gfx index = (<Name>CardGfx - CardGraphics) / 8, using absolute ROM addresses
+MACRO? gfx
+	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
+ENDM
+
 ; \1 = y offset
 ; \2 = x offset
 ; \3 = vtile

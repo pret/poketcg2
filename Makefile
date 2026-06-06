@@ -104,6 +104,10 @@ $(rom): $(rom_obj) src/layout.link
 
 ### Misc file-specific graphics rules
 
+# Card portraits are stored column-major (tile order matches the ROM and makes
+# the grayscale PNGs render as the actual card art).
+src/gfx/cards/%.2bpp: RGBGFXFLAGS += -Z
+
 src/gfx/coins/%.2bpp: RGBGFXFLAGS += -x 1
 
 src/gfx/booster_packs/beginning_pack.2bpp: RGBGFXFLAGS += -x 2

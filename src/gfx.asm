@@ -83,9 +83,7 @@ SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
 SymbolsFont::
 INCBIN "gfx/fonts/symbols.2bpp"
 
-SECTION "Card Gfx 1", ROMX
-
-CardGraphics::
+INCLUDE "gfx/card_graphics.asm"
 
 SECTION "Bank 4b", ROMX
 INCLUDE "engine/bank4b.asm"
