@@ -4098,7 +4098,7 @@ RequestToPrintCard:
 ; or otherwise just the card's name and type symbol
 .DrawTopCardInfoInSRAMGfxBuffer0:
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 
 	; draw empty text box frame
 	ld hl, sGfxBuffer0
@@ -4488,7 +4488,7 @@ PrintDeckConfiguration:
 	call ShowPrinterTransmitting
 	call PrepareForPrinterCommunications
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 	lb de, 0, 64
 	lb bc, 20, 4
 	call DrawRegularTextBoxDMG
@@ -4660,7 +4660,7 @@ PrintCardList:
 	call CopyPlayerName
 	call PrepareForPrinterCommunications
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 
 	lb de, 0, 64
 	lb bc, 20, 4

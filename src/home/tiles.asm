@@ -197,8 +197,10 @@ CopyFontsOrDuelGraphicsTiles::
 	call BankpopROM
 	ret
 
-; this function copies gfx data into sram
-Func_212f::
+; loads the tiles used to render a card's info into the SRAM gfx buffers:
+; the symbols font + duel menu/card-pic border into sGfxBuffer1, the loaded
+; card's type symbol after them, and the DMG/SGB card symbols into sGfxBuffer4.
+LoadCardSymbolFontTilesToSRAM::
 ; loads symbols fonts to sGfxBuffer1
 	ld hl, SymbolsFont - $4000
 	ld de, sGfxBuffer1
@@ -243,7 +245,7 @@ DrawDuelBoxMessage::
 	call BankswitchVRAM1
 	ld a, 2
 	ld hl, 0
-	call Func_1eb1
+	call FillDuelBoxMessageRectangle
 	call BankswitchVRAM0
 	pop af
 	ld l, a
@@ -261,7 +263,9 @@ DrawDuelBoxMessage::
 	lb hl, 1, 10
 ;	fallthrough
 
-Func_1eb1::
+; fills the 10x4 tile box-message area at screen position (5, 4),
+; starting from tile a (l/h are the per-column/row tile increments)
+FillDuelBoxMessageRectangle::
 	lb bc, 10, 4
 	lb de, 5, 4
 	jp FillRectangle
