@@ -1260,7 +1260,7 @@ PsychicClubEntrance_MapScripts:
 
 PsychicClubEntrance_Idle:
 	call Func_3332
-	call Func_2ca46
+	call PsychicClubEntrance_MoveStephanieOutOfPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -1356,11 +1356,11 @@ PsychicClubEntrance_ContinueOW:
 	ret
 
 Func_2ca3e:
-	call Func_2ca46
+	call PsychicClubEntrance_MoveStephanieOutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_2ca46:
+PsychicClubEntrance_MoveStephanieOutOfPath:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .exit
@@ -2902,11 +2902,11 @@ RockClub_NPCs:
 	npc NPC_MATTHEW, 2, 3, SOUTH, NULL
 	npc NPC_RYAN, 9, 7, EAST, NULL
 	npc NPC_ANDREW, 3, 8, EAST, NULL
-	npc NPC_GR_1, 7, 3, NORTH, Func_2d8f3
+	npc NPC_GR_1, 7, 3, NORTH, RockClub_GR1AppearanceCheck
 	db $ff
 
 RockClub_NPCInteractions:
-	npc_script NPC_GENE, Func_2d754
+	npc_script NPC_GENE, Script_Gene
 	npc_script NPC_MATTHEW, Func_2d7ea
 	npc_script NPC_RYAN, Func_2d841
 	npc_script NPC_ANDREW, Func_2d89c
@@ -2981,7 +2981,7 @@ RockClub_AfterDuel:
 	ret
 
 RockClub_AfterDuelScripts:
-	npc_script NPC_GENE, Func_2d7c3
+	npc_script NPC_GENE, Script_GeneAfterDuel
 	npc_script NPC_MATTHEW, Func_2d825
 	npc_script NPC_RYAN, Func_2d87e
 	npc_script NPC_ANDREW, Func_2d8d7
@@ -3050,7 +3050,7 @@ Func_2d6ca:
 	db SOUTH, MOVE_10
 	db $ff
 
-Func_2d754:
+Script_Gene:
 	ld a, NPC_GENE
 	ld [wScriptNPC], a
 	ldtx hl, DialogGeneText
@@ -3105,7 +3105,7 @@ Func_2d754:
 	end_script
 	ret
 
-Func_2d7c3:
+Script_GeneAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -3275,7 +3275,7 @@ Func_2d8d7:
 	end_script
 	ret
 
-Func_2d8f3:
+RockClub_GR1AppearanceCheck:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr z, .asm_2d8fd

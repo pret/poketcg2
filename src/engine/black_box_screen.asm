@@ -1,7 +1,7 @@
 BlackBoxScreen:
 	call SuspendOverworldForSubScreen
 	call BlackBox
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 BlackBox:

@@ -3,7 +3,7 @@
 CoinFlipGameScreen:
 	farcall SuspendOverworldForSubScreen
 	call ShowCoinFlipGame
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; return a = streak

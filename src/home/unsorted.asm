@@ -90,7 +90,7 @@ ExecuteGameEvent::
 .Duel:
 	ld a, GAME_EVENT_OVERWORLD_UPDATE
 	ld [wNextGameEvent], a
-	farcall Func_1e5a2
+	farcall StartNPCDuelFromOverworld
 	jr c, .lost
 ; won
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -389,7 +389,7 @@ ExecuteCoordScript::
 ; hl = npc script list (*_NPCInteractions)
 Func_328c::
 	push hl
-	farcall Func_d3e9
+	farcall GetPlayerFacingTilePosition
 	farcall FindNPCAtLocation
 	cp NPC_NONE
 	jr z, .set_carry
@@ -408,7 +408,7 @@ Func_328c::
 ; hl = npc script list (*_NPCInteractions)
 ExecuteFacingNPCScript::
 	push hl
-	farcall Func_d3e9
+	farcall GetPlayerFacingTilePosition
 	farcall FindNPCAtLocation
 	cp NPC_NONE
 	jr z, .set_carry

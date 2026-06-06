@@ -244,7 +244,7 @@ Func_301c0:
 	bit B_PAD_A, a
 	jr z, .loop
 	ld a, [wCurOWLocation]
-	call Func_3030a
+	call CheckGRMapLocationLocked
 	jr c, .loop
 	call Func_30452
 	xor a
@@ -279,7 +279,7 @@ PlaceGRIslandMapCursor:
 	farcall SetOWObjectPosition
 	pop af
 
-	call Func_3030a
+	call CheckGRMapLocationLocked
 	jr c, .asm_30233
 
 	ld a, NPC_CURSOR_GR
@@ -444,7 +444,7 @@ PrintGRIslandLocationName:
 	textitem 33, 2, MapGRCastleText            ; OWMAP_GR_CASTLE
 	; no sentinels
 
-Func_3030a:
+CheckGRMapLocationLocked:
 	sla a ; *2
 	ld hl, .PointerTable
 	add_hl_a

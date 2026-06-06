@@ -1274,7 +1274,7 @@ SetWarpData:
 	ld [wTempPrevMap], a
 	ret
 
-Func_d3e9::
+GetPlayerFacingTilePosition::
 	ld a, [wPlayerOWObject]
 	push af
 	farcall GetOWObjectTilePosition
@@ -3149,7 +3149,7 @@ ScriptCommand_ShowCardReceivedScreen:
 	ld d, b
 	farcall SuspendOverworldForSubScreen
 	call Func_c63e
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
@@ -4120,7 +4120,7 @@ ScriptCommand_GiveBoosterPacks:
 	inc b
 	dec c
 	jr nz, .loop_boosters
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
@@ -4207,7 +4207,7 @@ ScriptCommand_ScriptRetfar:
 
 ScriptCommand_CardPop:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_1f7f1
+	farcall RunCardPopFromOverworld
 	call WaitPalFading
 	jp IncreaseScriptPointerBy2
 
@@ -4388,7 +4388,7 @@ ScriptCommand_ReceiveCard:
 	ld d, b
 	farcall SuspendOverworldForSubScreen
 	call ReceiveCardIntoCollection
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
@@ -4465,7 +4465,7 @@ ScriptCommand_LinkDuel:
 	call ZeroOutEventValue
 	ld hl, wScriptFlags
 	res 1, [hl]
-	farcall Func_1d99e
+	farcall RunLinkDuelFromOverworld
 	cp $ff
 	jr z, .set
 	or a
@@ -4740,7 +4740,7 @@ DebugBackgroundFontViewerScreen:
 	call .Viewer
 ; exit
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	pop hl
 	pop de
 	pop bc
@@ -4929,7 +4929,7 @@ DebugBackgroundPortraitViewerScreen:
 	pop af
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	pop hl
 	pop de
 	pop bc
@@ -4966,7 +4966,7 @@ DebugNPCObjectViewerScreen:
 	pop af
 	call ResumeSong_ClearTemp
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	pop hl
 	pop de
 	pop bc
@@ -5057,7 +5057,7 @@ DebugNPCObjectViewerScreen:
 DebugEffectViewerScreen:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call DebugEffectViewer
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	ret
 
 DebugEffectViewer:
@@ -5320,7 +5320,7 @@ DebugSendMailScreen:
 	jr .wait_input
 .exit
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	pop hl
 	pop de
 	pop bc

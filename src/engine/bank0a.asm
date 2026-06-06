@@ -3439,12 +3439,12 @@ _HandleAutoDeckMenu:
 	call PrintTextNoDelay_ZeroAttributes
 	ldtx hl, ChooseDeckCategoryText
 	call DrawWideTextBox_PrintText
-	call Func_2bd48
+	call InitAutoDeckMachineCategoryMenu
 	farcall UpdateDeckMachineScrollArrowsAndEntries
 	call EnableLCD
 	ret
 
-Func_2bd48:
+InitAutoDeckMachineCategoryMenu:
 	ld a, NUM_AUTO_DECK_MACHINE_REGULAR_CATEGORIES
 	ld hl, wIndicesAutoDeckMachineUnlockedCategories
 	farcall ClearNBytesFromHL

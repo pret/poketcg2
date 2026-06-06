@@ -888,7 +888,7 @@ Script_DeckSaveMachine:
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
-	farcall Func_1e849
+	farcall RunDeckSaveMachineFromOverworld
 	call ResumeSong
 	ret
 .cancel
@@ -4251,7 +4251,7 @@ Script_FinalCupRound4AfterDuel:
 	farcall ReceiveCardIntoCollection
 	ld de, DRAGONITE_LV41
 	farcall ReceiveCardIntoCollection
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	ld a, $01
 	start_script
@@ -4914,7 +4914,7 @@ Script_GrandMasterCupChampion:
 	ld e, c
 	ld d, b
 	farcall ReceiveCardIntoCollection
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 
 	ld a, $01

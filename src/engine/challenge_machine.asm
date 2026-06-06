@@ -4,7 +4,7 @@
 ChallengeMachine:
 	call SuspendOverworldKeepingSpriteAnims
 	call _ChallengeMachine
-	call Func_102c4
+	call ResumeOverworldKeepingSpriteAnims
 	ret
 
 _ChallengeMachine:

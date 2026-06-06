@@ -3077,7 +3077,7 @@ Script_TCGCupRound3AfterDuel:
 	ld d, b
 	farcall SuspendOverworldForSubScreen
 	farcall ReceiveCardIntoCollection
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	ld a, $01
 	start_script
@@ -5245,7 +5245,7 @@ Script_GRCupRound3AfterDuel:
 	ld d, b
 	farcall SuspendOverworldForSubScreen
 	farcall ReceiveCardIntoCollection
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	call WaitPalFading
 	ld a, $01
 	start_script

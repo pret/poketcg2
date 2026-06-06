@@ -118,6 +118,16 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 24 named. 552 remaining. Batch analyzed in PARALLEL by 8 subagents. Completed
+  the OW sub-screen suspend/resume brackets bottom-up: ResumeOverworldFromSubScreen /
+  ResumeOverworldKeepingSpriteAnims (exit pairs of last batch's Suspend*), plus the overworld
+  feature launchers that use them (StartNPCDuelFromOverworld, RunLinkDuelFromOverworld,
+  RunDeckSaveMachineFromOverworld, RunCardPopFromOverworld). Also GB-Printer card strip triad
+  (PrintCardInfoHeaderStrip/PictureStrip/FooterStripAndFeed — tcg1 leaves these raw too),
+  minicom-mailbox UI (DrawMailboxTitleAndScene, DrawMailboxScrollArrows, AdjustMailboxCursorAfterDelete),
+  map idle/NPC scripts (PsychicClubEntrance_MoveStephanieOutOfPath, TcgAirportEntrance_MoveGR5OutOfPath,
+  RockClub_GR1AppearanceCheck, Script_Gene/Script_GeneAfterDuel), InitSavedBGMapStack,
+  GetPlayerFacingTilePosition. Deferred Func_10ea3 (low-conf alt-mode movement wrapper) + Func_3332.
 - 2026-06-06: 21 named. 576 remaining. Batch analyzed in PARALLEL by 8 subagents over the
   callgraph candidate set (still-Func_, named caller AND callee, exclude AI banks). OW screen
   save/restore pair (SuspendOverworldForSubScreen / ...KeepingSpriteAnims), OW object movement

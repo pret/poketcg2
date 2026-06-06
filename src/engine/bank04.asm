@@ -152,7 +152,7 @@ StartDebugDuelVsRandomOpponent:
 	call Random
 	add $05
 	ld [wNPCDuelDeckID], a
-	farcall Func_1e5a2
+	farcall StartNPCDuelFromOverworld
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
 
@@ -303,7 +303,7 @@ SuspendOverworldForSubScreen:
 	pop af
 	ret
 
-Func_10252:
+ResumeOverworldFromSubScreen:
 	push af
 	push bc
 	push de
@@ -364,7 +364,7 @@ SuspendOverworldKeepingSpriteAnims:
 	pop af
 	ret
 
-Func_102c4:
+ResumeOverworldKeepingSpriteAnims:
 	push af
 	push bc
 	push de
@@ -409,7 +409,7 @@ InitOverworldGraphics:
 	ld bc, $40
 	call WriteBCBytesToHL
 
-	call Func_10327
+	call InitSavedBGMapStack
 
 	xor a
 	ld [wd896 + 0], a
@@ -420,7 +420,7 @@ InitOverworldGraphics:
 	pop af
 	ret
 
-Func_10327:
+InitSavedBGMapStack:
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -1387,7 +1387,7 @@ HandlePauseMenu:
 PauseMenuDeckScreen:
 	call SuspendOverworldForSubScreen
 	call ShowDeckSelectionMenuFromPauseMenu
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 ShowDeckSelectionMenuFromPauseMenu:
@@ -3365,7 +3365,7 @@ _PCMenu:
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 .Glossary:
@@ -3377,7 +3377,7 @@ _PCMenu:
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 .Printer:
@@ -3387,7 +3387,7 @@ _PCMenu:
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 .DeckDiagnosis:
@@ -3397,7 +3397,7 @@ _PCMenu:
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 SetPCMenuCursorToShutdown:
@@ -5219,7 +5219,7 @@ AnimateIntroCards:
 	call ScrollIntroCard
 	jr c, .asm_11c90
 	lb bc, 6, 7
-	call Func_1340c
+	call DrawLoadedCardAtCoords
 .asm_11c90
 	ret
 
@@ -5719,7 +5719,7 @@ HandlePopupMenu:
 CoinFlipGameDescriptionScreen:
 	call SuspendOverworldForSubScreen
 	farcall ShowCoinFlipGameDescription
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 INCLUDE "engine/slot_machine.asm"
@@ -5816,7 +5816,7 @@ DrawIntroCardGfx:
 	ret
 
 ; bc = coordinates
-Func_1340c:
+DrawLoadedCardAtCoords:
 	push af
 	push bc
 	push de
@@ -6112,7 +6112,7 @@ INCLUDE "engine/credits_commands.asm"
 ShowProloguePortraitAndText_WithFade:
 	call SuspendOverworldForSubScreen
 	call ShowProloguePortraitAndText
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 ShowProloguePortraitAndText:
@@ -6206,7 +6206,7 @@ ShowProloguePortraitAndText:
 PlayerNameSelectionScreen:
 	call SuspendOverworldForSubScreen
 	call PlayerNameSelection
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 PlayerNameSelection:

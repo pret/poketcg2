@@ -4061,12 +4061,12 @@ RequestToPrintCard:
 	call EnableLCD
 	call PrepareForPrinterCommunications
 	call .DrawTopCardInfoInSRAMGfxBuffer0
-	call Func_19f87
+	call PrintCardInfoHeaderStrip
 	call .DrawCardPicInSRAMGfxBuffer2
-	call Func_19f99
+	call PrintCardPictureStrip
 	jr c, .error
 	call DrawBottomCardInfoInSRAMGfxBuffer0
-	call Func_1a011
+	call PrintCardInfoFooterStripAndFeed
 	jr c, .error
 	call RestoreVBlankFunction
 	call ResetPrinterCommunicationSettings
@@ -4148,7 +4148,7 @@ RequestToPrintCard:
 .skip_pokemon_data
 	ret
 
-Func_19f87:
+PrintCardInfoHeaderStrip:
 	call TryInitPrinterCommunications
 	ret c ; aborted
 	ld hl, sGfxBuffer0
@@ -4158,7 +4158,7 @@ Func_19f87:
 	call SendPrinterInstructionPacket_1Sheet
 	ret
 
-Func_19f99:
+PrintCardPictureStrip:
 	call TryInitPrinterCommunications
 	ret c
 	ld hl, sGfxBuffer0 + $8 tiles
@@ -4225,7 +4225,7 @@ RetreatWeakResistData:
 	textitem 1, 72, ResistanceText
 	textitems_end
 
-Func_1a011:
+PrintCardInfoFooterStripAndFeed:
 	call TryInitPrinterCommunications
 	ret c
 	ld hl, sGfxBuffer0
@@ -6759,7 +6759,7 @@ WriteBBytesToDE_Bank06:
 	ret
 
 ; fill row at y = c with $1c in v0BGMap0 and $04 in v1BGMap1 (CGB)
-Func_1b6f2:
+FillBGMap0Row:
 	ld b, 0 ; x
 	ld a, $1c
 	call BCCoordToBGMap0Address
@@ -6777,7 +6777,7 @@ Func_1b6f2:
 
 UpdateMultilineInputScreenUI:
 	ld c, 4 ; y
-	call Func_1b6f2
+	call FillBGMap0Row
 	call ProcessMultilineInputWithUnderbar
 	ld hl, .end_text
 	call PlaceTextItems

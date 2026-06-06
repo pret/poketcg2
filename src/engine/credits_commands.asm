@@ -1,7 +1,7 @@
 CreditsScreen:
 	call SuspendOverworldForSubScreen
 	call _PlayCredits
-	call Func_10252
+	call ResumeOverworldFromSubScreen
 	ret
 
 _PlayCredits::

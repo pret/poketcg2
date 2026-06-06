@@ -329,7 +329,7 @@ GetDuelistPortrait::
 PauseMenuConfigScreen:
 	farcall SuspendOverworldForSubScreen
 	call ShowConfigMenu
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ShowConfigMenu:
@@ -777,7 +777,7 @@ ConfigExitMenuBoxParams:
 PauseMenuDiaryScreen:
 	farcall SuspendOverworldForSubScreen
 	call PushRegistersAndShowDiaryScreen
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 PushRegistersAndShowDiaryScreen:
@@ -898,7 +898,7 @@ SaveGamePrompt:
 PauseMenuStatusScreen:
 	farcall SuspendOverworldForSubScreen
 	call PushRegistersAndShowStatusScreen
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 PushRegistersAndShowStatusScreen:
@@ -2284,7 +2284,7 @@ DepositChips:
 Func_1cd63:
 	farcall SuspendOverworldForSubScreen
 	call ShowStartMenu
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; outputs in a what option the player chose
@@ -3152,7 +3152,7 @@ HideOWMapLocationBox:
 ShowReceivedCard:
 	farcall SuspendOverworldForSubScreen
 	call _ShowReceivedCard
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 _ShowReceivedCard:
@@ -3181,7 +3181,7 @@ INCLUDE "engine/coin_flip_game.asm"
 OWInteractionSlotMachine:
 	farcall SuspendOverworldForSubScreen
 	call SlotMachine
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; a - chips per bet
@@ -3209,10 +3209,10 @@ SlotMachine:
 	pop af
 	ret
 
-Func_1d99e:
+RunLinkDuelFromOverworld:
 	farcall SuspendOverworldForSubScreen
 	call _PlayLinkDuelAndGetResult
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 _PlayLinkDuelAndGetResult:
@@ -3389,7 +3389,7 @@ GiftCenter_ExecuteSelectedOption:
 	farcall HandleGiftCenter
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 .ReceiveCards:
@@ -3401,7 +3401,7 @@ GiftCenter_ExecuteSelectedOption:
 	farcall HandleGiftCenter
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 .SendDeckConfiguration:
@@ -3413,7 +3413,7 @@ GiftCenter_ExecuteSelectedOption:
 	farcall HandleGiftCenter
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 .ReceiveDeckConfiguration:
@@ -3425,14 +3425,14 @@ GiftCenter_ExecuteSelectedOption:
 	farcall HandleGiftCenter
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; a = incoming coin
 GiveCoin:
 	farcall SuspendOverworldForSubScreen
 	call _GiveCoin
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; a = incoming coin
@@ -3589,7 +3589,7 @@ ShowReceivedCoinOnCoinMenu:
 PauseMenuCoinScreen:
 	farcall SuspendOverworldForSubScreen
 	call ShowCoinMenuWithoutIncomingCoin
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ShowCoinMenuWithoutIncomingCoin::
@@ -5038,7 +5038,7 @@ DistortScreen:
 	db 4, 3, 2, 1, 1, 1, 1, 2
 
 ; returns carry if player lost
-Func_1e5a2::
+StartNPCDuelFromOverworld::
 	push bc
 	push de
 	push hl
@@ -5076,7 +5076,7 @@ Func_1e5a2::
 .start_duel
 	bank1call StartDuel_VSAIOpp
 .exit
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 .Debug:
@@ -5093,7 +5093,7 @@ RunDuelFromSRAM:
 	farcall SetOverworldFrameFunc
 	farcall SuspendOverworldForSubScreen
 	bank1call StartDuelFromSRAM
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 PlayDuelistIntroScene:
@@ -5278,7 +5278,7 @@ LoadNPCDuelConfiguration:
 PauseMenuMinicomScreen:
 	farcall SuspendOverworldForSubScreen
 	call PushRegistersAndShowMinicomScreen
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 PushRegistersAndShowMinicomScreen:
@@ -5404,17 +5404,17 @@ MinicomCardAlbum:
 	farcall HandlePlayersCardsScreen
 	ret
 
-Func_1e849:
+RunDeckSaveMachineFromOverworld:
 	farcall SuspendOverworldForSubScreen
 	call MinicomDeckSaveMachine
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 AutoDeckMachine:
 	farcall SuspendOverworldForSubScreen
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall HandleAutoDeckMenu
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 LoadBoosterPackScene:
@@ -5452,7 +5452,7 @@ LoadBoosterPackScene:
 Func_1e889:
 	farcall SuspendOverworldForSubScreen
 	call GiveBoosterPacks
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ; a = BOOSTER_* constant, b = has-another flag
@@ -5575,7 +5575,7 @@ _GiveBoosterPack:
 GrandMasterCupBracketScreen:
 	farcall SuspendOverworldForSubScreen
 	call ShowGrandMasterCupBracket
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 ShowGrandMasterCupBracket:
@@ -6080,7 +6080,7 @@ ENDR
 MinicomMailboxScreen:
 	farcall SuspendOverworldForSubScreen
 	call MinicomMailbox
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 MinicomMailbox:
@@ -6132,7 +6132,7 @@ MinicomMailboxNewMailScreen:
 	call DisableLCD
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call CalculateMailboxStatus
-	call Func_1ed2d
+	call DrawMailboxTitleAndScene
 	call FlushAllPalettes
 	call EnableLCD
 	ld a, [wNewMail]
@@ -6143,7 +6143,7 @@ MinicomMailboxNewMailScreen:
 	call CallPlaySFX
 	pop af
 .asm_1ed04
-	call Func_1ed57
+	call PrintMailboxStatusScrollableText
 	call DisableLCD
 	xor a
 	ld [wNewMail], a
@@ -6167,7 +6167,7 @@ CalculateMailboxStatus:
 	ld [wMailboxStatus], a
 	ret
 
-Func_1ed2d:
+DrawMailboxTitleAndScene:
 	lb de, 0, 0
 	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
@@ -6188,7 +6188,7 @@ LoadMailboxScene:
 	ret
 
 ; hl - text
-Func_1ed57:
+PrintMailboxStatusScrollableText:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -6324,7 +6324,7 @@ MailboxMainScreen:
 	inc a
 .done
 	call SetMenuBoxNumItems
-	call Func_1ee97
+	call DrawMailboxScrollArrows
 	pop hl
 	pop de
 	pop bc
@@ -6390,7 +6390,7 @@ PrintMailSenderAndSubjectToScreen:
 	pop bc
 	ret
 
-Func_1ee97:
+DrawMailboxScrollArrows:
 	lb bc, 1, 17
 	ld d, $1d
 	ld e, $01
@@ -6869,7 +6869,7 @@ DeleteMail:
 	ld [wMailCount], a
 	call DeleteGameCenterMailedCard
 	call DrawMailDeletedTextBox
-	call Func_1f210
+	call AdjustMailboxCursorAfterDelete
 .asm_1f1ad
 	pop hl
 	pop de
@@ -6925,7 +6925,7 @@ MailboxYesNoPrompt:
 	textitem 11, 3, PlayerDiaryPromptNoText
 	textitems_end
 
-Func_1f210:
+AdjustMailboxCursorAfterDelete:
 	ld a, [wSelectedMailCursorPosition]
 	and a
 	jr nz, .asm_1f225
@@ -7340,7 +7340,7 @@ GetwDD75:
 SelectGrandMasterCupPrizes:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call _SelectGrandMasterCupPrizes
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	ret
 
 ; return b = item1, c = item2
@@ -7623,10 +7623,10 @@ LoadGrandMasterCupPrizeCardData:
 	pop af
 	ret
 
-Func_1f7f1:
+RunCardPopFromOverworld:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call HandleIngameCardPop
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	ret
 
 HandleIngameCardPop:
@@ -7650,11 +7650,11 @@ HandleIngameCardPop:
 	key_func SCRIPTED_RARE_CARD_POP_IMAKUNI, IngameCardPop.Imakuni_rare
 	key_funcs_end
 
-; dupe of Func_1f7f1
+; dupe of RunCardPopFromOverworld
 Func_1f81f:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call HandleIngameCardPop
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	ret
 
 CardPopMenu:
@@ -7679,7 +7679,7 @@ CardPopMenu:
 CardDungeonDescriptionScreen:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call ShowCardDungeonDescriptionScreen
-	farcall Func_102c4
+	farcall ResumeOverworldKeepingSpriteAnims
 	ret
 
 ; a = is-playable flag
@@ -7759,7 +7759,7 @@ PlayerGenderAndNameSelection::
 BillsPCScreen:
 	farcall SuspendOverworldForSubScreen
 	call BillsPC
-	farcall Func_10252
+	farcall ResumeOverworldFromSubScreen
 	ret
 
 BillsPC:

@@ -763,7 +763,7 @@ TcgAirportEntrance_MapScripts:
 
 TcgAirportEntrance_Idle:
 	call DoFrame
-	call Func_34635
+	call TcgAirportEntrance_MoveGR5OutOfPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -803,11 +803,11 @@ TcgAirportEntrance_Interact:
 	ret
 
 Func_3462d:
-	call Func_34635
+	call TcgAirportEntrance_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_34635:
+TcgAirportEntrance_MoveGR5OutOfPath:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_3468e
