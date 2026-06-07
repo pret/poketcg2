@@ -109,6 +109,14 @@ $(rom): $(rom_obj) src/layout.link
 # the grayscale PNGs render as the actual card art).
 src/gfx/cards/%.2bpp: RGBGFXFLAGS += -Z
 
+# Printer "extra" tiles: cards that need them store the full remapped printer
+# image as <name>_remapped.png; the extra tiles are derived from it (the cells
+# whose remapped source index > 47) rather than a separate tile-pool file.
+card_remapped_png := $(wildcard src/gfx/cards/*_remapped.png)
+card_extra_2bpp := $(card_remapped_png:_remapped.png=_extra.2bpp)
+$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_remapped.png tools/derive_extra_tiles.py src/gfx/card_graphics.asm
+	python3 tools/derive_extra_tiles.py --rgbgfx '$(RGBGFX)' --asm src/gfx/card_graphics.asm $< $@
+
 src/gfx/coins/%.2bpp: RGBGFXFLAGS += -x 1
 
 src/gfx/booster_packs/beginning_pack.2bpp: RGBGFXFLAGS += -x 2

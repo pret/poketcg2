@@ -171,6 +171,7 @@ def main():
 
     if args.write_files:
         os.makedirs(os.path.join(GFXDIR, 'misc'), exist_ok=True)
+        cur_card = None
         for s, e, kind, name in segs:
             if kind == 'card':
                 fn = card_filename(name)
@@ -182,16 +183,22 @@ def main():
                                 '-o', tiles, os.path.join(GFXDIR, fn+'.png')],
                                check=True)
                 os.remove(tiles)            # .png is the source; make rebuilds .2bpp
+                cur_card = (fn, rom[s+24:s+72], rom[s+HDR:e])  # attr map (48) + portrait (768)
             elif kind == 'extra':
-                # mirror the portrait: write the tiles to a temp .2bpp, reverse to
-                # a 1-tile-wide grayscale .png (the source); make rebuilds .2bpp.
-                fn = card_filename(name)
-                ex = os.path.join(GFXDIR, fn+'_extra.2bpp')
-                open(ex, 'wb').write(rom[s:e])
-                subprocess.run([RGBGFX, '-r', '1', '-Z', '--colors', 'dmg',
-                                '-o', ex, os.path.join(GFXDIR, fn+'_extra.png')],
+                # store the full REMAPPED printer image (a coherent card) as the
+                # source, not the raw extra-tile pool. The printer's output cell c
+                # uses pool tile (attr[c] & $3f) + c (pool = portrait ++ extra), so
+                # the extra tiles are the redirected cells -- the build derives them
+                # back from <name>_remapped.png (tools/derive_extra_tiles.py).
+                fn, attr, portrait = cur_card
+                pool = [(portrait + rom[s:e])[i:i+16] for i in range(0, 768 + (e-s), 16)]
+                remapped = b''.join(pool[(attr[c] & 0x3f) + c] for c in range(48))
+                rp = os.path.join(GFXDIR, fn+'_remapped.2bpp')
+                open(rp, 'wb').write(remapped)
+                subprocess.run([RGBGFX, '-r', str(CARD_W), '-Z', '--colors', 'dmg',
+                                '-o', rp, os.path.join(GFXDIR, fn+'_remapped.png')],
                                check=True)
-                os.remove(ex)            # .png is the source; make rebuilds .2bpp
+                os.remove(rp)            # .png is the source; make derives _extra.2bpp
             elif kind == 'known':
                 klabel, stem, w = name
                 dst = os.path.join(ROOT, 'src', stem)
