@@ -105,9 +105,13 @@ $(rom): $(rom_obj) src/layout.link
 
 ### Misc file-specific graphics rules
 
-# Card portraits are stored column-major (tile order matches the ROM and makes
-# the grayscale PNGs render as the actual card art).
-src/gfx/cards/%.2bpp: RGBGFXFLAGS += -Z
+# Card portraits: the source is the in-duel COLOR image <name>.png. The grayscale
+# tiles (<name>.2bpp, column-major to match the ROM) are derived by inverting each
+# cell's palette, using the palettes + attribute map in card_graphics.asm.
+card_portrait_png := $(filter-out %_remapped.png,$(wildcard src/gfx/cards/*.png))
+card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
+$(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py src/gfx/card_graphics.asm
+	python3 tools/derive_color_tiles.py --asm src/gfx/card_graphics.asm $< $@
 
 # Printer "extra" tiles: cards that need them store the full remapped printer
 # image as <name>_remapped.png; the extra tiles are derived from it (the cells
