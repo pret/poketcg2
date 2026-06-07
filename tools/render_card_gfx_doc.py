@@ -101,3 +101,38 @@ if __name__=='__main__':
     json.dump({k:{'n_extra':v['n_extra'],'redirect':v['redirect']} for k,v in info.items()},
               open(os.path.join(OUT,'_info.json'),'w'), indent=1)
     print('done')
+
+# --- tile-reuse illustration (the rare case: one tile shown in >1 palette) ---
+def render_reuse(name, scale_tile=36, scale_card=10):
+    pal,attr=parse_header(name)
+    port=open(os.path.join(GFX,name+'.2bpp'),'rb').read(); tl=tiles(port)
+    CARDTM=[0,6,12,18,24,30,36,42,1,7,13,19,25,31,37,43,2,8,14,20,26,32,38,44,
+            3,9,15,21,27,33,39,45,4,10,16,22,28,34,40,46,5,11,17,23,29,35,41,47]
+    from collections import defaultdict
+    grp=defaultdict(list)
+    for i in range(48): grp[tuple(map(tuple,tl[CARDTM[i]]))].append((i,attr[i]>>6))
+    # pick the textured tile (>1 pixel value) shown with the most distinct palettes
+    cand=[(g,cs) for g,cs in grp.items() if len({v for r in g for v in r})>1
+          and len({p for _,p in cs})>1]
+    cand.sort(key=lambda gc: -len({p for _,p in gc[1]}))
+    g,cs=cand[0]; cells=[i for i,_ in cs]; pals=sorted({p for _,p in cs})
+    # (a) the tile rendered in each palette it appears with, side by side
+    im=Image.new('RGB',(len(pals)*9-1,8),(0,0,0)); px=im.load()
+    for k,pp in enumerate(pals):
+        for r in range(8):
+            for x in range(8): px[k*9+x,r]=rgb555(pal[pp][g[r][x]])
+    im=im.resize((im.width*scale_tile,im.height*scale_tile),Image.NEAREST)
+    im.save(os.path.join(OUT,f'{name}_reuse_tile.png')); print('wrote',f'{name}_reuse_tile.png')
+    # (b) in-duel card with the reuse cells outlined
+    card=grid_img(tl[:48], lambda c,v: rgb555(pal[attr[(c%6)*8+(c//6)]>>6][v]), 8,6)
+    card=card.resize((card.width*scale_card,card.height*scale_card),Image.NEAREST)
+    from PIL import ImageDraw
+    d=ImageDraw.Draw(card)
+    for i in cells:
+        cx,cy=(i%8)*8*scale_card,(i//8)*8*scale_card
+        for w in range(3): d.rectangle([cx+w,cy+w,cx+8*scale_card-1-w,cy+8*scale_card-1-w],outline=(255,0,0))
+    card.save(os.path.join(OUT,f'{name}_reuse_map.png')); print('wrote',f'{name}_reuse_map.png')
+    return cells,pals
+
+render('diglett_lv16')
+render_reuse('diglett_lv16')

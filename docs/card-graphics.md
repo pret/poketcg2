@@ -4,9 +4,10 @@ How a card picture is stored, the two different ways it gets drawn, and what the
 per-card `src/gfx/cards/<name>_extra.bin` files actually contain.
 
 TL;DR — every card stores **one 8×6 picture**, but it is drawn **two ways** from
-the same data: in a duel the Game Boy Color recolors shared tiles with palettes;
-the Game Boy Printer has no palettes, so it needs extra **pre-shaded copies** of
-those tiles. `<name>_extra.bin` is exactly that pool of palette-baked tiles.
+the same data: in a duel the Game Boy Color tints each cell with one of 3 palettes
+(up to 12 colors); the Game Boy Printer has no palettes, so it needs extra
+**pre-shaded copies** of the cells that used a non-default palette.
+`<name>_extra.bin` is exactly that pool of palette-baked tiles.
 
 ---
 
@@ -78,31 +79,55 @@ reconstructing the image off-hardware.)
 
 ## 3. Why the extra tiles exist
 
-It is a **Game Boy Color compression trick that the palette-less printer must undo.**
+It comes from **per-cell color**, and the fact that the **printer has no palettes.**
 
-On CGB, one stored tile can be shown in **different colors** by giving it
-different palettes at different screen positions — the *hardware* recolors it. So
-the in-duel card reuses tile shapes across regions that differ only in color, and
-48 stored tiles + 3 palettes cover a richer-looking image.
+On CGB the attribute map lets each of the 48 cells pick **one of 3 palettes
+independently**, so a card can show up to **12 colors** even though every tile is
+only 4 colors — the *hardware* tints each cell. That is the whole point of the
+3-palette system: more color, not fewer tiles. (The 48 tiles are essentially all
+distinct; genuine tile *reuse* across palettes is rare — see [§4](#4-does-it-reuse-tiles-rarely).)
 
-The **printer has no palette hardware** — it prints the raw 2-bit pixel values as
-flat grays. A tile the screen showed in two colors (via two palettes) would print
-**identically** in both spots, which is wrong. To print correctly, every cell
-needs a tile whose pixels *already* encode the right shade — a **palette-baked
-copy**. Those baked variants are the `_extra` tiles, and the redirect offset sends
-each printer cell to its correct pre-shaded tile (identity when the portrait tile
-already works, or an offset into the extra pool when it does not).
+The **printer has no palette hardware** — it drops the palettes and prints the raw
+2-bit pixel values as fixed grays. So a cell whose color came from palette 1 or 2
+would print as if it were palette 0 — wrong shade. To reproduce the card in flat
+gray, each such cell needs a tile whose pixels *already* encode the right shade
+(the chosen palette's luminance, baked in). Those baked variants are the `_extra`
+tiles, and the redirect offset sends each printer cell to its correct pre-shaded
+tile (identity when the portrait tile already prints correctly, or an offset into
+the extra pool when it does not).
 
-> **`_extra.bin` = the palette-baked tile variants the grayscale printer needs
-> that don't already exist among the 48 portrait tiles.**
+> **`_extra.bin` = the per-cell, palette-baked tile variants the grayscale printer
+> needs that don't already exist among the 48 portrait tiles.**
 
-Energy cards have the biggest extras (Grass = 21 tiles) precisely because their
-art is the most color-repetitive: the screen reuses tiles heavily across palettes,
-so the printer needs many baked variants.
+Energy cards have the biggest extras (Grass = 21 tiles) precisely because their art
+uses the most per-cell palette variation, so the most cells need baking.
 
 ---
 
-## 4. Worked example — Grass Energy (21 extra tiles)
+## 4. Does it reuse tiles? Rarely.
+
+It's tempting to assume the 3-palette system is for *tile dedup* — store one shape,
+recolor it in several places. **Auditing all 445 cards, that barely happens.** Only
+**7** cards show any byte-identical tile in more than one palette, and **6 of those
+are blank background tiles** where the palette doesn't change the look at all. Just
+**2 cards** (`diglett_lv16`, `rainbow_energy`) reuse a *visible* tile in genuinely
+different colors — and even those are flat color blocks, not detailed art.
+
+Here is the clearest one. Diglett reuses a single flat background tile as both the
+**magenta wall** and the **olive floor** (the two outlined cells), by pointing them
+at different palettes:
+
+| The one tile, in its two palettes | …placed on the card (outlined) |
+|---|---|
+| ![Diglett reused tile in two palettes](img/diglett_lv16_reuse_tile.png) | ![Diglett card with reuse cells outlined](img/diglett_lv16_reuse_map.png) |
+
+So the takeaway: poketcg2's tiles are essentially **all distinct**; the 3 palettes
+add **per-cell color**, not shape reuse. The `_extra.bin` tiles exist for that
+per-cell color (baking it for the printer), not for dedup.
+
+---
+
+## 5. Worked example — Grass Energy (21 extra tiles)
 
 **In a duel** (CGB, portrait tiles recolored by palette) vs **on the printer**
 (flat grayscale, remapped through the extra tiles):
@@ -145,7 +170,7 @@ above the in-duel renderer reads them in a different (row-major) order.
 
 ---
 
-## 5. Contrast — a card with **no** extra tiles (Abra)
+## 6. Contrast — a card with **no** extra tiles (Abra)
 
 Most cards (254 of 445) have an all-identity attribute map: the printer render is
 the portrait, recolored, with no redirects — so there is no `_extra.bin` at all.
@@ -161,7 +186,7 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
-## 6. What this means for representing the files
+## 7. What this means for representing the files
 
 - The portrait `.2bpp` and `_extra.bin` are **one logical tile array** indexed by
   the header. The extra is *not* a spatial extension of the portrait and *not* a
@@ -184,7 +209,7 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
-## 7. Comparison to tcg1 (this is a sequel-only feature)
+## 8. Comparison to tcg1 (this is a sequel-only feature)
 
 The original Pokémon TCG GB (`pret/poketcg`, "tcg1") has **none** of this — no
 attribute map, no `LoadCardGfxRemapped`, no `BuildPrintableCardPic` remap, and no
