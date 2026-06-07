@@ -359,7 +359,9 @@ Deferred (a name would be a guess): `Func_14178` (tcg2-only clear-retreat-score+
 
 ## Bank $08 decompilation status
 
-**Source-defined**: 99.84% (~16.0 KiB of 16 KiB). Bank 8 is one contiguous section; only ~26B of end-of-bank padding remains undecompiled.
+**Source-defined**: 99.84% (~16.0 KiB of 16 KiB) — **fully decompiled and named**. The remaining
+~26B is end-of-bank padding (not code). 0 `Func_*` labels, 0 raw data bytes, 0 raw hex dispatch;
+`AITrainerCardLogic` is fully resolved to named functions. The AI decomp effort is complete.
 **Last updated**: 2026-06-06.
 
 ### Decompiled regions (named, in source)
@@ -466,24 +468,24 @@ Deferred (a name would be a guess): `Func_14178` (tcg2-only clear-retreat-score+
 - `$6694-$271a` — `AIPlay_Gambler` + `AIDecide_Gambler`.
 - `$7a43-$7a72` — `AIPlay_Sleep` + `AIDecide_Sleep` + `AIDecide_Sleep_Deck12` (deck-$53 case `$7a73` left raw).
 
-### Still raw, in priority order (highest = most leverage)
-Addresses listed are bank-$08 CPU addresses; nearest table card in
-parens.
+### Still raw — NONE (bank 8 complete, 2026-06-06)
+All the targets formerly listed here (the ENERGY_RETRIEVAL `$57c8-$5a83` deck handlers,
+SUPER_ENERGY_RETRIEVAL `$5adf`, the POKEMON_BREEDER `$50b6` dispatcher, the ITEMFINDER /
+COMPUTER_SEARCH / PROFESSOR_OAK / SWITCH per-deck cases, etc.) are **decompiled and named**.
+Verified 2026-06-06: bank08 has **0** raw `db` data (only the 1 `AITrainerCardLogic` `db $ff`
+terminator), **0** raw hex `jp/call $XXXX`, **0** `Func_*` labels, and the `AITrainerCardLogic`
+table has **0** raw hex pointers (every row names its decide/play fn). Banks `$0e`/`$11`/`$12`/
+`$13` likewise have 0 `Func_*` and 0 raw data. The whole AI subsystem is decompiled.
 
-1. `$57c8-$5a83` (ENERGY_RETRIEVAL deck-specific handlers) — 22 per-deck handlers reachable from the `AIDecide_EnergyRetrieval` dispatcher at `$57c8, $57d2, $581d, $589d, $58cf, $5937, $5969, $599b, $59cd, $5a0b, $5a10, $5a19, $5a22, $5a2b, $5a34, $5a53, $5a5c, $5a70, $5a75, $5a7e, $5a83`. `$591a`/`$592c` are also the override targets of the now-landed `.default` deck dispatch. None traced yet — each needs a duel against the owning deck. (The shared helper at `$5a8c` is now landed as `RemoveCardFromListAtHL`.)
-2. `$5adf` (SUPER_ENERGY_RETRIEVAL decide) — likely similar shape to `AIDecide_EnergyRetrieval`.
-2b. `$50b6-$53ba` (POKEMON_BREEDER decide) — 774-byte `AIDecide_PokemonBreeder` dispatcher (`IsPrehistoricPowerActive` gate, 7 deck cases `$3d/$41/$4e/$53/$55/$6f/$70`, big default Stage-2 evolution scoring path scanning VENUSAUR/BLASTOISE/VILEPLUME etc.). Deck-$55 case `$52fb` now landed standalone; the dispatcher + scoring + other 6 deck cases remain raw.
-2c. ITEMFINDER decide other deck cases (`$6421/$6475/$64c2/$65ad/$662b/$6630`) and COMPUTER_SEARCH decide other deck cases (`$6d59/$6d5e/$6dbe/$6e0f/$6e14/$6e19/$6e1e/$6e23`) — small per-deck sub-functions, untraced.
-3. Deck-specific helpers referenced as raw hex inside the decompiled deciders. Sōsuke is deck `$12` (SLEEP) and `$54` or similar in PROFESSOR_OAK (which falls through to default scoring); other special-case decks haven't been traced:
-   - `$4365` (POTION Phase 10, deck `$45` Quick Attack)
-   - `$4902, $493d, $494f, $49a7-$49de` (SWITCH Phase 16, 14 deck-specific cases)
-   - `$4bc5d` in bank `$12` (POTION Phase 11, deck `$74` delegate)
-   - `$5528-$563e` (PROFESSOR_OAK, remaining deck-specific cases `$11, $2d, $32, $3a, $3b, $57, $58, $5a, $5c, $5d, $6e, $70, $71, $72` — `$53`, `$55` now landed)
-4. Other `AIDecide_*` / `AIPlay_*` table entries still pointing at raw hex — most plays are AIMakeDecision wrappers, structurally identical to the ones already landed. Most decides are small.
+NOTE: the per-row "(N deck cases left raw)" / "still raw" annotations in the ledger and
+"Decompiled regions" below are **historical** — they record the state *at the time each function
+was landed*, not the current state. They are kept as a discovery log, not as open work.
 
-### Trace coverage status
+### Trace coverage status (historical)
+All entries with a non-zero "undecompiled hits" count below have since been resolved (those
+regions are now decompiled); the column reflects the state when each trace was taken.
 
-| Trace | Bank-$08 undecompiled hits |
+| Trace | Bank-$08 undecompiled hits (at time of trace) |
 |---|---|
 | duel-sam | **0** ✓ |
 | duel-gr-leader | **0** ✓ |

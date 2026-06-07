@@ -1338,8 +1338,7 @@ AIDecide_Switch_Phase16:
 	or a
 	ret
 ; 0x208fc
-; (decks $3a/$3b/$3d have bespoke inline sub-deciders at $493d-$49a6,
-; still raw)
+; (decks $3a/$3b/$3d have bespoke inline sub-deciders at $493d-$49a6)
 
 ; Shared commit tail for the bespoke Switch_Phase16 deciders: pick which
 ; benched Pokemon to switch the Arena card to. AIDecideBenchPokemonToSwitchTo
@@ -1405,7 +1404,7 @@ AIDecide_Switch_Phase16_Deck3AOr3B:
 ; (either print) or Kangaskhan, only switch when it's statused/can't usefully
 ; retreat -- and for Charizard, retreat toward a bench Charizard with energy;
 ; for Kangaskhan flag AI_FLAG_UNK_5 and switch toward a benched Scyther.
-; (Carved out of the still-raw Switch_Phase16 sub-decider block.)
+; (Carved out of the Switch_Phase16 sub-decider block.)
 AIDecide_Switch_Phase16_Deck3D:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -1884,7 +1883,7 @@ AIPlay_EnergyRemoval:
 	farcall AIMakeDecision
 	ret
 
-; 7 deck-specific policies, all still raw. Default: walk the
+; 7 deck-specific policies. Default: walk the
 ; opponent's play area looking for a Pokemon that (a) has at least
 ; one non-Recycle energy attached and (b) would be disabled /
 ; weakened if we removed one. Skip their arena and start at the bench
@@ -2078,7 +2077,7 @@ ScoreBenchEnergyRemovalCandidate:
 ; strip that. Otherwise -- only when we couldn't already KO -- consider
 ; removing energy from the defending Arena Pokemon, but only if it holds 2+
 ; (non-Recycle) energy and is damaged enough that the removal matters
-; (HP/counter ratio >= 8). (Carved out of the still-raw $4d6b-$4de7 block.)
+; (HP/counter ratio >= 8). (Carved out of the $4d6b-$4de7 block.)
 AIDecide_EnergyRemoval_Deck11:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr c, .can_ko
@@ -2926,8 +2925,7 @@ AIDecide_PokemonBreeder_Deck53:
 	scf
 	ret
 
-; deck $55 (Spirited Away) Pokemon Breeder case (reached from the still-
-; raw AIDecide_PokemonBreeder dispatcher at $50b6). Breed Gastly Lv17
+; deck $55 (Spirited Away) Pokemon Breeder case (reached from the AIDecide_PokemonBreeder dispatcher). Breed Gastly Lv17
 ; ($126) straight up to Dark Gengar ($12e) when the Gastly is on the
 ; field carrying 2+ energy and Dark Gengar is in hand.
 AIDecide_PokemonBreeder_Deck55:
@@ -3075,7 +3073,7 @@ AIPlay_ProfessorOak:
 ; Decks $11, $2d, $32, $3a, $3b, $45, $49, $4d, $50, $53, $55, $57,
 ; $58, $5a, $5c, $5d, $6e, $70, $71, $72 each have bespoke deciders;
 ; $57-$72 are thin delegates to per-deck AI helpers (decompiled just
-; below), the rest are still raw hex. All decks bail out immediately if
+; below), the rest are decompiled inline here. All decks bail out immediately if
 ; 54+ cards are out of the deck.
 AIDecide_ProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -3269,7 +3267,7 @@ LookForEvolutionInHand:
 ; deck $11 (Electric Self-Destruct) Professor Oak decider: redraw only with
 ; a small hand (under 5 cards) that is also clogged with all three of
 ; Magnemite Lv13, Magnemite Lv15 and Voltorb Lv8 -- a hand of redundant
-; basics worth shuffling away. (Carved out of the still-raw $5528-$5643
+; basics worth shuffling away. (Carved out of the $5528-$5643
 ; block.)
 AIDecide_ProfessorOak_Deck11:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -3289,7 +3287,7 @@ AIDecide_ProfessorOak_Deck11:
 ; deck $2d (Rain Dance Confusion) Professor Oak decider. Bail if the hand is
 ; large (>= $2b cards out of deck), then gate on board state -- needs no
 ; energy in hand, 2+ Pokemon in play, and a hand under 5 -- before deferring
-; to the deck's bank helper for the final call. (Carved out of the still-raw
+; to the deck's bank helper for the final call. (Carved out of the 
 ; $5528-$5643 block.)
 AIDecide_ProfessorOak_Deck2D:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -3315,7 +3313,7 @@ AIDecide_ProfessorOak_Deck2D:
 ; small hand (< $29) holding Moltres but few basics (<6 cards and <5 basic
 ; Pokemon), or -- the shared .check_energy path -- a hand under both the
 ; $2d cards-not-in-deck and 5-card thresholds that still has an energy to
-; spare. (Carved out of the still-raw $5528-$5643 block.)
+; spare. (Carved out of the $5528-$5643 block.)
 AIDecide_ProfessorOak_Deck32:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
@@ -3356,7 +3354,7 @@ AIDecide_ProfessorOak_Deck32:
 ; deck $3a (Grand Fire) Professor Oak decider. Refuse to redraw a hand that
 ; already holds a key attacker (Moltres, Rapidash or Ninetales) or three or
 ; more energy cards. Otherwise play Oak when the opposing duelist is holding
-; fewer than 6 cards. (Carved out of the still-raw $5528-$5643 block.)
+; fewer than 6 cards. (Carved out of the $5528-$5643 block.)
 AIDecide_ProfessorOak_Deck3A:
 	ld de, MOLTRES_LV40
 	farcall LookForCardIDInHandList
@@ -3379,7 +3377,7 @@ AIDecide_ProfessorOak_Deck3A:
 	ret
 
 ; deck $3b (Legendary Fossil) Professor Oak decider: redraw only once our
-; own hand has dwindled below 4 cards. (Carved out of the still-raw
+; own hand has dwindled below 4 cards. (Carved out of the 
 ; $5528-$5643 block.)
 AIDecide_ProfessorOak_Deck3B:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -3454,7 +3452,7 @@ AIDecide_ProfessorOak_Deck55:
 	ret
 
 ; Nine decks delegate their Professor Oak decision to a bespoke per-deck
-; AI helper in bank $0e/$12 (deck $5d's is still raw, PsychicBattleDeckAIDecideProfessorOak).
+; AI helper in bank $0e/$12 (deck $5d's is PsychicBattleDeckAIDecideProfessorOak).
 AIDecide_ProfessorOak_Deck57:
 	farcall ColorlessAltarAIDecideProfessorOak
 	ret
@@ -3694,7 +3692,7 @@ AIDecide_EnergyRetrieval:
 
 ; deck $11 (Electric Self-Destruct) Energy Retrieval decider: only worth it
 ; when the hand is low on energy (fewer than 3 cards), in which case reuse
-; the shared default target-finder. (Carved out of the still-raw
+; the shared default target-finder. (Carved out of the 
 ; $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck11:
 	farcall CountEnergyCardsInHand
@@ -3706,7 +3704,7 @@ AIDecide_EnergyRetrieval_Deck11:
 ; hand plus a basic energy in the discard to pull (slots 1/2), then plays
 ; only when there's a real grass-line payoff: a duplicated Metapod, Ivysaur
 ; or Venusaur in hand, or an unusable evolution card (preferring one that
-; isn't Exeggutor). (Carved out of the still-raw $57c8-$5a8c block.)
+; isn't Exeggutor). (Carved out of the $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck24:
 	ld de, GRASS_ENERGY
 	farcall CountCardIDInHand
@@ -3739,7 +3737,7 @@ AIDecide_EnergyRetrieval_Deck24:
 	ret
 
 ; deck $2d (Rain Dance Confusion) Energy Retrieval policy. Carved out of
-; the still-raw $57c8-$5a8c block. Pre-picks the first two basic energies
+; the $57c8-$5a8c block. Pre-picks the first two basic energies
 ; in the discard pile as the recharge payload (slots 1/2), then runs a
 ; chain of "is it worth it?" gates: play only if the hand/board shows a
 ; concrete use for the recovered energy — a Blastoise on the bench needing
@@ -3827,7 +3825,7 @@ AIDecide_EnergyRetrieval_Deck2D:
 ; energy in hand as fuel, then plays when there's a clear payoff: a Muk in
 ; either play area (ours or the opponent's) combined with a Goop Gas Attack
 ; in hand, or otherwise a duplicate Pokemon worth recharging. On success
-; rejoin the shared commit tail. (Carved out of the still-raw $57c8-$5a8c
+; rejoin the shared commit tail. (Carved out of the $57c8-$5a8c
 ; block.)
 AIDecide_EnergyRetrieval_Deck40:
 	farcall CountBasicEnergyCardsInHand
@@ -3893,7 +3891,7 @@ AIDecide_EnergyRetrieval_CommitUnlessTagged:
 ; deck $48 (Eevee Showdown) Energy Retrieval decider: requires a basic
 ; energy in hand, then plays if the hand can follow up with a Switch or
 ; Pokemon Trader, else recharges a duplicate Pokemon (unless it is the
-; tagged target). (Carved out of the still-raw $57c8-$5a8c block.)
+; tagged target). (Carved out of the $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck48:
 	farcall CountBasicEnergyCardsInHand
 	jp nc, AIDecide_EnergyRetrieval.no_targets
@@ -3919,7 +3917,7 @@ AIDecide_EnergyRetrieval_Deck48:
 
 ; decks $4a (Whirlpool Shower) and $4b (Paralyzed Paralyzed) Energy
 ; Retrieval decider: like deck $48 but the hand follow-up is a Switch or a
-; Poke Ball. (Carved out of the still-raw $57c8-$5a8c block.)
+; Poke Ball. (Carved out of the $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck4AOr4B:
 	farcall CountBasicEnergyCardsInHand
 	jp nc, AIDecide_EnergyRetrieval.no_targets
@@ -3944,7 +3942,7 @@ AIDecide_EnergyRetrieval_Deck4AOr4B:
 	jp AIDecide_EnergyRetrieval.got_target
 
 ; deck $4c (Bench Call) Energy Retrieval decider: like deck $48 but the hand
-; follow-up is a Pokemon Flute or Gust of Wind. (Carved out of the still-raw
+; follow-up is a Pokemon Flute or Gust of Wind. (Carved out of the 
 ; $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck4C:
 	farcall CountBasicEnergyCardsInHand
@@ -3972,7 +3970,7 @@ AIDecide_EnergyRetrieval_Deck4C:
 ; deck $4f (Full Strength) Energy Retrieval decider: requires a basic energy
 ; in hand, then plays only if the hand holds a duplicate of one of its key
 ; cards (The Boss's Way, Pokemon Trader, Switch, Dark Fearow, Dark Machoke
-; or Dark Machamp). (Carved out of the still-raw $57c8-$5a8c block.)
+; or Dark Machamp). (Carved out of the $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck4F:
 	farcall CountBasicEnergyCardsInHand
 	ret nc
@@ -4000,7 +3998,7 @@ AIDecide_EnergyRetrieval_Deck4F:
 
 ; deck $57 (Eye of the Storm) Energy Retrieval: bank-$0e delegate. (One
 ; of AIDecide_EnergyRetrieval's many deck cases carved out of the
-; otherwise-still-raw $57c8-$5a8c block.)
+; $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck57:
 	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
 	ret
@@ -4013,9 +4011,8 @@ AIDecide_EnergyRetrieval_Deck5A:
 	push af
 	jp AIDecide_EnergyRetrieval.got_target
 
-; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (PsychicBattleDeckAIDecideEnergyRetrieval,
-; still raw) picks the target; on success rejoin AIDecide_EnergyRetrieval's
-; shared commit tail (.got_target). Also carved out of the still-raw
+; deck $5d (Psychic Battle) Energy Retrieval: a bank-$13 helper (PsychicBattleDeckAIDecideEnergyRetrieval) picks the target; on success rejoin AIDecide_EnergyRetrieval's
+; shared commit tail (.got_target). Also carved out of the 
 ; $57c8-$5a8c block.
 AIDecide_EnergyRetrieval_Deck5D:
 	farcall PsychicBattleDeckAIDecideEnergyRetrieval
@@ -4026,7 +4023,7 @@ AIDecide_EnergyRetrieval_Deck5D:
 ; deck $5f (internal ScorcherDeck -- a Fire deck built around Dark
 ; Charizard) Energy Retrieval: a bank-$12 helper picks the target; on
 ; success rejoin the shared commit tail (.got_target). Also carved out
-; of the still-raw $57c8-$5a8c block.
+; of the $57c8-$5a8c block.
 AIDecide_EnergyRetrieval_Deck5F:
 	farcall ScorcherDeckAIDecideEnergyRetrieval
 	ret nc
@@ -4043,7 +4040,7 @@ AIDecide_EnergyRetrieval_Deck63:
 
 ; deck $64 (Texture Tuner) Energy Retrieval decider: play if the same card
 ; appears in both hand and play area, otherwise recharge a duplicate Pokemon
-; in hand (unless it is the tagged target). (Carved out of the still-raw
+; in hand (unless it is the tagged target). (Carved out of the 
 ; $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck64:
 	farcall IsSameCardInHandAndPlayArea
@@ -4074,7 +4071,7 @@ AIDecide_EnergyRetrieval_Deck6C:
 ; deck $70 (Torrential Flood) Energy Retrieval decider: proceed to the
 ; shared target-finder when the hand still has a basic energy, or when a
 ; Blastoise is in our play area worth recharging; otherwise decline.
-; (Carved out of the still-raw $57c8-$5a8c block.)
+; (Carved out of the $57c8-$5a8c block.)
 AIDecide_EnergyRetrieval_Deck70:
 	farcall CountBasicEnergyCardsInHand
 	jp c, AIDecide_EnergyRetrieval.find_recharge_target
@@ -5359,7 +5356,7 @@ AIDecide_ScoopUp_Deck47:
 ; deck $64 (Texture Tuner) Scoop Up: bail with 4+ Pokemon in play, then scoop
 ; the play-area card with the least remaining HP if it's hurt enough (under
 ; $15 HP left), committing with $ff so the effect picks the bench slot.
-; (Carved out of the still-raw $6228-$632c block.)
+; (Carved out of the $6228-$632c block.)
 AIDecide_ScoopUp_Deck64:
 	ld a, [hl]
 	cp $04
@@ -5384,7 +5381,7 @@ AIDecide_ScoopUp_Deck6E:
 	ret
 
 ; deck $74 (Big Thunder) Scoop Up: delegated to a bank helper. (Carved out
-; of the still-raw $6228-$632c block.)
+; of the $6228-$632c block.)
 AIDecide_ScoopUp_Deck74:
 	farcall BigThunderDeckAIDecideScoopUp
 	ret
@@ -5508,7 +5505,7 @@ AIDecide_Recycle:
 	ret
 
 ; Lass: both players reveal their hands and shuffle every Trainer card
-; back into their decks. (Carved out of the still-raw $6228-$6373 block.)
+; back into their decks. (Carved out of the $6228-$6373 block.)
 AIPlay_Lass:
 	ld a, [wCurrentAIFlags]
 	or AI_FLAG_MODIFIED_HAND
@@ -6084,7 +6081,7 @@ AIDecide_Revive:
 	scf
 	ret
 
-; deck $14: delegate to a still-raw helper with parameter $02.
+; deck $14: delegate to LookForAnyPikachuInLocation with parameter $02.
 AIDecide_Revive_Deck14:
 	ld a, $02
 	call LookForAnyPikachuInLocation
@@ -6335,7 +6332,7 @@ AIDecide_Pokeball:
 ; to advance an evolution line -- Ponyta->Rapidash, or Vulpix->Ninetales
 ; (with or without a Vulpix already down) -- and failing that, only fetch
 ; Moltres once we have energy in hand to power it. (Carved out of the
-; still-raw $691e-$6a59 block.)
+; $691e-$6a59 block.)
 AIDecide_Pokeball_Deck3A:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -6370,7 +6367,7 @@ AIDecide_Pokeball_Deck3A:
 
 ; deck $13 (Triple Zapdos) Poke Ball: dig the deck for a Zapdos (Lv28/40/64),
 ; else advance a Voltorb->Dark Electrode or Doduo->Dodrio line, else report
-; whether any basic Pokemon remains in the deck. (Carved out of the still-raw
+; whether any basic Pokemon remains in the deck. (Carved out of the 
 ; $691e-$6a59 block.)
 AIDecide_Pokeball_Deck13:
 	ld de, ZAPDOS_LV28
@@ -6399,7 +6396,7 @@ AIDecide_Pokeball_Deck13:
 
 ; deck $14 (I Love Pikachu) Poke Ball: only when fewer than 3 Pokemon are in
 ; play and the hand holds no basic Pokemon, defer to a bank-8 helper to pick
-; a basic to fetch. (Carved out of the still-raw $691e-$6a59 block.)
+; a basic to fetch. (Carved out of the $691e-$6a59 block.)
 AIDecide_Pokeball_Deck14:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -6419,7 +6416,7 @@ AIDecide_Pokeball_Deck14:
 ; deck $24 (Max Energy) Poke Ball: with fewer than 3 basics in hand/play,
 ; fetch a Bulbasaur, Caterpie or Exeggcute (held or from deck); then try to
 ; advance the Caterpie/Metapod/Butterfree, Exeggcute/Exeggutor and
-; Bulbasaur/Ivysaur/Venusaur lines. (Carved out of the still-raw $691e-$6a59
+; Bulbasaur/Ivysaur/Venusaur lines. (Carved out of the $691e-$6a59
 ; block.)
 AIDecide_Pokeball_Deck24:
 	farcall CountNumberOfBasicPokemonInHandOrPlayArea
@@ -6505,7 +6502,7 @@ AIDecide_Pokeball_Deck25:
 ; deck $2c (Gathering Nidoran) Poke Ball: try to advance the Nidoran-M line
 ; (Nidoking) then the Nidoran-F line (Nidoqueen), by either fetching the next
 ; evolution stage of a line already started or digging the missing pre-evo
-; when its evolution is in hand. (Carved out of the still-raw $691e-$6b60
+; when its evolution is in hand. (Carved out of the $691e-$6b60
 ; block.)
 AIDecide_Pokeball_Deck2C:
 	ld bc, NIDORANM_LV22
@@ -6567,7 +6564,7 @@ AIDecide_Pokeball_Deck2C:
 
 ; deck $3e (Bug Collecting) Poke Ball: advance the Bulbasaur/Dark Ivysaur/
 ; Dark Venusaur line, fetching the next stage or digging the missing pre-evo.
-; (Carved out of the still-raw $691e-$6b60 block.)
+; (Carved out of the $691e-$6b60 block.)
 AIDecide_Pokeball_Deck3E:
 	ld bc, BULBASAUR_LV15
 	ld de, DARK_IVYSAUR
@@ -6588,7 +6585,7 @@ AIDecide_Pokeball_Deck3E:
 
 ; deck $46 (Complete Combustion) Poke Ball: dig the deck for a Magmar,
 ; Ponyta, Growlithe, Kangaskhan or Meowth, in that order. (Carved out of the
-; still-raw $691e-$6b60 block.)
+; $691e-$6b60 block.)
 AIDecide_Pokeball_Deck46:
 	ld de, MAGMAR_LV27
 	ld a, CARD_LOCATION_DECK
@@ -6869,7 +6866,7 @@ AIDecide_ComputerSearch:
 	ret
 
 ; deck $2d (Rain Dance Confusion) Computer Search policy: delegated to a
-; bank helper. (Carved out of the still-raw $6d59-$6e0a block.)
+; bank helper. (Carved out of the $6d59-$6e0a block.)
 AIDecide_ComputerSearch_Deck2D:
 	farcall RainDanceConfusionDeckAIDecideComputerSearch
 	ret
@@ -6880,7 +6877,7 @@ AIDecide_ComputerSearch_Deck2D:
 ; right now); a Professor Oak (only if AIDecide_ProfessorOak agrees); or a
 ; Bill. When something qualifies, stash it in wd082 and pull two different
 ; non-target cards from the hand to pay Computer Search's discard cost.
-; (Carved out of the still-raw $6d5e-$6e0a block.)
+; (Carved out of the $6d5e-$6e0a block.)
 AIDecide_ComputerSearch_Deck3B:
 	ld bc, MYSTERIOUS_FOSSIL
 	ld de, AERODACTYL_LV28
@@ -6931,7 +6928,7 @@ AIDecide_ComputerSearch_Deck3B:
 ; deck $41 (Mad Petals) Computer Search: a bank helper picks the fetch
 ; target (stashed in wd082); then pull two cards from hand to pay the
 ; discard cost -- first two of the trainer card's own type, falling back to
-; any two cards. (Carved out of the still-raw $6d5e-$6e0a block.)
+; any two cards. (Carved out of the $6d5e-$6e0a block.)
 AIDecide_ComputerSearch_Deck41:
 	farcall MadPetalsDeckAIDecideComputerSearch_FindTarget
 	ret nc
@@ -7075,7 +7072,7 @@ AIDecide_PokemonTrader:
 ; or dig the missing pre-evo when the evo is already in hand) or to pull a
 ; Mr. Mime out of the deck. On a hit, tag the picked deck index as the swap
 ; target and trade away a duplicate Pokemon in hand; otherwise don't play.
-; (Carved out of the still-raw $6eca-$6f1b block.)
+; (Carved out of the $6eca-$6f1b block.)
 AIDecide_PokemonTrader_Deck17:
 	ld bc, ABRA_LV14
 	ld de, KADABRA_LV39
@@ -7166,7 +7163,7 @@ AIDecide_PokemonTrader_Deck18:
 ; deck $2c (Gathering Nidoran) Pokemon Trader: like the deck's Poke Ball
 ; policy, advance the Nidoran-M (Nidoking) then Nidoran-F (Nidoqueen) lines;
 ; on a hit, tag the deck index as the swap target and trade away a duplicate
-; Pokemon in hand. (Carved out of the still-raw $6f88-$71d4 block.)
+; Pokemon in hand. (Carved out of the $6f88-$71d4 block.)
 AIDecide_PokemonTrader_Deck2C:
 	ld bc, NIDORANM_LV22
 	ld de, NIDORINO_LV23
@@ -7242,7 +7239,7 @@ AIDecide_PokemonTrader_Deck2C:
 ; already in hand, or — for the Seel line — via CheckReelInEvoLineTarget.
 ; On a hit, tag the picked deck index as the swap target; otherwise fall
 ; back to trading a duplicate Pokemon or an unusable evolution card in hand.
-; (Carved out of the still-raw $6f88-$71d4 block.)
+; (Carved out of the $6f88-$71d4 block.)
 AIDecide_PokemonTrader_Deck2D:
 	ld bc, SQUIRTLE_LV15
 	ld de, WARTORTLE_LV22
@@ -7291,7 +7288,7 @@ AIDecide_PokemonTrader_Deck2D:
 ; For each, if we don't already hold the card, try to dig it (or the next
 ; evolution stage) out of the deck. The first card we can fetch becomes the
 ; swap target; we then trade away a different Pokemon in hand for it. If no
-; line can be advanced, don't play. (Carved out of the still-raw
+; line can be advanced, don't play. (Carved out of the 
 ; $6f88-$71d4 block.)
 AIDecide_PokemonTrader_Deck32:
 	ld de, MAGMAR_LV31
@@ -7414,7 +7411,7 @@ AIDecide_PokemonTrader_Deck41:
 ; deck $42 (Dangerous Bench) Pokemon Trader: with fewer than 4 Pokemon in
 ; play, trade for a Pikachu pulled from the deck -- but only if the hand
 ; already holds a duplicate Dark Dragonite or Dark Dragonair to spare.
-; (Carved out of the still-raw $6f88-$71d4 block tail.)
+; (Carved out of the $6f88-$71d4 block tail.)
 AIDecide_PokemonTrader_Deck42:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -7734,7 +7731,7 @@ AIDecide_PokemonTrader_Deck51:
 	ret
 
 ; Twelve more decks delegate Pokemon Trader to a per-deck AI helper in
-; bank $0e/$12 (deck $6d's is still raw, RonaldsUltraDeckAIDecidePokemonTrader).
+; bank $0e/$12 (deck $6d's is RonaldsUltraDeckAIDecidePokemonTrader).
 AIDecide_PokemonTrader_Deck5A:
 	farcall BadGuysDeckAIDecidePokemonTraderForEvo
 	ret
@@ -7866,8 +7863,7 @@ AIDecide_TheBosssWay_Deck3F:
 
 ; deck $42 (Dangerous Bench) The Boss's Way: play to complete the
 ; Dratini/Dark Dragonair/Dark Dragonite line or the Pikachu/Dark Raichu line
-; by fetching the missing evolution stage. (Carved out of the still-raw
-; TheBosssWay deck-case block.)
+; by fetching the missing evolution stage. (Carved out of the TheBosssWay deck-case block.)
 AIDecide_TheBosssWay_Deck42:
 	ld bc, DRATINI_LV12
 	ld de, DARK_DRAGONAIR
@@ -8014,7 +8010,7 @@ AIDecide_NightlyGarbageRun:
 ; Kadabra -> slot 1, Abra returns on the spot). Failing that, fall back to
 ; shuffling three discarded basic energies back in, optionally alongside a
 ; discarded Mr. Mime. Don't play if there's nothing worth recovering.
-; (Carved out of the still-raw $765e-$76ad block.)
+; (Carved out of the $765e-$76ad block.)
 AIDecide_NightlyGarbageRun_Deck17:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, ALAKAZAM_LV42
@@ -8054,7 +8050,7 @@ AIDecide_NightlyGarbageRun_Deck17:
 ; deck $3a (Grand Fire) Nightly Garbage Run policy: only play once at least
 ; three basic energies are in the discard pile, then shuffle the first two
 ; back along with a discarded Moltres if one is there (else a third energy).
-; (Carved out of the still-raw $76ad-$76d6 block.)
+; (Carved out of the $76ad-$76d6 block.)
 AIDecide_NightlyGarbageRun_Deck3A:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
@@ -8079,7 +8075,7 @@ AIDecide_NightlyGarbageRun_Deck3A:
 ; deck $3b (Legendary Fossil) Nightly Garbage Run policy: only play once at
 ; least three basic energies are in the discard pile, then shuffle the first
 ; two back along with a discarded Zapdos if one is there (else a third
-; energy). (Carved out of the still-raw $76d6-$76ff block.)
+; energy). (Carved out of the $76d6-$76ff block.)
 AIDecide_NightlyGarbageRun_Deck3B:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
@@ -8104,7 +8100,7 @@ AIDecide_NightlyGarbageRun_Deck3B:
 ; deck $3d (Great Dragon) Nightly Garbage Run: bail unless the discard holds
 ; a Charizard (Lv76 either print) or Charmeleon, then multi-target-rescue
 ; those plus a Dragonite and basic energies, re-packing the slots so slot 1
-; holds the first rescue. (Carved out of the still-raw NGR deck-case block.)
+; holds the first rescue. (Carved out of the NGR deck-case block.)
 AIDecide_NightlyGarbageRun_Deck3D:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, CHARIZARD_LV76
@@ -8171,7 +8167,7 @@ AIDecide_NightlyGarbageRun_Deck3D:
 ; them in priority order -- the three basics, then Dark Arbok / Muk / Dark
 ; Weezing, then any basic energies -- stopping once all three slots are
 ; full. Finally re-pack slots downward so slot 1 holds the first rescue.
-; (Carved out of the still-raw $7789-$782f block.)
+; (Carved out of the $7789-$782f block.)
 AIDecide_NightlyGarbageRun_Deck40:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, EKANS_LV15
@@ -8293,8 +8289,7 @@ AIDecide_NightlyGarbageRun_Deck41:
 
 ; deck $46 (Complete Combustion) Nightly Garbage Run: only play if a Magmar
 ; is in the discard, then rescue it plus basic energies, re-packing the
-; slots; decline if nothing landed in slot 1. (Carved out of the still-raw
-; NGR deck-case block.)
+; slots; decline if nothing landed in slot 1. (Carved out of the NGR deck-case block.)
 AIDecide_NightlyGarbageRun_Deck46:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MAGMAR_LV27
@@ -8514,7 +8509,7 @@ AddDeckIndexToAIMultiTargetSlots:
 ; from the discard pile (or, if none, reveal one from the deck). The play
 ; wrapper forwards the recovered card's deck index (slot 1) and the
 ; parameter that tells the effect where it came from.
-; (Carved out of the still-raw $79f5-$7a43 block.)
+; (Carved out of the $79f5-$7a43 block.)
 AIPlay_FossilExcavation:
 	ld a, [wCurrentAIFlags]
 	or AI_FLAG_MODIFIED_HAND
@@ -8688,7 +8683,7 @@ AIPlay_MasterBall:
 ; Bails out first if the duelist already has 55+ cards out of the
 ; deck. Then 12-way deck-ID dispatch. Decks $13 and $14 have inline
 ; policies (right here); ten others jump to bespoke sub-functions
-; (decks $3f, $43, $46, $74 decompiled; six still raw); everyone else
+; (all decompiled); everyone else
 ; returns "don't play".
 AIDecide_MasterBall:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -8964,7 +8959,7 @@ AIDecide_MasterBall_Deck3F:
 ; Grimer->Muk, Ekans->Dark Arbok -- grabbing the evolution. Failing that,
 ; fall back to fetching any of those Pokemon (Koffing, Grimer, Ekans,
 ; Charmander) directly, and finally a generic Master Ball target.
-; (Carved out of the still-raw $7d61-$7dc2 block.)
+; (Carved out of the $7d61-$7dc2 block.)
 AIDecide_MasterBall_Deck40:
 	ld bc, KOFFING_LV12
 	ld de, DARK_WEEZING
