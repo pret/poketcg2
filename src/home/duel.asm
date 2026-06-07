@@ -1430,7 +1430,7 @@ PlayAttackAnimation_DealAttackDamage::
 	call PrintKnockedOutIfHLZero
 	jr HandleAfterDamageEffects
 
-Func_17ed:
+DrawWideTextBoxThenHandleAfterDamage:
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ld hl, wDamage

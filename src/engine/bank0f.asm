@@ -1092,7 +1092,7 @@ Script_Aaron:
 	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
-	jp z, Func_3c917
+	jp z, Script_AaronStep1
 	jr .asm_3c90a
 .ows_3c8b3
 	print_npc_text Text0f3f
@@ -1102,9 +1102,9 @@ Script_Aaron:
 	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
-	jp z, Func_3c917
+	jp z, Script_AaronStep1
 	dec a
-	jp z, Func_3c964
+	jp z, Script_AaronStep2
 	jr .asm_3c90a
 .ows_3c8cb
 	print_npc_text Text0f3f
@@ -1114,11 +1114,11 @@ Script_Aaron:
 	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
-	jp z, Func_3c917
+	jp z, Script_AaronStep1
 	dec a
-	jp z, Func_3c964
+	jp z, Script_AaronStep2
 	dec a
-	jp z, Func_3c9b1
+	jp z, Script_AaronStep3
 	jr .asm_3c90a
 .ows_3c8e7
 	check_event EVENT_GOT_MACHAMP_COIN
@@ -1130,11 +1130,11 @@ Script_Aaron:
 	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	cp $01
-	jp c, Func_3c917
-	jp z, Func_3c964
+	jp c, Script_AaronStep1
+	jp z, Script_AaronStep2
 	cp $03
-	jp c, Func_3c9b1
-	jp z, Func_3ca02
+	jp c, Script_AaronStep3
+	jp z, Script_AaronStep4
 .asm_3c90a
 	ld a, $01
 	start_script
@@ -1144,7 +1144,7 @@ Script_Aaron:
 	end_script
 	ret
 
-Func_3c917:
+Script_AaronStep1:
 	ld a, $01
 	start_script
 	print_npc_text Text0f42
@@ -1187,7 +1187,7 @@ Script_AaronStep1AfterDuel:
 	db NORTH, MOVE_2
 	db $ff
 
-Func_3c964:
+Script_AaronStep2:
 	ld a, $01
 	start_script
 	print_npc_text Text0f47
@@ -1230,7 +1230,7 @@ Script_AaronStep2AfterDuel:
 	db EAST, MOVE_6
 	db $ff
 
-Func_3c9b1:
+Script_AaronStep3:
 	ld a, $01
 	start_script
 	print_npc_text Text0f4b
@@ -1274,7 +1274,7 @@ Script_AaronStep3AfterDuel:
 	db EAST, MOVE_6
 	db $ff
 
-Func_3ca02:
+Script_AaronStep4:
 	ld a, $01
 	start_script
 	print_npc_text Text0f51
@@ -7377,9 +7377,9 @@ FightingFortBasement_WarpFadeInPreload:
 .asm_3f8d8
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3f95e)
+	ld a, BANK(FightingFortBasement_WalkPlayerIn)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3f95e
+	ld hl, FightingFortBasement_WalkPlayerIn
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -7452,7 +7452,7 @@ FightingFortBasement_ChestOpenedAppearanceCheck:
 	scf
 	ret
 
-Func_3f95e:
+FightingFortBasement_WalkPlayerIn:
 	ld a, [wPlayerOWObject]
 	ld b, BANK(.NPCMovement_3f980)
 	ld hl, .NPCMovement_3f980

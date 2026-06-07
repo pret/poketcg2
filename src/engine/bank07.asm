@@ -2281,7 +2281,7 @@ DepositChips:
 	pop af
 	ret
 
-Func_1cd63:
+RunStartMenuFromOverworld:
 	farcall SuspendOverworldForSubScreen
 	call ShowStartMenu
 	farcall ResumeOverworldFromSubScreen
@@ -4298,12 +4298,12 @@ UpdateScreenAnimations::
 	ld [wdc5a], a
 	cp DUEL_SPECIAL_ANIMS
 	jr c, .not_special
-	call Func_3c8e
+	call RunCurrentDuelAnimation
 	jr .asm_1e122
 .not_special
 	cp DUEL_ANIM_DAMAGE_HUD
 	jr nz, .not_damage_hud
-	call Func_1e279
+	call InitDamageHUDAnimation
 	jr .asm_1e122
 .not_damage_hud
 	cp DUEL_SCREEN_ANIMS
@@ -4518,7 +4518,7 @@ PlayCoinAnimation:
 	farcall GetSpriteAnimBuffer
 	ret
 
-Func_1e279:
+InitDamageHUDAnimation:
 	push af
 	push bc
 	push de
@@ -4527,23 +4527,23 @@ Func_1e279:
 	ld [wCurAnimation], a
 	xor a
 	ld [wdc58], a
-	call Func_1e2b1
+	call AnimateDamageNumberDigits
 	ld a, [wDuelAnimEffectiveness]
 	bit 0, a
 	jr z, .asm_1e293
-	call Func_1e30d
+	call LoadDamageEffectivenessExtra
 .asm_1e293
 	ld a, $12
 	ld [wdc58], a
 	ld a, [wDuelAnimEffectiveness]
 	bit 1, a
 	jr z, .asm_1e2a2
-	call Func_1e324
+	call LoadDamageWeaknessSymbol
 .asm_1e2a2
 	ld a, [wDuelAnimEffectiveness]
 	bit 2, a
 	jr z, .asm_1e2ac
-	call Func_1e347
+	call LoadDamageResistanceSymbol
 .asm_1e2ac
 	pop hl
 	pop de
@@ -4551,7 +4551,7 @@ Func_1e279:
 	pop af
 	ret
 
-Func_1e2b1:
+AnimateDamageNumberDigits:
 	; check if damage is over 1000
 	ld a, [wDuelAnimDamage + 1]
 	cp HIGH(1000)
@@ -4612,7 +4612,7 @@ Func_1e2b1:
 	;  ones digit, tens digit, hundred digits
 	db        -16,         -8,              0
 
-Func_1e30d:
+LoadDamageEffectivenessExtra:
 	call LoadAnimationAndPlay
 	ld bc, FRAMESET_014
 	farcall SetAndInitSpriteAnimFrameset
@@ -4623,7 +4623,7 @@ Func_1e30d:
 	farcall SetSpriteAnimPosition
 	ret
 
-Func_1e324:
+LoadDamageWeaknessSymbol:
 	call LoadAnimationAndPlay
 	ld bc, FRAMESET_013
 	farcall SetAndInitSpriteAnimFrameset
@@ -4638,7 +4638,7 @@ Func_1e324:
 	ld [wdc58], a
 	ret
 
-Func_1e347:
+LoadDamageResistanceSymbol:
 	call LoadAnimationAndPlay
 	ld bc, FRAMESET_012
 	farcall SetAndInitSpriteAnimFrameset
@@ -5449,7 +5449,7 @@ LoadBoosterPackScene:
 	db SCENE_INTRO_FOSSIL
 	db SCENE_INTRO_TEAM_ROCKET
 
-Func_1e889:
+RunGiveBoosterPacksFromOverworld:
 	farcall SuspendOverworldForSubScreen
 	call GiveBoosterPacks
 	farcall ResumeOverworldFromSubScreen
@@ -6177,7 +6177,7 @@ DrawMailboxTitleAndScene:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	call Func_1ed5e
+	call GetMailboxSceneAndText
 	call LoadMailboxScene
 	ret
 
@@ -6195,7 +6195,7 @@ PrintMailboxStatusScrollableText:
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 ;	fallthrough
 
-Func_1ed5e:
+GetMailboxSceneAndText:
 	ld a, [wMailboxStatus]
 	add a
 	ld c, a
@@ -7201,7 +7201,7 @@ GetSelectedMailPosition:
 
 INCLUDE "data/mail.asm"
 
-Func_1f57b::
+UpdateOverworldScreenShake::
 	push af
 	push bc
 	push de
@@ -7324,7 +7324,7 @@ Set3FromwDD75:
 	ret
 
 ; set [wdd75] = [wdd76] = 0, [wdd77] = c
-Func_1f61a:
+StopOverworldScreenShake:
 	push af
 	ld a, 0
 	call Set3FromwDD75
@@ -7651,7 +7651,7 @@ HandleIngameCardPop:
 	key_funcs_end
 
 ; dupe of RunCardPopFromOverworld
-Func_1f81f:
+RunCardPopFromOverworld_Alt:
 	farcall SuspendOverworldKeepingSpriteAnims
 	call HandleIngameCardPop
 	farcall ResumeOverworldKeepingSpriteAnims

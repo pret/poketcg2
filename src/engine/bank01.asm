@@ -4370,7 +4370,7 @@ SelectingBenchPokemonMenu:
 	jp SetCursorParametersForTextBox
 
 ; remnant from tcg1, unreferenced
-Func_5bfd:
+SetupAndPrintPlayAreaCardScreen:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call ZeroObjectPositionsAndToggleOAMCopy
 	call EmptyScreen
@@ -4896,7 +4896,7 @@ PrintPlayAreaCardAttachedEnergies:
 	ret
 
 ; remnant from tcg1, unreferenced
-Func_5efe:
+WriteDefaultTextRowToBGMap0:
 	ld hl, wDefaultText
 	ld e, 8
 .loop_write

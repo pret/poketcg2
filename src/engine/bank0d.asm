@@ -990,10 +990,10 @@ TcgAirport_MapHeader:
 TcgAirport_StepEvents:
 	map_exit 0, 9, MAP_TCG_AIRPORT_ENTRANCE, 10, 6, WEST
 	map_exit 0, 10, MAP_TCG_AIRPORT_ENTRANCE, 10, 7, WEST
-	_ow_coordinate_function 11, 8, 0, 0, 0, 3, Func_349cd
-	ow_script 10, 9, Func_349cd
-	ow_script 9, 9, Func_349cd
-	_ow_coordinate_function 8, 8, 0, 0, 0, 1, Func_349cd
+	_ow_coordinate_function 11, 8, 0, 0, 0, 3, TcgAirport_ResumeAfterMoveGR5
+	ow_script 10, 9, TcgAirport_ResumeAfterMoveGR5
+	ow_script 9, 9, TcgAirport_ResumeAfterMoveGR5
+	_ow_coordinate_function 8, 8, 0, 0, 0, 1, TcgAirport_ResumeAfterMoveGR5
 	db $ff
 
 TcgAirport_NPCs:
@@ -1288,7 +1288,7 @@ Script_GR5_TCGAirportLanded:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_349cd:
+TcgAirport_ResumeAfterMoveGR5:
 	call TcgAirport_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
@@ -4733,7 +4733,7 @@ PsychicStronghold_AfterDuelScripts:
 	npc_script NPC_RYOKO, Script_RyokoAfterDuel
 	db $ff
 
-Func_364ac:
+PsychicStronghold_MamiIntroPlatformScript:
 	ld a, NPC_MAMI
 	ld [wScriptNPC], a
 	ldtx hl, DialogMamiText
@@ -5648,7 +5648,7 @@ PsychicStronghold_PlatformWarpOrBlock:
 	pop de
 	pop bc
 	pop af
-	call Func_364ac
+	call PsychicStronghold_MamiIntroPlatformScript
 	ret
 .asm_36bdc
 	pop hl

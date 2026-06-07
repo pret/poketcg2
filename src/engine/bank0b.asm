@@ -1234,8 +1234,8 @@ PsychicClubEntrance_StepEvents:
 	map_exit 0, 4, MAP_PSYCHIC_CLUB_LOBBY, 14, 7, WEST
 	map_exit 4, 0, MAP_PSYCHIC_CLUB, 6, 12, NORTH
 	map_exit 5, 0, MAP_PSYCHIC_CLUB, 7, 12, NORTH
-	ow_script 4, 2, Func_2ca3e
-	ow_script 5, 2, Func_2ca3e
+	ow_script 4, 2, PsychicClubEntrance_ResumeAfterMoveStephanie
+	ow_script 5, 2, PsychicClubEntrance_ResumeAfterMoveStephanie
 	db $ff
 
 PsychicClubEntrance_NPCs:
@@ -1355,7 +1355,7 @@ PsychicClubEntrance_ContinueOW:
 	scf
 	ret
 
-Func_2ca3e:
+PsychicClubEntrance_ResumeAfterMoveStephanie:
 	call PsychicClubEntrance_MoveStephanieOutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
@@ -8309,9 +8309,9 @@ OverheadIslands_WarpFadeInPreload:
 .got_blimp_data
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_2fe9a)
+	ld a, BANK(OverheadIslands_BlimpFlyover)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_2fe9a
+	ld hl, OverheadIslands_BlimpFlyover
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -8332,7 +8332,7 @@ OverheadIslands_WarpEndSFX:
 	ccf
 	ret
 
-Func_2fe9a:
+OverheadIslands_BlimpFlyover:
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr z, .from_tcg_to_gr

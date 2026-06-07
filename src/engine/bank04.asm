@@ -2646,7 +2646,7 @@ MoveNPC:
 	ret
 
 CheckAnyOWObjectFlag6::
-	call Func_113d2
+	call CountOWObjectsWithFlag6
 	ret
 
 CheckOWObjectPointerWithID:
@@ -3788,7 +3788,7 @@ ENDR
 
 ; counts number of OW objects
 ; that have flag 6 set
-Func_113d2:
+CountOWObjectsWithFlag6:
 	push bc
 	push de
 	push hl
@@ -6500,7 +6500,7 @@ GetPlayerGender:
 	pop hl
 	ret
 
-Func_13dfa:
+ResetOverworldPresentation:
 	call DisableLCD
 	call InitOverworldObjectState
 	call InitOverworldGraphics

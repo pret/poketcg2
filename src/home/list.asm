@@ -94,7 +94,7 @@ Func_0b89:
 	push hl
 	push bc
 	ld hl, wListPointer
-Func_0b8e:
+SetNextWordOfList_Common:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -110,7 +110,7 @@ SetNextWordOfList2::
 	push hl
 	push bc
 	ld hl, wListPointer2
-	jr Func_0b8e
+	jr SetNextWordOfList_Common
 
 Func_0ba0:
 	push hl

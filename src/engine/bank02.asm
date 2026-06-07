@@ -2259,7 +2259,7 @@ _DrawPlayAreaToPlacePrizeCards::
 	db  0,  2
 
 ; remnant from tcg1, unreferenced
-Func_8dcf:
+DrawPrizeMarkers:
 	push hl
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
 	ld h, a

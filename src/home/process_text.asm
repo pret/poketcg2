@@ -217,7 +217,7 @@ GenerateAndPlaceTextTile::
 	ldh a, [hffbb]
 	and $1
 	jr nz, .asm_22ed
-	call Func_2325
+	call AllocateOrPromoteTextTileCacheEntry
 	jr c, .tile_already_exists
 	or a
 	jr nz, .done
@@ -279,7 +279,7 @@ TerminateHalfWidthText::
 	pop hl
 	ret
 
-Func_2325::
+AllocateOrPromoteTextTileCacheEntry::
 	call PromoteTextTileCacheEntry
 	ret c
 	or a

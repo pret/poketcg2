@@ -118,6 +118,16 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 54 named. ~69 remaining. 8 subagents over the fingerprinted tail. SFX engine
+  channel funcs (SFX_StoreChannelPointer / SFX_UpdateNoiseChannelPitchSlide / SFX_ClearState +_2,
+  tcg1-confirmed), the duel damage-HUD animation system (InitDamageHUDAnimation,
+  AnimateDamageNumberDigits, LoadDamage{Weakness,Resistance}Symbol), bank07 feature launchers
+  (RunStartMenuFromOverworld, RunGiveBoosterPacksFromOverworld, screen-shake update/stop),
+  bank10 ContinueOW after-duel handlers (TcgChallengeHall_ResumeRound, GrCastleBiruritchi scenes,
+  MasonLab first-visit/escort scripts), Script_AaronStep1-4 tutorial duels, home menu/text helpers
+  (ReadFarByte, CallDuelAnimationFunction, RunCurrentDuelAnimation, *Preserved BGMap wrappers),
+  and airport/club ResumeAfterMove step handlers. Several tcg1 byte-faithful remnants named
+  (Func_5bfd/17ed/8dcf/1a080/6873c=DrawIncompleteTextStub). Deferred Func_12c3dc (pure alias).
 - 2026-06-06: 27 named. ~119 remaining. Deep tail, 6 subagents. New-game cup/event RNG cluster
   (RandomizeGRCoinPieceLocation, RandomizeIshiharaLocation, Randomize{TCGIsland,GRIsland}Location,
   TryStart{TCG,GR}ChallengeCup), GR-island scroll math (InitOWScrollToTarget/StepOWScrollTowardTarget),

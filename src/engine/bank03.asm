@@ -1,7 +1,7 @@
 ; handles intro, title screen and start menu
 ; as well as the core gameplay loop
 _CoreGameLoop::
-	call Func_c240
+	call ResetMusicAndOverworldState
 .intro
 	farcall IntroAndTitleScreen
 	ld a, PLAYER_TURN
@@ -314,10 +314,10 @@ HandleStartMenu:
 	ret
 
 ; called before intro starts
-Func_c240:
+ResetMusicAndOverworldState:
 	xor a
 	ld [wCurMusic], a
-	farcall Func_13dfa
+	farcall ResetOverworldPresentation
 	ret
 
 InitEvents:

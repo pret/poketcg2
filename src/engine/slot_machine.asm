@@ -966,7 +966,7 @@ HandleSlotMachineBetting:
 	ret
 
 ; debug? unreferenced
-Func_12a3d:
+ToggleSlotMachineDebugMode:
 	ldh a, [hKeysPressed]
 	and PAD_SELECT
 	ret z
@@ -1283,7 +1283,7 @@ HandleSlotMachinePayouts:
 	db 3 ; bet 5
 
 ; debug? unreferenced
-Func_12c17:
+FindMatchingSlotMachinePreset:
 	ld hl, .pointer_table
 	ld c, 0
 .loop_presets

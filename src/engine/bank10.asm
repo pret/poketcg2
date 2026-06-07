@@ -1405,9 +1405,9 @@ MasonLaboratoryMain_WarpFadeInPreload:
 	farcall CalcOWScroll
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_40f46)
+	ld a, BANK(MasonLaboratoryMain_FirstVisitScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_40f46
+	ld hl, MasonLaboratoryMain_FirstVisitScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -1471,7 +1471,7 @@ MasonLaboratoryMain_AfterDuelScripts:
 	npc_script NPC_SAM, Script_SamMasonLabAfterDuel
 	db $ff
 
-Func_40f46:
+MasonLaboratoryMain_FirstVisitScript:
 	xor a
 	start_script
 	script_callfar Script_34000
@@ -1532,7 +1532,7 @@ Func_40f46:
 	give_deck STARTER_DECK_ID
 	script_ret
 
-Func_40fbc:
+MasonLaboratoryMain_DrMasonEscortScript:
 	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
 	ldtx hl, DialogDrMasonText
@@ -1583,7 +1583,7 @@ WarpFromMasonLabIfMapReloadEvent:
 .asm_41013
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall ZeroOutEventValue
-	call Func_40fbc
+	call MasonLaboratoryMain_DrMasonEscortScript
 	ret
 
 Script_TCGChallengeMachine:
@@ -2431,12 +2431,12 @@ TcgChallengeHall_ContinueOW:
 	ret
 .asm_41645
 	farcall OverworldResumeWithCurSong
-	call Func_4164f
+	call TcgChallengeHall_ResumeRound
 	scf
 	ccf
 	ret
 
-Func_4164f:
+TcgChallengeHall_ResumeRound:
 	xor a
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -3179,10 +3179,10 @@ GrAirport_MapHeader:
 GrAirport_StepEvents:
 	map_exit 13, 9, MAP_GR_AIRPORT_ENTRANCE, 1, 6, EAST
 	map_exit 13, 10, MAP_GR_AIRPORT_ENTRANCE, 1, 7, EAST
-	_ow_coordinate_function 5, 8, 0, 0, 0, 3, Func_41dac
-	ow_script 4, 9, Func_41dac
-	ow_script 3, 9, Func_41dac
-	_ow_coordinate_function 2, 8, 0, 0, 0, 1, Func_41dac
+	_ow_coordinate_function 5, 8, 0, 0, 0, 3, GrAirport_ResumeAfterMoveGR5
+	ow_script 4, 9, GrAirport_ResumeAfterMoveGR5
+	ow_script 3, 9, GrAirport_ResumeAfterMoveGR5
+	_ow_coordinate_function 2, 8, 0, 0, 0, 1, GrAirport_ResumeAfterMoveGR5
 	db $ff
 
 GrAirport_NPCs:
@@ -3399,7 +3399,7 @@ Script_GR5_GRAirportLanded:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_41dac:
+GrAirport_ResumeAfterMoveGR5:
 	call GrAirport_MoveGR5OutOfPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
@@ -4571,12 +4571,12 @@ GrChallengeHall_ContinueOW:
 	ret
 .asm_42702
 	farcall OverworldResumeWithCurSong
-	call Func_4270c
+	call GrChallengeHall_ResumeRound
 	scf
 	ccf
 	ret
 
-Func_4270c:
+GrChallengeHall_ResumeRound:
 	xor a
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -5590,9 +5590,9 @@ GrCastleBiruritchi_WarpFadeInPreload:
 	jr nz, .asm_42f84
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_43050)
+	ld a, BANK(GrCastleBiruritchi_StairsCutscene)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_43050
+	ld hl, GrCastleBiruritchi_StairsCutscene
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -5671,12 +5671,12 @@ GrCastleBiruritchi_ContinueOW:
 	ret
 .asm_42fd7
 	farcall OverworldResumeWithCurSong
-	call Func_42fe1
+	call GrCastleBiruritchi_ResumeBiruritchi
 	scf
 	ccf
 	ret
 
-Func_42fe1:
+GrCastleBiruritchi_ResumeBiruritchi:
 	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
 	ldtx hl, DialogBiruritchiText
@@ -5731,7 +5731,7 @@ Script_43044:
 	ld [wNextGameEvent], a
 	ret
 
-Func_43050:
+GrCastleBiruritchi_StairsCutscene:
 	xor a
 	start_script
 	set_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK

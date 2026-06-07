@@ -111,7 +111,7 @@ SFX_Update:
 	ld a, [wdd8c]
 	or a
 	jr nz, .asm_fc063
-	call Func_fc26c
+	call SFX_ClearState
 	ret
 .asm_fc063
 	xor a
@@ -233,7 +233,7 @@ SFX_frequency:
 	ld [hli], a
 	ld [hl], d
 	pop de
-Func_fc105:
+SFX_StoreChannelPointer:
 	ld hl, wd0e3
 	add hl, bc
 	add hl, bc
@@ -326,7 +326,7 @@ SFX_wait:
 	ld a, c
 	cp $3
 	jr nz, .asm_fc17c
-	call Func_fc1cd
+	call SFX_UpdateNoiseChannelPitchSlide
 	jr .asm_fc17f
 .asm_fc17c
 	call SFX_UpdateChannelPitchSlide
@@ -340,7 +340,7 @@ SFX_wait:
 	ld [de], a
 	ld e, l
 	ld d, h
-	jp Func_fc105
+	jp SFX_StoreChannelPointer
 
 SFX_UpdateChannelPitchSlide:
 	ld hl, wde2f
@@ -396,7 +396,7 @@ SFX_UpdateChannelPitchSlide:
 .asm_fc1cc
 	ret
 
-Func_fc1cd:
+SFX_UpdateNoiseChannelPitchSlide:
 	ld hl, wde32
 	ld a, [hl]
 	or a
@@ -525,7 +525,7 @@ SFX_end:
 	pop hl
 	ret
 
-Func_fc26c:
+SFX_ClearState:
 	xor a
 	ld [wde53], a
 	ld [wSfxPriority], a

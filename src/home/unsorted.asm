@@ -693,7 +693,7 @@ ExecuteNPCScript::
 	scf
 	ret
 
-Func_3473::
+ReadFarByte::
 	push bc
 	ld b, a
 	ldh a, [hBankROM]
@@ -956,7 +956,7 @@ DivideBCbyDE::
 	jr nz, .asm_3568
 	ret
 
-Func_3588::
+WriteDataBlockToBGMap0Preserved::
 	push af
 	push bc
 	push de
@@ -968,7 +968,7 @@ Func_3588::
 	pop af
 	ret
 
-Func_3594::
+WriteDataBlocksToBGMap0Preserved::
 	push af
 	push bc
 	push de
@@ -1919,7 +1919,7 @@ FrameFunc_Overworld::
 	ld e, $10
 	farcall UpdateAllOWObjectMovementFast
 .asm_3a56
-	farcall Func_1f57b
+	farcall UpdateOverworldScreenShake
 	farcall UpdateSpriteAnims
 	call UpdateOWTileAnimations
 	call UpdateOverworldPaletteCycle
@@ -1935,7 +1935,7 @@ FrameFunc_SpriteAnimationAndFadePals::
 	push bc
 	push de
 	push hl
-	call Func_3f78
+	call CallFrameFunction
 	farcall UpdateSpriteAnims
 	farcall FadePalettes
 	pop hl
@@ -2288,7 +2288,7 @@ CopyCurPaletteToPal2::
 StubbedPlayDefaultSong::
 	ret
 
-Func_3c3d::
+HandleCoinMenuPageInput_Trampoline::
 	farcall HandleCoinMenuPageInput
 	ret
 
@@ -2344,7 +2344,7 @@ CheckAnyAnimationPlaying::
 	ccf
 	ret
 
-Func_3c8e::
+RunCurrentDuelAnimation::
 	ld a, [wCurAnimation]
 	cp DUEL_ANIM_158_UNUSED
 	jr z, .asm_3ca8
@@ -2358,14 +2358,14 @@ Func_3c8e::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp Func_3cc3
+	jp CallDuelAnimationFunction
 
 .asm_3ca8
 	ld a, [wDuelAnimDamage]
 	ld l, a
 	ld a, [wDuelAnimDamage + 1]
 	ld h, a
-	jp Func_3cc3
+	jp CallDuelAnimationFunction
 
 .pointer_table
 	dw SetScreenForDuelAnimation ; DUEL_ANIM_SET_SCREEN
@@ -2377,7 +2377,7 @@ Func_3c8e::
 	dw DuelAnim156        ; DUEL_ANIM_156_UNUSED
 	dw DuelAnim157        ; DUEL_ANIM_157_UNUSED
 
-Func_3cc3::
+CallDuelAnimationFunction::
 	ld a, $ff
 	ld [wdcf0], a
 	ldh a, [hBankROM]
@@ -2854,7 +2854,7 @@ SetFrameFunction::
 	ret
 
 ; jumps to wde69 if not null
-Func_3f78::
+CallFrameFunction::
 	push af
 	ld hl, wde69
 	ld a, [hli]

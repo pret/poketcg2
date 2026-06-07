@@ -401,7 +401,7 @@ ReloadCardListItems::
 	ret
 
 ; reload a list of cards, except don't print their names
-Func_2827::
+ReloadCardListWithoutNames::
 	ld a, $01
 	ldh [hffbb], a
 	call ReloadCardListItems

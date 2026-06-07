@@ -4293,7 +4293,7 @@ ResetPrinterCommunicationSettings:
 	ret
 
 	; send some bytes through serial
-Func_1a080: ; unreferenced
+SendPrinterStatusQueryPacket: ; unreferenced
 	ld bc, 0
 	lb de, PRINTERPKT_NUL, FALSE
 	jp SendPrinterPacket
