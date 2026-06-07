@@ -790,7 +790,7 @@ AIProcessRetreat:
 	and AI_FLAG_USED_SWITCH
 	jr nz, .used_switch
 	ld a, [wAIPlayAreaCardToSwitch]
-	farcall Func_167e5
+	farcall AITryToRetreat
 	ret
 
 .asm_4865c
@@ -809,7 +809,7 @@ AIProcessRetreat:
 .asm_48670
 	farcall AIDecideBenchPokemonToSwitchTo
 	ret c ; no Bench Pokémon
-	farcall Func_167e5
+	farcall AITryToRetreat
 	ret
 
 AIDoTurn_GeneralNoRetreat:
@@ -1118,7 +1118,7 @@ AIDeckSpecificEnergyLogic:
 	jr .got_score
 
 .kangaskhan_lv40_awesome_fossil
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48958
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1190,7 +1190,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .kangaskhan_lv40_glittering_scales
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_489bc
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
@@ -1247,7 +1247,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48a56
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1279,7 +1279,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48a9d
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1311,7 +1311,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48adf
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1347,7 +1347,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48b18
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1378,7 +1378,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48b57
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1408,7 +1408,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 .kangaskhan_lv40_or_psyduck_lv16
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48b9a
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1470,7 +1470,7 @@ AIDeckSpecificEnergyLogic:
 	call GetCardIDFromDeckIndex
 	cp16 KANGASKHAN_LV40
 	jp nz, .default_score
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48c1f
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1510,7 +1510,7 @@ AIDeckSpecificEnergyLogic:
 ; kangaskhan lv40
 	cp16 KANGASKHAN_LV40
 	jp nz, .default_score
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48c75
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1550,7 +1550,7 @@ AIDeckSpecificEnergyLogic:
 	ld a, [wTotalAttachedEnergies]
 	or a
 	jr z, .asm_48cc1
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48cc1
 	ld de, DARK_CHARIZARD
 	call CheckIfPokemonInBenchHasEnoughEnergy
@@ -1601,7 +1601,7 @@ AIDeckSpecificEnergyLogic:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp nz, .default_score
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48d3e
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1795,7 +1795,7 @@ AIDeckSpecificEnergyLogic:
 	jp .default_score
 
 .kangaskhan_lv40_power_of_darkness
-	farcall Func_4c605
+	farcall CheckIfShouldAttachExtraEnergyThisTurn
 	jr c, .asm_48ee7
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -2566,7 +2566,7 @@ HandleAIDarkPokemonSearchStrategies:
 	jr c, .asm_494d0 ; has an unusable Evolution card in Hand
 	call CanUseEvolutionaryLight
 	jr nc, .find_any_evolution_card_to_trade
-	call Func_495dd
+	call FindEvolutionToPlayWithEvolutionaryLight
 	jr nc, .asm_494d0
 .find_any_evolution_card_to_trade
 	; try to search for an evolution card with The Boss' Way
@@ -2711,7 +2711,7 @@ AIUseTrainerCardToSearchCard:
 	or a
 	ret
 
-Func_495dd:
+FindEvolutionToPlayWithEvolutionaryLight:
 	call CanUseEvolutionaryLight
 	ccf
 	ret c
@@ -3396,7 +3396,7 @@ ScorcherDeckAIDecideEnergyRetrieval:
 	or a
 	ret
 
-Func_49a73:
+TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy:
 	ld e, PLAY_AREA_ARENA
 	call SwapTurn
 	call GetPlayAreaCardAttachedEnergies
@@ -3474,7 +3474,7 @@ Func_49a73:
 	scf
 	ret
 
-Func_49af6:
+TsunamiStarterDeckAIDecideGustOfWind_FindKnockableEvolution:
 	ld a, DUELVARS_BENCH
 	call GetNonTurnDuelistVariable
 	ld e, PLAY_AREA_BENCH_1
@@ -3564,9 +3564,9 @@ TsunamiStarterDeckAIDecideGustOfWind:
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
 	ret nc ; Hydrocannon not usable
-	call Func_49a73
+	call TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy
 	ret c
-	call Func_49af6
+	call TsunamiStarterDeckAIDecideGustOfWind_FindKnockableEvolution
 	ret c
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret
@@ -4803,7 +4803,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	ld e, PLAY_AREA_ARENA
-	call Func_4a3dc
+	call FindPlayAreaCardWithMostAttachedEnergies
 	call SwapTurn
 	ldh [hDuelActionArgs + 1], a
 	ret
@@ -4934,7 +4934,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 ; - e = PLAY_AREA_* constant to start looking from (PLAY_AREA_ARENA or PLAY_AREA_BENCH_1)
 ; output:
 ; - a = PLAY_AREA_* constant chosen
-Func_4a3dc:
+FindPlayAreaCardWithMostAttachedEnergies:
 	xor a
 	ld d, MAX_PLAY_AREA_POKEMON * 2
 	ld hl, wTempPlayAreaList

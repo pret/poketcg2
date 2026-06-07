@@ -111,7 +111,7 @@ HandleSpreadAIAttacks:
 	jr c, .discourage
 	call AILookForFocusBlastTargetToKO
 	jr c, .encourage
-	farcall Func_3a887
+	farcall AILookForBenchTargetWeakToArenaColor
 	jr c, .encourage
 	call AIChooseFocusBlastTarget
 	jr nc, .discourage

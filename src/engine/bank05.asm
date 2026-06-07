@@ -158,11 +158,11 @@ AIActionTable_140f4:
 	call AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .asm_1411b
 	call AIDecideBenchPokemonToSwitchTo
-	call Func_167e5
+	call AITryToRetreat
 	call AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .asm_1411b
 	call AIDecideBenchPokemonToSwitchTo
-	call Func_167e5
+	call AITryToRetreat
 .asm_1411b
 	call AIProcessAndTryToPlayEnergy
 	call AIProcessAndTryToUseAttack
@@ -6381,7 +6381,7 @@ AIDecideBenchPokemonToSwitchTo:
 ; done
 	jp FindHighestBenchScore
 
-Func_167e5:
+AITryToRetreat:
 	push af
 	bank1call CheckUnableToRetreatDueToEffect
 	jr nc, .able_to_retreat
@@ -7627,7 +7627,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 	ld a, ATTACK_FLAG2_ADDRESS | DISCARD_ENERGY_F
 	call CheckLoadedAttackFlag
 	jr c, .discard_energy
-	farcall Func_3926a
+	farcall CheckIfDeckCardAttackMatchesSelectedAttack
 	jr c, .check_surplus_energy
 	jp .check_evolution
 
@@ -7648,7 +7648,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 	jr c, .asm_166cd
 
 .asm_166c5
-	farcall Func_392db
+	farcall CheckIfPlayAreaCardWantsMoreEnergyForDeck
 	jr c, .asm_166cd
 	ld a, 5
 	call AIDiscourage
@@ -7981,7 +7981,7 @@ AITryToPlayEnergyCard:
 	ld a, ATTACK_FLAG2_ADDRESS | DISCARD_ENERGY_F
 	call CheckLoadedAttackFlag
 	jr c, .energy_boost_or_discard_energy
-	farcall Func_3920b
+	farcall CheckIfPlayAreaCardWantsExtraEnergyForDeck
 	jr c, .energy_boost_or_discard_energy
 
 ; if none of the attacks have those flags, do an additional
@@ -8028,7 +8028,7 @@ AITryToPlayEnergyCard:
 
 ; in this case Pokémon just needs colorless (any basic energy card).
 .colorless_energy
-	farcall Func_3934d
+	farcall CheckIfShouldSkipColorlessEnergyForDeckCard
 	jr c, .check_recycle_energy
 	ld a, c
 	or a
@@ -8088,7 +8088,7 @@ AITryToPlayEnergyCard:
 	jr z, .check_if_done
 	ldh [hDuelActionArgs + 0], a
 	push hl
-	farcall Func_4c25c
+	farcall CheckIfShouldPlaySpecialEnergyCard
 	pop hl
 	jr nc, .play_energy_card
 	cp -1
@@ -8586,7 +8586,7 @@ AIProcessAttacks:
 .use_attack
 	ld a, TRUE
 	ld [wAITriedAttack], a
-	farcall Func_4c65b
+	farcall RecordAISelectedAttackForStallCheck
 	call AITryUseAttack
 	scf
 	ret
@@ -9970,7 +9970,7 @@ CheckIfCardCanBePlayed:
 	; BUG (in the original game): this should be a `bank1call` to bank01's
 	; LoadNonPokemonCardEffectCommands. As a plain `call` it runs with bank05
 	; mapped, so instead of bank01:$6968 it jumps to bank05:$6968 -- the middle
-	; of Func_167e5 -- whose unbalanced `pop af` corrupts the stack. The branch
+	; of AITryToRetreat -- whose unbalanced `pop af` corrupts the stack. The branch
 	; is not taken in normal play. Byte-faithful: LoadNonPokemonCardEffectCommands
 	; sits at $6968, so this still assembles to `call $6968`.
 	call LoadNonPokemonCardEffectCommands

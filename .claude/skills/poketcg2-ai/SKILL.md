@@ -335,10 +335,32 @@ the target (helps justify future decomp prioritization).
 | `$08` | `$7b1f` | [`AIDecide_MasterBall`](../../../src/engine/bank08.asm) | sameboy_trace duel-rie3 (12-way dispatch; decks $13, $14 inline; decks $18/$1a/$29/$3d/$3e/$3f/$43/$46/$74 decompiled; only deck $40 left raw) | 2026-06-01 |
 | `$08` | `$7bdf` | `AIDecide_MasterBall_Deck18`/`_Deck1A`/`_Deck29`/`_Deck3D`/`_Deck3E` | sameboy_trace duel-daniel ($1a Puppet Master = Daniel; evo-line Master Ball targeting; fills the gap before Deck3F) | 2026-06-03 |
 
+## Cross-bank AI engine helpers named (2026-06-06)
+
+Byte-neutral renames of already-disassembled placeholder `Func_*` helpers in the
+non-bank-08 AI banks (these were source-defined but unnamed; not new decompilations):
+- **bank0e** — `CheckIfPlayAreaCardWantsExtraEnergyForDeck`/`...WantsMoreEnergyForDeck`,
+  `CheckIfShouldSkipColorlessEnergyForDeckCard`, `CheckIfDeckCardAttackMatchesSelectedAttack`
+  (deck-override hooks inside `AITryToPlayEnergyCard`/`DetermineAIScoreOfAttackEnergyRequirement`,
+  for Rock Blast/Sudden Growth/Smash to Mincemeat); `AILookForBenchTargetWeakToArenaColor`
+  (FocusBlast spread targeting); `HandleCheckMenuInput_Bank0e` (unreferenced UI remnant, not AI).
+- **bank12** — `FindEvolutionToPlayWithEvolutionaryLight`, `FindPlayAreaCardWithMostAttachedEnergies`,
+  and the Tsunami starter-deck Gust-of-Wind sub-deciders
+  `TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy`/`_FindKnockableEvolution`.
+- **bank13** — `CheckIfShouldPlaySpecialEnergyCard` (Potion/Full Heal/Recycle special energies),
+  plus the stall-detector pair `RecordAISelectedAttackForStallCheck` (writes `wd036`/`wd037`/`wd038`
+  from `AIProcessAttacks`) and `CheckIfShouldAttachExtraEnergyThisTurn` (reads it; endgame/stall
+  energy-attach gate). The WRAM trio `wd036`/`wd037`/`wd038` (cached arena card / selected attack /
+  repeat count) is still unnamed — a future `wAIStall*` rename target.
+- **bank05** — `AITryToRetreat` (tcg1-confirmed match; the retreat handler behind `AIProcessRetreat`).
+
+Deferred (a name would be a guess): `Func_14178` (tcg2-only clear-retreat-score+decide-bench wrapper),
+`Func_663e2` (unreferenced `*_AIEffect` 0/30 expected-damage hook — originating card unknowable).
+
 ## Bank $08 decompilation status
 
 **Source-defined**: 99.84% (~16.0 KiB of 16 KiB). Bank 8 is one contiguous section; only ~26B of end-of-bank padding remains undecompiled.
-**Last updated**: 2026-06-03.
+**Last updated**: 2026-06-06.
 
 ### Decompiled regions (named, in source)
 - `$4000-$4c32` — `AITrainerCardLogic` table + early decompiled functions through `Func_20be6.return_with_carry`.

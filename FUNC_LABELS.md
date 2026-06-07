@@ -3,6 +3,13 @@
 Tracks the effort to give all `Func_*` placeholder labels descriptive names.
 Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 
+## AI engine helpers (2026-06-06)
+After the non-AI campaign, named 14 already-disassembled AI-engine helper `Func_*` in the
+other AI banks ($0e/$12/$13/$05) via 5 subagents (byte-neutral, tcg1-cross-referenced;
+logged in the `poketcg2-ai` skill). Highlight: `Func_167e5` = tcg1-confirmed `AITryToRetreat`.
+2 deferred (Func_14178, Func_663e2 — a name would be a guess). Everything still `Func_*` is now
+either a justified defer (~9 incl. 2 AI + 7 stubs/aliases) or bank-08's ~26B end-of-bank padding.
+
 ## STATUS: non-AI labeling COMPLETE (2026-06-06)
 Started at **1,209** `Func_*`; the in-scope (non-AI) campaign is done. Everything still
 named `Func_*` is now exactly one of two kinds, neither a candidate for a descriptive name:

@@ -1758,7 +1758,7 @@ AISelectSpecialAttackParameters:
 	; for Defending Pokémon, choose as weakness
 	; the color of the Pokémon with most energy cards attached
 	ld e, PLAY_AREA_BENCH_1
-	farcall Func_4a3dc
+	farcall FindPlayAreaCardWithMostAttachedEnergies
 	bank1call GetPlayAreaCardColor
 	cp COLORLESS
 	jr c, .strongest_pkmn_is_valid_color
@@ -1809,7 +1809,7 @@ AISelectSpecialAttackParameters:
 	jp c, .no_carry
 	farcall AILookForFocusBlastTargetToKO
 	jr c, .got_focus_blast_target
-	farcall Func_3a887
+	farcall AILookForBenchTargetWeakToArenaColor
 	jr c, .got_focus_blast_target
 	farcall AIChooseFocusBlastTarget
 	jr c, .got_focus_blast_target

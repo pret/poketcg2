@@ -98,7 +98,7 @@ AIPrioritizeStartingArenaCard:
 
 ; input:
 ; - a = deck index
-Func_4c25c:
+CheckIfShouldPlaySpecialEnergyCard:
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
 	jr z, .double_colorless
@@ -621,7 +621,7 @@ PsychicBattleDeckAIDecideGustOfWind:
 	jr .check_immunity_arena
 
 .hitmonchan_or_sandslash
-	farcall Func_3a887
+	farcall AILookForBenchTargetWeakToArenaColor
 	ret c
 	jr .check_immunity_arena
 
@@ -685,7 +685,7 @@ FindBenchCardWithAtLeast3AttachedEnergies:
 	or a
 	ret
 
-Func_4c605:
+CheckIfShouldAttachExtraEnergyThisTurn:
 	call CountPrizes
 	cp 1
 	jr z, .set_carry ; on last prize card
@@ -737,7 +737,7 @@ Func_4c605:
 	scf
 	ret
 
-Func_4c65b:
+RecordAISelectedAttackForStallCheck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld hl, wd036

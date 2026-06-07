@@ -2887,7 +2887,7 @@ CheckIfPlayerHasPokemonOfType:
 	or a
 	ret
 
-Func_3920b:
+CheckIfPlayAreaCardWantsExtraEnergyForDeck:
 	ld a, [wOpponentDeckID]
 	cp ROCK_BLAST_DECK_ID
 	jr z, .rock_blast_deck
@@ -2928,7 +2928,7 @@ Func_3920b:
 	jr z, .set_carry
 	jr .no_carry
 
-Func_3926a:
+CheckIfDeckCardAttackMatchesSelectedAttack:
 	ld a, [wOpponentDeckID]
 	cp ROCK_BLAST_DECK_ID
 	jr z, .rock_blast_deck
@@ -2979,7 +2979,7 @@ Func_3926a:
 	jr .no_carry
 
 ; a = number of energy cards attached
-Func_392db:
+CheckIfPlayAreaCardWantsMoreEnergyForDeck:
 	ld [wTempAICount1], a
 	ld a, [wOpponentDeckID]
 	cp ROCK_BLAST_DECK_ID
@@ -3030,7 +3030,7 @@ Func_392db:
 	jr z, .compare
 	jr .no_carry
 
-Func_3934d:
+CheckIfShouldSkipColorlessEnergyForDeckCard:
 	push bc
 	ld a, [wOpponentDeckID]
 	cp ROCK_BLAST_DECK_ID
@@ -6411,7 +6411,7 @@ UltraRemovalDeckAIDecideGustOfWind:
 	ret c ; found Double Colorless energy
 	call SwapTurn
 	ld e, PLAY_AREA_BENCH_1
-	farcall Func_4a3dc
+	farcall FindPlayAreaCardWithMostAttachedEnergies
 	call SwapTurn
 	ret
 
@@ -6463,7 +6463,7 @@ UltraRemovalDeckAIDecideSwitch:
 	ld a, b
 	ret
 
-Func_3a887:
+AILookForBenchTargetWeakToArenaColor:
 	bank1call GetArenaCardColor
 	call TranslateColorToWR
 	ld [wTempAICount2], a
@@ -7025,7 +7025,7 @@ HandleScrollMenu:
 	jr .draw_cursor
 
 ; HandleCheckMenuInput variant
-Func_3ac82:
+HandleCheckMenuInput_Bank0e:
 	xor a
 	ld [wMenuInputSFX], a
 	ld a, [wCheckMenuCursorXPosition]
