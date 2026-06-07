@@ -2,7 +2,7 @@
 """Render card-graphics examples (portrait / in-duel color / extra tiles /
 printer gray) for docs/card-graphics.md. Reads the real source: the 3 palettes
 + 48-byte attribute map from src/gfx/card_graphics.asm, the 48 portrait tiles
-from <name>.2bpp, and the appended printer tiles from <name>_extra.bin."""
+from <name>.2bpp, and the appended printer tiles from <name>_extra.2bpp."""
 import re, os
 from PIL import Image
 
@@ -70,7 +70,7 @@ def save(im, name, scale):
 def render(name, scale=10):
     pal,attr=parse_header(name)
     port=open(os.path.join(GFX,name+'.2bpp'),'rb').read()
-    ex=os.path.join(GFX,name+'_extra.bin')
+    ex=os.path.join(GFX,name+'_extra.2bpp')
     extra=open(ex,'rb').read() if os.path.exists(ex) else b''
     pool=tiles(port+extra)            # full tile pool: 48 portrait + N extra
     ptiles=pool[:48]
