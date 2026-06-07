@@ -4255,7 +4255,7 @@ UpdateScreenAnimations::
 	ld c, NUM_SPRITE_ANIM_STRUCTS
 	farcall GetSpriteAnimBuffer
 .loop_sprite_anims
-	farcall Func_10ab7
+	farcall GetSpriteAnimFlags
 	bit 7, a
 	jr z, .next_sprite_anim
 	farcall CheckIsSpriteAnimAnimating
@@ -4459,11 +4459,11 @@ LoadAnimationAndPlay:
 
 .no_sfx
 	xor a
-	farcall Func_10989
-	farcall Func_1098d
+	farcall SetSpriteAnimFlipFlags
+	farcall SetSpriteAnimInvertFlags
 	ld a, [wAnimAllowedFlags]
 	and SPRITE_ANIM_FLAG_X_FLIP | SPRITE_ANIM_FLAG_Y_FLIP
-	farcall Func_10989
+	farcall SetSpriteAnimFlipFlags
 	bit SPRITE_ANIM_FLAG_Y_FLIP_F, a
 	jr z, .asm_1e234
 	push af
@@ -4490,7 +4490,7 @@ LoadAnimationAndPlay:
 	and SPRITE_ANIM_FLAG_X_INVERTED | SPRITE_ANIM_FLAG_Y_INVERTED
 	swap a
 	sla a
-	farcall Func_1098d
+	farcall SetSpriteAnimInvertFlags
 	farcall SetSpriteAnimPosition
 	ld a, [wNumActiveAnimations]
 	inc a
@@ -5604,7 +5604,7 @@ _ShowGrandMasterCupBracket:
 	farcall SetFrameFuncAndFadeFromWhite
 	ld c, PAD_B
 	farcall WaitForButtonPress
-	call Func_3f61
+	call ClearFrameFunction
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
@@ -5913,7 +5913,7 @@ PrintGrandMasterCupBracketChampion:
 	ld [wGrandMasterCupBracketChampion], a
 	call .DrawSprite
 	ld hl, SpinGrandMasterCupBracketChampionSprite
-	call Func_3f6b
+	call SetFrameFunction
 	pop af
 	add a
 	ld c, a

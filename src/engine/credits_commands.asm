@@ -29,8 +29,8 @@ _PlayCredits::
 	ld [wde51], a
 	ld [wde52], a
 	farcall RunCreditsCommands
-	call Func_3f61
-	call Func_3f61 ; repeated
+	call ClearFrameFunction
+	call ClearFrameFunction ; repeated
 	ret
 
 ApplyCreditsFadeConfig:
@@ -303,7 +303,7 @@ CreditsCmd_Scroll:
 	; this won't work since the frame function
 	; doesn't actually call wde69
 	ld hl, Func_3e7a
-	call Func_3f6b
+	call SetFrameFunction
 	ret
 
 Func_13ac1::

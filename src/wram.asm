@@ -1100,7 +1100,7 @@ wFontWidth:: ; cd73
 
 ; when printing half-width text, this variable alternates between 0 and the value
 ; of the first character. 0 signals that no text should be printed in the current
-; iteration of Func_235e, while non-0 means to print the character pair
+; iteration of PromoteTextTileCacheEntry, while non-0 means to print the character pair
 ; made of [wHalfWidthPrintState] (first char) and register e (second char).
 wHalfWidthPrintState:: ; cd74
 	ds $1

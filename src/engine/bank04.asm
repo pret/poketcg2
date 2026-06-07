@@ -841,7 +841,7 @@ CheckOWScroll:
 
 ; output:
 ; a = [wd6d4 + (e/2)*16 + d/2]
-Func_10541:
+GetOWMapTilePermission:
 	push bc
 	push de
 	push hl
@@ -1587,11 +1587,11 @@ SetNewSpriteAnimValues::
 	pop af
 	ret
 
-Func_10989:
+SetSpriteAnimFlipFlags:
 	ld [wd96f], a
 	ret
 
-Func_1098d:
+SetSpriteAnimInvertFlags:
 	ld [wd970], a
 	ret
 
@@ -1902,7 +1902,7 @@ GetSpriteAnimSpeedAndMoveDuration:
 	pop af
 	ret
 
-Func_10ab7:
+GetSpriteAnimFlags:
 	ld a, [hl]
 	ret
 
@@ -2645,7 +2645,7 @@ MoveNPC:
 	call _MoveNPC
 	ret
 
-Func_10df3::
+CheckAnyOWObjectFlag6::
 	call Func_113d2
 	ret
 
@@ -2764,7 +2764,7 @@ TryMoveOWObjectInDirection::
 	jr nz, .blocked
 	sla d
 	sla e
-	call Func_10541
+	call GetOWMapTilePermission
 	and a
 	jr nz, .blocked
 .asm_10e8f
@@ -5997,7 +5997,7 @@ DrawLoadedCard:
 	pop af
 	ret
 
-Func_1352a:
+DebugCardViewer:
 	push af
 	push bc
 	push de
@@ -6512,7 +6512,7 @@ Func_13dfa:
 	farcall SetAllPaletteFadeConfigsToEnabled
 	ld a, $ff
 	farcall InitFadePalettes
-	call Func_3f61
+	call ClearFrameFunction
 	farcall ClearDuelAnimationState
 	farcall EnableAnimations
 	ret

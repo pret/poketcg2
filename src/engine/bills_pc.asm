@@ -416,7 +416,7 @@ ListBillsPCCompatibleCardsInCollection:
 	bit CARD_NOT_OWNED_F, a
 	jr nz, .loop_cards
 	call SetNextElementOfList
-	call Func_0b99
+	call SetNextWordOfList2
 	inc c
 	jr .loop_cards
 

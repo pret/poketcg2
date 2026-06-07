@@ -1,4 +1,4 @@
-Func_30000:
+WarpPlayerToFightingFortBasementNoStep:
 	scf
 	ccf
 	push af
@@ -511,7 +511,7 @@ ScrollGRIslandMap:
 	ld d, a
 	ld a, [hl]
 	ld e, a
-	farcall Func_d56b
+	farcall InitOWScrollToTarget
 
 .loop_frame
 	call DoFrame
@@ -521,11 +521,11 @@ ScrollGRIslandMap:
 	cp 1
 	jr z, .speed_1
 ; speed 3
-	farcall Func_d62a
+	farcall StepOWScrollTowardTarget
 .speed_2
-	farcall Func_d62a
+	farcall StepOWScrollTowardTarget
 .speed_1
-	farcall Func_d62a
+	farcall StepOWScrollTowardTarget
 	jr c, .loop_frame
 	ret
 
@@ -689,7 +689,7 @@ MovePlayerAlongGRIslandPath:
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
-	farcall Func_d56b
+	farcall InitOWScrollToTarget
 .loop_wait_camera
 	call DoFrame
 	ld hl, wOverworldTransition
@@ -703,7 +703,7 @@ MovePlayerAlongGRIslandPath:
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 .asm_304ed
-	farcall Func_d62a
+	farcall StepOWScrollTowardTarget
 	jr c, .asm_304f6
 	pop hl
 	jr .loop_commands
@@ -5703,7 +5703,7 @@ Script_FightingFortMaze2OpenDoor:
 	ld bc, TILEMAP_09A
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30000
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze3_MapHeader:
@@ -5858,7 +5858,7 @@ Script_FightingFortMaze4OpenDoor:
 	ld bc, TILEMAP_09D
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30000
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze5_MapHeader:
@@ -6077,7 +6077,7 @@ Script_FightingFortMaze8OpenDoor:
 	ld bc, TILEMAP_0BC
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30000
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze9_MapHeader:
@@ -6305,7 +6305,7 @@ Script_FightingFortMaze14OpenDoor:
 	ld bc, TILEMAP_0C4
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call Func_30000
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze15_MapHeader:
@@ -6480,7 +6480,7 @@ Script_FightingFortMaze17OpenEastDoor:
 	ld a, $03
 	cp e
 	jr nz, .asm_33d17
-	call Func_30000
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 .asm_33d17
 	call WarpPlayerToFightingFortBasement

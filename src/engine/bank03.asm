@@ -66,7 +66,7 @@ StartMenu_ContinueFromDiary:
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call LoadCurMapScriptPointers
-	call Func_c29d
+	call ContinueFromDiary_InitStates
 	call InitSaveDataState
 	ld a, TRUE
 	farcall ReadOrInitSaveData
@@ -90,7 +90,7 @@ StartMenu_ContinueFromDiary:
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call LoadCurMapScriptPointers
-	call Func_c29d
+	call ContinueFromDiary_InitStates
 	call InitSaveDataState
 	ld a, TRUE
 	farcall ReadOrInitSaveData
@@ -357,7 +357,7 @@ InitNewGameSaveState:
 	call InitCupAndEventStates
 	ret
 
-Func_c29d:
+ContinueFromDiary_InitStates:
 	call InitCupAndEventStates
 	ret
 
@@ -369,13 +369,13 @@ EnablePlayTimeCounter:
 InitCupAndEventStates:
 	ld a, TRUE
 	ld [wPlayTimeCounterEnable], a
-	call Func_c2d6
-	call Func_c366
-	call Func_c3d4
-	call Func_c2ff
+	call RandomizeGRCoinPieceLocation
+	call RandomizeTCGIslandClubLocation
+	call RandomizeGRIslandFortLocation
+	call RandomizeIshiharaLocation
 	call HandleGrandMasterCupState
-	call Func_c439
-	call Func_c477
+	call TryStartTCGChallengeCup
+	call TryStartGRChallengeCup
 	ret
 
 ; clears sSavedDecks
@@ -393,7 +393,7 @@ ClearSavedDecks:
 	call DisableSRAM
 	ret
 
-Func_c2d6:
+RandomizeGRCoinPieceLocation:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jr nz, .done
@@ -416,7 +416,7 @@ Func_c2d6:
 .done
 	ret
 
-Func_c2ff:
+RandomizeIshiharaLocation:
 	ld a, VAR_ISHIHARA_STATE
 	call GetVarValue
 	cp ISHIHARA_TALKED_AT_VILLA
@@ -476,7 +476,7 @@ HandleGrandMasterCupState:
 	call ZeroOutVarValue
 	jr .done
 
-Func_c366:
+RandomizeTCGIslandClubLocation:
 	ld a, VAR_21
 	call GetVarValue
 	cp $02
@@ -541,7 +541,7 @@ Func_c366:
 .done
 	ret
 
-Func_c3d4:
+RandomizeGRIslandFortLocation:
 	ld a, [wCurIsland]
 	cp GR_ISLAND
 	jr nz, .randomly_choose_club
@@ -602,7 +602,7 @@ Func_c3d4:
 .done
 	ret
 
-Func_c439:
+TryStartTCGChallengeCup:
 	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	call GetVarValue
 	cp CHALLENGE_CUP_3_UNLOCKED
@@ -635,7 +635,7 @@ Func_c439:
 .skip
 	ret
 
-Func_c477:
+TryStartGRChallengeCup:
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	call GetVarValue
 	cp CHALLENGE_CUP_3_UNLOCKED
@@ -1516,7 +1516,7 @@ MoveOWObjectToTargetPosition:
 	ret
 
 ; de = coordinates
-Func_d56b:
+InitOWScrollToTarget:
 	ld a, d
 	ld [wOWObjTargetX], a
 	ld a, e
@@ -1635,7 +1635,7 @@ Func_d56b:
 .done
 	ret
 
-Func_d62a:
+StepOWScrollTowardTarget:
 	ld a, [wOWScrollX]
 	ld d, a
 	ld a, [wOWScrollY]

@@ -112,7 +112,7 @@ Serial_TossCoinATimes:
 ; sets wcd0d to TRUE
 ; still not sure what wcd0d is, might have something to do
 ; with syncing with the Link Opponent in specific effect commands
-Func_6808d:
+SetDuelDataSyncFlag:
 	ld a, TRUE
 	ld [wcd0d], a
 	or a
@@ -1569,7 +1569,7 @@ EkansWrapEffect:
 	ret
 
 TerrorStrike_InitialEffect:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	ret
 
 ; outputs in hDuelActionArgs + 0 the result of the coin toss (0 = tails, 1 = heads).
@@ -8508,7 +8508,7 @@ Fireball_AIEffect:
 	ret
 
 Fireball_CheckEnergy:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	call CheckIfArenaCardHasFireOrRainbowEnergy
 	ret
 
@@ -8553,7 +8553,7 @@ Fireball_DiscardEffect:
 	ret
 
 ContinuousFireball_CheckEnergy:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	call CheckIfArenaCardHasFireOrRainbowEnergy
 	ret
 
@@ -8768,7 +8768,7 @@ CalculateDarkFlareonRageDamage:
 	ret
 
 PlayingWithFire_InitialEffect:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	ret
 
 PlayingWithFire_AIEffect:
@@ -10243,7 +10243,7 @@ HyperFang_NoDamage50PercentEffect:
 	ret
 
 CoinHurl_InitialEffect:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	ret
 
 CoinHurl_AIEffect:
@@ -10329,7 +10329,7 @@ DarkPersianFascinate_SwitchEffect:
 	jr FascinateSwitchEffect
 
 FascinateInitialEffect:
-	call Func_6808d
+	call SetDuelDataSyncFlag
 	call CheckNonTurnDuelistHasBench
 	ret
 

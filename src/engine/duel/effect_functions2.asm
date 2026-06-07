@@ -748,7 +748,7 @@ HelpingHandEffect_CheckUse:
 	ldtx hl, CanOnlyBeUsedOnTheBenchText
 	or a
 	jr z, .set_carry
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfCanUsePkmnPowerThisTurn
 	ret c ; cannot use Pkmn Power
 
@@ -2234,7 +2234,7 @@ GravelerEarthquakeEffect:
 	ret
 
 MagnetMove_CheckUse:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfCanUsePkmnPowerThisTurn
 	ret c
 	farcall CheckIfDeckIsEmpty
@@ -2353,7 +2353,7 @@ Superconductivity_DamageBenchEffect:
 	ret
 
 Microwave_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 Microwave_AIEffect:
@@ -2544,7 +2544,7 @@ HitmonleeDoubleKick_MultiplierEffect:
 	ret
 
 MatchPunch_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 MatchPunch_AISelectEffect:
@@ -2611,7 +2611,7 @@ PrehistoricDream_IncrementBoostEffect:
 	ret
 
 Fossilize_CheckUse:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfCanUsePkmnPowerThisTurn
 	ret
 
@@ -2725,7 +2725,7 @@ AuroraVeilEffect:
 	ret
 
 RagingThunder_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 RagingThunder_AISelectEffect:
@@ -2817,7 +2817,7 @@ ThunderCrash_RecoilEffect:
 	ret
 
 DryUp_CheckPlayAreaWaterEnergies:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 
 	; check all cards in play area
 	; if non are Water/Rainbow energy, then return carry
@@ -2885,7 +2885,7 @@ DryUp_DiscardFromBenchEffect:
 ; against the Defending Pokémon, that is to say
 ; whether the Defending Pokémon has any Water energies to discard
 MirrorMoveDryUpCheck:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	call SwapTurn
 	xor a ; PLAY_AREA_ARENA
 	call GetNumberOfWaterEnergiesAttachedToPlayAreaCard
@@ -3405,7 +3405,7 @@ FoxFire_SwitchAndDamageEffect:
 	ret
 
 Disable_CheckAttacks:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfDefendingCardHasAnyAttacks
 	ret
 
@@ -3453,7 +3453,7 @@ GolduckPsychicEffect:
 	ret
 
 ErrandRunning_DeckCheck:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfDeckIsEmpty
 	ret
 
@@ -3666,7 +3666,7 @@ ApplyMirrorMoveTransDamageAttackDamage:
 	ret
 
 FocusBlast_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 FocusBlast_AIEffect:
@@ -3848,7 +3848,7 @@ RegenerationEffect:
 Dissolve_ArenaEnergyCheck:
 	farcall CreateNonTurnDuelistArenaEnergyCardList
 	jr c, .no_energy_cards
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 .no_energy_cards
 	or a
 	ret
@@ -3886,7 +3886,7 @@ Dissolve_DiscardEnergyEffect:
 	ret
 
 BoulderSmash_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 BoulderSmash_PlayerSelectEffect:
@@ -4426,7 +4426,7 @@ RockBlastSelectionMenuParameters:
 	menu_params 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Fireworks_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 Fireworks_AIEffect:
@@ -4599,7 +4599,7 @@ GrudgeEffect:
 	ret
 
 PowerOfDarkness_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	scf
 	ret
 
@@ -4701,7 +4701,7 @@ ClefairyDollMindShockEffect:
 	ret
 
 SaltWater_DeckCheck:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfDeckIsEmpty
 	ret
 
@@ -4794,7 +4794,7 @@ DoubleEdgedPincersEffect:
 	ret
 
 BoneToss_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 BoneToss_AIEffect:
@@ -5147,7 +5147,7 @@ BurningFire_DiscardAndMultiplierEffect:
 	ret
 
 KickingAndStamping_InitialEffect:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	ret
 
 KickingAndStamping_AIEffect:
@@ -5335,7 +5335,7 @@ CompleteRecovery_ClearStatusAndHealDamageEffect:
 PsychoBlast_InitialEffect:
 	farcall CreateNonTurnDuelistArenaEnergyCardList
 	jr c, .no_cards
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 .no_cards
 	or a
 	ret
@@ -5630,7 +5630,7 @@ RolloutMenuParameters:
 	ret ; stray ret
 
 EnergyControl_EnergyCheck:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 
 	; run through all cards on non-turn holder's side
 	; and return carry if none of them have basic energy cards attached
@@ -6235,7 +6235,7 @@ TogepiSnivelEffect:
 	ret
 
 MiniMetronome_CheckAttacks:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfDefendingCardHasAnyAttacks
 	ret c ; no attacks selectable
 	ld a, [wMiniMetronomeCoinTossResult]
@@ -6405,7 +6405,7 @@ ArcanineLv35TakeDownEffect:
 	ret
 
 SuperScoopUp_BenchCheck:
-	farcall Func_6808d
+	farcall SetDuelDataSyncFlag
 	farcall CheckIfTurnDuelistHasBench
 	ret
 

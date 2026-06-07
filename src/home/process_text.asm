@@ -234,7 +234,7 @@ GenerateAndPlaceTextTile::
 	pop hl
 	ret
 .asm_22ed
-	call Func_235e
+	call PromoteTextTileCacheEntry
 	jr .done
 
 ; writes a to wCurTextTile and to the tile pointed to by hTextBGMap0Address,
@@ -280,7 +280,7 @@ TerminateHalfWidthText::
 	ret
 
 Func_2325::
-	call Func_235e
+	call PromoteTextTileCacheEntry
 	ret c
 	or a
 	ret nz
@@ -730,7 +730,7 @@ GetFullWidthFontTileOffset::
 
 ; search linked-list for text characters e/d (registers), if found hoist
 ; the result to head of list and return it. carry flag denotes success.
-Func_235e::
+PromoteTextTileCacheEntry::
 	ld a, [wFontWidth]
 	or a
 	jr z, .print

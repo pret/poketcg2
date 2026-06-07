@@ -508,7 +508,7 @@ WaitPalFading::
 WaitForPlayerOWObjectAnimation::
 .asm_3340
 	call DoFrame
-	farcall Func_10df3
+	farcall CheckAnyOWObjectFlag6
 	jr z, .asm_3361
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectSpriteAnimFlags
@@ -1234,7 +1234,7 @@ UpdateOWTileAnimations::
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	farcall Func_12c06e
+	farcall GetOWTileFramesPointer
 	ld a, b
 	ld [wd7e7], a
 	pop bc
@@ -1275,7 +1275,7 @@ UpdateOWTileAnimations::
 	ld a, [hli] ;
 	ld d, a
 	push hl
-	call Func_372d
+	call CopyOWTileToVRAM
 	pop hl
 	pop de
 	ld a, [de]
@@ -1314,7 +1314,7 @@ UpdateOWTileAnimations::
 ; de = tile index
 ; b = $0 if VRAM1, $1 if VRAM0
 ; c = destination tile number in VRAM
-Func_372d::
+CopyOWTileToVRAM::
 	ldh a, [hBankROM]
 	push af
 	ld a, [wd7de]
@@ -2833,7 +2833,7 @@ DisableInt_LYCoincidence::
 	ret
 
 ; clears wde69
-Func_3f61::
+ClearFrameFunction::
 	di
 	xor a
 	ld [wde69 + 0], a
@@ -2842,7 +2842,7 @@ Func_3f61::
 	ret
 
 ; sets wde69 to function in hl
-Func_3f6b::
+SetFrameFunction::
 	di
 	push af
 	ld a, l

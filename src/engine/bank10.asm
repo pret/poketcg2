@@ -3426,7 +3426,7 @@ GrAirport_MoveGR5OutOfPath:
 	ld a, NPC_GR_5
 	ld b, EAST
 	farcall SetOWObjectDirection
-	call Func_41e75
+	call GrAirport_StepGR5AsideEast
 	jr .asm_41e5b
 .asm_41e09
 	ldh a, [hKeysHeld]
@@ -3438,7 +3438,7 @@ GrAirport_MoveGR5OutOfPath:
 	ld a, NPC_GR_5
 	ld b, SOUTH
 	farcall SetOWObjectDirection
-	call Func_41e75
+	call GrAirport_StepGR5AsideEast
 	jr .asm_41e5b
 .asm_41e25
 	ldh a, [hKeysHeld]
@@ -3450,7 +3450,7 @@ GrAirport_MoveGR5OutOfPath:
 	ld a, NPC_GR_5
 	ld b, SOUTH
 	farcall SetOWObjectDirection
-	call Func_41e5c
+	call GrAirport_StepGR5AsideWest
 	jr .asm_41e5b
 .asm_41e41
 	ldh a, [hKeysHeld]
@@ -3462,11 +3462,11 @@ GrAirport_MoveGR5OutOfPath:
 	ld a, NPC_GR_5
 	ld b, WEST
 	farcall SetOWObjectDirection
-	call Func_41e5c
+	call GrAirport_StepGR5AsideWest
 .asm_41e5b
 	ret
 
-Func_41e5c:
+GrAirport_StepGR5AsideWest:
 	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $03
@@ -3479,7 +3479,7 @@ Func_41e5c:
 	call WaitForOWObjectMovement
 	ret
 
-Func_41e75:
+GrAirport_StepGR5AsideEast:
 	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $04

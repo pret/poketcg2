@@ -94,7 +94,7 @@ GetOWAnimationGfxPointer:
 	pop af
 	ret
 
-Func_12c06e::
+GetOWTileFramesPointer::
 	push af
 	sla c
 	rl b

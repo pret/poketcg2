@@ -2971,12 +2971,12 @@ CheckDeck:
 	jr z, .check_next_evo_card
 	call .CheckIfHasPreEvo
 	jr nc, .check_next_evo_card
-	call Func_0b99
+	call SetNextWordOfList2
 .check_next_evo_card
 	jr .loop_evo_cards
 .done_evo_cards
 	ld de, $0
-	call Func_0b99
+	call SetNextWordOfList2
 	ld hl, wCurDeckCards
 	ld a, [hli]
 	or [hl]
@@ -3118,7 +3118,7 @@ CheckDeck:
 
 .got_basic_card_list
 	ld de, $0
-	call Func_0b99
+	call SetNextWordOfList2
 	ld hl, wCurDeckCards
 	ld a, [hli]
 	or a
@@ -3220,7 +3220,7 @@ CheckDeck:
 	; and add this card to list in wListPointer2
 	ldh a, [hTempCardIndex_ff98]
 	call GetCardIDFromDeckIndex
-	call Func_0b99
+	call SetNextWordOfList2
 	ldh a, [hTempCardIndex_ff98]
 	call RemoveCardFromDuelTempList
 	dec hl

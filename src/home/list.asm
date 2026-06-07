@@ -106,7 +106,7 @@ Func_0b8e:
 	inc bc
 	jr Func_0b7c
 
-Func_0b99::
+SetNextWordOfList2::
 	push hl
 	push bc
 	ld hl, wListPointer2

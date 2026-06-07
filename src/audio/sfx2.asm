@@ -131,7 +131,7 @@ SFX2_Update:
 	dec a
 	jr z, .asm_fc082
 	ld [hl], a
-	call Func_fc18d_2
+	call SFX_UpdateChannelPitchSlide2
 	jr .asm_fc08d
 .asm_fc082
 	ld hl, wd0e3
@@ -329,7 +329,7 @@ SFX2_wait:
 	call Func_fc1cd_2
 	jr .asm_fc17f
 .asm_fc17c
-	call Func_fc18d_2
+	call SFX_UpdateChannelPitchSlide2
 .asm_fc17f
 	ld hl, wde33
 	add hl, bc
@@ -342,7 +342,7 @@ SFX2_wait:
 	ld d, h
 	jp Func_fc105_2
 
-Func_fc18d_2:
+SFX_UpdateChannelPitchSlide2:
 	ld hl, wde2f
 	add hl, bc
 	ld a, [hl]

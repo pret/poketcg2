@@ -7319,7 +7319,7 @@ TriggerDebugCardViewerIfUnlocked:
 	ld c, a
 	cp16bc_bytes 0, 3
 	jr nz, .asm_3f87b
-	farcall Func_1352a
+	farcall DebugCardViewer
 	ret
 .asm_3f87b
 	ld a, VAR_3B

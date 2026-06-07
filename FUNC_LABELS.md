@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 27 named. ~119 remaining. Deep tail, 6 subagents. New-game cup/event RNG cluster
+  (RandomizeGRCoinPieceLocation, RandomizeIshiharaLocation, Randomize{TCGIsland,GRIsland}Location,
+  TryStart{TCG,GR}ChallengeCup), GR-island scroll math (InitOWScrollToTarget/StepOWScrollTowardTarget),
+  sprite-anim flag setters (SetSpriteAnimFlip/InvertFlags, GetSpriteAnimFlags), the hidden
+  DebugCardViewer body, SFX pitch-slide (SFX_UpdateChannelPitchSlide + _2), GrAirport GR5 movers,
+  SetDuelDataSyncFlag (wcd0d link-sync, shared by ~28 attack InitialEffects), GetOWMapTilePermission,
+  PromoteTextTileCacheEntry (the long-deferred Func_235e text-LRU, now resolved).
+  NOTE: ~6 AI deciders in NON-AI banks (b05/b12/b1a: Func_167e5/14178/4a3dc/495dd/49a73/49af6,
+  callers AIActionTable/AIMakeDecision) are LEFT to the poketcg2-ai effort to preserve separation.
 - 2026-06-06: 51 named. 146 remaining. Into the non-table TAIL (indirectly-dispatched OW
   scripts + engine helpers), 8 subagents reading bodies + following references. Clusters resolved:
   FightingFort maze door-open coord scripts (Script_<Map>OpenDoor), the Ronald club/fort-entrance
