@@ -41,23 +41,54 @@ def parse_header(asm, name):
 
 
 def read_png_rgb(path):
-    """minimal PNG decoder: 8-bit truecolor, no interlace. -> (w, h, rows of (r,g,b))."""
+    """Strict PNG decoder: 8-bit truecolor (RGB), no interlace. Rejects (exits with
+    a clear message) any file that doesn't parse exactly as expected -- bad
+    signature, truncated/oversized chunk, CRC mismatch, missing IHDR/IEND, wrong
+    pixel format, no image data, bad zlib stream, wrong decompressed size, or an
+    unsupported scanline filter. -> (w, h, rows of (r,g,b))."""
+    def reject(msg):
+        sys.exit(f"derive_color_tiles: {path}: {msg}")
     data = open(path, 'rb').read()
     if data[:8] != b'\x89PNG\r\n\x1a\n':
-        sys.exit(f"derive_color_tiles: not a PNG: {path}")
-    pos, w, h, bitdepth, colortype, interlace, idat = 8, None, None, None, None, 0, b''
-    while pos < len(data):
+        reject("not a PNG (bad signature)")
+    pos, w, h, bitdepth, colortype, interlace = 8, None, None, None, None, 0
+    idat = bytearray(); seen_ihdr = seen_iend = False
+    while pos + 8 <= len(data):
         ln = struct.unpack('>I', data[pos:pos+4])[0]
-        typ = data[pos+4:pos+8]; chunk = data[pos+8:pos+8+ln]; pos += 12 + ln
+        typ = data[pos+4:pos+8]
+        if pos + 12 + ln > len(data):
+            reject(f"truncated chunk {typ.decode('latin1')!r}")
+        chunk = data[pos+8:pos+8+ln]
+        crc = struct.unpack('>I', data[pos+8+ln:pos+12+ln])[0]
+        if zlib.crc32(typ + chunk) & 0xffffffff != crc:
+            reject(f"CRC mismatch in chunk {typ.decode('latin1')!r} (corrupt)")
+        pos += 12 + ln
         if typ == b'IHDR':
+            if ln != 13:
+                reject("malformed IHDR")
             w, h, bitdepth, colortype, _comp, _filt, interlace = struct.unpack('>IIBBBBB', chunk)
+            seen_ihdr = True
         elif typ == b'IDAT':
             idat += chunk
         elif typ == b'IEND':
-            break
-    if bitdepth != 8 or colortype != 2 or interlace != 0:
-        sys.exit(f"derive_color_tiles: need 8-bit RGB non-interlaced PNG ({path})")
-    raw = zlib.decompress(idat); bpp = 3; stride = w * bpp
+            seen_iend = True; break
+    if not seen_ihdr:
+        reject("missing IHDR")
+    if not seen_iend:
+        reject("missing IEND (truncated file)")
+    if (bitdepth, colortype, interlace) != (8, 2, 0):
+        reject(f"need 8-bit RGB non-interlaced (got depth={bitdepth}, colortype={colortype}, interlace={interlace})")
+    if not w or not h:
+        reject("zero-sized image")
+    if not idat:
+        reject("no image data (no IDAT chunk)")
+    try:
+        raw = zlib.decompress(bytes(idat))
+    except zlib.error as e:
+        reject(f"corrupt compressed image data ({e})")
+    bpp = 3; stride = w * bpp
+    if len(raw) != h * (stride + 1):
+        reject(f"decompressed size {len(raw)} != expected {h * (stride + 1)} (truncated/corrupt)")
     rows, prev, p = [], bytes(stride), 0
     for _y in range(h):
         ft = raw[p]; p += 1
@@ -78,7 +109,7 @@ def read_png_rgb(path):
                 pr = a if (pa <= pb and pa <= pc) else (b if pb <= pc else c)
                 line[i] = (line[i] + pr) & 0xff
         elif ft != 0:
-            sys.exit(f"derive_color_tiles: unsupported PNG filter {ft} in {path}")
+            reject(f"unsupported PNG scanline filter {ft}")
         rows.append([(line[x*3], line[x*3+1], line[x*3+2]) for x in range(w)])
         prev = bytes(line)
     return w, h, rows
