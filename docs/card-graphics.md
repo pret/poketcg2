@@ -1,7 +1,7 @@
 # Card portrait graphics
 
-How a card's picture is stored, colored, found, and drawn — and what the per-card
-`src/gfx/cards/<name>_extra.png` files are for.
+How a card's picture is stored, colored, found, and drawn — and how the per-card
+`src/gfx/cards/<name>_remapped.png` printer images work.
 
 Every card has a small **8×6-tile (64×48 px) portrait**. Unlike a normal Game Boy
 image it is a **multi-palette** picture (up to 12 colors), and it is drawn **two
@@ -86,11 +86,12 @@ anywhere from 16 bytes (1 tile) to 768 bytes (48 tiles). Roughly **191 of 445**
 cards carry some; the other 254 stop at the portrait.
 
 This trailing data is used **only by the Game Boy Printer**, never by the in-duel
-display, and it lives in `src/gfx/cards/<name>_extra.png`. For now just keep in
-mind that a card's record is the 48-tile portrait *plus*, for many cards, a few
-more tiles tacked on the end — that's why the storage layout below has an
-"extra tiles" row. [§9](#9-why-the-extra-tiles-exist) explains what they're for
-and why they exist.
+display. In source, a card with extra tiles stores the full remapped printer
+image as `src/gfx/cards/<name>_remapped.png` and the build derives these tiles
+from it ([§13](#13-how-the-extra-tiles-are-stored-in-source)). For now just keep
+in mind that a card's record is the 48-tile portrait *plus*, for many cards, a
+few more tiles tacked on the end — that's why the storage layout below has an
+"extra tiles" row. [§9](#9-why-the-extra-tiles-exist) explains why they exist.
 
 ---
 
@@ -104,7 +105,7 @@ portrait + N extra tiles**.
 | Palettes | 24 B | 3 GBC palettes (4 colors × 2 bytes each) |
 | Attribute map | 48 B | one byte per cell (palette + redirect) — see §2 |
 | Portrait tiles | 768 B | the 48 grayscale tiles → `<name>.2bpp` |
-| Extra tiles | N×16 B | printer-only tiles → `<name>_extra.2bpp` (built from `<name>_extra.png`; often absent) |
+| Extra tiles | N×16 B | printer-only tiles → `<name>_extra.2bpp` (derived from `<name>_remapped.png`; often absent) |
 
 `CARD_TILE_COUNT = $30 = 48` is a **constant** — the portrait and the attribute map
 are this size for *every* card; there is no per-card "tile count" field. Only the
@@ -205,7 +206,7 @@ starting at 48, keeping `N` = the number of baked tiles actually needed.)
 
 `N` is **derived** from the attribute map (`max((attr[c] & 0x3f) + c) − 47`), not
 stored — the game never needs it, and the decomp computes it only to know where to
-split each card's bytes into the portrait `.png` and the `_extra.png`.
+split each card's bytes into the portrait `.png` and the `_remapped.png`.
 
 ---
 
@@ -263,8 +264,8 @@ tiles, and the redirect offset sends each printer cell to its correct pre-shaded
 tile (identity when the portrait tile already prints correctly, or an offset into
 the extra pool when it does not).
 
-> **`_extra.png` = the per-cell, palette-baked tile variants the grayscale printer
-> needs that don't already exist among the 48 portrait tiles.**
+> **The extra tiles = the per-cell, palette-baked tile variants the grayscale
+> printer needs that don't already exist among the 48 portrait tiles.**
 
 Energy cards have the biggest extras (Grass = 21 tiles) precisely because their art
 uses the most per-cell palette variation, so the most cells need baking.
@@ -289,7 +290,7 @@ at different palettes:
 | ![Diglett reused tile in two palettes](img/diglett_lv16_reuse_tile.png) | ![Diglett card with reuse cells outlined](img/diglett_lv16_reuse_map.png) |
 
 So the takeaway: poketcg2's tiles are essentially **all distinct**; the 3 palettes
-add **per-cell color**, not shape reuse. The `_extra.png` tiles exist for that
+add **per-cell color**, not shape reuse. The extra tiles exist for that
 per-cell color (baking it for the printer), not for dedup.
 
 ---
@@ -310,7 +311,7 @@ the extra tiles — here are all 21 of them (a *tile pool*, not a coherent pictu
 
 To see *why* they're needed, compare the printer's correct output (above) with a
 **naïve** render that uses only the stored portrait tiles, flat, with no remap —
-i.e. what you'd print if you ignored `_extra.png`:
+i.e. what you'd print if you ignored the extra tiles:
 
 | Naïve: portrait tiles, flat gray, no remap | Correct: remapped through extra tiles |
 |---|---|
@@ -342,7 +343,7 @@ The byte's *high* bits aren't shown here — they're the palette, and as noted i
 ## 12. Contrast — a card with **no** extra tiles (Abra)
 
 Most cards (254 of 445) have an all-identity attribute map: the printer render is
-the portrait, recolored, with no redirects — so there is no `_extra.png` at all.
+the portrait, recolored, with no redirects — so there are no extra tiles at all.
 The in-duel color and the printer gray come from the **same 48 portrait tiles**:
 
 | Abra in-duel (CGB color) | Abra printer (flat gray) |
@@ -361,24 +362,34 @@ The portrait and the extra tiles are **one logical tile array** indexed by the
 header — the extra is *not* a spatial extension of the portrait and *not* a
 separate picture, just more tiles of the same pool, used only by the printer path.
 
-So they're stored exactly like the portrait: as a **grayscale PNG**.
-`src/gfx/cards/<name>_extra.png` is a **1-tile-wide strip** of the N extra tiles;
-the build reverses it to `<name>_extra.2bpp` with the existing card
-`rgbgfx --colors dmg -Z` rule, and `card_graphics.asm` INCBINs that `.2bpp`. A
-card's source graphics are therefore two PNGs: the 8×6 portrait and (for ~191
-cards) this extra strip. It's **byte-exact** — the PNG round-trips to the identical
-tile bytes, so `make compare` stays green. Because the extra is a *tile pool* and
-not a coherent picture ([§9](#9-why-the-extra-tiles-exist)), the strip just looks
-like a thin column of fragments; that's expected.
+Rather than store that pool as an ugly fragment strip, a card with extra tiles
+stores the **full remapped printer image** — `src/gfx/cards/<name>_remapped.png`, an
+8×6 grayscale card (what the printer actually outputs) — and the build **derives**
+the extra tiles from it. So a card's source graphics are two recognizable PNGs: the
+in-duel `<name>.png` portrait and (for ~191 cards) the `<name>_remapped.png` printer
+image.
 
-Two alternatives were considered and not used:
+This works because every extra tile *is* one of the printer image's cells. The
+printer's output cell `c` uses source tile `(attr[c] & 0x3f) + c`; the cells whose
+source index exceeds 47 are exactly the extra tiles.
+[tools/derive_extra_tiles.py](../tools/derive_extra_tiles.py) (run by the Makefile)
+reverses `<name>_remapped.png` to its 48 tiles, walks the attribute map, and writes
+`<name>_extra.2bpp` by harvesting each redirected cell into its extra-tile slot;
+`card_graphics.asm` INCBINs that `.2bpp`.
+
+It's **byte-exact**: all 191 cards are *dense* (every extra index is referenced by
+some cell, so nothing is lost), the derived tiles match the original stored bytes,
+and `make compare` stays green. The one assumption baked into the build is that
+density — a hypothetical card with an unreferenced "filler" extra tile would lose
+it; the derive tool errors out rather than silently drop it.
+
+Alternatives considered and not used:
+- **A raw `<name>_extra.png` tile strip** (the literal extra tiles) — byte-exact and
+  needs no derive tool, but it's a meaningless column of fragments; the remapped
+  image is a real picture, which is why we use it.
 - **One combined tile-array** with `CardGfx` / `CardGfxExtra` as two `INCBIN …,
   offset` labels — needs a concat step (the portrait's column-major `-Z` geometry
-  can't absorb N extra tiles in one rectangular PNG), so two files is simpler.
-- **A rendered "full picture"** — there is no single bigger image (both renders are
-  8×6); the printer's flat-gray render is *derived* (apply the remap, drop
-  palettes) and not losslessly reversible, so it can't be a build input — only a
-  viewer (this doc's renderer).
+  can't absorb N extra tiles in one rectangular PNG).
 
 ---
 
@@ -386,7 +397,7 @@ Two alternatives were considered and not used:
 
 The original Pokémon TCG GB (`pret/poketcg`, "tcg1") has **none** of the color or
 printer-remap machinery — no second/third palette, no attribute map, no
-`LoadCardGfxRemapped`, and no `_extra.png`. The whole multi-palette card system is
+`LoadCardGfxRemapped`, and no extra tiles. The whole multi-palette card system is
 new in poketcg2.
 
 The reason is the palette count. A tcg1 card is **768 bytes (48 tiles) + one 8-byte
@@ -403,7 +414,7 @@ values → 4 grays, nothing to undo.
 | colors per card | 4 | up to 12 |
 | portrait tiles | 48, = the whole image | 48, but cells can be recolored / redirected |
 | printer path | `LoadCardGfx` → tiles printed directly | `LoadCardGfxRemapped` → pulls extra tiles |
-| extra tiles | — | `_extra.png` (palette-baked variants) |
+| extra tiles | — | derived from `_remapped.png` (palette-baked variants) |
 | header layout | `[tiles][1 palette]` | `[3 palettes + 48 attr][tiles]` |
 
 So if you ever wonder "why isn't this just a `.png` like tcg1's cards?" — it's
@@ -416,7 +427,7 @@ is a multi-palette image plus a printer-only tile pool.
 
 [tools/render_card_gfx_doc.py](../tools/render_card_gfx_doc.py) reads the real
 source (palettes + attribute map from `card_graphics.asm`, tiles from `.2bpp` +
-`_extra.png`) and renders the in-duel color, naïve-gray, printer-gray, extra-tile,
+`_extra.2bpp`) and renders the in-duel color, naïve-gray, printer-gray, extra-tile,
 and tile-reuse images into `docs/img/`. It is documentation tooling only — it does
 not touch the build.
 
