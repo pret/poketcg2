@@ -3,6 +3,22 @@
 Tracks the effort to give all `Func_*` placeholder labels descriptive names.
 Renames are **byte-neutral** (`make compare` must stay OK after every batch).
 
+## STATUS: non-AI labeling COMPLETE (2026-06-06)
+Started at **1,209** `Func_*`; the in-scope (non-AI) campaign is done. Everything still
+named `Func_*` is now exactly one of two kinds, neither a candidate for a descriptive name:
+- **~16 AI decision functions** — deciders/sub-deciders in the AI banks (`08`/`0e`/`11`/`12`/`13`)
+  and a few AI helpers in `05`/`19` (`Func_167e5`,`14178`,`3920b`,`3926a`,`392db`,`3934d`,`3a887`,
+  `3ac82`,`495dd`,`49a73`,`49af6`,`4a3dc`,`4c25c`,`4c605`,`4c65b`,`663e2`). Reserved for the
+  `poketcg2-ai` skill/effort, which tracks AI decomp separately — intentionally NOT renamed here.
+- **~7 opaque/alias stubs** — `Func_3332` (`DoFrame` alias), `Func_12c3dc` (`GetNPCOverworldSprite`
+  alias), `Func_3f87` (lone `ret`), `Func_10cd9`/`1126b` (trivial unreferenced mem helpers),
+  `Func_198f7`/`1a14b` (unreferenced printer stubs; tcg1 leaves `1a14b` unnamed too). These have
+  no caller/callee context or no behavior of their own; a descriptive name would be a guess, so
+  they are deliberately left anonymous (the `Func_` name itself signals "unreferenced fragment").
+
+The whole overworld macro-table layer (MapScripts / npc_script / AppearanceCheck / ow_script) and
+the engine/duel/audio/menu helper tail are fully named. `make compare` → `poketcg2.gbc: OK` throughout.
+
 ## Scope (measured 2026-06-06)
 - **1,209** `Func_*` labels (1,194 global, 16 local).
 - Concentration: ~987 (82%) in the overworld/event/map engine — banks `0b`,`0c`,`0d`,`0f`,`10`.
