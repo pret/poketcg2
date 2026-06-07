@@ -189,19 +189,23 @@ fixed grid**. Measuring the byte distance between consecutive `CardGfx` records:
 So a record is `72 + 768 + N×16` (+ a little padding), and a card's extra tiles
 physically push the next card later in ROM.
 
-**How big can `N` get?** Not bounded by a grid (there isn't one) but by the
-**6-bit redirect field**: a printer cell reads source tile `(attr[c] & 0x3f) + c`,
-and with `offset ≤ 63` and `c ≤ 47` the highest index is `63 + 47 = 110`, so:
+**How big can `N` get? At most 48.** The printer produces exactly **48 output
+cells**, and each cell references **one** source tile — so the extra pool can never
+need more than **48 tiles** (one per cell). `N = 48` is the meaningful maximum: the
+case where *every* output cell is a baked tile and the printer reuses none of the
+original portrait. That bound is real — **four cards hit it exactly** (768 B:
+`pikachu_lv16`, `machoke_lv28`, `magmar_lv18`, `nidoran_f_lv12`), and no card has
+more.
 
-```
-N ≤ 110 − 47 = 63 extra tiles   (hard ceiling, from the 6-bit offset)
-```
+(The 6-bit redirect field is only a looser ceiling: `offset ≤ 63` plus `c ≤ 47`
+allows a source index up to `110`, i.e. up to 63 tiles — but going past 48 would
+mean storing *unreferenced filler* tiles just to reach a far one, which is
+pointless, so it never happens. The packer assigns the extra indices densely
+starting at 48, keeping `N` = the number of baked tiles actually needed.)
 
-The largest real card uses **N = 48** (768 B — e.g. `pikachu_lv16`), so the pool
-tops out around 96 tiles (48 portrait + 48 extra) and never approaches the field
-limit. `N` is **derived** from the attribute map (`max((attr[c] & 0x3f) + c) − 47`),
-not stored — the game never needs it, and the decomp computes it only to know where
-to split each card's bytes into `.2bpp` + `_extra.bin`.
+`N` is **derived** from the attribute map (`max((attr[c] & 0x3f) + c) − 47`), not
+stored — the game never needs it, and the decomp computes it only to know where to
+split each card's bytes into `.2bpp` + `_extra.bin`.
 
 ---
 
