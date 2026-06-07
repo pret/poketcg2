@@ -60,7 +60,7 @@ GrassEnergyCardGfx::
 	db $5d, $80, $00, $00, $1a, $1a, $1a, $1a, $00, $00, $00, $17, $17, $17, $00, $00
 	INCBIN "gfx/cards/grass_energy.2bpp"
 GrassEnergyCardGfxExtra::
-	INCBIN "gfx/cards/grass_energy_extra.bin"
+	INCBIN "gfx/cards/grass_energy_extra.2bpp"
 FireEnergyCardGfx::
 	rgb 31,27,31
 	rgb 31,9,15
@@ -82,7 +82,7 @@ FireEnergyCardGfx::
 	db $40, $80, $00, $00, $18, $18, $18, $18, $00, $00, $00, $15, $15, $15, $00, $00
 	INCBIN "gfx/cards/fire_energy.2bpp"
 FireEnergyCardGfxExtra::
-	INCBIN "gfx/cards/fire_energy_extra.bin"
+	INCBIN "gfx/cards/fire_energy_extra.2bpp"
 WaterEnergyCardGfx::
 	rgb 27,31,31
 	rgb 0,22,31
@@ -104,7 +104,7 @@ WaterEnergyCardGfx::
 	db $40, $00, $00, $00, $1a, $1a, $1a, $00, $00, $00, $17, $17, $17, $17, $17, $00
 	INCBIN "gfx/cards/water_energy.2bpp"
 WaterEnergyCardGfxExtra::
-	INCBIN "gfx/cards/water_energy_extra.bin"
+	INCBIN "gfx/cards/water_energy_extra.2bpp"
 LightningEnergyCardGfx::
 	rgb 31,31,27
 	rgb 31,27,0
@@ -126,7 +126,7 @@ LightningEnergyCardGfx::
 	db $40, $00, $00, $00, $15, $15, $00, $80, $80, $00, $00, $10, $10, $10, $10, $90
 	INCBIN "gfx/cards/lightning_energy.2bpp"
 LightningEnergyCardGfxExtra::
-	INCBIN "gfx/cards/lightning_energy_extra.bin"
+	INCBIN "gfx/cards/lightning_energy_extra.2bpp"
 FightingEnergyCardGfx::
 	rgb 31,31,27
 	rgb 31,9,0
@@ -148,7 +148,7 @@ FightingEnergyCardGfx::
 	db $80, $00, $00, $00, $1b, $1b, $1b, $00, $00, $40, $00, $17, $17, $17, $17, $17
 	INCBIN "gfx/cards/fighting_energy.2bpp"
 FightingEnergyCardGfxExtra::
-	INCBIN "gfx/cards/fighting_energy_extra.bin"
+	INCBIN "gfx/cards/fighting_energy_extra.2bpp"
 PsychicEnergyCardGfx::
 	rgb 31,27,31
 	rgb 27,13,27
@@ -170,7 +170,7 @@ PsychicEnergyCardGfx::
 	db $40, $80, $00, $00, $18, $18, $18, $18, $00, $00, $00, $15, $15, $15, $00, $00
 	INCBIN "gfx/cards/psychic_energy.2bpp"
 PsychicEnergyCardGfxExtra::
-	INCBIN "gfx/cards/psychic_energy_extra.bin"
+	INCBIN "gfx/cards/psychic_energy_extra.2bpp"
 DoubleColorlessEnergyCardGfx::
 	rgb 31,31,31
 	rgb 21,21,17
@@ -192,7 +192,7 @@ DoubleColorlessEnergyCardGfx::
 	db $40, $80, $00, $00, $1b, $1b, $1b, $1b, $00, $00, $00, $18, $18, $18, $00, $00
 	INCBIN "gfx/cards/double_colorless_energy.2bpp"
 DoubleColorlessEnergyCardGfxExtra::
-	INCBIN "gfx/cards/double_colorless_energy_extra.bin"
+	INCBIN "gfx/cards/double_colorless_energy_extra.2bpp"
 PotionEnergyCardGfx::
 	rgb 31,31,31
 	rgb 15,27,19
@@ -214,7 +214,7 @@ PotionEnergyCardGfx::
 	db $00, $40, $40, $40, $00, $00, $00, $00, $00, $40, $40, $80, $00, $00, $00, $00
 	INCBIN "gfx/cards/potion_energy.2bpp"
 PotionEnergyCardGfxExtra::
-	INCBIN "gfx/cards/potion_energy_extra.bin"
+	INCBIN "gfx/cards/potion_energy_extra.2bpp"
 FullHealEnergyCardGfx::
 	rgb 31,31,31
 	rgb 16,12,28
@@ -296,7 +296,7 @@ IvysaurLv20CardGfx::
 	db $16, $40, $80, $40, $80, $80, $00, $00, $00, $80, $80, $80, $80, $00, $00, $00
 	INCBIN "gfx/cards/ivysaur_lv20.2bpp"
 IvysaurLv20CardGfxExtra::
-	INCBIN "gfx/cards/ivysaur_lv20_extra.bin"
+	INCBIN "gfx/cards/ivysaur_lv20_extra.2bpp"
 VenusaurLv64CardGfx::
 	rgb 31,27,27
 	rgb 27,6,11
@@ -318,7 +318,7 @@ VenusaurLv64CardGfx::
 	db $40, $40, $00, $00, $1c, $1c, $1c, $40, $40, $40, $19, $19, $19, $19, $19, $59
 	INCBIN "gfx/cards/venusaur_lv64.2bpp"
 VenusaurLv64CardGfxExtra::
-	INCBIN "gfx/cards/venusaur_lv64_extra.bin"
+	INCBIN "gfx/cards/venusaur_lv64_extra.2bpp"
 VenusaurLv67CardGfx::
 	rgb 22,31,22
 	rgb 9,22,13
@@ -403,7 +403,7 @@ ButterfreeCardGfx::
 	db $23, $23, $23, $00, $22, $22, $22, $22, $22, $00, $21, $21, $21, $00, $00, $00
 	INCBIN "gfx/cards/butterfree.2bpp"
 ButterfreeCardGfxExtra::
-	INCBIN "gfx/cards/butterfree_extra.bin"
+	INCBIN "gfx/cards/butterfree_extra.2bpp"
 WeedleLv12CardGfx::
 	rgb 31,31,27
 	rgb 31,27,0
@@ -465,7 +465,7 @@ BeedrillCardGfx::
 	db $00, $00, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/beedrill.2bpp"
 BeedrillCardGfxExtra::
-	INCBIN "gfx/cards/beedrill_extra.bin"
+	INCBIN "gfx/cards/beedrill_extra.2bpp"
 EkansLv10CardGfx::
 	rgb 31,31,27
 	rgb 31,18,9
@@ -487,7 +487,7 @@ EkansLv10CardGfx::
 	db $40, $80, $00, $00, $10, $10, $00, $00, $40, $40, $0c, $0c, $00, $00, $00, $00
 	INCBIN "gfx/cards/ekans_lv10.2bpp"
 EkansLv10CardGfxExtra::
-	INCBIN "gfx/cards/ekans_lv10_extra.bin"
+	INCBIN "gfx/cards/ekans_lv10_extra.2bpp"
 ArbokLv27CardGfx::
 	rgb 31,27,31
 	rgb 31,9,9
@@ -509,7 +509,7 @@ ArbokLv27CardGfx::
 	db $57, $57, $80, $96, $00, $00, $94, $14, $54, $94, $40, $40, $52, $80, $80, $40
 	INCBIN "gfx/cards/arbok_lv27.2bpp"
 ArbokLv27CardGfxExtra::
-	INCBIN "gfx/cards/arbok_lv27_extra.bin"
+	INCBIN "gfx/cards/arbok_lv27_extra.2bpp"
 NidoranFLv13CardGfx::
 	rgb 31,31,31
 	rgb 13,27,18
@@ -531,7 +531,7 @@ NidoranFLv13CardGfx::
 	db $40, $40, $00, $00, $00, $00, $00, $40, $40, $40, $00, $00, $00, $00, $00, $40
 	INCBIN "gfx/cards/nidoran_f_lv13.2bpp"
 NidoranFLv13CardGfxExtra::
-	INCBIN "gfx/cards/nidoran_f_lv13_extra.bin"
+	INCBIN "gfx/cards/nidoran_f_lv13_extra.2bpp"
 NidorinaLv24CardGfx::
 	rgb 31,31,31
 	rgb 18,27,18
@@ -553,7 +553,7 @@ NidorinaLv24CardGfx::
 	db $40, $40, $00, $00, $00, $00, $00, $40, $40, $40, $40, $00, $00, $00, $40, $40
 	INCBIN "gfx/cards/nidorina_lv24.2bpp"
 NidorinaLv24CardGfxExtra::
-	INCBIN "gfx/cards/nidorina_lv24_extra.bin"
+	INCBIN "gfx/cards/nidorina_lv24_extra.2bpp"
 NidoqueenCardGfx::
 	rgb 31,31,31
 	rgb 13,22,18
@@ -595,7 +595,7 @@ NidoranMLv20CardGfx::
 	db $00, $00, $00, $00, $00, $00, $0a, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/nidoran_m_lv20.2bpp"
 NidoranMLv20CardGfxExtra::
-	INCBIN "gfx/cards/nidoran_m_lv20_extra.bin"
+	INCBIN "gfx/cards/nidoran_m_lv20_extra.2bpp"
 NidorinoLv25CardGfx::
 	rgb 31,27,27
 	rgb 31,18,22
@@ -757,7 +757,7 @@ ParasLv8CardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $00, $40, $40, $80, $40, $00, $00, $00, $00
 	INCBIN "gfx/cards/paras_lv8.2bpp"
 ParasLv8CardGfxExtra::
-	INCBIN "gfx/cards/paras_lv8_extra.bin"
+	INCBIN "gfx/cards/paras_lv8_extra.2bpp"
 	ds $120, $00
 
 SECTION "Card Gfx 1f", ROMX[$4000], BANK[$1f]
@@ -782,7 +782,7 @@ ParasectLv28CardGfx::
 	db $40, $80, $00, $00, $00, $80, $80, $49, $49, $40, $40, $80, $40, $40, $44, $40
 	INCBIN "gfx/cards/parasect_lv28.2bpp"
 ParasectLv28CardGfxExtra::
-	INCBIN "gfx/cards/parasect_lv28_extra.bin"
+	INCBIN "gfx/cards/parasect_lv28_extra.2bpp"
 VenonatLv12CardGfx::
 	rgb 25,29,26
 	rgb 31,0,4
@@ -944,7 +944,7 @@ ExeggcuteCardGfx::
 	db $40, $80, $15, $15, $00, $00, $80, $40, $51, $40, $80, $40, $8e, $8e, $40, $40
 	INCBIN "gfx/cards/exeggcute.2bpp"
 ExeggcuteCardGfxExtra::
-	INCBIN "gfx/cards/exeggcute_extra.bin"
+	INCBIN "gfx/cards/exeggcute_extra.2bpp"
 ExeggutorCardGfx::
 	rgb 31,31,18
 	rgb 31,18,0
@@ -966,7 +966,7 @@ ExeggutorCardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/exeggutor.2bpp"
 ExeggutorCardGfxExtra::
-	INCBIN "gfx/cards/exeggutor_extra.bin"
+	INCBIN "gfx/cards/exeggutor_extra.2bpp"
 KoffingLv13CardGfx::
 	rgb 31,31,13
 	rgb 27,13,22
@@ -1008,7 +1008,7 @@ WeezingLv27CardGfx::
 	db $40, $40, $00, $11, $00, $00, $40, $40, $80, $8c, $80, $80, $80, $80, $80, $87
 	INCBIN "gfx/cards/weezing_lv27.2bpp"
 WeezingLv27CardGfxExtra::
-	INCBIN "gfx/cards/weezing_lv27_extra.bin"
+	INCBIN "gfx/cards/weezing_lv27_extra.2bpp"
 TangelaLv8CardGfx::
 	rgb 31,31,25
 	rgb 9,27,13
@@ -1030,7 +1030,7 @@ TangelaLv8CardGfx::
 	db $00, $40, $40, $11, $00, $00, $00, $00, $00, $0c, $00, $00, $40, $40, $40, $00
 	INCBIN "gfx/cards/tangela_lv8.2bpp"
 TangelaLv8CardGfxExtra::
-	INCBIN "gfx/cards/tangela_lv8_extra.bin"
+	INCBIN "gfx/cards/tangela_lv8_extra.2bpp"
 TangelaLv12CardGfx::
 	rgb 27,27,27
 	rgb 9,18,4
@@ -1112,7 +1112,7 @@ CharmanderLv10CardGfx::
 	db $40, $4f, $00, $00, $00, $40, $40, $0a, $40, $40, $40, $40, $40, $45, $40, $40
 	INCBIN "gfx/cards/charmander_lv10.2bpp"
 CharmanderLv10CardGfxExtra::
-	INCBIN "gfx/cards/charmander_lv10_extra.bin"
+	INCBIN "gfx/cards/charmander_lv10_extra.2bpp"
 CharmeleonCardGfx::
 	rgb 27,31,22
 	rgb 31,22,4
@@ -1134,7 +1134,7 @@ CharmeleonCardGfx::
 	db $94, $00, $00, $00, $00, $00, $00, $8e, $40, $40, $80, $80, $00, $00, $08, $88
 	INCBIN "gfx/cards/charmeleon.2bpp"
 CharmeleonCardGfxExtra::
-	INCBIN "gfx/cards/charmeleon_extra.bin"
+	INCBIN "gfx/cards/charmeleon_extra.2bpp"
 	ds $250, $00
 
 SECTION "Card Gfx 20", ROMX[$4000], BANK[$20]
@@ -1219,7 +1219,7 @@ NinetalesLv35CardGfx::
 	db $00, $00, $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/ninetales_lv35.2bpp"
 NinetalesLv35CardGfxExtra::
-	INCBIN "gfx/cards/ninetales_lv35_extra.bin"
+	INCBIN "gfx/cards/ninetales_lv35_extra.2bpp"
 GrowlitheLv18CardGfx::
 	rgb 31,31,18
 	rgb 31,13,4
@@ -1261,7 +1261,7 @@ ArcanineLv34CardGfx::
 	db $50, $00, $00, $00, $00, $00, $0b, $00, $00, $00, $00, $00, $80, $80, $80, $80
 	INCBIN "gfx/cards/arcanine_lv34.2bpp"
 ArcanineLv34CardGfxExtra::
-	INCBIN "gfx/cards/arcanine_lv34_extra.bin"
+	INCBIN "gfx/cards/arcanine_lv34_extra.2bpp"
 ArcanineLv45CardGfx::
 	rgb 31,31,18
 	rgb 31,13,0
@@ -1303,7 +1303,7 @@ PonytaLv10CardGfx::
 	db $40, $40, $40, $52, $80, $11, $51, $40, $40, $40, $40, $80, $4c, $80, $40, $40
 	INCBIN "gfx/cards/ponyta_lv10.2bpp"
 PonytaLv10CardGfxExtra::
-	INCBIN "gfx/cards/ponyta_lv10_extra.bin"
+	INCBIN "gfx/cards/ponyta_lv10_extra.2bpp"
 RapidashLv33CardGfx::
 	rgb 31,31,18
 	rgb 31,18,0
@@ -1325,7 +1325,7 @@ RapidashLv33CardGfx::
 	db $59, $99, $80, $00, $00, $00, $95, $40, $54, $94, $00, $00, $00, $00, $80, $40
 	INCBIN "gfx/cards/rapidash_lv33.2bpp"
 RapidashLv33CardGfxExtra::
-	INCBIN "gfx/cards/rapidash_lv33_extra.bin"
+	INCBIN "gfx/cards/rapidash_lv33_extra.2bpp"
 MagmarLv24CardGfx::
 	rgb 31,31,22
 	rgb 31,22,0
@@ -1467,7 +1467,7 @@ SquirtleLv8CardGfx::
 	db $70, $70, $70, $30, $30, $30, $70, $70, $70, $70, $80, $af, $af, $af, $6f, $6f
 	INCBIN "gfx/cards/squirtle_lv8.2bpp"
 SquirtleLv8CardGfxExtra::
-	INCBIN "gfx/cards/squirtle_lv8_extra.bin"
+	INCBIN "gfx/cards/squirtle_lv8_extra.2bpp"
 WartortleLv22CardGfx::
 	rgb 31,31,31
 	rgb 18,18,27
@@ -1512,7 +1512,7 @@ BlastoiseLv52CardGfx::
 	db $40, $80, $00, $00, $11, $00, $00, $40, $40, $4d, $0d, $00, $00, $0b, $4b, $40
 	INCBIN "gfx/cards/blastoise_lv52.2bpp"
 BlastoiseLv52CardGfxExtra::
-	INCBIN "gfx/cards/blastoise_lv52_extra.bin"
+	INCBIN "gfx/cards/blastoise_lv52_extra.2bpp"
 PsyduckLv15CardGfx::
 	rgb 31,31,9
 	rgb 27,18,0
@@ -1534,7 +1534,7 @@ PsyduckLv15CardGfx::
 	db $40, $40, $80, $00, $80, $80, $40, $40, $40, $40, $80, $80, $80, $40, $40, $40
 	INCBIN "gfx/cards/psyduck_lv15.2bpp"
 PsyduckLv15CardGfxExtra::
-	INCBIN "gfx/cards/psyduck_lv15_extra.bin"
+	INCBIN "gfx/cards/psyduck_lv15_extra.2bpp"
 GolduckLv27CardGfx::
 	rgb 31,31,31
 	rgb 13,22,27
@@ -1556,7 +1556,7 @@ GolduckLv27CardGfx::
 	db $00, $00, $00, $00, $0e, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/golduck_lv27.2bpp"
 GolduckLv27CardGfxExtra::
-	INCBIN "gfx/cards/golduck_lv27_extra.bin"
+	INCBIN "gfx/cards/golduck_lv27_extra.2bpp"
 PoliwagLv13CardGfx::
 	rgb 27,31,31
 	rgb 12,26,31
@@ -1578,7 +1578,7 @@ PoliwagLv13CardGfx::
 	db $40, $40, $53, $40, $80, $91, $00, $40, $40, $40, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/poliwag_lv13.2bpp"
 PoliwagLv13CardGfxExtra::
-	INCBIN "gfx/cards/poliwag_lv13_extra.bin"
+	INCBIN "gfx/cards/poliwag_lv13_extra.2bpp"
 PoliwhirlLv28CardGfx::
 	rgb 31,31,31
 	rgb 18,18,31
@@ -1660,7 +1660,7 @@ TentacruelCardGfx::
 	db $66, $66, $66, $a6, $a6, $a6, $a6, $a6, $66, $66, $66, $a6, $a6, $a6, $a6, $a6
 	INCBIN "gfx/cards/tentacruel.2bpp"
 TentacruelCardGfxExtra::
-	INCBIN "gfx/cards/tentacruel_extra.bin"
+	INCBIN "gfx/cards/tentacruel_extra.2bpp"
 SeelLv12CardGfx::
 	rgb 31,31,31
 	rgb 15,20,31
@@ -1722,7 +1722,7 @@ ShellderLv8CardGfx::
 	db $40, $40, $00, $17, $17, $17, $97, $57, $57, $40, $80, $80, $00, $80, $40, $40
 	INCBIN "gfx/cards/shellder_lv8.2bpp"
 ShellderLv8CardGfxExtra::
-	INCBIN "gfx/cards/shellder_lv8_extra.bin"
+	INCBIN "gfx/cards/shellder_lv8_extra.2bpp"
 CloysterCardGfx::
 	rgb 31,27,27
 	rgb 27,18,27
@@ -1764,7 +1764,7 @@ KrabbyLv20CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/krabby_lv20.2bpp"
 KrabbyLv20CardGfxExtra::
-	INCBIN "gfx/cards/krabby_lv20_extra.bin"
+	INCBIN "gfx/cards/krabby_lv20_extra.2bpp"
 KinglerLv27CardGfx::
 	rgb 31,31,9
 	rgb 31,18,0
@@ -1786,7 +1786,7 @@ KinglerLv27CardGfx::
 	db $40, $80, $40, $00, $00, $40, $40, $40, $40, $40, $40, $00, $80, $40, $40, $40
 	INCBIN "gfx/cards/kingler_lv27.2bpp"
 KinglerLv27CardGfxExtra::
-	INCBIN "gfx/cards/kingler_lv27_extra.bin"
+	INCBIN "gfx/cards/kingler_lv27_extra.2bpp"
 HorseaLv19CardGfx::
 	rgb 27,31,31
 	rgb 9,27,22
@@ -1848,7 +1848,7 @@ GoldeenCardGfx::
 	db $80, $80, $40, $40, $40, $40, $40, $40, $80, $80, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/goldeen.2bpp"
 GoldeenCardGfxExtra::
-	INCBIN "gfx/cards/goldeen_extra.bin"
+	INCBIN "gfx/cards/goldeen_extra.2bpp"
 	ds $2e8, $00
 
 SECTION "Card Gfx 22", ROMX[$4000], BANK[$22]
@@ -1893,7 +1893,7 @@ StaryuLv15CardGfx::
 	db $12, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/staryu_lv15.2bpp"
 StaryuLv15CardGfxExtra::
-	INCBIN "gfx/cards/staryu_lv15_extra.bin"
+	INCBIN "gfx/cards/staryu_lv15_extra.2bpp"
 StarmieCardGfx::
 	rgb 31,31,1
 	rgb 27,0,0
@@ -1955,7 +1955,7 @@ GyaradosCardGfx::
 	db $40, $00, $00, $00, $00, $00, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40
 	INCBIN "gfx/cards/gyarados.2bpp"
 GyaradosCardGfxExtra::
-	INCBIN "gfx/cards/gyarados_extra.bin"
+	INCBIN "gfx/cards/gyarados_extra.2bpp"
 LaprasLv31CardGfx::
 	rgb 31,31,27
 	rgb 31,22,0
@@ -2057,7 +2057,7 @@ OmastarLv32CardGfx::
 	db $80, $00, $00, $11, $00, $00, $80, $80, $8d, $0d, $00, $0c, $0c, $8c, $8c, $8c
 	INCBIN "gfx/cards/omastar_lv32.2bpp"
 OmastarLv32CardGfxExtra::
-	INCBIN "gfx/cards/omastar_lv32_extra.bin"
+	INCBIN "gfx/cards/omastar_lv32_extra.2bpp"
 ArticunoLv35CardGfx::
 	rgb 27,31,31
 	rgb 13,22,31
@@ -2159,7 +2159,7 @@ PikachuLv16CardGfx::
 	db $70, $70, $30, $30, $30, $b0, $70, $70, $70, $70, $30, $30, $30, $70, $70, $70
 	INCBIN "gfx/cards/pikachu_lv16.2bpp"
 PikachuLv16CardGfxExtra::
-	INCBIN "gfx/cards/pikachu_lv16_extra.bin"
+	INCBIN "gfx/cards/pikachu_lv16_extra.2bpp"
 PikachuAltLv16CardGfx::
 	rgb 31,31,31
 	rgb 31,22,0
@@ -2181,7 +2181,7 @@ PikachuAltLv16CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/pikachu_alt_lv16.2bpp"
 PikachuAltLv16CardGfxExtra::
-	INCBIN "gfx/cards/pikachu_alt_lv16_extra.bin"
+	INCBIN "gfx/cards/pikachu_alt_lv16_extra.2bpp"
 FlyingPikachuLv12CardGfx::
 	rgb 31,22,0
 	rgb 28,8,16
@@ -2203,7 +2203,7 @@ FlyingPikachuLv12CardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/flying_pikachu_lv12.2bpp"
 FlyingPikachuLv12CardGfxExtra::
-	INCBIN "gfx/cards/flying_pikachu_lv12_extra.bin"
+	INCBIN "gfx/cards/flying_pikachu_lv12_extra.2bpp"
 	ds $3e8, $00
 
 SECTION "Card Gfx 23", ROMX[$4000], BANK[$23]
@@ -2228,7 +2228,7 @@ SurfingPikachuLv13CardGfx::
 	db $40, $40, $68, $a8, $80, $80, $40, $40, $64, $64, $80, $80, $62, $40, $61, $61
 	INCBIN "gfx/cards/surfing_pikachu_lv13.2bpp"
 SurfingPikachuLv13CardGfxExtra::
-	INCBIN "gfx/cards/surfing_pikachu_lv13_extra.bin"
+	INCBIN "gfx/cards/surfing_pikachu_lv13_extra.2bpp"
 SurfingPikachuAltLv13CardGfx::
 	rgb 31,22,0
 	rgb 0,13,28
@@ -2250,7 +2250,7 @@ SurfingPikachuAltLv13CardGfx::
 	db $80, $80, $00, $80, $80, $80, $40, $40, $88, $88, $80, $80, $86, $80, $45, $45
 	INCBIN "gfx/cards/surfing_pikachu_alt_lv13.2bpp"
 SurfingPikachuAltLv13CardGfxExtra::
-	INCBIN "gfx/cards/surfing_pikachu_alt_lv13_extra.bin"
+	INCBIN "gfx/cards/surfing_pikachu_alt_lv13_extra.2bpp"
 RaichuLv40CardGfx::
 	rgb 31,31,18
 	rgb 31,27,0
@@ -2312,7 +2312,7 @@ MagnemiteLv13CardGfx::
 	db $40, $00, $14, $14, $00, $40, $40, $40, $50, $50, $40, $40, $40, $40, $4c, $4c
 	INCBIN "gfx/cards/magnemite_lv13.2bpp"
 MagnemiteLv13CardGfxExtra::
-	INCBIN "gfx/cards/magnemite_lv13_extra.bin"
+	INCBIN "gfx/cards/magnemite_lv13_extra.2bpp"
 MagnemiteLv14CardGfx::
 	rgb 31,27,31
 	rgb 18,10,26
@@ -2334,7 +2334,7 @@ MagnemiteLv14CardGfx::
 	db $00, $40, $40, $40, $40, $40, $80, $00, $08, $40, $40, $40, $40, $40, $00, $00
 	INCBIN "gfx/cards/magnemite_lv14.2bpp"
 MagnemiteLv14CardGfxExtra::
-	INCBIN "gfx/cards/magnemite_lv14_extra.bin"
+	INCBIN "gfx/cards/magnemite_lv14_extra.2bpp"
 MagnetonLv28CardGfx::
 	rgb 31,31,27
 	rgb 12,18,22
@@ -2356,7 +2356,7 @@ MagnetonLv28CardGfx::
 	db $00, $00, $00, $20, $20, $20, $20, $20, $00, $9f, $5f, $00, $1e, $40, $80, $1c
 	INCBIN "gfx/cards/magneton_lv28.2bpp"
 MagnetonLv28CardGfxExtra::
-	INCBIN "gfx/cards/magneton_lv28_extra.bin"
+	INCBIN "gfx/cards/magneton_lv28_extra.2bpp"
 MagnetonLv35CardGfx::
 	rgb 27,31,31
 	rgb 31,4,4
@@ -2398,7 +2398,7 @@ VoltorbLv10CardGfx::
 	db $80, $80, $a1, $a1, $80, $a0, $a0, $20, $a0, $80, $80, $9e, $9e, $9e, $00, $00
 	INCBIN "gfx/cards/voltorb_lv10.2bpp"
 VoltorbLv10CardGfxExtra::
-	INCBIN "gfx/cards/voltorb_lv10_extra.bin"
+	INCBIN "gfx/cards/voltorb_lv10_extra.2bpp"
 ElectrodeLv35CardGfx::
 	rgb 31,31,31
 	rgb 31,18,0
@@ -2480,7 +2480,7 @@ ElectabuzzLv35CardGfx::
 	db $80, $00, $00, $00, $00, $00, $00, $00, $80, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/electabuzz_lv35.2bpp"
 ElectabuzzLv35CardGfxExtra::
-	INCBIN "gfx/cards/electabuzz_lv35_extra.bin"
+	INCBIN "gfx/cards/electabuzz_lv35_extra.2bpp"
 JolteonLv24CardGfx::
 	rgb 31,31,31
 	rgb 31,22,0
@@ -2562,7 +2562,7 @@ ZapdosLv64CardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $8d, $40, $80, $00, $00, $00, $08, $48, $40
 	INCBIN "gfx/cards/zapdos_lv64.2bpp"
 ZapdosLv64CardGfxExtra::
-	INCBIN "gfx/cards/zapdos_lv64_extra.bin"
+	INCBIN "gfx/cards/zapdos_lv64_extra.2bpp"
 	ds $d8, $00
 
 SECTION "Card Gfx 24", ROMX[$4000], BANK[$24]
@@ -2607,7 +2607,7 @@ SandshrewLv12CardGfx::
 	db $80, $40, $00, $00, $00, $12, $40, $80, $80, $40, $00, $0d, $0d, $00, $4c, $8c
 	INCBIN "gfx/cards/sandshrew_lv12.2bpp"
 SandshrewLv12CardGfxExtra::
-	INCBIN "gfx/cards/sandshrew_lv12_extra.bin"
+	INCBIN "gfx/cards/sandshrew_lv12_extra.2bpp"
 SandslashLv33CardGfx::
 	rgb 31,31,31
 	rgb 31,27,0
@@ -2629,7 +2629,7 @@ SandslashLv33CardGfx::
 	db $40, $40, $00, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/sandslash_lv33.2bpp"
 SandslashLv33CardGfxExtra::
-	INCBIN "gfx/cards/sandslash_lv33_extra.bin"
+	INCBIN "gfx/cards/sandslash_lv33_extra.2bpp"
 DiglettLv8CardGfx::
 	rgb 31,31,21
 	rgb 31,22,4
@@ -2671,7 +2671,7 @@ DugtrioLv36CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/dugtrio_lv36.2bpp"
 DugtrioLv36CardGfxExtra::
-	INCBIN "gfx/cards/dugtrio_lv36_extra.bin"
+	INCBIN "gfx/cards/dugtrio_lv36_extra.2bpp"
 MankeyLv7CardGfx::
 	rgb 31,31,22
 	rgb 31,22,4
@@ -2693,7 +2693,7 @@ MankeyLv7CardGfx::
 	db $40, $40, $4f, $00, $00, $80, $40, $40, $40, $40, $40, $47, $40, $40, $40, $40
 	INCBIN "gfx/cards/mankey_lv7.2bpp"
 MankeyLv7CardGfxExtra::
-	INCBIN "gfx/cards/mankey_lv7_extra.bin"
+	INCBIN "gfx/cards/mankey_lv7_extra.2bpp"
 PrimeapeCardGfx::
 	rgb 31,31,22
 	rgb 31,22,0
@@ -3058,7 +3058,7 @@ AerodactylLv28CardGfx::
 	db $40, $40, $80, $80, $80, $4f, $4f, $40, $00, $00, $8c, $80, $40, $00, $00, $00
 	INCBIN "gfx/cards/aerodactyl_lv28.2bpp"
 AerodactylLv28CardGfxExtra::
-	INCBIN "gfx/cards/aerodactyl_lv28_extra.bin"
+	INCBIN "gfx/cards/aerodactyl_lv28_extra.2bpp"
 AbraLv10CardGfx::
 	rgb 31,31,18
 	rgb 31,18,4
@@ -3080,7 +3080,7 @@ AbraLv10CardGfx::
 	db $40, $40, $00, $00, $00, $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/abra_lv10.2bpp"
 AbraLv10CardGfxExtra::
-	INCBIN "gfx/cards/abra_lv10_extra.bin"
+	INCBIN "gfx/cards/abra_lv10_extra.2bpp"
 KadabraLv38CardGfx::
 	rgb 31,31,18
 	rgb 31,27,0
@@ -3102,7 +3102,7 @@ KadabraLv38CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/kadabra_lv38.2bpp"
 KadabraLv38CardGfxExtra::
-	INCBIN "gfx/cards/kadabra_lv38_extra.bin"
+	INCBIN "gfx/cards/kadabra_lv38_extra.2bpp"
 AlakazamLv42CardGfx::
 	rgb 31,31,18
 	rgb 31,27,0
@@ -3144,7 +3144,7 @@ SlowpokeLv9CardGfx::
 	db $00, $19, $19, $80, $80, $00, $80, $80, $54, $40, $40, $40, $51, $40, $40, $40
 	INCBIN "gfx/cards/slowpoke_lv9.2bpp"
 SlowpokeLv9CardGfxExtra::
-	INCBIN "gfx/cards/slowpoke_lv9_extra.bin"
+	INCBIN "gfx/cards/slowpoke_lv9_extra.2bpp"
 SlowpokeLv18CardGfx::
 	rgb 31,27,27
 	rgb 27,22,0
@@ -3166,7 +3166,7 @@ SlowpokeLv18CardGfx::
 	db $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80, $80
 	INCBIN "gfx/cards/slowpoke_lv18.2bpp"
 SlowpokeLv18CardGfxExtra::
-	INCBIN "gfx/cards/slowpoke_lv18_extra.bin"
+	INCBIN "gfx/cards/slowpoke_lv18_extra.2bpp"
 SlowbroLv26CardGfx::
 	rgb 31,27,13
 	rgb 31,13,0
@@ -3188,7 +3188,7 @@ SlowbroLv26CardGfx::
 	db $40, $40, $00, $12, $00, $00, $00, $4f, $80, $8e, $80, $80, $80, $80, $80, $89
 	INCBIN "gfx/cards/slowbro_lv26.2bpp"
 SlowbroLv26CardGfxExtra::
-	INCBIN "gfx/cards/slowbro_lv26_extra.bin"
+	INCBIN "gfx/cards/slowbro_lv26_extra.2bpp"
 GastlyLv8CardGfx::
 	rgb 31,31,31
 	rgb 27,0,0
@@ -3290,7 +3290,7 @@ GengarLv38CardGfx::
 	db $40, $40, $00, $00, $00, $00, $40, $40, $40, $80, $48, $40, $00, $06, $40, $40
 	INCBIN "gfx/cards/gengar_lv38.2bpp"
 GengarLv38CardGfxExtra::
-	INCBIN "gfx/cards/gengar_lv38_extra.bin"
+	INCBIN "gfx/cards/gengar_lv38_extra.2bpp"
 DrowzeeLv12CardGfx::
 	rgb 31,31,22
 	rgb 27,27,0
@@ -3435,7 +3435,7 @@ MewtwoAltLv60CardGfx::
 	db $40, $00, $00, $00, $10, $00, $00, $40, $00, $0c, $0c, $0c, $0c, $0c, $4c, $00
 	INCBIN "gfx/cards/mewtwo_alt_lv60.2bpp"
 MewtwoAltLv60CardGfxExtra::
-	INCBIN "gfx/cards/mewtwo_alt_lv60_extra.bin"
+	INCBIN "gfx/cards/mewtwo_alt_lv60_extra.2bpp"
 MewLv8CardGfx::
 	rgb 31,31,31
 	rgb 31,13,27
@@ -3597,7 +3597,7 @@ RattataLv9CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $40, $80, $80, $80, $00, $00, $00, $00, $80
 	INCBIN "gfx/cards/rattata_lv9.2bpp"
 RattataLv9CardGfxExtra::
-	INCBIN "gfx/cards/rattata_lv9_extra.bin"
+	INCBIN "gfx/cards/rattata_lv9_extra.2bpp"
 RaticateCardGfx::
 	rgb 31,31,17
 	rgb 13,27,18
@@ -3639,7 +3639,7 @@ SpearowLv13CardGfx::
 	db $80, $80, $a6, $00, $25, $25, $a5, $a5, $a5, $a5, $25, $25, $25, $25, $a5, $80
 	INCBIN "gfx/cards/spearow_lv13.2bpp"
 SpearowLv13CardGfxExtra::
-	INCBIN "gfx/cards/spearow_lv13_extra.bin"
+	INCBIN "gfx/cards/spearow_lv13_extra.2bpp"
 FearowLv27CardGfx::
 	rgb 31,31,31
 	rgb 27,22,4
@@ -3661,7 +3661,7 @@ FearowLv27CardGfx::
 	db $40, $40, $56, $56, $40, $95, $15, $40, $54, $54, $40, $40, $40, $91, $51, $40
 	INCBIN "gfx/cards/fearow_lv27.2bpp"
 FearowLv27CardGfxExtra::
-	INCBIN "gfx/cards/fearow_lv27_extra.bin"
+	INCBIN "gfx/cards/fearow_lv27_extra.2bpp"
 ClefairyLv14CardGfx::
 	rgb 31,27,27
 	rgb 31,18,18
@@ -3806,7 +3806,7 @@ MeowthLv13CardGfx::
 	db $40, $00, $0e, $0e, $00, $80, $00, $40, $40, $40, $00, $00, $00, $80, $00, $40
 	INCBIN "gfx/cards/meowth_lv13.2bpp"
 MeowthLv13CardGfxExtra::
-	INCBIN "gfx/cards/meowth_lv13_extra.bin"
+	INCBIN "gfx/cards/meowth_lv13_extra.2bpp"
 MeowthLv15CardGfx::
 	rgb 31,26,31
 	rgb 31,23,0
@@ -3828,7 +3828,7 @@ MeowthLv15CardGfx::
 	db $40, $40, $40, $00, $00, $00, $4b, $4b, $40, $40, $40, $80, $80, $80, $40, $40
 	INCBIN "gfx/cards/meowth_lv15.2bpp"
 MeowthLv15CardGfxExtra::
-	INCBIN "gfx/cards/meowth_lv15_extra.bin"
+	INCBIN "gfx/cards/meowth_lv15_extra.2bpp"
 PersianCardGfx::
 	rgb 31,31,22
 	rgb 31,27,4
@@ -3850,7 +3850,7 @@ PersianCardGfx::
 	db $80, $00, $00, $00, $00, $00, $80, $80, $8f, $80, $80, $80, $80, $80, $8a, $80
 	INCBIN "gfx/cards/persian.2bpp"
 PersianCardGfxExtra::
-	INCBIN "gfx/cards/persian_extra.bin"
+	INCBIN "gfx/cards/persian_extra.2bpp"
 FarfetchdLv20CardGfx::
 	rgb 25,31,8
 	rgb 27,18,4
@@ -3872,7 +3872,7 @@ FarfetchdLv20CardGfx::
 	db $40, $40, $40, $00, $00, $40, $40, $40, $40, $40, $40, $80, $80, $40, $40, $40
 	INCBIN "gfx/cards/farfetchd_lv20.2bpp"
 FarfetchdLv20CardGfxExtra::
-	INCBIN "gfx/cards/farfetchd_lv20_extra.bin"
+	INCBIN "gfx/cards/farfetchd_lv20_extra.2bpp"
 DoduoLv10CardGfx::
 	rgb 31,31,27
 	rgb 31,27,4
@@ -4014,7 +4014,7 @@ DittoCardGfx::
 	db $00, $00, $00, $16, $00, $00, $00, $80, $00, $11, $00, $10, $10, $90, $90, $90
 	INCBIN "gfx/cards/ditto.2bpp"
 DittoCardGfxExtra::
-	INCBIN "gfx/cards/ditto_extra.bin"
+	INCBIN "gfx/cards/ditto_extra.2bpp"
 EeveeLv12CardGfx::
 	rgb 31,31,11
 	rgb 27,13,9
@@ -4139,7 +4139,7 @@ DragoniteLv41CardGfx::
 	db $80, $00, $00, $00, $00, $00, $00, $0a, $00, $00, $00, $00, $00, $05, $00, $00
 	INCBIN "gfx/cards/dragonite_lv41.2bpp"
 DragoniteLv41CardGfxExtra::
-	INCBIN "gfx/cards/dragonite_lv41_extra.bin"
+	INCBIN "gfx/cards/dragonite_lv41_extra.2bpp"
 DragoniteLv45CardGfx::
 	rgb 31,27,13
 	rgb 31,13,0
@@ -4301,7 +4301,7 @@ SquirtleLv16CardGfx::
 	db $00, $13, $00, $00, $40, $10, $00, $00, $00, $00, $00, $0b, $00, $00, $00, $00
 	INCBIN "gfx/cards/squirtle_lv16.2bpp"
 SquirtleLv16CardGfxExtra::
-	INCBIN "gfx/cards/squirtle_lv16_extra.bin"
+	INCBIN "gfx/cards/squirtle_lv16_extra.2bpp"
 DarkWartortleCardGfx::
 	rgb 31,31,31
 	rgb 15,25,31
@@ -4323,7 +4323,7 @@ DarkWartortleCardGfx::
 	db $a3, $a3, $a3, $23, $00, $62, $80, $80, $a0, $a0, $80, $9f, $9f, $9f, $9f, $80
 	INCBIN "gfx/cards/dark_wartortle.2bpp"
 DarkWartortleCardGfxExtra::
-	INCBIN "gfx/cards/dark_wartortle_extra.bin"
+	INCBIN "gfx/cards/dark_wartortle_extra.2bpp"
 DarkBlastoiseCardGfx::
 	rgb 27,31,31
 	rgb 14,24,31
@@ -4468,7 +4468,7 @@ EkansLv15CardGfx::
 	db $40, $40, $40, $00, $11, $00, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/ekans_lv15.2bpp"
 EkansLv15CardGfxExtra::
-	INCBIN "gfx/cards/ekans_lv15_extra.bin"
+	INCBIN "gfx/cards/ekans_lv15_extra.2bpp"
 DarkArbokCardGfx::
 	rgb 25,30,31
 	rgb 12,24,26
@@ -4490,7 +4490,7 @@ DarkArbokCardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $40, $40, $40, $00, $00, $00, $40, $40, $40
 	INCBIN "gfx/cards/dark_arbok.2bpp"
 DarkArbokCardGfxExtra::
-	INCBIN "gfx/cards/dark_arbok_extra.bin"
+	INCBIN "gfx/cards/dark_arbok_extra.2bpp"
 ZubatLv9CardGfx::
 	rgb 31,31,31
 	rgb 20,24,31
@@ -4532,7 +4532,7 @@ DarkGolbatCardGfx::
 	db $80, $40, $50, $50, $40, $00, $00, $80, $80, $80, $40, $40, $40, $80, $80, $80
 	INCBIN "gfx/cards/dark_golbat.2bpp"
 DarkGolbatCardGfxExtra::
-	INCBIN "gfx/cards/dark_golbat_extra.bin"
+	INCBIN "gfx/cards/dark_golbat_extra.2bpp"
 OddishLv21CardGfx::
 	rgb 26,31,20
 	rgb 18,30,12
@@ -4734,7 +4734,7 @@ DarkAlakazamCardGfx::
 	db $40, $00, $00, $0e, $00, $00, $00, $40, $40, $40, $00, $00, $80, $80, $00, $40
 	INCBIN "gfx/cards/dark_alakazam.2bpp"
 DarkAlakazamCardGfxExtra::
-	INCBIN "gfx/cards/dark_alakazam_extra.bin"
+	INCBIN "gfx/cards/dark_alakazam_extra.2bpp"
 SlowpokeLv16CardGfx::
 	rgb 22,31,31
 	rgb 27,31,0
@@ -4756,7 +4756,7 @@ SlowpokeLv16CardGfx::
 	db $9c, $80, $00, $00, $00, $00, $97, $80, $80, $80, $80, $80, $92, $80, $80, $80
 	INCBIN "gfx/cards/slowpoke_lv16.2bpp"
 SlowpokeLv16CardGfxExtra::
-	INCBIN "gfx/cards/slowpoke_lv16_extra.bin"
+	INCBIN "gfx/cards/slowpoke_lv16_extra.2bpp"
 DarkSlowbroCardGfx::
 	rgb 19,30,13
 	rgb 20,10,29
@@ -4778,7 +4778,7 @@ DarkSlowbroCardGfx::
 	db $40, $00, $00, $00, $80, $40, $40, $40, $40, $40, $00, $00, $80, $40, $40, $40
 	INCBIN "gfx/cards/dark_slowbro.2bpp"
 DarkSlowbroCardGfxExtra::
-	INCBIN "gfx/cards/dark_slowbro_extra.bin"
+	INCBIN "gfx/cards/dark_slowbro_extra.2bpp"
 DrowzeeLv10CardGfx::
 	rgb 31,31,7
 	rgb 29,16,0
@@ -4800,7 +4800,7 @@ DrowzeeLv10CardGfx::
 	db $40, $40, $00, $00, $00, $00, $40, $55, $55, $40, $00, $13, $00, $12, $00, $40
 	INCBIN "gfx/cards/drowzee_lv10.2bpp"
 DrowzeeLv10CardGfxExtra::
-	INCBIN "gfx/cards/drowzee_lv10_extra.bin"
+	INCBIN "gfx/cards/drowzee_lv10_extra.2bpp"
 DarkHypnoCardGfx::
 	rgb 31,31,0
 	rgb 31,21,0
@@ -4845,7 +4845,7 @@ DiglettLv15CardGfx::
 	db $80, $80, $00, $00, $00, $40, $40, $40, $80, $80, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/diglett_lv15.2bpp"
 DiglettLv15CardGfxExtra::
-	INCBIN "gfx/cards/diglett_lv15_extra.bin"
+	INCBIN "gfx/cards/diglett_lv15_extra.2bpp"
 DarkDugtrioCardGfx::
 	rgb 31,31,31
 	rgb 21,0,9
@@ -4887,7 +4887,7 @@ MankeyLv14CardGfx::
 	db $1f, $00, $00, $00, $1c, $00, $1b, $00, $40, $40, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/mankey_lv14.2bpp"
 MankeyLv14CardGfxExtra::
-	INCBIN "gfx/cards/mankey_lv14_extra.bin"
+	INCBIN "gfx/cards/mankey_lv14_extra.2bpp"
 DarkPrimeapeCardGfx::
 	rgb 31,31,31
 	rgb 19,26,8
@@ -4909,7 +4909,7 @@ DarkPrimeapeCardGfx::
 	db $00, $40, $40, $4f, $40, $40, $40, $00, $00, $00, $80, $80, $00, $80, $00, $00
 	INCBIN "gfx/cards/dark_primeape.2bpp"
 DarkPrimeapeCardGfxExtra::
-	INCBIN "gfx/cards/dark_primeape_extra.bin"
+	INCBIN "gfx/cards/dark_primeape_extra.2bpp"
 MachopLv24CardGfx::
 	rgb 31,31,31
 	rgb 20,20,26
@@ -4931,7 +4931,7 @@ MachopLv24CardGfx::
 	db $19, $00, $40, $80, $80, $40, $00, $00, $00, $00, $40, $40, $40, $40, $00, $00
 	INCBIN "gfx/cards/machop_lv24.2bpp"
 MachopLv24CardGfxExtra::
-	INCBIN "gfx/cards/machop_lv24_extra.bin"
+	INCBIN "gfx/cards/machop_lv24_extra.2bpp"
 DarkMachokeCardGfx::
 	rgb 31,31,31
 	rgb 19,19,31
@@ -4953,7 +4953,7 @@ DarkMachokeCardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $40, $40, $4b, $40, $00, $00, $00, $47, $47
 	INCBIN "gfx/cards/dark_machoke.2bpp"
 DarkMachokeCardGfxExtra::
-	INCBIN "gfx/cards/dark_machoke_extra.bin"
+	INCBIN "gfx/cards/dark_machoke_extra.2bpp"
 DarkMachampCardGfx::
 	rgb 31,31,31
 	rgb 10,20,31
@@ -5015,7 +5015,7 @@ DarkRaticateCardGfx::
 	db $00, $00, $00, $00, $00, $0e, $0e, $00, $80, $00, $0b, $0b, $0b, $00, $80, $80
 	INCBIN "gfx/cards/dark_raticate.2bpp"
 DarkRaticateCardGfxExtra::
-	INCBIN "gfx/cards/dark_raticate_extra.bin"
+	INCBIN "gfx/cards/dark_raticate_extra.2bpp"
 MeowthLv10CardGfx::
 	rgb 31,31,31
 	rgb 31,25,0
@@ -5077,7 +5077,7 @@ EeveeLv9CardGfx::
 	db $40, $00, $00, $00, $00, $40, $40, $40, $40, $00, $00, $00, $00, $40, $40, $40
 	INCBIN "gfx/cards/eevee_lv9.2bpp"
 EeveeLv9CardGfxExtra::
-	INCBIN "gfx/cards/eevee_lv9_extra.bin"
+	INCBIN "gfx/cards/eevee_lv9_extra.2bpp"
 PorygonLv20CardGfx::
 	rgb 31,31,31
 	rgb 14,20,30
@@ -5099,7 +5099,7 @@ PorygonLv20CardGfx::
 	db $40, $40, $00, $00, $00, $00, $40, $40, $40, $40, $40, $00, $40, $40, $40, $40
 	INCBIN "gfx/cards/porygon_lv20.2bpp"
 PorygonLv20CardGfxExtra::
-	INCBIN "gfx/cards/porygon_lv20_extra.bin"
+	INCBIN "gfx/cards/porygon_lv20_extra.2bpp"
 DratiniLv12CardGfx::
 	rgb 31,31,17
 	rgb 18,21,31
@@ -5201,7 +5201,7 @@ DarkMagnetonCardGfx::
 	db $59, $59, $99, $80, $80, $80, $40, $40, $40, $40, $40, $40, $00, $40, $40, $40
 	INCBIN "gfx/cards/dark_magneton.2bpp"
 DarkMagnetonCardGfxExtra::
-	INCBIN "gfx/cards/dark_magneton_extra.bin"
+	INCBIN "gfx/cards/dark_magneton_extra.2bpp"
 	ds $90, $00
 
 SECTION "Card Gfx 2b", ROMX[$4000], BANK[$2b]
@@ -5286,7 +5286,7 @@ BulbasaurLv15CardGfx::
 	db $40, $40, $40, $00, $00, $00, $00, $00, $00, $00, $40, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/bulbasaur_lv15.2bpp"
 BulbasaurLv15CardGfxExtra::
-	INCBIN "gfx/cards/bulbasaur_lv15_extra.bin"
+	INCBIN "gfx/cards/bulbasaur_lv15_extra.2bpp"
 CharmanderLv12CardGfx::
 	rgb 31,31,22
 	rgb 31,14,0
@@ -5348,7 +5348,7 @@ MetapodLv20CardGfx::
 	db $40, $00, $00, $40, $5b, $1b, $40, $00, $19, $19, $59, $59, $00, $00, $40, $40
 	INCBIN "gfx/cards/metapod_lv20.2bpp"
 MetapodLv20CardGfxExtra::
-	INCBIN "gfx/cards/metapod_lv20_extra.bin"
+	INCBIN "gfx/cards/metapod_lv20_extra.2bpp"
 WeedleLv15CardGfx::
 	rgb 31,31,29
 	rgb 31,14,0
@@ -5370,7 +5370,7 @@ WeedleLv15CardGfx::
 	db $6f, $6f, $af, $af, $6f, $6f, $6f, $6f, $6f, $6f, $6f, $40, $6e, $6e, $6e, $6e
 	INCBIN "gfx/cards/weedle_lv15.2bpp"
 WeedleLv15CardGfxExtra::
-	INCBIN "gfx/cards/weedle_lv15_extra.bin"
+	INCBIN "gfx/cards/weedle_lv15_extra.2bpp"
 KakunaLv20CardGfx::
 	rgb 31,31,31
 	rgb 21,28,10
@@ -5392,7 +5392,7 @@ KakunaLv20CardGfx::
 	db $12, $00, $00, $00, $80, $40, $40, $40, $00, $00, $00, $00, $40, $40, $40, $40
 	INCBIN "gfx/cards/kakuna_lv20.2bpp"
 KakunaLv20CardGfxExtra::
-	INCBIN "gfx/cards/kakuna_lv20_extra.bin"
+	INCBIN "gfx/cards/kakuna_lv20_extra.2bpp"
 PidgeyLv10CardGfx::
 	rgb 29,31,31
 	rgb 11,27,12
@@ -5414,7 +5414,7 @@ PidgeyLv10CardGfx::
 	db $80, $96, $96, $80, $80, $80, $80, $92, $92, $80, $80, $80, $80, $8e, $8e, $80
 	INCBIN "gfx/cards/pidgey_lv10.2bpp"
 PidgeyLv10CardGfxExtra::
-	INCBIN "gfx/cards/pidgey_lv10_extra.bin"
+	INCBIN "gfx/cards/pidgey_lv10_extra.2bpp"
 RattataLv15CardGfx::
 	rgb 25,25,31
 	rgb 0,27,0
@@ -5436,7 +5436,7 @@ RattataLv15CardGfx::
 	db $00, $17, $40, $56, $40, $40, $40, $13, $13, $00, $00, $40, $40, $40, $00, $00
 	INCBIN "gfx/cards/rattata_lv15.2bpp"
 RattataLv15CardGfxExtra::
-	INCBIN "gfx/cards/rattata_lv15_extra.bin"
+	INCBIN "gfx/cards/rattata_lv15_extra.2bpp"
 PikachuLv5CardGfx::
 	rgb 31,22,0
 	rgb 9,26,0
@@ -5478,7 +5478,7 @@ NidoranFLv12CardGfx::
 	db $b0, $b0, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70
 	INCBIN "gfx/cards/nidoran_f_lv12.2bpp"
 NidoranFLv12CardGfxExtra::
-	INCBIN "gfx/cards/nidoran_f_lv12_extra.bin"
+	INCBIN "gfx/cards/nidoran_f_lv12_extra.2bpp"
 NidoranMLv22CardGfx::
 	rgb 20,20,31
 	rgb 15,14,31
@@ -5583,7 +5583,7 @@ GolbatLv25CardGfx::
 	db $51, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/golbat_lv25.2bpp"
 GolbatLv25CardGfxExtra::
-	INCBIN "gfx/cards/golbat_lv25_extra.bin"
+	INCBIN "gfx/cards/golbat_lv25_extra.2bpp"
 ParasLv15CardGfx::
 	rgb 31,31,31
 	rgb 26,22,5
@@ -5625,7 +5625,7 @@ ParasectLv29CardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00, $40
 	INCBIN "gfx/cards/parasect_lv29.2bpp"
 ParasectLv29CardGfxExtra::
-	INCBIN "gfx/cards/parasect_lv29_extra.bin"
+	INCBIN "gfx/cards/parasect_lv29_extra.2bpp"
 PoliwagLv15CardGfx::
 	rgb 31,31,31
 	rgb 20,23,29
@@ -5667,7 +5667,7 @@ PoliwhirlLv30CardGfx::
 	db $40, $40, $4f, $00, $80, $80, $40, $40, $4a, $40, $40, $00, $40, $40, $40, $40
 	INCBIN "gfx/cards/poliwhirl_lv30.2bpp"
 PoliwhirlLv30CardGfxExtra::
-	INCBIN "gfx/cards/poliwhirl_lv30_extra.bin"
+	INCBIN "gfx/cards/poliwhirl_lv30_extra.2bpp"
 PoliwrathLv40CardGfx::
 	rgb 31,31,31
 	rgb 11,15,31
@@ -5689,7 +5689,7 @@ PoliwrathLv40CardGfx::
 	db $40, $40, $5d, $1d, $5d, $5d, $40, $40, $5b, $40, $1a, $5a, $5a, $5a, $1a, $5a
 	INCBIN "gfx/cards/poliwrath_lv40.2bpp"
 PoliwrathLv40CardGfxExtra::
-	INCBIN "gfx/cards/poliwrath_lv40_extra.bin"
+	INCBIN "gfx/cards/poliwrath_lv40_extra.2bpp"
 AbraLv8CardGfx::
 	rgb 31,31,31
 	rgb 31,24,0
@@ -5731,7 +5731,7 @@ GeodudeLv15CardGfx::
 	db $40, $40, $40, $40, $40, $40, $00, $00, $40, $40, $40, $46, $40, $40, $40, $40
 	INCBIN "gfx/cards/geodude_lv15.2bpp"
 GeodudeLv15CardGfxExtra::
-	INCBIN "gfx/cards/geodude_lv15_extra.bin"
+	INCBIN "gfx/cards/geodude_lv15_extra.2bpp"
 RapidashLv30CardGfx::
 	rgb 31,31,25
 	rgb 31,24,0
@@ -5813,7 +5813,7 @@ LickitungLv20CardGfx::
 	db $80, $a6, $26, $26, $00, $65, $65, $65, $65, $65, $65, $65, $65, $65, $65, $65
 	INCBIN "gfx/cards/lickitung_lv20.2bpp"
 LickitungLv20CardGfxExtra::
-	INCBIN "gfx/cards/lickitung_lv20_extra.bin"
+	INCBIN "gfx/cards/lickitung_lv20_extra.2bpp"
 ChanseyLv40CardGfx::
 	rgb 31,31,31
 	rgb 31,15,25
@@ -5835,7 +5835,7 @@ ChanseyLv40CardGfx::
 	db $40, $00, $00, $00, $00, $00, $00, $40, $40, $40, $00, $00, $00, $00, $00, $40
 	INCBIN "gfx/cards/chansey_lv40.2bpp"
 ChanseyLv40CardGfxExtra::
-	INCBIN "gfx/cards/chansey_lv40_extra.bin"
+	INCBIN "gfx/cards/chansey_lv40_extra.2bpp"
 MrMimeLv20CardGfx::
 	rgb 3,21,0
 	rgb 31,26,7
@@ -5857,7 +5857,7 @@ MrMimeLv20CardGfx::
 	db $00, $80, $40, $40, $40, $51, $40, $40, $00, $00, $40, $80, $40, $40, $00, $40
 	INCBIN "gfx/cards/mr_mime_lv20.2bpp"
 MrMimeLv20CardGfxExtra::
-	INCBIN "gfx/cards/mr_mime_lv20_extra.bin"
+	INCBIN "gfx/cards/mr_mime_lv20_extra.2bpp"
 PinsirLv15CardGfx::
 	rgb 31,31,31
 	rgb 19,23,6
@@ -5879,7 +5879,7 @@ PinsirLv15CardGfx::
 	db $40, $40, $00, $00, $00, $00, $40, $4a, $40, $00, $40, $00, $00, $00, $00, $40
 	INCBIN "gfx/cards/pinsir_lv15.2bpp"
 PinsirLv15CardGfxExtra::
-	INCBIN "gfx/cards/pinsir_lv15_extra.bin"
+	INCBIN "gfx/cards/pinsir_lv15_extra.2bpp"
 EeveeLv5CardGfx::
 	rgb 20,29,10
 	rgb 26,23,14
@@ -5901,7 +5901,7 @@ EeveeLv5CardGfx::
 	db $00, $00, $00, $00, $17, $17, $17, $57, $00, $00, $00, $00, $00, $12, $12, $52
 	INCBIN "gfx/cards/eevee_lv5.2bpp"
 EeveeLv5CardGfxExtra::
-	INCBIN "gfx/cards/eevee_lv5_extra.bin"
+	INCBIN "gfx/cards/eevee_lv5_extra.2bpp"
 	ds $1b8, $00
 
 SECTION "Card Gfx 2d", ROMX[$4000], BANK[$2d]
@@ -5926,7 +5926,7 @@ PorygonLv18CardGfx::
 	db $00, $00, $80, $00, $00, $80, $80, $80, $00, $80, $80, $80, $80, $80, $00, $00
 	INCBIN "gfx/cards/porygon_lv18.2bpp"
 PorygonLv18CardGfxExtra::
-	INCBIN "gfx/cards/porygon_lv18_extra.bin"
+	INCBIN "gfx/cards/porygon_lv18_extra.2bpp"
 SnorlaxLv35CardGfx::
 	rgb 31,31,31
 	rgb 31,16,8
@@ -5948,7 +5948,7 @@ SnorlaxLv35CardGfx::
 	db $2a, $2a, $00, $29, $00, $28, $28, $68, $a8, $a8, $00, $00, $26, $26, $26, $66
 	INCBIN "gfx/cards/snorlax_lv35.2bpp"
 SnorlaxLv35CardGfxExtra::
-	INCBIN "gfx/cards/snorlax_lv35_extra.bin"
+	INCBIN "gfx/cards/snorlax_lv35_extra.2bpp"
 MewtwoLv54CardGfx::
 	rgb 31,31,31
 	rgb 31,15,31
@@ -5970,7 +5970,7 @@ MewtwoLv54CardGfx::
 	db $40, $40, $00, $00, $00, $40, $80, $80, $00, $00, $00, $00, $00, $40, $00, $00
 	INCBIN "gfx/cards/mewtwo_lv54.2bpp"
 MewtwoLv54CardGfxExtra::
-	INCBIN "gfx/cards/mewtwo_lv54_extra.bin"
+	INCBIN "gfx/cards/mewtwo_lv54_extra.2bpp"
 SpearowLv12CardGfx::
 	rgb 29,31,25
 	rgb 20,24,2
@@ -6012,7 +6012,7 @@ FearowLv24CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $06, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/fearow_lv24.2bpp"
 FearowLv24CardGfxExtra::
-	INCBIN "gfx/cards/fearow_lv24_extra.bin"
+	INCBIN "gfx/cards/fearow_lv24_extra.2bpp"
 RaichuLv32CardGfx::
 	rgb 27,31,31
 	rgb 27,18,3
@@ -6054,7 +6054,7 @@ SandshrewLv15CardGfx::
 	db $11, $00, $00, $00, $00, $80, $00, $00, $00, $00, $80, $80, $86, $80, $80, $00
 	INCBIN "gfx/cards/sandshrew_lv15.2bpp"
 SandshrewLv15CardGfxExtra::
-	INCBIN "gfx/cards/sandshrew_lv15_extra.bin"
+	INCBIN "gfx/cards/sandshrew_lv15_extra.2bpp"
 VenomothLv22CardGfx::
 	rgb 29,31,13
 	rgb 25,12,29
@@ -6096,7 +6096,7 @@ MachopLv18CardGfx::
 	db $52, $00, $00, $40, $4f, $40, $80, $40, $40, $00, $4a, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/machop_lv18.2bpp"
 MachopLv18CardGfxExtra::
-	INCBIN "gfx/cards/machop_lv18_extra.bin"
+	INCBIN "gfx/cards/machop_lv18_extra.2bpp"
 MachokeLv28CardGfx::
 	rgb 12,18,11
 	rgb 15,26,8
@@ -6118,7 +6118,7 @@ MachokeLv28CardGfx::
 	db $b0, $30, $30, $30, $30, $70, $70, $30, $30, $30, $70, $70, $70, $70, $70, $30
 	INCBIN "gfx/cards/machoke_lv28.2bpp"
 MachokeLv28CardGfxExtra::
-	INCBIN "gfx/cards/machoke_lv28_extra.bin"
+	INCBIN "gfx/cards/machoke_lv28_extra.2bpp"
 GravelerLv28CardGfx::
 	rgb 31,31,31
 	rgb 24,12,31
@@ -6140,7 +6140,7 @@ GravelerLv28CardGfx::
 	db $00, $13, $13, $13, $00, $80, $51, $40, $00, $00, $00, $00, $00, $80, $40, $40
 	INCBIN "gfx/cards/graveler_lv28.2bpp"
 GravelerLv28CardGfxExtra::
-	INCBIN "gfx/cards/graveler_lv28_extra.bin"
+	INCBIN "gfx/cards/graveler_lv28_extra.2bpp"
 MagnemiteLv15CardGfx::
 	rgb 31,31,31
 	rgb 19,13,29
@@ -6202,7 +6202,7 @@ SeelLv10CardGfx::
 	db $00, $80, $80, $80, $00, $00, $00, $00, $00, $80, $40, $40, $40, $40, $40, $00
 	INCBIN "gfx/cards/seel_lv10.2bpp"
 SeelLv10CardGfxExtra::
-	INCBIN "gfx/cards/seel_lv10_extra.bin"
+	INCBIN "gfx/cards/seel_lv10_extra.2bpp"
 DewgongLv24CardGfx::
 	rgb 31,25,10
 	rgb 31,15,0
@@ -6244,7 +6244,7 @@ ShellderLv16CardGfx::
 	db $40, $80, $80, $40, $40, $40, $40, $40, $40, $80, $80, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/shellder_lv16.2bpp"
 ShellderLv16CardGfxExtra::
-	INCBIN "gfx/cards/shellder_lv16_extra.bin"
+	INCBIN "gfx/cards/shellder_lv16_extra.2bpp"
 OnixLv25CardGfx::
 	rgb 31,31,31
 	rgb 21,15,25
@@ -6369,7 +6369,7 @@ JynxLv18CardGfx::
 	db $40, $00, $00, $00, $00, $00, $80, $80, $40, $40, $00, $00, $00, $00, $80, $80
 	INCBIN "gfx/cards/jynx_lv18.2bpp"
 JynxLv18CardGfxExtra::
-	INCBIN "gfx/cards/jynx_lv18_extra.bin"
+	INCBIN "gfx/cards/jynx_lv18_extra.2bpp"
 LaprasLv24CardGfx::
 	rgb 29,31,31
 	rgb 8,20,31
@@ -6391,7 +6391,7 @@ LaprasLv24CardGfx::
 	db $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/lapras_lv24.2bpp"
 LaprasLv24CardGfxExtra::
-	INCBIN "gfx/cards/lapras_lv24_extra.bin"
+	INCBIN "gfx/cards/lapras_lv24_extra.2bpp"
 OmanyteLv20CardGfx::
 	rgb 26,31,2
 	rgb 11,16,20
@@ -6413,7 +6413,7 @@ OmanyteLv20CardGfx::
 	db $00, $00, $00, $00, $00, $40, $40, $80, $00, $07, $00, $00, $00, $44, $44, $80
 	INCBIN "gfx/cards/omanyte_lv20.2bpp"
 OmanyteLv20CardGfxExtra::
-	INCBIN "gfx/cards/omanyte_lv20_extra.bin"
+	INCBIN "gfx/cards/omanyte_lv20_extra.2bpp"
 KabutoLv22CardGfx::
 	rgb 31,31,31
 	rgb 12,31,0
@@ -6455,7 +6455,7 @@ AerodactylLv30CardGfx::
 	db $80, $80, $95, $00, $54, $94, $94, $94, $80, $80, $92, $12, $52, $80, $80, $80
 	INCBIN "gfx/cards/aerodactyl_lv30.2bpp"
 AerodactylLv30CardGfxExtra::
-	INCBIN "gfx/cards/aerodactyl_lv30_extra.bin"
+	INCBIN "gfx/cards/aerodactyl_lv30_extra.2bpp"
 ArticunoLv34CardGfx::
 	rgb 31,31,31
 	rgb 16,20,31
@@ -6477,7 +6477,7 @@ ArticunoLv34CardGfx::
 	db $00, $00, $91, $91, $40, $40, $40, $00, $0d, $00, $80, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/articuno_lv34.2bpp"
 ArticunoLv34CardGfxExtra::
-	INCBIN "gfx/cards/articuno_lv34_extra.bin"
+	INCBIN "gfx/cards/articuno_lv34_extra.2bpp"
 ZapdosLv28CardGfx::
 	rgb 31,18,0
 	rgb 12,19,31
@@ -6519,7 +6519,7 @@ MoltresLv37CardGfx::
 	db $40, $00, $40, $40, $00, $00, $0c, $40, $00, $00, $80, $00, $07, $00, $06, $00
 	INCBIN "gfx/cards/moltres_lv37.2bpp"
 MoltresLv37CardGfxExtra::
-	INCBIN "gfx/cards/moltres_lv37_extra.bin"
+	INCBIN "gfx/cards/moltres_lv37_extra.2bpp"
 PidgeottoLv38CardGfx::
 	rgb 31,31,22
 	rgb 18,22,0
@@ -6581,7 +6581,7 @@ SandslashLv35CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $0a, $80, $80, $00, $00, $00, $05, $00, $00
 	INCBIN "gfx/cards/sandslash_lv35.2bpp"
 SandslashLv35CardGfxExtra::
-	INCBIN "gfx/cards/sandslash_lv35_extra.bin"
+	INCBIN "gfx/cards/sandslash_lv35_extra.2bpp"
 NidorinaLv22CardGfx::
 	rgb 31,31,31
 	rgb 14,19,21
@@ -6643,7 +6643,7 @@ VulpixLv13CardGfx::
 	db $18, $40, $40, $40, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/vulpix_lv13.2bpp"
 VulpixLv13CardGfxExtra::
-	INCBIN "gfx/cards/vulpix_lv13_extra.bin"
+	INCBIN "gfx/cards/vulpix_lv13_extra.2bpp"
 	ds $160, $00
 
 SECTION "Card Gfx 2f", ROMX[$4000], BANK[$2f]
@@ -6668,7 +6668,7 @@ VenonatLv15CardGfx::
 	db $40, $80, $80, $80, $00, $40, $40, $40, $40, $40, $40, $40, $40, $52, $40, $40
 	INCBIN "gfx/cards/venonat_lv15.2bpp"
 VenonatLv15CardGfxExtra::
-	INCBIN "gfx/cards/venonat_lv15_extra.bin"
+	INCBIN "gfx/cards/venonat_lv15_extra.2bpp"
 GolduckLv28CardGfx::
 	rgb 31,31,31
 	rgb 12,19,31
@@ -6690,7 +6690,7 @@ GolduckLv28CardGfx::
 	db $10, $00, $00, $00, $00, $00, $8b, $00, $0a, $00, $00, $00, $07, $00, $00, $00
 	INCBIN "gfx/cards/golduck_lv28.2bpp"
 GolduckLv28CardGfxExtra::
-	INCBIN "gfx/cards/golduck_lv28_extra.bin"
+	INCBIN "gfx/cards/golduck_lv28_extra.2bpp"
 GrowlitheLv16CardGfx::
 	rgb 31,31,31
 	rgb 17,31,0
@@ -6732,7 +6732,7 @@ KadabraLv39CardGfx::
 	db $40, $40, $40, $80, $80, $80, $40, $40, $40, $40, $40, $40, $40, $44, $40, $40
 	INCBIN "gfx/cards/kadabra_lv39.2bpp"
 KadabraLv39CardGfxExtra::
-	INCBIN "gfx/cards/kadabra_lv39_extra.bin"
+	INCBIN "gfx/cards/kadabra_lv39_extra.2bpp"
 AlakazamLv45CardGfx::
 	rgb 31,31,8
 	rgb 27,15,0
@@ -6914,7 +6914,7 @@ SlowbroLv35CardGfx::
 	db $40, $40, $80, $80, $80, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/slowbro_lv35.2bpp"
 SlowbroLv35CardGfxExtra::
-	INCBIN "gfx/cards/slowbro_lv35_extra.bin"
+	INCBIN "gfx/cards/slowbro_lv35_extra.2bpp"
 GastlyLv13CardGfx::
 	rgb 31,31,31
 	rgb 25,10,29
@@ -6976,7 +6976,7 @@ HaunterLv25CardGfx::
 	db $00, $00, $00, $00, $00, $0b, $80, $80, $00, $80, $87, $87, $07, $00, $00, $80
 	INCBIN "gfx/cards/haunter_lv25.2bpp"
 HaunterLv25CardGfxExtra::
-	INCBIN "gfx/cards/haunter_lv25_extra.bin"
+	INCBIN "gfx/cards/haunter_lv25_extra.2bpp"
 GengarLv40CardGfx::
 	rgb 31,31,0
 	rgb 0,11,23
@@ -7018,7 +7018,7 @@ HypnoLv30CardGfx::
 	db $80, $80, $00, $00, $00, $00, $00, $00, $00, $80, $17, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/hypno_lv30.2bpp"
 HypnoLv30CardGfxExtra::
-	INCBIN "gfx/cards/hypno_lv30_extra.bin"
+	INCBIN "gfx/cards/hypno_lv30_extra.2bpp"
 	ds $210, $00
 
 SECTION "Card Gfx 30", ROMX[$4000], BANK[$30]
@@ -7103,7 +7103,7 @@ RhydonLv37CardGfx::
 	db $80, $00, $00, $00, $40, $40, $40, $40, $80, $00, $00, $00, $80, $40, $40, $40
 	INCBIN "gfx/cards/rhydon_lv37.2bpp"
 RhydonLv37CardGfxExtra::
-	INCBIN "gfx/cards/rhydon_lv37_extra.bin"
+	INCBIN "gfx/cards/rhydon_lv37_extra.2bpp"
 KangaskhanLv36CardGfx::
 	rgb 31,31,31
 	rgb 13,31,1
@@ -7125,7 +7125,7 @@ KangaskhanLv36CardGfx::
 	db $00, $19, $80, $18, $80, $80, $96, $16, $16, $00, $80, $00, $93, $80, $00, $00
 	INCBIN "gfx/cards/kangaskhan_lv36.2bpp"
 KangaskhanLv36CardGfxExtra::
-	INCBIN "gfx/cards/kangaskhan_lv36_extra.bin"
+	INCBIN "gfx/cards/kangaskhan_lv36_extra.2bpp"
 HorseaLv20CardGfx::
 	rgb 31,31,31
 	rgb 19,22,0
@@ -7187,7 +7187,7 @@ StaryuLv17CardGfx::
 	db $9c, $80, $80, $9a, $80, $80, $98, $80, $80, $96, $80, $80, $80, $80, $92, $92
 	INCBIN "gfx/cards/staryu_lv17.2bpp"
 StaryuLv17CardGfxExtra::
-	INCBIN "gfx/cards/staryu_lv17_extra.bin"
+	INCBIN "gfx/cards/staryu_lv17_extra.2bpp"
 ScytherLv23CardGfx::
 	rgb 7,31,31
 	rgb 11,31,0
@@ -7209,7 +7209,7 @@ ScytherLv23CardGfx::
 	db $20, $20, $20, $00, $00, $00, $1d, $1d, $1d, $00, $00, $00, $1a, $1a, $1a, $00
 	INCBIN "gfx/cards/scyther_lv23.2bpp"
 ScytherLv23CardGfxExtra::
-	INCBIN "gfx/cards/scyther_lv23_extra.bin"
+	INCBIN "gfx/cards/scyther_lv23_extra.2bpp"
 MagmarLv27CardGfx::
 	rgb 31,31,10
 	rgb 31,19,0
@@ -7251,7 +7251,7 @@ TaurosLv35CardGfx::
 	db $67, $40, $66, $66, $40, $65, $40, $64, $64, $64, $40, $63, $63, $63, $63, $63
 	INCBIN "gfx/cards/tauros_lv35.2bpp"
 TaurosLv35CardGfxExtra::
-	INCBIN "gfx/cards/tauros_lv35_extra.bin"
+	INCBIN "gfx/cards/tauros_lv35_extra.2bpp"
 OmanyteLv22CardGfx::
 	rgb 18,27,0
 	rgb 10,21,0
@@ -7373,7 +7373,7 @@ CoolPorygonCardGfx::
 	db $40, $00, $00, $00, $00, $0d, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/cool_porygon.2bpp"
 CoolPorygonCardGfxExtra::
-	INCBIN "gfx/cards/cool_porygon_extra.bin"
+	INCBIN "gfx/cards/cool_porygon_extra.2bpp"
 	ds $178, $00
 
 SECTION "Card Gfx 31", ROMX[$4000], BANK[$31]
@@ -7438,7 +7438,7 @@ PikachuLv13CardGfx::
 	db $11, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/pikachu_lv13.2bpp"
 PikachuLv13CardGfxExtra::
-	INCBIN "gfx/cards/pikachu_lv13_extra.bin"
+	INCBIN "gfx/cards/pikachu_lv13_extra.2bpp"
 FarfetchdAltLv20CardGfx::
 	rgb 31,31,31
 	rgb 21,25,31
@@ -7460,7 +7460,7 @@ FarfetchdAltLv20CardGfx::
 	db $80, $80, $80, $80, $80, $00, $00, $80, $80, $80, $80, $00, $8a, $80, $80, $00
 	INCBIN "gfx/cards/farfetchd_alt_lv20.2bpp"
 FarfetchdAltLv20CardGfxExtra::
-	INCBIN "gfx/cards/farfetchd_alt_lv20_extra.bin"
+	INCBIN "gfx/cards/farfetchd_alt_lv20_extra.2bpp"
 KangaskhanLv38CardGfx::
 	rgb 31,31,5
 	rgb 31,18,0
@@ -7482,7 +7482,7 @@ KangaskhanLv38CardGfx::
 	db $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/kangaskhan_lv38.2bpp"
 KangaskhanLv38CardGfxExtra::
-	INCBIN "gfx/cards/kangaskhan_lv38_extra.bin"
+	INCBIN "gfx/cards/kangaskhan_lv38_extra.2bpp"
 DiglettLv16CardGfx::
 	rgb 31,31,31
 	rgb 30,0,21
@@ -7504,7 +7504,7 @@ DiglettLv16CardGfx::
 	db $53, $53, $40, $40, $40, $40, $40, $4e, $40, $40, $40, $40, $40, $49, $40, $40
 	INCBIN "gfx/cards/diglett_lv16.2bpp"
 DiglettLv16CardGfxExtra::
-	INCBIN "gfx/cards/diglett_lv16_extra.bin"
+	INCBIN "gfx/cards/diglett_lv16_extra.2bpp"
 DugtrioLv40CardGfx::
 	rgb 28,26,2
 	rgb 28,11,0
@@ -7526,7 +7526,7 @@ DugtrioLv40CardGfx::
 	db $92, $92, $80, $80, $00, $00, $80, $8d, $80, $80, $80, $80, $80, $88, $80, $80
 	INCBIN "gfx/cards/dugtrio_lv40.2bpp"
 DugtrioLv40CardGfxExtra::
-	INCBIN "gfx/cards/dugtrio_lv40_extra.bin"
+	INCBIN "gfx/cards/dugtrio_lv40_extra.2bpp"
 DragoniteLv43CardGfx::
 	rgb 31,31,31
 	rgb 7,17,31
@@ -7568,7 +7568,7 @@ MagikarpLv10CardGfx::
 	db $00, $00, $11, $00, $10, $50, $10, $10, $00, $00, $0e, $0e, $0e, $0e, $00, $00
 	INCBIN "gfx/cards/magikarp_lv10.2bpp"
 MagikarpLv10CardGfxExtra::
-	INCBIN "gfx/cards/magikarp_lv10_extra.bin"
+	INCBIN "gfx/cards/magikarp_lv10_extra.2bpp"
 VenusaurAltLv67CardGfx::
 	rgb 31,19,27
 	rgb 4,27,4
@@ -7590,7 +7590,7 @@ VenusaurAltLv67CardGfx::
 	db $00, $00, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/venusaur_alt_lv67.2bpp"
 VenusaurAltLv67CardGfxExtra::
-	INCBIN "gfx/cards/venusaur_alt_lv67_extra.bin"
+	INCBIN "gfx/cards/venusaur_alt_lv67_extra.2bpp"
 CharizardAltLv76CardGfx::
 	rgb 31,31,29
 	rgb 31,22,0
@@ -7652,7 +7652,7 @@ FlyingPikachuAltLv12CardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/flying_pikachu_alt_lv12.2bpp"
 FlyingPikachuAltLv12CardGfxExtra::
-	INCBIN "gfx/cards/flying_pikachu_alt_lv12_extra.bin"
+	INCBIN "gfx/cards/flying_pikachu_alt_lv12_extra.2bpp"
 TogepiCardGfx::
 	rgb 31,29,23
 	rgb 25,19,9
@@ -7694,7 +7694,7 @@ MarillCardGfx::
 	db $00, $00, $00, $00, $10, $10, $00, $00, $00, $00, $0c, $0c, $00, $00, $00, $00
 	INCBIN "gfx/cards/marill.2bpp"
 MarillCardGfxExtra::
-	INCBIN "gfx/cards/marill_extra.bin"
+	INCBIN "gfx/cards/marill_extra.2bpp"
 MankeyAltLv7CardGfx::
 	rgb 31,31,9
 	rgb 31,22,0
@@ -7756,7 +7756,7 @@ ImposterProfessorOakCardGfx::
 	db $90, $40, $0f, $00, $00, $40, $80, $80, $80, $40, $00, $00, $00, $00, $80, $80
 	INCBIN "gfx/cards/imposter_professor_oak.2bpp"
 ImposterProfessorOakCardGfxExtra::
-	INCBIN "gfx/cards/imposter_professor_oak_extra.bin"
+	INCBIN "gfx/cards/imposter_professor_oak_extra.2bpp"
 	ds $1d0, $00
 
 SECTION "Card Gfx 32", ROMX[$4000], BANK[$32]
@@ -7841,7 +7841,7 @@ ImakuniCardCardGfx::
 	db $80, $00, $00, $00, $18, $18, $00, $80, $40, $00, $14, $14, $00, $00, $00, $00
 	INCBIN "gfx/cards/imakuni_card.2bpp"
 ImakuniCardCardGfxExtra::
-	INCBIN "gfx/cards/imakuni_card_extra.bin"
+	INCBIN "gfx/cards/imakuni_card_extra.2bpp"
 PokemonTraderCardGfx::
 	rgb 31,31,25
 	rgb 18,27,4
@@ -7903,7 +7903,7 @@ ClefairyDollCardGfx::
 	db $40, $00, $00, $00, $00, $80, $80, $80, $0a, $00, $00, $80, $87, $80, $86, $80
 	INCBIN "gfx/cards/clefairy_doll.2bpp"
 ClefairyDollCardGfxExtra::
-	INCBIN "gfx/cards/clefairy_doll_extra.bin"
+	INCBIN "gfx/cards/clefairy_doll_extra.2bpp"
 MysteriousFossilCardGfx::
 	rgb 31,27,22
 	rgb 27,13,9
@@ -7945,7 +7945,7 @@ EnergyRetrievalCardGfx::
 	db $40, $80, $00, $00, $00, $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/energy_retrieval.2bpp"
 EnergyRetrievalCardGfxExtra::
-	INCBIN "gfx/cards/energy_retrieval_extra.bin"
+	INCBIN "gfx/cards/energy_retrieval_extra.2bpp"
 SuperEnergyRetrievalCardGfx::
 	rgb 31,27,31
 	rgb 21,12,29
@@ -7987,7 +7987,7 @@ EnergySearchCardGfx::
 	db $00, $11, $00, $00, $00, $00, $00, $80, $00, $00, $09, $09, $00, $00, $00, $00
 	INCBIN "gfx/cards/energy_search.2bpp"
 EnergySearchCardGfxExtra::
-	INCBIN "gfx/cards/energy_search_extra.bin"
+	INCBIN "gfx/cards/energy_search_extra.2bpp"
 EnergyRemovalCardGfx::
 	rgb 27,31,31
 	rgb 9,22,22
@@ -8009,7 +8009,7 @@ EnergyRemovalCardGfx::
 	db $40, $40, $80, $80, $80, $94, $94, $80, $40, $40, $40, $90, $90, $80, $80, $80
 	INCBIN "gfx/cards/energy_removal.2bpp"
 EnergyRemovalCardGfxExtra::
-	INCBIN "gfx/cards/energy_removal_extra.bin"
+	INCBIN "gfx/cards/energy_removal_extra.2bpp"
 SuperEnergyRemovalCardGfx::
 	rgb 31,27,0
 	rgb 31,4,0
@@ -8031,7 +8031,7 @@ SuperEnergyRemovalCardGfx::
 	db $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/super_energy_removal.2bpp"
 SuperEnergyRemovalCardGfxExtra::
-	INCBIN "gfx/cards/super_energy_removal_extra.bin"
+	INCBIN "gfx/cards/super_energy_removal_extra.2bpp"
 SwitchCardGfx::
 	rgb 31,27,27
 	rgb 31,18,4
@@ -8053,7 +8053,7 @@ SwitchCardGfx::
 	db $80, $80, $80, $40, $80, $80, $80, $80, $40, $40, $40, $40, $00, $00, $00, $00
 	INCBIN "gfx/cards/switch.2bpp"
 SwitchCardGfxExtra::
-	INCBIN "gfx/cards/switch_extra.bin"
+	INCBIN "gfx/cards/switch_extra.2bpp"
 PokemonCenterCardGfx::
 	rgb 22,31,22
 	rgb 31,0,0
@@ -8075,7 +8075,7 @@ PokemonCenterCardGfx::
 	db $00, $00, $40, $80, $40, $40, $40, $40, $00, $00, $00, $00, $40, $40, $00, $00
 	INCBIN "gfx/cards/pokemon_center.2bpp"
 PokemonCenterCardGfxExtra::
-	INCBIN "gfx/cards/pokemon_center_extra.bin"
+	INCBIN "gfx/cards/pokemon_center_extra.2bpp"
 PokeballCardGfx::
 	rgb 31,31,27
 	rgb 27,0,0
@@ -8097,7 +8097,7 @@ PokeballCardGfx::
 	db $00, $80, $80, $40, $4c, $40, $80, $80, $00, $00, $00, $80, $80, $80, $80, $00
 	INCBIN "gfx/cards/pokeball.2bpp"
 PokeballCardGfxExtra::
-	INCBIN "gfx/cards/pokeball_extra.bin"
+	INCBIN "gfx/cards/pokeball_extra.2bpp"
 ScoopUpCardGfx::
 	rgb 31,31,31
 	rgb 18,17,9
@@ -8119,7 +8119,7 @@ ScoopUpCardGfx::
 	db $00, $00, $00, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/scoop_up.2bpp"
 ScoopUpCardGfxExtra::
-	INCBIN "gfx/cards/scoop_up_extra.bin"
+	INCBIN "gfx/cards/scoop_up_extra.2bpp"
 ComputerSearchCardGfx::
 	rgb 22,27,31
 	rgb 9,27,18
@@ -8184,7 +8184,7 @@ PlusPowerCardGfx::
 	db $00, $00, $00, $00, $80, $80, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/plus_power.2bpp"
 PlusPowerCardGfxExtra::
-	INCBIN "gfx/cards/plus_power_extra.bin"
+	INCBIN "gfx/cards/plus_power_extra.2bpp"
 DefenderCardGfx::
 	rgb 27,27,31
 	rgb 18,0,27
@@ -8206,7 +8206,7 @@ DefenderCardGfx::
 	db $00, $00, $00, $00, $40, $40, $40, $40, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/defender.2bpp"
 DefenderCardGfxExtra::
-	INCBIN "gfx/cards/defender_extra.bin"
+	INCBIN "gfx/cards/defender_extra.2bpp"
 ItemFinderCardGfx::
 	rgb 31,31,7
 	rgb 22,18,9
@@ -8268,7 +8268,7 @@ DevolutionSprayCardGfx::
 	db $40, $40, $40, $52, $00, $00, $40, $40, $00, $0d, $00, $00, $00, $00, $00, $08
 	INCBIN "gfx/cards/devolution_spray.2bpp"
 DevolutionSprayCardGfxExtra::
-	INCBIN "gfx/cards/devolution_spray_extra.bin"
+	INCBIN "gfx/cards/devolution_spray_extra.2bpp"
 PotionCardGfx::
 	rgb 31,31,31
 	rgb 22,27,27
@@ -8290,7 +8290,7 @@ PotionCardGfx::
 	db $1c, $00, $00, $00, $19, $19, $19, $00, $00, $00, $16, $16, $16, $00, $00, $00
 	INCBIN "gfx/cards/potion.2bpp"
 PotionCardGfxExtra::
-	INCBIN "gfx/cards/potion_extra.bin"
+	INCBIN "gfx/cards/potion_extra.2bpp"
 SuperPotionCardGfx::
 	rgb 31,31,27
 	rgb 31,22,4
@@ -8312,7 +8312,7 @@ SuperPotionCardGfx::
 	db $63, $63, $63, $63, $23, $63, $63, $63, $63, $23, $63, $63, $23, $63, $63, $63
 	INCBIN "gfx/cards/super_potion.2bpp"
 SuperPotionCardGfxExtra::
-	INCBIN "gfx/cards/super_potion_extra.bin"
+	INCBIN "gfx/cards/super_potion_extra.2bpp"
 FullHealCardGfx::
 	rgb 31,27,27
 	rgb 31,0,0
@@ -8334,7 +8334,7 @@ FullHealCardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/full_heal.2bpp"
 FullHealCardGfxExtra::
-	INCBIN "gfx/cards/full_heal_extra.bin"
+	INCBIN "gfx/cards/full_heal_extra.2bpp"
 ReviveCardGfx::
 	rgb 31,31,20
 	rgb 31,4,13
@@ -8356,7 +8356,7 @@ ReviveCardGfx::
 	db $40, $1b, $1b, $1b, $00, $00, $80, $40, $40, $96, $00, $40, $40, $80, $80, $40
 	INCBIN "gfx/cards/revive.2bpp"
 ReviveCardGfxExtra::
-	INCBIN "gfx/cards/revive_extra.bin"
+	INCBIN "gfx/cards/revive_extra.2bpp"
 MaintenanceCardGfx::
 	rgb 27,31,27
 	rgb 31,0,0
@@ -8398,7 +8398,7 @@ PokemonFluteCardGfx::
 	db $40, $80, $40, $00, $00, $10, $40, $40, $40, $40, $40, $00, $00, $40, $40, $40
 	INCBIN "gfx/cards/pokemon_flute.2bpp"
 PokemonFluteCardGfxExtra::
-	INCBIN "gfx/cards/pokemon_flute_extra.bin"
+	INCBIN "gfx/cards/pokemon_flute_extra.2bpp"
 GamblerCardGfx::
 	rgb 29,29,26
 	rgb 24,23,14
@@ -8440,7 +8440,7 @@ RecycleCardGfx::
 	db $80, $80, $80, $80, $98, $98, $80, $80, $80, $80, $94, $14, $00, $00, $00, $00
 	INCBIN "gfx/cards/recycle.2bpp"
 RecycleCardGfxExtra::
-	INCBIN "gfx/cards/recycle_extra.bin"
+	INCBIN "gfx/cards/recycle_extra.2bpp"
 ChallengeCardGfx::
 	rgb 31,31,10
 	rgb 5,23,0
@@ -8462,7 +8462,7 @@ ChallengeCardGfx::
 	db $00, $80, $80, $80, $80, $80, $80, $80, $00, $00, $80, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/challenge.2bpp"
 ChallengeCardGfxExtra::
-	INCBIN "gfx/cards/challenge_extra.bin"
+	INCBIN "gfx/cards/challenge_extra.2bpp"
 ImposterOaksRevengeCardGfx::
 	rgb 30,24,17
 	rgb 20,16,21
@@ -8484,7 +8484,7 @@ ImposterOaksRevengeCardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80
 	INCBIN "gfx/cards/imposter_oaks_revenge.2bpp"
 ImposterOaksRevengeCardGfxExtra::
-	INCBIN "gfx/cards/imposter_oaks_revenge_extra.bin"
+	INCBIN "gfx/cards/imposter_oaks_revenge_extra.2bpp"
 SleepCardGfx::
 	rgb 21,31,6
 	rgb 7,21,22
@@ -8529,7 +8529,7 @@ DiggerCardGfx::
 	db $80, $62, $a2, $a2, $40, $40, $40, $9f, $80, $9e, $80, $80, $9c, $9c, $9c, $9c
 	INCBIN "gfx/cards/digger.2bpp"
 DiggerCardGfxExtra::
-	INCBIN "gfx/cards/digger_extra.bin"
+	INCBIN "gfx/cards/digger_extra.2bpp"
 TheBosssWayCardGfx::
 	rgb 31,31,31
 	rgb 23,20,3
@@ -8551,7 +8551,7 @@ TheBosssWayCardGfx::
 	db $00, $00, $00, $00, $00, $0b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/the_bosss_way.2bpp"
 TheBosssWayCardGfxExtra::
-	INCBIN "gfx/cards/the_bosss_way_extra.bin"
+	INCBIN "gfx/cards/the_bosss_way_extra.2bpp"
 GoopGasAttackCardGfx::
 	rgb 31,31,24
 	rgb 21,9,31
@@ -8573,7 +8573,7 @@ GoopGasAttackCardGfx::
 	db $40, $40, $00, $00, $00, $00, $80, $80, $00, $00, $00, $00, $00, $00, $80, $80
 	INCBIN "gfx/cards/goop_gas_attack.2bpp"
 GoopGasAttackCardGfxExtra::
-	INCBIN "gfx/cards/goop_gas_attack_extra.bin"
+	INCBIN "gfx/cards/goop_gas_attack_extra.2bpp"
 RocketsSneakAttackCardGfx::
 	rgb 31,31,31
 	rgb 30,21,21
@@ -8595,7 +8595,7 @@ RocketsSneakAttackCardGfx::
 	db $40, $40, $80, $80, $00, $00, $00, $00, $40, $40, $40, $80, $00, $00, $00, $00
 	INCBIN "gfx/cards/rockets_sneak_attack.2bpp"
 RocketsSneakAttackCardGfxExtra::
-	INCBIN "gfx/cards/rockets_sneak_attack_extra.bin"
+	INCBIN "gfx/cards/rockets_sneak_attack_extra.2bpp"
 HereComesTeamRocketCardGfx::
 	rgb 31,31,31
 	rgb 29,22,4
@@ -8617,7 +8617,7 @@ HereComesTeamRocketCardGfx::
 	db $40, $40, $00, $00, $00, $00, $00, $00, $40, $40, $40, $80, $80, $00, $00, $86
 	INCBIN "gfx/cards/here_comes_team_rocket.2bpp"
 HereComesTeamRocketCardGfxExtra::
-	INCBIN "gfx/cards/here_comes_team_rocket_extra.bin"
+	INCBIN "gfx/cards/here_comes_team_rocket_extra.2bpp"
 NightlyGarbageRunCardGfx::
 	rgb 31,25,0
 	rgb 13,19,19
@@ -8639,7 +8639,7 @@ NightlyGarbageRunCardGfx::
 	db $00, $00, $14, $00, $00, $80, $80, $80, $0f, $00, $00, $00, $00, $00, $0a, $8a
 	INCBIN "gfx/cards/nightly_garbage_run.2bpp"
 NightlyGarbageRunCardGfxExtra::
-	INCBIN "gfx/cards/nightly_garbage_run_extra.bin"
+	INCBIN "gfx/cards/nightly_garbage_run_extra.2bpp"
 TheRocketsTrapCardGfx::
 	rgb 27,27,31
 	rgb 26,13,15
@@ -8661,7 +8661,7 @@ TheRocketsTrapCardGfx::
 	db $40, $80, $40, $00, $00, $00, $80, $80, $48, $80, $40, $00, $00, $00, $43, $40
 	INCBIN "gfx/cards/the_rockets_trap.2bpp"
 TheRocketsTrapCardGfxExtra::
-	INCBIN "gfx/cards/the_rockets_trap_extra.bin"
+	INCBIN "gfx/cards/the_rockets_trap_extra.2bpp"
 FossilExcavationCardGfx::
 	rgb 31,27,0
 	rgb 15,22,0
@@ -8683,7 +8683,7 @@ FossilExcavationCardGfx::
 	db $00, $00, $00, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/fossil_excavation.2bpp"
 FossilExcavationCardGfxExtra::
-	INCBIN "gfx/cards/fossil_excavation_extra.bin"
+	INCBIN "gfx/cards/fossil_excavation_extra.2bpp"
 MoonStoneCardGfx::
 	rgb 29,31,31
 	rgb 15,22,27
@@ -8705,7 +8705,7 @@ MoonStoneCardGfx::
 	db $00, $00, $00, $00, $00, $00, $40, $49, $09, $00, $00, $00, $00, $05, $05, $00
 	INCBIN "gfx/cards/moon_stone.2bpp"
 MoonStoneCardGfxExtra::
-	INCBIN "gfx/cards/moon_stone_extra.bin"
+	INCBIN "gfx/cards/moon_stone_extra.2bpp"
 MaxReviveCardGfx::
 	rgb 31,31,31
 	rgb 28,15,31
@@ -8727,7 +8727,7 @@ MaxReviveCardGfx::
 	db $40, $40, $00, $00, $0f, $0f, $4f, $4f, $40, $40, $40, $0c, $0c, $00, $40, $40
 	INCBIN "gfx/cards/max_revive.2bpp"
 MaxReviveCardGfxExtra::
-	INCBIN "gfx/cards/max_revive_extra.bin"
+	INCBIN "gfx/cards/max_revive_extra.2bpp"
 MasterBallCardGfx::
 	rgb 24,26,31
 	rgb 17,15,17
@@ -8749,7 +8749,7 @@ MasterBallCardGfx::
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/master_ball.2bpp"
 MasterBallCardGfxExtra::
-	INCBIN "gfx/cards/master_ball_extra.bin"
+	INCBIN "gfx/cards/master_ball_extra.2bpp"
 PokemonRecallCardGfx::
 	rgb 31,31,31
 	rgb 29,8,17
@@ -8791,7 +8791,7 @@ BillsComputerCardGfx::
 	db $00, $91, $40, $40, $8f, $4f, $4f, $4f, $80, $80, $80, $40, $40, $4a, $40, $80
 	INCBIN "gfx/cards/bills_computer.2bpp"
 BillsComputerCardGfxExtra::
-	INCBIN "gfx/cards/bills_computer_extra.bin"
+	INCBIN "gfx/cards/bills_computer_extra.2bpp"
 ComputerErrorCardGfx::
 	rgb 25,25,24
 	rgb 7,27,2
@@ -8833,7 +8833,7 @@ SquirtleLv14CardGfx::
 	db $00, $00, $00, $00, $20, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/squirtle_lv14.2bpp"
 SquirtleLv14CardGfxExtra::
-	INCBIN "gfx/cards/squirtle_lv14_extra.bin"
+	INCBIN "gfx/cards/squirtle_lv14_extra.2bpp"
 SuperScoopUpCardGfx::
 	rgb 31,31,31
 	rgb 5,27,15
@@ -8875,7 +8875,7 @@ RaichuLv33CardGfx::
 	db $5a, $5a, $1a, $00, $00, $80, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40
 	INCBIN "gfx/cards/raichu_lv33.2bpp"
 RaichuLv33CardGfxExtra::
-	INCBIN "gfx/cards/raichu_lv33_extra.bin"
+	INCBIN "gfx/cards/raichu_lv33_extra.2bpp"
 	ds $118, $00
 
 SECTION "Card Gfx 35", ROMX[$4000], BANK[$35]
@@ -9020,7 +9020,7 @@ WartortleLv24CardGfx::
 	db $93, $00, $40, $80, $40, $00, $40, $40, $80, $8b, $80, $80, $80, $80, $80, $86
 	INCBIN "gfx/cards/wartortle_lv24.2bpp"
 WartortleLv24CardGfxExtra::
-	INCBIN "gfx/cards/wartortle_lv24_extra.bin"
+	INCBIN "gfx/cards/wartortle_lv24_extra.2bpp"
 SpearowLv9CardGfx::
 	rgb 31,31,24
 	rgb 31,22,0
@@ -9042,7 +9042,7 @@ SpearowLv9CardGfx::
 	db $80, $92, $80, $00, $00, $00, $80, $80, $80, $80, $00, $00, $80, $00, $80, $80
 	INCBIN "gfx/cards/spearow_lv9.2bpp"
 SpearowLv9CardGfxExtra::
-	INCBIN "gfx/cards/spearow_lv9_extra.bin"
+	INCBIN "gfx/cards/spearow_lv9_extra.2bpp"
 MeowthLv17CardGfx::
 	rgb 31,31,5
 	rgb 17,23,1
@@ -9084,7 +9084,7 @@ BillsTeleporterCardGfx::
 	db $00, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $03, $00, $00
 	INCBIN "gfx/cards/bills_teleporter.2bpp"
 BillsTeleporterCardGfxExtra::
-	INCBIN "gfx/cards/bills_teleporter_extra.bin"
+	INCBIN "gfx/cards/bills_teleporter_extra.2bpp"
 BulbasaurLv12CardGfx::
 	rgb 31,31,31
 	rgb 6,27,11
@@ -9106,7 +9106,7 @@ BulbasaurLv12CardGfx::
 	db $13, $13, $53, $00, $00, $80, $80, $00, $00, $00, $80, $00, $80, $80, $80, $80
 	INCBIN "gfx/cards/bulbasaur_lv12.2bpp"
 BulbasaurLv12CardGfxExtra::
-	INCBIN "gfx/cards/bulbasaur_lv12_extra.bin"
+	INCBIN "gfx/cards/bulbasaur_lv12_extra.2bpp"
 MagmarLv18CardGfx::
 	rgb 31,22,0
 	rgb 18,18,0
@@ -9128,7 +9128,7 @@ MagmarLv18CardGfx::
 	db $70, $70, $30, $30, $30, $30, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70
 	INCBIN "gfx/cards/magmar_lv18.2bpp"
 MagmarLv18CardGfxExtra::
-	INCBIN "gfx/cards/magmar_lv18_extra.bin"
+	INCBIN "gfx/cards/magmar_lv18_extra.2bpp"
 GRsMewtwoCardGfx::
 	rgb 31,31,31
 	rgb 26,17,31
@@ -9190,7 +9190,7 @@ DarkHaunterCardGfx::
 	db $00, $40, $80, $80, $00, $00, $00, $00, $00, $80, $80, $80, $40, $00, $00, $00
 	INCBIN "gfx/cards/dark_haunter.2bpp"
 DarkHaunterCardGfxExtra::
-	INCBIN "gfx/cards/dark_haunter_extra.bin"
+	INCBIN "gfx/cards/dark_haunter_extra.2bpp"
 DarkVenusaurCardGfx::
 	rgb 31,31,31
 	rgb 20,14,31
@@ -9335,7 +9335,7 @@ DarkFearowCardGfx::
 	db $00, $80, $96, $96, $00, $40, $40, $93, $93, $93, $80, $92, $52, $52, $52, $52
 	INCBIN "gfx/cards/dark_fearow.2bpp"
 DarkFearowCardGfxExtra::
-	INCBIN "gfx/cards/dark_fearow_extra.bin"
+	INCBIN "gfx/cards/dark_fearow_extra.2bpp"
 RecycleEnergyCardGfx::
 	rgb 31,31,31
 	rgb 10,31,17

@@ -183,7 +183,15 @@ def main():
                                check=True)
                 os.remove(tiles)            # .png is the source; make rebuilds .2bpp
             elif kind == 'extra':
-                open(os.path.join(GFXDIR, card_filename(name)+'_extra.bin'), 'wb').write(rom[s:e])
+                # mirror the portrait: write the tiles to a temp .2bpp, reverse to
+                # a 1-tile-wide grayscale .png (the source); make rebuilds .2bpp.
+                fn = card_filename(name)
+                ex = os.path.join(GFXDIR, fn+'_extra.2bpp')
+                open(ex, 'wb').write(rom[s:e])
+                subprocess.run([RGBGFX, '-r', '1', '-Z', '--colors', 'dmg',
+                                '-o', ex, os.path.join(GFXDIR, fn+'_extra.png')],
+                               check=True)
+                os.remove(ex)            # .png is the source; make rebuilds .2bpp
             elif kind == 'known':
                 klabel, stem, w = name
                 dst = os.path.join(ROOT, 'src', stem)
@@ -220,7 +228,7 @@ def main():
                 L.append(f'\tINCBIN "gfx/cards/{fn}.2bpp"\n')
             elif kind == 'extra':
                 L.append(f'{name}GfxExtra::\n')
-                L.append(f'\tINCBIN "gfx/cards/{card_filename(name)}_extra.bin"\n')
+                L.append(f'\tINCBIN "gfx/cards/{card_filename(name)}_extra.2bpp"\n')
             elif kind == 'known':
                 klabel, stem, w = name
                 L.append(f'{klabel}::\n')
