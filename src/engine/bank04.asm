@@ -6508,7 +6508,7 @@ ResetOverworldPresentation:
 	ld a, BANK("WRAM1")
 	ld [wWRAMBank], a
 	call ResetFrameFunctionStack
-	call Func_3cdd
+	call ResetMusicState
 	farcall SetAllPaletteFadeConfigsToEnabled
 	ld a, $ff
 	farcall InitFadePalettes

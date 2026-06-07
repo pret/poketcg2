@@ -6073,7 +6073,7 @@ Script_GameCenterChipSecurity_HaltForDeposit:
 	ret
 
 ; unreferenced resumption
-Func_3eef4:
+GameCenterChip_ResumeIdle:
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
@@ -6306,9 +6306,9 @@ CardDungeonPawn_WarpFadeInPreload:
 	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3f1c6)
+	ld a, BANK(CardDungeonPawn_WarpFadeInScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3f1c6
+	ld hl, CardDungeonPawn_WarpFadeInScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -6440,7 +6440,7 @@ CardDungeonPawn_SetWarp:
 	farcall SetWarpData
 	ret
 
-Func_3f1c6:
+CardDungeonPawn_WarpFadeInScript:
 	xor a
 	start_script
 	animate_player_movement $00, $01
@@ -6525,9 +6525,9 @@ CardDungeonKnight_WarpFadeInPreload:
 	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3f395)
+	ld a, BANK(CardDungeonKnight_WarpFadeInScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3f395
+	ld hl, CardDungeonKnight_WarpFadeInScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -6681,7 +6681,7 @@ CardDungeonKnight_SetWarp:
 	farcall SetWarpData
 	ret
 
-Func_3f395:
+CardDungeonKnight_WarpFadeInScript:
 	xor a
 	start_script
 	animate_player_movement $00, $01
@@ -6766,9 +6766,9 @@ CardDungeonRook_WarpFadeInPreload:
 	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3f57e)
+	ld a, BANK(CardDungeonRook_WarpFadeInScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3f57e
+	ld hl, CardDungeonRook_WarpFadeInScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -6931,7 +6931,7 @@ SetGameCenterWarpData:
 	farcall SetWarpData
 	ret
 
-Func_3f57e:
+CardDungeonRook_WarpFadeInScript:
 	xor a
 	start_script
 	animate_player_movement $00, $01

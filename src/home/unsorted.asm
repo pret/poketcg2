@@ -2391,7 +2391,7 @@ CallDuelAnimationFunction::
 	ld [wdcf0], a
 	ret
 
-Func_3cdd::
+ResetMusicState::
 	xor a
 	ld [wTempActiveMusic], a
 	ld [wTempActiveMusicState], a
@@ -2702,12 +2702,12 @@ UpdateMailboxPage::
 	farcall _UpdateMailboxPage
 	ret
 
-Func_3e7a::
+CreditsScrollFrameFunction::
 	push af
 	push bc
 	push de
 	push hl
-	farcall Func_13ac1
+	farcall UpdateCreditsScroll
 	pop hl
 	pop de
 	pop bc

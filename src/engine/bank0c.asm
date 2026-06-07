@@ -4089,9 +4089,9 @@ FireFortYuki_WarpFadeInPreload:
 	farcall MaxOutEventValue
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_32a38)
+	ld a, BANK(FireFortYuki_MeetScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_32a38
+	ld hl, FireFortYuki_MeetScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -4124,7 +4124,7 @@ FireFortYuki_AfterDuelScripts:
 	npc_script NPC_YUKI, Script_YukiAfterDuel
 	db $ff
 
-Func_32a38:
+FireFortYuki_MeetScript:
 	ld a, NPC_YUKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogYukiText

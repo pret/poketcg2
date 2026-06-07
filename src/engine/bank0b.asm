@@ -652,9 +652,9 @@ LightningClub_WarpFadeInPreload:
 .asm_2c524
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_2c584)
+	ld a, BANK(LightningClub_MeetGR4Script)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_2c584
+	ld hl, LightningClub_MeetGR4Script
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -696,7 +696,7 @@ LightningClub_AfterDuelScripts:
 	npc_script NPC_BRANDON, Script_BrandonAfterDuel
 	db $ff
 
-Func_2c584:
+LightningClub_MeetGR4Script:
 	xor a
 	start_script
 	wait_for_fade
@@ -1807,9 +1807,9 @@ PsychicClub_WarpFadeInPreload:
 .asm_2cdc6
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_2ce39)
+	ld a, BANK(PsychicClub_MeetGR4Script)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_2ce39
+	ld hl, PsychicClub_MeetGR4Script
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -1855,7 +1855,7 @@ PsychicClub_AfterDuelScripts:
 	npc_script NPC_GR_4, Script_PsychicClubGR4AfterDuel
 	db $ff
 
-Func_2ce39:
+PsychicClub_MeetGR4Script:
 	xor a
 	start_script
 	wait_for_fade
@@ -2950,9 +2950,9 @@ RockClub_WarpFadeInPreload:
 	jr nz, .asm_2d6a4
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_2d6ca)
+	ld a, BANK(RockClub_MeetGR1Script)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_2d6ca
+	ld hl, RockClub_MeetGR1Script
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -2987,7 +2987,7 @@ RockClub_AfterDuelScripts:
 	npc_script NPC_ANDREW, Script_AndrewAfterDuel
 	db $ff
 
-Func_2d6ca:
+RockClub_MeetGR1Script:
 	xor a
 	start_script
 	wait_for_fade

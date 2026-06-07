@@ -302,11 +302,11 @@ CreditsCmd_Scroll:
 	ld [wde50], a
 	; this won't work since the frame function
 	; doesn't actually call wde69
-	ld hl, Func_3e7a
+	ld hl, CreditsScrollFrameFunction
 	call SetFrameFunction
 	ret
 
-Func_13ac1::
+UpdateCreditsScroll::
 	; current scroll position
 	ld a, [wde4f]
 	ld b, a

@@ -118,6 +118,15 @@ Renames are **byte-neutral** (`make compare` must stay OK after every batch).
   the per-map OWMODE_* script-pointer table system (ExecuteOWModeScript walks <Map>_MapScripts,
   a `dbw OWMODE_*, handler` list) — so map-script Func_* are nameable as <Map>_<OWMODEAction>.
   Two whole map tables done (RockClubEntrance, RockClub). Deferred Func_235e (low-conf text LRU).
+- 2026-06-06: 23 named, 5 DEFER. ~46 token-matches remain (mostly AI + stubs). 5 subagents on
+  the zero-fingerprint deep tail. home/list.asm word/pointer primitives (GetNextWordOfList[_Common/2],
+  SetNextWordOfList, AddToListPointer[_Common/2] — subagents confirmed jr-target structure, no demotes),
+  credits scroll frame-func pair (CreditsScrollFrameFunction/UpdateCreditsScroll), ResetMusicState,
+  and a batch of overworld first-meeting cutscenes loaded via wOverworldScriptPointer
+  (LightningClub/PsychicClub/RockClub _MeetGR*Script, FireFortYuki/FightingFort/PsychicStrongholdMami
+  _MeetScript, CardDungeon{Pawn,Knight,Rook,Bishop} door-shut entry scripts). DEFERRED 5 genuinely
+  opaque/unreferenced stubs (Func_3f87 lone ret, 10cd9/1126b trivial mem helpers, 198f7/1a14b
+  unreferenced printer stubs — tcg1 also leaves 1a14b unnamed). A name there would be a guess.
 - 2026-06-06: 54 named. ~69 remaining. 8 subagents over the fingerprinted tail. SFX engine
   channel funcs (SFX_StoreChannelPointer / SFX_UpdateNoiseChannelPitchSlide / SFX_ClearState +_2,
   tcg1-confirmed), the duel damage-HUD animation system (InitDamageHUDAnimation,

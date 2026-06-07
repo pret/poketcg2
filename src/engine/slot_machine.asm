@@ -982,7 +982,7 @@ ToggleSlotMachineDebugMode:
 	ret
 
 ; debug? unreferenced
-Func_12a57:
+TickSlotMachineDebugDelay:
 	scf
 	ccf
 	ld a, [wSlotMachineDebugFlag]

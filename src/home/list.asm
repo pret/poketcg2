@@ -62,11 +62,11 @@ SetNextElementOfList2::
 	ld hl, wListPointer2
 	jr SetNextElementOfList_Common
 
-Func_0b6e:
+GetNextWordOfList:
 	push hl
 	push bc
 	ld hl, wListPointer
-Func_0b73:
+GetNextWordOfList_Common:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -76,7 +76,7 @@ Func_0b73:
 	ld a, [bc]
 	ld d, a
 	inc bc
-Func_0b7c:
+SetListToNextWordPosition:
 	ld [hl], b
 	dec hl
 	ld [hl], c
@@ -84,13 +84,13 @@ Func_0b7c:
 	pop hl
 	ret
 
-Func_0b82:
+GetNextWordOfList2:
 	push hl
 	push bc
 	ld hl, wListPointer2
-	jr Func_0b73
+	jr GetNextWordOfList_Common
 
-Func_0b89:
+SetNextWordOfList:
 	push hl
 	push bc
 	ld hl, wListPointer
@@ -104,7 +104,7 @@ SetNextWordOfList_Common:
 	ld a, d
 	ld [bc], a
 	inc bc
-	jr Func_0b7c
+	jr SetListToNextWordPosition
 
 SetNextWordOfList2::
 	push hl
@@ -112,10 +112,10 @@ SetNextWordOfList2::
 	ld hl, wListPointer2
 	jr SetNextWordOfList_Common
 
-Func_0ba0:
+AddToListPointer:
 	push hl
 	ld hl, wListPointer
-Func_0ba4:
+AddToListPointer_Common:
 	add [hl]
 	ld [hli], a
 	ld a, [hl]
@@ -124,7 +124,7 @@ Func_0ba4:
 	pop hl
 	ret
 
-Func_0bac:
+AddToListPointer2:
 	push hl
 	ld hl, wListPointer2
-	jr Func_0ba4
+	jr AddToListPointer_Common

@@ -2195,9 +2195,9 @@ CardDungeonBishop_WarpFadeInPreload:
 	farcall LoadAndQueueOWMapTilemap
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3525b)
+	ld a, BANK(CardDungeonBishop_ShutDoorsOnEntryScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3525b
+	ld hl, CardDungeonBishop_ShutDoorsOnEntryScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -2363,7 +2363,7 @@ CardDungeonBishop_SetWarp:
 	farcall SetWarpData
 	ret
 
-Func_3525b:
+CardDungeonBishop_ShutDoorsOnEntryScript:
 	xor a
 	start_script
 	animate_player_movement $00, $01
@@ -3411,9 +3411,9 @@ FightingFort_WarpFadeInPreload:
 	farcall MaxOutEventValue
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_35a9c)
+	ld a, BANK(FightingFort_MeetMembersScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_35a9c
+	ld hl, FightingFort_MeetMembersScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -3451,7 +3451,7 @@ FightingFort_AfterDuelScripts:
 	npc_script NPC_KAMIYA, Script_KamiyaAfterDuel
 	db $ff
 
-Func_35a9c:
+FightingFort_MeetMembersScript:
 	xor a
 	start_script
 	set_event EVENT_MET_FIGHTING_FORT_MEMBERS
@@ -6040,7 +6040,7 @@ Script_MamiAfterDuel:
 	end_script
 	ret
 
-Func_36ed7:
+PsychicStrongholdMami_MeetMamiAndRodScript:
 	xor a
 	start_script
 	set_event EVENT_MET_MAMI_AND_ROD
@@ -6112,9 +6112,9 @@ PsychicStrongholdMami_WarpInPlatformScript:
 .asm_36f69
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_36ed7)
+	ld a, BANK(PsychicStrongholdMami_MeetMamiAndRodScript)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_36ed7
+	ld hl, PsychicStrongholdMami_MeetMamiAndRodScript
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
