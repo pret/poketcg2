@@ -11,17 +11,18 @@ grayscale and needs a few pre-shaded extra tiles. This doc walks the whole path.
 
 - [1. The tile format](#1-the-tile-format)
 - [2. Color: the three-palette system](#2-color-the-three-palette-system)
-- [3. The per-card record (how it's stored)](#3-the-per-card-record-how-its-stored)
-- [4. Finding a card's portrait (indexing)](#4-finding-a-cards-portrait-indexing)
-- [5. ROM layout & how big a card can get](#5-rom-layout--how-big-a-card-can-get)
-- [6. Drawing it: two renderers](#6-drawing-it-two-renderers)
-- [7. Tile order vs cell order](#7-tile-order-vs-cell-order)
-- [8. Why the extra tiles exist](#8-why-the-extra-tiles-exist)
-- [9. Does it reuse tiles? Rarely.](#9-does-it-reuse-tiles-rarely)
-- [10. Worked example — Grass Energy](#10-worked-example--grass-energy-21-extra-tiles)
-- [11. Contrast — a card with no extra](#11-contrast--a-card-with-no-extra-tiles-abra)
-- [12. Representing the files](#12-representing-the-files)
-- [13. Comparison to tcg1](#13-comparison-to-tcg1)
+- [3. Extra data after the portrait](#3-extra-data-after-the-portrait)
+- [4. The per-card record (how it's stored)](#4-the-per-card-record-how-its-stored)
+- [5. Finding a card's portrait (indexing)](#5-finding-a-cards-portrait-indexing)
+- [6. ROM layout & how big a card can get](#6-rom-layout--how-big-a-card-can-get)
+- [7. Drawing it: two renderers](#7-drawing-it-two-renderers)
+- [8. Tile order vs cell order](#8-tile-order-vs-cell-order)
+- [9. Why the extra tiles exist](#9-why-the-extra-tiles-exist)
+- [10. Does it reuse tiles? Rarely.](#10-does-it-reuse-tiles-rarely)
+- [11. Worked example — Grass Energy](#11-worked-example--grass-energy-21-extra-tiles)
+- [12. Contrast — a card with no extra](#12-contrast--a-card-with-no-extra-tiles-abra)
+- [13. Representing the files](#13-representing-the-files)
+- [14. Comparison to tcg1](#14-comparison-to-tcg1)
 
 ---
 
@@ -63,7 +64,7 @@ two unrelated fields:
       pal | tile-redirect offset (0..63)
 ```
 - **high 2 bits** — which of the 3 palettes colors this cell (used when drawn in a duel)
-- **low 6 bits** — a tile-redirect offset (used only by the printer; see §8)
+- **low 6 bits** — a tile-redirect offset (used only by the printer; see [§9](#9-why-the-extra-tiles-exist))
 
 So a card's color is `grayscale tiles` × `3 palettes` × `per-cell palette choice`.
 On the Game Boy Color this is free: every background tile already has an attribute
@@ -71,13 +72,29 @@ byte selecting its palette, and the game just writes `attr[cell] >> 6` into the
 BG attribute map — the hardware recolors each cell. The portrait `.png` stays a
 plain 4-shade grayscale; the palettes live in the card header as `rgb` directives.
 
-This is the headline difference from the original game ([§13](#13-comparison-to-tcg1)):
+This is the headline difference from the original game ([§14](#14-comparison-to-tcg1)):
 tcg1 cards are single-palette (4 colors); poketcg2 added the 3-palette + attribute
 map so cards can be more colorful.
 
 ---
 
-## 3. The per-card record (how it's stored)
+## 3. Extra data after the portrait
+
+A card's graphics don't necessarily stop at the 48 portrait tiles. **Many cards
+have a little extra tile data appended right after** the 768-byte portrait —
+anywhere from 16 bytes (1 tile) to 768 bytes (48 tiles). Roughly **191 of 445**
+cards carry some; the other 254 stop at the portrait.
+
+This trailing data is used **only by the Game Boy Printer**, never by the in-duel
+display, and it lives in `src/gfx/cards/<name>_extra.bin`. For now just keep in
+mind that a card's record is the 48-tile portrait *plus*, for many cards, a few
+more tiles tacked on the end — that's why the storage layout below has an
+"extra tiles" row. [§9](#9-why-the-extra-tiles-exist) explains what they're for
+and why they exist.
+
+---
+
+## 4. The per-card record (how it's stored)
 
 Each card's graphics are one fixed-shaped record: a **72-byte header + 768-byte
 portrait + N extra tiles**.
@@ -91,7 +108,7 @@ portrait + N extra tiles**.
 
 `CARD_TILE_COUNT = $30 = 48` is a **constant** — the portrait and the attribute map
 are this size for *every* card; there is no per-card "tile count" field. Only the
-extra-tile count `N` varies, and it isn't stored anywhere ([§5](#5-rom-layout--how-big-a-card-can-get)).
+extra-tile count `N` varies, and it isn't stored anywhere ([§6](#6-rom-layout--how-big-a-card-can-get)).
 
 In source ([src/gfx/card_graphics.asm](../src/gfx/card_graphics.asm)) a card is the
 3 palettes as `rgb`, the attribute map as `db`, then
@@ -102,11 +119,11 @@ extra), which the attribute map indexes into.
 
 Note there is **no tile dedup** in the portrait: every cell gets its own stored
 tile even when two are byte-identical, so a card always stores 48 tiles
-([§9](#9-does-it-reuse-tiles-rarely)).
+([§10](#10-does-it-reuse-tiles-rarely)).
 
 ---
 
-## 4. Finding a card's portrait (indexing)
+## 5. Finding a card's portrait (indexing)
 
 The graphics records are **variable-length** (the extra tiles make each card a
 different size), so you can't jump to "card N" by multiplying. The data isn't what
@@ -156,7 +173,7 @@ data (`CardPointers`), once for graphics (the embedded `gfx` field).
 
 ---
 
-## 5. ROM layout & how big a card can get
+## 6. ROM layout & how big a card can get
 
 Because the records are variable-length, the cards are **packed tight, not on a
 fixed grid**. Measuring the byte distance between consecutive `CardGfx` records:
@@ -188,7 +205,7 @@ to split each card's bytes into `.2bpp` + `_extra.bin`.
 
 ---
 
-## 6. Drawing it: two renderers
+## 7. Drawing it: two renderers
 
 The same record is drawn two ways.
 
@@ -213,7 +230,7 @@ of the card."*
 
 ---
 
-## 7. Tile order vs cell order
+## 8. Tile order vs cell order
 
 The stored tiles are **column-major** (`rgbgfx -Z`): tile `k` belongs at screen
 column `k // 6`, row `k % 6`. The in-duel BG is filled **row-major** through a
@@ -228,7 +245,7 @@ reconstructing the image off-hardware.)
 
 ---
 
-## 8. Why the extra tiles exist
+## 9. Why the extra tiles exist
 
 It comes from **per-cell color**, and the fact that the **printer has no palettes.**
 
@@ -250,7 +267,7 @@ uses the most per-cell palette variation, so the most cells need baking.
 
 ---
 
-## 9. Does it reuse tiles? Rarely.
+## 10. Does it reuse tiles? Rarely.
 
 It's tempting to assume the 3-palette system is for *tile dedup* — store one shape,
 recolor it in several places. **Auditing all 445 cards, that barely happens.** Only
@@ -273,7 +290,7 @@ per-cell color (baking it for the printer), not for dedup.
 
 ---
 
-## 10. Worked example — Grass Energy (21 extra tiles)
+## 11. Worked example — Grass Energy (21 extra tiles)
 
 **In a duel** (CGB, portrait tiles recolored by palette) vs **on the printer**
 (flat grayscale, remapped through the extra tiles):
@@ -313,12 +330,12 @@ pool:
 Redirected cells for Grass Energy: `1–10, 12, 26, 30, 32, 36–39, 43–45` → 21
 extra tiles → 336 bytes. (Tile count `N = max((attr[c] & 0x3f) + c) − 47`.)
 The byte's *high* bits aren't shown here — they're the palette, and as noted in
-[§7](#7-tile-order-vs-cell-order) the in-duel renderer reads them in a different
+[§8](#8-tile-order-vs-cell-order) the in-duel renderer reads them in a different
 (row-major) order.
 
 ---
 
-## 11. Contrast — a card with **no** extra tiles (Abra)
+## 12. Contrast — a card with **no** extra tiles (Abra)
 
 Most cards (254 of 445) have an all-identity attribute map: the printer render is
 the portrait, recolored, with no redirects — so there is no `_extra.bin` at all.
@@ -334,7 +351,7 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
-## 12. Representing the files
+## 13. Representing the files
 
 - The portrait `.2bpp` and `_extra.bin` are **one logical tile array** indexed by
   the header. The extra is *not* a spatial extension of the portrait and *not* a
@@ -357,7 +374,7 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
-## 13. Comparison to tcg1 (the multi-palette system is sequel-only)
+## 14. Comparison to tcg1 (the multi-palette system is sequel-only)
 
 The original Pokémon TCG GB (`pret/poketcg`, "tcg1") has **none** of the color or
 printer-remap machinery — no second/third palette, no attribute map, no
