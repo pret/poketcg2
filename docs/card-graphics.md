@@ -184,6 +184,41 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
+## 7. Comparison to tcg1 (this is a sequel-only feature)
+
+The original Pokémon TCG GB (`pret/poketcg`, "tcg1") has **none** of this — no
+attribute map, no `LoadCardGfxRemapped`, no `BuildPrintableCardPic` remap, and no
+`_extra.bin`. The whole system is new in poketcg2.
+
+The reason is the palette count. A tcg1 card is **768 bytes (48 tiles) + one
+8-byte palette** (stored as a separate `<name>.pal` file, 4 colors). With a
+**single palette**, no tile is ever reused in two colors, so the 48 portrait tiles
+*are* the whole picture, 1:1 — and tcg1's Game Boy Printer (same
+`_RequestToPrintCard` / `.DrawCardPicInSRAMGfxBuffer2` engine) just prints those
+tiles directly: 4 pixel values → 4 grays, nothing to undo.
+
+poketcg2 upgraded each card to **three palettes + a 48-byte per-cell attribute
+map** (up to 12 colors), letting the CGB recolor shared tiles per cell for richer
+art from the same tile budget. `_extra.bin` is the direct cost of that upgrade:
+the moment a card depends on the hardware recoloring a tile, the palette-less
+printer needs a distinct pre-shaded copy.
+
+| | tcg1 | poketcg2 |
+|---|---|---|
+| palettes per card | 1 (separate `.pal`) | 3 (in the asm header) |
+| per-cell attribute map | none | 48 bytes (palette + redirect) |
+| colors per card | 4 | up to 12 |
+| portrait tiles | 48, = the whole image | 48, but cells can be recolored / redirected |
+| printer path | `LoadCardGfx` → tiles printed directly | `LoadCardGfxRemapped` → pulls extra tiles |
+| extra tiles | — | `_extra.bin` (palette-baked variants) |
+| header layout | `[tiles][1 palette]` | `[3 palettes + 48 attr][tiles]` |
+
+So if you ever wonder "why isn't this just a `.png` like tcg1's cards?" — it's
+because tcg1's cards genuinely *are* single-palette images, while a poketcg2 card
+is a multi-palette image plus a printer-only tile pool.
+
+---
+
 ## Regenerating these images
 
 [tools/render_card_gfx_doc.py](../tools/render_card_gfx_doc.py) reads the real
