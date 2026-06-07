@@ -374,7 +374,7 @@ Charmander sits between the two — just 3 extra tiles (cells 33, 39, 45):
 
 ---
 
-## 14. Comparison to tcg1 (the multi-palette system is sequel-only)
+## 14. Comparison to tcg1
 
 The original Pokémon TCG GB (`pret/poketcg`, "tcg1") has **none** of the color or
 printer-remap machinery — no second/third palette, no attribute map, no
