@@ -722,40 +722,40 @@ CheckIfShouldAttachExtraEnergyThisTurn:
 .asm_4c640
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld hl, wd036
+	ld hl, wAIStallCheckArenaCard
 	cp [hl]
 	jr nz, .no_carry
-	ld a, [wd037]
+	ld a, [wAIStallCheckSelectedAttack]
 	or a
 	jr nz, .no_carry
-	ld a, [wd038]
+	ld a, [wAIStallCheckRepeatCount]
 	cp b
 	jr c, .no_carry
 .set_carry
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	scf
 	ret
 
 RecordAISelectedAttackForStallCheck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld hl, wd036
+	ld hl, wAIStallCheckArenaCard
 	cp [hl]
 	jr nz, .asm_4c66e
 	inc hl
 	ld a, [wSelectedAttack]
-	cp [hl] ; wd037
+	cp [hl] ; wAIStallCheckSelectedAttack
 	jr nz, .asm_4c66f
 	inc hl
-	inc [hl] ; wd038
+	inc [hl] ; wAIStallCheckRepeatCount
 	ret
 .asm_4c66e
 	ld [hli], a
 .asm_4c66f
 	ld a, [wSelectedAttack]
-	ld [hli], a ; wd037
-	ld [hl], 1 ; wd038
+	ld [hli], a ; wAIStallCheckSelectedAttack
+	ld [hl], 1 ; wAIStallCheckRepeatCount
 	ret
 
 BigThunderDeckAIDecideEnergyRemoval:

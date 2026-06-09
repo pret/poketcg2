@@ -118,7 +118,7 @@ hCurSelectionItem:: ; ffb2
 hffa8:: ; ffb3
 	ds $1
 
-hffa9:: ; ffb4
+hTextTileCacheHead:: ; ffb4
 	ds $1
 
 ; Address within v*BGMap0 where text is currently being written to

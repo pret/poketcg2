@@ -1317,7 +1317,7 @@ ClearTwoTurnDuelVars::
 	ld [wForcedSwitchPlayAreaLocation], a
 	ld [wMetronomeEnergyCost], a
 	ld [wNoEffectFromWhichStatus], a
-	ld [wcd0a], a
+	ld [wAttackerPlayAreaLocation], a
 	ld [wKnockedOutByGasExplosion], a
 	ld [wcd0d], a
 	ld [wMetronomeAttackCannotBeUsed], a

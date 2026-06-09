@@ -8402,7 +8402,7 @@ Gale_SwitchEffect:
 	dec a
 	call Random
 	inc a
-	ld [wcd0a], a
+	ld [wAttackerPlayAreaLocation], a
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	xor a
@@ -9699,7 +9699,7 @@ TeleportBlast_SwitchEffect:
 
 	; actually do switching
 	ldh a, [hDuelActionArgs + 0]
-	ld [wcd0a], a
+	ld [wAttackerPlayAreaLocation], a
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	xor a

@@ -1130,7 +1130,7 @@ AIDeckSpecificEnergyLogic:
 	jp c, .asm_4895d ; can be jr
 	; at least 2 set up bench Pokémon
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48958
 	ld b, AI_SCORE_NEUTRAL + 5
 	jp .got_score
@@ -1211,7 +1211,7 @@ AIDeckSpecificEnergyLogic:
 	jr c, .asm_489c1
 	; at least 2 set up bench Pokémon
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	jr .asm_489bc
 
 .DarkScienceDeck:
@@ -1258,7 +1258,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .asm_48a5b ; Arcanine still needs energy
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48a56
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1295,7 +1295,7 @@ AIDeckSpecificEnergyLogic:
 	jp nc, .default_score
 	; Charizard can already use all attacks
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48a9d
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1327,7 +1327,7 @@ AIDeckSpecificEnergyLogic:
 	jp c, .default_score
 	; Vileplume can already use all attacks
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48adf
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1358,7 +1358,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48b1d
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48b18
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1389,7 +1389,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48b57
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1419,7 +1419,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48b9f
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48b9a
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1453,7 +1453,7 @@ AIDeckSpecificEnergyLogic:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .asm_48be5
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48be0
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1481,7 +1481,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48c1f
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1521,7 +1521,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48c75
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1556,7 +1556,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48cc1
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1612,7 +1612,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48d3e
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -1806,7 +1806,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48eec
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 .asm_48ee7
 	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
@@ -6953,7 +6953,7 @@ BlazingFlameDeckAIDecideEnergyRetrieval:
 	ret
 
 ; a = PLAY_AREA_* location
-CheckIfPlayAreaCardHasUsableAttack:
+CheckIfPlayAreaCardNeedsNoEnergyForAttacks:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a

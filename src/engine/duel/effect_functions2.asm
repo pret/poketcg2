@@ -2141,7 +2141,7 @@ StirUpTwister_SwitchEffect:
 	jr z, .skip_attacking_switch
 .no_ko
 	ldh a, [hDuelActionArgs + 1]
-	ld [wcd0a], a
+	ld [wAttackerPlayAreaLocation], a
 	ld e, a
 	call SwapArenaWithBenchPokemon
 .skip_attacking_switch

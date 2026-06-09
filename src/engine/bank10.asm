@@ -859,7 +859,7 @@ OverworldTcg_WarpEndSFX:
 	ret
 
 HandleTCGIslandInput:
-	farcall ResetTCGIslandEventState
+	farcall ResetUntilMapReloadEvents
 	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop_input
@@ -1310,8 +1310,8 @@ MasonLaboratoryMain_MapHeader:
 	db MUSIC_OVERWORLD
 
 MasonLaboratoryMain_StepEvents:
-	_ow_coordinate_function 6, 14, 0, 1, 7, 2, WarpFromMasonLabIfMapReloadEvent
-	_ow_coordinate_function 7, 14, 0, 1, 7, 2, WarpFromMasonLabIfMapReloadEvent
+	_ow_coordinate_function 6, 14, 0, 1, 7, 2, WarpFromMasonLabUnlessMapReloadEvent
+	_ow_coordinate_function 7, 14, 0, 1, 7, 2, WarpFromMasonLabUnlessMapReloadEvent
 	map_exit 0, 5, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 11, WEST
 	map_exit 0, 6, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 12, WEST
 	map_exit 13, 5, MAP_MASON_LABORATORY_COMPUTER_ROOM, 1, 5, EAST
@@ -1571,7 +1571,7 @@ MasonLaboratoryMain_DrMasonEscortScript:
 	db NORTH, MOVE_8
 	db $ff
 
-WarpFromMasonLabIfMapReloadEvent:
+WarpFromMasonLabUnlessMapReloadEvent:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41013
@@ -3204,7 +3204,7 @@ GrAirport_MapScripts:
 
 GrAirport_Idle:
 	call DoFrame
-	call GrAirport_MoveGR5OutOfPath
+	call GrAirport_MoveGR5IntoPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -3400,11 +3400,11 @@ Script_GR5_GRAirportLanded:
 	db $ff
 
 GrAirport_ResumeAfterMoveGR5:
-	call GrAirport_MoveGR5OutOfPath
+	call GrAirport_MoveGR5IntoPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-GrAirport_MoveGR5OutOfPath:
+GrAirport_MoveGR5IntoPath:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	cpcoord 5, 8

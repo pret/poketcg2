@@ -966,7 +966,7 @@ AIPlay_PlusPower:
 ; the caller defers to Oak (the bigger swing).
 ; Otherwise pick whichever of our two attacks PlusPower-would-KO
 ; (CheckIfPlusPowerEnablesKO_Phase13) AND clears the damage
-; threshold (CheckIfDamageThresholdMetForPlusPower_Phase13). Returns
+; threshold (CheckIfPlusPowerNotBlockedByMrMime_Phase13). Returns
 ; carry SET with `a` = attack index (0 or 1) on commit.
 AIDecide_PlusPower_Phase13:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
@@ -1009,13 +1009,13 @@ AIDecide_PlusPower_Phase13:
 	or a
 	ret
 .attack_0_passes
-	call CheckIfDamageThresholdMetForPlusPower_Phase13
+	call CheckIfPlusPowerNotBlockedByMrMime_Phase13
 	jr nc, .skip
 	xor a
 	scf
 	ret
 .attack_1_passes
-	call CheckIfDamageThresholdMetForPlusPower_Phase13
+	call CheckIfPlusPowerNotBlockedByMrMime_Phase13
 	jr nc, .skip
 	ld a, $01
 	scf
@@ -1064,7 +1064,7 @@ CheckIfPlusPowerEnablesKO_Phase13:
 ; the defending Pokemon is NOT Mr. Mime Lv28 (whose Pkmn Power
 ; prevents low-damage attacks). Used as a secondary gate after
 ; CheckIfPlusPowerEnablesKO_Phase13.
-CheckIfDamageThresholdMetForPlusPower_Phase13:
+CheckIfPlusPowerNotBlockedByMrMime_Phase13:
 	ld a, [wDamage]
 	add $0a
 	cp $1e
@@ -1084,7 +1084,7 @@ CheckIfDamageThresholdMetForPlusPower_Phase13:
 ; $5d, $5e, $60, $6e, $76) and one deck ($45) with its own policy.
 ; Default: gates the active attack through 3 helpers
 ; (CheckIfAttackWontKOAlready, ScoreAttackWithPoisonDiscount,
-; CheckIfDamageThresholdMetForPlusPower_Phase14). Returns carry SET
+; CheckIfPlusPowerNotBlockedByMrMime_Phase14). Returns carry SET
 ; with the active attack as the commit.
 AIDecide_PlusPower_Phase14:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
@@ -1128,7 +1128,7 @@ AIDecide_PlusPower_Phase14:
 	jr nc, .skip
 	call ScoreAttackWithPoisonDiscount
 	jr nc, .skip
-	call CheckIfDamageThresholdMetForPlusPower_Phase14
+	call CheckIfPlusPowerNotBlockedByMrMime_Phase14
 	jr nc, .skip
 	scf
 	ret
@@ -1136,9 +1136,9 @@ AIDecide_PlusPower_Phase14:
 	or a
 	ret
 
-; Phase 14 helper (duplicate of CheckIfDamageThresholdMetForPlusPower_Phase13
+; Phase 14 helper (duplicate of CheckIfPlusPowerNotBlockedByMrMime_Phase13
 ; -- the ROM has both copies at $4733 and $47b0).
-CheckIfDamageThresholdMetForPlusPower_Phase14:
+CheckIfPlusPowerNotBlockedByMrMime_Phase14:
 	ld a, [wDamage]
 	add $0a
 	cp $1e
@@ -1191,7 +1191,7 @@ ScoreAttackWithPoisonDiscount:
 ; deck $45 (Quick Attack) Phase 14 case: only commit if our active is
 ; Dark Jolteon or Dark Raichu AND the standard gates pass
 ; (CheckIfAttackWontKOAlready + min-damage >= 10 +
-; CheckIfDamageThresholdMetForPlusPower_Phase14).
+; CheckIfPlusPowerNotBlockedByMrMime_Phase14).
 AIDecide_PlusPower_Phase14_Deck45:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -1210,7 +1210,7 @@ AIDecide_PlusPower_Phase14_Deck45:
 	ld a, [wAIMinDamage]
 	cp $0a
 	jp c, AIDecide_PlusPower_Phase14.skip
-	call CheckIfDamageThresholdMetForPlusPower_Phase14
+	call CheckIfPlusPowerNotBlockedByMrMime_Phase14
 	jp nc, AIDecide_PlusPower_Phase14.skip
 	scf
 	ret
@@ -1218,7 +1218,7 @@ AIDecide_PlusPower_Phase14_Deck45:
 
 ; Shared play function for Switch (both Phase_09 and Phase_16). Sets
 ; AI_FLAG_USED_SWITCH so the AI doesn't try Switch again this turn,
-; then clears wd032 after the trainer effect so any "pending switch
+; then clears wAIRetreatScore after the trainer effect so any "pending switch
 ; target" flag is reset.
 AIPlay_Switch:
 	ld a, [wCurrentAIFlags]
@@ -1231,7 +1231,7 @@ AIPlay_Switch:
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	ret
 
 ; PHASE_09 is the general "would switching the active Pokemon help
@@ -2414,9 +2414,9 @@ AIDecide_SuperEnergyRemoval:
 	cp $ff
 	jr z, .no_disrupt_target
 	ld d, a
-	call CheckIfPlayAreaCardHasTwoEnergy
+	call CheckIfPlayAreaCardHasFewerThanTwoEnergy
 	jr c, .scan_opp_next
-	call CheckIfRemovingEnergyDisruptsAttack
+	call CheckIfRemovingEnergyCannotDisruptAttack
 	jr nc, .disrupt_found
 .scan_opp_next
 	inc e
@@ -2451,9 +2451,9 @@ AIDecide_SuperEnergyRemoval:
 	cp $ff
 	jr z, .score_done
 	ld d, a
-	call CheckIfPlayAreaCardHasTwoEnergy
+	call CheckIfPlayAreaCardHasFewerThanTwoEnergy
 	jr c, .score_next
-	call CheckIfRemovingEnergyDisruptsAttack
+	call CheckIfRemovingEnergyCannotDisruptAttack
 	jr c, .score_next
 	call ScoreSuperEnergyRemovalTarget
 .score_next
@@ -2472,7 +2472,7 @@ AIDecide_SuperEnergyRemoval:
 ; Returns NC if play-area Pokemon e carries at least two units of energy
 ; (counting the colorless-bucket byte at half weight) -- i.e. enough to
 ; be worth a double removal. Carry SET means too little to bother.
-CheckIfPlayAreaCardHasTwoEnergy:
+CheckIfPlayAreaCardHasFewerThanTwoEnergy:
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp $02
@@ -2495,7 +2495,7 @@ CheckIfPlayAreaCardHasTwoEnergy:
 ; would stop one of its attacks: either an attack is currently usable
 ; (so removal denies it), or for an affordable attack removal would cut
 ; its damage by 2+.
-CheckIfRemovingEnergyDisruptsAttack:
+CheckIfRemovingEnergyCannotDisruptAttack:
 	push de
 	xor a
 	ld [wSelectedAttack], a
@@ -3618,7 +3618,7 @@ AIDecide_EnergyRetrieval:
 .play_area_loop
 	push de
 	ld a, e
-	farcall CheckIfPlayAreaCardHasUsableAttack
+	farcall CheckIfPlayAreaCardNeedsNoEnergyForAttacks
 	pop de
 	jr c, .next_play_area
 	ld a, DUELVARS_ARENA_CARD
@@ -4208,7 +4208,7 @@ AIDecide_SuperEnergyRetrieval:
 .play_area_loop
 	push de
 	ld a, e
-	farcall CheckIfPlayAreaCardHasUsableAttack
+	farcall CheckIfPlayAreaCardNeedsNoEnergyForAttacks
 	pop de
 	jr c, .next_play_area
 	ld a, DUELVARS_ARENA_CARD
@@ -4623,7 +4623,7 @@ LookForEnergyUsefulToPlayArea:
 .next_pokemon
 	push de
 	ld a, e
-	farcall CheckIfPlayAreaCardHasUsableAttack
+	farcall CheckIfPlayAreaCardNeedsNoEnergyForAttacks
 	pop de
 	jr c, .advance
 	ld a, DUELVARS_ARENA_CARD
@@ -6329,9 +6329,10 @@ AIDecide_Pokeball:
 ; deck $3a (Grand Fire) Poke Ball decider. With fewer than 2 Pokemon in
 ; play, dig for a Magmar to get something on the board (else report whether
 ; the deck even has a basic to find). With a bench established, instead try
-; to advance an evolution line -- Ponyta->Rapidash, or Vulpix->Ninetales
-; (with or without a Vulpix already down) -- and failing that, only fetch
-; Moltres once we have energy in hand to power it. (Carved out of the
+; to advance an evolution line -- Ponyta->Rapidash, or Vulpix (Lv11 or
+; Lv13)->Ninetales -- and failing that, only fetch Moltres while the hand
+; has no energy cards at all (CountEnergyCardsInHand returns carry only
+; when none are left). (Carved out of the
 ; $691e-$6a59 block.)
 AIDecide_Pokeball_Deck3A:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -6350,7 +6351,7 @@ AIDecide_Pokeball_Deck3A:
 	ld de, RAPIDASH_LV33
 	farcall CheckReelInEvoLineTarget
 	ret c
-	ld bc, Zeroes
+	ld bc, VULPIX_LV11 ; same value as the Zeroes:: home label ($0061)
 	ld de, NINETALES_LV35
 	farcall CheckReelInEvoLineTarget
 	ret c
@@ -7553,8 +7554,9 @@ AIDecide_PokemonTrader_Deck49:
 ; 0x232d7
 
 ; deck $4c only plays Pokemon Trader when the opponent's arena
-; Pokemon is Water type. Then priority-fetches card $136, $173,
-; $c3, or $c4 from the deck.
+; Pokemon is Lightning type ($02; WATER would be $03). Then
+; priority-fetches Jynx Lv18, Tauros, or a Surfing Pikachu from
+; the deck.
 AIDecide_PokemonTrader_Deck4C:
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
@@ -7563,10 +7565,10 @@ AIDecide_PokemonTrader_Deck4C:
 	call SwapTurn
 	ld a, [wLoadedCard2Type]
 	cp $02
-	jr z, .water_matchup
+	jr z, .lightning_matchup
 	or a
 	ret
-.water_matchup
+.lightning_matchup
 	ld a, CARD_LOCATION_DECK
 	ld de, JYNX_LV18
 	farcall FindCardIDInLocation
@@ -7592,10 +7594,11 @@ AIDecide_PokemonTrader_Deck4C:
 ; 0x23327
 
 ; deck $4d's Pokemon Trader: 3-way split on play-area-count x
-; opponent-Water-type. Solo path priority-fetches single cards.
-; Multi+no-Water walks $a4 -> $a7 evolution chain with swap
-; fallback. Multi+Water tries a single in-deck-not-in-hand check
-; for card $b7 (likely the deck's Water-counter target).
+; opponent-Lightning-type ($02 passed to CheckIfPlayerHasPokemonOfType).
+; Solo path priority-fetches single cards. Multi+no-Lightning walks the
+; Staryu -> Dark Starmie evolution chain with swap fallback.
+; Multi+Lightning tries a single in-deck-not-in-hand check for Articuno
+; Lv34 (Fossil Articuno, the deck's anti-Lightning tech).
 AIDecide_PokemonTrader_Deck4D:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -7603,7 +7606,7 @@ AIDecide_PokemonTrader_Deck4D:
 	jr z, .solo
 	ld a, $02
 	farcall CheckIfPlayerHasPokemonOfType
-	jr c, .multi_water
+	jr c, .multi_lightning
 	ld bc, STARYU_LV15
 	ld de, DARK_STARMIE
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -7614,7 +7617,7 @@ AIDecide_PokemonTrader_Deck4D:
 	ld de, DARK_STARMIE
 	jr c, .commit
 	ret
-.multi_water
+.multi_lightning
 	ld de, ARTICUNO_LV34
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	ld de, ARTICUNO_LV34

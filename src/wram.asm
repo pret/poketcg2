@@ -845,7 +845,7 @@ wSkipDelayAllowed:: ; cd08
 wTurnEndedDueToComputerError:: ; cd09
 	ds $1
 
-wcd0a:: ; cd0a
+wAttackerPlayAreaLocation:: ; cd0a
 	ds $1
 
 wcd0b:: ; cd0b
@@ -1554,7 +1554,7 @@ wAICardListRetreatBonus:: ; d02e
 wAICardListEnergyBonus:: ; d030
 	ds $2
 
-wd032:: ; d032
+wAIRetreatScore:: ; d032
 	ds $1
 
 wd033:: ; d033
@@ -1566,13 +1566,13 @@ wd034:: ; d034
 wd035:: ; d035
 	ds $1
 
-wd036:: ; d036
+wAIStallCheckArenaCard:: ; d036
 	ds $1
 
-wd037:: ; d037
+wAIStallCheckSelectedAttack:: ; d037
 	ds $1
 
-wd038:: ; d038
+wAIStallCheckRepeatCount:: ; d038
 	ds $1
 
 	ds $a

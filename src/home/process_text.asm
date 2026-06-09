@@ -147,7 +147,7 @@ SetupText::
 	call InitTextFormat
 	xor a
 	ldh [hffbb], a
-	ldh [hffa9], a
+	ldh [hTextTileCacheHead], a
 	ld a, $88
 	ld [wTilePatternSelector], a
 	ld a, $80
@@ -226,7 +226,7 @@ GenerateAndPlaceTextTile::
 	ldh a, [hffbb]
 	and $2
 	jr nz, .done
-	ldh a, [hffa9]
+	ldh a, [hTextTileCacheHead]
 	call PlaceNextTextTile
 .done
 	pop bc
@@ -288,7 +288,7 @@ AllocateOrPromoteTextTileCacheEntry::
 	ld hl, wcd04
 	cp [hl]
 	jr nz, .asm_2345
-	ldh a, [hffa9]
+	ldh a, [hTextTileCacheHead]
 	ld h, HIGH(wc800)
 .asm_2337
 	ld l, a
@@ -308,11 +308,11 @@ AllocateOrPromoteTextTileCacheEntry::
 .asm_2349
 	ld l, [hl]
 .asm_234a
-	ldh a, [hffa9]
+	ldh a, [hTextTileCacheHead]
 	ld c, a
 	ld b, HIGH(wc900)
 	ld a, l
-	ldh [hffa9], a
+	ldh [hTextTileCacheHead], a
 	ld [bc], a
 	ld h, HIGH(wc800)
 	ld [hl], c
@@ -751,8 +751,8 @@ PromoteTextTileCacheEntry::
 .print
 	xor a
 	ld [wHalfWidthPrintState], a
-	ldh a, [hffa9]
-	ld l, a              ; l ← [hffa9]; index to to linked-list head
+	ldh a, [hTextTileCacheHead]
+	ld l, a              ; l ← [hTextTileCacheHead]; index to to linked-list head
 .asm_237d
 	ld h, $c6                                     ;
 	ld a, [hl]           ; a ← key1[l]            ;
@@ -769,14 +769,14 @@ PromoteTextTileCacheEntry::
 	ld l, [hl]           ; l ← next[l]            ;
 	jr .asm_237d
 .asm_238f
-	ldh a, [hffa9]
+	ldh a, [hTextTileCacheHead]
 	cp l
 	jr z, .asm_23af      ; assert at least one iteration
 	ld c, a
 	ld b, $c9
 	ld a, l
 	ld [bc], a           ; prev[i0] ← i
-	ldh [hffa9], a       ; [hffa9] ← i  (update linked-list head)
+	ldh [hTextTileCacheHead], a       ; [hTextTileCacheHead] ← i  (update linked-list head)
 	ld h, $c9
 	ld b, [hl]
 	ld [hl], $0          ; prev[i] ← 0

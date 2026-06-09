@@ -69,7 +69,7 @@ DrawPortrait::
 	pop af
 	ret
 
-Data_13005b::
+NPCOverworldSprites::
 	dw OWSPRITE_MARK                ; NPC_MARK
 	dw OWSPRITE_MINT                ; NPC_MINT
 	dw OWSPRITE_DR_MASON            ; NPC_DR_MASON

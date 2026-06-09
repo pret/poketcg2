@@ -1260,7 +1260,7 @@ PsychicClubEntrance_MapScripts:
 
 PsychicClubEntrance_Idle:
 	call Func_3332
-	call PsychicClubEntrance_MoveStephanieOutOfPath
+	call PsychicClubEntrance_MoveStephanieIntoPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -1356,11 +1356,11 @@ PsychicClubEntrance_ContinueOW:
 	ret
 
 PsychicClubEntrance_ResumeAfterMoveStephanie:
-	call PsychicClubEntrance_MoveStephanieOutOfPath
+	call PsychicClubEntrance_MoveStephanieIntoPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-PsychicClubEntrance_MoveStephanieOutOfPath:
+PsychicClubEntrance_MoveStephanieIntoPath:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .exit
@@ -5119,9 +5119,9 @@ ScienceClubLobby_NPCs:
 	npc NPC_DAVID, 9, 6, EAST, ScienceClubLobby_MembersAppearanceCheck
 	npc NPC_ERIK, 4, 9, EAST, ScienceClubLobby_MembersAppearanceCheck
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, ScienceClubLobby_ImakuniBlackAppearanceCheck
-	npc NPC_SCIENCE_CLUB_MAN, 3, 9, WEST, ScienceClubLobby_GRMembersAppearanceCheck
-	npc NPC_SCIENCE_CLUB_GLASSES_KID, 13, 4, SOUTH, ScienceClubLobby_GRMembersAppearanceCheck
-	npc NPC_SCIENCE_CLUB_TECH, 7, 9, WEST, ScienceClubLobby_GRMembersAppearanceCheck
+	npc NPC_SCIENCE_CLUB_MAN, 3, 9, WEST, ScienceClubLobby_PostGR2NPCsAppearanceCheck
+	npc NPC_SCIENCE_CLUB_GLASSES_KID, 13, 4, SOUTH, ScienceClubLobby_PostGR2NPCsAppearanceCheck
+	npc NPC_SCIENCE_CLUB_TECH, 7, 9, WEST, ScienceClubLobby_PostGR2NPCsAppearanceCheck
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
@@ -5432,7 +5432,7 @@ Script_ScienceClubTech:
 	end_script
 	ret
 
-ScienceClubLobby_GRMembersAppearanceCheck:
+ScienceClubLobby_PostGR2NPCsAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e8e4

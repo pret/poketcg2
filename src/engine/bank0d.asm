@@ -763,7 +763,7 @@ TcgAirportEntrance_MapScripts:
 
 TcgAirportEntrance_Idle:
 	call DoFrame
-	call TcgAirportEntrance_MoveGR5OutOfPath
+	call TcgAirportEntrance_MoveGR5IntoPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -803,11 +803,11 @@ TcgAirportEntrance_Interact:
 	ret
 
 TcgAirportEntrance_ResumeAfterMoveGR5:
-	call TcgAirportEntrance_MoveGR5OutOfPath
+	call TcgAirportEntrance_MoveGR5IntoPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-TcgAirportEntrance_MoveGR5OutOfPath:
+TcgAirportEntrance_MoveGR5IntoPath:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_3468e
@@ -1015,7 +1015,7 @@ TcgAirport_MapScripts:
 
 TcgAirport_Idle:
 	call DoFrame
-	call TcgAirport_MoveGR5OutOfPath
+	call TcgAirport_MoveGR5IntoPath
 	call HandleOverworldPlayerInput
 	scf
 	ccf
@@ -1289,11 +1289,11 @@ Script_GR5_TCGAirportLanded:
 	db $ff
 
 TcgAirport_ResumeAfterMoveGR5:
-	call TcgAirport_MoveGR5OutOfPath
+	call TcgAirport_MoveGR5IntoPath
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-TcgAirport_MoveGR5OutOfPath:
+TcgAirport_MoveGR5IntoPath:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	cpcoord 11, 8
@@ -3703,7 +3703,7 @@ Script_FightingFortMaze16OpenDoor:
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall WarpPlayerToFightingFortBasement
+	farcall WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze18_MapHeader:
@@ -3759,7 +3759,7 @@ Script_FightingFortMaze18OpenDoor:
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall WarpPlayerToFightingFortBasement
+	farcall WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortGoda_MapHeader:

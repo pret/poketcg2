@@ -1696,7 +1696,7 @@ ClearEvents:
 	pop bc
 	ret
 
-ResetTCGIslandEventState:
+ResetUntilMapReloadEvents:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	call ZeroOutEventValue
 	ld a, EVENT_EE

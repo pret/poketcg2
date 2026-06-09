@@ -785,7 +785,7 @@ _LoadOWObject::
 	add hl, bc ; *6
 	ld b, h
 	ld c, l
-	ld hl, Data_12f07f
+	ld hl, OWSpriteGfxData
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -951,7 +951,7 @@ INCLUDE "data/gfx_pointers/ow_animations.asm"
 
 INCLUDE "data/map_gfx.asm"
 
-Data_12f07f:
+OWSpriteGfxData:
 	dw TILESET_MARK, SPRITE_ANIM_67, OWFRAMEGROUP_0E            ; OWSPRITE_MARK
 	dw TILESET_MINT, SPRITE_ANIM_68, OWFRAMEGROUP_0F            ; OWSPRITE_MINT
 	dw TILESET_DR_MASON, SPRITE_ANIM_62, OWFRAMEGROUP_2F        ; OWSPRITE_DR_MASON

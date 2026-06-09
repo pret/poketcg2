@@ -1,10 +1,10 @@
-WarpPlayerToFightingFortBasementNoStep:
+WarpPlayerToFightingFortBasementWithStep:
 	scf
 	ccf
 	push af
-	jr WarpPlayerToFightingFortBasement.asm_30007
+	jr WarpPlayerToFightingFortBasementNoStep.asm_30007
 
-WarpPlayerToFightingFortBasement:
+WarpPlayerToFightingFortBasementNoStep:
 	scf
 	push af
 .asm_30007:
@@ -233,7 +233,7 @@ OverworldGr_WarpEndSFX:
 	ret
 
 RunGRIslandMapLoop:
-	farcall ResetTCGIslandEventState
+	farcall ResetUntilMapReloadEvents
 	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop
@@ -5703,7 +5703,7 @@ Script_FightingFortMaze2OpenDoor:
 	ld bc, TILEMAP_09A
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasementWithStep
 	ret
 
 FightingFortMaze3_MapHeader:
@@ -5858,7 +5858,7 @@ Script_FightingFortMaze4OpenDoor:
 	ld bc, TILEMAP_09D
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasementWithStep
 	ret
 
 FightingFortMaze5_MapHeader:
@@ -6077,7 +6077,7 @@ Script_FightingFortMaze8OpenDoor:
 	ld bc, TILEMAP_0BC
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasementWithStep
 	ret
 
 FightingFortMaze9_MapHeader:
@@ -6218,7 +6218,7 @@ Script_FightingFortMaze12OpenDoor:
 	ld bc, TILEMAP_0C1
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasement
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze13_MapHeader:
@@ -6305,7 +6305,7 @@ Script_FightingFortMaze14OpenDoor:
 	ld bc, TILEMAP_0C4
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasementWithStep
 	ret
 
 FightingFortMaze15_MapHeader:
@@ -6480,10 +6480,10 @@ Script_FightingFortMaze17OpenEastDoor:
 	ld a, $03
 	cp e
 	jr nz, .asm_33d17
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasementWithStep
 	ret
 .asm_33d17
-	call WarpPlayerToFightingFortBasement
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 Script_FightingFortMaze17OpenNorthDoor:
@@ -6492,7 +6492,7 @@ Script_FightingFortMaze17OpenNorthDoor:
 	ld bc, TILEMAP_0CA
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasement
+	call WarpPlayerToFightingFortBasementNoStep
 	ret
 
 FightingFortMaze20_MapHeader:

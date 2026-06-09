@@ -2192,12 +2192,12 @@ GetNPCOverworldSprite::
 	ld c, a
 	ldh a, [hBankROM]
 	push af
-	ld a, BANK(Data_13005b)
+	ld a, BANK(NPCOverworldSprites)
 	call BankswitchROM
 	ld b, $00
 	sla c
 	rl b
-	ld hl, Data_13005b
+	ld hl, NPCOverworldSprites
 	add hl, bc
 	ld c, [hl]
 	inc hl

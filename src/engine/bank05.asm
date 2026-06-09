@@ -244,9 +244,9 @@ StoreAICardListPointers:
 	ld [hl], d
 	ret
 
-Func_14178:
+AIHandleForcedSwitch:
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	call AIDecideBenchPokemonToSwitchTo
 	ret
 
@@ -269,11 +269,11 @@ AIActionTable_GeneralDecks:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -304,11 +304,11 @@ AIActionTable_SkilledWarriorDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -352,12 +352,12 @@ AIActionTable_ScriptedSamPracticeDeck:
 	ld a, [wIsPracticeDuel]
 	or a
 	jr nz, .is_practice_duel_2
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 .is_practice_duel_2
 	farcall IsAISamPracticeScriptedTurn
 	jr nc, .scripted_2
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 .scripted_2
 	call PickRandomBenchPokemon
@@ -367,12 +367,12 @@ AIActionTable_ScriptedSamPracticeDeck:
 	ld a, [wIsPracticeDuel]
 	or a
 	jr nz, .is_practice_duel_3
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 .is_practice_duel_3
 	farcall IsAISamPracticeScriptedTurn
 	jr nc, .scripted_3
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 .scripted_3
 	farcall GetPlayAreaLocationOfGoldeen
@@ -409,11 +409,11 @@ AIActionTable_AaronStep1Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -447,11 +447,11 @@ AIActionTable_AaronStep2Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -489,11 +489,11 @@ AIActionTable_AaronStep3Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -527,11 +527,11 @@ AIActionTable_SkySparkDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -615,11 +615,11 @@ AIActionTable_ElectricSelfdestructDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -704,11 +704,11 @@ AIActionTable_PsychicEliteDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -797,11 +797,11 @@ AIActionTable_PuppetMasterDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -885,11 +885,11 @@ AIActionTable_Even3YearsOnARockDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -968,11 +968,11 @@ AIActionTable_RagingBillowOfFistsDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1059,11 +1059,11 @@ AIActionTable_MaxEnergyDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1143,11 +1143,11 @@ AIActionTable_DarkScienceDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1229,11 +1229,11 @@ AIActionTable_RainDanceConfusionDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1311,11 +1311,11 @@ AIActionTable_SplashingAboutDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1366,11 +1366,11 @@ AIActionTable_BeachDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1423,11 +1423,11 @@ AIActionTable_GoArcanineDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1521,11 +1521,11 @@ AIActionTable_GreatRocket4Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1617,11 +1617,11 @@ AIActionTable_GreatRocket1Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1714,11 +1714,11 @@ AIActionTable_GreatRocket2Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1819,11 +1819,11 @@ AIActionTable_GreatRocket3Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -1914,11 +1914,11 @@ AIActionTable_GrandFireDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2015,11 +2015,11 @@ AIActionTable_LegendaryFossilDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2099,11 +2099,11 @@ AIActionTable_WaterLegendDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2190,11 +2190,11 @@ AIActionTable_GreatDragonDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2286,11 +2286,11 @@ AIActionTable_MadPetalsDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2374,11 +2374,11 @@ AIActionTable_DangerousBenchDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2449,11 +2449,11 @@ AIActionTable_QuickAttackDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2536,11 +2536,11 @@ AIActionTable_CompleteCombustionDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2603,11 +2603,11 @@ AIActionTable_GazeUponThePowerOfFireDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2688,11 +2688,11 @@ AIActionTable_WaterStreamDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2770,11 +2770,11 @@ AIActionTable_RunningWildDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2855,11 +2855,11 @@ AIActionTable_SpiritedAwayDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -2937,11 +2937,11 @@ AIActionTable_SnorlaxGuardDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3017,11 +3017,11 @@ AIActionTable_EyeOfTheStormDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3105,11 +3105,11 @@ AIActionTable_SuddenGrowthDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3192,11 +3192,11 @@ AIActionTable_VeryRareCardDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3263,11 +3263,11 @@ AIActionTable_BadGuysDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3350,11 +3350,11 @@ AIActionTable_PoisonMistDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3435,11 +3435,11 @@ AIActionTable_UltraRemovalDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3513,11 +3513,11 @@ AIActionTable_PsychicBattleDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3595,11 +3595,11 @@ AIActionTable_StopLifeDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3685,11 +3685,11 @@ AIActionTable_ScorcherDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3774,11 +3774,11 @@ AIActionTable_TsunamiStarterDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3863,11 +3863,11 @@ AIActionTable_SmashToMincemeatDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -3954,11 +3954,11 @@ AIActionTable_TextureTuner7Deck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4045,11 +4045,11 @@ AIActionTable_ColorlessEnergyDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4138,11 +4138,11 @@ AIActionTable_PowerfulPokemonDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4221,11 +4221,11 @@ AIActionTable_RonaldsPsychicDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4309,11 +4309,11 @@ AIActionTable_RonaldsUltraDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4390,11 +4390,11 @@ AIActionTable_EverybodysFriendDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4473,11 +4473,11 @@ AIActionTable_ImmortalPokemonDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4571,11 +4571,11 @@ AIActionTable_TorrentialFloodDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4660,11 +4660,11 @@ AIActionTable_TrainerImprisonDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4747,11 +4747,11 @@ AIActionTable_BlazingFlameDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4828,11 +4828,11 @@ AIActionTable_DamageChaosDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4916,11 +4916,11 @@ AIActionTable_BigThunderDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -4996,11 +4996,11 @@ AIActionTable_PowerOfDarknessDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -5082,11 +5082,11 @@ AIActionTable_PoisonStormDeck:
 	ret
 
 .forced_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .ko_switch
-	call Func_14178
+	call AIHandleForcedSwitch
 	ret
 
 .take_prize
@@ -5231,10 +5231,10 @@ AIDecideWhetherToRetreat:
 
 	farcall AIDeckSpecificRetreatLogic
 	ld [wAIScore], a
-	ld a, [wd032]
+	ld a, [wAIRetreatScore]
 	or a
 	jr z, .check_status
-	; add wd032 * 8 to score
+	; add wAIRetreatScore * 8 to score
 	srl a
 	srl a
 	sla a ; *8
@@ -6613,7 +6613,7 @@ AITryToRetreat:
 	ld a, OPPACTION_ATTEMPT_RETREAT
 	farcall AIMakeDecision
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	ret
 .set_carry
 	scf
@@ -8568,7 +8568,7 @@ AIProcessAttacks:
 
 .can_damage
 	xor a
-	ld [wd032], a
+	ld [wAIRetreatScore], a
 	jr .use_attack
 
 .check_damage_bench
@@ -8578,7 +8578,7 @@ AIProcessAttacks:
 	jr c, .can_damage
 
 ; cannot damage either Defending Pokemon or Bench
-	ld hl, wd032
+	ld hl, wAIRetreatScore
 	inc [hl]
 
 ; return carry if attack is chosen
@@ -8601,7 +8601,7 @@ AIProcessAttacks:
 
 ; return no carry if no viable attack.
 .failed_to_use
-	ld hl, wd032
+	ld hl, wAIRetreatScore
 	inc [hl]
 	or a
 	ret

@@ -1931,9 +1931,9 @@ GrassClubLobby_NPCs:
 	npc NPC_BRITTANY, 7, 9, WEST, GrassClubLobby_MembersAppearanceCheck
 	npc NPC_KRISTIN, 6, 6, EAST, GrassClubLobby_MembersAppearanceCheck
 	npc NPC_HEATHER, 10, 8, EAST, GrassClubLobby_MembersAppearanceCheck
-	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, GrassClubLobby_GRMembersAppearanceCheck
-	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, GrassClubLobby_GRMembersAppearanceCheck
-	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, GrassClubLobby_GRMembersAppearanceCheck
+	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, GrassClubLobby_PostGRCiviliansAppearanceCheck
+	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, GrassClubLobby_PostGRCiviliansAppearanceCheck
+	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, GrassClubLobby_PostGRCiviliansAppearanceCheck
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
@@ -2246,7 +2246,7 @@ Script_GrassClubCappedLass:
 	end_script
 	ret
 
-GrassClubLobby_GRMembersAppearanceCheck:
+GrassClubLobby_PostGRCiviliansAppearanceCheck:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d19c
