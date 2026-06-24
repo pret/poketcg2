@@ -1174,10 +1174,10 @@ AIDeckSpecificEnergyLogic:
 	jr nz, .asm_489c1
 	; is Arena card
 	ld de, VENOMOTH_LV28
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jr c, .asm_489bc
 	ld de, IVYSAUR_LV26
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .asm_489c1 ; can be jr
 	; Venomoth and Ivysaur can already use
 	; all their attacks
@@ -1204,7 +1204,7 @@ AIDeckSpecificEnergyLogic:
 	jr nz, .asm_489c1
 	; is Arena card
 	ld de, VENOMOTH_LV28
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jr nc, .asm_489c1 ; Venomoth still needs energy
 	farcall CountNumberOfSetUpBenchPokemon
 	cp 2
@@ -1226,7 +1226,7 @@ AIDeckSpecificEnergyLogic:
 
 ; chansey lv55
 	ld de, WEEZING_LV26
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score ; Weezing still needs energy
 	farcall CountNumberOfSetUpBenchPokemon
 	cp 2
@@ -1255,7 +1255,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48a56 ; no energy cards
 	ld de, ARCANINE_LV35
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .asm_48a5b ; Arcanine still needs energy
 	xor a
 	ld [wd032], a
@@ -1288,10 +1288,10 @@ AIDeckSpecificEnergyLogic:
 	jr z, .asm_48a9d
 	; at least 1 energy
 	ld de, CHARIZARD_LV76
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jr c, .asm_48a9d
 	ld de, CHARIZARD_ALT_LV76
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	; Charizard can already use all attacks
 	xor a
@@ -1320,10 +1320,10 @@ AIDeckSpecificEnergyLogic:
 	jr z, .asm_48adf
 	; at least 1 energy
 	ld de, VILEPLUME
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jr c, .asm_48adf
 	ld de, DARK_VILEPLUME
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp c, .default_score
 	; Vileplume can already use all attacks
 	xor a
@@ -1386,7 +1386,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48b57
 	ld de, DARK_MAROWAK
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	xor a
 	ld [wd032], a
@@ -1446,7 +1446,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48be0
 	ld de, HAUNTER_LV22
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jr nc, .asm_48be5
 	ld b, PLAY_AREA_BENCH_1
 	ld de, DROWZEE_LV10
@@ -1478,7 +1478,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48c1f
 	ld de, DARK_HAUNTER
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	xor a
 	ld [wd032], a
@@ -1518,7 +1518,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48c75
 	ld de, DARK_VENUSAUR
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	xor a
 	ld [wd032], a
@@ -1553,7 +1553,7 @@ AIDeckSpecificEnergyLogic:
 	farcall Func_4c605
 	jr c, .asm_48cc1
 	ld de, DARK_CHARIZARD
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	xor a
 	ld [wd032], a
@@ -1609,7 +1609,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .asm_48d3e
 	ld de, DARK_MACHAMP
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	xor a
 	ld [wd032], a
@@ -1621,7 +1621,7 @@ AIDeckSpecificEnergyLogic:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
 	ld de, DARK_MACHAMP
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default_score
 	farcall CountNumberOfSetUpBenchPokemon
 	cp 2
@@ -1957,7 +1957,7 @@ AIDeckSpecificRetreatLogic:
 	cp16 ZAPDOS_LV68
 	jp z, .default
 	ld de, ZAPDOS_LV68
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	jp nc, .default
 	; another Zapdos in Bench has enough energy cards
 	ld a, AI_SCORE_NEUTRAL + 10
@@ -2825,56 +2825,65 @@ StopLifeDeckAIDecideSwitch:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_VENUSAUR
-	jr z, .dark_venusaur_arena
+	jr z, .dark_venusaur
 	cp16 KANGASKHAN_LV40
-	jr z, .kangaskhan_arena
+	jr z, .kangaskhan
 	or a
 	ret
 
-.dark_venusaur_arena
+.dark_venusaur
+	; if Dark Venusaur has at least 3 energies...
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 3
-	jr c, .check_bench_and_switch
-; check status
+	jr c, .less_than_3_energies
+	; ...and is statused, switch
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr nz, .check_switch
-	jr .dark_venusaur_not_statused
+	jr nz, .switch
+	jr .not_statused
 
-.kangaskhan_arena
+.kangaskhan
+	; if Kangaskhan has less than 3 energies...
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 3
 	ret nc
+	; ...and has a benched Dark Venusaur with energy, switch to it
 	ld de, DARK_VENUSAUR
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.dark_venusaur_not_statused
+.not_statused
+	; Dark Venusaur has 3 or more energies and not statused
+	; if it cannot use its attacks...
 	farcall CanArenaCardUseNonResidualAttack
 	ccf
 	ret nc
+	; ...try switching to a benched Scyther
 	ld de, SCYTHER_LV25
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret
 
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench_and_switch
+.less_than_3_energies
+	; Dark Venusaur has less than 3 energies
+	; do nothing if no set up Pokémon in Bench
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
+	; otherwise switch to a bench Pokémon
+	; with at least 50 score
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
-
 	push af
 	ld a, 50
 	cp e
@@ -3047,14 +3056,19 @@ IsDefendingPokemonWeakToArenaOrBenchPokemon:
 	ret
 
 PowerfulPokemonDeckAIDecideSwitch:
+	; if Arena card can KO defending card, skip
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ccf
 	ret nc
 
-	xor a ; PLAY_AREA_ARENA
+	; if Defending card is weak to Arena, only switch if
+	; arena card will be KO'd next turn
+	xor a
 	call IsDefendingPokemonWeakToArenaOrBenchPokemon
-	jr c, .check_ko
-
+	jr c, .switch_if_defending_can_ko
+	; not weak to Arena card
+	; find a Pokémon in Play Area that can use an attack
+	; and that the Defending card is weak to
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld d, a
@@ -3073,7 +3087,7 @@ PowerfulPokemonDeckAIDecideSwitch:
 	farcall CheckIfSelectedAttackIsUnusable
 	pop de
 	jr c, .next
-; found
+	; found, switch to it
 	ld a, e
 	scf
 	ret
@@ -3082,17 +3096,16 @@ PowerfulPokemonDeckAIDecideSwitch:
 	ld a, e
 	cp d
 	jr nz, .loop_bench
-; not found
-	farcall CheckIfArenaCardIsWeakToDefendingCard
-	jr c, .check_switch
 
-.check_ko
+	; none found, switch if Arena card is weak to Defending card
+	farcall CheckIfArenaCardIsWeakToDefendingCard
+	jr c, .switch
+.switch_if_defending_can_ko
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	ret nc
-
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
@@ -3239,77 +3252,89 @@ ScorcherDeckAIDecideSwitch:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_CHARIZARD
-	jr z, .dark_charizard_arena
+	jr z, .dark_charizard
 	cp16 KANGASKHAN_LV40
-	jr z, .kangaskhan_arena
+	jr z, .kangaskhan
 	cp16 DARK_CLEFABLE
-	jr z, .dark_clefable_arena
+	jr z, .dark_clefable
 	or a
 	ret
 
-.dark_charizard_arena
+.dark_charizard
+	; does Dark Charizard have 2 or more energies?
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 2
-	jr c, .check_bench_and_switch
+	jr c, .less_than_2_energies
+	; yes, if Magmar is in Play Area...
 	ld de, MAGMAR_LV31
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr nc, .check_status
+	jr nc, .else
+	; ...and it can KO the Defending Pokémon...
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfAnyAttackKnocksOutDefendingCard
-	jr nc, .check_status
+	jr nc, .else
+	; ...and that attack is usable...
 	farcall CheckIfSelectedAttackIsUnusable
-	jr c, .check_status
+	jr c, .else
+	; ...then use Switch and switch to Magmar
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	scf
 	ret
-
-.check_status
+.else
+	; else, use Switch if is statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr nz, .check_switch
-	jr .dark_charizard_not_statused
+	jr nz, .switch
+	jr .not_statused
 
-.kangaskhan_arena
+.kangaskhan
+	; use Switch on Kangaskhan if it has less than 3 energies
+	; and there is a Dark Charizard in the Bench
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 3
 	ret nc
 	ld de, DARK_CHARIZARD
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.dark_charizard_not_statused
+.not_statused
+	; if Dark Charizard cannot use an attack...
 	farcall CanArenaCardUseNonResidualAttack
 	ccf
 	ret nc
+	; ...then switch to a Magmar in Bench
 	ld de, MAGMAR_LV31
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret
 
-.dark_clefable_arena
+.dark_clefable
+	; if Dark Clefable is Arena card, use Switch
+	; to switch to a Dark Charizard in Bench
 	ld de, DARK_CHARIZARD
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench_and_switch
+.less_than_2_energies
+	; Dark Charizard has fewer than 2 energies attached
+	; switch to a Bench card with enough switch score
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
 	push af
-
 	ld a, 50
 	cp e
 	pop bc
@@ -3428,7 +3453,7 @@ Func_49a73:
 	ld [hl], b ; remaining HP
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
-	farcall FindBenchCardThatCanBeKnockedOut.CheckIfAnyAttackCanKO
+	farcall CheckIfAnyAttackCanKO
 	jr nc, .cannot_be_knocked_out
 	farcall CheckIfSelectedAttackIsUnusable
 	jr nc, .can_be_knocked_out
@@ -3500,7 +3525,7 @@ Func_49af6:
 	ld [hl], b
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
-	farcall FindBenchCardThatCanBeKnockedOut.CheckIfAnyAttackCanKO
+	farcall CheckIfAnyAttackCanKO
 	jr nc, .cannot_be_knocked_out
 	farcall CheckIfSelectedAttackIsUnusable
 	jr nc, .can_be_knocked_out
@@ -3576,59 +3601,67 @@ TsunamiStarterDeckAIDecideSwitch:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_BLASTOISE
-	jr z, .dark_blastoise_arena
+	jr z, .dark_blastoise
 	cp16 LAPRAS_LV31
-	jr z, .lapras_arena
+	jr z, .lapras
 	cp16 DARK_CLEFABLE
-	jr z, .dark_clefable_arena
+	jr z, .dark_clefable
 	or a
 	ret
 
-.dark_blastoise_arena
+.dark_blastoise
+	; does Dark Blastoise have at least 2 energies?
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 2
-	jr c, .check_bench_and_switch
-
-; check status
+	jr c, .less_than_2_energies
+	; no, is it statused?
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr nz, .check_switch
-	jr .dark_blastoise_not_statused
+	jr nz, .statused
+	jr .not_statused
 
-.lapras_arena
+.lapras
+	; switch Lapras to a benched Dark Blastoise with energy
 	ld de, DARK_BLASTOISE
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.dark_blastoise_not_statused
+.not_statused
+	; Dark Blastoise has at least 2 energies and not statused
+	; can it use any attack?
 	farcall CanArenaCardUseNonResidualAttack
 	ccf
 	ret nc
+	; no, switch to a Scyther in the Bench
 	ld de, SCYTHER_LV25
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret
 
-.dark_clefable_arena
+.dark_clefable
+	; switch Dark Clefable to a benched Dark Blastoise with energy
 	ld de, DARK_BLASTOISE
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.check_switch
+.statused
+	; Dark Blastoise has at least 2 energies and is statused
+	; switch to a viable bench Pokémon
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench_and_switch
+.less_than_2_energies
+	; Dark Blastoise has less than 2 energies
+	; use Switch to switch to a Benched Pokémon with enough score
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
-
 	push af
 	ld a, 50
 	cp e
@@ -3703,31 +3736,36 @@ SmashToMincemeatDeckAIDecideGustOfWind:
 	ret
 
 SmashToMincemeatDeckAIDecideSwitch:
+	; does the player have Bench?
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	cp 1
-	jr z, .check_mr_mime_lv28
-
+	jr z, .last_pkmn_or_last_prize
+	; yes, is the player on last prize card?
+	; this is most likely a bug and is supposed
+	; to check the prize count of AI instead
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
 	cp 1
-	jr nz, .check_arena
+	jr nz, .not_last_prize_card
 
-.check_mr_mime_lv28
+.last_pkmn_or_last_prize
+	; player either is on last Pokémon or last prize card
+	; is Defending card Mr. Mime lv28?
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	call SwapTurn
 	cp16 MR_MIME_LV28
-	jr z, .found_mr_mime_lv_28
-
+	jr z, .mr_mime
+	; no, use Switch to bring out a Chansey than can use Double-Edge
 	ld de, CHANSEY_LV55
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
-
-.found_mr_mime_lv_28
+.mr_mime
+	; yes, use Switch to bring out a Machop or Clefairy
 	ld de, MACHOP_LV20
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -3737,69 +3775,76 @@ SmashToMincemeatDeckAIDecideSwitch:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret
 
-.check_arena
+.not_last_prize_card
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_MACHAMP
-	jr z, .dark_machamp_arena
+	jr z, .dark_machamp
 	cp16 KANGASKHAN_LV40
-	jr z, .kangaskhan_arena
+	jr z, .kangaskhan
 	cp16 DARK_CLEFABLE
-	jr z, .dark_clefable_arena
+	jr z, .dark_clefable
 	or a
 	ret
 
-.dark_machamp_arena
+.dark_machamp
+	; does Dark Machamp have at least 4 energies?
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 4
-	jr c, .check_bench_and_switch
-
-; check status
+	jr c, .less_than_4_energies
+	; yes, if is statused, use Switch
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr nz, .check_switch
-	jr .dark_machamp_not_statused
+	jr nz, .switch
+	jr .not_statused
 
-.kangaskhan_arena
+.kangaskhan
+	; use Switch on Kangaskhan if it has less than 3 energies
+	; and there is a Dark Machamp in the Bench
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 3
 	ret nc
 	ld de, DARK_MACHAMP
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.dark_machamp_not_statused
+.not_statused
+	; Dark Machamp has enough energies and not statused
+	; can it use its attacks?
 	farcall CanArenaCardUseNonResidualAttack
 	ccf
 	ret nc
+	; no, use Switch to bring out benched Chansey
 	ld de, CHANSEY_LV55
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret
 
-.dark_clefable_arena
+.dark_clefable
+	; switch Dark Clefable to a benched Dark Machamp with energy
 	ld de, DARK_MACHAMP
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench_and_switch
+.less_than_4_energies
+	; Dark Machamp has less than 4 energies
+	; use Switch to switch to a Benched Pokémon with enough score
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
-
 	push af
 	ld a, 50
 	cp e
@@ -3915,16 +3960,20 @@ InitAITurnVars:
 .done
 	ret
 
+; load selected attack from Pokémon in hTempPlayAreaLocation_ff9d,
+; gets an energy card to discard and subsequently
+; check if there is enough energy to execute the selected attack
+; after removing that attached energy card.
 ; input:
-; [hTempPlayAreaLocation_ff9d] = location of pkmn
-; [wSelectedAttack] = attack to examine
+;	[hTempPlayAreaLocation_ff9d] = location of Pokémon card
+;	[wSelectedAttack]            = selected attack to examine
 ; output:
-; b = basic energy still needed
-; c = colorless energy still needed
-; de = energy card ID still needed
-; carry set if no attack
-;        OR if it's a pkmn power
-;        OR if not enough energy for attack
+;	b = basic energy still needed
+;	c = colorless energy still needed
+;	e = output of ConvertColorToEnergyCardID, or $0 if not an attack
+;	carry set if no attack
+;	       OR if it's a Pokémon Power
+;	       OR if not enough energy for attack
 CheckEnergyNeededForAttackAfterDiscard:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
@@ -3959,34 +4008,39 @@ CheckEnergyNeededForAttackAfterDiscard:
 	cp16 RECYCLE_ENERGY
 	jr z, .single_colorless
 	cp16 RAINBOW_ENERGY
-	jr nz, .color_energy
+	jr nz, .not_special_energy
+	; bug, should be RAINBOW + 1
+	; in this case it will decrement a colorless energy instead
 	ld de, RAINBOW
 
-.color_energy
+.not_special_energy
+; decrease respective attached energy by 1.
 	ld hl, wAttachedEnergies
 	dec de
 	add hl, de
 	dec [hl]
 	ld hl, wTotalAttachedEnergies
 	dec [hl]
-	jr .asm_49e4d
+	jr .decremented_energy
 
 .double_colorless
+; decrease attached colorless by 2.
 	ld hl, wAttachedEnergies + COLORLESS
 	dec [hl]
 	dec [hl]
 	ld hl, wTotalAttachedEnergies
 	dec [hl]
 	dec [hl]
-	jr .asm_49e4d
+	jr .decremented_energy
 
 .single_colorless
+; decrease attached colorless by 1.
 	ld hl, wAttachedEnergies + COLORLESS
 	dec [hl]
 	ld hl, wTotalAttachedEnergies
 	dec [hl]
 
-.asm_49e4d
+.decremented_energy
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
 	bank1call HandleEnergyBurn
@@ -3998,7 +4052,8 @@ CheckEnergyNeededForAttackAfterDiscard:
 	ld de, wLoadedAttackEnergyCost
 	ld b, 0
 	ld c, (NUM_TYPES / 2) - 1
-.loop_basic_energy
+.loop
+	; check all basic energy cards except colorless
 	ld a, [de]
 	swap a
 	farcall CheckIfEnoughParticularAttachedEnergy
@@ -4006,27 +4061,31 @@ CheckEnergyNeededForAttackAfterDiscard:
 	farcall CheckIfEnoughParticularAttachedEnergy
 	inc de
 	dec c
-	jr nz, .loop_basic_energy
+	jr nz, .loop
 
 	ld a, [de]
 	swap a
 	and $0f
-	ld b, a
+	ld b, a ; colorless energy still needed
+
+	; subtract amount of attached Rainbow energies
+	; from total needed amount
 	ld hl, wAttachedEnergies + RAINBOW
 	ld a, [hl]
 	or a
-	jr z, .asm_49e8e
+	jr z, .no_rainbow_energy
 	ld a, [wTempLoadedAttackEnergyNeededAmount]
 	sub [hl]
-	jr nc, .asm_49e8b
+	jr nc, .got_needed_amount
 	xor a
-.asm_49e8b
+.got_needed_amount
 	ld [wTempLoadedAttackEnergyNeededAmount], a
-.asm_49e8e
+
+.no_rainbow_energy
 	ld a, [wTempLoadedAttackEnergyCost]
 	ld hl, wTempLoadedAttackEnergyNeededAmount
 	sub [hl]
-	ld c, a
+	ld c, a ; basic energy still needed
 	ld a, [wTotalAttachedEnergies]
 	sub c
 	sub b
@@ -4035,14 +4094,15 @@ CheckEnergyNeededForAttackAfterDiscard:
 	or a
 	ret z
 
-; energy cost isn't satisfied, including with colorless
+; being here means the energy cost isn't satisfied,
+; including with colorless energy
 	xor a
 .not_enough_energy
 	cpl
 	inc a
-	ld c, a
+	ld c, a ; colorless energy still needed
 	ld a, [wTempLoadedAttackEnergyNeededAmount]
-	ld b, a
+	ld b, a ; basic energy still needed
 	ld a, [wTempLoadedAttackEnergyNeededType]
 	farcall ConvertColorToEnergyCardID
 	scf
@@ -4163,7 +4223,9 @@ CalculateParticularAttachedEnergyNeeded:
 ; in Bench that can use all its attacks
 ; input:
 ; - de = card ID
-CheckIfPokemonInBenchHasEnoughEnergy:
+; output:
+; - a = play area location of Pokémon found
+FindCardIDInBenchWithEnoughEnergy:
 	ld a, DUELVARS_BENCH
 	get_turn_duelist_var
 	ld c, PLAY_AREA_BENCH_1 - 1
@@ -4347,20 +4409,25 @@ CheckIfHasSpecificEnergyAttached:
 ;   OR ready for Do the Wave but <= 4 pkmn in play
 ; )
 EverybodysFriendDeckAIDecideProfessorOak:
+	; if has 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 16
 	ret nc
 
+	; if has less than 6 cards in hand, use
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 6
 	ret c
 
+	; if doesn't have Wigglytuff in play that can use
+	; its attacks, then don't use...
 	ld de, WIGGLYTUFF_LV36
 	call CheckCardIDInPlayAreaThatCanUseAttacks
 	ret nc
-
+	; ...otherwise use if number of Pokémon in play
+	; is less than 5
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 5
@@ -4490,23 +4557,24 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	ret
 
 EverybodysFriendDeckAIDecideSwitch:
+	; switch if Arena card is statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr nz, .check_switch
+	jr nz, .switch
 
-; not statused
+	; if Arena card is not Wigglytuff and
+	; there's a benched Wigglytuff with enough energy
+	; then switch to it
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 WIGGLYTUFF_LV36
-	ret z
-
+	ret z ; skip if not Wigglytuff
 	ld de, WIGGLYTUFF_LV36
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
-
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
@@ -4544,7 +4612,7 @@ EverybodysFriendDeckAIDecideScoopUp:
 	cp16 WIGGLYTUFF_LV36
 	ret z
 	ld de, WIGGLYTUFF_LV36
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret nc
 ; ready for Do the Wave
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -5972,94 +6040,102 @@ ImmortalPokemonDeckAIDecideSwitch:
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
 	cp 1
-	jr nz, .check_mr_mime_lv20 ; 0 or >= 2 alakazam
+	jr nz, .check_mr_mime
+	; has 1 Alakazam in Play Area, is it the Arena card?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 ALAKAZAM_LV42
-	jr z, .only_alakazam_in_arena
+	jr z, .alakazam_is_arena
 
-.check_mr_mime_lv20
+.check_mr_mime
+	; is Arena card Mr. Mime?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MR_MIME_LV20
-	jr z, .mr_mime_lv20_in_arena
-
+	jr z, .mr_mime_is_arena
+	; no, is Alakazam in Play Area?
 	ld de, ALAKAZAM_LV42
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ret nc
-
+	ret nc ; no, exit
+	; is Mr. Mime is Play Area?
 	ld de, MR_MIME_LV20
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ret nc
+	ret nc ; no, exit
 
+	; there's Mr. Mime lv20 and Alakazam in Play Area
+	; if Play Area is Mr. Mime lv28 or Kadabra, consider switching
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MR_MIME_LV28
-	jr z, .check_status
+	jr z, .switch_if_statused
 	cp16 KADABRA_LV39
-	jr z, .check_status
-
-.no_carry
+	jr z, .switch_if_statused
+.not_statused
 	or a
 	ret
-
-.check_status
+.switch_if_statused
+	; switch to Kadabra or Mr. Mime lv28 if statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr z, .no_carry
+	jr z, .not_statused
 	call IsPlayerArenaCardImmune
 	ret nc
 	ld de, KADABRA_LV39
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret c
 	ld de, MR_MIME_LV28
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
 
-.only_alakazam_in_arena
+.alakazam_is_arena
+	; has 1 Alakazam in Play Area and is Arena card
+	; try switching to a viable bench Pokémon
+	; that isn't Mr. Mime lv20
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
 	push af
 	ld a, 50
 	cp e
-	jr nc, .no_carry_pop
+	jr nc, .no_carry
 	pop af
 	push af
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MR_MIME_LV20
-	jr z, .no_carry_pop
+	jr z, .no_carry
 	pop af
 	ret
-
-.no_carry_pop
+.no_carry
 	pop af
 	or a
 	ret
 
-.mr_mime_lv20_in_arena
+.mr_mime_is_arena
+	; Mr. Mime lv20 is Arena card
+	; try switching to a viable bench Pokémon
+	; that isn't Alakazam
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
 	push af
 	ld a, 50
 	cp e
-	jr nc, .no_carry_pop
+	jr nc, .no_carry
 	pop af
 	push af
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 ALAKAZAM_LV42
-	jr z, .no_carry_pop
+	jr z, .no_carry
 	pop af
 	ret
 
@@ -6088,32 +6164,39 @@ IsPlayerArenaCardImmune:
 	ret
 
 TorrentialFloodDeckAIDecideProfessorOak:
+	; if number of deck cards remaining is fewer than 16, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 44
+	cp DECK_SIZE - 16
 	ret nc
 
+	; if has at least 4 Water energies in hand, don't use
 	ld de, WATER_ENERGY
 	call CountCardIDInHand
 	cp 4
 	ret nc
 
+	; if has 7 or more cards in hand, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
 	ret nc
 
+	; check if has Blastoise in play
 	push af
 	ld de, BLASTOISE_LV52
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .count_water_energy_in_hand
-	ld a, b ; number of cards in hand
+	jr c, .has_blastoise
+	; no Blastoise, use if less than 5 cards in hand
+	ld a, b
 	cp 5
 	ret
 
-.count_water_energy_in_hand
+.has_blastoise
+	; has Blastoise in play, use if less
+	; than 3 Water Energy cards in hand
 	ld de, WATER_ENERGY
 	call CountCardIDInHand
 	cp 3
@@ -6199,28 +6282,27 @@ TorrentialFloodDeckAIDecidePokemonTrader:
 	ret
 
 TorrentialFloodDeckAIDecideSwitch:
+	; use Switch if AI wants to switch normally,
+	; and retreat cost is 2 or more
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
-	jr nc, .check_weakness
-
+	jr nc, .else
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
-	jr nc, .try_switch
-
-.check_weakness
+	jr nc, .switch
+.else
+	; if Arena is weak to defending card,
+	; switch to a benched Articuno with enough energies
 	farcall CheckIfArenaCardIsWeakToDefendingCard
 	ret nc
-
 	ld de, ARTICUNO_LV35
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret c
-
 	ld de, ARTICUNO_LV37
-	call CheckIfPokemonInBenchHasEnoughEnergy
+	call FindCardIDInBenchWithEnoughEnergy
 	ret
-
-.try_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
@@ -6371,66 +6453,80 @@ CountNonDrawEngineCardsInHand:
 	ret
 
 TrainerImprisonDeckAIDecideProfessorOak:
+	; if has 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 16
 	ret nc
 
+	; count number of turns AI has played (half of wDuelTurns)
 	ld a, [wDuelTurns]
 	srl a
 	cp 5
-	jr c, .copy_hand_cards
-
+	jr c, .less_than_5_turns
+	; has played at least 5 turns, don't use
+	; if number of cards in hand is 5 or more
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 4
 	ret nc
-
-.copy_hand_cards
+.less_than_5_turns
+	; copy hand card list to wc000
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wc000
 .loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $ff
 	jr nz, .loop_copy
+	ld hl, wc000
 
-	ld hl, wTempCardCollection
-.loop_hand_cards
+.loop_cards
 	ld a, [hli]
 	cp $ff
 	jp z, .set_carry
+
+	; if is Professor Oak, continue
 	push hl
 	call GetCardIDFromDeckIndex
 	cp16 PROFESSOR_OAK
 	jr z, .next_card
+
+	; if is Pokémon Trader and it will be used,
+	; then don't use Professor Oak
 	cp16 POKEMON_TRADER
-	jr nz, .check_energy
+	jr nz, .not_pkmn_trader
 	call TrainerImprisonDeckAIDecidePokemonTrader
 	jr c, .no_carry
 	jr .next_card
-.check_energy
+.not_pkmn_trader
+	; if is any of the following cards, continue
 	cp16 PSYCHIC_ENERGY
 	jr z, .next_card
 	cp16 FULLHEAL_ENERGY
 	jr z, .next_card
-; check pkmn
+
 	cp16 ODDISH_LV21
-	jr z, .check_bench
+	jr z, .oddish_or_gloom
 	cp16 DARK_GLOOM
-	jr z, .check_bench
+	jr z, .oddish_or_gloom
+
 	cp16 MR_MIME_LV20
 	jr z, .next_card
+
+	; if is Dark Golduck and Psyduck is in Play Area, don't use
 	cp16 DARK_GOLDUCK
-	jr nz, .check_haunter
+	jr nz, .haunter
 	ld de, PSYDUCK_LV15
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .no_carry
 	jr .next_card
-.check_haunter
+
+.haunter
+	; if is Haunter and Gastly is in Play Area, don't use
 	cp16 HAUNTER_LV26
 	jr nz, .no_carry
 	ld de, GASTLY_LV13
@@ -6438,19 +6534,24 @@ TrainerImprisonDeckAIDecideProfessorOak:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .no_carry
 	jr .next_card
-.check_bench
+
+.oddish_or_gloom
+	; if is Oddish or Dark Gloom and not
+	; on the bench yet, then don't use
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .next_card
 .no_carry
+	; don't use Professor Oak
 	pop hl
 	or a
 	ret
 .next_card
 	pop hl
-	jp .loop_hand_cards
+	jp .loop_cards
 
 .set_carry
+	; use Professor Oak
 	scf
 	ret
 
@@ -6459,24 +6560,24 @@ TrainerImprisonDeckAIDecidePokemonTrader:
 	ld de, DARK_VILEPLUME
 	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_GLOOM
-	jr c, .find_trade_pkmn
+	jr c, .asm_4b022
 	ld de, DARK_VILEPLUME
 	farcall LookForCardIDInHandList
-	jr nc, .target_oddish
+	jr nc, .asm_4b012
 	ld bc, ODDISH_LV21
 	ld de, DARK_GLOOM
 	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_VILEPLUME
-	jr c, .find_trade_pkmn
-.target_oddish
+	jr c, .asm_4b022
+.asm_4b012
 	ld de, ODDISH_LV21
 	ld bc, DARK_GLOOM
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_GLOOM
-	jr c, .find_trade_pkmn
+	jr c, .asm_4b022
 	ret
-.find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+.asm_4b022
+	ld [wd097], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6558,28 +6659,30 @@ AIChoosePlayerBenchPkmnWithNotEnoughEnergiesOrHighRetreatCost:
 	ret
 
 BlazingFlameDeckAIDecideProfessorOak:
+	; if 17 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 17
 	ret nc
 
+	; check if has energy cards
 	farcall CountEnergyCardsInHand
-	jr c, .check_hand
-
+	jr c, .else
+	; if yes, check how many Pokémon in Play Area
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
-	jr z, .check_hand
-
+	jr z, .else
+	; if more than 1, don't use if has 5 or more hand cards
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
 	ret nc
-
-.check_hand
+.else
+	; copy hand cards to wc000
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wc000
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -6587,85 +6690,105 @@ BlazingFlameDeckAIDecideProfessorOak:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
-.loop_hand_cards
+	ld hl, wc000
+.loop_cards
 	ld a, [hli]
 	cp $ff
 	jp z, .set_carry
 	push hl
 	call GetCardIDFromDeckIndex
+
+	; if is any of the following cards, continue
 	cp16 PROFESSOR_OAK
 	jp z, .next_card
 	cp16 ENERGY_RETRIEVAL
 	jp z, .next_card
 	cp16 SWITCH
 	jp z, .next_card
+
+	; if is Potion and has any damage counters, don't use
 	cp16 POTION
-	jr nz, .check_computer_search
+	jr nz, .computer_search
 	call CheckIfAnyPlayAreaPokemonHasDamage
 	jp c, .no_carry
 	jp .next_card
-.check_computer_search
+
+.computer_search
+	; if is Computer Search and has at least
+	; 4 cards in hand, then don't use
 	cp16 COMPUTER_SEARCH
-	jr nz, .check_pkmn_trader
+	jr nz, .pkmn_trader
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 4
 	jr nc, .no_carry
 	jr .next_card
-.check_pkmn_trader
+
+.pkmn_trader
+	; if is Pokémon Trader, and has Pkmn cards
+	; in hand, then don't use
 	cp16 POKEMON_TRADER
-	jr nz, .check_fire_energy
-	farcall CountTurnDuelistPokemonInHandOrPlayArea
+	jr nz, .fire_energy
+	farcall CountNumberOfPkmnInPlayAreaAndInHand
 	push af
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	pop bc
-	cp b
+	cp b ; if different, it means that has hand Pkmn cards
 	jr nz, .no_carry
 	jr .next_card
-.check_fire_energy
+
+.fire_energy
+	; if is Fire Energy and has more than
+	; 1 Pokémon in Play Area, don't use
 	cp16 FIRE_ENERGY
-	jr nz, .check_ninetales
+	jr nz, .ninetales
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
 	jr nz, .no_carry
 	jr .next_card
-.check_ninetales
+
+.ninetales
+	; if is Ninetales and Vulpix is in Play Area, don't use
 	cp16 NINETALES_LV32
-	jr nz, .check_arcanine
+	jr nz, .arcanine
 	ld de, VULPIX_LV13
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .no_carry
 	jr .next_card
-.check_arcanine
+
+.arcanine
+	; if is Arcanine and Growlithe is in Play Area, don't use
 	cp16 ARCANINE_LV34
-	jr z, .check_growlithe_in_play
+	jr z, .is_arcanine
 	cp16 ARCANINE_LV45
-	jr nz, .check_other_pkmn
-.check_growlithe_in_play
+	jr nz, .not_arcanine
+.is_arcanine
 	ld de, GROWLITHE_LV18
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .no_carry
 	jr .next_card
-.check_other_pkmn
+
+.not_arcanine
+	; if is a Pokémon card not in Play Area, don't use
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .next_card
-
 .no_carry
+	; don't use Professor Oak
 	pop hl
 	or a
 	ret
 
 .next_card
 	pop hl
-	jp .loop_hand_cards
+	jp .loop_cards
 
 .set_carry
+	; use Professor Oak
 	scf
 	ret
 
@@ -6821,22 +6944,22 @@ BlazingFlameDeckAIDecidePokemonTrader:
 	ret
 
 BlazingFlameDeckAIDecideSwitch:
+	; if AI wants to retreat normally, use
+	; Switch if retreat cost is 1 or more
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	ret nc
-
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call GetPlayAreaCardRetreatCost
 	or a
-	jr nz, .try_switch
-
+	jr nz, .switch
+	; else, use Switch if is Confused/Sleeping/Paralyzed
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
 	or a
 	ret z
-
-.try_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
@@ -6921,7 +7044,7 @@ BlazingFlameDeckAIDecideEnergyRetrieval:
 ; try pkmn trader
 	cp16 POKEMON_TRADER
 	jr nz, .try_bill
-	farcall CountTurnDuelistPokemonInHandOrPlayArea
+	farcall CountNumberOfPkmnInPlayAreaAndInHand
 	push af
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -7951,19 +8074,21 @@ CheckIfHasDittoWithLessThan3Energies:
 	scf
 	ret
 
+; outputs in a the maximum damage from
+; its attacks that is useable
 GetHighestDamageFromDefendingPokemon:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
-	call .EstimateDamage
+	call .CheckAttack
 	push af
 	ld a, SECOND_ATTACK
-	call .EstimateDamage
+	call .CheckAttack
 	pop bc
-	cp b
-	ret nc
-	ld a, b
+	cp b ; is damage higher than first attack?
+	ret nc ; if yes, return first attack's damage
+	ld a, b ; if no, then return second attack's damage
 	ret
 
-.EstimateDamage:
+.CheckAttack:
 	ld [wSelectedAttack], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	push af
@@ -7975,12 +8100,12 @@ GetHighestDamageFromDefendingPokemon:
 	pop bc
 	ld a, b
 	ldh [hTempPlayAreaLocation_ff9d], a
-	jr c, .unusable
+	jr c, .zero ; is unusable
 	ld a, [wSelectedAttack]
 	farcall EstimateDamage_FromDefendingPokemon
 	ld a, [wDamage]
 	ret
-.unusable
+.zero
 	xor a
 	ret
 
@@ -8129,42 +8254,48 @@ RainDanceConfusionDeckAIDecideComputerSearch:
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	ret
 
-; return carry and PLAY_AREA_* location if
-; (
-;      chansey in arena with >= 20 hp remaining
-; AND (no benched pkmn OR player is ko'ing chansey in arena to win the duel)
-; )
-; OR   any non-chansey pkmn in play with >= 20 hp remaining
-Func_4bc5d:
+; Big Thunder deck AI will try to find a Pokémon in Play Area
+; with at least 20 damage to use Potion that isn't Chansey,
+; unless player KO'ing Chansey would result in losing the duel
+BigThunderDeckAIDecidePotion:
+	; is Arena card Chansey?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 CHANSEY_LV55
-	jr nz, .find_non_chansey
+	jr nz, .find_non_chansey_pkmn
+
+	; is Chansey, is it only card in Play Area?
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
-	jr z, .check_remaining_hp
+	jr z, .heal_chansey_if_has_damage
+
+	; has Bench Pokémon, is player on last prize card?
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
 	cp 1
-	jr nz, .find_non_chansey
+	jr nz, .find_non_chansey_pkmn
+
+	; player is on last prize card, will Chansey be KO'd?
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
-	jr nc, .find_non_chansey
-
-.check_remaining_hp
+	jr nc, .find_non_chansey_pkmn
+	; Chansey will be KO'd
+.heal_chansey_if_has_damage
+	; does Chansey have damage to heal?
 	xor a ; PLAY_AREA_ARENA
 	call CheckIfPokemonHasDamage
 	cp 20
-	jr c, .find_non_chansey ; 10 HP remaining
-	xor a ; PLAY_AREA_ARENA
+	jr c, .find_non_chansey_pkmn
+	; heal it
+	xor a ; Arena card
 	scf
 	ret
 
-.find_non_chansey
+.find_non_chansey_pkmn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld d, a
@@ -8172,89 +8303,99 @@ Func_4bc5d:
 .loop_play_area
 	ld a, e
 	cp d
-	ret nc ; not found
+	ret nc ; no healing
+	; does this Pokémon have at least 20 damage?
 	push de
 	call CheckIfPokemonHasDamage
 	pop de
 	cp 20
-	jr c, .next
+	jr c, .next_play_area
+	; skip if it's Chansey
 	ld hl, wLoadedCard1ID
 	cphl CHANSEY_LV55
-	jr z, .next
-; found
+	jr z, .next_play_area
+	; at least 20 damage and not Chansey, heal it
 	ld a, e
 	scf
 	ret
-.next
+.next_play_area
 	inc e
 	jr .loop_play_area
 
-; return carry if
-; non-chansey pkmn in arena with >= 40 hp remaining and any energy attached
-Func_4bcbb:
+; Big Thunder deck AI will check if Arena card is not Chansey,
+; it has at least 40 damage, and has energy attached
+; if true, then use Super Potion on it
+BigThunderDeckAIDecideSuperPotion:
+	; is Arena card Chansey?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 CHANSEY_LV55
-	ret z
+	ret z ; yes, skip
 
+	; does it have 40 or more damage?
 	xor a ; PLAY_AREA_ARENA
 	call CheckIfPokemonHasDamage
 	cp 40
 	ccf
-	ret nc
+	ret nc ; less than 40, skip
 
+	; does it have energies?
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	or a
-	ret z
-; set carry
+	ret z ; no, skip
+
+	; yes, use it on Arena card
 	xor a
 	scf
 	ret
 
-; e = location (PLAY_AREA_*)
-; return a = number of energy cards attached, except for Recycle Energy
-CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy:
+; counts, in turn-holder's Play Area location given in e,
+; the number of energy cards attached to that Play Area Pokémon
+; that are not Recycle Energy, and outputs it in a
+CountEnergyRemovalEnergyCardTargets:
 	push hl
 	push de
 	push bc
-	ld a, CARD_LOCATION_ARENA
+	ld a, CARD_LOCATION_PLAY_AREA
 	or e
 	ld e, a
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ld l, DUELVARS_CARD_LOCATIONS
 	ld d, 0
-.loop_deck_cards
+.loop_deck
 	ld a, [hl]
 	cp e
-	jr nz, .next
+	jr nz, .next_card
+	; this card is in the selected Play Area location
 	push hl
 	push de
+	; is it a Recycle Energy?
 	ld a, l
 	call GetCardIDFromDeckIndex
 	cp16 RECYCLE_ENERGY
-	jr z, .next_pop
+	jr z, .skip ; yes
+	; is it an energy card?
 	call GetCardType
 	bit TYPE_ENERGY_F, a
-	jr z, .next_pop
-; found at the target area
+	jr z, .skip ; no
+	; found potential target
 	pop de
 	inc d
 	pop hl
-	jr .next
-.next_pop
+	jr .next_card
+.skip
 	pop de
 	pop hl
-.next
+.next_card
 	inc l
 	ld a, l
 	cp DECK_SIZE
-	jr nz, .loop_deck_cards
-; done
-	ld a, d
+	jr nz, .loop_deck
+	ld a, d ; target count
 	pop bc
 	pop de
 	pop hl
@@ -8551,7 +8692,7 @@ PsychicEliteDeckAIDecideScoopUp:
 	jr nz, .next
 ; 10 HP
 	ld e, c
-	call CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	call CountEnergyRemovalEnergyCardTargets
 	ld hl, wTempAISearchCriteria
 	cp [hl]
 	jr z, .set_carry

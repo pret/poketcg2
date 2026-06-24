@@ -26,7 +26,8 @@ SECTION "Bank 7", ROMX
 INCLUDE "engine/bank07.asm"
 
 SECTION "Bank 8", ROMX
-INCLUDE "engine/bank08.asm"
+INCLUDE "data/duel/ai_trainer_card_logic.asm"
+INCLUDE "engine/duel/ai/trainer_cards.asm"
 
 SECTION "Bank 9", ROMX
 INCLUDE "engine/bank09.asm"

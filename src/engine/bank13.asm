@@ -64,7 +64,7 @@ FindBenchCardThatCanBeDamaged:
 	ld a, PLAY_AREA_BENCH_1
 	ret
 
-INCLUDE "engine/duel/spread_attacks.asm"
+INCLUDE "engine/duel/ai/spread_attacks.asm"
 
 ; return carry if thd defending (player's arena) card is immune, with no Benched Pokémon
 IsPlayerArenaCardImmuneAndNoBenchedPokemon:
@@ -480,31 +480,34 @@ FindReplacementPkmnIfMrMime:
 	call SwapTurn
 	ret
 
-; PsychicBattleDeckAI?
 Func_4c4ba:
+	; if 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 16
 	ret nc
 
+	; count number of turns AI has played (half of wDuelTurns)
 	ld a, [wDuelTurns]
 	srl a
 	cp 3
-	jr c, .check_hand ; AI hasn't taken 3 turns
-
+	jr c, .less_than_3_turns
+	; has played at least 3 turns, don't use
+	; if number of cards in hand is 5 or more
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
 	ret nc
-
-.check_hand
+.less_than_3_turns
+	; if has at least 3 energy cards in hand, don't use
 	farcall CountEnergyCardsInHand
 	cp 3
 	ret nc
 
+	; copy hand card list to wc000
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wc000
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -512,33 +515,37 @@ Func_4c4ba:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
-.loop_hand_cards
+	ld hl, wc000
+.loop_cards
 	ld a, [hli]
 	cp $ff
 	jp z, .set_carry
 	push hl
 	call GetCardIDFromDeckIndex
+	; continue if is Professor Oak card
 	cp16 PROFESSOR_OAK
 	jr z, .next_card
+	; if this card is already found in Play Area, continue
 	push de
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop de
 	jr c, .next_card
+	; if is Switch or Energy Retrieval, continue
 	cp16 SWITCH
 	jr z, .next_card
 	cp16 ENERGY_RETRIEVAL
 	jr z, .next_card
-; no carry
+	; if none of those are true, don't use Professor Oak
 	pop hl
 	or a
 	ret
 .next_card
 	pop hl
-	jp .loop_hand_cards
+	jp .loop_cards
 
 .set_carry
+	; use Professor Oak
 	scf
 	ret
 
@@ -787,7 +794,7 @@ Func_4c676:
 
 	ld e, PLAY_AREA_ARENA
 	call SwapTurn
-	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	farcall CountEnergyRemovalEnergyCardTargets
 	call SwapTurn
 	or a
 	ret z
@@ -838,7 +845,7 @@ FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy:
 	get_turn_duelist_var
 	cp c
 	jr c, .next
-	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
+	farcall CountEnergyRemovalEnergyCardTargets
 	or a
 	jr z, .next
 
@@ -1685,29 +1692,24 @@ ChainLightningByPikachuDeckAIDecideMasterBall:
 	farcall AITryMasterBall
 	ret
 
-; return carry if in KO range of poison damage within the next two between-turn steps
-CanBeKnockedOutByTwicePoisonDamage:
+; returns carry if Arena card is KO'd by poison damage
+; after this turn and the next (2 turns of damage)
+CheckIfPoisonDamageKOsArenaPkmn:
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and PSN_DBLPSN
 	cp DOUBLE_POISONED
-	jr nz, .check_single
-
-.double
-	ld a, DBLPSN_DAMAGE * 2
-	jr .check_remaining_hp
-
-.check_single
+	jr nz, .not_dbl_psn
+.poison_mist_active
+	ld a, 2 * 20
+	jr .got_psn_damage
+.not_dbl_psn
 	cp POISONED
-	jr nz, .not_psn
-; check Poison Mist
+	jr nz, .no_carry
 	bank1call IsPoisonMistActive
-	jr c, .double
-
-; single
-	ld a, PSN_DAMAGE * 2
-
-.check_remaining_hp
+	jr c, .poison_mist_active
+	ld a, 2 * 10
+.got_psn_damage
 	push af
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -1715,9 +1717,10 @@ CanBeKnockedOutByTwicePoisonDamage:
 	pop af
 	cp b
 	ccf
+	; carry if a >= b
 	ret
 
-.not_psn
+.no_carry
 	or a
 	ret
 
@@ -1726,37 +1729,39 @@ PoisonMistDeckAIDecideSwitch:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_MUK
-	jr z, .dark_muk_arena
+	jr z, .dark_muk
 	cp16 WEEZING_LV26
-	jr z, .weezing_arena
+	jr z, .weezing
 	cp16 MR_MIME_LV20
-	jr z, .check_switch
+	jr z, .switch
 
 .no_carry
 	or a
 	ret
 
-.dark_muk_arena
+.dark_muk
+	; if Dark Muk has status, use Switch
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
 	ret z
-; statused
-	jr .check_switch
+	jr .switch
 
-.weezing_arena
+.weezing
+	; if Weezing cannot attack...
 	farcall CanArenaCardUseNonResidualAttack
 	jr c, .no_carry
+	; ...and its HP is below 60...
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
-	cp 60 ; default max HP of Weezing Lv.26
+	cp 60
 	jr nc, .no_carry
+	; ...and there's no other Weezing in bench, use Switch
 	ld de, WEEZING_LV26
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .no_carry
-
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret

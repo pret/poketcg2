@@ -8149,7 +8149,7 @@ AICheckSpecialColorlessEnergyCards:
 	or a
 	ret nz
 	ld a, 10
-	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
+	farcall CheckIfHealingPreventsKOByDefendingPokemon
 	call c, .MaybePickPotionEnergy
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
