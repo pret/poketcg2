@@ -134,13 +134,13 @@ DuelCardHeaderGraphics::
 	INCBIN "gfx/duel/card_type_headers.2bpp"
 
 DuelCgbSymbolGraphics::
-	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
+	INCBIN "gfx/duel/cgb_symbols.2bpp"
 
 DuelDmgSgbSymbolGraphics::
 	INCBIN "gfx/duel/dmg_sgb_symbols.2bpp"
 
-DuelCardSet2SymbolGraphics::
-	INCBIN "gfx/duel/card_set2_symbols.2bpp"
+RealCardSetSymbolGraphics::
+	INCBIN "gfx/duel/real_card_set_symbols.2bpp"
 
 	ds $30
 
