@@ -11,11 +11,9 @@ EmptyScreen::
 BCCoordToBGMap0Address::
 	ld l, c
 	ld h, $0
+REPT 5 ; *TILEMAP_WIDTH
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
+ENDR
 	ld c, b
 	ld b, HIGH(v0BGMap0)
 	add hl, bc

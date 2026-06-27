@@ -3414,55 +3414,57 @@ LoadLoadedCard1Gfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, CARD_TILE_COUNT, TILE_SIZE
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	call LoadCardGfx
 	ret
 
 ; applies the tilemap of the loaded card gfx
-; to coordinates in de, and loads its palette
+; to coordinates in de, and loads its palettes
 ; starting from BG pal 2
 DrawCardGfxToDE_BGPalIndex2:
 	ld a, [wConsole]
 	or a
 	ret z
-	ld a, $02
-	call LoadCardPalettesAndAttributes
+	ld a, 2
+	call LoadCardPalettesAndBGPAttributes
 	ret
 
 ; applies the tilemap of the loaded card gfx
-; to coordinates in de, and loads its palette
+; to coordinates in de, and loads its palettes
 ; starting from BG pal 5
 DrawCardGfxToDE_BGPalIndex5:
 	ld a, [wConsole]
 	or a
 	ret z
-	ld a, $5
-	call LoadCardPalettesAndAttributes
+	ld a, 5
+	call LoadCardPalettesAndBGPAttributes
 	ret
 
-SetOBPToCardPalette:
+; unreferenced
+SetOBP5ToCardPalette:
 	ldgbpal a, SHADE_WHITE, SHADE_LIGHT, SHADE_DARK, SHADE_BLACK
 	ld [wOBP0], a
 	ld a, [wConsole]
 	or a
 	ret z
-	ld a, $0d
-	jr CopyCGBCardPalette
+	ld a, 8 + 5 ; CGB Object Palette 5 (to 7)
+	jr CopyCGBCardPalettes_UpdatePalIndex
 
 ; de = coordinates
-LoadCardPalettesAndAttributes:
+LoadCardPalettesAndBGPAttributes:
 	push de
-	call CopyCGBCardPalette
+	call CopyCGBCardPalettes_UpdatePalIndex
 	pop bc
 
-	; copy attributes
+; hl = wCardAttrMap holding bg pal index
+; copy attributes
 	push hl
 	call BCCoordToBGMap0Address
 	pop hl
 	call BankswitchVRAM1
-	ld c, $06
+	ld c, CARD_GFX_HEIGHT
 .loop_copy_attr
-	ld b, $08
+	ld b, CARD_GFX_WIDTH
 	push de
 	call SafeCopyDataHLtoDE
 	pop de
@@ -3477,18 +3479,21 @@ LoadCardPalettesAndAttributes:
 	call BankswitchVRAM0
 	ret
 
-; a = starting BG palette index to copy to
-CopyCGBCardPalette:
+; for a = starting BG palette index,
+; copy wCardPalettes to bgpal[a, a+1, a+2], and
+; update wCardAttrMap with a + (each tile's pal index)
+; also return hl = wCardAttrMap
+CopyCGBCardPalettes_UpdatePalIndex:
 	ld c, a
+REPT 3 ; *= PAL_SIZE
 	add a
-	add a
-	add a ; *8
+ENDR
 	ld e, a
 	ld d, $00
 	ld hl, wBackgroundPalettesCGB
 	add hl, de
 	ld de, wCardPalettes
-	ld b, 3 palettes
+	ld b, CARDGFXSTRUCT_PALS_SIZE
 .loop_copy_pal
 	ld a, [de]
 	inc de
@@ -3496,10 +3501,12 @@ CopyCGBCardPalette:
 	dec b
 	jr nz, .loop_copy_pal
 
-	; de = wCardAttrMap
+; de = wCardAttrMap
+; overwrite each tile's value with
+; (starting BG palette index) + its CARD_GFX_TILE_ATTRMAP_PAL_INDEX (0, 1, 2)
 	push de
-	ld b, $30
-.asm_56e4
+	ld b, CARDGFXSTRUCT_TILE_ATTRMAP_SIZE
+.loop_load_pal_index
 	ld a, [de]
 	rlca
 	rlca
@@ -3508,7 +3515,7 @@ CopyCGBCardPalette:
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_56e4
+	jr nz, .loop_load_pal_index
 	pop hl
 	ret
 

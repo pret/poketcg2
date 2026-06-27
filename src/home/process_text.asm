@@ -148,10 +148,10 @@ SetupText::
 	xor a
 	ldh [hffbb], a
 	ldh [hTextTileCacheHead], a
-	ld a, $88
-	ld [wTilePatternSelector], a
+	ld a, HIGH(v0Tiles1)
+	ld [wTextTileBaseAddressHi], a
 	ld a, $80
-	ld [wTilePatternSelectorCorrection], a
+	ld [wTextTileIndexSignednessAdjust], a
 	ld hl, wc600
 .clear_loop
 	xor a
@@ -207,9 +207,9 @@ InitTextPrinting::
 
 ; requests a text tile to be generated and prints it in the screen
 ; different modes depending on hffbb:
-   ; hffbb == $0: generate and place text tile
-   ; hffbb == $2 (bit 1 set): only generate text tile?
-   ; hffbb == $1 (bit 0 set): not even generate it, but just update text buffers?
+;   hffbb == $0: generate and place text tile
+;   hffbb == $2 (bit 1 set): only generate text tile?
+;   hffbb == $1 (bit 0 set): not even generate it, but just update text buffers?
 GenerateAndPlaceTextTile::
 	push hl
 	push de
@@ -594,12 +594,12 @@ CreateHalfWidthFontTile::
 ; the ascii value of the character to copy is provided in a.
 ; assumes BANK(HalfWidthFont) is already loaded.
 CopyHalfWidthCharacterToDE::
-	sub $20 ; HalfWidthFont begins at ascii $20
+	sub HALFWIDTH_CHAR_START
 	ld l, a
 	ld h, $0
+REPT 3 ; *TILE_SIZE_1BPP
 	add hl, hl
-	add hl, hl
-	add hl, hl
+ENDR
 	ld bc, HalfWidthFont
 	add hl, bc
 	ld b, TILE_SIZE_1BPP
@@ -622,21 +622,19 @@ CreateFullWidthFontTile_ConvertToTileDataAddress::
 	pop bc
 ;	fallthrough
 
-; given a tile number in b, return its v*Tiles address in hl, and return c = TILE_SIZE
-; wTilePatternSelector and wTilePatternSelectorCorrection are used to select the source:
-; - if wTilePatternSelector == $80 and wTilePatternSelectorCorrection == $00 -> $8000-$8FFF
-; - if wTilePatternSelector == $88 and wTilePatternSelectorCorrection == $80 -> $8800-$97FF
+; given a tile number in b, return its tile address in hl, and return c = TILE_SIZE
+; default: VRAM, LCDC_BLOCK21
+; printer: SRAM, as if LCDC_BLOCK01
 ConvertTileNumberToTileDataAddress::
-	ld hl, wTilePatternSelectorCorrection
+	ld hl, wTextTileIndexSignednessAdjust
 	ld a, b
 	xor [hl]
 	ld h, $0
 	ld l, a
+REPT 4 ; *TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld a, [wTilePatternSelector]
+ENDR
+	ld a, [wTextTileBaseAddressHi]
 	ld b, a
 	ld c, $0
 	add hl, bc
@@ -673,7 +671,7 @@ ClassifyTextCharacterPair::
 	ld a, e
 	cp TX_CTRL_END
 	jr c, .continue_check
-	cp $60
+	cp FULLWIDTH0_CHAR_START
 	jr nc, .not_katakana
 	ldh a, [hJapaneseSyllabary]
 	cp TX_KATAKANA
@@ -754,18 +752,18 @@ PromoteTextTileCacheEntry::
 	ldh a, [hTextTileCacheHead]
 	ld l, a              ; l ← [hTextTileCacheHead]; index to to linked-list head
 .asm_237d
-	ld h, $c6                                     ;
+	ld h, HIGH(wc600)    ;
 	ld a, [hl]           ; a ← key1[l]            ;
 	or a                                          ;
 	ret z                ; if NULL, return a = 0  ;
 	cp e                                          ; loop for e/d key in
 	jr nz, .asm_238a     ;                        ; linked list
-	inc h ; $c7          ;                        ;
+	inc h ; HIGH(wc700)  ;                        ;
 	ld a, [hl]           ; if key1[l] == e and    ;
 	cp d                 ;   key2[l] == d:        ;
 	jr z, .asm_238f      ;   break                ;
 .asm_238a
-	ld h, $c8            ;                        ;
+	ld h, HIGH(wc800)    ;                        ;
 	ld l, [hl]           ; l ← next[l]            ;
 	jr .asm_237d
 .asm_238f
@@ -773,20 +771,20 @@ PromoteTextTileCacheEntry::
 	cp l
 	jr z, .asm_23af      ; assert at least one iteration
 	ld c, a
-	ld b, $c9
+	ld b, HIGH(wc900)
 	ld a, l
 	ld [bc], a           ; prev[i0] ← i
 	ldh [hTextTileCacheHead], a       ; [hTextTileCacheHead] ← i  (update linked-list head)
-	ld h, $c9
+	ld h, HIGH(wc900)
 	ld b, [hl]
 	ld [hl], $0          ; prev[i] ← 0
-	ld h, $c8
+	ld h, HIGH(wc800)
 	ld a, c
 	ld c, [hl]
 	ld [hl], a           ; next[i] ← i0
 	ld l, b
 	ld [hl], c           ; next[prev[i]] ← next[i]
-	ld h, $c9
+	ld h, HIGH(wc900)
 	inc c
 	dec c
 	jr z, .asm_23af      ; if next[i] != NULL:
@@ -802,9 +800,9 @@ CaseHalfWidthLetter::
 	or a
 	ret z
 	ld a, e
-	cp $60
+	cp 'a' - 1
 	ret c
-	cp $7b
+	cp 'z' + 1
 	ret nc
 	sub 'a' - 'A'
 	ld e, a

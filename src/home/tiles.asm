@@ -60,10 +60,9 @@ LoadCardSet2Tiles::
 	ret z
 	ld l, a
 	ld h, 0
+REPT 4 ; *TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
+ENDR
 	ld de, DuelOtherGraphics + $1d tiles - $4000 ; card set 2 icons
 	add hl, de
 	ld de, v0Tiles1 + $7c tiles
@@ -146,14 +145,16 @@ LoadDuelCardSymbolTiles2::
 
 ; load the Deck and the Discard Pile icons
 LoadDeckAndDiscardPileIcons::
-	ld hl, $3148
-	ld de, $cb16
-	ld c, $08
+	ld hl, Pals_6f148 - $4000
+	ld de, wBackgroundPalettesCGB + 5 palettes
+	ld c, PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
 	ld hl, DuelDeckAndDiscardPileIcons
-	ld de, $8a00
+	ld de, v0Tiles1 + $20 tiles
 	ld b, $0d
 	call CopyFontsOrDuelGraphicsTiles
+; fallthrough
+
 ; load the tiles for the player's / opponent's Play Area screen
 ; (uses a separate set of tiles on CGB vs DMG/SGB)
 LoadDuelPlayAreaScreenTiles::
@@ -169,9 +170,9 @@ LoadDuelPlayAreaScreenTiles::
 
 ; load the tiles for the [O] and [X] symbols used to display the results of a coin toss
 LoadDuelCoinTossResultTiles::
-	ld hl, $3108
-	ld de, $cafe
-	ld c, $08
+	ld hl, Pals_6f108 - $4000
+	ld de, wBackgroundPalettesCGB + 2 palettes
+	ld c, PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
 	ld hl, DuelCoinTossResultTiles
 	ld de, v0Tiles2 + $30 tiles
@@ -215,10 +216,9 @@ LoadCardSymbolFontTilesToSRAM::
 	sub $d0
 	ld l, a
 	ld h, $00
+REPT 4 ; *TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl ; *16
+ENDR
 	ld de, DuelDmgSgbSymbolGraphics - $4000
 	add hl, de
 	ld de, sGfxBuffer1 + $38 tiles
@@ -237,10 +237,10 @@ DrawDuelBoxMessage::
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, $3110
+	ld hl, Pals_6f110 - $4000
 	add hl, de
-	ld de, $cafe
-	ld c, 8
+	ld de, wBackgroundPalettesCGB + 2 palettes
+	ld c, PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
 	call BankswitchVRAM1
 	ld a, 2
@@ -259,7 +259,7 @@ DrawDuelBoxMessage::
 	ld de, v0Tiles1 + $20 tiles
 	ld b, 40
 	call CopyFontsOrDuelGraphicsTiles
-	ld a, $a0
+	ld a, $a0 ; v0Tiles1 + $20 tiles
 	lb hl, 1, 10
 ;	fallthrough
 
@@ -305,6 +305,7 @@ Copy1bppTiles::
 	jr nz, .tile_loop
 	ret
 
+; copy c bytes from BANK(Fonts):hl to de
 CopyFontsOrDuelGraphicsBytes::
 	ld a, BANK(Fonts) ; BANK(DuelGraphics)
 	call BankpushROM

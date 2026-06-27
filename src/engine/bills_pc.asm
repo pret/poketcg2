@@ -90,7 +90,7 @@ _BillsPC:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, CARD_TILE_COUNT, TILE_SIZE
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	ld de, v0Tiles1 + $20 tiles
 	call LoadCardGfx
 	ld a, $a0 ; v0Tiles1 + $20 tiles
@@ -112,7 +112,7 @@ _BillsPC:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, CARD_TILE_COUNT, TILE_SIZE
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	ld de, v0Tiles1 + $50 tiles
 	call LoadCardGfx
 	ld a, $d0 ; v0Tiles1 + $50 tiles
@@ -122,7 +122,7 @@ _BillsPC:
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex2
 	ld de, v0Tiles1 + $10 tiles
-	ld hl, $36d0
+	ld hl, DuelCardHeaderGraphics + $20 tiles - $4000
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
 	ld a, $90 ; v0Tiles1 + $10 tiles

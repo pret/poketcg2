@@ -5,7 +5,7 @@ baserom overlay into per-card sources + an asm layout.
 Card format (uncompressed, fixed 840 B), starting at CardGraphics + index*8:
   72-byte header = 3 GBC palettes (24 B) + a 48-entry attribute map.
                    Each map byte's high 2 bits pick that tile's palette; the
-                   low 6 bits are a tile index used by the alternate (LoadCardGfxRemapped)
+                   low 6 bits are a tile index used by the alternate (LoadCardGfx_PrinterAlt)
                    renderer. The portrait loader copies the 48 tiles 1:1, so for
                    the portrait each tile uses exactly one palette.
   768-byte tiles = 48 stored tiles x TILE_SIZE (column-major).
@@ -98,7 +98,7 @@ def header_asm(hdr):
 
 def extra_tile_bytes(rom, a):
     """bytes of printer tiles a card references past its 48-tile portrait.
-       LoadCardGfxRemapped reads source tile (attr[i]&$3f)+i; anything above 47
+       LoadCardGfx_PrinterAlt reads source tile (attr[i]&$3f)+i; anything above 47
        lives in the card's extra tiles right after the portrait."""
     attr = rom[a+24:a+72]
     return max(0, max((b & 0x3f) + j for j, b in enumerate(attr)) - 47) * 16
@@ -121,7 +121,7 @@ def build_segments(rom, byaddr):
     """Walk the region into typed segments:
          pre   - un-indexed gfx before CardGraphics ($1b tail, $1c)
          card  - the 840-byte portrait blob
-         extra - the card's printer tiles (read by LoadCardGfxRemapped)
+         extra - the card's printer tiles (read by LoadCardGfx_PrinterAlt)
          pad   - 0x00/0xff alignment between cards
        Misc/pad are split at 0x4000 bank boundaries."""
     starts = sorted(byaddr)
@@ -251,7 +251,7 @@ def main():
         header = (
             "; Card graphics. Each \"<Name>CardGfx\": 3 GBC palettes (rgb) + a 48-entry\n"
             "; attribute map (db; high 2 bits = each tile's palette, low 6 = a tile index\n"
-            "; for the alternate LoadCardGfxRemapped renderer), then INCBIN of the 48\n"
+            "; for the alternate LoadCardGfx_PrinterAlt renderer), then INCBIN of the 48\n"
             "; portrait tiles (built from gfx/cards/<name>.png, 4-shade grayscale, column-\n"
             "; major). A \"<Name>CardGfxExtra\" + INCBIN follows for cards whose printer\n"
             "; rendering pulls in extra tiles past the portrait; `ds` runs are inter-card\n"

@@ -20,11 +20,9 @@ SafeCopyDataDEtoHL:
 DECoordToBGMap0Address:
 	ld l, e
 	ld h, $0
+REPT 5 ; *TILEMAP_WIDTH
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
+ENDR
 	ld a, l
 	add d
 	ld l, a

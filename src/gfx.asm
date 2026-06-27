@@ -76,7 +76,6 @@ Pals_6f0f0::
 	rgb  0,  0,  0
 	rgb 28, 12,  0
 	rgb 13,  9,  0
-; 0x6f108
 
 Pals_6f108::
 	rgb 31, 31, 31
@@ -84,6 +83,7 @@ Pals_6f108::
 	rgb  0,  0,  0
 	rgb  0, 10, 28
 
+Pals_6f110::
 	rgb 31, 31, 31
 	rgb 31, 22,  9
 	rgb 27,  9,  4
@@ -119,16 +119,43 @@ Pals_6f108::
 	rgb  8, 20, 27
 	rgb  0,  7, 14
 
+Pals_6f148::
 	rgb 31, 31, 31
 	rgb  0,  0, 31
 	rgb 31,  0,  0
 	rgb  0,  0,  0
-; 0x6f150
-
-SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
 
 SymbolsFont::
 INCBIN "gfx/fonts/symbols.2bpp"
+
+DuelGraphics::
+
+DuelCardHeaderGraphics::
+	INCBIN "gfx/duel/card_type_headers.2bpp"
+DuelCgbSymbolGraphics::
+	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
+DuelDmgSgbSymbolGraphics::
+	INCBIN "gfx/duel/dmg_sgb_card_symbols.2bpp"
+DuelOtherGraphics::
+	INCBIN "gfx/duel/duel_other_gfx.2bpp"
+
+SECTION "Gfx 2", ROMX
+DuelCheckPokemonScreenGfx::
+	INCBIN "gfx/duel/check_pokemon_screen.2bpp"
+DuelPlayAreaScreenGfx::
+	INCBIN "gfx/duel/play_area_screen.2bpp"
+DuelPlayAreaScreenGfxDMG::
+	INCBIN "gfx/duel/play_area_screen_dmg.2bpp"
+DuelDeckAndDiscardPileIcons::
+	INCBIN "gfx/duel/deck_discard_icons.2bpp"
+DuelCoinTossResultTiles::
+	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
+DuelMenuAndCardPicBorderTiles::
+	INCBIN "gfx/duel/menu_card_pic_border.2bpp"
+DuelDrawCardsScreenIcons::
+	INCBIN "gfx/duel/draw_cards_icons.2bpp"
+DuelBoxMessages::
+	INCBIN "gfx/duel/box_messages.2bpp"
 
 INCLUDE "gfx/card_graphics.asm"
 

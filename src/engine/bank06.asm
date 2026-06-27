@@ -4238,18 +4238,18 @@ PrintCardInfoFooterStripAndFeed:
 	call SendPrinterInstructionPacket_1Sheet_3LineFeeds
 	ret
 
-; calls setup text and sets wTilePatternSelector
+; calls setup text and sets wTextTileBaseAddressHi to SRAM
 SetupPrinterText:
 	lb de, $40, $bf
 	call SetupText
-	ld a, $a4
-	ld [wTilePatternSelector], a
+	ld a, HIGH(sGfxBuffer1)
+	ld [wTextTileBaseAddressHi], a
 	xor a
-	ld [wTilePatternSelectorCorrection], a
+	ld [wTextTileIndexSignednessAdjust], a
 	ret
 
 ; switches to CGB normal speed, resets serial
-; enables SRAM and switches to SRAM1
+; enables SRAM and switches to SRAM3
 ; and clears sGfxBuffer0
 PrepareForPrinterCommunications:
 	call SwitchToCGBNormalSpeed
@@ -4385,10 +4385,9 @@ SendTilesToPrinter:
 	push bc
 	ld l, a
 	ld h, $00
+REPT 4 ; *TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl ; *TILE_SIZE
+ENDR
 	ld bc, sGfxBuffer1
 	add hl, bc
 	ld c, TILE_SIZE
@@ -5468,74 +5467,80 @@ DisplayBoosterContent:
 	bank1call DisplayCardList
 	ret
 
-; builds the card's picture for the Game Boy Printer into the buffer at de.
-; loads the card's tiles (LoadCardGfxRemapped) into wc000, then walks the
-; 8x6-tile portrait in column-major order and repacks each tile's pixel rows
-; (through the rr/rra/sra bit sequence) into the print-buffer layout. The
-; per-tile palette is dropped, so the printout is a flat grayscale of the card.
+; builds at de the 2x scaled card gfx for the Game Boy Printer,
+; using printer-only alt tiles where appropriate
+; input:
+;   hl = card gfx index
+;   de = destination
 BuildPrintableCardPic:
 	push de
-	ld de, wc000
-	lb bc, CARD_TILE_COUNT, TILE_SIZE
-	call LoadCardGfxRemapped ; load the 48 (remapped) card tiles into wc000
-	pop de ; de = output buffer
-	ld hl, wc000 ; hl = loaded tiles
-	ld c, $08 ; 8 tile columns
-.col
-	ld b, $06 ; 6 tile rows (8x6 = 48 tiles)
-.row
+	ld de, wTempPrintableCardPic
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
+	call LoadCardGfx_PrinterAlt
+	pop de
+	ld hl, wTempPrintableCardPic
+
+	ld c, CARD_GFX_WIDTH
+.loop_columns
+	ld b, CARD_GFX_HEIGHT
+.loop_rows
 	push bc
-	ld c, $08 ; 8 pixel rows per tile
-.pixel_row
-	ld b, $02 ; 2 bytes (bitplanes) per pixel row
-.plane
+	ld c, 8 ; lines per tile
+.loop_pixel_rows
+	; abcdefgh ijklmnop
+	; -> aabbccdd iijjkkll aabbccdd iijjkkll at (offset)
+	;    eeffgghh mmnnoopp eeffgghh mmnnoopp at (offset + 2*6 tiles)
+	ld b, 2 ; bytes per line
+.loop_bitplanes
 	push bc
 	push hl
-	ld c, [hl] ; c = one bitplane byte (8 pixels)
-	ld b, $04
-.repack_lo
-	rr c ; pull a source pixel bit...
-	rra
-	sra a ; ...and pack it into a
-	dec b
-	jr nz, .repack_lo ; the low 4 bits of the byte
-	ld hl, $c0
-	add hl, de
-	ld [hli], a
-	inc hl
-	ld [hl], a ; write the packed value to de+$c0 and de+$c0+2
-	ld b, $04
-.repack_hi
+	ld c, [hl]
+	; efgh -> eeffgghh
+	ld b, 4
+.loop_right_half
 	rr c
 	rra
 	sra a
 	dec b
-	jr nz, .repack_hi ; the high 4 bits of the byte
-	ld [de], a
-	ld hl, $2
+	jr nz, .loop_right_half
+	ld hl, 2 * CARD_GFX_HEIGHT tiles
 	add hl, de
-	ld [hl], a ; write the packed value to de and de+2
+	ld [hli], a
+	inc hl
+	ld [hl], a
+	; abcd -> aabbccdd
+	ld b, 4
+.loop_left_half
+	rr c
+	rra
+	sra a
+	dec b
+	jr nz, .loop_left_half
+	ld [de], a
+	ld hl, 2
+	add hl, de
+	ld [hl], a
 	pop hl
 	pop bc
 	inc de
 	inc hl
 	dec b
-	jr nz, .plane
+	jr nz, .loop_bitplanes
 	inc de
 	inc de
 	dec c
-	jr nz, .pixel_row
+	jr nz, .loop_pixel_rows
 	pop bc
 	dec b
-	jr nz, .row
-	ld a, $c0
+	jr nz, .loop_rows
+	ld a, 2 * CARD_GFX_HEIGHT tiles
 	add e
 	ld e, a
-	ld a, $00
+	ld a, 0
 	adc d
-	ld d, a ; advance de by $c0 to the next tile-column block
+	ld d, a
 	dec c
-	jr nz, .col
+	jr nz, .loop_columns
 	ret
 
 LoadHandCardsIcon:

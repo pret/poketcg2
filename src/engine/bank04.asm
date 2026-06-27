@@ -5853,14 +5853,10 @@ LoadCardGfx_FromCardID:
 	add c
 	ld c, a
 	ld b, $00
+REPT 4 ; *TILE_SIZE
 	sla c
 	rl b
-	sla c
-	rl b
-	sla c
-	rl b
-	sla c
-	rl b ; *TILE_SIZE
+ENDR
 	ld hl, v0Tiles1
 	add hl, bc
 	ld d, h
@@ -5868,7 +5864,7 @@ LoadCardGfx_FromCardID:
 	pop hl
 	xor a
 	call BankswitchVRAM
-	lb bc, CARD_TILE_COUNT, TILE_SIZE
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	call LoadCardGfx
 	pop hl
 	pop de
@@ -5883,9 +5879,9 @@ CopyCardPalettesToBGPals:
 	push de
 	push hl
 	ld b, $00
+REPT 3 ; *PAL_SIZE
 	sla c
-	sla c
-	sla c ; *PAL_SIZE
+ENDR
 	ld hl, wBackgroundPalettesCGB
 	add hl, bc
 	ld d, h
@@ -5930,7 +5926,7 @@ DrawLoadedCard:
 	ld de, wCardTilemap
 	ld a, [wCardTilemapOffset]
 	ld c, a
-	ld b, $30 ; card size in tiles
+	ld b, NUM_CARD_GFX_TILES
 .loop_copy
 	ld a, [hli]
 	add c
@@ -5954,7 +5950,7 @@ DrawLoadedCard:
 	ld de, wddc4
 	ld a, [wddf5]
 	ld c, a
-	ld b, $30 ; card size in tiles
+	ld b, NUM_CARD_GFX_TILES
 .asm_134f8
 	ld a, [hli]
 	rlca
@@ -6002,7 +5998,7 @@ DebugCardViewer:
 	push bc
 	push de
 	push hl
-	call .asm_1358a
+	call .DrawBox
 	ld hl, $0
 REPT 2
 	ld a, (NUM_CARDS - 1) / 2
@@ -6014,47 +6010,51 @@ ENDR
 	ld d, h
 	ld e, l
 	call .Draw
-.asm_1354b
+
+.wait_input
 	call DoFrame
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
-	jr nz, .asm_13559
-	call .asm_13561
-	jr .asm_1354b
-.asm_13559
-	call .asm_135ac
+	jr nz, .exit
+	call .Scroll
+	jr .wait_input
+
+.exit
+	call .ResumeSprites
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-.asm_13561:
+.Scroll:
 	ldh a, [hDPadHeld]
-	and $10
-	jr nz, .asm_1357c
+	and PAD_RIGHT
+	jr nz, .handle_forward
 	ldh a, [hDPadHeld]
-	and $20
-	jr nz, .asm_1356e
+	and PAD_LEFT
+	jr nz, .handle_backward
 	ret
-.asm_1356e
+
+.handle_backward
 	ld bc, GRASS_ENERGY
 	call CompareBCAndDE
-	jr c, .asm_13579
+	jr c, .scroll_backward
 	ld de, NUM_CARDS + 1
-.asm_13579
+.scroll_backward
 	dec de
 	jr .Draw
-.asm_1357c
+
+.handle_forward
 	ld bc, NUM_CARDS - 1
 	call CompareBCAndDE
-	jr nc, .asm_13587
+	jr nc, .scroll_forward
 	ld de, 0
-.asm_13587
+.scroll_forward
 	inc de
 	jr .Draw
 
-.asm_1358a:
+.DrawBox:
 	lb de, 5, 4
 	lb bc, 10, 8
 	call AdjustDECoordByhSC
@@ -6068,7 +6068,7 @@ ENDR
 	call FillBoxInBGMap
 	ret
 
-.asm_135ac:
+.ResumeSprites:
 	call CopyBGMapFromWRAMToVRAM
 	call SetActiveSpriteAnimFlag6WithinArea
 	ret

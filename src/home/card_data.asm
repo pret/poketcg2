@@ -193,87 +193,95 @@ GetCardPointer:
 	ret
 
 ; input:
-; hl = card_gfx_index
-; de = where to load the card gfx to
-; bc are supposed to be CARD_TILE_COUNT (number of tiles of a card gfx) and TILE_SIZE respectively
-; card_gfx_index = (<Name>CardGfx - CardGraphics) / 8  (using absolute ROM addresses)
-; also copies the card's palette to wCardPalette
+;   hl = card gfx index
+;   de = destination
+;   b = NUM_CARD_GFX_TILES
+;   c = TILE_SIZE
+; also update wCardPalette and wCardAttrMap
 LoadCardGfx::
 	ldh a, [hBankROM]
 	push af
-	call LoadCardPalettes
+	call LoadCardPalettesAndAttrMap
 	call CopyGfxData
 	pop af
 	call BankswitchROM
 	ret
 
-; like LoadCardGfx, but reconstructs the 48 card tiles through the card's
-; attribute map instead of copying them 1:1. The low 6 bits of each attribute-
-; map byte are a tile index relative to that tile's position, so output tile i
-; comes from source tile ((wCardAttrMap[i] & $3f) + i) -- identity (= the plain
-; portrait) for most cards, but some (e.g. Energy cards) point at extra tiles
-; stored right after their portrait. The palette bits (high 2 of each map byte)
-; are stripped, leaving just the indices in wCardAttrMap. Used to build the card
-; picture for the Game Boy Printer (see BuildPrintableCardPic /
-; DrawCardPicInSRAMGfxBuffer2).
-; input: hl = card_gfx_index, de = destination, bc = CARD_TILE_COUNT (tiles), TILE_SIZE
-LoadCardGfxRemapped::
+; LoadCardGfx but with printer-only alt tiles where appropriate
+; based on CARD_GFX_TILE_ATTRMAP_ALT_OFFSET
+; see BuildPrintableCardPic
+; input:
+;   hl = card gfx index
+;   de = destination
+;   b = NUM_CARD_GFX_TILES
+;   c = TILE_SIZE
+LoadCardGfx_PrinterAlt::
 	ldh a, [hBankROM]
 	push af
-	call LoadCardPalettes ; loads palettes + attr map; returns hl = card's tile base
+	call LoadCardPalettesAndAttrMap
 	ld a, l
 	ld [wCardGfxTileBase + 0], a
 	ld a, h
-	ld [wCardGfxTileBase + 1], a ; wCardGfxTileBase = base address of the card's tiles
+	ld [wCardGfxTileBase + 1], a
 	ld hl, wCardAttrMap
-	lb bc, CARD_TILE_COUNT, 0 ; b = tiles to emit, c = output position (0..47)
+	lb bc, NUM_CARD_GFX_TILES, 0
 .loop_copy
+	; mask offset
+	; offset = 48 + (cur alt tile idx) - (cur tile idx) if has alt,
+	; 0 otherwise
 	ld a, [hl]
-	and $3f ; keep the relative tile index, drop the palette bits
-	ld [hli], a ; store the stripped index back into wCardAttrMap
+	and CARD_GFX_TILE_ATTRMAP_ALT_OFFSET
+	ld [hli], a
 	push hl
 	push bc
-	add c ; relative index + position = absolute source tile number
+	add c ; += (cur tile idx)
+	; a = 48 + (cur alt tile idx) if has alt,
+	; (cur tile idx) otherwise
+	; get source tile addr
 	ld l, a
 	ld h, $00
+REPT 4 ; *= TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl ; *TILE_SIZE
+ENDR
 	ld a, [wCardGfxTileBase + 0]
 	add l
 	ld l, a
 	ld a, [wCardGfxTileBase + 1]
 	adc h
-	ld h, a ; hl = tile base + tile number * TILE_SIZE = source tile address
+	ld h, a
+	; copy tile
 	ld b, TILE_SIZE
-	call SafeCopyDataHLtoDE ; copy this tile to de, advancing de
+	call SafeCopyDataHLtoDE
 	pop bc
 	pop hl
-	inc c ; advance output position
+	inc c
 	dec b
 	jr nz, .loop_copy
+
 	pop af
 	call BankswitchROM
 	ret
 
-LoadCardPalettes:
+; hl = card gfx index
+; store into wCardPalettes and wCardAttrMap
+; also return hl = card tile address
+LoadCardPalettesAndAttrMap:
 	push bc
 	push de
 	push hl
 	ld a, h
+REPT 3 ; /= 8
 	srl a
-	srl a
-	srl a ; /8
+ENDR
 	add BANK(CardGraphics)
 	call BankswitchROM
 	pop hl
+REPT 3 ; *= 8
 	add hl, hl
-	add hl, hl
-	add hl, hl ; *8
+ENDR
 	res 7, h
 	set 6, h ; $4000 ≤ hl ≤ $7fff
-	ld b, 3 palettes + CARD_TILE_COUNT ; palettes + 1 attribute byte per tile
+	ld b, CARDGFXSTRUCT_PALS_SIZE + CARDGFXSTRUCT_TILE_ATTRMAP_SIZE
 	ld de, wCardPalettes
 .loop_copy
 	ld a, [hli]

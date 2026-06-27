@@ -17,6 +17,12 @@ wc000:: ; c000
 
 NEXTU
 
+; actually $300 bytes, extending into WRAM0 Duels 1
+wTempPrintableCardPic:: ; c000
+	; ds CARDGFXSTRUCT_TILES_SIZE
+
+NEXTU
+
 ; aside from wDecompressionBuffer, which stores the
 ; de facto final decompressed data after decompression,
 ; this buffer stores a secondary buffer that is used
@@ -1073,15 +1079,18 @@ wcd04:: ; cd6d
 wCurTextTile:: ; cd6e
 	ds $1
 
-; VRAM tile patterns selector for text tiles
-; if wTilePatternSelector == $80 and wTilePatternSelectorCorrection == $00 -> select tiles at $8000-$8FFF
-; if wTilePatternSelector == $88 and wTilePatternSelectorCorrection == $80 -> select tiles at $8800-$97FF
-wTilePatternSelector:: ; cd6f
+; text tile location
+; must use the same mode as wTextTileIndexSignednessAdjust
+; HIGH(v*Tiles1)    = default (LCDC_BLOCK21)
+; HIGH(sGfxBuffer1) = printer
+wTextTileBaseAddressHi:: ; cd6f
 	ds $1
 
-; complements wTilePatternSelector by correcting the VRAM tile order when $8800-$97FF is selected
-; a value of $80 in wTilePatternSelectorCorrection reflects tiles $00-$7f being located after tiles $80-$ff
-wTilePatternSelectorCorrection:: ; cd70
+; VRAM tile index converter (xor) for LCDC_BLOCK21 signed addressing
+; must use the same mode as wTextTileBaseAddressHi
+; $80 (signed)   = default (LCDC_BLOCK21)
+; $00 (unsigned) = printer, as if LCDC_BLOCK01
+wTextTileIndexSignednessAdjust:: ; cd70
 	ds $1
 
 ; if 0, text lines are separated by a blank line
@@ -1127,10 +1136,10 @@ wEffectFunctionsBank:: ; cd79
 	ds $1
 
 wCardPalettes:: ; cd7a
-	ds 3 palettes
+	ds CARDGFXSTRUCT_PALS_SIZE
 
 wCardAttrMap:: ; cd92
-	ds $30
+	ds CARDGFXSTRUCT_TILE_ATTRMAP_SIZE
 
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.
@@ -1187,7 +1196,7 @@ wIsTextBoxLabeled:: ; cde2
 wTextBoxLabel:: ; cde3
 	ds $2
 
-; base address of the card's tiles, set up by LoadCardGfxRemapped
+; base address of the card's tiles, set up by LoadCardGfx_PrinterAlt
 wCardGfxTileBase:: ; cde5
 	ds $2
 
@@ -1394,6 +1403,13 @@ wBGColorFadeConfigList:: ; cece
 
 wOBColorFadeConfigList:: ; ceee
 	ds (NUM_OBJECT_PALETTES palettes) / 2
+
+; stack occupies the remainder of WRAM0
+SECTION "Stack", WRAM0
+
+wStackBottom::
+	ds $f2
+wStackTop:: ; d000
 
 SECTION "WRAM1", WRAMX
 
