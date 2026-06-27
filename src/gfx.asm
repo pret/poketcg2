@@ -132,28 +132,41 @@ DuelGraphics::
 
 DuelCardHeaderGraphics::
 	INCBIN "gfx/duel/card_type_headers.2bpp"
+
 DuelCgbSymbolGraphics::
 	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
+
 DuelDmgSgbSymbolGraphics::
-	INCBIN "gfx/duel/dmg_sgb_card_symbols.2bpp"
-DuelOtherGraphics::
-	INCBIN "gfx/duel/duel_other_gfx.2bpp"
+	INCBIN "gfx/duel/dmg_sgb_symbols.2bpp"
+
+DuelCardSet2SymbolGraphics::
+	INCBIN "gfx/duel/card_set2_symbols.2bpp"
+
+	ds $30
 
 SECTION "Gfx 2", ROMX
+
 DuelCheckPokemonScreenGfx::
 	INCBIN "gfx/duel/check_pokemon_screen.2bpp"
+
 DuelPlayAreaScreenGfx::
 	INCBIN "gfx/duel/play_area_screen.2bpp"
+
 DuelPlayAreaScreenGfxDMG::
 	INCBIN "gfx/duel/play_area_screen_dmg.2bpp"
+
 DuelDeckAndDiscardPileIcons::
 	INCBIN "gfx/duel/deck_discard_icons.2bpp"
+
 DuelCoinTossResultTiles::
 	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
+
 DuelMenuAndCardPicBorderTiles::
 	INCBIN "gfx/duel/menu_card_pic_border.2bpp"
+
 DuelDrawCardsScreenIcons::
 	INCBIN "gfx/duel/draw_cards_icons.2bpp"
+
 DuelBoxMessages::
 	INCBIN "gfx/duel/box_messages.2bpp"
 

@@ -63,7 +63,7 @@ LoadCardSet2Tiles::
 REPT 4 ; *TILE_SIZE
 	add hl, hl
 ENDR
-	ld de, DuelOtherGraphics + $1d tiles - $4000 ; card set 2 icons
+	ld de, DuelCardSet2SymbolGraphics - $4000
 	add hl, de
 	ld de, v0Tiles1 + $7c tiles
 	ld b, $04
