@@ -103,7 +103,7 @@ CopyCGBPalettes::
 	jr z, .copy
 	ld c, LOW(rOBPI)
 .copy
-	and %10111111
+	and BGPI_AUTOINC | BGPI_INDEX ; OGPI_AUTOINC | OGPI_INDEX
 	ld e, a
 .next_byte
 	ld a, e

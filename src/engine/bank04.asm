@@ -4736,21 +4736,21 @@ AnimateTitle:
 	ret nz
 	ld a, [wIntroStateCounter]
 	ld b, a
-	ld a, $30
+	ld a, 48
 	sub b
-	ld b, a ; $30 - wIntroStateCounter
+	ld b, a ; 48 - wIntroStateCounter
 .asm_11987
 	ldh a, [rLY]
-	cp $91
+	cp LY_VBLANK + 1
 	jr nc, .asm_11987
 .asm_1198d
 	ldh a, [rLY]
-	cp $04
+	cp 4
 	jr c, .asm_1198d
-	; $04 <= rLY < $91
+	; 4 <= rLY <= 144
 	di
 	call WaitForLCDOff
-	ld a, $50
+	ld a, 80
 	ldh [rSCY], a
 .asm_1199b
 	ldh a, [rLY]
@@ -4760,7 +4760,7 @@ AnimateTitle:
 	ld b, a
 .asm_119a1
 	ldh a, [rLY]
-	cp $30
+	cp 48
 	jr nc, .asm_119bb
 	cp b
 	jr z, .asm_119a1
@@ -4797,19 +4797,20 @@ AnimateTitle:
 	push de
 	push hl
 	ld hl, rBGPI
-	ld a, $a0
+	ld a, BGPI_AUTOINC | (4 palettes)
 	ld [hl], a
+
 	ld de, rBGPD
-	ld hl, wBackgroundPalettesCGB + $20
+	ld hl, wBackgroundPalettesCGB + 4 palettes
 	ld c, PAL_SIZE
-.loop_load_pal
+.loop_pals
 	ldh a, [rSTAT]
 	and STAT_OAM
-	jr nz, .loop_load_pal
+	jr nz, .loop_pals
 	ld a, [hli]
 	ld [de], a
 	dec c
-	jr nz, .loop_load_pal
+	jr nz, .loop_pals
 	pop hl
 	pop de
 	pop bc
@@ -4956,19 +4957,20 @@ AnimateSubtitleEnter:
 	push de
 	push hl
 	ld hl, rBGPI
-	ld a, $a8
+	ld a, BGPI_AUTOINC | (5 palettes)
 	ld [hl], a
+
 	ld de, rBGPD
-	ld hl, wBackgroundPalettesCGB + $28
+	ld hl, wBackgroundPalettesCGB + 5 palettes
 	ld c, 2 palettes
-.asm_11af2
+.loop_pals
 	ldh a, [rSTAT]
 	and STAT_OAM
-	jr nz, .asm_11af2
+	jr nz, .loop_pals
 	ld a, [hli]
 	ld [de], a
 	dec c
-	jr nz, .asm_11af2
+	jr nz, .loop_pals
 	pop hl
 	pop de
 	pop bc
