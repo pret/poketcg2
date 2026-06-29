@@ -1008,7 +1008,7 @@ RonaldsUltraDeckAIDecidePokemonTrader:
 	ret nc
 
 .found
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -4387,7 +4387,7 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	farcall FindCardIDInLocation
 	jr nc, .check_scoop_up_in_discard_pile
 	push af
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -4450,14 +4450,14 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	call c, .store_discard_cards
 
 .try_energy_retrieval
-	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	farcall AIDecide_EnergyRetrieval
 	jr c, .try_pluspower
 	ld de, ENERGY_RETRIEVAL
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 
 .try_pluspower
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	jr c, .no_carry
 	ld de, PLUSPOWER
 	farcall LookForCardIDInHandList
@@ -4478,11 +4478,11 @@ EverybodysFriendDeckAIDecideComputerSearch:
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAIComputerSearchFirstDiscardDeckIndex]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 ; success
 	add sp, $2 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -4547,14 +4547,14 @@ EverybodysFriendDeckAIDecideScoopUp:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	ret nc
 ; ready for Do the Wave
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
 
 .found_low_hp
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e ; PLAY_AREA_*
 	or a
 	jr nz, .set_carry
@@ -4562,7 +4562,7 @@ EverybodysFriendDeckAIDecideScoopUp:
 	push de
 	farcall AIDecideBenchPokemonToSwitchTo
 	pop de
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e
 	jr nc, .set_carry
 
@@ -4581,7 +4581,7 @@ EverybodysFriendDeckAIDecideItemFinder:
 	farcall FindCardIDInLocation
 	jr nc, .target_scoop_up
 	push af
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	pop bc
 	jr c, .find_discard_cards
 
@@ -4629,13 +4629,13 @@ EverybodysFriendDeckAIDecideItemFinder:
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_energy_retrieval
-	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	farcall AIDecide_EnergyRetrieval
 	jr c, .try_pluspower
 	ld de, ENERGY_RETRIEVAL
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_pluspower
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	jr c, .no_carry
 	ld de, PLUSPOWER
 	farcall LookForCardIDInHandList
@@ -4656,11 +4656,11 @@ EverybodysFriendDeckAIDecideItemFinder:
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAIItemFinderFirstDiscardDeckIndex]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 ; success
 	add sp, $2 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -5190,7 +5190,7 @@ RonaldsPsychicDeckAIDecidePokemonTrader:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -5287,7 +5287,7 @@ ColorlessEnergyDeckAIDecidePokemonTrader:
 	ld de, SPEAROW_LV13
 	ret nc
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -5295,7 +5295,7 @@ ColorlessEnergyDeckAIDecidePokemonTrader:
 ; find trade card first
 	call FindUnusableEvolutionCardInHand
 	ret nc
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find target
 	ld bc, DRAGONAIR
@@ -5369,8 +5369,8 @@ ColorlessEnergyDeckAIDecidePokemonTrader:
 	ret nc
 
 .found_target_evo
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
 	scf
 	ret
 
@@ -5383,8 +5383,8 @@ ImmortalPokemonDeckAIDecideComputerSearch:
 
 ; get 2 of >= 3 psychic energy cards in hand to discard
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 	bank1call CreateEnergyCardListFromHand
 	ld hl, wDuelTempList
 .loop_energy_cards
@@ -5396,14 +5396,14 @@ ImmortalPokemonDeckAIDecideComputerSearch:
 	pop hl
 	cp16 PSYCHIC_ENERGY
 	jr nz, .next ; dce
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ld a, [hl]
 	jr z, .next_store_first
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	jr .target_abra
 .next_store_first
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 .next
 	inc hl
 	jr .loop_energy_cards
@@ -5552,7 +5552,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_alakazam
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5571,7 +5571,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_kadabra_1
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5602,7 +5602,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_mr_mime_lv20
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5627,7 +5627,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_mr_mime_lv28
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5658,7 +5658,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_kadabra_2
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5692,7 +5692,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_chansey
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5720,7 +5720,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_scyther
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5748,7 +5748,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_tentacool
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5779,7 +5779,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	ret nc
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, KADABRA_LV39
 	farcall LookForCardIDInHandList
 	ret c
@@ -5845,15 +5845,15 @@ ImmortalPokemonDeckAIDecidePokemonCenter:
 	ret
 
 ; return carry and output three selected cards to
-; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
+; {a, wAITrainerCardArgs + 1, wAITrainerCardArgs + 2}
 ; bug: may illegally allow any card
 ; fan-favourite cheating bug, too fitting for "immortal" deck by "magician"
 ImmortalPokemonDeckAIDecideNightlyGarbageRun:
 ; init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MR_MIME_LV20
@@ -5894,9 +5894,9 @@ ImmortalPokemonDeckAIDecideNightlyGarbageRun:
 
 ; re-init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
@@ -5927,12 +5927,12 @@ ImmortalPokemonDeckAIDecideNightlyGarbageRun:
 ; shift {#1, #2, #3} to {a, #1, #2}
 ; no carry if selected no cards
 .shift
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	cp $ff
 	jr z, .no_carry
@@ -5948,7 +5948,7 @@ ImmortalPokemonDeckAIDecideNightlyGarbageRun:
 .store_card
 	ld b, a
 	push hl
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 	ld a, $ff
 	cp [hl]
 	jr z, .store
@@ -6194,7 +6194,7 @@ TorrentialFloodDeckAIDecidePokemonTrader:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6281,9 +6281,9 @@ TorrentialFloodDeckAIDecideComputerSearch:
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld de, COMPUTER_SEARCH
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
@@ -6325,16 +6325,16 @@ TorrentialFloodDeckAIDecideComputerSearch:
 
 .store_discard_cards
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ret
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	add sp, $02 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -6476,7 +6476,7 @@ TrainerImprisonDeckAIDecidePokemonTrader:
 	jr c, .find_trade_pkmn
 	ret
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6816,7 +6816,7 @@ BlazingFlameDeckAIDecidePokemonTrader:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6853,9 +6853,9 @@ BlazingFlameDeckAIDecideEnergyRetrieval:
 	ret nc
 
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find discard card
 	call CreateHandCardList
@@ -7797,7 +7797,7 @@ DamageChaosDeckAIDecidePokemonTrader:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindLeastUsefulPokemonInHand
 	ret
 
@@ -8050,9 +8050,9 @@ SpiritedAwayDeckAIDecideComputerSearch:
 	jr c, .no_carry
 ; set discard cards
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret

@@ -1780,10 +1780,11 @@ wd082:: ; d082
 ; setting up AI Boss deck
 wAISetupEnergyCount:: ; d084
 wAIPkmnPowerUserCardIndex:: ; d084
-wd084:: ; d084
-	ds $1
 
+wd084:: ; d084
 	ds $6
+
+	ds $1
 
 wTempAITargetPokemonCardDeckIndex:: ; d08b
 	ds $1
@@ -1805,19 +1806,10 @@ wAITrainerLogicCard:: ; d093
 wAITrainerCardPhase:: ; d095
 	ds $1
 
-; parameters output by AI Trainer card logic routines
+; $ff-terminated args output by AI Trainer card logic routines
 ; (e.g. what Pokemon in Play Area to use card on, etc)
-wAITrainerCardParameter:: ; d096
-	ds $1
-
-wTempAIMultiTargetCardDeckIndex1:: ; d097
-	ds $1
-wTempAIMultiTargetCardDeckIndex2:: ; d098
-	ds $1
-wTempAIMultiTargetCardDeckIndex3:: ; d099
-	ds $1
-
-	ds $3
+wAITrainerCardArgs:: ; d096
+	ds AI_TRAINER_ARGS_SIZE + 1
 
 ; used to store previous/current flags of AI actions
 ; see AI_FLAG_* constants

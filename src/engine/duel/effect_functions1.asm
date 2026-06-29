@@ -3559,7 +3559,7 @@ FlamesOfRage_PlayerSelectEffect:
 .loop_input
 	bank1call HandleAttachedEnergyMenuInput
 	ret c
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -3572,13 +3572,13 @@ FlamesOfRage_PlayerSelectEffect:
 FlamesOfRage_AISelectEffect:
 	call AIPickFireEnergyCardToDiscard
 	ld a, [wDuelTempList + 1]
-	ldh [hTempList + 1], a
+	ldh [hDuelActionArgs + 1], a
 	ret
 
 FlamesOfRage_DiscardEffect:
-	ldh a, [hTempList]
+	ldh a, [hDuelActionArgs]
 	call DiscardCard
-	ldh a, [hTempList + 1]
+	ldh a, [hDuelActionArgs + 1]
 	call DiscardCard
 	ret
 
@@ -3696,7 +3696,7 @@ Wildfire_PlayerSelectEffect:
 	bank1call DisplayEnergyDiscardMenu
 
 ; show list to Player and for each card selected to discard,
-; add it to hTempList (up to a maximum of 15)
+; add it to hDuelActionArgs (up to a maximum of 15)
 ; this will be the output used by Wildfire_DiscardEnergyEffect.
 	xor a
 	ld [wAttachedEnergyMenuDenominator], a
@@ -3705,7 +3705,7 @@ Wildfire_PlayerSelectEffect:
 	ld [wAttachedEnergyMenuNumerator], a
 	bank1call HandleAttachedEnergyMenuInput
 	jr c, .done
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -3718,7 +3718,7 @@ Wildfire_PlayerSelectEffect:
 
 .done
 ; return carry if no cards were discarded
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff
 	ldh a, [hCurSelectionItem]
 	cp 2
@@ -3727,11 +3727,11 @@ Wildfire_PlayerSelectEffect:
 Wildfire_AISelectEffect:
 ; AI always chooses 0 cards to discard
 	ld a, $ff
-	ldh [hTempList + 0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 Wildfire_DiscardEnergyEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop_discard
 	ld a, [hli]
 	cp $ff
@@ -3743,7 +3743,7 @@ Wildfire_DiscardEnergyEffect:
 
 Wildfire_DiscardDeckEffect:
 	ld c, -1
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop_find_end
 	inc c
 	ld a, [hli]
@@ -3909,7 +3909,7 @@ HandlePlayerSelect2CardsInDuelTempList:
 .loop_input
 	bank1call HandleAttachedEnergyMenuInput
 	ret c
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	ld hl, wAttachedEnergyMenuNumerator
@@ -3930,14 +3930,14 @@ AISelect2EnergyCardsAttachedToArena:
 	call CreateArenaOrBenchEnergyCardList
 	ld hl, wDuelTempList
 	ld a, [hli]
-	ldh [hTempList], a
+	ldh [hDuelActionArgs], a
 	ld a, [hl]
-	ldh [hTempList + 1], a
+	ldh [hDuelActionArgs + 1], a
 	ret
 
-; discards first 2 cards in hTempList
+; discards first 2 cards in hDuelActionArgs
 Discard2CardsFromTempList:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	ld a, [hli]
 	call DiscardCard
 	ld a, [hli]
@@ -4294,7 +4294,7 @@ CheckIfArenaCardHasPsychicOrRainbowEnergy:
 ; for Player to select from.
 ; the Player can select up to 2 cards from the list.
 ; these cards are given in $ff-terminated list
-; in hTempList.
+; in hDuelActionArgs.
 HandleEnergyCardsInDiscardPileSelection:
 	push hl
 	xor a
@@ -4324,7 +4324,7 @@ HandleEnergyCardsInDiscardPileSelection:
 
 .selected
 ; a card was selected, so add it to list
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -4336,7 +4336,7 @@ HandleEnergyCardsInDiscardPileSelection:
 
 .finish
 ; place terminating byte on list
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff
 	or a
 	ret
@@ -4591,7 +4591,7 @@ EnergyConversion_PlayerSelectEffect:
 EnergyConversion_AISelectEffect:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
-	ld de, hTempList
+	ld de, hDuelActionArgs
 	ld c, 2
 ; select the first two energy cards found in Discard Pile
 .loop
@@ -4615,7 +4615,7 @@ EnergyConversion_AddToHandEffect:
 ; loop cards that were chosen
 ; until $ff is reached,
 ; and move them to the hand.
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	ld de, wDuelTempList
 .loop_cards
 	ld a, [hli]
@@ -4688,7 +4688,7 @@ Prophecy_PlayerSelectEffect:
 	jr nz, .start ; loop back to start
 
 	ldh a, [hCurScrollMenuItem]
-	ldh [hTempList], a ; store selection in first position in list
+	ldh [hDuelActionArgs], a ; store selection in first position in list
 	or a
 	jr z, .turn_duelist
 
@@ -4718,7 +4718,7 @@ Prophecy_AISelectEffect:
 	ret
 
 Prophecy_ReorderDeckEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	ld a, [hli]
 	or a
 	jr z, .ReorderCards ; turn duelist's deck
@@ -4762,7 +4762,7 @@ Prophecy_ReorderDeckEffect:
 
 ; draw and handle Player selection for reordering
 ; the top 3 cards of Deck.
-; the resulting list is output in order in hTempList.
+; the resulting list is output in order in hDuelActionArgs.
 HandleProphecyScreen:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -4851,7 +4851,7 @@ HandleProphecyScreen:
 	call YesOrNoMenuWithText_LeftAligned
 	jr c, .start ; if not, return back to beginning of selection
 
-; write in hTempList the card list
+; write in hDuelActionArgs the card list
 ; in order that was selected.
 	ld hl, wDuelTempList + 10
 	ld de, wDuelTempList
@@ -4873,12 +4873,12 @@ HandleProphecyScreen:
 	inc de
 	inc c
 	jr .loop_order
-; now hTempList has the list of card deck indices
+; now hDuelActionArgs has the list of card deck indices
 ; in the order selected to be place on top of the deck.
 
 .done
 	ld b, $00
-	ld hl, hTempList + 1
+	ld hl, hDuelActionArgs + 1
 	add hl, bc
 	ld [hl], $ff ; terminating byte
 	or a
@@ -5391,7 +5391,7 @@ MewtwoAltEnergyAbsorption_AISelectEffect:
 ; AI picks first 2 energy cards
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
-	ld de, hTempList
+	ld de, hDuelActionArgs
 	ld c, 2
 .loop
 	ld a, [hli]
@@ -5407,7 +5407,7 @@ MewtwoAltEnergyAbsorption_AISelectEffect:
 	ret
 
 MewtwoAltEnergyAbsorption_AddToHandEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .asm_69c9d
 	ld a, [hli]
 	cp $ff
@@ -5433,7 +5433,7 @@ MewtwoEnergyAbsorption_AISelectEffect:
 ; AI picks first 2 energy cards
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
-	ld de, hTempList
+	ld de, hDuelActionArgs
 	ld c, 2
 .loop
 	ld a, [hli]
@@ -5449,7 +5449,7 @@ MewtwoEnergyAbsorption_AISelectEffect:
 	ret
 
 MewtwoEnergyAbsorption_AddToHandEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop
 	ld a, [hli]
 	cp $ff
@@ -6366,7 +6366,7 @@ ThunderstormEffect:
 	call TossCoin_Bank1a
 	call SwapTurn
 	push af
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	pop af
 	ld [hl], a ; store result in list
 	pop bc
@@ -6380,7 +6380,7 @@ ThunderstormEffect:
 	jr nz, .check_damage
 
 ; all coins were tossed for each Benched Pokemon
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff
 	ld a, b
 	ldh [hDuelActionArgs + 0], a
@@ -6659,7 +6659,7 @@ RaichuThunder_RecoilEffect:
 
 Gigashock_PlayerSelectEffect:
 	ld a, $ff
-	ldh [hTempList], a
+	ldh [hDuelActionArgs], a
 	call CheckNonTurnDuelistHasBench
 	ret c ; no bench
 
@@ -6705,7 +6705,7 @@ Gigashock_PlayerSelectEffect:
 	ld b, SYM_LIGHTNING
 	call DrawSymbolOnPlayAreaCursor
 ; store it in the list of chosen Bench Pokemon
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hCurScrollMenuItem]
 	inc a
 	ld [hl], a
@@ -6731,7 +6731,7 @@ Gigashock_PlayerSelectEffect:
 	and PAD_B
 	jr nz, .try_cancel
 	call SwapTurn
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff ; terminating byte
 	ret
 
@@ -6745,7 +6745,7 @@ Gigashock_PlayerSelectEffect:
 	ldh [hCurSelectionItem], a
 	ld e, a
 	ld d, $00
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	add hl, de
 	ld a, [hl]
 
@@ -6766,7 +6766,7 @@ Gigashock_PlayerSelectEffect:
 	ld c, a
 	ldh a, [hCurSelectionItem]
 	ld b, a
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	inc b
 	jr .next_check
 .check_chosen
@@ -6789,7 +6789,7 @@ Gigashock_AISelectEffect:
 	jr nc, .start_selection
 
 ; select them all
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	ld b, PLAY_AREA_ARENA
 	jr .next_bench
 .select_bench
@@ -6811,7 +6811,7 @@ Gigashock_AISelectEffect:
 	ld b, PLAY_AREA_BENCH_1
 
 ; first select all of the Bench Pokemon and write to list
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop_all
 	ld [hl], b
 	inc hl
@@ -6822,7 +6822,7 @@ Gigashock_AISelectEffect:
 
 ; then check each of the Bench Pokemon HP
 ; sort them from lowest remaining HP to highest.
-	ld de, hTempList
+	ld de, hDuelActionArgs
 .loop_outer
 	ld a, [de]
 	add DUELVARS_ARENA_CARD_HP
@@ -6863,13 +6863,13 @@ Gigashock_AISelectEffect:
 
 ; done
 	ld a, $ff ; terminating byte
-	ldh [hTempList + 3], a
+	ldh [hDuelActionArgs + 3], a
 	call SwapTurn
 	ret
 
 Gigashock_BenchDamageEffect:
 	call SwapTurn
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop_selection
 	ld a, [hli]
 	cp $ff
@@ -7069,9 +7069,9 @@ MagneticStormEffect:
 	pop bc
 
 	push hl
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 
-; fill hTempList with PLAY_AREA_* locations
+; fill hDuelActionArgs with PLAY_AREA_* locations
 ; that have Pokemon in them.
 	push hl
 	xor a
@@ -7087,7 +7087,7 @@ MagneticStormEffect:
 	ld a, b
 	call ShuffleCards
 	pop hl
-	ld de, hTempList
+	ld de, hDuelActionArgs
 .next_random_pokemon
 	ld a, [hl]
 	cp $ff
@@ -8601,7 +8601,7 @@ ContinuousFireball_AIMultiplierEffect:
 .capped
 	ld c, a
 	ld hl, wDuelTempList
-	ld de, hTempList + 1
+	ld de, hDuelActionArgs + 1
 .loop_selection
 	ld a, [hli]
 	ld [de], a
@@ -8631,7 +8631,7 @@ ContinuousFireball_PlayerMultiplierEffect:
 	ldh [hDuelActionArgs + 0], a
 .capped
 	; select Fire energies to discard
-	; start at hTempList + 1
+	; start at hDuelActionArgs + 1
 	ld a, 1
 	ldh [hCurSelectionItem], a
 
@@ -8643,7 +8643,7 @@ ContinuousFireball_PlayerMultiplierEffect:
 .loop_selection
 	bank1call HandleAttachedEnergyMenuInput
 	jr c, .loop_selection ; mandatory selection
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -9765,7 +9765,7 @@ ReelIn_PlayerSelectEffect:
 	; no cards, output empty list
 	call DrawWideTextBox_WaitForInput
 	ld a, $ff
-	ldh [hTempList], a
+	ldh [hDuelActionArgs], a
 	ret
 
 .got_cards_to_select
@@ -9791,7 +9791,7 @@ ReelIn_PlayerSelectEffect:
 .selected_card
 	ldh a, [hTempCardIndex_ff98]
 	get_turn_duelist_var
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -9800,13 +9800,13 @@ ReelIn_PlayerSelectEffect:
 	cp 3
 	jr c, .loop_selection
 .got_selection
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff
 	or a
 	ret
 
 ReelIn_AddToHandEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	ld de, wDuelTempList
 	ld a, [hl]
 	cp $ff
@@ -9814,7 +9814,7 @@ ReelIn_AddToHandEffect:
 	ret
 
 .loop_add_cards
-	; copy from hTempList to wDuelTempList
+	; copy from hDuelActionArgs to wDuelTempList
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -10547,8 +10547,8 @@ SummonMinions_PlayerSelectEffect:
 	ldh a, [hTempCardIndex_ff98]
 	farcall ExecuteCardSearchFunc
 	jr nc, .loop_input ; not basic
-	; add it to hTempList
-	farcall GetNextPositionInTempList
+	; add it to hDuelActionArgs
+	farcall GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -10558,12 +10558,12 @@ SummonMinions_PlayerSelectEffect:
 	cp [hl]
 	jr c, .draw_list
 .finish
-	farcall GetNextPositionInTempList
+	farcall GetNextPositionInDuelActionArgs
 	ld [hl], $ff ; terminating byte
 	ret
 
 SummonMinions_AddToHandEffect:
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop_add_to_hand
 	ld a, [hli]
 	ldh [hTempCardIndex_ff98], a

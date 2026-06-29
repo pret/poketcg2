@@ -192,16 +192,16 @@ ResetDoFrameFunction_Bank9:
 	ret
 
 ; outputs in hl the next position
-; in hTempList to place a new card,
+; in hDuelActionArgs to place a new card,
 ; and increments hCurSelectionItem.
-GetNextPositionInTempList:
+GetNextPositionInDuelActionArgs:
 	push de
 	ld hl, hCurSelectionItem
 	ld a, [hl]
 	inc [hl]
 	ld e, a
 	ld d, $00
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	add hl, de
 	pop de
 	ret
@@ -1511,8 +1511,8 @@ HandleChallengeCardPlayerSelection:
 	ld a, [wLoadedCard2Stage]
 	or a
 	jr nz, .loop_selection ; not Basic
-	; add this Basic Pokémon to hTempList
-	call GetNextPositionInTempList
+	; add this Basic Pokémon to hDuelActionArgs
+	call GetNextPositionInDuelActionArgs
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
@@ -1523,7 +1523,7 @@ HandleChallengeCardPlayerSelection:
 	jr nz, .start_selection
 
 .done_selection
-	call GetNextPositionInTempList
+	call GetNextPositionInDuelActionArgs
 	ld [hl], $ff ; terminating byte
 	ldh a, [hCurSelectionItem]
 	ldh [hDuelActionArgs + 0], a

@@ -3232,8 +3232,8 @@ RainDanceConfusionDeckAIDecideProfessorOak:
 
 RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
@@ -3348,16 +3348,16 @@ RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
 	ret
 
 .store_discard_cards
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	jr .next_card
 
 .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	pop hl
 	scf
@@ -3376,7 +3376,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 	jr nc, .check_player_fire_pkmn
 
 .success
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e
 	scf
 	ret
@@ -4949,8 +4949,8 @@ EyeOfTheStormDeckAIDecideComputerSearch:
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
@@ -5003,16 +5003,16 @@ EyeOfTheStormDeckAIDecideComputerSearch:
 	pop hl
 	ld b, [hl]
 	push hl
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	jr .next_card
 
 .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	pop hl
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -5031,9 +5031,9 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	ret nc
 
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find discard card
 	call CreateHandCardList
@@ -5207,7 +5207,7 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	ld b, a
 	ld c, 2
 	ld hl, wDuelTempList
-	ld de, wTempAIMultiTargetCardDeckIndex1
+	ld de, wAITrainerCardArgs + 1
 .loop_hand_cards
 	ld a, [hli]
 	cp b
@@ -5245,10 +5245,10 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .find_discard_cards_energy_1
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .find_discard_cards_energy_2
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5259,14 +5259,14 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 
 .find_discard_cards_energy_2
 	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5309,10 +5309,10 @@ SuddenGrowthDeckAIDecideItemFinder:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5481,7 +5481,7 @@ BadGuysDeckAIDecideProfessorOak:
 	ret
 
 ; return carry and output three selected cards to
-; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
+; {a, wAITrainerCardArgs[1, 2]}
 ; if discard pile contains dark golduck, dark charmeleon, dark slowbro, and dark gloom,
 ; select {dark golduck, dark charmeleon, dark slowbro};
 ; elif discard pile contains >= 7 basic energy cards,
@@ -5490,9 +5490,9 @@ BadGuysDeckAIDecideProfessorOak:
 BadGuysDeckAIDecideNightlyGarbageRun:
 ; init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GOLDUCK
@@ -5518,9 +5518,9 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 
 ; re-init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call CreateBasicEnergyCardListInLocation
@@ -5542,12 +5542,12 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 ; shift {#1, #2, #3} to {a, #1, #2}
 ; no carry if selected <= 2 cards
 .shift
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	cp $ff
 	jr z, .no_carry
 ; success
@@ -5565,7 +5565,7 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 ; reality: set carry when trying the fourth card
 .store_cards
 	ld b, a
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 	ld a, $ff
 	cp [hl]
 	jr z, .store
@@ -5680,7 +5680,7 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -5722,7 +5722,7 @@ PoisonMistDeckAIDecidePokemonTrader:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -6385,7 +6385,7 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 

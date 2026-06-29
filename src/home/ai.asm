@@ -128,7 +128,7 @@ AIDecideChallengeCards::
 	ld a, $08 ; useless load
 
 	; iterate list to find terminating byte...
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 .loop
 	ld a, [hli]
 	cp $ff

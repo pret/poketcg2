@@ -775,7 +775,7 @@ BigThunderDeckAIDecideEnergyRemoval:
 .check_dce
 	farcall FindDoubleColorlessAttachedToPlayerPokemonInPlayArea
 	jr nc, .check_can_ko
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, b
 	scf
 	ret
@@ -813,7 +813,7 @@ BigThunderDeckAIDecideEnergyRemoval:
 	call SwapTurn
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	pop af
 	scf
 	ret
@@ -869,9 +869,9 @@ BigThunderDeckAIDecideEnergyRetrieval:
 	ret nc
 
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find discard card
 	call CreateHandCardList
@@ -977,7 +977,7 @@ BigThunderDeckAIDecideScoopUp:
 	ret
 
 .can_switch
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -999,7 +999,7 @@ BigThunderDeckAIDecidePokemonTrader:
 	farcall FindCardIDInLocation
 	ret nc
 
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 
 	ld de, DITTO
 	farcall LookForCardIDInHandList
