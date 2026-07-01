@@ -361,7 +361,7 @@ The last one is also an example of a single addresses used for multiple well-dif
 
 Using constants in place of hardcoded numbers is another of the main pillars for achieving self-documenting code in the disassembly. The format used for constants is SNAKE_UPPERCASE. Normally, they would look like ``SHAREDPREFIX_CONSTANT_NAME``, with ``SHAREDPREFIX_`` shared by all constants belonging to the same group (category).
 
-The way I would approach this is, whenever you see any hardcoded number in the code, as yourself: does it make sense to replace it with some constant? More often than not, the answer would be yes. There are obviously exceptions, such as arithmetic operations or screen coordinates that don't win much by receiving a constant. But as soon as you know what some number stands for, if you think a constant would be appropriate, first look up the constants/ directory in case it already exists, and, if it doesn't, feel free to create it. Put it into a existing constants/ file or create a new file if none fits.
+The way I would approach this is, whenever you see any hardcoded number in the code, ask yourself: does it make sense to replace it with some constant? More often than not, the answer would be yes. There are obviously exceptions, such as arithmetic operations or screen coordinates that don't win much by receiving a constant. But as soon as you know what some number stands for, if you think a constant would be appropriate, first look up the constants/ directory in case it already exists, and, if it doesn't, feel free to create it. Put it into a existing constants/ file or create a new file if none fits.
 
 A constant almost never comes alone. For example a single ``BULBASAUR`` or ``BULBASAUR_AND_FRIENDS_DECK`` constant wouldn't make much sense if it's not defined along with the constants for the rest of the cards and decks respectively. In a lot of cases, a group of constants belong to a specific memory address. For example, the ``wPlayerCardLocations`` buffer is associated to several constants, such as ``CARD_LOCATION_DECK``, ``CARD_LOCATION_HAND``, and ``CARD_LOCATION_DISCARD_PILE``. This means that every read or write to ``wPlayerCardLocations`` will involve the use of some of those constants.
 
@@ -372,15 +372,17 @@ Speaking of generic constants, there are multiple constants already defined for 
 Constants for WRAM address offsets (i.e. for the likes of ``wAddressN - wAddress``) are sometimes a good idea as well, and typically follow the addresses defined in some WRAM macro. For example, look at the constants defined with the previously seen ``card_data_struct`` macro in mind:
 
 ```asm
-DEF CARD_DATA_TYPE                  EQU $00
-DEF CARD_DATA_GFX                   EQU $01
-DEF CARD_DATA_NAME                  EQU $03
-DEF CARD_DATA_RARITY                EQU $05
+RSRESET
+; ...
+DEF CARD_DATA_TYPE     RB ; $00
+DEF CARD_DATA_GFX      RW ; $01
+DEF CARD_DATA_NAME     RW ; $03
+DEF CARD_DATA_RARITY   RB ; $05
 (...)
-DEF TRN_CARD_DATA_LENGTH    EQU $0e
-DEF ENERGY_CARD_DATA_LENGTH EQU $0e
+DEF TRN_CARD_DATA_LENGTH    EQU _RS ; $10
+DEF ENERGY_CARD_DATA_LENGTH EQU _RS ; $10
 (...)
-DEF PKMN_CARD_DATA_LENGTH EQU $41
+DEF PKMN_CARD_DATA_LENGTH EQU _RS ; $42
 ```
 
 Some constants make sense to have as both a value and a flag. Again, button constants are a good example of this. For these, the convention is to use ``CONSTANT_NAME`` for the value, and ``CONSTANT_NAME_F`` for the flag, so you can use either of them depending on the assembly instruction (e.g. ``and CONSTANT_NAME`` or ``bit CONSTANT_NAME_F, a``). For example:
