@@ -627,14 +627,14 @@ CardTypeToSymbolID::
 	cp TYPE_ENERGY
 	jr c, .pokemon_card
 	; energy card
-	and 7 ; convert energy constant to type constant
+	and ENERGY_TYPE_MASK
 	ret
 .trainer_card
-	ld a, 11
+	ld a, CARD_SYMBOL_TRAINER
 	ret
 .pokemon_card
 	ld a, [wLoadedCard1Stage] ; different symbol for each evolution stage
-	add 8
+	add CARD_SYMBOL_BASIC_POKEMON
 	ret
 
 ; return the entry in CardSymbolTable of the TYPE_* constant in wLoadedCard1Type
@@ -683,18 +683,18 @@ DrawCardSymbol::
 
 CardSymbolTable::
 ; starting tile number, cgb palette (grey, yellow/red, green/blue, pink/orange)
-	db $e0, $02 ; TYPE_ENERGY_FIRE
-	db $e4, $03 ; TYPE_ENERGY_GRASS
-	db $e8, $02 ; TYPE_ENERGY_LIGHTNING
-	db $ec, $03 ; TYPE_ENERGY_WATER
-	db $f0, $04 ; TYPE_ENERGY_PSYCHIC
-	db $f4, $04 ; TYPE_ENERGY_FIGHTING
-	db $f8, $00 ; TYPE_ENERGY_DOUBLE_COLORLESS
-	db $fc, $03 ; TYPE_ENERGY_UNUSED
-	db $d0, $03 ; TYPE_PKMN_*, Basic
-	db $d4, $03 ; TYPE_PKMN_*, Stage 1
-	db $d8, $02 ; TYPE_PKMN_*, Stage 2
-	db $dc, $03 ; TYPE_TRAINER
+	db ICON_TILE_FIRE,            2 ; CARD_SYMBOL_FIRE
+	db ICON_TILE_GRASS,           3 ; CARD_SYMBOL_GRASS
+	db ICON_TILE_LIGHTNING,       2 ; CARD_SYMBOL_LIGHTNING
+	db ICON_TILE_WATER,           3 ; CARD_SYMBOL_WATER
+	db ICON_TILE_FIGHTING,        4 ; CARD_SYMBOL_FIGHTING
+	db ICON_TILE_PSYCHIC,         4 ; CARD_SYMBOL_PSYCHIC
+	db ICON_TILE_COLORLESS,       0 ; CARD_SYMBOL_COLORLESS
+	db ICON_TILE_ENERGY,          3 ; CARD_SYMBOL_ENERGY
+	db ICON_TILE_BASIC_POKEMON,   3 ; CARD_SYMBOL_BASIC_POKEMON
+	db ICON_TILE_STAGE_1_POKEMON, 3 ; CARD_SYMBOL_STAGE_1_POKEMON
+	db ICON_TILE_STAGE_2_POKEMON, 2 ; CARD_SYMBOL_STAGE_2_POKEMON
+	db ICON_TILE_TRAINER,         3 ; CARD_SYMBOL_TRAINER
 
 ; copy the name and level of the card at wLoadedCard1 to wDefaultText
 ; a = length in number of tiles (the resulting string will be padded with spaces to match it)

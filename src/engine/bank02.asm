@@ -2205,7 +2205,7 @@ _DrawPlayAreaToPlacePrizeCards::
 	call ZeroObjectPositions
 	call EmptyScreen
 	call LoadSymbolsFont
-	call LoadDeckAndDiscardPileIcons
+	call LoadDuelPlayAreaScreenTiles_Setup
 	bank1call SetDefaultPalettes
 
 	ldh a, [hWhoseTurn]
@@ -6243,10 +6243,10 @@ PrintConfirmationCardList:
 ; pokemon card
 	ld a, [wLoadedCard1Stage]
 	ld b, a
+REPT 3 ; *= 4
 	add b
-	add b
-	add b ; *4
-	add ICON_TILE_BASIC_POKEMON
+ENDR
+	add CARD_TYPE_ICON_TILE_START
 	jr .got_tile
 
 .not_pkmn_card
@@ -6256,10 +6256,10 @@ PrintConfirmationCardList:
 ; energy card
 	sub TYPE_ENERGY
 	ld b, a
+REPT 3 ; *= 4
 	add b
-	add b
-	add b ; *4
-	add ICON_TILE_FIRE
+ENDR
+	add ICON_TILE_POKEMON_TYPES
 	jr .got_tile
 
 .trainer_card

@@ -400,7 +400,7 @@ DEF GRASS_F     EQU $1 << GRASS     ; $02
 Bit mask constants are also useful if they are used multiple times. Palette colors are an example to illustrate this:
 
 ```asm
-DEF PALRGB_WHITE EQU (31 << B_COLOR_BLUE) | (31 << B_COLOR_GREEN) | (31 << B_COLOR_RED)
+DEF PALRGB_WHITE EQU (COLOR_CH_MAX << B_COLOR_BLUE) | (COLOR_CH_MAX << B_COLOR_GREEN) | (COLOR_CH_MAX << B_COLOR_RED)
 ```
 
 Finally, note that constants that are exclusive to a specific feature or function should generally be local, and thus placed above the code that uses them. This is usually not the case, however, so you should usually be looking to declare them inside the constants/ directory as mentioned before. This kind of refactoring is also more appropriate when the disassembly is in a more advanced state as well.

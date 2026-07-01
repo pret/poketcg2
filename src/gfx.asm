@@ -77,49 +77,51 @@ Pals_6f0f0::
 	rgb 28, 12,  0
 	rgb 13,  9,  0
 
-Pals_6f108::
+DuelCoinTossResultPalette::
 	rgb 31, 31, 31
 	rgb  0,  0,  0
 	rgb  0,  0,  0
-	rgb  0, 10, 28
+	rgb  0, 10, 28 ; [X]
 
-Pals_6f110::
+DuelBoxMessagePalettes::
+	; BOXMSG_PLAYERS_TURN
 	rgb 31, 31, 31
 	rgb 31, 22,  9
 	rgb 27,  9,  4
 	rgb 18,  0,  0
-
+	; BOXMSG_OPPONENTS_TURN
 	rgb 31, 31, 31
 	rgb 16, 24, 29
 	rgb  6, 11, 24
 	rgb  0,  0, 16
-
+	; BOXMSG_BETWEEN_TURNS
 	rgb 31, 31, 31
 	rgb 21, 27, 13
 	rgb  7, 16,  0
 	rgb  0,  7,  0
-
+	; BOXMSG_DECISION
 	rgb 31, 31, 31
 	rgb 26, 22,  7
 	rgb 19, 13,  0
 	rgb  6,  2,  0
-
+	; BOXMSG_BENCH_POKEMON
 	rgb 31, 31, 31
 	rgb 31, 16, 20
 	rgb 21,  6, 14
 	rgb 10,  0,  4
-
+	; BOXMSG_ARENA_POKEMON
 	rgb 31, 31, 31
 	rgb 20, 29,  0
 	rgb 11, 18,  0
 	rgb  7,  6,  0
-
+	; BOXMSG_COIN_TOSS
 	rgb 31, 31, 31
 	rgb 18, 30, 31
 	rgb  8, 20, 27
 	rgb  0,  7, 14
 
-Pals_6f148::
+; back of the card
+DuelSetupPalette::
 	rgb 31, 31, 31
 	rgb  0,  0, 31
 	rgb 31,  0,  0
@@ -155,8 +157,8 @@ DuelPlayAreaScreenGfx::
 DuelPlayAreaScreenGfxDMG::
 	INCBIN "gfx/duel/play_area_screen_dmg.2bpp"
 
-DuelDeckAndDiscardPileIcons::
-	INCBIN "gfx/duel/deck_discard_icons.2bpp"
+DuelSetupGraphics::
+	INCBIN "gfx/duel/setup_icons.2bpp"
 
 DuelCoinTossResultTiles::
 	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"

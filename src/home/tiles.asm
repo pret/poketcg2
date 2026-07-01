@@ -66,38 +66,38 @@ ENDR
 	ld de, RealCardSetSymbolGraphics - $4000
 	add hl, de
 	ld de, v0Tiles1 + $7c tiles
-	ld b, $04
+	ld b, REGULAR_ICON_TILE_SIZE
 	call CopyFontsOrDuelGraphicsTiles
 	or a
 	ret
 
 .tile_offsets
-	db  8 ; GB
-	db -1 ; PRO
-	db -1 ; BASE_SET
-	db  0 ; JUNGLE
-	db  4 ; FOSSIL
-	db 12 ; TEAM_ROCKET
-	db 16 ; EXPANSION_SHEET
-	db 20 ; GYM_HEROES
-	db 24 ; BULBASAUR_DECK
-	db 28 ; SQUIRTLE_DECK
+	db ICON_TILE_GB              ; GB
+	db -1                        ; PRO
+	db -1                        ; BASE_SET
+	db ICON_TILE_JUNGLE          ; JUNGLE
+	db ICON_TILE_FOSSIL          ; FOSSIL
+	db ICON_TILE_TEAM_ROCKET     ; TEAM_ROCKET
+	db ICON_TILE_EXPANSION_SHEET ; EXPANSION_SHEET
+	db ICON_TILE_GYM_HEROES      ; GYM_HEROES
+	db ICON_TILE_BULBASAUR_DECK  ; BULBASAUR_DECK
+	db ICON_TILE_SQUIRTLE_DECK   ; SQUIRTLE_DECK
 
 ; loads the Deck and Hand icons for the "Draw X card(s) from the deck." screen
 LoadDuelDrawCardsScreenTiles::
 	ld hl, DuelDrawCardsScreenIcons
 	ld de, v0Tiles1 + $74 tiles
-	ld b, $08
+	ld b, 2 * REGULAR_ICON_TILE_SIZE
 	jp CopyFontsOrDuelGraphicsTiles
 
 ; load the face down basic / stage1 / stage2 card images shown in the check Pokemon screens
 LoadDuelFaceDownCardTiles::
-	ld b, $10
+	ld b, NUM_CHECK_POKEMON_SCREEN_STAGE_ICON_TILES
 	jr LoadDuelCheckPokemonScreenTiles.got_num_tiles
 
 ; same as LoadDuelFaceDownCardTiles, plus also load the ACT / BPx tiles
 LoadDuelCheckPokemonScreenTiles::
-	ld b, $24
+	ld b, NUM_CHECK_POKEMON_SCREEN_ICON_TILES
 ;	fallthrough
 
 .got_num_tiles
@@ -112,7 +112,7 @@ LoadDuelCheckPokemonScreenTiles::
 LoadCardOrDuelMenuBorderTiles::
 	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, v0Tiles1 + $50 tiles
-	ld b, $08
+	ld b, NUM_CARD_OR_DUEL_BORDER_TILES
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; loads the graphics of a card type header, used to display a picture of a card after drawing it
@@ -123,7 +123,7 @@ LoadCardTypeHeaderTiles::
 	ld hl, DuelCardHeaderGraphics - $4000
 	add hl, de
 	ld de, v0Tiles1 + $60 tiles
-	ld b, $10
+	ld b, CARD_HEADER_TILE_SIZE
 	call CopyFontsOrDuelGraphicsTiles
 	bank1call LoadCardPictureBGPalettes
 	ret
@@ -132,26 +132,26 @@ LoadCardTypeHeaderTiles::
 LoadDuelCardSymbolTiles::
 	ld hl, DuelCgbSymbolGraphics - $4000
 	ld de, v0Tiles1 + $50 tiles
-	ld b, $30
+	ld b, NUM_CARD_TYPE_ICON_TILES
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; loads the symbols for Stage 1 Pkmn card, Stage 2 Pkmn card, and Trainer card.
 ; unlike LoadDuelCardSymbolTiles excludes the symbols for Basic Pkmn and all energies.
 LoadDuelCardSymbolTiles2::
-	ld hl, DuelCgbSymbolGraphics + $4 tiles - $4000
+	ld hl, DuelCgbSymbolGraphics + ICON_TILE_EVO_OR_TRAINER_OFFSET tiles - $4000
 	ld de, v0Tiles1 + $54 tiles
-	ld b, $c
+	ld b, NUM_EVO_OR_TRAINER_ICON_TILES
 	jr CopyFontsOrDuelGraphicsTiles
 
-; load the Deck and the Discard Pile icons
-LoadDeckAndDiscardPileIcons::
-	ld hl, Pals_6f148 - $4000
+; LoadDuelPlayAreaScreenTiles plus face-down arena cards and prize cards
+LoadDuelPlayAreaScreenTiles_Setup::
+	ld hl, DuelSetupPalette - $4000
 	ld de, wBackgroundPalettesCGB + 5 palettes
 	ld c, PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
-	ld hl, DuelDeckAndDiscardPileIcons
+	ld hl, DuelSetupGraphics
 	ld de, v0Tiles1 + $20 tiles
-	ld b, $0d
+	ld b, NUM_SETUP_ICON_TILES
 	call CopyFontsOrDuelGraphicsTiles
 ; fallthrough
 
@@ -165,25 +165,25 @@ LoadDuelPlayAreaScreenTiles::
 	ld hl, DuelPlayAreaScreenGfxDMG
 .copy
 	ld de, v0Tiles1 + $50 tiles
-	ld b, $30
+	ld b, NUM_PLAY_AREA_SCREEN_ICON_TILES + 3
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the tiles for the [O] and [X] symbols used to display the results of a coin toss
 LoadDuelCoinTossResultTiles::
-	ld hl, Pals_6f108 - $4000
+	ld hl, DuelCoinTossResultPalette - $4000
 	ld de, wBackgroundPalettesCGB + 2 palettes
 	ld c, PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
 	ld hl, DuelCoinTossResultTiles
 	ld de, v0Tiles2 + $30 tiles
-	ld b, $08
+	ld b, 2 * REGULAR_ICON_TILE_SIZE
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the tiles of the text characters used with TX_SYMBOL
 LoadSymbolsFont::
 	ld hl, SymbolsFont - $4000
 	ld de, v0Tiles2 ; destination
-	ld b, $38 ; (DuelCardHeaderGraphics - SymbolsFont) / TILE_SIZE ; number of tiles
+	ld b, (DuelCardHeaderGraphics - SymbolsFont) / TILE_SIZE ; number of tiles
 ;	fallthrough
 
 ; if hl ≤ $3fff
@@ -210,34 +210,34 @@ LoadCardSymbolFontTilesToSRAM::
 ; text box frame tiles
 	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, sGfxBuffer1 + $30 tiles
-	ld b, $8
+	ld b, NUM_CARD_OR_DUEL_BORDER_TILES
 	call CopyFontsOrDuelGraphicsTiles
 	call GetCardSymbolData
-	sub $d0
+	sub CARD_TYPE_ICON_TILE_START
 	ld l, a
 	ld h, $00
-REPT 4 ; *TILE_SIZE
+REPT 4 ; *= TILE_SIZE
 	add hl, hl
 ENDR
 	ld de, DuelDmgSgbSymbolGraphics - $4000
 	add hl, de
 	ld de, sGfxBuffer1 + $38 tiles
-	ld b, $4
+	ld b, REGULAR_ICON_TILE_SIZE
 	call CopyFontsOrDuelGraphicsTiles
 	ld hl, DuelDmgSgbSymbolGraphics - $4000
 	ld de, sGfxBuffer4 + $10 tiles
-	ld b, $30
+	ld b, NUM_CARD_TYPE_ICON_TILES
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the graphics and draw the duel box message given a BOXMSG_* constant in a
 DrawDuelBoxMessage::
 	push af
+REPT 3 ; *= PAL_SIZE
 	add a
-	add a
-	add a
+ENDR
 	ld e, a
 	ld d, 0
-	ld hl, Pals_6f110 - $4000
+	ld hl, DuelBoxMessagePalettes - $4000
 	add hl, de
 	ld de, wBackgroundPalettesCGB + 2 palettes
 	ld c, PAL_SIZE

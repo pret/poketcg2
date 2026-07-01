@@ -57,7 +57,7 @@ KNOWN_PRE = [
     (0x70000, 36*16,   'DuelCheckPokemonScreenGfx',     'gfx/duel/check_pokemon_screen', 6),   # face-down cards + ACT/BPx (LoadDuelCheckPokemonScreenTiles)
     (0x70240, 45*16,   'DuelPlayAreaScreenGfx',         'gfx/duel/play_area_screen',     9),   # CGB play-area screen (Func_1dff)
     (0x70510, 45*16,   'DuelPlayAreaScreenGfxDMG',      'gfx/duel/play_area_screen_dmg', 9),   # DMG/SGB variant
-    (0x707e0, 13*16,   'DuelDeckAndDiscardPileIcons',   'gfx/duel/deck_discard_icons',   13),  # LoadDeckAndDiscardPileIcons
+    (0x707e0, 13*16,   'DuelSetupGraphics',   'gfx/duel/setup_icons',   13),  # LoadDuelPlayAreaScreenTiles_Setup
     (0x708b0,  8*16,   'DuelCoinTossResultTiles',       'gfx/duel/coin_toss_result_symbols', 4),  # [O]/[X] (LoadDuelCoinTossResultTiles); distinct from CoinTossResultGfx
     (0x70930,  8*16,   'DuelMenuAndCardPicBorderTiles', 'gfx/duel/menu_card_pic_border', 8),   # LoadCardOrDuelMenuBorderTiles
     (0x709b0,  8*16,   'DuelDrawCardsScreenIcons',      'gfx/duel/draw_cards_icons',     4),   # Deck/Hand (LoadDuelDrawCardsScreenTiles)
