@@ -54,13 +54,13 @@ KNOWN_PRE = [
     (0x6fad0, 19*16,   'DuelDmgSgbSymbolGraphics', 'gfx/duel/dmg_sgb_card_symbols', 19),  # DMG/SGB symbols
     (0x6fc00, 64*16,   'DuelOtherGraphics',        'gfx/duel/duel_other_gfx',       8),   # incl. card set 2 icons (LoadCardSet2Tiles)
     # --- Gfx2 ($1c:4000..4a30), referenced by the raw $4xxx operands directly ----------------
-    (0x70000, 36*16,   'DuelCheckPokemonScreenGfx',     'gfx/duel/check_pokemon_screen', 6),   # face-down cards + ACT/BPx (LoadDuelCheckPokemonScreenTiles)
-    (0x70240, 45*16,   'DuelPlayAreaScreenGfx',         'gfx/duel/play_area_screen',     9),   # CGB play-area screen (Func_1dff)
-    (0x70510, 45*16,   'DuelPlayAreaScreenGfxDMG',      'gfx/duel/play_area_screen_dmg', 9),   # DMG/SGB variant
-    (0x707e0, 13*16,   'DuelSetupGraphics',   'gfx/duel/setup_icons',   13),  # LoadDuelPlayAreaScreenTiles_Setup
-    (0x708b0,  8*16,   'DuelCoinTossResultTiles',       'gfx/duel/coin_toss_result_symbols', 4),  # [O]/[X] (LoadDuelCoinTossResultTiles); distinct from CoinTossResultGfx
+    (0x70000, 36*16,   'DuelCheckPokemonScreenGraphics',     'gfx/duel/check_pokemon_screen', 6),   # stage symbols + ACT/BPx (LoadDuelCheckPokemonScreenTiles)
+    (0x70240, 45*16,   'DuelCgbPlayAreaScreenGraphics',         'gfx/duel/cgb_play_area_screen',     9),   # CGB play-area screen (Func_1dff)
+    (0x70510, 45*16,   'DuelDmgSgbPlayAreaScreenGraphics',      'gfx/duel/dmg_sgb_play_area_screen', 9),   # DMG/SGB variant
+    (0x707e0, 13*16,   'DuelSetupScreenGraphics',   'gfx/duel/setup_screen',   13),  # LoadDuelPlayAreaScreenTiles_Setup
+    (0x708b0,  8*16,   'DuelCoinTossResultSymbolGraphics',       'gfx/duel/coin_toss_result_symbols', 4),  # [O]/[X] (LoadDuelCoinTossResultTiles); distinct from CoinTossResultGfx
     (0x70930,  8*16,   'DuelMenuAndCardPicBorderTiles', 'gfx/duel/menu_card_pic_border', 8),   # LoadCardOrDuelMenuBorderTiles
-    (0x709b0,  8*16,   'DuelDrawCardsScreenIcons',      'gfx/duel/draw_cards_icons',     4),   # Deck/Hand (LoadDuelDrawCardsScreenTiles)
+    (0x709b0,  8*16,   'DuelDrawCardsScreenGraphics',      'gfx/duel/draw_cards_screen',     4),   # Deck/Hand (LoadDuelDrawCardsScreenTiles)
     (0x70a30, 7*40*16, 'DuelBoxMessages',               'gfx/duel/box_messages',         10),  # 7 box msgs, 10x4
 ]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

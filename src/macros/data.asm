@@ -120,6 +120,19 @@ MACRO? gfx_attrmap
 	DEF _current_card_tile_idx += 1
 ENDM
 
+; reserved tile #0 in tilesets
+MACRO? solid_black_tile
+	REPT TILE_SIZE
+		db $ff
+	ENDR
+ENDM
+
+MACRO? solid_white_tile
+	REPT TILE_SIZE
+		db $00
+	ENDR
+ENDM
+
 ; \1 = y offset
 ; \2 = x offset
 ; \3 = vtile

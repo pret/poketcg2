@@ -257,7 +257,7 @@ DisplayOpponentUsedAttackScreen:
 	bank1call ZeroObjectPositionsAndToggleOAMCopy
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
-	call LoadDuelFaceDownCardTiles
+	call LoadPokemonStageSymbolTiles
 	ldh a, [hDuelActionCardIndex]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, CARDPAGE_POKEMON_OVERVIEW

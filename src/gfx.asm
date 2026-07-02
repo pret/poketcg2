@@ -148,26 +148,28 @@ RealCardSetSymbolGraphics::
 
 SECTION "Gfx 2", ROMX
 
-DuelCheckPokemonScreenGfx::
-	INCBIN "gfx/duel/check_pokemon_screen.2bpp"
+DuelCheckPokemonScreenGraphics::
+	INCBIN "gfx/duel/check_pokemon_stages.2bpp"
+	INCBIN "gfx/duel/check_locations.2bpp"
 
-DuelPlayAreaScreenGfx::
-	INCBIN "gfx/duel/play_area_screen.2bpp"
+DuelCgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/cgb_play_area_screen.2bpp"
 
-DuelPlayAreaScreenGfxDMG::
-	INCBIN "gfx/duel/play_area_screen_dmg.2bpp"
+DuelDmgSgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/dmg_sgb_play_area_screen.2bpp"
 
-DuelSetupGraphics::
-	INCBIN "gfx/duel/setup_icons.2bpp"
+DuelSetupScreenGraphics::
+	INCBIN "gfx/duel/setup_arena_card_back.2bpp"
+	INCBIN "gfx/duel/setup_placing_prizes.2bpp"
 
-DuelCoinTossResultTiles::
+DuelCoinTossResultSymbolGraphics::
 	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
 
 DuelMenuAndCardPicBorderTiles::
 	INCBIN "gfx/duel/menu_card_pic_border.2bpp"
 
-DuelDrawCardsScreenIcons::
-	INCBIN "gfx/duel/draw_cards_icons.2bpp"
+DuelDrawCardsScreenGraphics::
+	INCBIN "gfx/duel/draw_cards_screen.2bpp"
 
 DuelBoxMessages::
 	INCBIN "gfx/duel/box_messages.2bpp"
@@ -2463,7 +2465,8 @@ RareCardPopSceneGfx::
 	INCBIN "gfx/link/rare_card_pop_scene.2bpp"
 
 SpecialRulesGfx::
-	dw 21 ; length
+	dw 1 + 20 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/special_rules.2bpp"
 
 FullMailboxGfx::
@@ -2558,7 +2561,8 @@ MailboxCopyGfx::
 	INCBIN "gfx/minicom/mailbox_copy.2bpp"
 
 DeckDiagnosisGfx::
-	dw 33 ; length
+	dw 1 + 32 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/deck_diagnosis.2bpp"
 
 LinkSceneIntroGfx::

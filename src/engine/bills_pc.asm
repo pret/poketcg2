@@ -78,7 +78,7 @@ _BillsPC:
 	call EmptyScreen
 	ld hl, DuelMenuAndCardPicBorderTiles
 	ld de, v0Tiles2 + $30 tiles
-	ld b, 8
+	ld b, NUM_CARD_OR_DUEL_BORDER_TILES
 	call CopyFontsOrDuelGraphicsTiles
 	call LoadCardOrDuelMenuBorderTiles
 	ld hl, .tile_data
@@ -93,21 +93,23 @@ _BillsPC:
 	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	ld de, v0Tiles1 + $20 tiles
 	call LoadCardGfx
-	ld a, $a0 ; v0Tiles1 + $20 tiles
+	ld a, VRAM_TILES1_INDEX + $20
 	lb hl, 6, 1
 	lb de, 1, 3
 	lb bc, 8, 6
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex5
+
 	ld de, v0Tiles1
 	ld hl, DuelCardHeaderGraphics - $4000
-	ld b, $10
+	ld b, CARD_HEADER_TILE_SIZE
 	call CopyFontsOrDuelGraphicsTiles
-	ld a, $80 ; v0Tiles1
+	ld a, VRAM_TILES1_INDEX + 0
 	lb de, 1, 1
 	lb bc, 8, 2
 	lb hl, 1, 8
 	call FillRectangle
+
 	ld hl, wLoadedCard1Gfx
 	ld a, [hli]
 	ld h, [hl]
@@ -115,20 +117,21 @@ _BillsPC:
 	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	ld de, v0Tiles1 + $50 tiles
 	call LoadCardGfx
-	ld a, $d0 ; v0Tiles1 + $50 tiles
+	ld a, VRAM_TILES1_INDEX + $50
 	lb hl,  6, 1
 	lb de, 11, 3
 	lb bc,  8, 6
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex2
+
 	ld de, v0Tiles1 + $10 tiles
-	ld hl, DuelCardHeaderGraphics + $20 tiles - $4000
-	ld b, $10
+	ld hl, DuelCardHeaderGraphics + (HEADER_POKEMON * CARD_HEADER_TILE_SIZE) tiles - $4000
+	ld b, CARD_HEADER_TILE_SIZE
 	call CopyFontsOrDuelGraphicsTiles
-	ld a, $90 ; v0Tiles1 + $10 tiles
-	lb de, 11 ,1
-	lb bc, 8, 2
-	lb hl, 1, 8
+	ld a, VRAM_TILES1_INDEX + $10
+	lb de, 11, 1
+	lb bc,  8, 2
+	lb hl,  1, 8
 	call FillRectangle
 
 ; finish sending
@@ -164,27 +167,36 @@ _BillsPC:
 	scf
 	ret
 
+; 8 border tiles in v0Tiles2 + $30 tiles
 .tile_data
-; x, y, tiles[], 0
+	; x, y, tiles[], 0
 
-; y = 0 (top)
+	; y = 0 (top)
 	db 0, 0
 REPT 2
-	db $30, $34, $34, $34, $34, $34, $34, $34, $34, $31
+	db $30 + BORDER_TILE_TOP_LEFT
+	REPT 8
+		db $30 + BORDER_TILE_TOP
+	ENDR
+	db $30 + BORDER_TILE_TOP_RIGHT
 ENDR
 	db 0
 
-; y = [1, 10]
+	; y = [1, 10]
 FOR y, 1, 11
-	db  0, y, $36, 0
-	db  9, y, $37, $36, 0
-	db 19, y, $37, 0
+	db  0, y, $30 + BORDER_TILE_LEFT, 0
+	db  9, y, $30 + BORDER_TILE_RIGHT, $30 + BORDER_TILE_LEFT, 0
+	db 19, y, $30 + BORDER_TILE_RIGHT, 0
 ENDR
 
-; y = 11 (bottom)
+	; y = 11 (bottom)
 	db 0, 11
 REPT 2
-	db $32, $35, $35, $35, $35, $35, $35, $35, $35, $33
+	db $30 + BORDER_TILE_BOTTOM_LEFT
+	REPT 8
+		db $30 + BORDER_TILE_BOTTOM
+	ENDR
+	db $30 + BORDER_TILE_BOTTOM_RIGHT
 ENDR
 	db 0
 	db $ff ; end

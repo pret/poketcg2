@@ -993,7 +993,7 @@ DisplayAttachedEnergyMenu:
 	call SortCardsInDuelTempListByID
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
-	call LoadDuelFaceDownCardTiles
+	call LoadPokemonStageSymbolTiles
 	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ld a, [wAttachedEnergyMenuPlayAreaLocation]
@@ -1952,7 +1952,7 @@ DrawDuelMainScene::
 	get_turn_duelist_var
 	cp $ff
 	jr z, .place_opponent_arena_pkmn
-	ld a, $d0 ; v0Tiles1 + $50 tiles
+	ld a, VRAM_TILES1_INDEX + $50
 	lb hl, 6, 1
 	lb de, 0, 5
 	lb bc, 8, 6
@@ -1963,7 +1963,7 @@ DrawDuelMainScene::
 	get_turn_duelist_var
 	cp $ff
 	jr z, .place_other_elements
-	ld a, $a0 ; v0Tiles1 + $20 tiles
+	ld a, VRAM_TILES1_INDEX + $20
 	lb hl, 6, 1
 	lb de, 12, 1
 	lb bc, 8, 6
@@ -3375,7 +3375,7 @@ ZeroObjectPositionsAndToggleOAMCopy:
 ; to draw card image in check card screens
 PlaceCardImageOAM:
 	call Set_OBJ_8x16
-	ld l, $a0 ; v0Tiles1 + $20 tiles
+	ld l, VRAM_TILES1_INDEX + $20
 	ld c, 8 ; rows
 .next_column
 	ld b, 3 ; columns
@@ -5730,7 +5730,7 @@ HandleSleepCheck:
 
 HandlePoisonDamage:
 	or a
-	bit POISONED_F , [hl]
+	bit POISONED_F, [hl]
 	ret z ; quit if not poisoned
 
 ; load damage and text according to normal/double poison
@@ -7199,9 +7199,9 @@ SetFontAndTextBoxFrameColor:
 	ld a, [sTextBoxFrameColor]
 	call DisableSRAM
 	inc a
+REPT 3 ; *= PAL_SIZE
 	add a
-	add a
-	add a ; *PAL_SIZE
+ENDR
 	ld e, a
 	ld d, $00
 	ld hl, Pals_6f0b0 - $4000
