@@ -5696,7 +5696,7 @@ EnergyControl_PlayerSelectEffect:
 	bank1call HandleAttachedEnergyMenuInput
 	jr c, .start_selection
 	ldh a, [hTempCardIndex_ff98]
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 
 	; got selection of donor of energy card,
 	; now select receiver of this energy
@@ -5707,7 +5707,7 @@ EnergyControl_PlayerSelectEffect:
 	bank1call OpenPlayAreaScreenForSelection
 	jr c, .select_play_area_2 ; mandatory selection
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA], a
+	ldh [hDuelActionArgs + 3], a
 	call SwapTurn
 	ret
 
@@ -5721,13 +5721,13 @@ EnergyControl_SwitchEnergyEffect:
 	ld e, a
 	bank1call HandlePlayAreaCardNoDamageOrEffect
 	jr c, .done
-	ldh a, [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA]
+	ldh a, [hDuelActionArgs + 3]
 	ld e, a
 	bank1call HandlePlayAreaCardNoDamageOrEffect
 	jr c, .done
-	ldh a, [hDuelActionArgs + ENERGYTRANS_ARGS_TO_PLAY_AREA]
+	ldh a, [hDuelActionArgs + 3]
 	ld e, a
-	ldh a, [hDuelActionArgs + RETREAT_ARGS_COST_LIST]
+	ldh a, [hDuelActionArgs + 2]
 	call AddCardToHand
 	call PutHandCardInPlayArea
 	ldh a, [hDuelActionArgs + 1]
@@ -6144,7 +6144,7 @@ SpecialDelivery_UseAndDeckCheck:
 SpecialDelivery_PlayerSelectEffect:
 	; draw a card (temporarily)
 	call DrawCardFromDeck
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	ldh [hTempCardIndex_ff98], a
 	call AddCardToHand
 	bank1call DisplayPlayerDrawCardScreen
@@ -6160,7 +6160,7 @@ SpecialDelivery_PlayerSelectEffect:
 	ldh [hDuelActionArgs + 1], a
 
 	; return drawn card back to deck, it will be drawn in next step
-	ldh a, [hDuelActionArgs + RETREAT_ARGS_COST_LIST]
+	ldh a, [hDuelActionArgs + 2]
 	call RemoveCardFromHand
 	call ReturnCardToDeck
 	or a
@@ -6436,7 +6436,7 @@ SuperScoopUp_PlayerSelection:
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
 	bank1call OpenPlayAreaScreenForSelection
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	ret
 
 SuperScoopUp_ReturnToHandEffect:
@@ -6495,7 +6495,7 @@ SuperScoopUp_ReturnToHandEffect:
 	or a
 	jr nz, .skip_clear_status
 	call ClearAllStatusConditions
-	ldh a, [hDuelActionArgs + RETREAT_ARGS_COST_LIST]
+	ldh a, [hDuelActionArgs + 2]
 	ld d, a
 	ld e, $00
 	call SwapPlayAreaPokemon
@@ -7298,7 +7298,7 @@ SuperPotion_HealEffect:
 	call DiscardCard
 	ldh a, [hDuelActionArgs + 1]
 	ldh [hTempPlayAreaLocation_ff9d], a
-	ldh a, [hDuelActionArgs + RETREAT_ARGS_COST_LIST]
+	ldh a, [hDuelActionArgs + 2]
 	call HealPlayAreaPokemon
 	ret
 

@@ -560,7 +560,7 @@ DuelMenu_Retreat:
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
 	cp CONFUSED
-	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_STATUS], a
 	jr nz, .not_confused
 	ld a, [wGotHeadsFromConfusionCheckDuringRetreat]
 	or a
@@ -575,7 +575,7 @@ DuelMenu_Retreat:
 	jr c, .done
 	ld [wBenchSelectedPokemon], a
 	ld a, [wBenchSelectedPokemon] ; unnecessary
-	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_BENCH], a
 	ld a, OPPACTION_ATTEMPT_RETREAT
 	call SetOppAction_SerialSendDuelData
 	call AttemptRetreat
@@ -603,7 +603,7 @@ DuelMenu_Retreat:
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	ld [wBenchSelectedPokemon], a
-	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_BENCH], a
 	push af
 	call ReturnRetreatCostCardsToArena
 	pop af
@@ -939,7 +939,7 @@ DisplayRetreatScreen:
 	ret c
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardDataToBuffer2_FromDeckIndex
-	; append selected energy card to hDuelActionArgs + RETREAT_ARGS_COST_LIST
+	; append selected energy card to hDuelActionArgs[2-]
 	ld hl, wTempRetreatCostCardsPos
 	ld c, [hl]
 	inc [hl]
@@ -965,7 +965,7 @@ DisplayRetreatScreen:
 	call UpdateAttachedEnergyMenu
 	jr .select_energies_loop
 .enough
-	; terminate hDuelActionArgs + RETREAT_ARGS_COST_LIST array with $ff
+	; terminate hDuelActionArgs[2-] array with $ff
 	ld a, [wTempRetreatCostCardsPos]
 	ld c, a
 	ld a, $ff
@@ -5049,7 +5049,7 @@ PrintAttackOrCardDescription:
 	call SetOneLineSeparation
 	ret
 
-; moves the cards loaded by deck index at hDuelActionArgs + RETREAT_ARGS_COST_LIST to the discard pile
+; moves the cards loaded by deck index at hDuelActionArgs[2-] to the discard pile
 DiscardRetreatCostCards:
 	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .discard_loop
@@ -5059,7 +5059,7 @@ DiscardRetreatCostCards:
 	call PutCardInDiscardPile
 	jr .discard_loop
 
-; moves the discard pile cards that were loaded to hDuelActionArgs + RETREAT_ARGS_COST_LIST back to the active Pokemon.
+; moves the discard pile cards loaded to hDuelActionArgs[2-] back to the active Pokemon.
 ; this exists because they will be discarded again during the call to AttemptRetreat, so
 ; it prevents the energy cards from being discarded twice.
 ReturnRetreatCostCardsToArena:
@@ -5089,7 +5089,7 @@ AttemptRetreat:
 	jr .discard_loop
 
 .asm_6033
-	ldh a, [hDuelActionArgs + 0]
+	ldh a, [hDuelActionArgs + RETREAT_ARGS_STATUS]
 	and CNF_SLP_PRZ
 	cp CONFUSED
 	jr nz, .success
@@ -5109,7 +5109,7 @@ AttemptRetreat:
 	get_turn_duelist_var
 
 	push af
-	ldh a, [hDuelActionArgs + 1]
+	ldh a, [hDuelActionArgs + RETREAT_ARGS_BENCH]
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	call HandleDestinyBondAndBetweenTurnKnockOuts

@@ -6461,7 +6461,7 @@ AITryToRetreat:
 	ld a, b
 	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 
 ; check energy required to retreat
 ; if the cost is 0, retreat right away
@@ -6484,7 +6484,7 @@ AITryToRetreat:
 	cp c
 	jr nz, .choose_energy_discard
 
-	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
+	ld hl, hDuelActionArgs + 2
 	ld de, wDuelTempList
 .loop_select_all_cards
 	ld a, [de]
@@ -6513,7 +6513,7 @@ AITryToRetreat:
 
 ; first, look for and discard any Recycle energy cards
 	ld hl, wDuelTempList
-	ld de, hDuelActionArgs + RETREAT_ARGS_COST_LIST
+	ld de, hDuelActionArgs + 2
 .loop_select_recycle_energy
 	ld a, [hli]
 	cp $ff

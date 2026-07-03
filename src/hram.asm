@@ -77,9 +77,8 @@ hTempCardID_ff9b:: ; ff9d
 hTempPlayAreaLocation_ff9d:: ; ff9f
 	ds $1
 
-; $ff-terminated 18-byte buffer for the current in-duel action,
-; structured as DUEL_ACTION_STRUCT_* (action index, card index, 7 args, terminator).
-; mirrors poketcg (tcg1) PR #187; NOTE tcg2's addresses are shifted +2 vs tcg1.
+; $ff-terminated 18-byte buffer for the current in-duel action
+; see DUEL_ACTION_STRUCT_* offset constants
 hDuelAction:: ; ffa0
 
 ; index for AIActionTable
@@ -90,8 +89,8 @@ hOppActionTableIndex:: ; ffa0
 hDuelActionCardIndex:: ; ffa1
 	ds $1
 
-; $ff-terminated list of arguments of the current in-duel action.
-; indexed by the *_ARGS_* offset constants in duel_action_constants.asm.
+; $ff-terminated list of arguments of the current in-duel action
+; see *_ARGS_* offset constants
 hDuelActionArgs:: ; ffa2
 	ds DUEL_ACTION_ARGS_SIZE + 1
 

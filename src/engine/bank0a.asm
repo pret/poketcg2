@@ -843,7 +843,7 @@ AISelectSpecialAttackParameters:
 
 	ld a, $ff
 	ldh [hDuelActionArgs + 1], a
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 
 ; search for Psychic energy cards in Discard Pile
 	ld de, PSYCHIC_ENERGY

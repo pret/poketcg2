@@ -102,7 +102,7 @@ HandleAIEnergyTrans:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 
 	push de
 	ld d, 30
@@ -348,7 +348,7 @@ AIEnergyTransTransferEnergyToBench:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	jr .transfer
 
 .next_card
@@ -1030,7 +1030,7 @@ HandleAICurse:
 ; card in Play Area with lowest HP remaining was found.
 ; look for another card to take damage counter from.
 	ld a, h
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	ld b, a
 	ld a, 10
 	cp c
@@ -1938,7 +1938,7 @@ HandleAIMagnet:
 	ld a, [hli]
 	cp $ff
 	ret z
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	farcall ExecuteCardSearchFunc
 	jr nc, .loop_deck
 
@@ -2324,7 +2324,7 @@ HandleAIDamageSwap:
 	call .FindTargets
 	jr c, .no_more_targets
 
-	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
+	ldh [hDuelActionArgs + 2], a
 	xor a ; PLAY_AREA_ARENA
 	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_6B15
