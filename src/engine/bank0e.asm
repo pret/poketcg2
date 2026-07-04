@@ -91,7 +91,7 @@ HandleAIEnergyTrans:
 	jr c, .next_card
 
 	and %00001111
-	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_FROM_PLAY_AREA], a
 
 	ld a, e
 	push de
@@ -102,7 +102,7 @@ HandleAIEnergyTrans:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hDuelActionArgs + 2], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_ENERGY_INDEX], a
 
 	push de
 	ld d, 30
@@ -308,7 +308,7 @@ AIEnergyTransTransferEnergyToBench:
 ; use Energy Trans Pkmn Power
 .use_pkmn_power
 	ld a, b
-	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_PLAY_AREA], a
 	ld [wd07f], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -318,9 +318,9 @@ AIEnergyTransTransferEnergyToBench:
 ; loop for each energy cards that are going to be transferred.
 .loop_energy
 	xor a
-	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_FROM_PLAY_AREA], a
 	ld a, [wd07f]
-	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_PLAY_AREA], a
 
 	; returns when Arena card has no Grass energy cards attached.
 	ld e, PLAY_AREA_ARENA
@@ -348,7 +348,7 @@ AIEnergyTransTransferEnergyToBench:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hDuelActionArgs + 2], a
+	ldh [hDuelActionArgs + ENERGYTRANS_ARGS_ENERGY_INDEX], a
 	jr .transfer
 
 .next_card

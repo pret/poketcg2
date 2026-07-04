@@ -7366,9 +7366,9 @@ FightingFortBasement_LoadNPCs:
 	ret
 
 FightingFortBasement_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	jr nz, .asm_3f8d8
@@ -7388,7 +7388,7 @@ FightingFortBasement_WarpFadeInPreload:
 	farcall ResetOWObjectFlag5_WithID
 	lb de, 10, 15
 	farcall SetOWObjectTilePosition
-	ld de, $400
+	lb de, 4, 0
 	farcall CalcOWScroll
 	scf
 	ret

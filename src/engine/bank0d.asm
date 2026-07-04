@@ -3691,9 +3691,9 @@ FightingFortMaze16_WarpEndSFX:
 	ret
 
 FightingFortMaze16_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -3703,7 +3703,7 @@ Script_FightingFortMaze16OpenDoor:
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall WarpPlayerToFightingFortBasementNoStep
+	farcall WarpPlayerToFightingFortBasement_NoStep
 	ret
 
 FightingFortMaze18_MapHeader:
@@ -3747,9 +3747,9 @@ FightingFortMaze18_WarpEndSFX:
 	ret
 
 FightingFortMaze18_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -3759,7 +3759,7 @@ Script_FightingFortMaze18OpenDoor:
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	farcall WarpPlayerToFightingFortBasementNoStep
+	farcall WarpPlayerToFightingFortBasement_NoStep
 	ret
 
 FightingFortGoda_MapHeader:
@@ -4702,8 +4702,8 @@ PsychicStronghold_PauseMenu:
 	jr z, .asm_36476
 	cp $07
 	jr nc, .asm_3647c
-	ld a, $e8
-	ld bc, $157
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_157
 	farcall SetOWObjectFrameset
 	jr .asm_3647c
 .asm_36476
@@ -5788,9 +5788,9 @@ PsychicStrongholdMami_LoadNPCs:
 	ret
 
 PsychicStrongholdMami_WarpFadeInPreload:
-	ld bc, $5f
-	ld a, $02
-	farcall SetwD896
+	ld bc, PALETTE_05F
+	ld a, 2
+	farcall SetOWPaletteData
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(PsychicStrongholdMami_WarpInPlatformScript)
@@ -5800,8 +5800,8 @@ PsychicStrongholdMami_WarpFadeInPreload:
 	ld [wOverworldScriptPointer], a
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
-	ld a, $e8
-	ld bc, $156
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_156
 	farcall SetAndInitOWObjectFrameset
 	scf
 	ret
@@ -5829,8 +5829,8 @@ PsychicStrongholdMami_PauseMenu:
 	jr z, .asm_36d4b
 	cp $07
 	jr nc, .asm_36d51
-	ld a, $e8
-	ld bc, $157
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_157
 	farcall SetOWObjectFrameset
 	jr .asm_36d51
 .asm_36d4b
@@ -6099,8 +6099,8 @@ PsychicStrongholdMami_WarpInPlatformScript:
 	start_script
 	animate_player_movement $00, $01
 	end_script
-	ld a, $e8
-	ld bc, $155
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_155
 	farcall SetAndInitOWObjectFrameset
 	farcall StartOWObjectAnimation
 	ld a, EVENT_MET_MAMI_AND_ROD
@@ -6126,10 +6126,10 @@ PsychicStrongholdMami_DescendPlatformExit:
 	push bc
 	push de
 	push hl
-	ld a, $e8
-	ld bc, $156
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_156
 	farcall SetAndInitOWObjectFrameset
-	ld a, $1e
+	ld a, 30
 	call WaitAFrames
 	pop hl
 	pop de

@@ -2879,18 +2879,20 @@ wScrollTargetSpritePtr:: ; d893
 wOWScrollState:: ; d895
 	ds $1
 
+wOWPaletteData:: ; d896
+
 ; PALETTE_* constant
-wd896:: ; d896
+wOWPalettte:: ; d896
 	ds $2
 
-wd898:: ; d898
+wOWPaletteCycle:: ; d898
 	ds $1
 
-wd899:: ; d899
+wOWPaletteCycleCounter:: ; d899
 	ds $1
 
 ; palette index
-wd89a:: ; d89a
+wOWPaletteIndex:: ; d89a
 	ds $1
 
 wOWScrollX:: ; d89b
@@ -3833,9 +3835,7 @@ w3d401:: ; d401
 	ds 2 * 10
 
 w3d415:: ; d415
-	ds $1
-
-	ds $b0
+	ds OWDATA_SIZE
 
 w3d4c6:: ; d4c6
 	ds $415

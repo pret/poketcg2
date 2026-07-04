@@ -1,33 +1,35 @@
-WarpPlayerToFightingFortBasementWithStep:
+WarpPlayerToFightingFortBasement_WithStep:
 	scf
 	ccf
 	push af
-	jr WarpPlayerToFightingFortBasementNoStep.asm_30007
+	jr WarpPlayerToFightingFortBasement
 
-WarpPlayerToFightingFortBasementNoStep:
+WarpPlayerToFightingFortBasement_NoStep:
 	scf
 	push af
-.asm_30007:
+; fallthrough
+
+WarpPlayerToFightingFortBasement:
 	ld a, MAP_FIGHTING_FORT_BASEMENT
 	lb de, 10, 1
 	ld b, SOUTH
 	farcall SetWarpData
-	ld a, $1e
+	ld a, 30
 	call WaitAFrames
 	ld a, EVENT_PLAYER_GENDER
 	farcall GetEventValue
 	jr nz, .asm_30024
-	ld bc, $ae
+	ld bc, FRAMESET_0AE
 	jr .asm_30027
 .asm_30024
-	ld bc, $b4
+	ld bc, FRAMESET_0B4
 .asm_30027
 	ld a, [wPlayerOWObject]
 	farcall SetAndInitOWObjectFrameset
 	farcall StartOWObjectAnimation
 	ld b, $01
 	farcall SetOWObjectAnimStruct1Flag2
-	ld a, $0a
+	ld a, 10
 	call WaitAFrames
 	pop af
 	jr c, .asm_30050
@@ -35,7 +37,7 @@ WarpPlayerToFightingFortBasementNoStep:
 	ld b, SOUTH | MOVE_BACKWARDS
 	ld c, MOVE_SPEED_RUN
 	farcall TryMoveOWObjectInDirection
-	ld a, $05
+	ld a, 5
 	call WaitAFrames
 .asm_30050
 	ld a, SFX_PITFALL
@@ -1735,9 +1737,9 @@ GrassFortMidori_WarpFadeInPreload:
 	jr nz, .asm_317f6
 	farcall DeliverMailFromQueue
 .asm_317f6
-	ld bc, $3b
-	ld a, $14
-	farcall SetwD896
+	ld bc, PALETTE_03B
+	ld a, 20
+	farcall SetOWPaletteData
 	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_31809
@@ -5703,7 +5705,7 @@ Script_FightingFortMaze2OpenDoor:
 	ld bc, TILEMAP_09A
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementWithStep
+	call WarpPlayerToFightingFortBasement_WithStep
 	ret
 
 FightingFortMaze3_MapHeader:
@@ -5731,9 +5733,9 @@ FightingFortMaze3_StepEvent:
 	ret
 
 FightingFortMaze3_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -5788,9 +5790,9 @@ FightingFortMaze4_WarpEndSFX:
 	ret
 
 FightingFortMaze4_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -5858,7 +5860,7 @@ Script_FightingFortMaze4OpenDoor:
 	ld bc, TILEMAP_09D
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementWithStep
+	call WarpPlayerToFightingFortBasement_WithStep
 	ret
 
 FightingFortMaze5_MapHeader:
@@ -5884,9 +5886,9 @@ FightingFortMaze5_StepEvent:
 	ret
 
 FightingFortMaze5_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -5915,9 +5917,9 @@ FightingFortMaze6_StepEvent:
 	ret
 
 FightingFortMaze6_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -5948,9 +5950,9 @@ FightingFortMaze7_StepEvent:
 	ret
 
 FightingFortMaze7_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6007,9 +6009,9 @@ FightingFortMaze8_WarpEndSFX:
 	ret
 
 FightingFortMaze8_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6077,7 +6079,7 @@ Script_FightingFortMaze8OpenDoor:
 	ld bc, TILEMAP_0BC
 	lb de, 3, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementWithStep
+	call WarpPlayerToFightingFortBasement_WithStep
 	ret
 
 FightingFortMaze9_MapHeader:
@@ -6105,9 +6107,9 @@ FightingFortMaze9_StepEvent:
 	ret
 
 FightingFortMaze9_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6159,9 +6161,9 @@ FightingFortMaze11_StepEvent:
 	ret
 
 FightingFortMaze11_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6206,9 +6208,9 @@ FightingFortMaze12_WarpEndSFX:
 	ret
 
 FightingFortMaze12_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6218,7 +6220,7 @@ Script_FightingFortMaze12OpenDoor:
 	ld bc, TILEMAP_0C1
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasement_NoStep
 	ret
 
 FightingFortMaze13_MapHeader:
@@ -6248,9 +6250,9 @@ FightingFortMaze13_StepEvent:
 	ret
 
 FightingFortMaze13_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6293,9 +6295,9 @@ FightingFortMaze14_WarpEndSFX:
 	ret
 
 FightingFortMaze14_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6305,7 +6307,7 @@ Script_FightingFortMaze14OpenDoor:
 	ld bc, TILEMAP_0C4
 	lb de, 2, 3
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementWithStep
+	call WarpPlayerToFightingFortBasement_WithStep
 	ret
 
 FightingFortMaze15_MapHeader:
@@ -6333,9 +6335,9 @@ FightingFortMaze15_StepEvent:
 	ret
 
 FightingFortMaze15_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -6379,9 +6381,9 @@ FightingFortMaze17_StepEvent:
 	ret
 
 FightingFortMaze17_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT_MAZE_18
 	jr z, .asm_33c86
@@ -6480,10 +6482,10 @@ Script_FightingFortMaze17OpenEastDoor:
 	ld a, $03
 	cp e
 	jr nz, .asm_33d17
-	call WarpPlayerToFightingFortBasementWithStep
+	call WarpPlayerToFightingFortBasement_WithStep
 	ret
 .asm_33d17
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasement_NoStep
 	ret
 
 Script_FightingFortMaze17OpenNorthDoor:
@@ -6492,7 +6494,7 @@ Script_FightingFortMaze17OpenNorthDoor:
 	ld bc, TILEMAP_0CA
 	lb de, 4, 6
 	farcall LoadAndQueueOWMapTilemap
-	call WarpPlayerToFightingFortBasementNoStep
+	call WarpPlayerToFightingFortBasement_NoStep
 	ret
 
 FightingFortMaze20_MapHeader:

@@ -40,7 +40,7 @@ WRAMToSRAMMapper_GeneralSave::
 	wram_sram_map wTempCardDungeonBet,                        1, $00, $ff
 	wram_sram_map wEventVars,               EVENT_VAR_BYTES - 2, $00, $ff
 	wram_sram_map wGeneralVars,           GENERAL_VAR_BYTES - 2, $00, $ff
-	wram_sram_map wOWData,                                  177, $00, $ff
+	wram_sram_map wOWData,                          OWDATA_SIZE, $00, $ff
 	wram_sram_map wd98b,                 5 * MAX_NUM_OW_OBJECTS, $00, $ff
 	wram_sram_map wScrollTargetObject,                        1, $00, $ff
 	wram_sram_map wSelectedCoin,                              1, $00, $ff

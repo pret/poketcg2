@@ -1430,9 +1430,9 @@ UpdateOverworldPaletteCycle::
 	push bc
 	push de
 	push hl
-	ld a, [wd896]
+	ld a, [wOWPalettte]
 	ld c, a
-	ld a, [wd896 + 1]
+	ld a, [wOWPalettte + 1]
 	ld b, a
 	or c
 	jr z, .done
@@ -1441,12 +1441,12 @@ UpdateOverworldPaletteCycle::
 	farcall GetwD9DE
 	cp $02
 	jr z, .done
-	ld a, [wd899]
+	ld a, [wOWPaletteCycleCounter]
 	dec a
-	ld [wd899], a
+	ld [wOWPaletteCycleCounter], a
 	jr nz, .done
-	ld a, [wd898]
-	ld [wd899], a
+	ld a, [wOWPaletteCycle]
+	ld [wOWPaletteCycleCounter], a
 
 	farcall GetPaletteGfxPointer
 	ldh a, [hBankROM]
@@ -1455,14 +1455,14 @@ UpdateOverworldPaletteCycle::
 	call BankswitchROM
 	ld a, [hli] ; number of pals
 	ld b, a
-	ld a, [wd89a]
+	ld a, [wOWPaletteIndex]
 	ld c, a
 	inc a ; next pal
 	cp b
 	jr nz, .got_pal_index
 	xor a
 .got_pal_index
-	ld [wd89a], a
+	ld [wOWPaletteIndex], a
 REPT 3
 	sla c
 ENDR

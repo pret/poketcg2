@@ -412,8 +412,8 @@ InitOverworldGraphics:
 	call InitSavedBGMapStack
 
 	xor a
-	ld [wd896 + 0], a
-	ld [wd896 + 1], a
+	ld [wOWPalettte + 0], a
+	ld [wOWPalettte + 1], a
 	pop hl
 	pop de
 	pop bc
@@ -874,7 +874,7 @@ ReloadOWMapAndTiles:
 	farcall LoadOWMap
 	ld a, $00
 	ld hl, wOWAnimatedTiles
-	ld bc, $64
+	ld bc, NUM_OW_ANIMATED_TILES * $4
 	call WriteBCBytesToHL
 	call LoadOWAnimatedTiles
 	ld hl, wd852
@@ -912,8 +912,8 @@ BackupOverworldStateToWRAM3:
 	push de
 	push hl
 	ld de, w3d415
-	ld hl, wOWMap
-	ld c, $b1
+	ld hl, wOWData
+	ld c, OWDATA_SIZE
 .loop_copy
 	ld b, [hl]
 	ld a, [wWRAMBank]
@@ -950,8 +950,8 @@ RestoreOverworldStateFromWRAM3:
 	push de
 	push hl
 	ld de, w3d415
-	ld hl, wOWMap
-	ld c, $b1
+	ld hl, wOWData
+	ld c, OWDATA_SIZE
 .loop_copy
 	ld a, [wWRAMBank]
 	push af
@@ -982,21 +982,22 @@ RestoreOverworldStateFromWRAM3:
 	pop af
 	ret
 
-; input: a, b, c
+; input:
+;   a  = cycle counter
+;   bc = PALETTE_* constant
 ; output:
-; [wd896] = c
-; [wd896 + 1] = b
-; [wd896 + 2] = [wd896 + 3] = a
-; [wd896 + 4] = 0
-SetwD896:
-	ld [wd896 + 2], a
-	ld [wd896 + 3], a
+;   [wOWPalettte] = bc
+;   [wOWPaletteCycle] = [wOWPaletteCycleCounter] = a
+;   [wOWPaletteIndex] = 0
+SetOWPaletteData:
+	ld [wOWPaletteCycle], a
+	ld [wOWPaletteCycleCounter], a
 	ld a, c
-	ld [wd896], a
+	ld [wOWPalettte], a
 	ld a, b
-	ld [wd896 + 1], a
+	ld [wOWPalettte + 1], a
 	xor a
-	ld [wd896 + 4], a
+	ld [wOWPaletteIndex], a
 	ret
 
 CopyCGBBGPalsWithID_BeginWithPal2:
@@ -2278,6 +2279,7 @@ SetAndInitSpriteAnimFrameset::
 	pop af
 	ret
 
+; bc = FRAMESET_* constant
 SetSpriteAnimFrameset:
 	push af
 	push de

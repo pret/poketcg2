@@ -99,7 +99,7 @@ FindCardIDInTurnDuelistsPlayArea:
 	ret
 
 ; check if energy card ID in bc is in AI hand and,
-; if so, attaches it to card ID in bc in Play Area.
+; if so, attaches it to card ID in de in Play Area.
 ; input:
 ;	de = Pokemon card ID
 ;	bc = Energy card ID
@@ -1472,7 +1472,7 @@ AISelectSpecialAttackParameters:
 	ldh [hDuelActionArgs + 0], a
 	ldh [hDuelActionArgs + 1], a
 	ldh [hDuelActionArgs + 2], a
-	ldh [$ffa5], a
+	ldh [hDuelActionArgs + 3], a
 	farcall CheckIfDefendingCardIsWeakToArenaCard
 	ld c, 10
 	jr nc, .asm_288c5
@@ -1602,7 +1602,7 @@ AISelectSpecialAttackParameters:
 	or a
 	jr z, .asm_28984 ; no energy cards to discard
 	; choose randomly from player's Bench,
-	; up to [hDuelActionArgs + 0] number of cards
+	; up to hDuelActionArgs[0] number of cards
 	ld b, a
 	ld d, $00
 .loop_rock_blast_random_selection
@@ -1681,7 +1681,7 @@ AISelectSpecialAttackParameters:
 	ld e, a
 .asm_289e6
 	ld a, e
-	ldh [$ffa5], a
+	ldh [hDuelActionArgs + 3], a
 	xor a ; PLAY_AREA_ARENA
 	ldh [hDuelActionArgs + 1], a
 	farcall GetFirstBasicEnergyAttachedToPlayAreaCard

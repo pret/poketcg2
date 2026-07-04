@@ -4854,7 +4854,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	ldh [hDuelActionArgs + 0], a
 	ldh [hDuelActionArgs + 1], a
 	ldh [hDuelActionArgs + 2], a
-	ldh [$ffa5], a
+	ldh [hDuelActionArgs + 3], a
 	ld a, [wOpponentDeckID]
 	cp BAD_GUYS_DECK_ID
 	jr z, .BadGuysDeck

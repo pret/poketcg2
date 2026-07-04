@@ -5500,9 +5500,9 @@ FightingFortMaze1_StepEvent:
 	ret
 
 FightingFortMaze1_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
@@ -5531,9 +5531,9 @@ FightingFortMaze21_StepEvent:
 	ret
 
 FightingFortMaze21_WarpFadeInPreload:
-	ld bc, $53
-	ld a, $05
-	farcall SetwD896
+	ld bc, PALETTE_053
+	ld a, 5
+	farcall SetOWPaletteData
 	scf
 	ret
 
