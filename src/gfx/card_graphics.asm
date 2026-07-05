@@ -3,16 +3,16 @@ SECTION "Card Gfx 1", ROMX
 ; structure:
 ; - <Name>CardGfx:
 ;   - 3 GBC palettes (rgb)
-;   - per-tile attribute map for 48 tiles
+;   - tile descriptors, byte per tile:
 ;     - bits 6-7: palette index (0, 1, 2)
 ;     - bits 0-5: printer-only alt-tile offset for LoadCardGfx_PrinterAlt,
 ;                 offset = 48 + (cur alt tile index) - (cur tile index),
 ;                 0 if no alt
-;   - <name>.2bpp portrait, of 48 tiles, built from gfx/cards/<name>.png,
-;     in 4-shade grayscale, column-major
+;   - <name>.2bpp: 8x6 tiles grayscale portrait in column-major order,
+;                  built from gfx/cards/<name>.png
 ; - <Name>CardGfxExtra: printer-only alt tiles in <name>_extra.2bpp
 ; banks padded with $0 instead of $ff
-; TODO: replace the tools/derive_*_tiles.py workflow to allow the use of attribute macros
+; TODO: replace the tools/derive_*_tiles.py workflow to allow the use of tile descriptor macros
 CardGraphics::
 
 GrassEnergyCardGfx::

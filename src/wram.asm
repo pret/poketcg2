@@ -1135,11 +1135,16 @@ wcd78:: ; cd78
 wEffectFunctionsBank:: ; cd79
 	ds $1
 
+; palettes and tile descriptor
+wCardGfxHeaderData:: ; cd7a
+
 wCardPalettes:: ; cd7a
 	ds CARDGFXSTRUCT_PALS_SIZE
 
-wCardAttrMap:: ; cd92
-	ds CARDGFXSTRUCT_TILE_ATTRMAP_SIZE
+; tile descriptors are converted to BG palette indices in place
+wCardTileDescriptors:: ; cd92
+wCardTilePaletteIndices:: ; cd92
+	ds CARDGFXSTRUCT_TILE_DESC_SIZE
 
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.
@@ -3676,15 +3681,16 @@ wCardDungeonIsPlayable:: ; dd93
 	ds $1
 
 wCardTilemap:: ; dd94
-	ds $30
+	ds NUM_CARD_GFX_TILES
 
-wddc4:: ; ddc4
-	ds $30
+wCardAttrmap:: ; ddc4
+	ds NUM_CARD_GFX_TILES
 
 wCardTilemapOffset:: ; ddf4
 	ds $1
 
-wddf5:: ; ddf5
+; mostly just the pal index offset (bit 0-2)
+wCardAttrmapOffset:: ; ddf5
 	ds $1
 
 ; TCG_ISLAND or GR_ISLAND

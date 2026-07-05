@@ -3448,15 +3448,15 @@ SetOBP5ToCardPalette:
 	or a
 	ret z
 	ld a, 8 + 5 ; CGB Object Palette 5 (to 7)
-	jr CopyCGBCardPalettes_UpdatePalIndex
+	jr CopyCGBCardPalettes_BuildPaletteIndices
 
 ; de = coordinates
 LoadCardPalettesAndBGPAttributes:
 	push de
-	call CopyCGBCardPalettes_UpdatePalIndex
+	call CopyCGBCardPalettes_BuildPaletteIndices
 	pop bc
 
-; hl = wCardAttrMap holding bg pal index
+; hl = wCardTilePaletteIndices
 ; copy attributes
 	push hl
 	call BCCoordToBGMap0Address
@@ -3480,10 +3480,10 @@ LoadCardPalettesAndBGPAttributes:
 	ret
 
 ; for a = starting BG palette index,
-; copy wCardPalettes to bgpal[a, a+1, a+2], and
-; update wCardAttrMap with a + (each tile's pal index)
-; also return hl = wCardAttrMap
-CopyCGBCardPalettes_UpdatePalIndex:
+; copy wCardPalettes to bgpal[a, a+1, a+2],
+; convert wCardTileDescriptors to (a + pal index) in place, and
+; return hl = wCardTilePaletteIndices (= wCardTileDescriptors)
+CopyCGBCardPalettes_BuildPaletteIndices:
 	ld c, a
 REPT 3 ; *= PAL_SIZE
 	add a
@@ -3501,16 +3501,16 @@ ENDR
 	dec b
 	jr nz, .loop_copy_pal
 
-; de = wCardAttrMap
+; de = wCardTileDescriptors
 ; overwrite each tile's value with
-; (starting BG palette index) + its CARD_GFX_TILE_ATTRMAP_PAL_INDEX (0, 1, 2)
+; (starting BG palette index) + its CARD_GFX_TILE_DESC_PAL_INDEX (0, 1, 2)
 	push de
-	ld b, CARDGFXSTRUCT_TILE_ATTRMAP_SIZE
+	ld b, CARDGFXSTRUCT_TILE_DESC_SIZE
 .loop_load_pal_index
 	ld a, [de]
 	rlca
 	rlca
-	and $03
+	and CARD_GFX_PAL_INDEX_MASK
 	add c
 	ld [de], a
 	inc de

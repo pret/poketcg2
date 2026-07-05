@@ -107,7 +107,7 @@ $(rom): $(rom_obj) src/layout.link
 
 # Card portraits: the source is the in-duel COLOR image <name>.png. The grayscale
 # tiles (<name>.2bpp, column-major to match the ROM) are derived by inverting each
-# cell's palette, using the palettes + attribute map in card_graphics.asm.
+# cell's palette, using the palettes + tile descriptor in card_graphics.asm.
 card_portrait_png := $(filter-out %_remapped.png,$(wildcard src/gfx/cards/*.png))
 card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
 $(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py src/gfx/card_graphics.asm

@@ -103,18 +103,18 @@ MACRO? gfx
 	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
 ENDM
 
-; card gfx tile attrmap
-MACRO? gfx_attrmap_start
+; card gfx tile descriptor
+MACRO? cardtiledescs_start
 	DEF _current_card_tile_idx = 0
 	DEF _current_alt_card_tile_idx = 0
 ENDM
 ; \1 = palette index
-; \2 = has-alt flag (TRUE/FALSE)
-MACRO? gfx_attrmap
-	IF \2 > 0 ; TRUE
+; \2 = has-alt flag
+MACRO? cardtiledesc
+	IF _NARG > 1
 		db \1 << 6 | (48 + _current_alt_card_tile_idx - _current_card_tile_idx)
 		DEF _current_alt_card_tile_idx += 1
-	ELSE ; FALSE
+	ELSE
 		db \1 << 6
 	ENDC
 	DEF _current_card_tile_idx += 1
