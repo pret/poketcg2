@@ -44,9 +44,7 @@ tcg2: $(rom) compare
 
 clean: tidy
 	find src/gfx \
-	     \( -iname '*.1bpp' \
-	        -o -iname '*.2bpp' \
-	        -o -iname '*.pal' \) \
+	     \( -iname '*.[12]bpp' \) \
 	     -delete
 
 tidy:
@@ -104,22 +102,27 @@ $(rom): $(rom_obj) src/layout.link
 
 
 ### Misc file-specific graphics rules
+# TODO: revamp brute-force processing, e.g. by creating card_gfx.c or gbcpal.c
 
-# Card portraits: the source is the in-duel COLOR image <name>.png. The grayscale
-# tiles (<name>.2bpp, column-major to match the ROM) are derived by inverting each
-# cell's palette, using the palettes + tile descriptor in card_graphics.asm.
+# Card portraits:
+# Derive the grayscale column-major tiles <name>.2bpp
+# from the source in-duel COLOR image <name>.png
+# by inverting each cell's palette,
+# using the palettes <name>.pal.asm and tile descriptors <name>.desc.asm.
 card_portrait_png := $(filter-out %_remapped.png,$(wildcard src/gfx/cards/*.png))
 card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
-$(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py src/gfx/card_graphics.asm
-	python3 tools/derive_color_tiles.py --asm src/gfx/card_graphics.asm $< $@
+$(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py
+	python3 tools/derive_color_tiles.py $< $@
 
-# Printer "extra" tiles: cards that need them store the full remapped printer
-# image as <name>_remapped.png; the extra tiles are derived from it (the cells
-# whose remapped source index > 47) rather than a separate tile-pool file.
+# Printer extra tiles:
+# Derive the printer-only extra tiles <name>_extra.2bpp for cards that need them
+# from the full remapped printer image <name>_remapped.png.
+# It consists of the cells whose remapped source index > 47,
+# rather than a separate tile-pool file.
 card_remapped_png := $(wildcard src/gfx/cards/*_remapped.png)
 card_extra_2bpp := $(card_remapped_png:_remapped.png=_extra.2bpp)
-$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_remapped.png tools/derive_extra_tiles.py src/gfx/card_graphics.asm
-	python3 tools/derive_extra_tiles.py --rgbgfx '$(RGBGFX)' --asm src/gfx/card_graphics.asm $< $@
+$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_remapped.png tools/derive_extra_tiles.py
+	python3 tools/derive_extra_tiles.py --rgbgfx '$(RGBGFX)' $< $@
 
 src/gfx/coins/%.2bpp: RGBGFXFLAGS += -x 1
 
