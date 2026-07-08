@@ -2541,7 +2541,7 @@ HandleAIRainDanceEnergy:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr nc, .loop_play_energy_cards ; no Professor Oak
-	call UltraRemovalDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_UltraRemovalDeck
 	jr nc, .loop_play_energy_cards ; disinclined
 
 	; has Professor Oak and inclined to play it
@@ -3106,7 +3106,7 @@ CountCardIDInTurnDuelistPlayArea:
 	ld a, [wTempAICount1]
 	ret
 
-RainDanceConfusionDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_RainDanceConfusionDeck:
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -3232,7 +3232,7 @@ RainDanceConfusionDeckAIDecideProfessorOak:
 	or a
 	ret
 
-RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
+AIDecide_ComputerSearch_FindDiscardCards_RainDanceConfusionDeck:
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -3365,7 +3365,7 @@ RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
 	scf
 	ret
 
-MadPetalsDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_MadPetalsDeck:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
@@ -3530,7 +3530,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 	jp c, .success
 	ret
 
-MadPetalsDeckAIDecideComputerSearch_FindTarget:
+AIDecide_ComputerSearch_FindTarget_MadPetalsDeck:
 	ld a, TYPE_PKMN_FIRE
 	call CheckIfPlayerHasPokemonOfType
 	jp c, .check_wartortle
@@ -4895,7 +4895,7 @@ ColorlessAltarAIDecideProfessorOak:
 	scf
 	ret
 
-EyeOfTheStormDeckAIDecideMoonStone:
+AIDecide_MoonStone_EyeOfTheStormDeck:
 	ld a, 3
 	ld bc, PIDGEOTTO_LV38
 	ld de, PIDGEOT_LV40
@@ -4912,7 +4912,7 @@ EyeOfTheStormDeckAIDecideMoonStone:
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
 	ret
 
-EyeOfTheStormDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_EyeOfTheStormDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
@@ -5049,7 +5049,7 @@ EyeOfTheStormDeckAIDecideComputerSearch:
 	or a
 	ret
 
-EyeOfTheStormDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call CreateBasicEnergyCardListInLocation
 	cp 2
@@ -5142,7 +5142,7 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
+AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck:
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall LookForCardIDInHandList
 	jr c, .check_num_deck_cards
@@ -5206,7 +5206,7 @@ SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_SuddenGrowthDeck:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr c, .check_bosss_way_in_hand
@@ -5306,7 +5306,7 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideItemFinder:
+AIDecide_ItemFinder_SuddenGrowthDeck:
 ; target professor oak
 	ld de, PROFESSOR_OAK
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -5314,7 +5314,7 @@ SuddenGrowthDeckAIDecideItemFinder:
 	jr nc, .count_deck_pile
 
 	push af
-	call SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak
+	call AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -5383,7 +5383,7 @@ CheckIfArenaCardCanRetreat:
 	or a
 	ret
 
-BadGuysDeckAIDecideReelIn:
+AIDecide_ReelIn_BadGuysDeck:
 	; first fetch an Oddish and Dark Gloom
 	ld de, ODDISH_LV21
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -5483,7 +5483,7 @@ BadGuysDeckAIDecideReelIn:
 	ret z ; equal to second card
 	inc hl
 	ld [hl], a
-	add sp, $02 ; exit BadGuysDeckAIDecideReelIn
+	add sp, $02 ; exit AIDecide_ReelIn_BadGuysDeck
 	scf
 	ret
 
@@ -5491,7 +5491,7 @@ BadGuysDeckAIDecideReelIn:
 ;    (<= 6 cards in hand AND no energy there)
 ; OR (<= 4 cards in hand AND <= 2 energy there)
 ; a and b get clobbered
-BadGuysDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_BadGuysDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
@@ -5517,7 +5517,7 @@ BadGuysDeckAIDecideProfessorOak:
 ; elif discard pile contains >= 7 basic energy cards,
 ; select 3 of them;
 ; otherwise no carry
-BadGuysDeckAIDecideNightlyGarbageRun:
+AIDecide_NightlyGarbageRun_BadGuysDeck:
 ; init
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -5613,9 +5613,9 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	or a
 	ret
 
-BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard:
+AIDecide_EnergyRetrieval_FindDiscardCard_BadGuysDeck:
 ; try oak
-	call BadGuysDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_BadGuysDeck
 	jr c, .try_bill
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
@@ -5632,7 +5632,7 @@ BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard:
 	call IsSameCardInHandAndPlayArea
 	ret c
 ; try boss's way
-	call BadGuysDeckAIDecideTheBosssWay
+	call AIDecide_TheBosssWay_BadGuysDeck
 	jr nc, .try_energy_search
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
@@ -5665,7 +5665,7 @@ IsSameCardInHandAndPlayArea:
 	ret
 
 ; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
-BadGuysDeckAIDecideTheBosssWay:
+AIDecide_TheBosssWay_BadGuysDeck:
 	ld bc, CHARMANDER_LV9
 	ld de, DARK_CHARMELEON
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -5684,7 +5684,7 @@ BadGuysDeckAIDecideTheBosssWay:
 	ret
 
 ; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
-BadGuysDeckAIDecidePokemonTraderForEvo:
+AIDecide_PokemonTraderForEvo_BadGuysDeck:
 	ld de, CHARMANDER_LV9
 	ld bc, DARK_CHARMELEON
 	call LookForCardIDInDeck_GivenCardIDInHand
@@ -5714,7 +5714,7 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	farcall FindDifferentPokemonCardInHand
 	ret
 
-PoisonMistDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_PoisonMistDeck:
 	ld de, DARK_MUK
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -5761,7 +5761,7 @@ PoisonMistDeckAIDecidePokemonTrader:
 ; if both are true, search player's Bench for card
 ; with at least 2 energy retreat cost
 ; return carry and its Play Area location if found
-PoisonMistDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_PoisonMistDeck:
 	ld de, DARK_MUK
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6339,7 +6339,7 @@ CheckIfHasRainDanceActive:
 ; return carry if
 ;    (golduck or blastoise in arena AND no energy in hand)
 ; OR no evolution cards in hand for her pkmn in play
-UltraRemovalDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_UltraRemovalDeck:
 	ld de, GOLDUCK_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6374,7 +6374,7 @@ UltraRemovalDeckAIDecideProfessorOak:
 	; found evolution card
 	ret
 
-UltraRemovalDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_UltraRemovalDeck:
 	ld de, GOLDUCK_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6419,7 +6419,7 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	farcall FindDifferentPokemonCardInHand
 	ret
 
-UltraRemovalDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_UltraRemovalDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6445,7 +6445,7 @@ UltraRemovalDeckAIDecideGustOfWind:
 	call SwapTurn
 	ret
 
-UltraRemovalDeckAIDecideSwitch:
+AIDecide_Switch_UltraRemovalDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6528,7 +6528,7 @@ Func_3a887:
 	or a
 	ret
 
-PsychicBattleDeckAIDecideSwitch:
+AIDecide_Switch_PsychicBattleDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex

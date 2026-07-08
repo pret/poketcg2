@@ -402,7 +402,7 @@ AIDecide_Potion_Phase11:
 	or a
 	ret
 .big_thunder_deck
-	farcall BigThunderDeckAIDecidePotion
+	farcall AIDecide_Potion_BigThunderDeck
 	ret
 
 ; makes AI use Super Potion card.
@@ -639,7 +639,7 @@ AIDecide_SuperPotion_Phase13:
 	or a
 	ret
 .big_thunder_deck
-	farcall BigThunderDeckAIDecideSuperPotion
+	farcall AIDecide_SuperPotion_BigThunderDeck
 	ret
 
 AIPlay_Defender:
@@ -1412,51 +1412,51 @@ AIDecide_Switch_Phase16:
 	ret
 
 .PoisonMistDeck:
-	farcall PoisonMistDeckAIDecideSwitch
+	farcall AIDecide_Switch_PoisonMistDeck
 	ret
 
 .UltraRemovalDeck:
-	farcall UltraRemovalDeckAIDecideSwitch
+	farcall AIDecide_Switch_UltraRemovalDeck
 	ret
 
 .PsychicBattleDeck:
-	farcall PsychicBattleDeckAIDecideSwitch
+	farcall AIDecide_Switch_PsychicBattleDeck
 	ret
 
 .StopLifeDeck:
-	farcall StopLifeDeckAIDecideSwitch
+	farcall AIDecide_Switch_StopLifeDeck
 	ret
 
 .ScorcherDeck:
-	farcall ScorcherDeckAIDecideSwitch
+	farcall AIDecide_Switch_ScorcherDeck
 	ret
 
 .TsunamiStarterDeck:
-	farcall TsunamiStarterDeckAIDecideSwitch
+	farcall AIDecide_Switch_TsunamiStarterDeck
 	ret
 
 .SmashToMincemeatDeck:
-	farcall SmashToMincemeatDeckAIDecideSwitch
+	farcall AIDecide_Switch_SmashToMincemeatDeck
 	ret
 
 .PowerfulPokemonDeck:
-	farcall PowerfulPokemonDeckAIDecideSwitch
+	farcall AIDecide_Switch_PowerfulPokemonDeck
 	ret
 
 .EverybodysFriendDeck:
-	farcall EverybodysFriendDeckAIDecideSwitch
+	farcall AIDecide_Switch_EverybodysFriendDeck
 	ret
 
 .ImmortalPokemonDeck:
-	farcall ImmortalPokemonDeckAIDecideSwitch
+	farcall AIDecide_Switch_ImmortalPokemonDeck
 	ret
 
 .TorrentialFloodDeck:
-	farcall TorrentialFloodDeckAIDecideSwitch
+	farcall AIDecide_Switch_TorrentialFloodDeck
 	ret
 
 .BlazingFlameDeck:
-	farcall BlazingFlameDeckAIDecideSwitch
+	farcall AIDecide_Switch_BlazingFlameDeck
 	ret
 
 AIPlay_GustOfWind:
@@ -1648,15 +1648,15 @@ AIDecide_GustOfWind:
 	jr .loop_bench
 
 .PoisonMistDeck:
-	farcall PoisonMistDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_PoisonMistDeck
 	ret
 
 .UltraRemovalDeck:
-	farcall UltraRemovalDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_UltraRemovalDeck
 	ret
 
 .PsychicBattleDeck:
-	farcall PsychicBattleDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_PsychicBattleDeck
 	ret nc
 	cp $ff
 	jp z, .check_bench_energy
@@ -1664,15 +1664,15 @@ AIDecide_GustOfWind:
 	ret
 
 .StopLifeDeck:
-	farcall StopLifeDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_StopLifeDeck
 	ret
 
 .TsunamiStarterDeck:
-	farcall TsunamiStarterDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_TsunamiStarterDeck
 	ret
 
 .SmashToMincemeatDeck:
-	farcall SmashToMincemeatDeckAIDecideGustOfWind
+	farcall AIDecide_GustOfWind_SmashToMincemeatDeck
 	ret
 
 ; returns nc if Arena card can potentially damage
@@ -2350,7 +2350,7 @@ AIDecide_EnergyRemoval:
 	ret
 
 .BigThunderDeck:
-	farcall Func_4c676
+	farcall AIDecide_EnergyRemoval_BigThunderDeck
 	ret
 
 AIPlay_SuperEnergyRemoval:
@@ -3465,7 +3465,7 @@ AIDecide_ProfessorOak:
 	ret nc ; yes, don't use
 
 .asm_21560
-	farcall RainDanceConfusionDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_RainDanceConfusionDeck
 	ret
 
 .GoArcanineDeck:
@@ -3617,35 +3617,35 @@ AIDecide_ProfessorOak:
 	ret
 
 .SuddenGrowthDeck:
-	farcall SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak
+	farcall AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_BadGuysDeck
 	ret
 
 .UltraRemovalDeck:
-	farcall UltraRemovalDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_UltraRemovalDeck
 	ret
 
 .PsychicBattleDeck:
-	farcall Func_4c4ba
+	farcall AIDecide_ProfessorOak_PsychicBattleDeck
 	ret
 
 .EverybodysFriendDeck:
-	farcall EverybodysFriendDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_EverybodysFriendDeck
 	ret
 
 .TorrentialFloodDeck:
-	farcall TorrentialFloodDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_TorrentialFloodDeck
 	ret
 
 .TrainerImprisonDeck:
-	farcall TrainerImprisonDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_TrainerImprisonDeck
 	ret
 
 .BlazingFlameDeck:
-	farcall BlazingFlameDeckAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_BlazingFlameDeck
 	ret
 
 AIPlay_EnergyRetrieval:
@@ -4217,23 +4217,23 @@ AIDecide_EnergyRetrieval:
 	jp .generic_logic
 
 .EyeOfTheStormDeck:
-	farcall EyeOfTheStormDeckAIDecideEnergyRetrieval
+	farcall AIDecide_EnergyRetrieval_EyeOfTheStormDeck
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard
+	farcall AIDecide_EnergyRetrieval_FindDiscardCard_BadGuysDeck
 	ret nc
 	push af
 	jp .generic_logic
 
 .PsychicBattleDeck:
-	farcall Func_4c524
+	farcall AIDecide_EnergyRetrieval_PsychicBattleDeck
 	ret nc
 	push af
 	jp .generic_logic
 
 .ScorcherDeck:
-	farcall ScorcherDeckAIDecideEnergyRetrieval
+	farcall AIDecide_EnergyRetrieval_ScorcherDeck
 	ret nc
 	push af
 	jp .generic_logic
@@ -4264,7 +4264,7 @@ AIDecide_EnergyRetrieval:
 	jp .generic_logic
 
 .RonaldsPsychicDeck:
-	farcall RonaldsPsychicDeckAIDecideEnergyRetrieval
+	farcall AIDecide_EnergyRetrieval_RonaldsPsychicDeck
 	ret nc
 	push af
 	jp .generic_logic
@@ -4281,7 +4281,7 @@ AIDecide_EnergyRetrieval:
 	ret
 
 .BlazingFlameDeck:
-	farcall BlazingFlameDeckAIDecideEnergyRetrieval
+	farcall AIDecide_EnergyRetrieval_BlazingFlameDeck
 	ret
 
 .DamageChaosDeck:
@@ -4291,7 +4291,7 @@ AIDecide_EnergyRetrieval:
 	jp .generic_logic
 
 .BigThunderDeck:
-	farcall BigThunderDeckAIDecideEnergyRetrieval
+	farcall AIDecide_EnergyRetrieval_BigThunderDeck
 	ret
 
 .PowerOfDarknessDeck:
@@ -4689,7 +4689,7 @@ AIDecide_PokemonCenter:
 	ret
 
 .ImmortalPokemonDeck:
-	farcall ImmortalPokemonDeckAIDecidePokemonCenter
+	farcall AIDecide_PokemonCenter_ImmortalPokemonDeck
 	ret
 
 AIPlay_ImposterProfessorOak:
@@ -4835,7 +4835,7 @@ AIDecide_EnergySearch:
 	ret
 
 .PowerfulPokemonDeck:
-	farcall PowerfulPokemonDeckAIDecideEnergySearch
+	farcall AIDecide_EnergySearch_PowerfulPokemonDeck
 	ret
 
 ; return carry if cards in wDuelTempList are not
@@ -5620,7 +5620,7 @@ AIDecide_ScoopUp:
 	ret
 
 .PsychicEliteDeck:
-	farcall PsychicEliteDeckAIDecideScoopUp
+	farcall AIDecide_ScoopUp_PsychicEliteDeck
 	ret
 
 .RagingBillowOfFistsDeck:
@@ -5691,7 +5691,7 @@ AIDecide_ScoopUp:
 	ret
 
 .EverbodysFriendDeck:
-	farcall EverybodysFriendDeckAIDecideScoopUp
+	farcall AIDecide_ScoopUp_EverybodysFriendDeck
 	ret
 
 .BigThunderDeck:
@@ -6199,11 +6199,11 @@ AIDecide_ItemFinder:
 	ret
 
 .SuddenGrowthDeck:
-	farcall SuddenGrowthDeckAIDecideItemFinder
+	farcall AIDecide_ItemFinder_SuddenGrowthDeck
 	ret
 
 .EverybodysFriendDeck:
-	farcall EverybodysFriendDeckAIDecideItemFinder
+	farcall AIDecide_ItemFinder_EverybodysFriendDeck
 	ret
 
 ; adds card index given in a to:
@@ -7192,7 +7192,7 @@ AIDecide_ComputerSearch:
 	ret
 
 .RainDanceConfusionDeck:
-	farcall RainDanceConfusionDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_RainDanceConfusionDeck
 	ret
 
 .LegendaryFossilDeck:
@@ -7257,7 +7257,7 @@ AIDecide_ComputerSearch:
 	ret
 
 .MadPetalsDeck:
-	farcall MadPetalsDeckAIDecideComputerSearch_FindTarget
+	farcall AIDecide_ComputerSearch_FindTarget_MadPetalsDeck
 	ret nc
 	ld [wd082], a
 
@@ -7298,27 +7298,27 @@ AIDecide_ComputerSearch:
 	ret
 
 .SpiritedAwayDeck:
-	farcall SpiritedAwayDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_SpiritedAwayDeck
 	ret
 
 .EyeOfTheStormDeck:
-	farcall EyeOfTheStormDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_EyeOfTheStormDeck
 	ret
 
 .SuddenGrowthDeck:
-	farcall SuddenGrowthDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_SuddenGrowthDeck
 	ret
 
 .EverybodysFriendDeck:
-	farcall EverybodysFriendDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_EverybodysFriendDeck
 	ret
 
 .ImmortalPokemonDeck:
-	farcall ImmortalPokemonDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_ImmortalPokemonDeck
 	ret
 
 .TorrentialFloodDeck:
-	farcall TorrentialFloodDeckAIDecideComputerSearch
+	farcall AIDecide_ComputerSearch_TorrentialFloodDeck
 	ret
 
 AIPlay_PokemonTrader:
@@ -7693,7 +7693,7 @@ AIDecide_PokemonTrader:
 	ret
 
 .MadPetalsDeck:
-	farcall MadPetalsDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_MadPetalsDeck
 	ret
 
 .DangerousBenchDeck:
@@ -8006,51 +8006,51 @@ AIDecide_PokemonTrader:
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecidePokemonTraderForEvo
+	farcall AIDecide_PokemonTraderForEvo_BadGuysDeck
 	ret
 
 .PoisonMistDeck:
-	farcall PoisonMistDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_PoisonMistDeck
 	ret
 
 .UltraRemovalDeck:
-	farcall UltraRemovalDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_UltraRemovalDeck
 	ret
 
 .ColorlessEnergyDeck:
-	farcall ColorlessEnergyDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_ColorlessEnergyDeck
 	ret
 
 .RonaldsPsychicDeck:
-	farcall RonaldsPsychicDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_RonaldsPsychicDeck
 	ret
 
 .RonaldsUltraDeck:
-	farcall Func_487ff
+	farcall AIDecide_PokemonTrader_RonaldsUltraDeck
 	ret
 
 .ImmortalPokemonDeck:
-	farcall ImmortalPokemonDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_ImmortalPokemonDeck
 	ret
 
 .TorrentialFloodDeck:
-	farcall TorrentialFloodDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_TorrentialFloodDeck
 	ret
 
 .TrainerImprisonDeck:
-	farcall TrainerImprisonDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_TrainerImprisonDeck
 	ret
 
 .BlazingFlameDeck:
-	farcall BlazingFlameDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_BlazingFlameDeck
 	ret
 
 .DamageChaosDeck:
-	farcall DamageChaosDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_DamageChaosDeck
 	ret
 
 .BigThunderDeck:
-	farcall BigThunderDeckAIDecidePokemonTrader
+	farcall AIDecide_PokemonTrader_BigThunderDeck
 	ret
 
 AIPlay_TheBosssWay:
@@ -8194,7 +8194,7 @@ AIDecide_TheBosssWay:
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecideTheBosssWay
+	farcall AIDecide_TheBosssWay_BadGuysDeck
 	ret
 
 .RonaldsGRXDeck:
@@ -8217,7 +8217,7 @@ AIDecide_TheBosssWay:
 ;	bug, unintentional fallthrough
 
 .DamageChaosDeck:
-	farcall DamageChaosDeckAIDecideTheBosssWay
+	farcall AIDecide_TheBosssWay_DamageChaosDeck
 	ret
 
 AIPlay_NightlyGarbageRun:
@@ -8700,11 +8700,11 @@ AIDecide_NightlyGarbageRun:
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecideNightlyGarbageRun
+	farcall AIDecide_NightlyGarbageRun_BadGuysDeck
 	ret
 
 .ImmortalPokemonDeck:
-	farcall ImmortalPokemonDeckAIDecideNightlyGarbageRun
+	farcall AIDecide_NightlyGarbageRun_ImmortalPokemonDeck
 	ret
 
 .AddCardToShuffleToDeck:
@@ -9208,7 +9208,7 @@ AIDecide_MasterBall:
 	ret
 
 .ChainLightningByPikachuDeck:
-	farcall ChainLightningByPikachuDeckAIDecideMasterBall
+	farcall AIDecide_MasterBall_ChainLightningByPikachuDeck
 	ret
 
 .CompleteCombustionDeck:
@@ -9233,7 +9233,7 @@ AIDecide_MasterBall:
 	ret
 
 .BigThunderDeck:
-	farcall BigThunderDeckAIDecideMasterBall
+	farcall AIDecide_MasterBall_BigThunderDeck
 	ret
 
 AIPlay_BillsTeleporter:
@@ -9295,7 +9295,7 @@ AIDecide_MoonStone:
 	ret
 
 .EyeOfTheStormDeck:
-	farcall EyeOfTheStormDeckAIDecideMoonStone
+	farcall AIDecide_MoonStone_EyeOfTheStormDeck
 	ret
 
 .SuddenGrowthDeck:
@@ -9309,11 +9309,11 @@ AIDecide_MoonStone:
 	ret
 
 .ColorlessEnergyDeck:
-	farcall ColorlessEnergyDeckAIDecideMoonStone
+	farcall AIDecide_MoonStone_ColorlessEnergyDeck
 	ret
 
 .RonaldsUltraDeck:
-	farcall Func_487c7
+	farcall AIDecide_MoonStone_RonaldsUltraDeck
 	ret
 
 AIPlay_TheRocketsTrap:

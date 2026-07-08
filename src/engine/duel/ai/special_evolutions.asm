@@ -345,7 +345,7 @@ AIDecideSpecialEvolutions:
 .has_dark_slowbro
 	cp 1
 	jr nz, .check_non_slowpoke
-	farcall BadGuysDeckAIDecideReelIn
+	farcall AIDecide_ReelIn_BadGuysDeck
 	jr c, .encourage_kanzaki
 .check_non_slowpoke
 	ld de, SLOWPOKE_LV16

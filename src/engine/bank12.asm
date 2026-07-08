@@ -948,7 +948,7 @@ AIDoTurn_GeneralNoRetreat:
 	farcall AIMakeDecision
 	ret
 
-Func_487c7:
+AIDecide_MoonStone_RonaldsUltraDeck:
 	call CountPrizes
 	cp 4
 	jr c, .prefer_pidgeot_line
@@ -978,7 +978,7 @@ Func_487c7:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret
 
-Func_487ff:
+AIDecide_PokemonTrader_RonaldsUltraDeck:
 	ld bc, PIDGEY_LV10
 	ld de, PIDGEOTTO_LV38
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -2731,7 +2731,7 @@ Func_495dd:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	ret
 
-StopLifeDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_StopLifeDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2820,7 +2820,7 @@ IsArenaOrBenchPokemonStage2:
 	ccf
 	ret
 
-StopLifeDeckAIDecideSwitch:
+AIDecide_Switch_StopLifeDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2992,7 +2992,7 @@ PowerfulPokemonDeckAIEvaluateBasicCards:
 	ld a, PSYCHIC_F
 	ret
 
-PowerfulPokemonDeckAIDecideEnergySearch:
+AIDecide_EnergySearch_PowerfulPokemonDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3055,7 +3055,7 @@ IsDefendingPokemonWeakToArenaOrBenchPokemon:
 	scf
 	ret
 
-PowerfulPokemonDeckAIDecideSwitch:
+AIDecide_Switch_PowerfulPokemonDeck:
 	; if Arena card can KO defending card, skip
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ccf
@@ -3247,7 +3247,7 @@ FindDarkCharizardToAttachEnergy:
 	scf
 	ret
 
-ScorcherDeckAIDecideSwitch:
+AIDecide_Switch_ScorcherDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3341,7 +3341,7 @@ ScorcherDeckAIDecideSwitch:
 	ld a, b
 	ret
 
-ScorcherDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_ScorcherDeck:
 	farcall CountBasicEnergyCardsInHand
 	ret nc
 
@@ -3574,7 +3574,7 @@ Func_49af6:
 	scf
 	ret
 
-TsunamiStarterDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_TsunamiStarterDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3596,7 +3596,7 @@ TsunamiStarterDeckAIDecideGustOfWind:
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret
 
-TsunamiStarterDeckAIDecideSwitch:
+AIDecide_Switch_TsunamiStarterDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3669,7 +3669,7 @@ TsunamiStarterDeckAIDecideSwitch:
 	ld a, b
 	ret
 
-SmashToMincemeatDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_SmashToMincemeatDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3735,7 +3735,7 @@ SmashToMincemeatDeckAIDecideGustOfWind:
 	scf
 	ret
 
-SmashToMincemeatDeckAIDecideSwitch:
+AIDecide_Switch_SmashToMincemeatDeck:
 	; does the player have Bench?
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
@@ -4408,7 +4408,7 @@ CheckIfHasSpecificEnergyAttached:
 ;      <= 5 cards in hand
 ;   OR ready for Do the Wave but <= 4 pkmn in play
 ; )
-EverybodysFriendDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_EverybodysFriendDeck:
 	; if has 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -4433,7 +4433,7 @@ EverybodysFriendDeckAIDecideProfessorOak:
 	cp 5
 	ret
 
-EverybodysFriendDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_EverybodysFriendDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 6
@@ -4482,28 +4482,28 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
 
-	call EverybodysFriendDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_EverybodysFriendDeck
 	jr c, .try_scoop_up
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 
 .try_scoop_up
-	call EverybodysFriendDeckAIDecideScoopUp
+	call AIDecide_ScoopUp_EverybodysFriendDeck
 	jr c, .try_item_finder
 	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 
 .try_item_finder
-	call EverybodysFriendDeckAIDecideItemFinder
+	call AIDecide_ItemFinder_EverybodysFriendDeck
 	jr c, .try_switch
 	ld de, ITEMFINDER
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 
 .try_switch
-	call EverybodysFriendDeckAIDecideSwitch
+	call AIDecide_Switch_EverybodysFriendDeck
 	jr c, .try_gust_of_wind
 	ld de, SWITCH
 	farcall LookForCardIDInHandList
@@ -4556,7 +4556,7 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	scf
 	ret
 
-EverybodysFriendDeckAIDecideSwitch:
+AIDecide_Switch_EverybodysFriendDeck:
 	; switch if Arena card is statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
@@ -4579,7 +4579,7 @@ EverybodysFriendDeckAIDecideSwitch:
 	ccf
 	ret
 
-EverybodysFriendDeckAIDecideScoopUp:
+AIDecide_ScoopUp_EverybodysFriendDeck:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	jr c, .check_bench
 
@@ -4642,7 +4642,7 @@ EverybodysFriendDeckAIDecideScoopUp:
 	scf
 	ret
 
-EverybodysFriendDeckAIDecideItemFinder:
+AIDecide_ItemFinder_EverybodysFriendDeck:
 ; target pluspower
 	ld de, PLUSPOWER
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -4659,7 +4659,7 @@ EverybodysFriendDeckAIDecideItemFinder:
 	farcall FindCardIDInLocation
 	ret nc
 	push af
-	call EverybodysFriendDeckAIDecideScoopUp
+	call AIDecide_ScoopUp_EverybodysFriendDeck
 	pop bc
 	ret nc
 
@@ -4673,19 +4673,19 @@ EverybodysFriendDeckAIDecideItemFinder:
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
 ; try professor oak
-	call EverybodysFriendDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_EverybodysFriendDeck
 	jr c, .try_scoop_up
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_scoop_up
-	call EverybodysFriendDeckAIDecideScoopUp
+	call AIDecide_ScoopUp_EverybodysFriendDeck
 	jr c, .try_switch
 	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_switch
-	call EverybodysFriendDeckAIDecideSwitch
+	call AIDecide_Switch_EverybodysFriendDeck
 	jr c, .try_gust_of_wind
 	ld de, SWITCH
 	farcall LookForCardIDInHandList
@@ -4992,7 +4992,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	ret
 
 .BadGuysDeck:
-	farcall BadGuysDeckAIDecideReelIn
+	farcall AIDecide_ReelIn_BadGuysDeck
 	ret
 
 ; finds card with highest number of attached energies
@@ -5219,7 +5219,7 @@ IsCardIDInHandAndPlayArea:
 	farcall LookForCardIDInHandList
 	ret
 
-RonaldsPsychicDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_RonaldsPsychicDeck:
 	ld bc, GASTLY_LV13
 	ld de, HAUNTER_LV26
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -5262,11 +5262,11 @@ RonaldsPsychicDeckAIDecidePokemonTrader:
 	call FindDifferentPokemonCardInHand
 	ret
 
-RonaldsPsychicDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_RonaldsPsychicDeck:
 	farcall CountBasicEnergyCardsInHand
 	ret nc
 
-	call RonaldsPsychicDeckAIDecidePokemonTrader
+	call AIDecide_PokemonTrader_RonaldsPsychicDeck
 	jr c, .find_discard_card
 ; discard pkmn trader
 	ld de, POKEMON_TRADER
@@ -5280,7 +5280,7 @@ RonaldsPsychicDeckAIDecideEnergyRetrieval:
 	ccf
 	ret
 
-ColorlessEnergyDeckAIDecideMoonStone:
+AIDecide_MoonStone_ColorlessEnergyDeck:
 	ld bc, DRATINI_LV10
 	ld de, DRAGONAIR
 	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
@@ -5318,7 +5318,7 @@ ColorlessEnergyDeckAIDecideMoonStone:
 	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ret
 
-ColorlessEnergyDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_ColorlessEnergyDeck:
 	call CountNumberOfBasicPokemonInHand
 	or a
 	jr nz, .prefer_evolution
@@ -5442,7 +5442,7 @@ ColorlessEnergyDeckAIDecidePokemonTrader:
 	scf
 	ret
 
-ImmortalPokemonDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_ImmortalPokemonDeck:
 	ld de, PSYCHIC_ENERGY
 	call CountCardIDInHand
 	cp 3
@@ -5602,7 +5602,7 @@ ImmortalPokemonDeckAIDecideComputerSearch:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	ret
 
-ImmortalPokemonDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	ld de, KADABRA_LV39
 	farcall IsCardIDInHandOrPlayArea
 	jr nc, .target_alakazam
@@ -5855,7 +5855,7 @@ ImmortalPokemonDeckAIDecidePokemonTrader:
 	farcall LookForCardIDInHandList
 	ret
 
-ImmortalPokemonDeckAIDecidePokemonCenter:
+AIDecide_PokemonCenter_ImmortalPokemonDeck:
 	farcall CheckIfArenaCardCanRetreat
 	jr c, .tally
 	xor a
@@ -5916,7 +5916,7 @@ ImmortalPokemonDeckAIDecidePokemonCenter:
 ; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
 ; bug: may illegally allow any card
 ; fan-favourite cheating bug, too fitting for "immortal" deck by "magician"
-ImmortalPokemonDeckAIDecideNightlyGarbageRun:
+AIDecide_NightlyGarbageRun_ImmortalPokemonDeck:
 ; init
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -6035,7 +6035,7 @@ ImmortalPokemonDeckAIDecideNightlyGarbageRun:
 	pop hl
 	ret
 
-ImmortalPokemonDeckAIDecideSwitch:
+AIDecide_Switch_ImmortalPokemonDeck:
 	ld de, ALAKAZAM_LV42
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
@@ -6163,7 +6163,7 @@ IsPlayerArenaCardImmune:
 	call SwapTurn
 	ret
 
-TorrentialFloodDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_TorrentialFloodDeck:
 	; if number of deck cards remaining is fewer than 16, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -6202,7 +6202,7 @@ TorrentialFloodDeckAIDecideProfessorOak:
 	cp 3
 	ret
 
-TorrentialFloodDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_TorrentialFloodDeck:
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
 	jr nc, .target_blastoise_no_breeder
@@ -6281,7 +6281,7 @@ TorrentialFloodDeckAIDecidePokemonTrader:
 	call FindDifferentPokemonCardInHand
 	ret
 
-TorrentialFloodDeckAIDecideSwitch:
+AIDecide_Switch_TorrentialFloodDeck:
 	; use Switch if AI wants to switch normally,
 	; and retreat cost is 2 or more
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
@@ -6307,7 +6307,7 @@ TorrentialFloodDeckAIDecideSwitch:
 	ccf
 	ret
 
-TorrentialFloodDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_TorrentialFloodDeck:
 	ld de, SQUIRTLE_LV14
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6452,7 +6452,7 @@ CountNonDrawEngineCardsInHand:
 	sub b
 	ret
 
-TrainerImprisonDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_TrainerImprisonDeck:
 	; if has 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -6498,7 +6498,7 @@ TrainerImprisonDeckAIDecideProfessorOak:
 	; then don't use Professor Oak
 	cp16 POKEMON_TRADER
 	jr nz, .not_pkmn_trader
-	call TrainerImprisonDeckAIDecidePokemonTrader
+	call AIDecide_PokemonTrader_TrainerImprisonDeck
 	jr c, .no_carry
 	jr .next_card
 .not_pkmn_trader
@@ -6555,7 +6555,7 @@ TrainerImprisonDeckAIDecideProfessorOak:
 	scf
 	ret
 
-TrainerImprisonDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_TrainerImprisonDeck:
 	ld bc, DARK_GLOOM
 	ld de, DARK_VILEPLUME
 	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
@@ -6658,7 +6658,7 @@ AIChoosePlayerBenchPkmnWithNotEnoughEnergiesOrHighRetreatCost:
 	or a
 	ret
 
-BlazingFlameDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_BlazingFlameDeck:
 	; if 17 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -6792,7 +6792,7 @@ BlazingFlameDeckAIDecideProfessorOak:
 	scf
 	ret
 
-BlazingFlameDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_BlazingFlameDeck:
 	ld de, VULPIX_LV13
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6943,7 +6943,7 @@ BlazingFlameDeckAIDecidePokemonTrader:
 	call FindDifferentPokemonCardInHand
 	ret
 
-BlazingFlameDeckAIDecideSwitch:
+AIDecide_Switch_BlazingFlameDeck:
 	; if AI wants to retreat normally, use
 	; Switch if retreat cost is 1 or more
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
@@ -6964,7 +6964,7 @@ BlazingFlameDeckAIDecideSwitch:
 	ccf
 	ret
 
-BlazingFlameDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_BlazingFlameDeck:
 	ld de, FIRE_ENERGY
 	call CountCardIDInHand
 	ret nc
@@ -7887,7 +7887,7 @@ AIDecideEnergyRetrieval_4b973:
 	call FindLeastUsefulPokemonInHand
 	ret
 
-DamageChaosDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_DamageChaosDeck:
 	bank1call IsPrehistoricPowerActive
 	jr c, .target_basic_pkmn
 	ld de, DARK_GENGAR
@@ -7975,7 +7975,7 @@ IsEvoCardIDInDeckAndNotInHand_AIDecideEvolution:
 	or a
 	ret
 
-DamageChaosDeckAIDecideTheBosssWay:
+AIDecide_TheBosssWay_DamageChaosDeck:
 	bank1call IsPrehistoricPowerActive
 	ccf
 	ret nc
@@ -8109,7 +8109,7 @@ GetHighestDamageFromDefendingPokemon:
 	xor a
 	ret
 
-SpiritedAwayDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_SpiritedAwayDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 8
@@ -8182,7 +8182,7 @@ SpiritedAwayDeckAIDecideComputerSearch:
 	scf
 	ret
 
-RainDanceConfusionDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_RainDanceConfusionDeck:
 	ld de, BLASTOISE_LV52
 	farcall LookForCardIDInHandList
 	jr nc, .target_blastoise
@@ -8250,14 +8250,14 @@ RainDanceConfusionDeckAIDecideComputerSearch:
 
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
-	farcall RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards
+	farcall AIDecide_ComputerSearch_FindDiscardCards_RainDanceConfusionDeck
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	ret
 
 ; Big Thunder deck AI will try to find a Pokémon in Play Area
 ; with at least 20 damage to use Potion that isn't Chansey,
 ; unless player KO'ing Chansey would result in losing the duel
-BigThunderDeckAIDecidePotion:
+AIDecide_Potion_BigThunderDeck:
 	; is Arena card Chansey?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -8325,7 +8325,7 @@ BigThunderDeckAIDecidePotion:
 ; Big Thunder deck AI will check if Arena card is not Chansey,
 ; it has at least 40 damage, and has energy attached
 ; if true, then use Super Potion on it
-BigThunderDeckAIDecideSuperPotion:
+AIDecide_SuperPotion_BigThunderDeck:
 	; is Arena card Chansey?
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -8636,7 +8636,7 @@ CheckUseZapdosThunderboltInTenThousandVoltsDeck:
 
 ; search bench for specific pkmn with 10 HP remaining
 ; with not more than specific amount of energy attached
-PsychicEliteDeckAIDecideScoopUp:
+AIDecide_ScoopUp_PsychicEliteDeck:
 	ld a, 1
 	ld de, CHANSEY_LV55
 	call .Find10HPTargetInBench

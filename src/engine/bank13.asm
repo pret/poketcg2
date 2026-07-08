@@ -480,7 +480,7 @@ FindReplacementPkmnIfMrMime:
 	call SwapTurn
 	ret
 
-Func_4c4ba:
+AIDecide_ProfessorOak_PsychicBattleDeck:
 	; if 16 or fewer cards remaining in deck, don't use
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -550,7 +550,7 @@ Func_4c4ba:
 	ret
 
 ; PsychicBattleDeckAI?
-Func_4c524:
+AIDecide_EnergyRetrieval_PsychicBattleDeck:
 	call CountBasicEnergyCardsInHand
 	ret nc
 
@@ -597,7 +597,7 @@ Func_4c524:
 	farcall LookForCardIDInHandList
 	ret
 
-PsychicBattleDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_PsychicBattleDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -765,7 +765,7 @@ Func_4c65b:
 	ld [hl], 1 ; wd038
 	ret
 
-Func_4c676:
+AIDecide_EnergyRemoval_BigThunderDeck:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ld b, PLAY_AREA_BENCH_1
 	jr c, .check_hp_and_energy
@@ -866,7 +866,7 @@ FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy:
 	or a
 	ret
 
-BigThunderDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_BigThunderDeck:
 	farcall CountEnergyCardsInHand
 	ret nc
 
@@ -989,7 +989,7 @@ BigThunderDeckAI_4c7b5:
 	scf
 	ret
 
-BigThunderDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_BigThunderDeck:
 	ld de, ZAPDOS_LV68
 	farcall CountCardIDInHand
 	push af
@@ -1016,7 +1016,7 @@ BigThunderDeckAIDecidePokemonTrader:
 	farcall LookForCardIDInHandList
 	ret
 
-BigThunderDeckAIDecideMasterBall:
+AIDecide_MasterBall_BigThunderDeck:
 	ld de, ZAPDOS_LV68
 	farcall CountCardIDInHand
 	push af
@@ -1634,7 +1634,7 @@ CheckIfEvolvesInto:
 	scf
 	ret
 
-ChainLightningByPikachuDeckAIDecideMasterBall:
+AIDecide_MasterBall_ChainLightningByPikachuDeck:
 	ld de, RAICHU_LV32
 	farcall LookForCardIDInHandList
 	jr nc, .try_evo_cards
@@ -1724,7 +1724,7 @@ CheckIfPoisonDamageKOsArenaPkmn:
 	or a
 	ret
 
-PoisonMistDeckAIDecideSwitch:
+AIDecide_Switch_PoisonMistDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
