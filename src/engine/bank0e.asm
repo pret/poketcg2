@@ -3232,7 +3232,7 @@ AIDecide_ProfessorOak_RainDanceConfusionDeck:
 	or a
 	ret
 
-AIDecide_ComputerSearch_FindDiscardCards_RainDanceConfusionDeck:
+AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -3530,7 +3530,7 @@ AIDecide_PokemonTrader_MadPetalsDeck:
 	jp c, .success
 	ret
 
-AIDecide_ComputerSearch_FindTarget_MadPetalsDeck:
+AIDecide_ComputerSearch_MadPetalsDeck_FindTarget:
 	ld a, TYPE_PKMN_FIRE
 	call CheckIfPlayerHasPokemonOfType
 	jp c, .check_wartortle
@@ -5142,7 +5142,7 @@ AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 	or a
 	ret
 
-AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck:
+AIDecide_ItemFinder_SuddenGrowthDeck_TargetProfessorOak:
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall LookForCardIDInHandList
 	jr c, .check_num_deck_cards
@@ -5314,7 +5314,7 @@ AIDecide_ItemFinder_SuddenGrowthDeck:
 	jr nc, .count_deck_pile
 
 	push af
-	call AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck
+	call AIDecide_ItemFinder_SuddenGrowthDeck_TargetProfessorOak
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -5613,7 +5613,7 @@ AIDecide_NightlyGarbageRun_BadGuysDeck:
 	or a
 	ret
 
-AIDecide_EnergyRetrieval_FindDiscardCard_BadGuysDeck:
+AIDecide_EnergyRetrieval_BadGuysDeck_PickDiscardCard:
 ; try oak
 	call AIDecide_ProfessorOak_BadGuysDeck
 	jr c, .try_bill

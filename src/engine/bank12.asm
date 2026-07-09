@@ -8250,7 +8250,7 @@ AIDecide_ComputerSearch_RainDanceConfusionDeck:
 
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
-	farcall AIDecide_ComputerSearch_FindDiscardCards_RainDanceConfusionDeck
+	farcall AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	ret
 

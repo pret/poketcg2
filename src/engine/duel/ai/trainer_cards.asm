@@ -3617,7 +3617,7 @@ AIDecide_ProfessorOak:
 	ret
 
 .SuddenGrowthDeck:
-	farcall AIDecide_ItemFinder_TargetProfessorOak_SuddenGrowthDeck
+	farcall AIDecide_ItemFinder_SuddenGrowthDeck_TargetProfessorOak
 	ret
 
 .BadGuysDeck:
@@ -4221,7 +4221,7 @@ AIDecide_EnergyRetrieval:
 	ret
 
 .BadGuysDeck:
-	farcall AIDecide_EnergyRetrieval_FindDiscardCard_BadGuysDeck
+	farcall AIDecide_EnergyRetrieval_BadGuysDeck_PickDiscardCard
 	ret nc
 	push af
 	jp .generic_logic
@@ -7257,7 +7257,7 @@ AIDecide_ComputerSearch:
 	ret
 
 .MadPetalsDeck:
-	farcall AIDecide_ComputerSearch_FindTarget_MadPetalsDeck
+	farcall AIDecide_ComputerSearch_MadPetalsDeck_FindTarget
 	ret nc
 	ld [wd082], a
 
