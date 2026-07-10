@@ -1754,9 +1754,12 @@ wd081:: ; d081
 wAISetupBasicPokemonCount:: ; d082
 wAITempHPRecoverAmount:: ; d082
 wTempAISingleTargetCardDeckIndex_2:: ; d082
+; used for scoring use of Professor Oak by AI
+wAIProfessorOakScore:: ; d082
 wd082:: ; d082
 	ds $1
 
+wd083:: ; d083
 	ds $1
 
 ; number of Energy cards when
@@ -1766,7 +1769,19 @@ wAIPkmnPowerUserCardIndex:: ; d084
 wd084:: ; d084
 	ds $1
 
-	ds $6
+wd085:: ; d085
+	ds $1
+
+wd086:: ; d086
+	ds $1
+
+wd087:: ; d087
+	ds $1
+
+wd088:: ; d088
+	ds $1
+
+	ds $2
 
 wTempAITargetPokemonCardDeckIndex:: ; d08b
 	ds $1
@@ -1794,13 +1809,18 @@ wAITrainerCardParameter:: ; d096
 	ds $1
 
 wTempAIMultiTargetCardDeckIndex1:: ; d097
+wd097:: ; d097
 	ds $1
 wTempAIMultiTargetCardDeckIndex2:: ; d098
 	ds $1
 wTempAIMultiTargetCardDeckIndex3:: ; d099
 	ds $1
-
-	ds $3
+wTempAIMultiTargetCardDeckIndex4:: ; d09a
+	ds $1
+wTempAIMultiTargetCardDeckIndex5:: ; d09b
+	ds $1
+wTempAIMultiTargetCardDeckIndex6:: ; d09c
+	ds $1
 
 ; used to store previous/current flags of AI actions
 ; see AI_FLAG_* constants

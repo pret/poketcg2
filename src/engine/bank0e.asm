@@ -2541,7 +2541,7 @@ HandleAIRainDanceEnergy:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr nc, .loop_play_energy_cards ; no Professor Oak
-	call UltraRemovalDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_UltraRemovalDeck
 	jr nc, .loop_play_energy_cards ; disinclined
 
 	; has Professor Oak and inclined to play it
@@ -3106,7 +3106,7 @@ CountCardIDInTurnDuelistPlayArea:
 	ld a, [wTempAICount1]
 	ret
 
-RainDanceConfusionDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_RainDanceConfusionDeck:
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -3222,15 +3222,17 @@ RainDanceConfusionDeckAIDecideProfessorOak:
 	jp .loop_hand_cards
 
 .set_carry
+	; use Professor Oak
 	scf
 	ret
 
 .no_carry
+	; don't use Professor Oak
 	pop hl
 	or a
 	ret
 
-RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
+AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -3363,7 +3365,7 @@ RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
 	scf
 	ret
 
-MadPetalsDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_MadPetalsDeck:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
@@ -3528,7 +3530,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 	jp c, .success
 	ret
 
-MadPetalsDeckAIDecideComputerSearch_FindTarget:
+AIDecide_ComputerSearch_MadPetalsDeck_FindTarget:
 	ld a, TYPE_PKMN_FIRE
 	call CheckIfPlayerHasPokemonOfType
 	jp c, .check_wartortle
@@ -3738,14 +3740,19 @@ CreateBasicEnergyCardListInLocation:
 	scf
 	ret
 
-; return in a deck index of energy card attached to
-; pkmn at PLAY_AREA_* location in a
-; to be discarded by AI
-; (or $ff if no energy)
-;   order: Recycle Energy -> not useful energy -> first energy
-; also set carry if Recycle Energy
+; returns in a the card index of energy card
+; attached to Pokémon in Play Area location a,
+; that is to be discarded by the AI for an effect.
+; outputs $ff is none was found.
+; input:
+;	a = PLAY_AREA_* constant of card
+; output:
+;	a = deck index of attached energy card chosen
 AIPickEnergyCardToDiscard:
+; load Pokémon's attached energy cards.
 	ldh [hTempPlayAreaLocation_ff9d], a
+
+	; if has Recycle Energy, pick it right away
 	ld de, RECYCLE_ENERGY
 	farcall CheckIfHasSpecificEnergyAttached
 	ret c
@@ -3755,12 +3762,13 @@ AIPickEnergyCardToDiscard:
 	or a
 	jr z, .no_energy
 
+; load card's ID and type.
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	ld a, e
-	ld [wTempCardID_d0a3], a
+	ld [wTempCardID_d0a3 + 0], a
 	ld a, d
 	ld [wTempCardID_d0a3 + 1], a
 	call LoadCardDataToBuffer1_FromCardID
@@ -3768,25 +3776,25 @@ AIPickEnergyCardToDiscard:
 	or TYPE_ENERGY
 	ld [wTempCardType], a
 
+; find a card that is not useful.
+; if none is found, just return the first energy card attached.
 	ld hl, wDuelTempList
-.loop_energy_cards
+.loop
 	ld a, [hl]
 	cp $ff
-	jr z, .all_useful
+	jr z, .not_found
 	farcall CheckIfEnergyIsUseful
-	jr nc, .found_not_useful
+	jr nc, .found
 	inc hl
-	jr .loop_energy_cards
+	jr .loop
 
-.found_not_useful
+.found
 	ld a, [hl]
 	ret
-
-.all_useful
+.not_found
 	ld hl, wDuelTempList
 	ld a, [hl]
 	ret
-
 .no_energy
 	ld a, $ff
 	ret
@@ -4274,7 +4282,7 @@ LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy:
 ;   a = MAX_PLAY_AREA_POKEMON, b = $ff otherwise
 FindTurnDuelistPokemonInPlayAreaWithEnoughEnergy:
 	ld [wTempAICount2], a
-.loop_play_area
+.loop
 	ld a, DUELVARS_ARENA_CARD
 	add b
 	get_turn_duelist_var
@@ -4284,12 +4292,13 @@ FindTurnDuelistPokemonInPlayAreaWithEnoughEnergy:
 	push de
 	call GetCardIDFromDeckIndex
 	pop bc
+	; compare bc with de
 	ld a, d
 	cp b
 	jr nz, .next
 	ld a, e
 	cp c
-	jr z, .found
+	jr z, .equal
 .next
 	ld d, b
 	ld e, c
@@ -4297,13 +4306,15 @@ FindTurnDuelistPokemonInPlayAreaWithEnoughEnergy:
 	inc b
 	ld a, MAX_PLAY_AREA_POKEMON
 	cp b
-	jr nz, .loop_play_area
+	jr nz, .loop
 	ld b, $ff
 	or a
 	ret
-.found
+
+.equal
 	pop bc
 	push bc
+	; does it have input num of energies?
 	ld e, b
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
@@ -4483,11 +4494,12 @@ CheckIfHandHasRepeatedCard:
 	scf
 	ret
 
-CountTurnDuelistPokemonInHandOrPlayArea:
+; returns in a number of Pokémon in Play Area
+; plus number of Pokémon cards in hand
+CountNumberOfPkmnInPlayAreaAndInHand:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld [wTempAI], a
-
 	call CreateHandCardList
 	ld hl, wDuelTempList
 .loop_cards
@@ -4498,11 +4510,11 @@ CountTurnDuelistPokemonInHandOrPlayArea:
 	call GetCardType
 	cp TYPE_ENERGY
 	jr nc, .loop_cards
+	; is Pokémon card
 	ld a, [wTempAI]
 	inc a
 	ld [wTempAI], a
 	jr .loop_cards
-
 .done
 	ld a, [wTempAI]
 	ret
@@ -4576,13 +4588,15 @@ AICheckIfAttackIsHighRecoil:
 ; for an HP-recovery effect (a = amount),
 ; set carry if that puts the active pkmn out of KO range of the defending pkmn,
 ; no carry otherwise
-CheckIfRecoveryCanPreventKOByDefendingPokemon:
+CheckIfHealingPreventsKOByDefendingPokemon:
 	ld [wAITempHPRecoverAmount], a
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call CheckIfDefendingPokemonCanKnockOut
 	jr nc, .no_carry
-	ld d, a
+
+	; can KO
+	ld d, a ; excess damage after KO'ing
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	ld h, a ; remaining HP
@@ -4601,6 +4615,7 @@ CheckIfRecoveryCanPreventKOByDefendingPokemon:
 	sub d   ; a -= damage done by the defender
 	jr c, .no_carry
 	jr z, .no_carry
+	; does not get KO'd after heal
 	scf
 	ret
 .no_carry
@@ -4822,13 +4837,15 @@ ColorlessAltarAIDecideProfessorOak:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wc000
 .loop_hand_cards
 	ld a, [hli]
 	cp $ff
 	jp z, .set_carry
 	push hl
 	call GetCardIDFromDeckIndex
+
+	; if is any of the following cards, continue
 	cp16 PROFESSOR_OAK
 	jr z, .next_card
 	cp16 ENERGY_RETRIEVAL
@@ -4839,6 +4856,9 @@ ColorlessAltarAIDecideProfessorOak:
 	jr z, .next_card
 	cp16 FULLHEAL_ENERGY
 	jr z, .next_card
+
+	; if is Computer Search and there's another
+	; Computer Search in hand, then don't use
 	cp16 COMPUTER_SEARCH
 	jr nz, .check_potion
 	ld de, COMPUTER_SEARCH
@@ -4846,18 +4866,23 @@ ColorlessAltarAIDecideProfessorOak:
 	jr c, .no_carry
 	jr .next_card
 .check_potion
+	; if is Potion and there are any damage counters
+	; in own Play Area, don't use
 	cp16 POTION
 	jr nz, .check_play_area
 	farcall CheckIfAnyPlayAreaPokemonHasDamage
 	jr c, .no_carry
 	jr .next_card
 .check_play_area
+	; if is a Pokémon card, and that card isn't found
+	; in Play Area, then don't use
 	push de
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop de
 	jr c, .next_card
 .no_carry
+	; don't use Professor Oak
 	pop hl
 	or a
 	ret
@@ -4866,10 +4891,11 @@ ColorlessAltarAIDecideProfessorOak:
 	jp .loop_hand_cards
 
 .set_carry
+	; use Professor Oak
 	scf
 	ret
 
-EyeOfTheStormDeckAIDecideMoonStone:
+AIDecide_MoonStone_EyeOfTheStormDeck:
 	ld a, 3
 	ld bc, PIDGEOTTO_LV38
 	ld de, PIDGEOT_LV40
@@ -4886,7 +4912,7 @@ EyeOfTheStormDeckAIDecideMoonStone:
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
 	ret
 
-EyeOfTheStormDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_EyeOfTheStormDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
@@ -5023,7 +5049,7 @@ EyeOfTheStormDeckAIDecideComputerSearch:
 	or a
 	ret
 
-EyeOfTheStormDeckAIDecideEnergyRetrieval:
+AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call CreateBasicEnergyCardListInLocation
 	cp 2
@@ -5116,48 +5142,51 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
+AIDecide_ItemFinder_SuddenGrowthDeck_TargetProfessorOak:
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall LookForCardIDInHandList
-	jr c, .count_deck_pile
+	jr c, .check_num_deck_cards
 
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall CountCardIDInDiscardPile
 	cp 2
 	ret c
 
-.count_deck_pile
+.check_num_deck_cards
+	; if has 24 or fewer deck cards remaining...
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 24
-	jr c, .check_pkmn_2
-
-; check pkmn 1
+	jr c, .else
+	; ...and any of the following Pokémon are in Play Area...
 	ld de, DARK_DRAGONAIR
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr c, .count_hand_energy
+	jr c, .use_if_less_than_2_energies_in_hand
 	ld de, DARK_DRAGONITE
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr c, .count_hand_energy
+	jr c, .use_if_less_than_2_energies_in_hand
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr nc, .check_pkmn_2
-
-.count_hand_energy
+	jr nc, .else
+.use_if_less_than_2_energies_in_hand
+	; ...and has less than 2 energy cards in hand, use
 	call CountEnergyCardsInHand
 	cp 2
 	ret
 
-.check_pkmn_2
+.else
+	; if Dratini or Clefairy is in Hand or Play Area, don't use
 	ld de, DRATINI_LV12
 	call IsCardIDInHandOrPlayArea
 	jr c, .no_carry
 	ld de, CLEFAIRY_LV15
 	call IsCardIDInHandOrPlayArea
 	jr c, .no_carry
+
+	; if any of the following cards are in hand, don't use
 	ld de, DARK_DRAGONAIR
 	farcall LookForCardIDInHandList
 	jr c, .no_carry
@@ -5168,15 +5197,16 @@ SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
 	farcall LookForCardIDInHandList
 	jr c, .no_carry
 
-; success
+	; otherwise use Professor Oak
 	scf
 	ret
 
 .no_carry
+	; don't use Professor Oak
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideComputerSearch:
+AIDecide_ComputerSearch_SuddenGrowthDeck:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr c, .check_bosss_way_in_hand
@@ -5276,7 +5306,7 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideItemFinder:
+AIDecide_ItemFinder_SuddenGrowthDeck:
 ; target professor oak
 	ld de, PROFESSOR_OAK
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -5284,7 +5314,7 @@ SuddenGrowthDeckAIDecideItemFinder:
 	jr nc, .count_deck_pile
 
 	push af
-	call SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak
+	call AIDecide_ItemFinder_SuddenGrowthDeck_TargetProfessorOak
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -5353,7 +5383,7 @@ CheckIfArenaCardCanRetreat:
 	or a
 	ret
 
-BadGuysDeckAIDecideReelIn:
+AIDecide_ReelIn_BadGuysDeck:
 	; first fetch an Oddish and Dark Gloom
 	ld de, ODDISH_LV21
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -5453,7 +5483,7 @@ BadGuysDeckAIDecideReelIn:
 	ret z ; equal to second card
 	inc hl
 	ld [hl], a
-	add sp, $02 ; exit BadGuysDeckAIDecideReelIn
+	add sp, $02 ; exit AIDecide_ReelIn_BadGuysDeck
 	scf
 	ret
 
@@ -5461,7 +5491,7 @@ BadGuysDeckAIDecideReelIn:
 ;    (<= 6 cards in hand AND no energy there)
 ; OR (<= 4 cards in hand AND <= 2 energy there)
 ; a and b get clobbered
-BadGuysDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_BadGuysDeck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
@@ -5487,7 +5517,7 @@ BadGuysDeckAIDecideProfessorOak:
 ; elif discard pile contains >= 7 basic energy cards,
 ; select 3 of them;
 ; otherwise no carry
-BadGuysDeckAIDecideNightlyGarbageRun:
+AIDecide_NightlyGarbageRun_BadGuysDeck:
 ; init
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
@@ -5583,9 +5613,9 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	or a
 	ret
 
-BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard:
+AIDecide_EnergyRetrieval_BadGuysDeck_PickDiscardCard:
 ; try oak
-	call BadGuysDeckAIDecideProfessorOak
+	call AIDecide_ProfessorOak_BadGuysDeck
 	jr c, .try_bill
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
@@ -5602,7 +5632,7 @@ BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard:
 	call IsSameCardInHandAndPlayArea
 	ret c
 ; try boss's way
-	call BadGuysDeckAIDecideTheBosssWay
+	call AIDecide_TheBosssWay_BadGuysDeck
 	jr nc, .try_energy_search
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
@@ -5635,7 +5665,7 @@ IsSameCardInHandAndPlayArea:
 	ret
 
 ; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
-BadGuysDeckAIDecideTheBosssWay:
+AIDecide_TheBosssWay_BadGuysDeck:
 	ld bc, CHARMANDER_LV9
 	ld de, DARK_CHARMELEON
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
@@ -5654,7 +5684,7 @@ BadGuysDeckAIDecideTheBosssWay:
 	ret
 
 ; check dark charmeleon, dark golduck, dark slowbro, or dark gloom
-BadGuysDeckAIDecidePokemonTraderForEvo:
+AIDecide_PokemonTraderForEvo_BadGuysDeck:
 	ld de, CHARMANDER_LV9
 	ld bc, DARK_CHARMELEON
 	call LookForCardIDInDeck_GivenCardIDInHand
@@ -5684,7 +5714,7 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	farcall FindDifferentPokemonCardInHand
 	ret
 
-PoisonMistDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_PoisonMistDeck:
 	ld de, DARK_MUK
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -5731,7 +5761,7 @@ PoisonMistDeckAIDecidePokemonTrader:
 ; if both are true, search player's Bench for card
 ; with at least 2 energy retreat cost
 ; return carry and its Play Area location if found
-PoisonMistDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_PoisonMistDeck:
 	ld de, DARK_MUK
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6309,7 +6339,7 @@ CheckIfHasRainDanceActive:
 ; return carry if
 ;    (golduck or blastoise in arena AND no energy in hand)
 ; OR no evolution cards in hand for her pkmn in play
-UltraRemovalDeckAIDecideProfessorOak:
+AIDecide_ProfessorOak_UltraRemovalDeck:
 	ld de, GOLDUCK_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6344,7 +6374,7 @@ UltraRemovalDeckAIDecideProfessorOak:
 	; found evolution card
 	ret
 
-UltraRemovalDeckAIDecidePokemonTrader:
+AIDecide_PokemonTrader_UltraRemovalDeck:
 	ld de, GOLDUCK_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -6389,7 +6419,7 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	farcall FindDifferentPokemonCardInHand
 	ret
 
-UltraRemovalDeckAIDecideGustOfWind:
+AIDecide_GustOfWind_UltraRemovalDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6415,47 +6445,51 @@ UltraRemovalDeckAIDecideGustOfWind:
 	call SwapTurn
 	ret
 
-UltraRemovalDeckAIDecideSwitch:
+AIDecide_Switch_UltraRemovalDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 BLASTOISE_LV52
-	jr z, .blastoise_or_golduck_in_arena
+	jr z, .blastoise_or_golduck
 	cp16 GOLDUCK_LV27
-	jr z, .blastoise_or_golduck_in_arena
+	jr z, .blastoise_or_golduck
 
+	; switch to a benched Golduck with at least 3 energies
 	ld a, 3
 	ld b, PLAY_AREA_BENCH_1
 	ld de, GOLDUCK_LV27
 	call FindTurnDuelistPokemonInPlayAreaWithEnoughEnergy
 	ret
 
-.blastoise_or_golduck_in_arena
+.blastoise_or_golduck
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
-	xor a ; PLAY_AREA_ARENA
+	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfSelectedAttackIsUnusable
-	jr c, .check_bench_and_switch
+	jr c, .cannot_use_second_atk
 
-; ready for Hydro Pump / Hyper Beam
-; check status
+	; can use second attack
+	; use Switch only if statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
 	ret z
-; statused
+	; statused
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench_and_switch
+.cannot_use_second_atk
+	; stay in Arena if no other set up bench Pokémon
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
+
+	; otherwise try to use Switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
-	ret nc
-
+	ret nc ; none found
+	; only switch if score was more than 50
 	push af
 	ld a, 50
 	cp e
@@ -6494,46 +6528,49 @@ Func_3a887:
 	or a
 	ret
 
-PsychicBattleDeckAIDecideSwitch:
+AIDecide_Switch_PsychicBattleDeck:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MEWTWO_LV53
-	jr nz, .check_ready_to_attack
+	jr nz, .not_mewtwo
 
-; mewtwo lv53
-; count energy attached to defending pkmn
+	; use Switch on Mewtwo if defending card doesn't have energies
 	call SwapTurn
 	xor a ; PLAY_AREA_ARENA
 	call CreateArenaOrBenchEnergyCardList
 	call SwapTurn
 	or a
-	jr z, .check_switch
+	jr z, .switch
 
-.check_ready_to_attack
+.not_mewtwo
+	; use Switch if Arena card cannot use damaging attack
+	; and there are any set up Benched Pokémon
 	farcall CanArenaCardUseNonResidualAttack
-	jr c, .check_status
+	jr c, .else
 	farcall CountNumberOfSetUpBenchPokemon
-	jr c, .check_switch
+	jr c, .switch
 
-.check_status
+.else
+	; don't use Switch if not statused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
 	ret z
-; statused
-	xor a ; PLAY_AREA_ARENA
+
+	; use Switch if retreat cost is 2 or more
+	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
-	jr nc, .check_switch
+	jr nc, .switch
+	; don't use if retreat cost is 0
 	or a
 	ret z
-
+	; otherwise use if no energy cards in hand
 	call CountEnergyCardsInHand
 	ret nc
-
-.check_switch
+.switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret

@@ -2445,7 +2445,7 @@ LookForCardThatIsKnockedOutOnDevolution:
 	scf
 	ret
 
-INCLUDE "engine/duel/special_attacks.asm"
+INCLUDE "engine/duel/ai/special_attacks.asm"
 
 ; loops through wDuelTempList and
 ; returns carry if a card is found that evolves
@@ -2563,9 +2563,9 @@ CanArenaCardUseNonResidualAttack:
 	scf
 	ret
 
-INCLUDE "engine/duel/special_evolutions.asm"
+INCLUDE "engine/duel/ai/special_evolutions.asm"
 
-INCLUDE "engine/duel/special_basic_cards.asm"
+INCLUDE "engine/duel/ai/special_basic_cards.asm"
 
 ; cf. LookForEnergyNeededForAttackInHand
 LookForEnergyNeededInHand::
