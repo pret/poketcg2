@@ -1041,7 +1041,6 @@ AIDecide_PlusPower_Phase13:
 	or a
 	ret
 
-
 ; returns carry if PlusPower boost does
 ; not exceed 30 damage when facing Mr. Mime.
 .MrMimeDamageCheck:
@@ -3529,7 +3528,7 @@ AIDecide_ProfessorOak:
 	farcall LookForCardIDInHandList
 	jr c, .asm_215c7
 
-	; if at least 3 energy cards in hand, don't use 
+	; if at least 3 energy cards in hand, don't use
 	farcall CountEnergyCardsInHand
 	cp 3
 	jr nc, .asm_215c7
@@ -3737,7 +3736,7 @@ AIDecide_EnergyRetrieval:
 	cp GO_ARCANINE_DECK_ID
 	jr z, .prioritize_discard_non_pkmn
 	cp DANGEROUS_BENCH_DECK_ID
-	jp z, .DangerousBenchDeck 
+	jp z, .DangerousBenchDeck
 	cp THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
 	jp z, .ThisIsThePowerOfElectricityDeck
 	cp QUICK_ATTACK_DECK_ID
@@ -5486,7 +5485,7 @@ AIDecide_ScoopUp:
 	cp TEXTURE_TUNER7_DECK_ID
 	jp z, .TextureTuner7Deck
 	cp EVERYBODYS_FRIEND_DECK_ID
-	jp z, .EverbodysFriendDeck
+	jp z, .EverybodysFriendDeck
 	cp BIG_THUNDER_DECK_ID
 	jp z, .BigThunderDeck
 
@@ -5690,7 +5689,7 @@ AIDecide_ScoopUp:
 	scf
 	ret
 
-.EverbodysFriendDeck:
+.EverybodysFriendDeck:
 	farcall AIDecide_ScoopUp_EverybodysFriendDeck
 	ret
 
@@ -8099,7 +8098,7 @@ AIDecide_TheBosssWay:
 	ld de, DARK_ARBOK
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret c
-	; search for Dark Dugtrio if any Digglet in play/hand
+	; search for Dark Dugtrio if any Diglett in play/hand
 	ld bc, DIGLETT_LV8
 	ld de, DARK_DUGTRIO
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
