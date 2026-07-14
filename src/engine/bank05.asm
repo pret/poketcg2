@@ -8152,7 +8152,7 @@ AICheckSpecialColorlessEnergyCards:
 	or a
 	ret nz
 	ld a, 10
-	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
+	farcall CheckIfHealingPreventsKOByDefendingPokemon
 	call c, .MaybePickPotionEnergy
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
@@ -9967,13 +9967,7 @@ CheckIfCardCanBePlayed:
 .trainer_card
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	; BUG (in the original game): this should be a `bank1call` to bank01's
-	; LoadNonPokemonCardEffectCommands. As a plain `call` it runs with bank05
-	; mapped, so instead of bank01:$6968 it jumps to bank05:$6968 -- the middle
-	; of AITryToRetreat -- whose unbalanced `pop af` corrupts the stack. The branch
-	; is not taken in normal play. Byte-faithful: LoadNonPokemonCardEffectCommands
-	; sits at $6968, so this still assembles to `call $6968`.
-	call LoadNonPokemonCardEffectCommands
+	call LoadNonPokemonCardEffectCommands ; BUG: should be bank1call
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret

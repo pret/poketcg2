@@ -1776,9 +1776,12 @@ wd081:: ; d081
 wAISetupBasicPokemonCount:: ; d082
 wAITempHPRecoverAmount:: ; d082
 wTempAISingleTargetCardDeckIndex_2:: ; d082
+; used for scoring use of Professor Oak by AI
+wAIProfessorOakScore:: ; d082
 wd082:: ; d082
 	ds $1
 
+wd083:: ; d083
 	ds $1
 
 ; number of Energy cards when
