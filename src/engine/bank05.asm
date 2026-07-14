@@ -5796,10 +5796,10 @@ TrySetUpStartingPlayArea_PowerfulPokemonDeck:
 	or a
 	jr z, .set_carry ; return if null
 
-; copy hand list to wc000
+; create working copy of hand
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wc000
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -5807,7 +5807,7 @@ TrySetUpStartingPlayArea_PowerfulPokemonDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 	ld de, wAICardListArenaPriority
 	call .PlayHighestPreferenceWithMatchingEnergyInHand
 	jr nc, .play_bench
@@ -8071,9 +8071,9 @@ AITryToPlayEnergyCard:
 	call CountCardsInDuelTempList
 	call ShuffleCards
 
-	; copy wDuelTempList to wc000
+	; create working copy of the list
 	ld hl, wDuelTempList
-	ld de, wc000
+	ld de, wWorkingDuelTempList
 .loop_copy_list
 	ld a, [hli]
 	ld [de], a
@@ -8081,7 +8081,7 @@ AITryToPlayEnergyCard:
 	cp $ff
 	jr nz, .loop_copy_list
 
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 .asm_171d6
 	ld a, [hli]
 	cp $ff

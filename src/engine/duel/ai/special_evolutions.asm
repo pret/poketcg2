@@ -62,7 +62,7 @@ AIDecideSpecialEvolutions:
 .GreatDragonDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRAGONAIR
-	jp z, .dragonair_rod
+	jp z, .dragonair_great_dragon_deck
 	jr .standard_score
 
 ; Magnemite: +10;
@@ -72,11 +72,11 @@ AIDecideSpecialEvolutions:
 .ElectricSelfdestructDeck:
 	ld hl, wLoadedCard2ID
 	cphl MAGNEMITE_LV13
-	jr z, .encourage_isaac
+	jr z, .encourage_electric_selfdestruct_deck
 	cphl MAGNEMITE_LV15
-	jr z, .encourage_isaac
+	jr z, .encourage_electric_selfdestruct_deck
 	cphl VOLTORB_LV8
-	jr z, .voltorb_isaac
+	jr z, .voltorb
 	cphl DODUO_LV10
 	jp nz, .standard_score
 ; Doduo
@@ -84,17 +84,17 @@ AIDecideSpecialEvolutions:
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 30
-	jr c, .encourage_isaac
-	jr .dismiss_isaac
-.voltorb_isaac
+	jr c, .encourage_electric_selfdestruct_deck
+	jr .dismiss_electric_selfdestruct_deck
+.voltorb
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 5
-	jr c, .encourage_isaac
-.dismiss_isaac
+	jr c, .encourage_electric_selfdestruct_deck
+.dismiss_electric_selfdestruct_deck
 	xor a
 	ret
-.encourage_isaac
+.encourage_electric_selfdestruct_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
@@ -103,10 +103,10 @@ AIDecideSpecialEvolutions:
 .PsychicEliteDeck:
 	ld hl, wLoadedCard2ID
 	cphl ABRA_LV14
-	jr z, .encourage_murray
+	jr z, .encourage_psychic_elite_deck
 	cphl KADABRA_LV39
 	jp nz, .standard_score
-.encourage_murray
+.encourage_psychic_elite_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
@@ -156,20 +156,30 @@ AIDecideSpecialEvolutions:
 ;   reality: neutral
 .GoArcanineDeck:
 	ld hl, wLoadedCard2ID
+; bug, should be:
+	; cphl SEEL_LV12
+	; ld de, DEWGONG_LV42
+	; jr z, .dewgong_or_dodrio
+	; cphl DODUO_LV10
+	; ld de, DODRIO_LV28
+	; jp nz, .standard_score
+; .dewgong_or_dodrio
+	; ld b, PLAY_AREA_ARENA
+	; call FindCardIDInTurnDuelistsPlayArea
 	cphl DEWGONG_LV42
-	jr z, .dewgong_dodrio_ken
+	jr z, .dewgong_or_dodrio
 	cphl DODRIO_LV28
 	jp nz, .standard_score
-.dewgong_dodrio_ken
+.dewgong_or_dodrio
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .encourage_ken
+	jp nc, .encourage_go_arcanine_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
-.encourage_ken
+.encourage_go_arcanine_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
@@ -206,24 +216,24 @@ AIDecideSpecialEvolutions:
 	jp nz, .standard_score
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
-	jr nz, .tally_tap
+	jr nz, .tally_dangerous_bench_deck
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	cp 4
-	jr nc, .encourage_tap
-.tally_tap
+	jr nc, .encourage_dangerous_bench_deck
+.tally_dangerous_bench_deck
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 3
-	jr nc, .discourage_tap
+	jr nc, .discourage_dangerous_bench_deck
 	farcall CountNumberOfBasicPokemonInHand
 	or a
-	jr nz, .discourage_tap
-.encourage_tap
+	jr nz, .discourage_dangerous_bench_deck
+.encourage_dangerous_bench_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
-.discourage_tap
+.discourage_dangerous_bench_deck
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
@@ -236,24 +246,24 @@ AIDecideSpecialEvolutions:
 .BadDreamDeck:
 	ld hl, wLoadedCard2ID
 	cphl GASTLY_LV13
-	jr z, .encourage_yosuke
+	jr z, .encourage_bad_dream_deck
 	cphl HAUNTER_LV22
-	jr z, .discourage_yosuke
+	jr z, .discourage_bad_dream_deck
 	cphl DROWZEE_LV10
 	jp nz, .standard_score
 	ld de, DROWZEE_LV10
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
 	cp 2
-	jr c, .discourage_yosuke
+	jr c, .discourage_bad_dream_deck
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	cp 6
-	jr nz, .discourage_yosuke
-.encourage_yosuke
+	jr nz, .discourage_bad_dream_deck
+.encourage_bad_dream_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
-.discourage_yosuke
+.discourage_bad_dream_deck
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
@@ -266,10 +276,10 @@ AIDecideSpecialEvolutions:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
-	jr c, .discourage_ryoko
+	jr c, .discourage_pokemon_power_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
-.discourage_ryoko
+.discourage_pokemon_power_deck
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
@@ -279,23 +289,23 @@ AIDecideSpecialEvolutions:
 .SuddenGrowthDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRATINI_LV12
-	jr z, .mid_samejima_score
+	jr z, .mid_score_sudden_growth_deck
 	cphl CLEFAIRY_LV15
-	jr z, .higher_samejima_score
+	jr z, .higher_score_sudden_growth_deck
 	cphl DARK_DRAGONAIR
 	jp nz, .standard_score
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
 	cp 2
-	jr c, .lower_samejima_score
-.higher_samejima_score
+	jr c, .lower_score_sudden_growth_deck
+.higher_score_sudden_growth_deck
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
-.lower_samejima_score
+.lower_score_sudden_growth_deck
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
-.mid_samejima_score
+.mid_score_sudden_growth_deck
 	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
@@ -310,26 +320,26 @@ AIDecideSpecialEvolutions:
 .BadGuysDeck:
 	ld hl, wLoadedCard2ID
 	cphl ODDISH_LV21
-	jr z, .oddish_kanzaki
+	jr z, .oddish_bad_guys_deck
 	cphl SLOWPOKE_LV16
-	jr z, .slowpoke_kanzaki
+	jr z, .slowpoke_bad_guys_deck
 	jp .standard_score
 
-.oddish_kanzaki
+.oddish_bad_guys_deck
 	ld de, DARK_GLOOM
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 
-.discourage_kanzaki
+.discourage_bad_guys_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
-.encourage_kanzaki
+.encourage_bad_guys_deck
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
-.slowpoke_kanzaki
+.slowpoke_bad_guys_deck
 	ld de, DARK_SLOWBRO
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
@@ -340,13 +350,13 @@ AIDecideSpecialEvolutions:
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies + PSYCHIC]
 	cp 2
-	jr nc, .encourage_kanzaki
+	jr nc, .encourage_bad_guys_deck
 	jr .check_non_slowpoke
 .has_dark_slowbro
 	cp 1
 	jr nz, .check_non_slowpoke
 	farcall AIDecide_ReelIn_BadGuysDeck
-	jr c, .encourage_kanzaki
+	jr c, .encourage_bad_guys_deck
 .check_non_slowpoke
 	ld de, SLOWPOKE_LV16
 	ld b, PLAY_AREA_ARENA
@@ -355,8 +365,8 @@ AIDecideSpecialEvolutions:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp b
-	jr z, .encourage_kanzaki
-	jr .discourage_kanzaki
+	jr z, .encourage_bad_guys_deck
+	jr .discourage_bad_guys_deck
 
 ; Dratini:
 ;   -28 if any Dark Dragonair in play;
@@ -370,13 +380,13 @@ AIDecideSpecialEvolutions:
 	ld de, DARK_DRAGONAIR
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .discourage_biruritchi_grass
+	jr c, .discourage_choke_deck
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
-.discourage_biruritchi_grass
+.discourage_choke_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -390,12 +400,12 @@ AIDecideSpecialEvolutions:
 	jp nz, .standard_score
 	ld de, DARK_CHARIZARD
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
-	jp nc, .discourage_biruritchi_fire
+	jp nc, .discourage_incinerate_deck
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
-.discourage_biruritchi_fire
+.discourage_incinerate_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -428,12 +438,12 @@ AIDecideSpecialEvolutions:
 	jp nz, .standard_score
 	ld de, DARK_MACHAMP
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
-	jp nc, .discourage_biruritchi_fighting
+	jp nc, .discourage_throw_out_deck
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
-.discourage_biruritchi_fighting
+.discourage_throw_out_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -446,36 +456,36 @@ AIDecideSpecialEvolutions:
 .RonaldsPsychicDeck:
 	ld hl, wLoadedCard2ID
 	cphl HAUNTER_LV26
-	jr z, .haunter_ronald
+	jr z, .haunter
 	cphl DARK_DRAGONAIR
-	jr z, .dark_dragonair_ronald
+	jr z, .dark_dragonair_ronalds_psychic_deck
 	cphl DRATINI_LV10
-	jr z, .encourage_ronald
+	jr z, .encourage_ronalds_psychic_deck
 	jp .standard_score
 
-.haunter_ronald
+.haunter
 	ld de, GENGAR_LV40
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 
-.discourage_ronald
+.discourage_ronalds_psychic_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
-.encourage_ronald
+.encourage_ronalds_psychic_deck
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
-.dark_dragonair_ronald
+.dark_dragonair_ronalds_psychic_deck
 	ld de, DARK_DRAGONITE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .discourage_ronald
+	jr c, .discourage_ronalds_psychic_deck
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 5
-	jr nc, .discourage_ronald
+	jr nc, .discourage_ronalds_psychic_deck
 	jp .standard_score
 
 ; Abra: +12;
@@ -484,17 +494,17 @@ AIDecideSpecialEvolutions:
 .ImmortalPokemonDeck:
 	ld hl, wLoadedCard2ID
 	cphl ABRA_LV14
-	jr z, .encourage_magician
+	jr z, .encourage_immortal_pokemon_deck
 	cphl KADABRA_LV39
 	jp nz, .standard_score
 	ld de, ALAKAZAM_LV42
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .discourage_magician
-.encourage_magician
+	jr c, .discourage_immortal_pokemon_deck
+.encourage_immortal_pokemon_deck
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
-.discourage_magician
+.discourage_immortal_pokemon_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -513,22 +523,22 @@ AIDecideSpecialEvolutions:
 	jp nz, .standard_score
 	ld de, POKEMON_BREEDER
 	call LookForCardIDInHandList
-	jr nc, .encourage_yui
+	jr nc, .encourage_torrential_flood_deck
 	ld de, SQUIRTLE_LV14
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .discourage_yui
-.encourage_yui
+	jr c, .discourage_torrential_flood_deck
+.encourage_torrential_flood_deck
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .check_breeder_evo
 	ld de, POKEMON_BREEDER
 	call LookForCardIDInHandList
-	jr nc, .encourage_yui
+	jr nc, .encourage_torrential_flood_deck
 	ld de, BLASTOISE_LV52
 	call LookForCardIDInHandList
-	jr nc, .encourage_yui
-.discourage_yui
+	jr nc, .encourage_torrential_flood_deck
+.discourage_torrential_flood_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -539,22 +549,22 @@ AIDecideSpecialEvolutions:
 .TrainerImprisonDeck:
 	ld hl, wLoadedCard2ID
 	cphl ODDISH_LV21
-	jr z, .oddish_toshiron
+	jr z, .oddish_trainer_imprison_deck
 	cphl DARK_GLOOM
 	jp nz, .standard_score
 	ld de, DARK_VILEPLUME
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .discourage_toshiron
-.encourage_toshiron
+	jr c, .discourage_trainer_imprison_deck
+.encourage_trainer_imprison_deck
 	ld a, AI_SCORE_NEUTRAL + 12
 	ret
-.oddish_toshiron
+.oddish_trainer_imprison_deck
 	ld de, DARK_GLOOM
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr nc, .encourage_toshiron
-.discourage_toshiron
+	jr nc, .encourage_trainer_imprison_deck
+.discourage_trainer_imprison_deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -566,10 +576,10 @@ AIDecideSpecialEvolutions:
 ;     OR (Dragonair is Benched AND >= 70 damage in total on own Pokémon in play)
 ;   );
 ; -10 otherwise
-.dragonair_rod:
+.dragonair_great_dragon_deck
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
-	jr z, .dragonair_rod_active
+	jr z, .dragonair_active
 
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -589,21 +599,21 @@ AIDecideSpecialEvolutions:
 
 	ld a, 70
 	cp c
-	jr c, .dragonair_rod_check_muk
+	jr c, .dragonair_check_muk
 
 .lower_dragonair_score
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
-; should now use the lock-check function instead of this TCG1 code
-.dragonair_rod_check_muk
+; bug: should now use the lock-check function instead of this TCG1 code
+.dragonair_check_muk
 	ld de, MUK
 	bank1call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	jr c, .lower_dragonair_score
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
-.dragonair_rod_active
+.dragonair_active
 	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	cp 50
@@ -613,4 +623,4 @@ AIDecideSpecialEvolutions:
 	ld a, [wTotalAttachedEnergies]
 	cp 3
 	jr c, .lower_dragonair_score
-	jr .dragonair_rod_check_muk
+	jr .dragonair_check_muk

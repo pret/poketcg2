@@ -3109,7 +3109,7 @@ CountCardIDInTurnDuelistPlayArea:
 AIDecide_ProfessorOak_RainDanceConfusionDeck:
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -3117,7 +3117,7 @@ AIDecide_ProfessorOak_RainDanceConfusionDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hli]
 	cp $ff
@@ -3239,7 +3239,7 @@ AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -3247,7 +3247,7 @@ AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hli]
 	cp $ff
@@ -4803,7 +4803,7 @@ AITryMasterBall:
 ;   exactly 1 Computer Search;
 ;   Potion if no heal targets;
 ;   cards already in own play area
-ColorlessAltarAIDecideProfessorOak:
+AIDecide_ProfessorOak_ColorlessAltar:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 17
@@ -4829,7 +4829,7 @@ ColorlessAltarAIDecideProfessorOak:
 .check_hand
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -4837,7 +4837,7 @@ ColorlessAltarAIDecideProfessorOak:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hli]
 	cp $ff
@@ -4921,7 +4921,7 @@ AIDecide_ComputerSearch_EyeOfTheStormDeck:
 	get_turn_duelist_var
 	cp DECK_SIZE - 19
 	jr nc, .check_moon_stone
-	call ColorlessAltarAIDecideProfessorOak
+	call AIDecide_ProfessorOak_ColorlessAltar
 	jr nc, .check_moon_stone
 
 ; target professor oak
@@ -4980,7 +4980,7 @@ AIDecide_ComputerSearch_EyeOfTheStormDeck:
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -4988,7 +4988,7 @@ AIDecide_ComputerSearch_EyeOfTheStormDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff
@@ -5064,7 +5064,7 @@ AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 ; find discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -5072,7 +5072,7 @@ AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff
@@ -5211,7 +5211,7 @@ AIDecide_ComputerSearch_SuddenGrowthDeck:
 	farcall LookForCardIDInHandList
 	jr c, .check_bosss_way_in_hand
 
-	call ColorlessAltarAIDecideProfessorOak
+	call AIDecide_ProfessorOak_ColorlessAltar
 	ret nc
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND

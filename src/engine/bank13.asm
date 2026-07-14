@@ -504,10 +504,10 @@ AIDecide_ProfessorOak_PsychicBattleDeck:
 	cp 3
 	ret nc
 
-	; copy hand card list to wc000
+	; create working copy of hand
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wc000
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -515,7 +515,7 @@ AIDecide_ProfessorOak_PsychicBattleDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 .loop_cards
 	ld a, [hli]
 	cp $ff
@@ -880,10 +880,10 @@ AIDecide_EnergyRetrieval_BigThunderDeck:
 	ld a, [wDuelTempList + 1]
 	ld [wAITrainerCardArgs + 2], a
 
-; find discard card
+; pick discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -891,7 +891,7 @@ AIDecide_EnergyRetrieval_BigThunderDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff

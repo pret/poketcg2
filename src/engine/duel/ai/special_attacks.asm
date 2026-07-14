@@ -337,14 +337,14 @@ HandleSpecialAIAttacks:
 
 ; +5 if KOing any in player's area,
 ; dismiss otherwise;
-; Ronald: also +5 if
+; Ronald's Psychic deck: also +5 if
 ;       Mew has >= 20 HP remaining
 ;   AND Gengar Lv.40 is on his Bench
 ;   AND no Pokémon Power locks
 .DevolutionBeam:
 	ld a, [wOpponentDeckID]
 	cp RONALDS_PSYCHIC_DECK_ID
-	jr z, .devolution_beam_ronald
+	jr z, .DevolutionBeam_RonaldsPsychicDeck
 	call LookForCardThatIsKnockedOutOnDevolution
 	jp nc, .ZeroScore
 
@@ -352,7 +352,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-.devolution_beam_ronald
+.DevolutionBeam_RonaldsPsychicDeck
 	call LookForCardThatIsKnockedOutOnDevolution
 	jr c, .devolution_beam_success
 ; check Pokémon Power locks, and
@@ -372,9 +372,9 @@ HandleSpecialAIAttacks:
 
 ; dismiss if confused;
 ; set score based on k = number of own viable Benched Pokémon
-;   k < 2:  +1 to Conversion 1, +2 to Conversion 2
-;   k >= 2: +2 to Conversion 1, +1 to Conversion 2
-; Michael:
+;   k < 2:  +1 to Conversion 1; +2 to Conversion 2
+;   k >= 2: +2 to Conversion 1; +1 to Conversion 2
+; You Can Do It Machop deck:
 ;   k = 0:  -28 to Conversion 1
 .PorygonLv12:
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -390,13 +390,13 @@ HandleSpecialAIAttacks:
 ; Conversion 1
 	call CountNumberOfSetUpBenchPokemon
 	or a
-	jr z, .porygon_lv12_no_set_up_bench
+	jr z, .porygon_lv12_conversion1_no_set_up_bench
 	cp 2
 	jr c, .porygon_lv12_lower_score
 	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
-.porygon_lv12_conversion2:
+.porygon_lv12_conversion2
 	call CountNumberOfSetUpBenchPokemon
 	cp 2
 	jr nc, .porygon_lv12_lower_score
@@ -407,11 +407,12 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
-.porygon_lv12_no_set_up_bench
+.porygon_lv12_conversion1_no_set_up_bench
 	ld a, [wOpponentDeckID]
 	cp YOU_CAN_DO_IT_MACHOP_DECK_ID
 	jr nz, .porygon_lv12_lower_score
-; Michael
+
+; You Can Do It Machop deck
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
@@ -425,22 +426,20 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
-; dismiss if player has no cards in hand;
-; John:
-;   +5 with 1/4 chance when player has >= 4 cards in hand,
+; Flame Festival deck:
+;   25% chance of +5 if player has >= 4 cards in hand,
 ;   +1 otherwise;
 ; other AIs:
-;   +3 with 1/3 chance,
-;   dismiss with 1/3 chance, and
-;   scan player's hand with 1/3 chance, where
+;   dismiss if player has no cards in hand;
+;   otherwise equal chance of +3, dismissing, or scanning player's hand where
 ;     +3 if
-;          player has <= 2 Pokémon in play and >= 2 basic Pokémon in hand
-;       OR player has any Evolution cards in hand compatible with their Pokémon in play,
+;       (player has <= 2 Pokémon in play and >= 2 basic Pokémon in hand)
+;     OR player has any Evolution cards in hand compatible with their Pokémon in play,
 ;     dismiss otherwise
 .MixUp:
 	ld a, [wOpponentDeckID]
 	cp FLAME_FESTIVAL_DECK_ID
-	jr z, .mix_up_john
+	jr z, .MixUp_FlameFestivalDeck
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	call GetNonTurnDuelistVariable
@@ -505,19 +504,19 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
-.mix_up_john
+.MixUp_FlameFestivalDeck
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	call GetNonTurnDuelistVariable
 	cp 4
-	jr c, .low_mix_up_score_john
+	jr c, .low_mix_up_score
 	ld a, 4
 	call Random
 	or a
-	jr nz, .low_mix_up_score_john
+	jr nz, .low_mix_up_score
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-.low_mix_up_score_john
+.low_mix_up_score
 	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
@@ -604,7 +603,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-; Amy:
+; Rain Dance Confusion deck:
 ;   +5 if Dewgong has <= 20 HP remaining,
 ;   dismiss otherwise;
 ; other AIs:
@@ -614,7 +613,7 @@ HandleSpecialAIAttacks:
 .Rest:
 	ld a, [wOpponentDeckID]
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jr z, .rest_amy
+	jr z, .Rest_RainDanceConfusionDeck
 
 	ld a, DUELVARS_ARENA_CARD
 	call GetNonTurnDuelistVariable
@@ -634,7 +633,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-.rest_amy
+.Rest_RainDanceConfusionDeck
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 30
@@ -642,7 +641,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-; Toshiron:
+; Trainer Imprison deck:
 ;   +6 if >= 12 cards remaining in deck pile AND <= 3 non-draw cards in hand,
 ;   dismiss otherwise;
 ; other AIs:
@@ -651,7 +650,7 @@ HandleSpecialAIAttacks:
 .ThirdEye:
 	ld a, [wOpponentDeckID]
 	cp TRAINER_IMPRISON_DECK_ID
-	jr z, .third_eye_toshiron
+	jr z, .ThirdEye_TrainerImprisonDeck
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -662,7 +661,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 6
 	ret
 
-.third_eye_toshiron
+.ThirdEye_TrainerImprisonDeck
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 11
@@ -741,7 +740,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
-; John: +3;
+; Flame Festival Deck: +3;
 ; other AIs:
 ;   +3 if in a gusting situation;
 ;   -50 if the defender is immune AND no Benched Pokémon;
@@ -1018,21 +1017,21 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-; Jes:
+; Complete Combustion deck:
 ;   +1 if >= 2 own viable Benched Pokémon,
 ;   +3 otherwise;
-; Biruritchi (unused):
+; Choke deck (unused):
 ;   -3 if >= 8 cards in hand,
 ;   +3 otherwise;
-; for other AIs: +2
+; other AIs: +2
 .ClearProfit:
 	ld a, [wOpponentDeckID]
 	cp COMPLETE_COMBUSTION_DECK_ID
-	jr z, .clear_profit_jes
+	jr z, .ClearProfit_CompleteCombustionDeck
 	cp STOP_LIFE_DECK_ID
 	jr nz, .mid_clear_profit_score
 
-; Biruritchi, unused
+; unreachable, Choke deck doesn't run Meowth
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 8
@@ -1040,7 +1039,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL - 3
 	ret
 
-.clear_profit_jes
+.ClearProfit_CompleteCombustionDeck
 	call CountNumberOfSetUpBenchPokemon
 	cp 2
 	jr c, .higher_clear_profit_score
@@ -1063,9 +1062,10 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
+; only checks Dark Gyarados,
+; which is the only Gyarados card in all decks running Magikarp Lv.6:
 ; +3 if any Dark Gyarados in deck pile,
 ; dismiss otherwise
-; (only checking Dark Gyarados)
 .RapidEvolution:
 	ld de, DARK_GYARADOS
 	ld a, CARD_LOCATION_DECK
@@ -1118,16 +1118,16 @@ HandleSpecialAIAttacks:
 
 ; +10 if
 ;       no Pokémon Power locks yet
-;   AND (KOing with Stare OR special target);
-; neutral otherwise
-; Miyuki: also consider any Goop Gas Attack in hand
+;   AND (KOing with Stare OR special target),
+; neutral otherwise;
+; Sticky Poison Gas deck: also consider any Goop Gas Attack in hand
 ; (AIChooseStareTarget already covers Muk)
 .Stare:
 	ld a, [wOpponentDeckID]
 	cp STICKY_POISON_GAS_DECK_ID
 	jr nz, .stare_find_target
 
-; Miyuki
+; Sticky Poison Gas deck
 	ld de, MUK
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
@@ -1158,12 +1158,12 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
-; dismiss if not Imakuni? or Tap
+; dismiss if not Weird deck or Dangerous Bench deck
 ; Eat:
-;   Imakuni?:
+;   Weird deck:
 ;     dismiss if already 2 food counters,
 ;     +13 otherwise
-;   Tap:
+;   Dangerous Bench deck:
 ;     dismiss if Rollout is doing damage,
 ;     +3 otherwise
 ; Rollout:
@@ -1172,11 +1172,11 @@ HandleSpecialAIAttacks:
 .HungrySnorlax:
 	ld a, [wOpponentDeckID]
 	cp DANGEROUS_BENCH_DECK_ID
-	jr z, .hungry_snorlax_tap
+	jr z, .HungrySnorlax_DangerousBenchDeck
 	cp WEIRD_DECK_ID
 	jp nz, .ZeroScore
 
-; Imakuni?
+; Weird deck
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .Rollout
@@ -1188,7 +1188,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 13
 	ret
 
-.hungry_snorlax_tap
+.HungrySnorlax_DangerousBenchDeck
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .Rollout
@@ -1412,12 +1412,12 @@ HandleSpecialAIAttacks:
 	farcall ImmortalPokemonDeckAIEvaluateVanish
 	ret
 
-; Mami:
+; Spirited Away deck:
 ;   neutral if no Benched Pokémon OR player has only 1 prizes remaining;
 ;   else,
 ;     dismiss if Slowpoke has >= 8 Psychic Energy attached to it;
 ;     +3 otherwise;
-; Kanzaki:
+; Bad Guys deck:
 ;   dismiss if Slowpoke has >= 2 Psychic Energy attached to it;
 ;   +3 otherwise;
 ; other AIs:
@@ -1426,9 +1426,9 @@ HandleSpecialAIAttacks:
 .AfternoonNap:
 	ld a, [wOpponentDeckID]
 	cp SPIRITED_AWAY_DECK_ID
-	jr z, .afternoon_nap_mami
+	jr z, .AfternoonNap_SpiritedAwayDeck
 	cp BAD_GUYS_DECK_ID
-	jr z, .afternoon_nap_kanzaki
+	jr z, .AfternoonNap_BadGuysDeck
 
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -1440,7 +1440,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
-.afternoon_nap_mami
+.AfternoonNap_SpiritedAwayDeck
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
@@ -1457,7 +1457,7 @@ HandleSpecialAIAttacks:
 	jr c, .encourage_afternoon_nap
 	jp .ZeroScore
 
-.afternoon_nap_kanzaki
+.AfternoonNap_BadGuysDeck
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies + PSYCHIC]
@@ -1474,16 +1474,16 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
-; Ronald: +2;
+; Ronald's Ultra deck: +2;
 ; other AIs: neutral
 .Twister:
 	ld a, [wOpponentDeckID]
 	cp RONALDS_ULTRA_DECK_ID
-	jr z, .twister_ronald
+	jr z, .encourage_twister
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-.twister_ronald
+.encourage_twister
 	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
@@ -1536,7 +1536,7 @@ HandleSpecialAIAttacks:
 	call CountNumberOfSetUpBenchPokemon
 	jr nc, .is_cool_porygon_already_resistant
 
-	call AISelectSpecialAttackParameters.SelectAttackParameters
+	call _AISelectSpecialAttackParameters
 	ldh a, [hDuelActionArgs + 1]
 	cp $ff
 	jr z, .is_cool_porygon_already_resistant

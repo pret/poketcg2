@@ -639,8 +639,7 @@ StartScript::
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-	push bc
-	ret
+	retbc
 
 ; copies b bytes from a:hl to de
 CopyFarHLToDE::
@@ -921,8 +920,7 @@ CallHL2::
 	jp hl
 
 CallBC::
-	push bc
-	ret
+	retbc
 
 ; divides BC by DE. Stores result in BC and stores remainder in HL
 DivideBCbyDE::
@@ -2185,7 +2183,7 @@ LoadMenuBoxParams::
 	pop af
 	ret
 
-; a = ?
+; a = NPC_* ID
 GetNPCOverworldSprite::
 	push af
 	push hl
@@ -2869,5 +2867,5 @@ CallFrameFunction::
 	pop af
 	jp hl
 
-Func_3f87::
+; stray ret
 	ret

@@ -621,7 +621,7 @@ TryStartTCGChallengeCup:
 	call Random
 	or a
 	jr nz, .skip
-	; 1/4 chance
+	; 25% chance
 	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue
@@ -654,7 +654,7 @@ TryStartGRChallengeCup:
 	call Random
 	or a
 	jr nz, .skip
-	; 1/5 chance
+	; 20% chance
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue

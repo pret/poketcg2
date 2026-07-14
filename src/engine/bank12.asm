@@ -3348,7 +3348,7 @@ AIDecide_EnergyRetrieval_ScorcherDeck:
 ; pick discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -3356,7 +3356,7 @@ AIDecide_EnergyRetrieval_ScorcherDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff
@@ -3421,7 +3421,7 @@ AIDecide_EnergyRetrieval_ScorcherDeck:
 	or a
 	ret
 
-TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy:
+AIDecide_GustOfWind_TsunamiStarterDeck_FindKnockableWithMoreEnergy:
 	ld e, PLAY_AREA_ARENA
 	call SwapTurn
 	call GetPlayAreaCardAttachedEnergies
@@ -3499,7 +3499,7 @@ TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy:
 	scf
 	ret
 
-TsunamiStarterDeckAIDecideGustOfWind_FindKnockableEvolution:
+AIDecide_GustOfWind_TsunamiStarterDeck_FindKnockableEvolution:
 	ld a, DUELVARS_BENCH
 	call GetNonTurnDuelistVariable
 	ld e, PLAY_AREA_BENCH_1
@@ -3589,9 +3589,9 @@ AIDecide_GustOfWind_TsunamiStarterDeck:
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
 	ret nc ; Hydrocannon not usable
-	call TsunamiStarterDeckAIDecideGustOfWind_FindKnockableWithMoreEnergy
+	call AIDecide_GustOfWind_TsunamiStarterDeck_FindKnockableWithMoreEnergy
 	ret c
-	call TsunamiStarterDeckAIDecideGustOfWind_FindKnockableEvolution
+	call AIDecide_GustOfWind_TsunamiStarterDeck_FindKnockableEvolution
 	ret c
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret
@@ -6471,17 +6471,17 @@ AIDecide_ProfessorOak_TrainerImprisonDeck:
 	cp 4
 	ret nc
 .less_than_5_turns
-	; copy hand card list to wc000
+	; create working copy of hand
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wc000
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $ff
 	jr nz, .loop_copy
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 
 .loop_cards
 	ld a, [hli]
@@ -6679,10 +6679,10 @@ AIDecide_ProfessorOak_BlazingFlameDeck:
 	cp 5
 	ret nc
 .else
-	; copy hand cards to wc000
+	; create working copy of hand
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wc000
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -6690,7 +6690,7 @@ AIDecide_ProfessorOak_BlazingFlameDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wc000
+	ld hl, wWorkingDuelTempList
 .loop_cards
 	ld a, [hli]
 	cp $ff
@@ -6922,7 +6922,7 @@ AIDecide_PokemonTrader_BlazingFlameDeck:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ccf
 	ret nc
-; 1/2 chance each of preferring vulpix or growlithe
+; equal chance to prefer vulpix or growlithe
 	ld a, 2
 	call Random
 	or a
@@ -6983,7 +6983,7 @@ AIDecide_EnergyRetrieval_BlazingFlameDeck:
 ; pick discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -6991,7 +6991,7 @@ AIDecide_EnergyRetrieval_BlazingFlameDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff
@@ -8509,7 +8509,7 @@ AIDecide_EnergyRetrieval_PowerOfDarknessDeck:
 ; pick discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld de, wTempCardCollection
+	ld de, wWorkingDuelTempList
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -8517,7 +8517,7 @@ AIDecide_EnergyRetrieval_PowerOfDarknessDeck:
 	cp $ff
 	jr nz, .loop_copy
 
-	ld hl, wTempCardCollection
+	ld hl, wWorkingDuelTempList
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff

@@ -1110,7 +1110,7 @@ AIDecide_PlusPower_Phase14:
 	; if can attack can KO, don't use
 	call .CheckAttackDoesntKO
 	jr nc, .no_carry
-	call .Func_207ed
+	call .CheckPoisonAndUseChance
 	jr nc, .no_carry
 	call .MrMimeDamageCheck
 	jr nc, .no_carry
@@ -1156,7 +1156,7 @@ AIDecide_PlusPower_Phase14:
 	or a
 	ret
 
-.Func_207ed:
+.CheckPoisonAndUseChance:
 	ld a, [wAIMinDamage]
 	farcall DiscountPoisonFromDamage
 	cp 10
@@ -2244,10 +2244,10 @@ AIDecide_EnergyRemoval:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	; a = FIRST_ATTACK_OR_PKMN_POWER
-	call .Func_20e72
+	call .IsDisruptingBigAttack
 	jr c, .asm_20e61
 	ld a, SECOND_ATTACK
-	call .Func_20e72
+	call .IsDisruptingBigAttack
 	jr c, .asm_20e42
 
 .asm_20e61
@@ -2262,7 +2262,7 @@ AIDecide_EnergyRemoval:
 
 ; returns carry if player's Arena card can deal 50 or more damage
 ; and removing energy would reduce or prevent that damage
-.Func_20e72:
+.IsDisruptingBigAttack:
 	ld [wSelectedAttack], a
 	call SwapTurn
 	farcall EstimateDamage_VersusDefendingCard
@@ -3611,7 +3611,7 @@ AIDecide_ProfessorOak:
 	ret
 
 .EyeOfTheStormDeck:
-	farcall ColorlessAltarAIDecideProfessorOak
+	farcall AIDecide_ProfessorOak_ColorlessAltar
 	ret
 
 .SuddenGrowthDeck:
@@ -3659,10 +3659,10 @@ AIPlay_EnergyRetrieval:
 	ld a, [wAITrainerCardArgs + 2]
 	ldh [hDuelActionArgs + 2], a
 	cp $ff
-	jr z, .asm_21667
+	jr z, .play_card
 	ld a, $ff
 	ldh [hDuelActionArgs + 3], a
-.asm_21667
+.play_card
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4335,18 +4335,18 @@ AIPlay_SuperEnergyRetrieval:
 	ld a, [wAITrainerCardArgs + 3]
 	ldh [hDuelActionArgs + 3], a
 	cp $ff
-	jr z, .asm_21ad8
+	jr z, .play_card
 	ld a, [wAITrainerCardArgs + 4]
 	ldh [hDuelActionArgs + 4], a
 	cp $ff
-	jr z, .asm_21ad8
+	jr z, .play_card
 	ld a, [wAITrainerCardArgs + 5]
 	ldh [hDuelActionArgs + 5], a
 	cp $ff
-	jr z, .asm_21ad8
+	jr z, .play_card
 	ld a, $ff
 	ldh [hDuelActionArgs + 6], a
-.asm_21ad8
+.play_card
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5043,7 +5043,7 @@ AIDecide_Pokedex:
 	cp DECK_SIZE - 4
 	jr nc, .no_carry
 
-; has a 3 in 10 chance of actually playing card
+; 30% chance to play
 	ld a, 10
 	call Random
 	cp 3
@@ -5095,7 +5095,7 @@ AIDecide_Pokedex:
 ; Pokémon -> Trainer -> Energy
 	ld de, wAITrainerCardArgs + 1
 	ld hl, wd084
-	ld c, $ff
+	ld c, -1
 	ld b, $00
 
 .loop_pkmn_cards
@@ -5754,11 +5754,11 @@ AIPlay_Recycle:
 	jr nc, .tails
 	ld a, [wAITrainerCardArgs + 0]
 	ldh [hDuelActionArgs + 0], a
-	jr .asm_222b2
+	jr .play_card
 .tails
 	ld a, $ff
 	ldh [hDuelActionArgs + 0], a
-.asm_222b2
+.play_card
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6642,11 +6642,11 @@ AIPlay_Pokeball:
 	jr nc, .tails
 	ld a, [wAITrainerCardArgs + 0]
 	ldh [hDuelActionArgs + 1], a
-	jr .asm_228d1
+	jr .play_card
 .tails
 	ld a, $ff
 	ldh [hDuelActionArgs + 1], a
-.asm_228d1
+.play_card
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6654,31 +6654,31 @@ AIPlay_Pokeball:
 AIDecide_Pokeball:
 	ld a, [wOpponentDeckID]
 	cp GRAND_FIRE_DECK_ID
-	jp z, .GrandFireDeck ; Func_2291e
+	jp z, .GrandFireDeck
 	cp TRIPLE_ZAPDOS_DECK_ID
-	jp z, .TripleZapdosDeck ; Func_22965
+	jp z, .TripleZapdosDeck
 	cp I_LOVE_PIKACHU_DECK_ID
-	jp z, .ILovePikachuDeck ; .ILovePikachuDeck
+	jp z, .ILovePikachuDeck
 	cp MAX_ENERGY_DECK_ID
-	jp z, .MaxEnergyDeck ; .MaxEnergyDeck
+	jp z, .MaxEnergyDeck
 	cp REMAINING_GREEN_DECK_ID
-	jp z, .RemainingGreenDeck ; .RemainingGreenDeck
+	jp z, .RemainingGreenDeck
 	cp GATHERING_NIDORAN_DECK_ID
-	jp z, .GatheringNidoranDeck ; .GatheringNidoranDeck
+	jp z, .GatheringNidoranDeck
 	cp BUG_COLLECTING_DECK_ID
-	jp z, .BugCollectingDeck ; .BugCollectingDeck
+	jp z, .BugCollectingDeck
 	cp COMPLETE_COMBUSTION_DECK_ID
-	jp z, .CompleteCombustionDeck ; .CompleteCombustionDeck
+	jp z, .CompleteCombustionDeck
 	cp FIREBALL_DECK_ID
-	jp z, .FireballDeck ; .FireballDeck
+	jp z, .FireballDeck
 	cp WHIRLPOOL_SHOWER_DECK_ID
-	jp z, .WhirlpoolShowerDeck ; .WhirlpoolShowerDeck
+	jp z, .WhirlpoolShowerDeck
 	cp PARALYZED_PARALYZED_DECK_ID
-	jp z, .ParalyzedParalyzedDeck ; .ParalyzedParalyzedDeck
+	jp z, .ParalyzedParalyzedDeck
 	cp ROCK_BLAST_DECK_ID
-	jp z, .RockBlastDeck ; .RockBlastDeck
+	jp z, .RockBlastDeck
 	cp BAD_DREAM_DECK_ID
-	jp z, .BadDreamDeck ; .BadDreamDeck
+	jp z, .BadDreamDeck
 	or a
 	ret
 
@@ -7168,23 +7168,23 @@ AIDecide_ComputerSearch:
 
 	ld a, [wOpponentDeckID]
 	cp RAIN_DANCE_CONFUSION_DECK_ID
-	jp z, .RainDanceConfusionDeck ; .RainDanceConfusionDeck
+	jp z, .RainDanceConfusionDeck
 	cp LEGENDARY_FOSSIL_DECK_ID
-	jp z, .LegendaryFossilDeck ; .LegendaryFossilDeck
+	jp z, .LegendaryFossilDeck
 	cp MAD_PETALS_DECK_ID
-	jp z, .MadPetalsDeck ; .MadPetalsDeck
+	jp z, .MadPetalsDeck
 	cp SPIRITED_AWAY_DECK_ID
-	jp z, .SpiritedAwayDeck ; .SpiritedAwayDeck
+	jp z, .SpiritedAwayDeck
 	cp EYE_OF_THE_STORM_DECK_ID
-	jp z, .EyeOfTheStormDeck ; .EyeOfTheStormDeck
+	jp z, .EyeOfTheStormDeck
 	cp SUDDEN_GROWTH_DECK_ID
-	jp z, .SuddenGrowthDeck ; .SuddenGrowthDeck
+	jp z, .SuddenGrowthDeck
 	cp EVERYBODYS_FRIEND_DECK_ID
-	jp z, .EverybodysFriendDeck ; .EverybodysFriendDeck
+	jp z, .EverybodysFriendDeck
 	cp IMMORTAL_POKEMON_DECK_ID
-	jp z, .ImmortalPokemonDeck ; .ImmortalPokemonDeck
+	jp z, .ImmortalPokemonDeck
 	cp TORRENTIAL_FLOOD_DECK_ID
-	jp z, .TorrentialFloodDeck ; .TorrentialFloodDeck
+	jp z, .TorrentialFloodDeck
 .no_carry
 	or a
 	ret
@@ -9514,11 +9514,11 @@ AIPlay_SuperScoopUp:
 	ldh [hDuelActionArgs + 1], a
 	ld a, [wAITrainerCardArgs + 1]
 	ldh [hDuelActionArgs + 2], a
-	jr .asm_23fb5
+	jr .play_card
 .tails
 	ld a, $ff
 	ldh [hDuelActionArgs + 1], a
-.asm_23fb5
+.play_card
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret

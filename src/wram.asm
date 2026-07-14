@@ -17,6 +17,12 @@ wc000:: ; c000
 
 NEXTU
 
+; working copy of wDuelTempList
+wWorkingDuelTempList:: ; c000
+	ds $80
+
+NEXTU
+
 ; actually $300 bytes, extending into WRAM0 Duels 1
 wTempPrintableCardPic:: ; c000
 	; ds CARDGFXSTRUCT_TILES_SIZE

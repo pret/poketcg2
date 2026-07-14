@@ -718,13 +718,13 @@ FindPlayAreaCardWithLeastRemainingHP:
 AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	push af
-	call .SelectAttackParameters
+	call _AISelectSpecialAttackParameters
 	pop bc
 	ld a, b
 	ld [wSelectedAttack], a
 	ret
 
-.SelectAttackParameters:
+_AISelectSpecialAttackParameters:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex

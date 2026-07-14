@@ -60,7 +60,7 @@ AIDecideSpecialBasicCards:
 
 .articuno_lv37
 	; if has low number of Play Area cards,
-	; just give Articuno lv37 a standard score
+	; just give Articuno Lv.37 a standard score
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
@@ -104,7 +104,7 @@ AIDecideSpecialBasicCards:
 	bank1call CheckGoopGasAttackAndToxicGasActive
 	jr c, .discourage_legendary_birds
 
-	; discourage if Defending card is Snorlax lv20
+	; discourage if Defending card is Snorlax Lv.20
 	ld a, DUELVARS_ARENA_CARD
 	call GetNonTurnDuelistVariable
 	call SwapTurn
@@ -140,7 +140,7 @@ AIDecideSpecialBasicCards:
 
 	; discourage if AI has a number of Play Area cards
 	; greater than or equal to the player
-	; (that is, the odds of Zapdos lv68 hitting own
+	; (that is, the odds of Zapdos Lv.68 hitting own
 	; Play Area is greater than or equal to 50%)
 	call SwapTurn
 	farcall CountPlayAreaPokemonExcludingTrainerPokemon
@@ -192,43 +192,43 @@ AIDecideSpecialBasicCards:
 	cphl MR_MIME_LV20
 	jp nz, .standard_score
 
-; mr. mime lv20
+	; Mr. Mime Lv.20
 	; discourage if Defending card is not resistant to Psychic
 	call SwapTurn
 	bank1call GetArenaCardResistance
 	call SwapTurn
 	and WR_PSYCHIC
-	jr z, .discourage_mr_mime_lv20_murray ; not resistant to Psychic
+	jr z, .discourage_mr_mime_lv20_psychic_elite_deck ; not resistant to Psychic
 
 	; Defending card is resistant to Psychic,
 	; give standard score if there's already
-	; a Mr. Mime in the Bench
+	; any Mr. Mime in the Bench
 	ld de, MR_MIME_LV20
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
 	jp c, .standard_score
 	; otherwise discourage if Pkmn Powers are disabled
 	bank1call CheckGoopGasAttackAndToxicGasActive
-	jr c, .discourage_mr_mime_lv20_murray
+	jr c, .discourage_mr_mime_lv20_psychic_elite_deck
 
 .encourage_if_has_space_in_bench
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld hl, wMaxNumPlayAreaPokemon
 	cp [hl]
-	jr z, .discourage_mr_mime_lv20_murray ; has no space in Bench
+	jr z, .discourage_mr_mime_lv20_psychic_elite_deck ; has no space in Bench
 	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
-.discourage_mr_mime_lv20_murray
+.discourage_mr_mime_lv20_psychic_elite_deck
 	ld a, AI_SCORE_BASIC_POKEMON - 30
 	ret
 
 .chansey_lv55
-	; if no Alakazam lv42 in Play Area, give standard score
+	; if no Alakazam Lv.42 in Play Area, give standard score
 	farcall FindAlakazamLv42WithActivePkmnPowerInPlayArea
 	jp nc, .standard_score
 	; otherwise encourage if there are no targets
-	; for Alakazam's lv42 Damage Swap
+	; for Alakazam's Lv.42 Damage Swap
 	farcall HandleAIDamageSwap.FindTargets
 	jr c, .encourage_if_has_space_in_bench
 	; if there are any targets, give standard score
@@ -239,38 +239,38 @@ AIDecideSpecialBasicCards:
 	cphl MR_MIME_LV20
 	jp nz, .standard_score
 
-; mr. mime lv20
+	; Mr. Mime Lv.20
 	; discourage if already has Mr. Mime in Bench
 	ld de, MR_MIME_LV20
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
-	jp c, .discourage_mr_mime_lv20_mitch ; can be jr
+	jp c, .discourage_mr_mime_lv20_raging_billow_of_fists_deck ; can be jr
 
 	; discourage if has no space in Play Area
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld hl, wMaxNumPlayAreaPokemon
 	cp [hl]
-	jp z, .discourage_mr_mime_lv20_mitch ; can be jr
+	jp z, .discourage_mr_mime_lv20_raging_billow_of_fists_deck ; can be jr
 
 	; discourage if Pkmn Powers are disabled
 	bank1call CheckGoopGasAttackAndToxicGasActive
-	jp c, .discourage_mr_mime_lv20_mitch ; can be jr
+	jp c, .discourage_mr_mime_lv20_raging_billow_of_fists_deck ; can be jr
 
 	; encourage if Defending Pokémon is resistant
 	; to the current Arena card
 	farcall CheckIfDefendingCardIsResistantToArenaCard
-	jr c, .encourage_mr_mime_lv20_mitch
+	jr c, .encourage_mr_mime_lv20_raging_billow_of_fists_deck
 
 	; encourage if current Arena card is weak
 	; to the Defending Pokémon
 	farcall CheckIfArenaCardIsWeakToDefendingCard
-	jr c, .encourage_mr_mime_lv20_mitch
+	jr c, .encourage_mr_mime_lv20_raging_billow_of_fists_deck
 	; otherwise discourage playing Mr. Mime
-.discourage_mr_mime_lv20_mitch
+.discourage_mr_mime_lv20_raging_billow_of_fists_deck
 	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
-.encourage_mr_mime_lv20_mitch
+.encourage_mr_mime_lv20_raging_billow_of_fists_deck
 	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
@@ -303,7 +303,7 @@ AIDecideSpecialBasicCards:
 	ret
 
 .hitmonchan_lv33
-	; discourage if already has Hitmonchan lv33 in play
+	; discourage if already has Hitmonchan Lv.33 in play
 	; and it is not the only Pokémon in Play Area
 	ld e, [hl]
 	inc hl
@@ -326,7 +326,7 @@ AIDecideSpecialBasicCards:
 	jp nz, .standard_score
 
 .onix_lv25_or_hitmonchan_lv23
-	; count number of Onix lv25 and Hitmonchan lv23
+	; count number of Onix Lv.25 and Hitmonchan Lv.23
 	; in play, and if less than 3, give standard score
 	ld de, ONIX_LV25
 	ld b, PLAY_AREA_ARENA
@@ -362,8 +362,8 @@ AIDecideSpecialBasicCards:
 	cphl MR_MIME_LV20
 	jp nz, .standard_score
 
-; mr. mime
-	; encourage Mr. Mime lv20 if player
+	; Mr. Mime
+	; encourage Mr. Mime Lv.20 if player
 	; has a Fire Pokémon in play
 	ld de, MR_MIME_LV20
 	ld b, PLAY_AREA_BENCH_1
@@ -404,9 +404,9 @@ AIDecideSpecialBasicCards:
 	ld d, [hl]
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jr nc, .encourage_main_basic_pkmn_biruritchi
+	jr nc, .encourage_main_basic_pkmn_biruritchi_decks
 	jp .standard_score
-.encourage_main_basic_pkmn_biruritchi
+.encourage_main_basic_pkmn_biruritchi_decks
 	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
@@ -554,7 +554,7 @@ AIDecideSpecialBasicCards:
 	ret
 
 .BrickWalkDeck:
-.ElectricSelfdestructDeck: ; no Wigglytuff
+.ElectricSelfdestructDeck: ; harmless bug: no Wigglytuff
 .EverybodysFriendDeck:
 	ld de, WIGGLYTUFF_LV36
 	ld b, PLAY_AREA_ARENA
@@ -581,14 +581,14 @@ AIDecideSpecialBasicCards:
 	cphl MR_MIME_LV20
 	jp nz, .standard_score
 
-; mr. mime
+	; Mr. Mime
 	ld de, MR_MIME_LV20
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
-	jp c, .discourage_unless_only_1_pkmn_in_play_toshiron
+	jp c, .discourage_unless_only_1_pkmn_in_play_trainer_imprison_deck
 	ld a, TYPE_PKMN_FIRE
 	farcall CheckIfPlayerHasPokemonOfType
-	jr nc, .discourage_unless_only_1_pkmn_in_play_toshiron
+	jr nc, .discourage_unless_only_1_pkmn_in_play_trainer_imprison_deck
 	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
@@ -600,7 +600,7 @@ AIDecideSpecialBasicCards:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 
-.discourage_unless_only_1_pkmn_in_play_toshiron
+.discourage_unless_only_1_pkmn_in_play_trainer_imprison_deck
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
@@ -611,44 +611,44 @@ AIDecideSpecialBasicCards:
 .BigThunderDeck:
 	ld hl, wLoadedCard1ID
 	cphl ZAPDOS_LV68
-	jr z, .zapdos_lv68_dee
+	jr z, .zapdos_lv68_big_thunder_deck
 
 ; chansey, ditto
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
-	jr nc, .discourage_dee
+	jr nc, .discourage_big_thunder_deck
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 ZAPDOS_LV68
-	jr nz, .encourage_dee
-	jr .check_hp_dee
+	jr nz, .encourage_big_thunder_deck
+	jr .check_hp_big_thunder_deck
 
-.zapdos_lv68_dee
+.zapdos_lv68_big_thunder_deck
 	ld de, ZAPDOS_LV68
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
 	or a
-	jr z, .encourage_dee
+	jr z, .encourage_big_thunder_deck
 	cp 2
-	jr z, .discourage_dee
+	jr z, .discourage_big_thunder_deck
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 ZAPDOS_LV68
-	jr nz, .discourage_dee
+	jr nz, .discourage_big_thunder_deck
 
-.check_hp_dee
+.check_hp_big_thunder_deck
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 60
-	jr nc, .discourage_dee
+	jr nc, .discourage_big_thunder_deck
 
-.encourage_dee
+.encourage_big_thunder_deck
 	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
-.discourage_dee
+.discourage_big_thunder_deck
 	ld a, AI_SCORE_BASIC_POKEMON - 90
 	ret
