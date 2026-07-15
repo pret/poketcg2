@@ -1,15 +1,8 @@
 INCLUDE "macros.asm"
 INCLUDE "constants.asm"
 
-; End-of-bank padding.
-;
-; The ROM pads unused space with $ff (rgblink/rgbfix -p 0xff), matching the
-; original game everywhere except a handful of banks whose trailing space the
-; original Japanese build zero-filled instead. Those $00 tails are emitted here
-; explicitly so the ROM builds byte-for-byte from source with no baserom overlay.
-; Each section is fixed at the address where its bank's last real section ends
-; and fills to the end of the bank.
-
+; list of $00 padding rather than the standard $ff
+; TODO: put them to the appropriate place
 SECTION "ROM0 Padding", ROM0[$3ff6]
 	ds $4000 - $3ff6, $00 ; after Audio Callback
 

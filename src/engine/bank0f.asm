@@ -352,17 +352,17 @@ Script_GiftCenter:
 	ret
 
 Script_3c2f0:
-	get_var VAR_21
+	get_var VAR_IMAKUNI_BLACK_STATE
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_3c30b
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_3c305
-	set_var VAR_21, $01
-	set_var VAR_25, $09
+	set_var VAR_IMAKUNI_BLACK_STATE, $01
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_FIRE_CLUB
 	script_jump .ows_3c30b
 .ows_3c305
-	set_var VAR_21, $03
-	set_var VAR_25, $09
+	set_var VAR_IMAKUNI_BLACK_STATE, $03
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_FIRE_CLUB
 .ows_3c30b
 	script_retfar
 
@@ -377,7 +377,7 @@ Script_ImakuniBlack:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_21
+	get_var VAR_IMAKUNI_BLACK_STATE
 	compare_loaded_var $02
 	script_jump_if_b1nz .ows_3c333
 	script_jump_if_b0nz .ows_3c37f
@@ -385,8 +385,8 @@ Script_ImakuniBlack:
 	script_jump_if_b0nz .ows_3c3a5
 	script_jump .ows_3c3ae
 .ows_3c333
-	set_var VAR_21, $02
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_STATE, $02
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_NONE
 	print_npc_text ImakuniBlackCardlessFirstCardPopText
 	card_pop SCRIPTED_CARD_POP_IMAKUNI
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopSaveText
@@ -418,7 +418,7 @@ Script_ImakuniBlack:
 	farcall PlayAfterCurrentSong
 	ret
 .ows_3c37f
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_NONE
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopRepeatText
 	end_dialog
 	get_player_direction
@@ -437,7 +437,7 @@ Script_ImakuniBlack:
 	farcall PlayAfterCurrentSong
 	ret
 .ows_3c3a5
-	set_var VAR_21, $04
+	set_var VAR_IMAKUNI_BLACK_STATE, $04
 	print_npc_text ImakuniBlackWantsToDuelFirstEncounterText
 	script_jump .ows_3c3b4
 .ows_3c3ae
@@ -461,7 +461,7 @@ Script_ImakuniBlackAfterDuel:
 	xor a
 	start_script
 	start_dialog
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_NONE
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	inc_var VAR_IMAKUNI_BLACK_WIN_COUNT
@@ -578,7 +578,7 @@ NPCMovement_3c492:
 	db $ff
 
 Script_3c497:
-	set_var VAR_26, $0f
+	set_var VAR_IMAKUNI_RED_LOCATION, OWMAP_NONE
 	print_npc_text Text12d3
 	card_pop SCRIPTED_RARE_CARD_POP_IMAKUNI
 	print_npc_text Text12d4
@@ -654,7 +654,7 @@ HandleImakuniAfterDuel:
 	xor a
 	start_script
 	start_dialog
-	set_var VAR_26, $0f
+	set_var VAR_IMAKUNI_RED_LOCATION, OWMAP_NONE
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c574
 	inc_var VAR_24
@@ -6121,9 +6121,9 @@ GameCenterLobby_MapScripts:
 	db $ff
 
 GameCenterLobby_MusicPostload:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $02
+	cp OWMAP_GAME_CENTER
 	jr z, .asm_3ef8c
 	scf
 	ret
@@ -6236,9 +6236,9 @@ Script_GameCenterLobbyGRPappy:
 	ret
 
 GameCenterLobby_ImakuniRedAppearanceCheck:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $02
+	cp OWMAP_GAME_CENTER
 	jr z, .asm_3f049
 	scf
 	ret
@@ -7002,9 +7002,9 @@ WaterFortLobby_MapScripts:
 	db $ff
 
 WaterFortLobby_MusicPostload:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_GR_WATER_FORT
 	jr z, .asm_3f647
 	scf
 	ret
@@ -7205,9 +7205,9 @@ Script_WaterFortGRGal:
 	ret
 
 WaterFortLobby_ImakuniRedAppearanceCheck:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_GR_WATER_FORT
 	jr z, .asm_3f7b2
 	scf
 	ret

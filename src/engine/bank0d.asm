@@ -269,15 +269,15 @@ Script_RonaldPsychicClubEntranceGift:
 	set_var VAR_TIMES_MET_RONALD, $04
 	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_START
 	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
-	get_var VAR_21
+	get_var VAR_IMAKUNI_BLACK_STATE
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_3421c
 	compare_loaded_var $02
 	script_jump_if_b0nz .ows_34219
-	set_var VAR_21, $03
+	set_var VAR_IMAKUNI_BLACK_STATE, $03
 	script_jump .ows_3421c
 .ows_34219
-	set_var VAR_21, $04
+	set_var VAR_IMAKUNI_BLACK_STATE, $04
 .ows_3421c
 	load_npc NPC_RONALD, 4, 9, NORTH
 	set_active_npc NPC_RONALD, DialogRonaldText
@@ -4388,9 +4388,9 @@ PsychicStrongholdLobby_MapScripts:
 	db $ff
 
 PsychicStrongholdLobby_MusicPostload:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $0a
+	cp OWMAP_GR_PSYCHIC_STRONGHOLD
 	jr z, .asm_36205
 	scf
 	ret
@@ -4540,9 +4540,9 @@ Script_GRPsychicStrongholdGRLass:
 	ret
 
 PsychicStrongholdLobby_ImakuniRedAppearanceCheck:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $0a
+	cp OWMAP_GR_PSYCHIC_STRONGHOLD
 	jr z, .asm_3631c
 	scf
 	ret

@@ -14,7 +14,7 @@
 	const VAR_FINAL_CUP_PLAYED_ROUNDS                  ; $0c
 	const VAR_GRAND_MASTER_CUP_STATE                   ; $0d
 	const VAR_GRANDMASTERCUP_CURRENT_ROUND             ; $0e
-	const VAR_0F                                       ; $0f
+	const VAR_GR2_LOCATION                             ; $0f
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_0             ; $10
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_1             ; $11
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_2             ; $12
@@ -32,12 +32,12 @@
 	const VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID         ; $1e, vs player
 	const VAR_GRANDMASTERCUP_GF_GRAND_MASTER_INDEX     ; $1f, vs player
 	const VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP ; $20
-	const VAR_21                                       ; $21
+	const VAR_IMAKUNI_BLACK_STATE                      ; $21
 	const VAR_IMAKUNI_BLACK_WIN_COUNT                  ; $22
 	const VAR_23                                       ; $23
 	const VAR_24                                       ; $24
-	const VAR_25                                       ; $25
-	const VAR_26                                       ; $26
+	const VAR_IMAKUNI_BLACK_LOCATION                   ; $25
+	const VAR_IMAKUNI_RED_LOCATION                     ; $26
 	const VAR_27                                       ; $27
 	const VAR_TCG_CHALLENGE_CUP_STATE                  ; $28
 	const VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX            ; $29

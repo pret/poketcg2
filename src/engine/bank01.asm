@@ -3114,7 +3114,7 @@ TurnDuelistTakePrizes:
 	ld h, $00
 	call LoadTxRam3
 .asm_587e
-	farcall DrawCurrentPlayAreaPrizeCards
+	farcall DrawYourOrOppPlayAreaPrizeCards
 	ldtx hl, DrewXPrizesText
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
@@ -6715,8 +6715,9 @@ PlayTrainerCard:
 	or a
 	ret
 
-; loads the effect commands of a (trainer or energy) card with deck index (0-59) at hDuelActionCardIndex
-; into wLoadedAttackEffectCommands. in practice, only used for trainer cards
+; loads the effect commands of a (trainer or energy) card
+; with deck index (0-59) at hDuelActionCardIndex
+; into wLoadedAttackEffectCommands
 LoadNonPokemonCardEffectCommands:
 	ldh a, [hDuelActionCardIndex]
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -6734,7 +6735,7 @@ LoadNonPokemonCardEffectCommands:
 	ld [wcd15], a
 	ret
 
-; runs the just-played energy card's on-play (PKMN_POWER_TRIGGER) effect command, if it has one
+; runs the effect commands of a just-played energy card
 TriggerPlayedEnergyCardEffect:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hDuelActionCardIndex], a

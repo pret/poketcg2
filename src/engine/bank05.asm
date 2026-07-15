@@ -6635,9 +6635,6 @@ AITryToRetreat:
 	get_turn_duelist_var
 	ldh [hDuelActionCardIndex], a
 	xor a ; PLAY_AREA_ARENA
-; bank05:$6968 -- the buggy plain `call` in .trainer_card (a missing bank1call to
-; bank01:LoadNonPokemonCardEffectCommands) lands here at runtime. Normal flow just
-; falls through from .has_bench.
 	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -9965,6 +9962,9 @@ CheckIfCardCanBePlayed:
 	ret
 
 .trainer_card
+	; bug, this seems like remnants from TCG1 code
+	; a call is made in the middle of another routine
+	; this seems like a branch that is never taken
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
 	call LoadNonPokemonCardEffectCommands ; BUG: should be bank1call

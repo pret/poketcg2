@@ -152,12 +152,12 @@ OWModePostprocess::
 	jp hl
 
 .PointerTable
-	dw HandleOWModeIdleInput                               ; OWMODE_IDLE
+	dw HandleOWModeIdleInput                   ; OWMODE_IDLE
 	dw .Exit                                   ; OWMODE_MUSIC_PRELOAD
 	dw OverworldFadeInToBlack                  ; OWMODE_WARP_FADE_IN_PRELOAD
 	dw Overworld10FramesWarpInterval           ; OWMODE_WARP_INTERVAL
 	dw OverworldFadeOutToBlack                 ; OWMODE_WARP_FADE_OUT_PRELOAD
-	dw UpdateOWModePlayerMovement                               ; OWMODE_MOVE
+	dw UpdateOWModePlayerMovement              ; OWMODE_MOVE
 	dw OverworldResumeAndHandlePlayerMoveInput ; OWMODE_STEP_EVENT
 	dw .Exit                                   ; OWMODE_NPC_POSITION
 	dw OverworldResumeFromInteract             ; OWMODE_INTERACT
@@ -369,10 +369,10 @@ EnablePlayTimeCounter:
 InitCupAndEventStates:
 	ld a, TRUE
 	ld [wPlayTimeCounterEnable], a
-	call RandomizeGRCoinPieceLocation
-	call RandomizeTCGIslandClubLocation
-	call RandomizeGRIslandFortLocation
-	call RandomizeIshiharaLocation
+	call InitGR2Location
+	call InitImakuniBlackLocation
+	call InitImakuniRedLocation
+	call InitIshiharaLocation
 	call HandleGrandMasterCupState
 	call TryStartTCGChallengeCup
 	call TryStartGRChallengeCup
@@ -393,7 +393,7 @@ ClearSavedDecks:
 	call DisableSRAM
 	ret
 
-RandomizeGRCoinPieceLocation:
+InitGR2Location:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jr nz, .done
@@ -404,19 +404,20 @@ RandomizeGRCoinPieceLocation:
 	jr z, .done
 	call UpdateRNGSources
 	rrca
-	jr c, .asm_c2f7
-	ld a, VAR_0F
+	jr c, .science_club
+; grass club
+	ld a, VAR_GR2_LOCATION
 	ld c, OWMAP_GRASS_CLUB
 	call SetVarValue
 	jr .done
-.asm_c2f7
-	ld a, VAR_0F
+.science_club
+	ld a, VAR_GR2_LOCATION
 	ld c, OWMAP_SCIENCE_CLUB
 	call SetVarValue
 .done
 	ret
 
-RandomizeIshiharaLocation:
+InitIshiharaLocation:
 	ld a, VAR_ISHIHARA_STATE
 	call GetVarValue
 	cp ISHIHARA_TALKED_AT_VILLA
@@ -476,15 +477,15 @@ HandleGrandMasterCupState:
 	call ZeroOutVarValue
 	jr .done
 
-RandomizeTCGIslandClubLocation:
-	ld a, VAR_21
+InitImakuniBlackLocation:
+	ld a, VAR_IMAKUNI_BLACK_STATE
 	call GetVarValue
 	cp $02
 	jr c, .done
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
 	jr nz, .randomly_choose_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -504,27 +505,27 @@ RandomizeTCGIslandClubLocation:
 	jr z, .fire_club
 	jr .water_club
 .rock_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_ROCK_CLUB
 	call SetVarValue
 	jr .club_chosen
 .psychic_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_PSYCHIC_CLUB
 	call SetVarValue
 	jr .club_chosen
 .science_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_SCIENCE_CLUB
 	call SetVarValue
 	jr .club_chosen
 .fire_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_FIRE_CLUB
 	call SetVarValue
 	jr .club_chosen
 .water_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_WATER_CLUB
 	call SetVarValue
 
@@ -532,7 +533,7 @@ RandomizeTCGIslandClubLocation:
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
 	jr nz, .done
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -541,11 +542,11 @@ RandomizeTCGIslandClubLocation:
 .done
 	ret
 
-RandomizeGRIslandFortLocation:
+InitImakuniRedLocation:
 	ld a, [wCurIsland]
 	cp GR_ISLAND
 	jr nz, .randomly_choose_club
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -565,27 +566,27 @@ RandomizeGRIslandFortLocation:
 	jr z, .psychic_stronghold
 	jr .game_center
 .grass_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_GRASS_FORT
 	call SetVarValue
 	jr .club_chosen
 .fire_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_FIRE_FORT
 	call SetVarValue
 	jr .club_chosen
 .water_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_WATER_FORT
 	call SetVarValue
 	jr .club_chosen
 .psychic_stronghold
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_PSYCHIC_STRONGHOLD
 	call SetVarValue
 	jr .club_chosen
 .game_center
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GAME_CENTER
 	call SetVarValue
 
@@ -593,7 +594,7 @@ RandomizeGRIslandFortLocation:
 	ld a, [wCurIsland]
 	cp GR_ISLAND
 	jr nz, .done
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -2165,7 +2166,7 @@ GeneralVarMasks:
 	db $06, %00000011 ; VAR_FINAL_CUP_PLAYED_ROUNDS
 	db $06, %00011100 ; VAR_GRAND_MASTER_CUP_STATE
 	db $06, %11100000 ; VAR_GRANDMASTERCUP_CURRENT_ROUND
-	db $07, %00001111 ; VAR_0F
+	db $07, %00001111 ; VAR_GR2_LOCATION
 	db $08, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	db $09, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_1
 	db $0a, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_2
@@ -2183,12 +2184,12 @@ GeneralVarMasks:
 	db $16, %11111111 ; VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID
 	db $17, %00000011 ; VAR_GRANDMASTERCUP_GF_GRAND_MASTER_INDEX
 	db $17, %00111100 ; VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP
-	db $18, %00000111 ; VAR_21
+	db $18, %00000111 ; VAR_IMAKUNI_BLACK_STATE
 	db $18, %11110000 ; VAR_IMAKUNI_BLACK_WIN_COUNT
 	db $19, %00000001 ; VAR_23
 	db $19, %11110000 ; VAR_24
-	db $1a, %00001111 ; VAR_25
-	db $1a, %11110000 ; VAR_26
+	db $1a, %00001111 ; VAR_IMAKUNI_BLACK_LOCATION
+	db $1a, %11110000 ; VAR_IMAKUNI_RED_LOCATION
 	db $1b, %00001111 ; VAR_27
 	db $1b, %01110000 ; VAR_TCG_CHALLENGE_CUP_STATE
 	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX

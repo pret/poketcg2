@@ -10,18 +10,7 @@ ENDM
 ; *_DECK_ID constants are specific to be loaded into wOpponentDeckID.
 ; Always, *_DECK_ID = *_DECK - 2. UNKNOWN_POISON_STORM_DECK_ID and
 ; GB1_STRANGE_PSYSHOCK_DECK_ID do not exist.
-;
-; NAMING CAVEAT: the *_DECK symbol below is an INTERNAL disassembly label,
-; not an authoritative display name. It can differ from BOTH the deck's
-; in-game name (its *DeckName text in data/deck_id_data.asm) AND the
-; official English name. Known examples:
-;   SCORCHER_DECK        ($5f) -> in-game name IncinerateDeckName
-;   HAND_OVER_GR_DECK    ($16) -> in-game name HandedOverGRDeckName
-;   I_LOVE_TO_FIGHT_DECK ($23) -> in-game name LoveToBattleDeckName
-;   RONALDS_PSYCHIC_DECK ($6c) -> in-game name RonaldsSuperDeckName
-; To put a human-readable name on a deck, prefer its *DeckName, and confirm
-; by its card list in data/decks.asm -- never trust this symbol name alone.
-; See the longer note in data/deck_id_data.asm.
+; TODO: audit English deck names (#25)
 	const_def
 	deck_const UNKNOWN_POISON_STORM_DECK             ; $00
 	deck_const GB1_STRANGE_PSYSHOCK_DECK             ; $01

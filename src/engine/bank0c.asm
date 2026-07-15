@@ -1521,9 +1521,9 @@ GrassFortLobby_MapScripts:
 	db $ff
 
 GrassFortLobby_MusicPostload:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $05
+	cp OWMAP_GR_GRASS_FORT
 	jr z, .asm_3166a
 	scf
 	ret
@@ -1675,9 +1675,9 @@ Script_GrassFortGRLass:
 	ret
 
 GrassFortLobby_ImakuniRedAppearanceCheck:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $05
+	cp OWMAP_GR_GRASS_FORT
 	jr z, .asm_31782
 	scf
 	ret
@@ -3701,9 +3701,9 @@ FireFortLobby_MapScripts:
 	db $ff
 
 FireFortLobby_MusicPostload:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_GR_FIRE_FORT
 	jr z, .asm_3271e
 	scf
 	ret
@@ -3827,9 +3827,9 @@ Script_FireFortYoungster:
 	ret
 
 FireFortLobby_ImakuniRedAppearanceCheck:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_GR_FIRE_FORT
 	jr z, .asm_32801
 	scf
 	ret

@@ -285,6 +285,8 @@ DEF NUM_OW_ANIMATED_TILES EQU 25
 	const OWMAP_COLORLESS_ALTAR       ; $b
 	const OWMAP_GR_CASTLE             ; $c
 
+DEF OWMAP_NONE EQU $f
+
 ; *_MapHeader struct constants
 RSRESET
 DEF MAPHEADERSTRUCT_GFX          RB ; 0

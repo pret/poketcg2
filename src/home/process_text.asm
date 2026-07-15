@@ -750,7 +750,7 @@ PromoteTextTileCacheEntry::
 	xor a
 	ld [wHalfWidthPrintState], a
 	ldh a, [hTextTileCacheHead]
-	ld l, a              ; l ← [hTextTileCacheHead]; index to to linked-list head
+	ld l, a              ; l ← [hTextTileCacheHead] (index to linked-list head)
 .asm_237d
 	ld h, HIGH(wc600)    ;
 	ld a, [hl]           ; a ← key1[l]            ;
@@ -774,7 +774,7 @@ PromoteTextTileCacheEntry::
 	ld b, HIGH(wc900)
 	ld a, l
 	ld [bc], a           ; prev[i0] ← i
-	ldh [hTextTileCacheHead], a       ; [hTextTileCacheHead] ← i  (update linked-list head)
+	ldh [hTextTileCacheHead], a ; [hTextTileCacheHead] ← i (update linked-list head)
 	ld h, HIGH(wc900)
 	ld b, [hl]
 	ld [hl], $0          ; prev[i] ← 0

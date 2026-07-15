@@ -1529,9 +1529,9 @@ PsychicClubLobby_MusicPreload:
 	ret
 
 PsychicClubLobby_MusicPostload:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 3
+	cp OWMAP_PSYCHIC_CLUB
 	jr z, .asm_2cbc6
 	scf
 	ret
@@ -1645,7 +1645,7 @@ Script_PsychicClubLass:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $03
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_PSYCHIC_CLUB
 	script_jump_if_b0nz .ows_2cca2
 	script_callfar Script_3c2f0
 	print_npc_text Text0bd5
@@ -1658,9 +1658,9 @@ Script_PsychicClubLass:
 	ret
 
 PsychicClubLobby_ImakuniBlackAppearanceCheck:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $03
+	cp OWMAP_PSYCHIC_CLUB
 	jr z, .asm_2ccb4
 	scf
 	ret
@@ -2685,9 +2685,9 @@ RockClubLobby_MusicPreload:
 	ret
 
 RockClubLobby_MusicPostload:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 4
+	cp OWMAP_ROCK_CLUB
 	jr z, .asm_2d495
 	scf
 	ret
@@ -2799,7 +2799,7 @@ Script_RockClubWoman:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $04
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_ROCK_CLUB
 	script_jump_if_b0nz .ows_2d576
 	script_callfar Script_3c2f0
 	check_event EVENT_GOT_GR_COIN
@@ -2817,9 +2817,9 @@ Script_RockClubWoman:
 	ret
 
 RockClubLobby_ImakuniBlackAppearanceCheck:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $04
+	cp OWMAP_ROCK_CLUB
 	jr z, .asm_2d588
 	scf
 	ret
@@ -4877,9 +4877,9 @@ GrassClub_GR2AppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e4b5
-	ld a, VAR_0F
+	ld a, VAR_GR2_LOCATION
 	farcall GetVarValue
-	cp $06
+	cp OWMAP_GRASS_CLUB
 	jr nz, .asm_2e4b5
 	scf
 	ccf
@@ -5065,8 +5065,8 @@ Script_JosephScienceClubEntrance:
 	print_npc_text Text106c
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0nz .ows_2e606
-	get_var VAR_0F
-	compare_loaded_var $07
+	get_var VAR_GR2_LOCATION
+	compare_loaded_var OWMAP_SCIENCE_CLUB
 	script_jump_if_b0z .ows_2e606
 	print_npc_text Text106d
 	script_jump .ows_2e627
@@ -5076,8 +5076,8 @@ Script_JosephScienceClubEntrance:
 .ows_2e60c
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0nz .ows_2e61e
-	get_var VAR_0F
-	compare_loaded_var $07
+	get_var VAR_GR2_LOCATION
+	compare_loaded_var OWMAP_SCIENCE_CLUB
 	script_jump_if_b0z .ows_2e61e
 	print_npc_text Text106f
 	script_jump .ows_2e627
@@ -5168,9 +5168,9 @@ ScienceClubLobby_MusicPreload:
 	ret
 
 ScienceClubLobby_MusicPostload:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 7
+	cp OWMAP_SCIENCE_CLUB
 	jr z, .asm_2e715
 	scf
 	ret
@@ -5334,9 +5334,9 @@ ScienceClubLobby_MembersAppearanceCheck:
 	ret
 
 ScienceClubLobby_ImakuniBlackAppearanceCheck:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_SCIENCE_CLUB
 	jr z, .asm_2e82e
 	scf
 	ret
@@ -5966,9 +5966,9 @@ ScienceClub_GR2AppearanceCheck:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2ecc6
-	ld a, VAR_0F
+	ld a, VAR_GR2_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_SCIENCE_CLUB
 	jr nz, .asm_2ecc6
 	scf
 	ccf
@@ -6170,9 +6170,9 @@ WaterClubLobby_MusicPreload:
 	ret
 
 WaterClubLobby_MusicPostload:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 8
+	cp OWMAP_WATER_CLUB
 	jr z, .asm_2ee91
 	scf
 	ret
@@ -6321,7 +6321,7 @@ Script_WaterClubLass:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $08
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_WATER_CLUB
 	script_jump_if_b0nz .ows_2ef99
 	script_callfar Script_3c2f0
 	print_npc_text Text0884
@@ -6334,9 +6334,9 @@ Script_WaterClubLass:
 	ret
 
 WaterClubLobby_ImakuniBlackAppearanceCheck:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_WATER_CLUB
 	jr z, .asm_2efab
 	scf
 	ret
@@ -7272,9 +7272,9 @@ FireClubLobby_MusicPreload:
 	ret
 
 FireClubLobby_MusicPostload:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 9
+	cp OWMAP_FIRE_CLUB
 	jr z, .asm_2f6be
 	scf
 	ret
@@ -7376,9 +7376,9 @@ Script_FireClubPunkGuy:
 	ret
 
 FireClubLobby_ImakuniBlackAppearanceCheck:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $09
+	cp OWMAP_FIRE_CLUB
 	jr z, .asm_2f77b
 	scf
 	ret
