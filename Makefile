@@ -8,7 +8,6 @@ rom_obj := \
 	src/audio.o \
 	src/wram.o \
 	src/hram.o \
-	src/padding.o
 
 
 ### Build tools
