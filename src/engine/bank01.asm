@@ -993,8 +993,8 @@ DisplayAttachedEnergyMenu:
 	call SortCardsInDuelTempListByID
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
-	call LoadDuelFaceDownCardTiles
-	call Func_6c12
+	call LoadPokemonStageSymbolTiles
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ld a, [wAttachedEnergyMenuPlayAreaLocation]
 	ld hl, wCurPlayAreaSlot
@@ -1167,7 +1167,7 @@ OpenAttackPage:
 	ld de, v0Tiles1 + $20 tiles
 	call LoadLoadedCard1Gfx
 	call DrawCardPageCardGfx
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ldh a, [hCurScrollMenuItem]
 	ld [wSelectedDuelSubMenuItem], a
@@ -1852,7 +1852,7 @@ PrintReturnCardsToDeckDrawAgain:
 ; used to let the player know that there are no basic Pokemon in the hand and need to redraw
 DisplayNoBasicPokemonInHandScreen:
 	call EmptyScreen
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call LoadDuelCardSymbolTiles
 	lb de, 0, 0
 	lb bc, 20, 18
@@ -1878,7 +1878,7 @@ DisplayPracticeDuelPlayerHandScreen:
 	call CreateHandCardList
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	lb de, 0, 0
 	lb bc, 20, 13
 	call DrawRegularTextBox
@@ -1952,7 +1952,7 @@ DrawDuelMainScene::
 	get_turn_duelist_var
 	cp $ff
 	jr z, .place_opponent_arena_pkmn
-	ld a, $d0 ; v0Tiles1 + $50 tiles
+	ld a, VRAM_TILES1_INDEX + $50
 	lb hl, 6, 1
 	lb de, 0, 5
 	lb bc, 8, 6
@@ -1963,7 +1963,7 @@ DrawDuelMainScene::
 	get_turn_duelist_var
 	cp $ff
 	jr z, .place_other_elements
-	ld a, $a0 ; v0Tiles1 + $20 tiles
+	ld a, VRAM_TILES1_INDEX + $20
 	lb hl, 6, 1
 	lb de, 12, 1
 	lb bc, 8, 6
@@ -2656,7 +2656,7 @@ DrawCardListScreenLayout:
 	call EmptyScreen
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	; draw the surrounding box
 	lb de, 0, 0
 	lb bc, 20, 13
@@ -2967,7 +2967,7 @@ OpenCardPage:
 	call LoadLoadedCard1Gfx
 	lb de, 6, 4
 	call DrawCardGfxToDE_BGPalIndex5
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	; display the initial card page for the card at wLoadedCard1
 	xor a
@@ -3170,7 +3170,7 @@ LoadSelectedCardGfx:
 	call LoadLoadedCard1Gfx
 	lb de, 12, 12
 	call DrawCardGfxToDE_BGPalIndex5
-	call Func_6c12
+	call LoadDuelScreenBGPalettes
 	call FlushAllPalettesIfNotDMG
 	ret
 
@@ -3375,7 +3375,7 @@ ZeroObjectPositionsAndToggleOAMCopy:
 ; to draw card image in check card screens
 PlaceCardImageOAM:
 	call Set_OBJ_8x16
-	ld l, $a0 ; v0Tiles1 + $20 tiles
+	ld l, VRAM_TILES1_INDEX + $20
 	ld c, 8 ; rows
 .next_column
 	ld b, 3 ; columns
@@ -3414,19 +3414,19 @@ LoadLoadedCard1Gfx:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	lb bc, $30, TILE_SIZE
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
 	call LoadCardGfx
 	ret
 
 ; applies the tilemap of the loaded card gfx
-; to coordinates in de, and loads its palette
+; to coordinates in de, and loads its palettes
 ; starting from BG pal 2
 DrawCardGfxToDE_BGPalIndex2:
 	ld a, [wConsole]
 	or a
 	ret z
-	ld a, $02
-	call LoadCardPalettesAndAttributes
+	ld a, 2
+	call LoadCardPalettesAndBGPAttributes
 	ret
 
 ; applies the tilemap of the loaded card gfx
@@ -3436,33 +3436,35 @@ DrawCardGfxToDE_BGPalIndex5:
 	ld a, [wConsole]
 	or a
 	ret z
-	ld a, $5
-	call LoadCardPalettesAndAttributes
+	ld a, 5
+	call LoadCardPalettesAndBGPAttributes
 	ret
 
-SetOBPToCardPalette:
+; unreferenced
+UnreferencedSetOBP5ToCardPalette:
 	ldgbpal a, SHADE_WHITE, SHADE_LIGHT, SHADE_DARK, SHADE_BLACK
 	ld [wOBP0], a
 	ld a, [wConsole]
-	or a
+	or a ; CONSOLE_DMG
 	ret z
-	ld a, $0d
-	jr CopyCGBCardPalette
+	ld a, 8 + 5 ; CGB Object Palette 5 (to 7)
+	jr CopyCGBCardPalettes_BuildPaletteIndices
 
 ; de = coordinates
-LoadCardPalettesAndAttributes:
+LoadCardPalettesAndBGPAttributes:
 	push de
-	call CopyCGBCardPalette
+	call CopyCGBCardPalettes_BuildPaletteIndices
 	pop bc
 
+	; hl = wCardTilePaletteIndices
 	; copy attributes
 	push hl
 	call BCCoordToBGMap0Address
 	pop hl
 	call BankswitchVRAM1
-	ld c, $06
+	ld c, CARD_GFX_HEIGHT
 .loop_copy_attr
-	ld b, $08
+	ld b, CARD_GFX_WIDTH
 	push de
 	call SafeCopyDataHLtoDE
 	pop de
@@ -3477,12 +3479,15 @@ LoadCardPalettesAndAttributes:
 	call BankswitchVRAM0
 	ret
 
-; a = starting BG palette index to copy to
-CopyCGBCardPalette:
+; for a = starting BG palette index,
+; copy wCardPalettes to bgpal[a, a+1, a+2],
+; convert wCardTileDescriptors to (a + pal index) in place, and
+; return hl = wCardTilePaletteIndices (= wCardTileDescriptors)
+CopyCGBCardPalettes_BuildPaletteIndices:
 	ld c, a
+REPT 3 ; *= PAL_SIZE
 	add a
-	add a
-	add a ; *8
+ENDR
 	ld e, a
 	ld d, $00
 	ld hl, wBackgroundPalettesCGB
@@ -3496,19 +3501,21 @@ CopyCGBCardPalette:
 	dec b
 	jr nz, .loop_copy_pal
 
-	; de = wCardAttrMap
+	; de = wCardTileDescriptors
+	; overwrite each tile's value with
+	; (starting BG palette index) + its CARD_GFX_TILE_DESC_PAL_INDEX (0, 1, 2)
 	push de
-	ld b, $30
-.asm_56e4
+	ld b, CARDGFXSTRUCT_TILE_DESC_SIZE
+.loop_load_pal_index
 	ld a, [de]
 	rlca
 	rlca
-	and $03
+	and CARD_GFX_PAL_INDEX_MASK
 	add c
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_56e4
+	jr nz, .loop_load_pal_index
 	pop hl
 	ret
 
@@ -7201,15 +7208,18 @@ SetFontAndTextBoxFrameColor:
 	call CopyFontsOrDuelGraphicsBytes
 	ret
 
-Func_6c12::
+; load the duel-screen BG palettes (Pals_6f0d8) into BG palettes 2-4
+LoadDuelScreenBGPalettes::
 	ld hl, Pals_6f0d8 - $4000
-Func_6c15:
+; copy the 3 palettes from hl into BG palettes 2-4
+LoadDuelBGPalettesFromHL:
 	ld de, wBackgroundPalettesCGB + 2 * PAL_SIZE
 	ld c, 3 palettes
 	jp CopyFontsOrDuelGraphicsBytes
-Func_6c1d::
+; load the card-picture BG palettes (Pals_6f0f0), shown with a drawn/placed card
+LoadCardPictureBGPalettes::
 	ld hl, Pals_6f0f0 - $4000
-	jr Func_6c15
+	jr LoadDuelBGPalettesFromHL
 
 HandleDamageModifiersEffects::
 	call HandlePrehistoricDreamDamageBoost

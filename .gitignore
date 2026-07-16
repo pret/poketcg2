@@ -1,10 +1,14 @@
 # precompiled python
 *.pyc
 
-# compiled object file
+# compiled objects
 *.o
 
-# roms
+# compiled graphics
+*.1bpp
+*.2bpp
+
+# compiled roms
 *.gbc
 
 # rgbds extras
@@ -16,11 +20,6 @@
 *.sav
 *.sys
 *.sn*
-
-# converted image/palette data
-*.1bpp
-*.2bpp
-*.pal
 
 # *disasm.py output file
 *disasm_output.asm

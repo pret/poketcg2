@@ -543,7 +543,7 @@ _DrawYourOrOppPlayAreaScreen::
 
 DrawYourOrOppPlayAreaScreen_EmptiedScreen:
 	call LoadSymbolsFont
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 	bank1call SetDefaultPalettes
 	lb de, 6, 0
 	call InitTextPrinting
@@ -637,7 +637,7 @@ DrawInPlayAreaScreen::
 	push af
 	ld a, CONSOLE_DMG
 	ld [wConsole], a
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 	pop af
 	ld [wConsole], a
 	bank1call SetDefaultPalettes
@@ -694,7 +694,7 @@ _DrawPlayersPrizeAndBenchCards::
 	call DoFrame
 	call EmptyScreen
 	call LoadSymbolsFont
-	call Func_1dff
+	call LoadDuelPlayAreaScreenTiles
 ; player cards
 	ld a, PLAYER_TURN
 	ld [wCheckMenuPlayAreaWhichDuelist], a
@@ -754,7 +754,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	pop de
 	push de
 	bank1call DrawCardGfxToDE_BGPalIndex5
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	bank1call FlushAllPalettesIfNotDMG
 	pop de
 
@@ -767,7 +767,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	ret
 
 .no_pokemon
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	pop de
 	ret
 
@@ -2204,7 +2204,7 @@ _DrawPlayAreaToPlacePrizeCards::
 	call ZeroObjectPositions
 	call EmptyScreen
 	call LoadSymbolsFont
-	call LoadDeckAndDiscardPileIcons
+	call LoadDuelPlayAreaScreenTiles_Setup
 	bank1call SetDefaultPalettes
 
 	ldh a, [hWhoseTurn]
@@ -6296,7 +6296,7 @@ GetCardTypeIconPalette:
 	push hl
 	push de
 	push af
-	bank1call Func_6c12
+	bank1call LoadDuelScreenBGPalettes
 	pop af
 	pop de
 	ld b, a
