@@ -128,7 +128,7 @@ Glossary:
 	ld d, [hl]
 	call InitTextPrinting
 	pop de
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 	ret
 
 .rule_coords

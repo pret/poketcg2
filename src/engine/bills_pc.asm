@@ -387,7 +387,7 @@ DrawBillsPCMenu:
 	ld d, 18
 	call InitTextPrinting
 	ldfw de, "枚"
-	call Func_22ca
+	call GenerateAndPlaceTextTile
 	ret
 
 ; return a = list size

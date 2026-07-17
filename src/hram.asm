@@ -133,11 +133,11 @@ ENDU
 hCurSelectionItem:: ; ffb2
 	ds $1
 
-; hffa8 through hffbb belong to the text engine
-hffa8:: ; ffb3
+; hffb3 through hffbb belong to the text engine
+hMaxTextTileCacheIndex:: ; ffb3
 	ds $1
 
-hffa9:: ; ffb4
+hTextTileCacheHead:: ; ffb4
 	ds $1
 
 ; Address within v*BGMap0 where text is currently being written to
