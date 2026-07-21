@@ -109,20 +109,23 @@ $(rom): $(rom_obj) src/layout.link
 # from the source in-duel COLOR image <name>.png
 # by inverting each cell's palette,
 # using the palettes <name>.pal.asm and tile descriptors <name>.desc.asm.
-card_portrait_png := $(filter-out %_remapped.png,$(wildcard src/gfx/cards/*.png))
+card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
 card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
 $(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py
 	python3 tools/derive_color_tiles.py $< $@
 
 # Printer extra tiles:
 # Derive the printer-only extra tiles <name>_extra.2bpp for cards that need them
-# from the full remapped printer image <name>_remapped.png.
-# It consists of the cells whose remapped source index > 47,
+# from the full printer image <name>_printer.png.
+# It consists of the cells whose source index > 47,
 # rather than a separate tile-pool file.
-card_remapped_png := $(wildcard src/gfx/cards/*_remapped.png)
-card_extra_2bpp := $(card_remapped_png:_remapped.png=_extra.2bpp)
-$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_remapped.png tools/derive_extra_tiles.py
-	python3 tools/derive_extra_tiles.py --rgbgfx '$(RGBGFX)' $< $@
+card_printer_png := $(wildcard src/gfx/cards/*_printer.png)
+card_printer_2bpp := $(card_printer_png:_printer.png=_printer.2bpp)
+$(card_printer_2bpp): src/gfx/cards/%_printer.2bpp: src/gfx/cards/%_printer.png
+	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
+card_extra_2bpp := $(card_printer_png:_printer.png=_extra.2bpp)
+$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_printer.2bpp tools/derive_extra_tiles.py
+	python3 tools/derive_extra_tiles.py $< $@
 
 
 ### Misc file-specific graphics rules

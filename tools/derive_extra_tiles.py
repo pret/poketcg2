@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
-"""Build a card's printer-extra tiles <name>_extra.2bpp
-from its remapped printer image <name>_remapped.png and
+"""Build a card's printer-only extra tiles <name>_extra.2bpp
+from its printer-image data <name>_printer.2bpp and
 tile descriptors <name>.desc.asm.
 
 The Game Boy Printer reconstructs 48 output tiles where
 output cell c uses source tile (attr[c] & 0x3f) + c;
 any source index > 47 is an extra tile stored after the 48-tile portrait.
 Every extra index is referenced by some cell, so the extra tiles are exactly
-the redirected cells of the printer image --
-we harvest them from <name>_remapped.png rather than storing them as a separate tile strip.
+the redirected cells of the printer image.
 
 Used by the Makefile:
-    python3 tools/derive_extra_tiles.py --rgbgfx <rgbgfx>\
-    <name>_remapped.png <name>_extra.2bpp
+    python3 tools/derive_extra_tiles.py <name>_printer.2bpp <name>_extra.2bpp
 """
 
-import re, os, sys, subprocess, argparse, tempfile
+import re, os, sys, argparse
 
 
 def parse_attr(cardpath):
@@ -41,31 +39,18 @@ def parse_attr(cardpath):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("remapped_png")
+    ap.add_argument("printer_2bpp")
     ap.add_argument("out_2bpp")
-    ap.add_argument("--rgbgfx", default="rgbgfx")
     a = ap.parse_args()
-    suff = "_remapped"
-    assert a.remapped_png.endswith(
-        suff + ".png"
-    ), f"derive_extra_tiles: expected <name>_remapped.png, got {a.remapped_png}"
-    cardpath = os.path.splitext(a.remapped_png)[0].removesuffix(suff)
+    suff = "_printer"
+    assert a.printer_2bpp.endswith(
+        suff + ".2bpp"
+    ), f"derive_extra_tiles: expected <name>_printer.2bpp, got {a.printer_2bpp}"
+    cardpath = os.path.splitext(a.printer_2bpp)[0].removesuffix(suff)
     name = os.path.basename(cardpath)
 
-    # remapped png -> the 48 printer-image tiles, column-major (same as the portrait),
-    # so tile index == printer output-cell index.
-    with tempfile.NamedTemporaryFile(suffix=".2bpp", delete=False) as tmpf:
-        tmp = tmpf.name
-    try:
-        subprocess.run(
-            [a.rgbgfx, "--colors", "dmg", "-Z", "-o", tmp, a.remapped_png], check=True
-        )
-        with open(tmp, "rb") as f:
-            data = f.read()
-    finally:
-        if os.path.exists(tmp):
-            os.remove(tmp)
-
+    with open(a.printer_2bpp, "rb") as f:
+        data = f.read()
     tiles = [data[i : i + 16] for i in range(0, len(data), 16)]
 
     attr = parse_attr(cardpath)
