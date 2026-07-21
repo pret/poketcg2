@@ -3700,7 +3700,7 @@ wCardTilemap:: ; dd94
 	ds NUM_CARD_GFX_TILES
 
 wCardAttrmap:: ; ddc4
-	ds $30
+	ds NUM_CARD_GFX_TILES
 
 wCardTilemapOffset:: ; ddf4
 	ds $1
