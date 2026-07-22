@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a card's printer-only extra tiles <name>_extra.2bpp
 from its printer-image data <name>_printer.2bpp and
-tile descriptors <name>.desc.asm.
+attributes <name>.cardattr.asm.
 
 The Game Boy Printer reconstructs 48 output tiles where
 output cell c uses source tile (attr[c] & 0x3f) + c;
@@ -17,22 +17,22 @@ import re, os, sys, argparse
 
 
 def parse_attr(cardpath):
-    """the 48-byte attribute map for <name> from <name>.desc.asm."""
-    desc_file = f"{cardpath}.desc.asm"
+    """the 48-byte attribute map for <name> from <name>.cardattr.asm."""
+    attr_file = f"{cardpath}.cardattr.asm"
 
-    if not os.path.exists(desc_file):
+    if not os.path.exists(attr_file):
         sys.exit(
-            f"derive_extra_tiles: missing desc file for {os.path.basename(cardpath)}: {desc_file}"
+            f"derive_extra_tiles: missing attr file for {os.path.basename(cardpath)}: {attr_file}"
         )
 
     attr = []
-    for line in open(desc_file):
+    for line in open(attr_file):
         m = re.match(r"\s*db\s+(.+)", line)
         if m:
             attr += [int(x, 16) for x in re.findall(r"\$([0-9a-f]{2})", m.group(1))]
     if len(attr) < 48:
         sys.exit(
-            f"derive_extra_tiles: no 48-byte attr map for {os.path.basename(cardpath)} in {desc_file}"
+            f"derive_extra_tiles: no 48-byte attr map for {os.path.basename(cardpath)} in {attr_file}"
         )
     return attr[:48]
 

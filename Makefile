@@ -108,7 +108,7 @@ $(rom): $(rom_obj) src/layout.link
 # Derive the grayscale column-major tiles <name>.2bpp
 # from the source in-duel COLOR image <name>.png
 # by inverting each cell's palette,
-# using the palettes <name>.pal.asm and tile descriptors <name>.desc.asm.
+# using the palettes <name>.pal.asm and attributes <name>.cardattr.asm.
 card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
 card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
 $(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py

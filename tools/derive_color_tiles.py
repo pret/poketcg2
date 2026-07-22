@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a card's grayscale portrait tiles <name>.2bpp
 from its in-duel COLOR image <name>.png, 3 palettes <name>.pal.asm, and
-tile descriptors <name>.desc.asm.
+attributes <name>.cardattr.asm.
 
 Each 8x8 cell of the color image is one portrait tile, colored by one of the
 card's three palettes (chosen per cell by the attribute byte's high 2 bits).
@@ -22,15 +22,15 @@ import re, os, sys, zlib, struct, argparse
 
 def parse_header(cardpath):
     """(palettes[3][4] of (r,g,b 0-31), attr[48]) for <name>
-    from <name>.pal.asm and <name>.desc.asm."""
+    from <name>.pal.asm and <name>.cardattr.asm."""
     pal_file = f"{cardpath}.pal.asm"
-    desc_file = f"{cardpath}.desc.asm"
+    attr_file = f"{cardpath}.cardattr.asm"
     name = os.path.basename(cardpath)
 
     if not os.path.exists(pal_file):
         sys.exit(f"derive_color_tiles: missing palette file for {name}: {pal_file}")
-    if not os.path.exists(desc_file):
-        sys.exit(f"derive_color_tiles: missing desc file for {name}: {desc_file}")
+    if not os.path.exists(attr_file):
+        sys.exit(f"derive_color_tiles: missing attr file for {name}: {attr_file}")
 
     pals = []
     for line in open(pal_file):
@@ -41,12 +41,12 @@ def parse_header(cardpath):
         sys.exit(f"derive_color_tiles: incomplete palette file for {name}: {pal_file}")
 
     attr = []
-    for line in open(desc_file):
+    for line in open(attr_file):
         m = re.match(r"\s*db\s+(.+)", line)
         if m:
             attr += [int(x, 16) for x in re.findall(r"\$([0-9a-f]{2})", m.group(1))]
     if len(attr) < 48:
-        sys.exit(f"derive_color_tiles: incomplete desc file for {name}: {desc_file}")
+        sys.exit(f"derive_color_tiles: incomplete attr file for {name}: {attr_file}")
 
     return [pals[i * 4 : i * 4 + 4] for i in range(3)], attr[:48]
 

@@ -3481,8 +3481,8 @@ LoadCardPalettesAndBGPAttributes:
 
 ; for a = starting BG palette index,
 ; copy wCardPalettes to bgpal[a, a+1, a+2],
-; convert wCardTileDescriptors to (a + pal index) in place, and
-; return hl = wCardTilePaletteIndices (= wCardTileDescriptors)
+; convert wCardAttributes to (a + pal index) in place, and
+; return hl = wCardTilePaletteIndices (= wCardAttributes)
 CopyCGBCardPalettes_BuildPaletteIndices:
 	ld c, a
 REPT 3 ; *= PAL_SIZE
@@ -3501,11 +3501,11 @@ ENDR
 	dec b
 	jr nz, .loop_copy_pal
 
-	; de = wCardTileDescriptors
+	; de = wCardAttributes
 	; overwrite each tile's value with
-	; (starting BG palette index) + its CARD_GFX_TILE_DESC_PAL_INDEX (0, 1, 2)
+	; (starting BG palette index) + its CARD_GFX_CARD_ATTR_PAL_INDEX (0, 1, 2)
 	push de
-	ld b, CARDGFXSTRUCT_TILE_DESC_SIZE
+	ld b, CARDGFXSTRUCT_CARD_ATTR_SIZE
 .loop_load_pal_index
 	ld a, [de]
 	rlca

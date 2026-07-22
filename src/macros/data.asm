@@ -103,15 +103,15 @@ MACRO? gfx
 	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
 ENDM
 
-; card gfx tile descriptor
+; card gfx attr
 ; TODO: revamp the brute-force python builder to allow these macros
-; MACRO? cardtiledescs_start
+; MACRO? cardattrs_start
 ; 	DEF _current_card_tile_idx = 0
 ; 	DEF _current_alt_card_tile_idx = 0
 ; ENDM
 ; ; \1 = palette index
 ; ; \2 = HAS_ALT_TILE flag
-; MACRO? cardtiledesc
+; MACRO? cardattr
 ; 	IF _NARG > 1
 ; 		db \1 << 6 | (48 + _current_alt_card_tile_idx - _current_card_tile_idx)
 ; 		DEF _current_alt_card_tile_idx += 1

@@ -1132,16 +1132,16 @@ wcd78:: ; cd78
 wEffectFunctionsBank:: ; cd79
 	ds $1
 
-; palettes and tile descriptor
+; palettes and attributes
 wCardGfxHeaderData:: ; cd7a
 
 wCardPalettes:: ; cd7a
 	ds CARDGFXSTRUCT_PALS_SIZE
 
-; tile descriptors are converted to BG palette indices in place
-wCardTileDescriptors:: ; cd92
+; attributes are converted to BG palette indices in place
+wCardAttributes:: ; cd92
 wCardTilePaletteIndices:: ; cd92
-	ds CARDGFXSTRUCT_TILE_DESC_SIZE
+	ds CARDGFXSTRUCT_CARD_ATTR_SIZE
 
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.
