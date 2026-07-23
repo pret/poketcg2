@@ -32,7 +32,7 @@ ProcessText::
 	jr nc, .not_tx_fullwidth
 	inc hl
 .not_tx_fullwidth
-	call GenerateAndPlaceTextTile
+	call ProcessTextTile
 	xor a
 	call ProcessSpecialTextCharacter
 .next_char
@@ -90,7 +90,7 @@ ProcessSpecialTextCharacter::
 	call TerminateHalfWidthText
 	pop af
 	ld [wFontWidth], a
-	ldh a, [hffbb]
+	ldh a, [hTextTileProcessFlag]
 	or a
 	jr nz, .skip_placing_tile
 	ld a, [hl]
@@ -146,11 +146,11 @@ SetupText::
 	ldh [hMaxTextTileCacheIndex], a
 	call InitTextFormat
 	xor a
-	ldh [hffbb], a
+	ldh [hTextTileProcessFlag], a
 	ldh [hTextTileCacheHead], a
 	ld a, HIGH(v0Tiles1)
 	ld [wTextTileBaseAddressHi], a
-	ld a, $80
+	ld a, NUM_SIGNED
 	ld [wTextTileIndexSignednessAdjust], a
 	ld hl, wc600
 .clear_loop
@@ -206,16 +206,15 @@ InitTextPrinting::
 	ret
 
 ; requests a text tile to be generated and prints it in the screen
-; different modes depending on hffbb:
-;   hffbb == $0: generate and place text tile
-;   hffbb == $2 (bit 1 set): only generate text tile
-;   hffbb == $1 (bit 0 set): not even generate it, but just update text buffers
-GenerateAndPlaceTextTile::
+; input:
+;   de = fullwidth char or halfwidth chars
+;   hTextTileProcessFlag = TEXT_TILE_PROCESS_* flag
+ProcessTextTile::
 	push hl
 	push de
 	push bc
-	ldh a, [hffbb]
-	and $1
+	ldh a, [hTextTileProcessFlag]
+	and TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	jr nz, .update
 	call FindOrInsertTextTileCacheEntry
 	jr c, .tile_already_exists
@@ -223,8 +222,8 @@ GenerateAndPlaceTextTile::
 	jr nz, .done
 	call GenerateTextTile
 .tile_already_exists
-	ldh a, [hffbb]
-	and $2
+	ldh a, [hTextTileProcessFlag]
+	and TEXT_TILE_PROCESS_SKIP_PRINTING
 	jr nz, .done
 	ldh a, [hTextTileCacheHead]
 	call PlaceNextTextTile
@@ -273,7 +272,7 @@ TerminateHalfWidthText::
 	push de
 	push bc
 	ld e, ' '
-	call GenerateAndPlaceTextTile
+	call ProcessTextTile
 	pop bc
 	pop de
 	pop hl

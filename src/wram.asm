@@ -1082,8 +1082,8 @@ wTextTileBaseAddressHi:: ; cd6f
 
 ; VRAM tile index converter (xor) for LCDC_BLOCK21 signed addressing
 ; must use the same mode as wTextTileBaseAddressHi
-; $80 (signed)   = default (LCDC_BLOCK21)
-; $00 (unsigned) = printer, as if LCDC_BLOCK01
+; NUM_SIGNED   = default (LCDC_BLOCK21)
+; NUM_UNSIGNED = printer, as if LCDC_BLOCK01
 wTextTileIndexSignednessAdjust:: ; cd70
 	ds $1
 

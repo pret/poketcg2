@@ -167,7 +167,8 @@ hTextLineLength:: ; ffb9
 hJapaneseSyllabary:: ; ffba
 	ds $1
 
-hffbb:: ; ffbb
+; ProcessTextTile flags
+hTextTileProcessFlag:: ; ffbb
 	ds $1
 
 ; unlike wCurMenuItem, this accounts for the scroll offset (wListScrollOffset)

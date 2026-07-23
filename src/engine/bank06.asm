@@ -4645,6 +4645,7 @@ PrintCardList:
 ; if Select button is held when printing card list
 ; only print cards with Star rarity (excluding Promotional cards)
 ; even if it's not marked as seen in the collection
+; bug: doesn't exclude Promotional cards whose rarity is Star (not PROMOSTAR)
 	ld e, FALSE
 	ldh a, [hKeysHeld]
 	and PAD_SELECT
@@ -4676,8 +4677,8 @@ PrintCardList:
 	ld a, [wPrintOnlyStarRarity]
 	or a
 	jr z, .asm_1a2c2
-	lb de, 4, 85
-	call GenerateAndPlaceTextTile
+	ldfw de, "★"
+	call ProcessTextTile
 .asm_1a2c2
 	ld a, $ff
 	ld [wCurPrinterCardType], a
@@ -4706,9 +4707,11 @@ PrintCardList:
 	ld a, [wPrintOnlyStarRarity]
 	or a
 	jr z, .all_owned_cards_mode
+	; bug, not updated from tcg1,
+	; where it compared wLoadedCard1Set with PROMOTIONAL (was $40)
 	ld a, [wLoadedCard1RealSet]
 	and %11110000
-	cp $40 ; PROMOTIONAL
+	cp $40
 	jr z, .next_card
 	ld a, [wLoadedCard1Rarity]
 	cp STAR

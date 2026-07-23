@@ -7,10 +7,10 @@ _BillsPC:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, GameCenterBillsPCTitleText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	lb de, 13, 0
 	ldtx hl, GameCenterBillsPC20ChipsPerPlayText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	lb de, 2, 2
 	ldtx hl, GameCenterBillsPCDescriptionText
 	call InitTextPrinting_ProcessTextFromID
@@ -387,7 +387,7 @@ DrawBillsPCMenu:
 	ld d, 18
 	call InitTextPrinting
 	ldfw de, "枚"
-	call GenerateAndPlaceTextTile
+	call ProcessTextTile
 	ret
 
 ; return a = list size
