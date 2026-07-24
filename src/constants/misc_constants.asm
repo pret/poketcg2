@@ -17,6 +17,10 @@ DEF NULL EQU $0000
 DEF FALSE EQU 0
 DEF TRUE  EQU 1
 
+; 0..255 <-> -128..127
+DEF NUM_UNSIGNED EQU $00
+DEF NUM_SIGNED   EQU $80
+
 ; max number of player names that
 ; can be written to sCardPopNameList
 DEF CARDPOP_NAME_LIST_MAX_ELEMS EQU 16

@@ -5702,11 +5702,11 @@ RemoveCardFromDeck:
 	ret
 
 UpdateConfirmationCardScreen:
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	call PrintCurDeckNumberAndName
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 	jp PrintConfirmationCardList
 
 HandleDeckConfirmationMenu:
@@ -6552,11 +6552,11 @@ HandlePlayersCardsScreen:
 	ld [hl], 0
 	call PrintFilteredCardSelectionList
 
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	call PrintPlayersCardsText
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 
 	ld a, NUM_FILTERS
 	ld [wNumMenuItems], a
@@ -6671,11 +6671,11 @@ GeneralCardListMenuParams:
 	scrollmenu_params 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 GeneralCardListUpdateFunc:
-	ld a, $01
-	ldh [hffbb], a
+	ld a, TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
+	ldh [hTextTileProcessFlag], a
 	call PrintPlayersCardsText
 	xor a
-	ldh [hffbb], a
+	ldh [hTextTileProcessFlag], a
 	call PrintCardSelectionList
 	ret
 
@@ -8204,7 +8204,7 @@ CardAlbum:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, BoosterPackTitleText ; title
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	farcall FillBoosterPackMenuItems
 	ldtx hl, ViewWhichCardFileText
 	call DrawWideTextBox_PrintText
@@ -8267,11 +8267,11 @@ PrinterMenu_PokemonCards:
 	ld hl, wScrollMenuScrollOffset
 	ld [hl], 0
 	call PrintFilteredCardSelectionList
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	call PrintPlayersCardsText
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 	ld a, NUM_FILTERS
 	ld [wNumMenuItems], a
 .handle_input
@@ -8651,8 +8651,8 @@ _HandleDeckStatusCardList:
 	scrollmenu_params 0, 3, 2, 0, NUM_DECK_STATUS_LIST_VISIBLE_CARDS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .ScrollFunc_TCG1:
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	call .PrintDeckIndexAndName
 	lb de, 1, 14
 	call InitTextPrinting
@@ -8661,8 +8661,8 @@ _HandleDeckStatusCardList:
 	ld h, [hl]
 	ld l, a
 	call ProcessTextFromID
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 	jp PrintConfirmationCardList
 
 .PrintTitleAndList:
@@ -8864,8 +8864,8 @@ GiftCenter_CardSelectionParams:
 	scrollmenu_params 1, 3, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ShowReceivedCardsList:
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	lb de, 1, 1
 	call InitTextPrinting
 	ldtx hl, CardsReceivedText
@@ -8880,8 +8880,8 @@ ShowReceivedCardsList:
 	call InitTextPrinting
 	ldtx hl, ReceivedTheseCardsFromText
 	call PrintTextNoDelay
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 	jp PrintCardSelectionList
 
 ; for card lists using wTempSavedDeckCards
@@ -9162,11 +9162,11 @@ DeckDiagnosisResult:
 	ret ; exit menu
 
 .UpdateFunc:
-	ld a, $01
-	ldh [hffbb], a
+	ld a, TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
+	ldh [hTextTileProcessFlag], a
 	call .PrintText
 	xor a
-	ldh [hffbb], a
+	ldh [hTextTileProcessFlag], a
 	call .PrintCardList
 	ret
 

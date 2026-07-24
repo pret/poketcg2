@@ -4097,7 +4097,7 @@ RequestToPrintCard:
 ; this includes card's type, lv, HP and attacks if Pokemon card
 ; or otherwise just the card's name and type symbol
 .DrawTopCardInfoInSRAMGfxBuffer0:
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 
 	; draw empty text box frame
@@ -4177,7 +4177,7 @@ Func_19f99:
 ; and attack if it's Pokemon card
 ; or otherwise just the card's description.
 DrawBottomCardInfoInSRAMGfxBuffer0:
-	call Func_1a025
+	call SetupText_Printer
 	xor a
 	ld [wCardPageType], a
 	ld hl, sGfxBuffer0
@@ -4238,14 +4238,14 @@ Func_1a011:
 	call SendPrinterInstructionPacket_1Sheet_3LineFeeds
 	ret
 
-; calls setup text and sets wTilePatternSelector
-Func_1a025:
+; calls setup text and sets wTextTileBaseAddressHi to SRAM
+SetupText_Printer:
 	lb de, $40, $bf
 	call SetupText
-	ld a, $a4
-	ld [wTilePatternSelector], a
+	ld a, HIGH(sGfxBuffer1)
+	ld [wTextTileBaseAddressHi], a
 	xor a
-	ld [wTilePatternSelectorCorrection], a
+	ld [wTextTileIndexSignednessAdjust], a
 	ret
 
 ; switches to CGB normal speed, resets serial
@@ -4487,7 +4487,7 @@ PrintDeckConfiguration:
 
 	call ShowPrinterTransmitting
 	call PrepareForPrinterCommunications
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 	lb de, 0, 64
 	lb bc, 20, 4
@@ -4645,6 +4645,7 @@ PrintCardList:
 ; if Select button is held when printing card list
 ; only print cards with Star rarity (excluding Promotional cards)
 ; even if it's not marked as seen in the collection
+; bug: doesn't exclude Promotional cards whose rarity is Star (not PROMOSTAR)
 	ld e, FALSE
 	ldh a, [hKeysHeld]
 	and PAD_SELECT
@@ -4659,7 +4660,7 @@ PrintCardList:
 	ld de, wDefaultText
 	call CopyPlayerName
 	call PrepareForPrinterCommunications
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 
 	lb de, 0, 64
@@ -4676,8 +4677,8 @@ PrintCardList:
 	ld a, [wPrintOnlyStarRarity]
 	or a
 	jr z, .asm_1a2c2
-	lb de, 4, 85
-	call Func_22ca
+	ldfw de, "★"
+	call ProcessTextTile
 .asm_1a2c2
 	ld a, $ff
 	ld [wCurPrinterCardType], a
@@ -4706,9 +4707,11 @@ PrintCardList:
 	ld a, [wPrintOnlyStarRarity]
 	or a
 	jr z, .all_owned_cards_mode
+	; bug, not updated from tcg1,
+	; where it compared wLoadedCard1Set with PROMOTIONAL (was $40)
 	ld a, [wLoadedCard1RealSet]
 	and %11110000
-	cp $40 ; PROMOTIONAL
+	cp $40
 	jr z, .next_card
 	ld a, [wLoadedCard1Rarity]
 	cp STAR

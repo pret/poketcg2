@@ -15,7 +15,7 @@ AskToPlaySlots:
 	call DrawRegularTextBoxVRAM0
 	lb de, 1, 0
 	ldtx hl, GameCenterSlotMachineTitleText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	lb de, 1, 2
 	ldtx hl, GameCenterSlotMachineDescriptionText
 	call InitTextPrinting_ProcessTextFromIDVRAM0
@@ -25,7 +25,7 @@ AskToPlaySlots:
 	call LoadTxRam3
 	ldtx hl, GameCenterXChipsPerPlayText
 	lb de, 14, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ret
 
 .StartPrompt:

@@ -1066,22 +1066,25 @@ wcd5c:: ; cd5c
 wTextTileBuffer:: ; cd5d
 	ds TILE_SIZE
 
-wcd04:: ; cd6d
+wNextTextTileCacheIndex:: ; cd6d
 	ds $1
 
 ; used by PlaceNextTextTile
 wCurTextTile:: ; cd6e
 	ds $1
 
-; VRAM tile patterns selector for text tiles
-; if wTilePatternSelector == $80 and wTilePatternSelectorCorrection == $00 -> select tiles at $8000-$8FFF
-; if wTilePatternSelector == $88 and wTilePatternSelectorCorrection == $80 -> select tiles at $8800-$97FF
-wTilePatternSelector:: ; cd6f
+; text tile location
+; must use the same mode as wTextTileIndexSignednessAdjust
+; HIGH(v*Tiles1)    = default (LCDC_BLOCK21)
+; HIGH(sGfxBuffer1) = printer
+wTextTileBaseAddressHi:: ; cd6f
 	ds $1
 
-; complements wTilePatternSelector by correcting the VRAM tile order when $8800-$97FF is selected
-; a value of $80 in wTilePatternSelectorCorrection reflects tiles $00-$7f being located after tiles $80-$ff
-wTilePatternSelectorCorrection:: ; cd70
+; VRAM tile index converter (xor) for LCDC_BLOCK21 signed addressing
+; must use the same mode as wTextTileBaseAddressHi
+; NUM_SIGNED   = default (LCDC_BLOCK21)
+; NUM_UNSIGNED = printer, as if LCDC_BLOCK01
+wTextTileIndexSignednessAdjust:: ; cd70
 	ds $1
 
 ; if 0, text lines are separated by a blank line
@@ -1098,11 +1101,10 @@ wCurTextLine:: ; cd72
 wFontWidth:: ; cd73
 	ds $1
 
-; when printing half-width text, this variable alternates between 0 and the value
-; of the first character. 0 signals that no text should be printed in the current
-; iteration of Func_235e, while non-0 means to print the character pair
-; made of [wHalfWidthPrintState] (first char) and register e (second char).
-wHalfWidthPrintState:: ; cd74
+; tracks the pending char code for printing a pair of half-width chars;
+; 0 if none;
+; updated during each iteration of MoveTextTileCacheEntryToFront
+wPendingHalfWidthChar:: ; cd74
 	ds $1
 
 ; used by CopyTextData

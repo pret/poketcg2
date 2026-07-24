@@ -7564,7 +7564,7 @@ SetDeckMachineTitleText:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ret
 
 CopyBBytesFromHLToDE_Bank0e:
@@ -7684,8 +7684,8 @@ UpdateDeckMachineScrollArrowsAndEntries_TCG1:
 
 DrawDeckMachineScreen:
 	call DrawListScrollArrows
-	ld hl, hffbb
-	ld [hl], $01
+	ld hl, hTextTileProcessFlag
+	ld [hl], TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
 	call SetDeckMachineTitleText
 	lb de, 1, 14
 	call InitTextPrinting
@@ -7694,8 +7694,8 @@ DrawDeckMachineScreen:
 	ld h, [hl]
 	ld l, a
 	call ProcessTextFromID
-	ld hl, hffbb
-	ld [hl], $00
+	ld hl, hTextTileProcessFlag
+	ld [hl], NONE
 	jr PrintVisibleDeckMachineEntries
 
 ; update wScrollMenuScrollFunc to PrintVisibleAutoDeckMachineEntries
@@ -7815,7 +7815,7 @@ ENDR
 
 .cannot_build
 	ldfw de, " "
-	call Func_22ca
+	call ProcessTextTile
 
 ; figure out how many cards are being used on the other decks
 	push bc
@@ -7863,7 +7863,7 @@ ENDR
 	ld d, 16
 	call InitTextPrinting
 	ldfw de, "×" ; "missing" symbol
-	call Func_22ca
+	call ProcessTextTile
 	ld a, [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
@@ -7881,7 +7881,7 @@ ENDR
 	ld d, 12
 	call InitTextPrinting
 	ldfw de, "※" ; REF_MARK, "used" symbol
-	call Func_22ca
+	call ProcessTextTile
 	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
@@ -7895,7 +7895,7 @@ ENDR
 
 ; clear the card-shortfall text area
 .padding
-	call Func_22ca
+	call ProcessTextTile
 	pop de
 	ld d, 12
 	inc e
@@ -9683,7 +9683,7 @@ _HandleAutoDeckSelectionMenu:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	farcall ReadAutoDeckConfiguration
 	call CreateAutoDeckPointerList
 	call PrintVisibleAutoDeckMachineEntries
