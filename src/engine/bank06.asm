@@ -4097,7 +4097,7 @@ RequestToPrintCard:
 ; this includes card's type, lv, HP and attacks if Pokemon card
 ; or otherwise just the card's name and type symbol
 .DrawTopCardInfoInSRAMGfxBuffer0:
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 
 	; draw empty text box frame
@@ -4177,7 +4177,7 @@ Func_19f99:
 ; and attack if it's Pokemon card
 ; or otherwise just the card's description.
 DrawBottomCardInfoInSRAMGfxBuffer0:
-	call Func_1a025
+	call SetupText_Printer
 	xor a
 	ld [wCardPageType], a
 	ld hl, sGfxBuffer0
@@ -4239,7 +4239,7 @@ Func_1a011:
 	ret
 
 ; calls setup text and sets wTextTileBaseAddressHi to SRAM
-Func_1a025:
+SetupText_Printer:
 	lb de, $40, $bf
 	call SetupText
 	ld a, HIGH(sGfxBuffer1)
@@ -4487,7 +4487,7 @@ PrintDeckConfiguration:
 
 	call ShowPrinterTransmitting
 	call PrepareForPrinterCommunications
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 	lb de, 0, 64
 	lb bc, 20, 4
@@ -4660,7 +4660,7 @@ PrintCardList:
 	ld de, wDefaultText
 	call CopyPlayerName
 	call PrepareForPrinterCommunications
-	call Func_1a025
+	call SetupText_Printer
 	call Func_212f
 
 	lb de, 0, 64
