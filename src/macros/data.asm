@@ -98,6 +98,42 @@ MACRO? gfx_ptr
 	db $0 ; padding
 ENDM
 
+; card gfx index = (<Name>CardGfx - CardGraphics) / 8, using absolute ROM addresses
+MACRO? gfx
+	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
+ENDM
+
+; card gfx attr
+; TODO: revamp the brute-force python builder to allow these macros
+; MACRO? cardattrs_start
+; 	DEF _current_card_tile_idx = 0
+; 	DEF _current_alt_card_tile_idx = 0
+; ENDM
+; ; \1 = palette index
+; ; \2 = HAS_ALT_TILE flag
+; MACRO? cardattr
+; 	IF _NARG > 1
+; 		db \1 << 6 | (48 + _current_alt_card_tile_idx - _current_card_tile_idx)
+; 		DEF _current_alt_card_tile_idx += 1
+; 	ELSE
+; 		db \1 << 6
+; 	ENDC
+; 	DEF _current_card_tile_idx += 1
+; ENDM
+
+; reserved tile #0 in tilesets
+MACRO? solid_black_tile
+	REPT TILE_SIZE
+		db $ff
+	ENDR
+ENDM
+
+MACRO? solid_white_tile
+	REPT TILE_SIZE
+		db $00
+	ENDR
+ENDM
+
 ; \1 = y offset
 ; \2 = x offset
 ; \3 = vtile

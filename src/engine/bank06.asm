@@ -4084,7 +4084,7 @@ RequestToPrintCard:
 	ld h, [hl]
 	ld l, a
 	ld de, sGfxBuffer2
-	call Func_1adbd
+	call BuildPrintableCardPic
 	ld a, $40
 	lb hl, 12,  1
 	lb de,  2, 68
@@ -4098,7 +4098,7 @@ RequestToPrintCard:
 ; or otherwise just the card's name and type symbol
 .DrawTopCardInfoInSRAMGfxBuffer0:
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 
 	; draw empty text box frame
 	ld hl, sGfxBuffer0
@@ -4488,7 +4488,7 @@ PrintDeckConfiguration:
 	call ShowPrinterTransmitting
 	call PrepareForPrinterCommunications
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 	lb de, 0, 64
 	lb bc, 20, 4
 	call DrawRegularTextBoxDMG
@@ -4660,7 +4660,7 @@ PrintCardList:
 	call CopyPlayerName
 	call PrepareForPrinterCommunications
 	call Func_1a025
-	call Func_212f
+	call LoadCardSymbolFontTilesToSRAM
 
 	lb de, 0, 64
 	lb bc, 20, 4
@@ -4890,40 +4890,31 @@ PrintCardList:
 	ret
 
 .IconTextList
-	; Fire
-	db $e0 ; icon tile
+	db ICON_TILE_FIRE
 	tx FirePokemonText
 
-	; Grass
-	db $e4 ; icon tile
+	db ICON_TILE_GRASS
 	tx GrassPokemonText
 
-	; Lightning
-	db $e8 ; icon tile
+	db ICON_TILE_LIGHTNING
 	tx LightningPokemonText
 
-	; Water
-	db $ec ; icon tile
+	db ICON_TILE_WATER
 	tx WaterPokemonText
 
-	; Fighting
-	db $f0 ; icon tile
+	db ICON_TILE_FIGHTING
 	tx FightingPokemonText
 
-	; Psychic
-	db $f4 ; icon tile
+	db ICON_TILE_PSYCHIC
 	tx PsychicPokemonText
 
-	; Colorless
-	db $f8 ; icon tile
+	db ICON_TILE_COLORLESS
 	tx ColorlessPokemonText
 
-	; Energy
-	db $fc ; icon tile
+	db ICON_TILE_ENERGY
 	tx EnergyCardText
 
-	; Trainer
-	db $dc ; icon tile
+	db ICON_TILE_TRAINER
 	tx TrainerCardText
 
 ShowPrinterTransmitting:
@@ -5468,46 +5459,56 @@ DisplayBoosterContent:
 	bank1call DisplayCardList
 	ret
 
-Func_1adbd:
+; builds at de the 2x scaled card gfx for the Game Boy Printer,
+; using printer-only alt tiles where appropriate
+; input:
+;   hl = card gfx index
+;   de = destination
+BuildPrintableCardPic:
 	push de
-	ld de, wc000
-	lb bc, $30, TILE_SIZE
-	call Func_2dc4
+	ld de, wTempPrintableCardPic
+	lb bc, NUM_CARD_GFX_TILES, TILE_SIZE
+	call LoadCardGfx_PrinterAlt
 	pop de
-	ld hl, wc000
-	ld c, $08
-.asm_1adcd
-	ld b, $06
-.asm_1adcf
+	ld hl, wTempPrintableCardPic
+	ld c, CARD_GFX_WIDTH
+.loop_columns
+	ld b, CARD_GFX_HEIGHT
+.loop_rows
 	push bc
-	ld c, $08
-.asm_1add2
-	ld b, $02
-.asm_1add4
+	ld c, 8 ; lines per tile
+.loop_pixel_rows
+	; abcdefgh ijklmnop
+	; -> aabbccdd iijjkkll aabbccdd iijjkkll at (offset)
+	;    eeffgghh mmnnoopp eeffgghh mmnnoopp at (offset + 2*6 tiles)
+	ld b, 2 ; bytes per line
+.loop_bitplanes
 	push bc
 	push hl
 	ld c, [hl]
-	ld b, $04
-.asm_1add9
+	; efgh -> eeffgghh
+	ld b, 4
+.loop_right_half
 	rr c
 	rra
 	sra a
 	dec b
-	jr nz, .asm_1add9
-	ld hl, $c0
+	jr nz, .loop_right_half
+	ld hl, 2 * CARD_GFX_HEIGHT tiles
 	add hl, de
 	ld [hli], a
 	inc hl
 	ld [hl], a
-	ld b, $04
-.asm_1adea
+	; abcd -> aabbccdd
+	ld b, 4
+.loop_left_half
 	rr c
 	rra
 	sra a
 	dec b
-	jr nz, .asm_1adea
+	jr nz, .loop_left_half
 	ld [de], a
-	ld hl, $2
+	ld hl, 2
 	add hl, de
 	ld [hl], a
 	pop hl
@@ -5515,22 +5516,22 @@ Func_1adbd:
 	inc de
 	inc hl
 	dec b
-	jr nz, .asm_1add4
+	jr nz, .loop_bitplanes
 	inc de
 	inc de
 	dec c
-	jr nz, .asm_1add2
+	jr nz, .loop_pixel_rows
 	pop bc
 	dec b
-	jr nz, .asm_1adcf
-	ld a, $c0
+	jr nz, .loop_rows
+	ld a, 2 * CARD_GFX_HEIGHT tiles
 	add e
 	ld e, a
-	ld a, $00
+	ld a, 0
 	adc d
 	ld d, a
 	dec c
-	jr nz, .asm_1adcd
+	jr nz, .loop_columns
 	ret
 
 LoadHandCardsIcon:

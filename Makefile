@@ -43,9 +43,7 @@ tcg2: $(rom) compare
 
 clean: tidy
 	find src/gfx \
-	     \( -iname '*.1bpp' \
-	        -o -iname '*.2bpp' \
-	        -o -iname '*.pal' \) \
+	     \( -iname '*.[12]bpp' \) \
 	     -delete
 
 tidy:
@@ -98,8 +96,36 @@ endif
 RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
+
+
+### Card GFX
+# TODO: revamp the brute-force python builder
+# by creating card_gfx.c, gbcpal.c, etc.
+
+# Card portraits:
+# Derive the grayscale column-major tiles <name>.2bpp
+# from the source in-duel COLOR image <name>.png
+# by inverting each cell's palette,
+# using the palettes <name>.pal.asm and attributes <name>.cardattr.asm.
+card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
+card_portrait_2bpp := $(card_portrait_png:.png=.2bpp)
+$(card_portrait_2bpp): src/gfx/cards/%.2bpp: src/gfx/cards/%.png tools/derive_color_tiles.py
+	python3 tools/derive_color_tiles.py $< $@
+
+# Printer extra tiles:
+# Derive the printer-only extra tiles <name>_extra.2bpp for cards that need them
+# from the full printer image <name>_printer.png.
+# It consists of the cells whose source index > 47,
+# rather than a separate tile-pool file.
+card_printer_png := $(wildcard src/gfx/cards/*_printer.png)
+card_printer_2bpp := $(card_printer_png:_printer.png=_printer.2bpp)
+$(card_printer_2bpp): src/gfx/cards/%_printer.2bpp: src/gfx/cards/%_printer.png
+	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
+card_extra_2bpp := $(card_printer_png:_printer.png=_extra.2bpp)
+$(card_extra_2bpp): src/gfx/cards/%_extra.2bpp: src/gfx/cards/%_printer.2bpp tools/derive_extra_tiles.py
+	python3 tools/derive_extra_tiles.py $< $@
 
 
 ### Misc file-specific graphics rules

@@ -17,6 +17,12 @@ wc000:: ; c000
 
 NEXTU
 
+; actually $300 bytes, extending into WRAM0 Duels 1
+wTempPrintableCardPic:: ; c000
+	; ds CARDGFXSTRUCT_TILES_SIZE
+
+NEXTU
+
 ; aside from wDecompressionBuffer, which stores the
 ; de facto final decompressed data after decompression,
 ; this buffer stores a secondary buffer that is used
@@ -1126,11 +1132,16 @@ wcd78:: ; cd78
 wEffectFunctionsBank:: ; cd79
 	ds $1
 
-wCardPalettes:: ; cd7a
-	ds 3 palettes
+; palettes and attributes
+wCardGfxHeaderData:: ; cd7a
 
-wCardAttrMap:: ; cd92
-	ds $30
+wCardPalettes:: ; cd7a
+	ds CARDGFXSTRUCT_PALS_SIZE
+
+; attributes are converted to BG palette indices in place
+wCardAttributes:: ; cd92
+wCardTilePaletteIndices:: ; cd92
+	ds CARDGFXSTRUCT_CARD_ATTR_SIZE
 
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.
@@ -1187,7 +1198,8 @@ wIsTextBoxLabeled:: ; cde2
 wTextBoxLabel:: ; cde3
 	ds $2
 
-wcde5:: ; cde5
+; base address of the card's tiles, set up by LoadCardGfx_PrinterAlt
+wCardGfxTileBase:: ; cde5
 	ds $2
 
 wCoinTossScreenTextID:: ; cde7
@@ -3685,15 +3697,16 @@ wCardDungeonIsPlayable:: ; dd93
 	ds $1
 
 wCardTilemap:: ; dd94
-	ds $30
+	ds NUM_CARD_GFX_TILES
 
-wddc4:: ; ddc4
-	ds $30
+wCardAttrmap:: ; ddc4
+	ds NUM_CARD_GFX_TILES
 
 wCardTilemapOffset:: ; ddf4
 	ds $1
 
-wddf5:: ; ddf5
+; mostly just the pal index offset (bit 0-2)
+wCardAttrmapOffset:: ; ddf5
 	ds $1
 
 ; TCG_ISLAND or GR_ISLAND
