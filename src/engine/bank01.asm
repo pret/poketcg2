@@ -2246,7 +2246,7 @@ PracticeDuel_PrintTurnInstructions:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, PracticeDuelHeaderPlayersTurnNumberText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	call EnableLCD
 	ld a, [wDuelTurns]
 	ld hl, wPracticeDuelTurn
@@ -2303,7 +2303,7 @@ PracticeDuel_PlayNidoranMFromBench:
 	call DrawRegularTextBox
 	lb de, 1, 0
 	ldtx hl, PracticeDuelHeaderKnockedOutReplaceText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	call EnableLCD
 	ld hl, PracticeDuelText_SamTurn4
 	jp PrintPracticeDuelInstructions
@@ -2791,11 +2791,11 @@ DisplayCardList:
 	ldh a, [hDPadHeld]
 	and PAD_CTRL_PAD
 	ret z
-	ld a, $01
-	ldh [hffbb], a
+	ld a, TEXT_TILE_PROCESS_ONLY_UPDATE_CACHE
+	ldh [hTextTileProcessFlag], a
 	call PrintCardListHeaderAndInfoBoxTexts
 	xor a
-	ldh [hffbb], a
+	ldh [hTextTileProcessFlag], a
 	ret
 
 ; prints the text ID at wCardListHeaderText at 1,1

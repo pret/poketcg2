@@ -3436,7 +3436,7 @@ _HandleAutoDeckMenu:
 .machine_2
 	ldtx hl, AutoDeckMachine2Text
 .got_name
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, ChooseDeckCategoryText
 	call DrawWideTextBox_PrintText
 	call Func_2bd48
