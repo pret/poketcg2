@@ -105,3 +105,5 @@ INCLUDE "home/printer.asm"
 INCLUDE "home/unsorted.asm"
 
 INCLUDE "home/audio_callback.asm"
+
+	ds $a
