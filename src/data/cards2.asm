@@ -1,6 +1,6 @@
 MachokeLv24Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $9239 ; gfx
+	gfx MachokeLv24CardGfx ; gfx
 	tx MachokeName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -52,7 +52,7 @@ MachokeLv24Card:
 
 MachokeLv28Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $8417 ; gfx
+	gfx MachokeLv28CardGfx ; gfx
 	tx MachokeName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -104,7 +104,7 @@ MachokeLv28Card:
 
 MachokeLv40Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3b7a ; gfx
+	gfx MachokeLv40CardGfx ; gfx
 	tx MachokeName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -156,7 +156,7 @@ MachokeLv40Card:
 
 DarkMachokeCard:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $6a4f ; gfx
+	gfx DarkMachokeCardGfx ; gfx
 	tx DarkMachokeName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -208,7 +208,7 @@ DarkMachokeCard:
 
 MachampLv54Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $92a2 ; gfx
+	gfx MachampLv54CardGfx ; gfx
 	tx MachampName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -260,7 +260,7 @@ MachampLv54Card:
 
 MachampLv67Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3be3 ; gfx
+	gfx MachampLv67CardGfx ; gfx
 	tx MachampName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -312,7 +312,7 @@ MachampLv67Card:
 
 DarkMachampCard:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $6ac6 ; gfx
+	gfx DarkMachampCardGfx ; gfx
 	tx DarkMachampName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -364,7 +364,7 @@ DarkMachampCard:
 
 GeodudeLv15Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $7b8c ; gfx
+	gfx GeodudeLv15CardGfx ; gfx
 	tx GeodudeName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -416,7 +416,7 @@ GeodudeLv15Card:
 
 GeodudeLv16Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3c4c ; gfx
+	gfx GeodudeLv16CardGfx ; gfx
 	tx GeodudeName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -468,7 +468,7 @@ GeodudeLv16Card:
 
 GravelerLv27Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $93dd ; gfx
+	gfx GravelerLv27CardGfx ; gfx
 	tx GravelerName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -520,7 +520,7 @@ GravelerLv27Card:
 
 GravelerLv28Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $84e0 ; gfx
+	gfx GravelerLv28CardGfx ; gfx
 	tx GravelerName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -572,7 +572,7 @@ GravelerLv28Card:
 
 GravelerLv29Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3cb5 ; gfx
+	gfx GravelerLv29CardGfx ; gfx
 	tx GravelerName ; name
 	db DIAMOND ; rarity
 	db FOSSIL ; real set
@@ -624,7 +624,7 @@ GravelerLv29Card:
 
 GolemLv36Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3d1e ; gfx
+	gfx GolemLv36CardGfx ; gfx
 	tx GolemName ; name
 	db DIAMOND ; rarity
 	db FOSSIL ; real set
@@ -676,7 +676,7 @@ GolemLv36Card:
 
 GolemLv37Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $9446 ; gfx
+	gfx GolemLv37CardGfx ; gfx
 	tx GolemName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -728,7 +728,7 @@ GolemLv37Card:
 
 OnixLv12Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3d87 ; gfx
+	gfx OnixLv12CardGfx ; gfx
 	tx OnixName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -780,7 +780,7 @@ OnixLv12Card:
 
 OnixLv25Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $8772 ; gfx
+	gfx OnixLv25CardGfx ; gfx
 	tx OnixName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -832,7 +832,7 @@ OnixLv25Card:
 
 CuboneLv13Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3df0 ; gfx
+	gfx CuboneLv13CardGfx ; gfx
 	tx CuboneName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -884,7 +884,7 @@ CuboneLv13Card:
 
 CuboneLv14Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $9869 ; gfx
+	gfx CuboneLv14CardGfx ; gfx
 	tx CuboneName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -936,7 +936,7 @@ CuboneLv14Card:
 
 MarowakLv26Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3e59 ; gfx
+	gfx MarowakLv26CardGfx ; gfx
 	tx MarowakName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -988,7 +988,7 @@ MarowakLv26Card:
 
 MarowakLv32Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3ec2 ; gfx
+	gfx MarowakLv32CardGfx ; gfx
 	tx MarowakName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -1040,7 +1040,7 @@ MarowakLv32Card:
 
 DarkMarowakCard:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $c800 ; gfx
+	gfx DarkMarowakCardGfx ; gfx
 	tx DarkMarowakName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -1092,7 +1092,7 @@ DarkMarowakCard:
 
 HitmonleeLv23Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $88d2 ; gfx
+	gfx HitmonleeLv23CardGfx ; gfx
 	tx HitmonleeName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1144,7 +1144,7 @@ HitmonleeLv23Card:
 
 HitmonleeLv30Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3f2b ; gfx
+	gfx HitmonleeLv30CardGfx ; gfx
 	tx HitmonleeName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -1196,7 +1196,7 @@ HitmonleeLv30Card:
 
 HitmonchanLv23Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $893b ; gfx
+	gfx HitmonchanLv23CardGfx ; gfx
 	tx HitmonchanName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1248,7 +1248,7 @@ HitmonchanLv23Card:
 
 HitmonchanLv33Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $3f94 ; gfx
+	gfx HitmonchanLv33CardGfx ; gfx
 	tx HitmonchanName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -1300,7 +1300,7 @@ HitmonchanLv33Card:
 
 RhyhornCard:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $4000 ; gfx
+	gfx RhyhornCardGfx ; gfx
 	tx RhyhornName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -1352,7 +1352,7 @@ RhyhornCard:
 
 RhydonLv37Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $993b ; gfx
+	gfx RhydonLv37CardGfx ; gfx
 	tx RhydonName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1404,7 +1404,7 @@ RhydonLv37Card:
 
 RhydonLv48Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $4069 ; gfx
+	gfx RhydonLv48CardGfx ; gfx
 	tx RhydonName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -1456,7 +1456,7 @@ RhydonLv48Card:
 
 KabutoLv9Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $40d2 ; gfx
+	gfx KabutoLv9CardGfx ; gfx
 	tx KabutoName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -1508,7 +1508,7 @@ KabutoLv9Card:
 
 KabutoLv22Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $8b05 ; gfx
+	gfx KabutoLv22CardGfx ; gfx
 	tx KabutoName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1560,7 +1560,7 @@ KabutoLv22Card:
 
 KabutopsCard:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $413b ; gfx
+	gfx KabutopsCardGfx ; gfx
 	tx KabutopsName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -1612,7 +1612,7 @@ KabutopsCard:
 
 AerodactylLv28Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $41a4 ; gfx
+	gfx AerodactylLv28CardGfx ; gfx
 	tx AerodactylName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -1664,7 +1664,7 @@ AerodactylLv28Card:
 
 AerodactylLv30Card:
 	db TYPE_PKMN_FIGHTING ; type
-	dw $8b6e ; gfx
+	gfx AerodactylLv30CardGfx ; gfx
 	tx AerodactylName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1716,7 +1716,7 @@ AerodactylLv30Card:
 
 AbraLv8Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $7b23 ; gfx
+	gfx AbraLv8CardGfx ; gfx
 	tx AbraName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1768,7 +1768,7 @@ AbraLv8Card:
 
 AbraLv10Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $421b ; gfx
+	gfx AbraLv10CardGfx ; gfx
 	tx AbraName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -1820,7 +1820,7 @@ AbraLv10Card:
 
 AbraLv14Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $649b ; gfx
+	gfx AbraLv14CardGfx ; gfx
 	tx AbraName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -1872,7 +1872,7 @@ AbraLv14Card:
 
 KadabraLv38Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4286 ; gfx
+	gfx KadabraLv38CardGfx ; gfx
 	tx KadabraName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -1924,7 +1924,7 @@ KadabraLv38Card:
 
 KadabraLv39Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9163 ; gfx
+	gfx KadabraLv39CardGfx ; gfx
 	tx KadabraName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -1976,7 +1976,7 @@ KadabraLv39Card:
 
 DarkKadabraCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $6504 ; gfx
+	gfx DarkKadabraCardGfx ; gfx
 	tx DarkKadabraName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -2028,7 +2028,7 @@ DarkKadabraCard:
 
 AlakazamLv42Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $42fb ; gfx
+	gfx AlakazamLv42CardGfx ; gfx
 	tx AlakazamName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -2080,7 +2080,7 @@ AlakazamLv42Card:
 
 AlakazamLv45Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $91d0 ; gfx
+	gfx AlakazamLv45CardGfx ; gfx
 	tx AlakazamName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -2132,7 +2132,7 @@ AlakazamLv45Card:
 
 DarkAlakazamCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $656d ; gfx
+	gfx DarkAlakazamCardGfx ; gfx
 	tx DarkAlakazamName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -2184,7 +2184,7 @@ DarkAlakazamCard:
 
 SlowpokeLv9Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4364 ; gfx
+	gfx SlowpokeLv9CardGfx ; gfx
 	tx SlowpokeName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -2236,7 +2236,7 @@ SlowpokeLv9Card:
 
 SlowpokeLv16Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $65da ; gfx
+	gfx SlowpokeLv16CardGfx ; gfx
 	tx SlowpokeName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -2288,7 +2288,7 @@ SlowpokeLv16Card:
 
 SlowpokeLv18Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $43e9 ; gfx
+	gfx SlowpokeLv18CardGfx ; gfx
 	tx SlowpokeName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -2340,7 +2340,7 @@ SlowpokeLv18Card:
 
 SlowbroLv26Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4456 ; gfx
+	gfx SlowbroLv26CardGfx ; gfx
 	tx SlowbroName ; name
 	db DIAMOND ; rarity
 	db FOSSIL ; real set
@@ -2392,7 +2392,7 @@ SlowbroLv26Card:
 
 SlowbroLv35Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9518 ; gfx
+	gfx SlowbroLv35CardGfx ; gfx
 	tx SlowbroName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -2444,7 +2444,7 @@ SlowbroLv35Card:
 
 DarkSlowbroCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $6661 ; gfx
+	gfx DarkSlowbroCardGfx ; gfx
 	tx DarkSlowbroName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -2496,7 +2496,7 @@ DarkSlowbroCard:
 
 GastlyLv8Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $44d1 ; gfx
+	gfx GastlyLv8CardGfx ; gfx
 	tx GastlyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -2548,7 +2548,7 @@ GastlyLv8Card:
 
 GastlyLv13Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9585 ; gfx
+	gfx GastlyLv13CardGfx ; gfx
 	tx GastlyName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -2600,7 +2600,7 @@ GastlyLv13Card:
 
 GastlyLv17Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $453a ; gfx
+	gfx GastlyLv17CardGfx ; gfx
 	tx GastlyName ; name
 	db DIAMOND ; rarity
 	db FOSSIL ; real set
@@ -2652,7 +2652,7 @@ GastlyLv17Card:
 
 HaunterLv17Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $45a3 ; gfx
+	gfx HaunterLv17CardGfx ; gfx
 	tx HaunterName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -2704,7 +2704,7 @@ HaunterLv17Card:
 
 HaunterLv22Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $460c ; gfx
+	gfx HaunterLv22CardGfx ; gfx
 	tx HaunterName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -2756,7 +2756,7 @@ HaunterLv22Card:
 
 HaunterLv25Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9657 ; gfx
+	gfx HaunterLv25CardGfx ; gfx
 	tx HaunterName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -2808,7 +2808,7 @@ HaunterLv25Card:
 
 HaunterLv26Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $95ee ; gfx
+	gfx HaunterLv26CardGfx ; gfx
 	tx HaunterName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -2860,7 +2860,7 @@ HaunterLv26Card:
 
 DarkHaunterCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $c640 ; gfx
+	gfx DarkHaunterCardGfx ; gfx
 	tx DarkHaunterName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -2912,7 +2912,7 @@ DarkHaunterCard:
 
 GengarLv38Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4675 ; gfx
+	gfx GengarLv38CardGfx ; gfx
 	tx GengarName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -2964,7 +2964,7 @@ GengarLv38Card:
 
 GengarLv40Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $96c8 ; gfx
+	gfx GengarLv40CardGfx ; gfx
 	tx GengarName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3016,7 +3016,7 @@ GengarLv40Card:
 
 DarkGengarCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $ca31 ; gfx
+	gfx DarkGengarCardGfx ; gfx
 	tx DarkGengarName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -3068,7 +3068,7 @@ DarkGengarCard:
 
 DrowzeeLv10Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $66d2 ; gfx
+	gfx DrowzeeLv10CardGfx ; gfx
 	tx DrowzeeName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -3120,7 +3120,7 @@ DrowzeeLv10Card:
 
 DrowzeeLv12Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $46e6 ; gfx
+	gfx DrowzeeLv12CardGfx ; gfx
 	tx DrowzeeName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -3172,7 +3172,7 @@ DrowzeeLv12Card:
 
 HypnoLv30Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9731 ; gfx
+	gfx HypnoLv30CardGfx ; gfx
 	tx HypnoName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3224,7 +3224,7 @@ HypnoLv30Card:
 
 HypnoLv36Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $474f ; gfx
+	gfx HypnoLv36CardGfx ; gfx
 	tx HypnoName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -3276,7 +3276,7 @@ HypnoLv36Card:
 
 DarkHypnoCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $675b ; gfx
+	gfx DarkHypnoCardGfx ; gfx
 	tx DarkHypnoName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -3328,7 +3328,7 @@ DarkHypnoCard:
 
 MrMimeLv20Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $7e58 ; gfx
+	gfx MrMimeLv20CardGfx ; gfx
 	tx MrMimeName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3380,7 +3380,7 @@ MrMimeLv20Card:
 
 MrMimeLv28Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4800 ; gfx
+	gfx MrMimeLv28CardGfx ; gfx
 	tx MrMimeName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -3432,7 +3432,7 @@ MrMimeLv28Card:
 
 JynxLv18Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $89a4 ; gfx
+	gfx JynxLv18CardGfx ; gfx
 	tx JynxName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3484,7 +3484,7 @@ JynxLv18Card:
 
 JynxLv23Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4869 ; gfx
+	gfx JynxLv23CardGfx ; gfx
 	tx JynxName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -3536,7 +3536,7 @@ JynxLv23Card:
 
 JynxLv27Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $c13b ; gfx
+	gfx JynxLv27CardGfx ; gfx
 	tx JynxName ; name
 	db DIAMOND ; rarity
 	db BULBASAUR_DECK ; real set
@@ -3588,7 +3588,7 @@ JynxLv27Card:
 
 MewtwoLv30Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $a069 ; gfx
+	gfx MewtwoLv30CardGfx ; gfx
 	tx MewtwoName ; name
 	db STAR ; rarity
 	db PRO ; real set
@@ -3640,7 +3640,7 @@ MewtwoLv30Card:
 
 MewtwoLv53Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $48d2 ; gfx
+	gfx MewtwoLv53CardGfx ; gfx
 	tx MewtwoName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -3692,7 +3692,7 @@ MewtwoLv53Card:
 
 MewtwoLv54Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $8124 ; gfx
+	gfx MewtwoLv54CardGfx ; gfx
 	tx MewtwoName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3744,7 +3744,7 @@ MewtwoLv54Card:
 
 MewtwoLv60Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $493b ; gfx
+	gfx MewtwoLv60CardGfx ; gfx
 	tx MewtwoName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -3796,7 +3796,7 @@ MewtwoLv60Card:
 
 MewtwoAltLv60Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $49a4 ; gfx
+	gfx MewtwoAltLv60CardGfx ; gfx
 	tx MewtwoName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -3848,7 +3848,7 @@ MewtwoAltLv60Card:
 
 MewtwoLv67Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $9e27 ; gfx
+	gfx MewtwoLv67CardGfx ; gfx
 	tx MewtwoName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -3900,7 +3900,7 @@ MewtwoLv67Card:
 
 GRsMewtwoCard:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $c56e ; gfx
+	gfx GRsMewtwoCardGfx ; gfx
 	tx GRsMewtwoName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -3952,7 +3952,7 @@ GRsMewtwoCard:
 
 MewLv8Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4a23 ; gfx
+	gfx MewLv8CardGfx ; gfx
 	tx MewName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -4004,7 +4004,7 @@ MewLv8Card:
 
 MewLv15Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4a8c ; gfx
+	gfx MewLv15CardGfx ; gfx
 	tx MewName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -4056,7 +4056,7 @@ MewLv15Card:
 
 MewLv23Card:
 	db TYPE_PKMN_PSYCHIC ; type
-	dw $4af5 ; gfx
+	gfx MewLv23CardGfx ; gfx
 	tx MewName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -4108,7 +4108,7 @@ MewLv23Card:
 
 PidgeyLv8Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4b5e ; gfx
+	gfx PidgeyLv8CardGfx ; gfx
 	tx PidgeyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -4160,7 +4160,7 @@ PidgeyLv8Card:
 
 PidgeyLv10Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $743f ; gfx
+	gfx PidgeyLv10CardGfx ; gfx
 	tx PidgeyName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -4212,7 +4212,7 @@ PidgeyLv10Card:
 
 PidgeottoLv36Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4bc7 ; gfx
+	gfx PidgeottoLv36CardGfx ; gfx
 	tx PidgeottoName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -4264,7 +4264,7 @@ PidgeottoLv36Card:
 
 PidgeottoLv38Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $8d46 ; gfx
+	gfx PidgeottoLv38CardGfx ; gfx
 	tx PidgeottoName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -4316,7 +4316,7 @@ PidgeottoLv38Card:
 
 PidgeotLv38Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4c30 ; gfx
+	gfx PidgeotLv38CardGfx ; gfx
 	tx PidgeotName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -4368,7 +4368,7 @@ PidgeotLv38Card:
 
 PidgeotLv40Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4c99 ; gfx
+	gfx PidgeotLv40CardGfx ; gfx
 	tx PidgeotName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -4420,7 +4420,7 @@ PidgeotLv40Card:
 
 RattataLv9Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4d02 ; gfx
+	gfx RattataLv9CardGfx ; gfx
 	tx RattataName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -4472,7 +4472,7 @@ RattataLv9Card:
 
 RattataLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6b2f ; gfx
+	gfx RattataLv12CardGfx ; gfx
 	tx RattataName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -4524,7 +4524,7 @@ RattataLv12Card:
 
 RattataLv15Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $74c2 ; gfx
+	gfx RattataLv15CardGfx ; gfx
 	tx RattataName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -4576,7 +4576,7 @@ RattataLv15Card:
 
 RaticateCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4d6d ; gfx
+	gfx RaticateCardGfx ; gfx
 	tx RaticateName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -4628,7 +4628,7 @@ RaticateCard:
 
 DarkRaticateCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6b98 ; gfx
+	gfx DarkRaticateCardGfx ; gfx
 	tx DarkRaticateName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -4680,7 +4680,7 @@ DarkRaticateCard:
 
 SpearowLv9Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $c2eb ; gfx
+	gfx SpearowLv9CardGfx ; gfx
 	tx SpearowName ; name
 	db CIRCLE ; rarity
 	db SQUIRTLE_DECK ; real set
@@ -4732,7 +4732,7 @@ SpearowLv9Card:
 
 SpearowLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $818f ; gfx
+	gfx SpearowLv12CardGfx ; gfx
 	tx SpearowName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -4784,7 +4784,7 @@ SpearowLv12Card:
 
 SpearowLv13Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4dd6 ; gfx
+	gfx SpearowLv13CardGfx ; gfx
 	tx SpearowName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -4836,7 +4836,7 @@ SpearowLv13Card:
 
 FearowLv24Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $81f8 ; gfx
+	gfx FearowLv24CardGfx ; gfx
 	tx FearowName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -4888,7 +4888,7 @@ FearowLv24Card:
 
 FearowLv27Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4e87 ; gfx
+	gfx FearowLv27CardGfx ; gfx
 	tx FearowName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -4940,7 +4940,7 @@ FearowLv27Card:
 
 DarkFearowCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $c93b ; gfx
+	gfx DarkFearowCardGfx ; gfx
 	tx DarkFearowName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -4992,7 +4992,7 @@ DarkFearowCard:
 
 ClefairyLv14Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4f10 ; gfx
+	gfx ClefairyLv14CardGfx ; gfx
 	tx ClefairyName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -5044,7 +5044,7 @@ ClefairyLv14Card:
 
 ClefairyLv15Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $76de ; gfx
+	gfx ClefairyLv15CardGfx ; gfx
 	tx ClefairyName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -5096,7 +5096,7 @@ ClefairyLv15Card:
 
 ClefableCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $4f79 ; gfx
+	gfx ClefableCardGfx ; gfx
 	tx ClefableName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -5148,7 +5148,7 @@ ClefableCard:
 
 DarkClefableCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $c724 ; gfx
+	gfx DarkClefableCardGfx ; gfx
 	tx DarkClefableName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -5200,7 +5200,7 @@ DarkClefableCard:
 
 JigglypuffLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5000 ; gfx
+	gfx JigglypuffLv12CardGfx ; gfx
 	tx JigglypuffName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -5252,7 +5252,7 @@ JigglypuffLv12Card:
 
 JigglypuffLv13Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5069 ; gfx
+	gfx JigglypuffLv13CardGfx ; gfx
 	tx JigglypuffName ; name
 	db CIRCLE ; rarity
 	db GB ; real set
@@ -5304,7 +5304,7 @@ JigglypuffLv13Card:
 
 JigglypuffLv14Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $50d2 ; gfx
+	gfx JigglypuffLv14CardGfx ; gfx
 	tx JigglypuffName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -5356,7 +5356,7 @@ JigglypuffLv14Card:
 
 WigglytuffLv36Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $513b ; gfx
+	gfx WigglytuffLv36CardGfx ; gfx
 	tx WigglytuffName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -5408,7 +5408,7 @@ WigglytuffLv36Card:
 
 WigglytuffLv40Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7747 ; gfx
+	gfx WigglytuffLv40CardGfx ; gfx
 	tx WigglytuffName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -5460,7 +5460,7 @@ WigglytuffLv40Card:
 
 MeowthLv10Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6c11 ; gfx
+	gfx MeowthLv10CardGfx ; gfx
 	tx MeowthName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -5512,7 +5512,7 @@ MeowthLv10Card:
 
 MeowthLv13Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $51a4 ; gfx
+	gfx MeowthLv13CardGfx ; gfx
 	tx MeowthName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -5564,7 +5564,7 @@ MeowthLv13Card:
 
 MeowthLv14Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $9ef9 ; gfx
+	gfx MeowthLv14CardGfx ; gfx
 	tx MeowthName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -5616,7 +5616,7 @@ MeowthLv14Card:
 
 MeowthLv15Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5211 ; gfx
+	gfx MeowthLv15CardGfx ; gfx
 	tx MeowthName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -5668,7 +5668,7 @@ MeowthLv15Card:
 
 MeowthLv17Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $c35c ; gfx
+	gfx MeowthLv17CardGfx ; gfx
 	tx MeowthName ; name
 	db CIRCLE ; rarity
 	db BULBASAUR_DECK ; real set
@@ -5720,7 +5720,7 @@ MeowthLv17Card:
 
 PersianCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5280 ; gfx
+	gfx PersianCardGfx ; gfx
 	tx PersianName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -5772,7 +5772,7 @@ PersianCard:
 
 DarkPersianLv28Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6c7a ; gfx
+	gfx DarkPersianLv28CardGfx ; gfx
 	tx DarkPersianName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -5824,7 +5824,7 @@ DarkPersianLv28Card:
 
 DarkPersianAltLv28Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $9e90 ; gfx
+	gfx DarkPersianAltLv28CardGfx ; gfx
 	tx DarkPersianName ; name
 	db CIRCLE ; rarity
 	db PRO ; real set
@@ -5876,7 +5876,7 @@ DarkPersianAltLv28Card:
 
 FarfetchdLv20Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $52fb ; gfx
+	gfx FarfetchdLv20CardGfx ; gfx
 	tx FarfetchdName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -5928,7 +5928,7 @@ FarfetchdLv20Card:
 
 FarfetchdAltLv20Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $a13f ; gfx
+	gfx FarfetchdAltLv20CardGfx ; gfx
 	tx FarfetchdName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -5980,7 +5980,7 @@ FarfetchdAltLv20Card:
 
 DoduoLv8Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7c62 ; gfx
+	gfx DoduoLv8CardGfx ; gfx
 	tx DoduoName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6032,7 +6032,7 @@ DoduoLv8Card:
 
 DoduoLv10Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $536e ; gfx
+	gfx DoduoLv10CardGfx ; gfx
 	tx DoduoName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -6084,7 +6084,7 @@ DoduoLv10Card:
 
 DodrioLv25Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7ccb ; gfx
+	gfx DodrioLv25CardGfx ; gfx
 	tx DodrioName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6136,7 +6136,7 @@ DodrioLv25Card:
 
 DodrioLv28Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $53d7 ; gfx
+	gfx DodrioLv28CardGfx ; gfx
 	tx DodrioName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -6188,7 +6188,7 @@ DodrioLv28Card:
 
 LickitungLv20Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7d34 ; gfx
+	gfx LickitungLv20CardGfx ; gfx
 	tx LickitungName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6240,7 +6240,7 @@ LickitungLv20Card:
 
 LickitungLv26Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5440 ; gfx
+	gfx LickitungLv26CardGfx ; gfx
 	tx LickitungName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -6292,7 +6292,7 @@ LickitungLv26Card:
 
 ChanseyLv40Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7de7 ; gfx
+	gfx ChanseyLv40CardGfx ; gfx
 	tx ChanseyName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6344,7 +6344,7 @@ ChanseyLv40Card:
 
 ChanseyLv55Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $54a9 ; gfx
+	gfx ChanseyLv55CardGfx ; gfx
 	tx ChanseyName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -6396,7 +6396,7 @@ ChanseyLv55Card:
 
 KangaskhanLv36Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $99ba ; gfx
+	gfx KangaskhanLv36CardGfx ; gfx
 	tx KangaskhanName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6448,7 +6448,7 @@ KangaskhanLv36Card:
 
 KangaskhanLv38Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $a1b6 ; gfx
+	gfx KangaskhanLv38CardGfx ; gfx
 	tx KangaskhanName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -6500,7 +6500,7 @@ KangaskhanLv38Card:
 
 KangaskhanLv40Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5512 ; gfx
+	gfx KangaskhanLv40CardGfx ; gfx
 	tx KangaskhanName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -6552,7 +6552,7 @@ KangaskhanLv40Card:
 
 TaurosLv32Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $557b ; gfx
+	gfx TaurosLv32CardGfx ; gfx
 	tx TaurosName ; name
 	db DIAMOND ; rarity
 	db JUNGLE ; real set
@@ -6604,7 +6604,7 @@ TaurosLv32Card:
 
 TaurosLv35Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $9ca6 ; gfx
+	gfx TaurosLv35CardGfx ; gfx
 	tx TaurosName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6656,7 +6656,7 @@ TaurosLv35Card:
 
 DittoCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $55e4 ; gfx
+	gfx DittoCardGfx ; gfx
 	tx DittoName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -6708,7 +6708,7 @@ DittoCard:
 
 EeveeLv5Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $7f3c ; gfx
+	gfx EeveeLv5CardGfx ; gfx
 	tx EeveeName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6760,7 +6760,7 @@ EeveeLv5Card:
 
 EeveeLv9Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6ce3 ; gfx
+	gfx EeveeLv9CardGfx ; gfx
 	tx EeveeName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -6812,7 +6812,7 @@ EeveeLv9Card:
 
 EeveeLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $566d ; gfx
+	gfx EeveeLv12CardGfx ; gfx
 	tx EeveeName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -6864,7 +6864,7 @@ EeveeLv12Card:
 
 PorygonLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $56d6 ; gfx
+	gfx PorygonLv12CardGfx ; gfx
 	tx PorygonName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -6916,7 +6916,7 @@ PorygonLv12Card:
 
 PorygonLv18Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $8000 ; gfx
+	gfx PorygonLv18CardGfx ; gfx
 	tx PorygonName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -6968,7 +6968,7 @@ PorygonLv18Card:
 
 PorygonLv20Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6d5a ; gfx
+	gfx PorygonLv20CardGfx ; gfx
 	tx PorygonName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -7020,7 +7020,7 @@ PorygonLv20Card:
 
 CoolPorygonCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $9f62 ; gfx
+	gfx CoolPorygonCardGfx ; gfx
 	tx CoolPorygonName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -7072,7 +7072,7 @@ CoolPorygonCard:
 
 SnorlaxLv20Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $573f ; gfx
+	gfx SnorlaxLv20CardGfx ; gfx
 	tx SnorlaxName ; name
 	db STAR ; rarity
 	db JUNGLE ; real set
@@ -7124,7 +7124,7 @@ SnorlaxLv20Card:
 
 SnorlaxLv35Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $806f ; gfx
+	gfx SnorlaxLv35CardGfx ; gfx
 	tx SnorlaxName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -7176,7 +7176,7 @@ SnorlaxLv35Card:
 
 HungrySnorlaxCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $a000 ; gfx
+	gfx HungrySnorlaxCardGfx ; gfx
 	tx HungrySnorlaxName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -7228,7 +7228,7 @@ HungrySnorlaxCard:
 
 DratiniLv10Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5800 ; gfx
+	gfx DratiniLv10CardGfx ; gfx
 	tx DratiniName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7280,7 +7280,7 @@ DratiniLv10Card:
 
 DratiniLv12Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6dc9 ; gfx
+	gfx DratiniLv12CardGfx ; gfx
 	tx DratiniName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -7332,7 +7332,7 @@ DratiniLv12Card:
 
 DragonairCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5869 ; gfx
+	gfx DragonairCardGfx ; gfx
 	tx DragonairName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -7384,7 +7384,7 @@ DragonairCard:
 
 DarkDragonairCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6e32 ; gfx
+	gfx DarkDragonairCardGfx ; gfx
 	tx DarkDragonairName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -7436,7 +7436,7 @@ DarkDragonairCard:
 
 DragoniteLv41Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $58d2 ; gfx
+	gfx DragoniteLv41CardGfx ; gfx
 	tx DragoniteName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -7488,7 +7488,7 @@ DragoniteLv41Card:
 
 DragoniteLv43Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $a30d ; gfx
+	gfx DragoniteLv43CardGfx ; gfx
 	tx DragoniteName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -7540,7 +7540,7 @@ DragoniteLv43Card:
 
 DragoniteLv45Card:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $5941 ; gfx
+	gfx DragoniteLv45CardGfx ; gfx
 	tx DragoniteName ; name
 	db STAR ; rarity
 	db FOSSIL ; real set
@@ -7592,7 +7592,7 @@ DragoniteLv45Card:
 
 DarkDragoniteCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $6e9b ; gfx
+	gfx DarkDragoniteCardGfx ; gfx
 	tx DarkDragoniteName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -7644,7 +7644,7 @@ DarkDragoniteCard:
 
 TogepiCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $a5a5 ; gfx
+	gfx TogepiCardGfx ; gfx
 	tx TogepiName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -7696,7 +7696,7 @@ TogepiCard:
 
 LugiaCard:
 	db TYPE_PKMN_COLORLESS ; type
-	dw $ca9a ; gfx
+	gfx LugiaCardGfx ; gfx
 	tx LugiaName ; name
 	db STAR ; rarity
 	db GB ; real set
@@ -7748,7 +7748,7 @@ LugiaCard:
 
 GrassEnergyCard:
 	db TYPE_ENERGY_GRASS ; type
-	dw $0 ; gfx
+	gfx GrassEnergyCardGfx ; gfx
 	tx GrassEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7760,7 +7760,7 @@ GrassEnergyCard:
 
 FireEnergyCard:
 	db TYPE_ENERGY_FIRE ; type
-	dw $93 ; gfx
+	gfx FireEnergyCardGfx ; gfx
 	tx FireEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7772,7 +7772,7 @@ FireEnergyCard:
 
 WaterEnergyCard:
 	db TYPE_ENERGY_WATER ; type
-	dw $122 ; gfx
+	gfx WaterEnergyCardGfx ; gfx
 	tx WaterEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7784,7 +7784,7 @@ WaterEnergyCard:
 
 LightningEnergyCard:
 	db TYPE_ENERGY_LIGHTNING ; type
-	dw $1b7 ; gfx
+	gfx LightningEnergyCardGfx ; gfx
 	tx LightningEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7796,7 +7796,7 @@ LightningEnergyCard:
 
 FightingEnergyCard:
 	db TYPE_ENERGY_FIGHTING ; type
-	dw $240 ; gfx
+	gfx FightingEnergyCardGfx ; gfx
 	tx FightingEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7808,7 +7808,7 @@ FightingEnergyCard:
 
 PsychicEnergyCard:
 	db TYPE_ENERGY_PSYCHIC ; type
-	dw $2d7 ; gfx
+	gfx PsychicEnergyCardGfx ; gfx
 	tx PsychicEnergyName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7820,7 +7820,7 @@ PsychicEnergyCard:
 
 DoubleColorlessEnergyCard:
 	db TYPE_ENERGY_DOUBLE_COLORLESS ; type
-	dw $366 ; gfx
+	gfx DoubleColorlessEnergyCardGfx ; gfx
 	tx DoubleColorlessEnergyName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -7832,7 +7832,7 @@ DoubleColorlessEnergyCard:
 
 PotionEnergyCard:
 	db TYPE_ENERGY_UNUSED ; type
-	dw $3fb ; gfx
+	gfx PotionEnergyCardGfx ; gfx
 	tx PotionEnergyName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -7844,7 +7844,7 @@ PotionEnergyCard:
 
 FullHealEnergyCard:
 	db TYPE_ENERGY_UNUSED ; type
-	dw $466 ; gfx
+	gfx FullHealEnergyCardGfx ; gfx
 	tx FullHealEnergyName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -7856,7 +7856,7 @@ FullHealEnergyCard:
 
 RainbowEnergyCard:
 	db TYPE_ENERGY_UNUSED ; type
-	dw $4cf ; gfx
+	gfx RainbowEnergyCardGfx ; gfx
 	tx RainbowEnergyName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -7868,7 +7868,7 @@ RainbowEnergyCard:
 
 RecycleEnergyCard:
 	db TYPE_ENERGY_UNUSED ; type
-	dw $c9c8 ; gfx
+	gfx RecycleEnergyCardGfx ; gfx
 	tx RecycleEnergyName ; name
 	db DIAMOND ; rarity
 	db GB ; real set
@@ -7880,7 +7880,7 @@ RecycleEnergyCard:
 
 SuperPotionCard:
 	db TYPE_TRAINER ; type
-	dw $b325 ; gfx
+	gfx SuperPotionCardGfx ; gfx
 	tx SuperPotionName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -7892,7 +7892,7 @@ SuperPotionCard:
 
 ImakuniCardCard:
 	db TYPE_TRAINER ; type
-	dw $a93b ; gfx
+	gfx ImakuniCardCardGfx ; gfx
 	tx ImakuniCardName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -7904,7 +7904,7 @@ ImakuniCardCard:
 
 EnergyRemovalCard:
 	db TYPE_TRAINER ; type
-	dw $acbd ; gfx
+	gfx EnergyRemovalCardGfx ; gfx
 	tx EnergyRemovalName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7916,7 +7916,7 @@ EnergyRemovalCard:
 
 EnergyRetrievalCard:
 	db TYPE_TRAINER ; type
-	dw $ab72 ; gfx
+	gfx EnergyRetrievalCardGfx ; gfx
 	tx EnergyRetrievalName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -7928,7 +7928,7 @@ EnergyRetrievalCard:
 
 EnergySearchCard:
 	db TYPE_TRAINER ; type
-	dw $ac4a ; gfx
+	gfx EnergySearchCardGfx ; gfx
 	tx EnergySearchName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -7940,7 +7940,7 @@ EnergySearchCard:
 
 ProfessorOakCard:
 	db TYPE_TRAINER ; type
-	dw $a6f0 ; gfx
+	gfx ProfessorOakCardGfx ; gfx
 	tx ProfessorOakName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -7952,7 +7952,7 @@ ProfessorOakCard:
 
 FossilExcavationCard:
 	db TYPE_TRAINER ; type
-	dw $bb4d ; gfx
+	gfx FossilExcavationCardGfx ; gfx
 	tx FossilExcavationName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -7964,7 +7964,7 @@ FossilExcavationCard:
 
 PotionCard:
 	db TYPE_TRAINER ; type
-	dw $b296 ; gfx
+	gfx PotionCardGfx ; gfx
 	tx PotionName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -7976,7 +7976,7 @@ PotionCard:
 
 GamblerCard:
 	db TYPE_TRAINER ; type
-	dw $b5b0 ; gfx
+	gfx GamblerCardGfx ; gfx
 	tx GamblerName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -7988,7 +7988,7 @@ GamblerCard:
 
 ReviveCard:
 	db TYPE_TRAINER ; type
-	dw $b449 ; gfx
+	gfx ReviveCardGfx ; gfx
 	tx ReviveName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8000,7 +8000,7 @@ ReviveCard:
 
 MaxReviveCard:
 	db TYPE_TRAINER ; type
-	dw $bc2b ; gfx
+	gfx MaxReviveCardGfx ; gfx
 	tx MaxReviveName ; name
 	db DIAMOND ; rarity
 	db EXPANSION_SHEET ; real set
@@ -8012,7 +8012,7 @@ MaxReviveCard:
 
 SuperScoopUpCard:
 	db TYPE_TRAINER ; type
-	dw $bef1 ; gfx
+	gfx SuperScoopUpCardGfx ; gfx
 	tx SuperScoopUpName ; name
 	db CIRCLE ; rarity
 	db BULBASAUR_DECK ; real set
@@ -8024,7 +8024,7 @@ SuperScoopUpCard:
 
 DevolutionSprayCard:
 	db TYPE_TRAINER ; type
-	dw $b21d ; gfx
+	gfx DevolutionSprayCardGfx ; gfx
 	tx DevolutionSprayName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8036,7 +8036,7 @@ DevolutionSprayCard:
 
 ItemFinderCard:
 	db TYPE_TRAINER ; type
-	dw $b14b ; gfx
+	gfx ItemFinderCardGfx ; gfx
 	tx ItemFinderName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8048,7 +8048,7 @@ ItemFinderCard:
 
 ChallengeCard:
 	db TYPE_TRAINER ; type
-	dw $b6a2 ; gfx
+	gfx ChallengeCardGfx ; gfx
 	tx ChallengeName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -8060,7 +8060,7 @@ ChallengeCard:
 
 SuperEnergyRetrievalCard:
 	db TYPE_TRAINER ; type
-	dw $abe1 ; gfx
+	gfx SuperEnergyRetrievalCardGfx ; gfx
 	tx SuperEnergyRetrievalName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -8072,7 +8072,7 @@ SuperEnergyRetrievalCard:
 
 SuperEnergyRemovalCard:
 	db TYPE_TRAINER ; type
-	dw $ad40 ; gfx
+	gfx SuperEnergyRemovalCardGfx ; gfx
 	tx SuperEnergyRemovalName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8084,7 +8084,7 @@ SuperEnergyRemovalCard:
 
 MoonStoneCard:
 	db TYPE_TRAINER ; type
-	dw $bbba ; gfx
+	gfx MoonStoneCardGfx ; gfx
 	tx MoonStoneName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -8096,7 +8096,7 @@ MoonStoneCard:
 
 DefenderCard:
 	db TYPE_TRAINER ; type
-	dw $b0de ; gfx
+	gfx DefenderCardGfx ; gfx
 	tx DefenderName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8108,7 +8108,7 @@ DefenderCard:
 
 GustOfWindCard:
 	db TYPE_TRAINER ; type
-	dw $b1b4 ; gfx
+	gfx GustOfWindCardGfx ; gfx
 	tx GustOfWindName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -8120,7 +8120,7 @@ GustOfWindCard:
 
 MysteriousFossilCard:
 	db TYPE_TRAINER ; type
-	dw $ab09 ; gfx
+	gfx MysteriousFossilCardGfx ; gfx
 	tx MysteriousFossilName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -8132,7 +8132,7 @@ MysteriousFossilCard:
 
 FullHealCard:
 	db TYPE_TRAINER ; type
-	dw $b3d4 ; gfx
+	gfx FullHealCardGfx ; gfx
 	tx FullHealName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8144,7 +8144,7 @@ FullHealCard:
 
 ImposterOaksRevengeCard:
 	db TYPE_TRAINER ; type
-	dw $b711 ; gfx
+	gfx ImposterOaksRevengeCardGfx ; gfx
 	tx ImposterOaksRevengeName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -8156,7 +8156,7 @@ ImposterOaksRevengeCard:
 
 ImposterProfessorOakCard:
 	db TYPE_TRAINER ; type
-	dw $a759 ; gfx
+	gfx ImposterProfessorOakCardGfx ; gfx
 	tx ImposterProfessorOakName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8168,7 +8168,7 @@ ImposterProfessorOakCard:
 
 SleepCard:
 	db TYPE_TRAINER ; type
-	dw $b780 ; gfx
+	gfx SleepCardGfx ; gfx
 	tx SleepName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -8180,7 +8180,7 @@ SleepCard:
 
 ComputerErrorCard:
 	db TYPE_TRAINER ; type
-	dw $bdf3 ; gfx
+	gfx ComputerErrorCardGfx ; gfx
 	tx ComputerErrorName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; real set
@@ -8192,7 +8192,7 @@ ComputerErrorCard:
 
 ComputerSearchCard:
 	db TYPE_TRAINER ; type
-	dw $af79 ; gfx
+	gfx ComputerSearchCardGfx ; gfx
 	tx ComputerSearchName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8204,7 +8204,7 @@ ComputerSearchCard:
 
 DiggerCard:
 	db TYPE_TRAINER ; type
-	dw $b800 ; gfx
+	gfx DiggerCardGfx ; gfx
 	tx DiggerName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -8216,7 +8216,7 @@ DiggerCard:
 
 ClefairyDollCard:
 	db TYPE_TRAINER ; type
-	dw $aa96 ; gfx
+	gfx ClefairyDollCardGfx ; gfx
 	tx ClefairyDollName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8228,7 +8228,7 @@ ClefairyDollCard:
 
 MrFujiCard:
 	db TYPE_TRAINER ; type
-	dw $a869 ; gfx
+	gfx MrFujiCardGfx ; gfx
 	tx MrFujiName ; name
 	db DIAMOND ; rarity
 	db FOSSIL ; real set
@@ -8240,7 +8240,7 @@ MrFujiCard:
 
 PlusPowerCard:
 	db TYPE_TRAINER ; type
-	dw $b069 ; gfx
+	gfx PlusPowerCardGfx ; gfx
 	tx PlusPowerName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8252,7 +8252,7 @@ PlusPowerCard:
 
 SwitchCard:
 	db TYPE_TRAINER ; type
-	dw $adb1 ; gfx
+	gfx SwitchCardGfx ; gfx
 	tx SwitchName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -8264,7 +8264,7 @@ SwitchCard:
 
 ScoopUpCard:
 	db TYPE_TRAINER ; type
-	dw $af0a ; gfx
+	gfx ScoopUpCardGfx ; gfx
 	tx ScoopUpName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8276,7 +8276,7 @@ ScoopUpCard:
 
 PokemonTraderCard:
 	db TYPE_TRAINER ; type
-	dw $a9c4 ; gfx
+	gfx PokemonTraderCardGfx ; gfx
 	tx PokemonTraderName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -8288,7 +8288,7 @@ PokemonTraderCard:
 
 PokemonRecallCard:
 	db TYPE_TRAINER ; type
-	dw $bd11 ; gfx
+	gfx PokemonRecallCardGfx ; gfx
 	tx PokemonRecallName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -8300,7 +8300,7 @@ PokemonRecallCard:
 
 PokedexCard:
 	db TYPE_TRAINER ; type
-	dw $b000 ; gfx
+	gfx PokedexCardGfx ; gfx
 	tx PokedexName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8312,7 +8312,7 @@ PokedexCard:
 
 PokemonCenterCard:
 	db TYPE_TRAINER ; type
-	dw $ae2e ; gfx
+	gfx PokemonCenterCardGfx ; gfx
 	tx PokemonCenterName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8324,7 +8324,7 @@ PokemonCenterCard:
 
 PokemonBreederCard:
 	db TYPE_TRAINER ; type
-	dw $aa2d ; gfx
+	gfx PokemonBreederCardGfx ; gfx
 	tx PokemonBreederName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8336,7 +8336,7 @@ PokemonBreederCard:
 
 PokemonFluteCard:
 	db TYPE_TRAINER ; type
-	dw $b53b ; gfx
+	gfx PokemonFluteCardGfx ; gfx
 	tx PokemonFluteName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8348,7 +8348,7 @@ PokemonFluteCard:
 
 TheBosssWayCard:
 	db TYPE_TRAINER ; type
-	dw $b8a1 ; gfx
+	gfx TheBosssWayCardGfx ; gfx
 	tx TheBosssWayName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKET ; real set
@@ -8360,7 +8360,7 @@ TheBosssWayCard:
 
 GoopGasAttackCard:
 	db TYPE_TRAINER ; type
-	dw $b90c ; gfx
+	gfx GoopGasAttackCardGfx ; gfx
 	tx GoopGasAttackName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -8372,7 +8372,7 @@ GoopGasAttackCard:
 
 BillCard:
 	db TYPE_TRAINER ; type
-	dw $a800 ; gfx
+	gfx BillCardGfx ; gfx
 	tx BillName ; name
 	db CIRCLE ; rarity
 	db BASE_SET ; real set
@@ -8384,7 +8384,7 @@ BillCard:
 
 BillsTeleporterCard:
 	db TYPE_TRAINER ; type
-	dw $c3c5 ; gfx
+	gfx BillsTeleporterCardGfx ; gfx
 	tx BillsTeleporterName ; name
 	db CIRCLE ; rarity
 	db BULBASAUR_DECK ; real set
@@ -8396,7 +8396,7 @@ BillsTeleporterCard:
 
 BillsComputerCard:
 	db TYPE_TRAINER ; type
-	dw $bd7a ; gfx
+	gfx BillsComputerCardGfx ; gfx
 	tx BillsComputerName ; name
 	db CIRCLE ; rarity
 	db EXPANSION_SHEET ; real set
@@ -8408,7 +8408,7 @@ BillsComputerCard:
 
 MasterBallCard:
 	db TYPE_TRAINER ; type
-	dw $bca6 ; gfx
+	gfx MasterBallCardGfx ; gfx
 	tx MasterBallName ; name
 	db STAR ; rarity
 	db EXPANSION_SHEET ; real set
@@ -8420,7 +8420,7 @@ MasterBallCard:
 
 LassCard:
 	db TYPE_TRAINER ; type
-	dw $a8d2 ; gfx
+	gfx LassCardGfx ; gfx
 	tx LassName ; name
 	db STAR ; rarity
 	db BASE_SET ; real set
@@ -8432,7 +8432,7 @@ LassCard:
 
 MaintenanceCard:
 	db TYPE_TRAINER ; type
-	dw $b4d2 ; gfx
+	gfx MaintenanceCardGfx ; gfx
 	tx MaintenanceName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
@@ -8444,7 +8444,7 @@ MaintenanceCard:
 
 PokeballCard:
 	db TYPE_TRAINER ; type
-	dw $ae9f ; gfx
+	gfx PokeballCardGfx ; gfx
 	tx PokeballName ; name
 	db CIRCLE ; rarity
 	db JUNGLE ; real set
@@ -8456,7 +8456,7 @@ PokeballCard:
 
 NightlyGarbageRunCard:
 	db TYPE_TRAINER ; type
-	dw $ba63 ; gfx
+	gfx NightlyGarbageRunCardGfx ; gfx
 	tx NightlyGarbageRunName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKET ; real set
@@ -8468,7 +8468,7 @@ NightlyGarbageRunCard:
 
 RecycleCard:
 	db TYPE_TRAINER ; type
-	dw $b619 ; gfx
+	gfx RecycleCardGfx ; gfx
 	tx RecycleName ; name
 	db CIRCLE ; rarity
 	db FOSSIL ; real set
@@ -8480,7 +8480,7 @@ RecycleCard:
 
 RocketsSneakAttackCard:
 	db TYPE_TRAINER ; type
-	dw $b979 ; gfx
+	gfx RocketsSneakAttackCardGfx ; gfx
 	tx RocketsSneakAttackName ; name
 	db STAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -8492,7 +8492,7 @@ RocketsSneakAttackCard:
 
 HereComesTeamRocketCard:
 	db TYPE_TRAINER ; type
-	dw $b9ee ; gfx
+	gfx HereComesTeamRocketCardGfx ; gfx
 	tx HereComesTeamRocketName ; name
 	db WHITESTAR ; rarity
 	db TEAM_ROCKET ; real set
@@ -8504,7 +8504,7 @@ HereComesTeamRocketCard:
 
 TheRocketsTrapCard:
 	db TYPE_TRAINER ; type
-	dw $bae0 ; gfx
+	gfx TheRocketsTrapCardGfx ; gfx
 	tx TheRocketsTrapName ; name
 	db STAR ; rarity
 	db GYM_HEROES ; real set

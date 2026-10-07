@@ -5900,6 +5900,8 @@ CopyCardPalettesToBGPals:
 	ret
 
 ; de = coordinates
+; b = tilemap offset
+; c = attrmap offset (mostly palette offset)
 DrawLoadedCard:
 	push af
 	push bc
@@ -5908,7 +5910,7 @@ DrawLoadedCard:
 	ld a, b
 	ld [wCardTilemapOffset], a
 	ld a, c
-	ld [wddf5], a
+	ld [wCardAttrmapOffset], a
 	ld b, d
 	ld c, e
 	call BCCoordToBGMap0Address
@@ -5930,43 +5932,47 @@ DrawLoadedCard:
 	ld de, wCardTilemap
 	ld a, [wCardTilemapOffset]
 	ld c, a
-	ld b, $30 ; card size in tiles
-.loop_copy
+	ld b, NUM_CARD_GFX_TILES
+.loop_copy_tilemap
 	ld a, [hli]
 	add c
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .loop_copy
+	jr nz, .loop_copy_tilemap
 	pop de
 	ld hl, wCardTilemap
 	call .CopyCardDataToBGMap
 	ret
 
+; convert column-major tiles to row-major tilemap
 .CardTilemap:
-	db $00, $06, $0c, $12, $18, $1e, $24, $2a, $01, $07, $0d, $13, $19, $1f, $25, $2b
-	db $02, $08, $0e, $14, $1a, $20, $26, $2c, $03, $09, $0f, $15, $1b, $21, $27, $2d
-	db $04, $0a, $10, $16, $1c, $22, $28, $2e, $05, $0b, $11, $17, $1d, $23, $29, $2f
+FOR y, CARD_GFX_HEIGHT
+	FOR x, CARD_GFX_WIDTH
+		db (x * CARD_GFX_HEIGHT) + y
+	ENDR
+ENDR
 
+; set palette
 .ApplyAttrmap:
 	push de
-	ld hl, wCardAttrMap
-	ld de, wddc4
-	ld a, [wddf5]
+	ld hl, wCardTilePaletteIndices
+	ld de, wCardAttrmap
+	ld a, [wCardAttrmapOffset]
 	ld c, a
-	ld b, $30 ; card size in tiles
-.asm_134f8
+	ld b, NUM_CARD_GFX_TILES
+.loop_copy_pal_index
 	ld a, [hli]
 	rlca
 	rlca
-	and $03 ; palette
+	and CARD_GFX_PAL_INDEX_MASK
 	add c
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_134f8
+	jr nz, .loop_copy_pal_index
 	pop de
-	ld hl, wddc4
+	ld hl, wCardAttrmap
 	call .CopyCardDataToBGMap
 	ret
 
@@ -5975,15 +5981,15 @@ DrawLoadedCard:
 	push bc
 	push de
 	push hl
-	ld b, $8 ; card width
-	ld c, $6 ; card height
+	ld b, CARD_GFX_WIDTH
+	ld c, CARD_GFX_HEIGHT
 .loop_rows
 	push bc
 	call SafeCopyDataHLtoDE
 	push hl
 	ld h, d
 	ld l, e
-	ld bc, TILEMAP_WIDTH - 8 ; start of next line
+	ld bc, TILEMAP_WIDTH - CARD_GFX_WIDTH ; start of next line
 	add hl, bc
 	ld d, h
 	ld e, l

@@ -1,3 +1,5 @@
+# GNU Make 4.3+
+
 rom := poketcg2.gbc
 
 rom_obj := \
@@ -43,9 +45,12 @@ tcg2: $(rom) compare
 
 clean: tidy
 	find src/gfx \
-	     \( -iname '*.1bpp' \
-	        -o -iname '*.2bpp' \
-	        -o -iname '*.pal' \) \
+	     \( -iname '*.[12]bpp' \) \
+	     -delete
+	find src/gfx/cards \
+	     \( -iname '*.asm.temp' \
+	        -o -iname '*.o' \
+	        -o -iname '*.bin' \) \
 	     -delete
 
 tidy:
@@ -98,9 +103,43 @@ endif
 RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
 
+
+### Card GFX
+card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
+card_printer_png := $(wildcard src/gfx/cards/*_printer.png)
+
+TEMP_HEADER := SECTION "TEMP", ROM0
+TEMP_PREINCLUDES := --preinclude macros.asm --preinclude constants.asm
+CARDGFX := tools/card_gfx
+
+src/gfx/cards/%.asm.temp: src/gfx/cards/%.asm
+	{ printf '%s\n\n' '$(TEMP_HEADER)'; cat $<; } > $@
+
+src/gfx/cards/%.o: src/gfx/cards/%.asm.temp
+	$(RGBASM) $(RGBASMFLAGS) $(TEMP_PREINCLUDES) -o $@ $<
+
+src/gfx/cards/%.bin: src/gfx/cards/%.o
+	$(RGBLINK) $(RGBLINKFLAGS) -x -o $@ $<
+
+src/gfx/cards/%_printer.2bpp: src/gfx/cards/%_printer.png
+	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
+
+define CARDGFX_WITH_PRINTER_ALT
+$1.2bpp $1_extra.2bpp &: $(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin $1_printer.2bpp
+	$(CARDGFX) --printer $1_printer.2bpp --extra-out $1_extra.2bpp $1.png $1.pal.bin $1.cardattr.bin $1.2bpp
+endef
+
+define CARDGFX_WITHOUT_PRINTER_ALT
+$1.2bpp &: $(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin
+	$(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin $1.2bpp
+endef
+
+$(foreach card,$(card_portrait_png),$(eval $(if $(wildcard $(card:.png=_printer.png)),\
+$(call CARDGFX_WITH_PRINTER_ALT,$(card:.png=)),\
+$(call CARDGFX_WITHOUT_PRINTER_ALT,$(card:.png=)))))
 
 ### Misc file-specific graphics rules
 
@@ -113,6 +152,8 @@ src/gfx/booster_packs/psychic_pack.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/booster_packs/ambition_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/present_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/pack_oam.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/cgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/dmg_sgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/titlescreen/title_screen.2bpp: RGBGFXFLAGS += -x 4
 src/gfx/titlescreen/gb_error.2bpp: RGBGFXFLAGS += -x 10
 src/gfx/black_box/black_box_bg.2bpp: RGBGFXFLAGS += -x 5

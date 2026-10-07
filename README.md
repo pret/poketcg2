@@ -2,15 +2,12 @@
 
 This is a disassembly of Pokémon TCG 2.
 
-It uses the following ROM as a base:
+It builds the following ROM as `poketcg2.gbc`:
 
 - Pokémon Card GB2 - GR Dan Sanjou! (J) [C][!].gbc `sha1: a7e12bcc5f514e3aad8de570fd511aab0a308822`
 
-To assemble, first install [RGBDS](https://github.com/gbdev/rgbds/releases) and put it in your path.  
-Then copy the above ROM to this directory as "baserom.gbc".  
+To assemble, first install [RGBDS](https://github.com/gbdev/rgbds/releases) and put it in your path.
 Then run `make` in your shell.
-
-This will output a file named "poketcg2.gbc".
 
 
 ## See also
