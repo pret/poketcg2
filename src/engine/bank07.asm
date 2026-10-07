@@ -397,16 +397,16 @@ DrawConfigMenu:
 	call DrawMenuBox
 	ldtx hl, ConfigMessageSpeedText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, ConfigDuelAnimationText
 	lb de, 1, 4
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, ConfigCoinAnimationText
 	lb de, 1, 8
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, ConfigFrameColorText
 	lb de, 1, 12
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, ConfigMessageSpeedSlowLabelText
 	lb de, 2, 2
 	call InitTextPrinting_ProcessTextFromIDVRAM0
@@ -2510,7 +2510,7 @@ _StartMenuBoxUpdate::
 	call LoadTxRam2
 	ldtx hl, TxRam2TextPadded
 	lb de, 1, 10
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
 
@@ -6299,7 +6299,7 @@ MailboxMainScreen:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, MailboxTitleText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ld a, [wMailboxPage]
 	add a
 	add a
@@ -6591,7 +6591,7 @@ DrawReadMailScreenHeader:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, MailboxTitleText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ld hl, .text_items
 	call PlaceTextItemsVRAM0
 	ret
@@ -7722,10 +7722,10 @@ ShowCardDungeonDescriptionScreen:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterCardDungeonTitleText
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ldtx hl, GameCenter10ChipsPerPlayText
 	lb de, 13, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
