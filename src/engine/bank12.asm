@@ -18,7 +18,7 @@ SetSamsStartingPlayArea:
 	ld hl, wDuelTempList
 .loop_hand
 	ld a, [hli]
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp $ff
 	ret z
 	call GetCardIDFromDeckIndex
@@ -30,7 +30,7 @@ SetSamsStartingPlayArea:
 	cp16 GOLDEEN
 	jr nz, .loop_hand
 .PlaceInPlayArea:
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call PutHandPokemonCardInPlayArea
 	ret
 
@@ -44,7 +44,7 @@ GetPlayAreaLocationOfGoldeen:
 	jr nz, .found
 	ld a, PLAY_AREA_BENCH_1
 .found
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ret
 
 AITakePrizeCardInOrder:
@@ -97,7 +97,7 @@ AISamPerformScriptedTurn:
 ; always attack with Arena card
 ; if it's unusable end turn without attacking.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .unusable
 	farcall AITryUseAttack
@@ -124,13 +124,13 @@ AISamPerformScriptedTurn:
 .turn_2
 	ld de, POTION
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 20
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld de, GOLDEEN
@@ -143,15 +143,15 @@ AISamPerformScriptedTurn:
 	ld de, GOLDEEN
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld de, SEAKING
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EVOLVE_PKMN
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, SEAKING
@@ -163,13 +163,13 @@ AISamPerformScriptedTurn:
 .turn_4
 	ld de, POTION
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 20
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, SECOND_ATTACK
@@ -178,12 +178,12 @@ AISamPerformScriptedTurn:
 .turn_5
 	ld de, STARYU_LV15
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, STARYU_LV15
@@ -214,7 +214,7 @@ AIAaronStep1PerformScriptedTurn:
 ; always attack with Arena card
 ; if it's unusable end turn without attacking.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .unusable
 	farcall AITryUseAttack
@@ -256,7 +256,7 @@ AIAaronStep2PerformScriptedTurn:
 ; always attack with Arena card
 ; if it's unusable end turn without attacking.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .unusable
 	farcall AITryUseAttack
@@ -280,12 +280,12 @@ AIAaronStep2PerformScriptedTurn:
 .turn_2
 	ld de, ODDISH_LV8
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, GRIMER_LV10
@@ -322,7 +322,7 @@ AIAaronStep3PerformScriptedTurn:
 ; always attack with Arena card
 ; if it's unusable end turn without attacking.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .unusable
 	farcall AITryUseAttack
@@ -351,33 +351,33 @@ AIAaronStep3PerformScriptedTurn:
 .turn_2
 	ld de, CHANSEY_LV55
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld de, ALAKAZAM_LV42
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, ABRA_LV10
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	push af
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, [wcd15]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld [wTempAIPokemonCard], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
@@ -400,7 +400,7 @@ AIAaronStep3PerformScriptedTurn:
 	farcall HandleAIDamageSwap
 	ld de, POKEMON_CENTER
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
@@ -439,24 +439,24 @@ AIAaronStep3PerformScriptedTurn:
 	jr nc, .asm_4839b
 	ld de, SCOOP_UP
 	farcall LookForCardIDInHandList
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld de, CHANSEY_LV55
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .unscripted
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld de, CHANSEY_LV55
 	farcall LookForCardIDInHandList
-	ldh [hTemp_ffa0], a
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	farcall HandleAIDamageSwap
@@ -790,7 +790,7 @@ AIProcessRetreat:
 	and AI_FLAG_USED_SWITCH
 	jr nz, .used_switch
 	ld a, [wAIPlayAreaCardToSwitch]
-	farcall Func_167e5
+	farcall AITryToRetreat
 	ret
 
 .asm_4865c
@@ -809,7 +809,7 @@ AIProcessRetreat:
 .asm_48670
 	farcall AIDecideBenchPokemonToSwitchTo
 	ret c ; no Bench Pokémon
-	farcall Func_167e5
+	farcall AITryToRetreat
 	ret
 
 AIDoTurn_GeneralNoRetreat:
@@ -1008,12 +1008,12 @@ AIDecide_PokemonTrader_RonaldsUltraDeck:
 	ret nc
 
 .found
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
 AIDeckSpecificEnergyLogic:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	ld a, [wOpponentDeckID]
 	cp PHANTOM_DECK_ID
@@ -1081,12 +1081,12 @@ AIDeckSpecificEnergyLogic:
 	ld b, AI_SCORE_NEUTRAL
 .got_score
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, b
 	ret
 
 .PhantomDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1104,7 +1104,7 @@ AIDeckSpecificEnergyLogic:
 	jr .got_score
 
 .AwesomeFossilDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1141,7 +1141,7 @@ AIDeckSpecificEnergyLogic:
 
 .MaxEnergyDeck:
 .GreatRocket3Deck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1153,7 +1153,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .GlitteringScalesDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1163,13 +1163,13 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; chansey lv55
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	or a
 	jr z, .asm_489bc ; has no energy cards
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .asm_489c1
 	; is Arena card
@@ -1192,14 +1192,14 @@ AIDeckSpecificEnergyLogic:
 .kangaskhan_lv40_glittering_scales
 	farcall Func_4c605
 	jr c, .asm_489bc
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	or a
 	jr z, .asm_489bc
 	; at least 1 energy card
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .asm_489c1
 	; is Arena card
@@ -1215,7 +1215,7 @@ AIDeckSpecificEnergyLogic:
 	jr .asm_489bc
 
 .DarkScienceDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1236,7 +1236,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .ImmortalFlameDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	; Arena card
@@ -1268,7 +1268,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .GreatDragonDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	; Arena card
@@ -1301,7 +1301,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .MadPetalsDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1336,7 +1336,7 @@ AIDeckSpecificEnergyLogic:
 .RonaldsPowerDeck:
 .RonaldsPsychicDeck:
 .PoisonStormDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	; Arena card
@@ -1367,7 +1367,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .RunningWildDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	; Arena card
@@ -1395,7 +1395,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .DirectHitDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	; Arena card
@@ -1431,7 +1431,7 @@ AIDeckSpecificEnergyLogic:
 	jp .default_score
 
 ; unreachable
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1462,7 +1462,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .SpiritedAwayDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1489,7 +1489,7 @@ AIDeckSpecificEnergyLogic:
 .UltraRemovalDeck:
 	farcall CheckIfHasRainDanceActive
 	jp nc, .default_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp z, .default_score
 	; Rain Dance is active and this
@@ -1498,7 +1498,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .StopLifeDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1531,7 +1531,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .ScorcherDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1542,7 +1542,7 @@ AIDeckSpecificEnergyLogic:
 	jp .default_score
 
 .kangaskhan_lv40_scorcher
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	ld e, a
@@ -1565,7 +1565,7 @@ AIDeckSpecificEnergyLogic:
 	call FindDarkCharizardToAttachEnergy
 	jp nc, .default_score
 	ld b, a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	cp b
 	jr z, .asm_48cd7
 	ld b, AI_SCORE_NEUTRAL - 28
@@ -1575,7 +1575,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .TsunamiStarterDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1588,7 +1588,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .SmashToMincemeatDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1598,7 +1598,7 @@ AIDeckSpecificEnergyLogic:
 	jp nz, .default_score
 
 ; kangaskhan lv40
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	farcall Func_4c605
@@ -1618,7 +1618,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .chansey_lv55
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	ld de, DARK_MACHAMP
 	call FindCardIDInBenchWithEnoughEnergy
@@ -1630,7 +1630,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .TestYourLuckDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1640,7 +1640,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .PowerfulPokemonDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1668,7 +1668,7 @@ AIDeckSpecificEnergyLogic:
 .asm_48db1
 	farcall LookForCardIDInHandList
 	jp c, .default_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 40
@@ -1681,7 +1681,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .RonaldsUncoolDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1707,7 +1707,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .EverybodysFriendDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1725,7 +1725,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .ImmortalPokemonDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1740,7 +1740,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .BlazingFlameDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1760,7 +1760,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .BigThunderDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -1782,7 +1782,7 @@ AIDeckSpecificEnergyLogic:
 	jp .got_score
 
 .PowerOfDarknessDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .default_score
 	add DUELVARS_ARENA_CARD
@@ -1841,7 +1841,7 @@ AIDeckSpecificRetreatLogic:
 
 .SteadyIncreaseDeck:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .default
 	; can KO defending card
@@ -1925,7 +1925,7 @@ AIDeckSpecificRetreatLogic:
 
 ; abra lv14
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .default
 	; Abra can be KO'ed
@@ -2028,12 +2028,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_dratini
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DRATINI_LV10
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_bulbasaur ; no Dratini in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_bulbasaur
@@ -2068,12 +2068,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_bulbasaur
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, BULBASAUR_LV12
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_or_scyther ; no Bulbasaur in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_or_scyther
@@ -2098,7 +2098,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_or_scyther
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2108,7 +2108,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_1
 .asm_490ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_1
@@ -2204,12 +2204,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_charmander
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, CHARMANDER_LV9
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_magmar_or_mr_mime ; no Charmander in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_magmar_or_mr_mime
@@ -2232,7 +2232,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_magmar_or_mr_mime
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2246,7 +2246,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_2
 .asm_49219
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_2
@@ -2336,12 +2336,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_squirtle
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, SQUIRTLE_LV8
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_scyther_mr_mime_or_lapras ; no Squirtle in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_scyther_mr_mime_or_lapras
@@ -2364,7 +2364,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_scyther_mr_mime_or_lapras
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, SCYTHER_LV25
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2378,7 +2378,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_3
 .asm_49329
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_3
@@ -2472,12 +2472,12 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c ; couldn't use The Boss' Way
 	ld a, b
 .trade_with_machop
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, MACHOP_LV20
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_kangaskhan_magmar_or_chansey ; no Machop in Deck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_kangaskhan_magmar_or_chansey
@@ -2500,7 +2500,7 @@ HandleAIDarkPokemonSearchStrategies:
 	ret c
 	ld a, b
 .trade_with_kangaskhan_magmar_or_chansey
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, KANGASKHAN_LV40
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
@@ -2510,7 +2510,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_4
 .asm_49436
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_4
@@ -2583,7 +2583,7 @@ HandleAIDarkPokemonSearchStrategies:
 	call CanUseEvolutionaryLight
 	pop bc
 	ld a, b
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .asm_49508
 	ld de, GRS_MEWTWO
 	ld a, CARD_LOCATION_DECK
@@ -2621,7 +2621,7 @@ HandleAIDarkPokemonSearchStrategies:
 	farcall FindCardIDInLocation
 	jr nc, .try_search_for_evolutions_5
 .asm_49534
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jp AITryUsePokemonTraderToSearchCard_GotCardToTrade
 
 .try_search_for_evolutions_5
@@ -2666,7 +2666,7 @@ HandleAIDarkPokemonSearchStrategies:
 ; input:
 ; - a = deck index of card to search in Deck
 AITryUseTheBossWayToSearchCard:
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
 	ccf
@@ -2681,11 +2681,11 @@ AITryUseTheBossWayToSearchCard:
 ; - a = deck index of card to search in Deck
 ; - de = card ID in Hand to avoid trading
 AITryUsePokemonTraderToSearchCard:
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ccf
 	ret c ; card in hand to trade not found
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 AITryUsePokemonTraderToSearchCard_GotCardToTrade:
 	ld de, POKEMON_TRADER
 	farcall LookForCardIDInHandList
@@ -2698,7 +2698,7 @@ AITryUsePokemonTraderToSearchCard_GotCardToTrade:
 ; expects the Trainer card index to be in [wAITrainerCardToPlay]
 AIUseTrainerCardToSearchCard:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	bank1call LoadNonPokemonCardEffectCommands
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
@@ -2715,20 +2715,20 @@ Func_495dd:
 	call CanUseEvolutionaryLight
 	ccf
 	ret c
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call FindAnyEvolutionCardInDeck
 	ccf
 	ret c ; evolution card not found
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
 	farcall AIMakeDecision
-	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh a, [hDuelActionArgs + 1]
 	ret
 
 AIDecide_GustOfWind_StopLifeDeck:
@@ -2742,7 +2742,7 @@ AIDecide_GustOfWind_StopLifeDeck:
 .dark_venusaur_arena
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
 	ret nc ; Horrid Pollen is unusable
@@ -2909,7 +2909,7 @@ PowerfulPokemonDeckAIEvaluateBasicCards:
 
 .check_arena
 	xor a ; PLAY_AREA_ARENA, FIRST_ATTACK_OR_PKMN_POWER
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr nc, .discourage
@@ -3080,7 +3080,7 @@ AIDecide_Switch_PowerfulPokemonDeck:
 	pop de
 	jr nc, .next
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	push de
@@ -3102,7 +3102,7 @@ AIDecide_Switch_PowerfulPokemonDeck:
 	jr c, .switch
 .switch_if_defending_can_ko
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	ret nc
 .switch
@@ -3273,14 +3273,14 @@ AIDecide_Switch_ScorcherDeck:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .else
 	; ...and it can KO the Defending Pokémon...
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfAnyAttackKnocksOutDefendingCard
 	jr nc, .else
 	; ...and that attack is usable...
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .else
 	; ...then use Switch and switch to Magmar
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	scf
 	ret
 .else
@@ -3452,7 +3452,7 @@ Func_49a73:
 	push af
 	ld [hl], b ; remaining HP
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfAnyAttackCanKO
 	jr nc, .cannot_be_knocked_out
 	farcall CheckIfSelectedAttackIsUnusable
@@ -3524,7 +3524,7 @@ Func_49af6:
 	push af
 	ld [hl], b
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfAnyAttackCanKO
 	jr nc, .cannot_be_knocked_out
 	farcall CheckIfSelectedAttackIsUnusable
@@ -3585,7 +3585,7 @@ AIDecide_GustOfWind_TsunamiStarterDeck:
 .dark_blastoise_arena
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
 	ret nc ; Hydrocannon not usable
@@ -3680,7 +3680,7 @@ AIDecide_GustOfWind_SmashToMincemeatDeck:
 
 .dark_machamp_arena
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	inc a ; SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
@@ -3960,12 +3960,12 @@ InitAITurnVars:
 .done
 	ret
 
-; load selected attack from Pokémon in hTempPlayAreaLocation_ff9d,
+; load selected attack from Pokémon in hTempPlayAreaLocation,
 ; gets an energy card to discard and subsequently
 ; check if there is enough energy to execute the selected attack
 ; after removing that attached energy card.
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = location of Pokémon card
+;	[hTempPlayAreaLocation] = location of Pokémon card
 ;	[wSelectedAttack]            = selected attack to examine
 ; output:
 ;	b = basic energy still needed
@@ -3975,7 +3975,7 @@ InitAITurnVars:
 ;	       OR if it's a Pokémon Power
 ;	       OR if not enough energy for attack
 CheckEnergyNeededForAttackAfterDiscard:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
@@ -3996,7 +3996,7 @@ CheckEnergyNeededForAttackAfterDiscard:
 	ret
 
 .is_attack
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	farcall AIPickEnergyCardToDiscard
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
@@ -4041,7 +4041,7 @@ CheckEnergyNeededForAttackAfterDiscard:
 	dec [hl]
 
 .decremented_energy
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	bank1call HandleEnergyBurn
 	xor a
@@ -4109,16 +4109,16 @@ CheckEnergyNeededForAttackAfterDiscard:
 	ret
 
 ; return carry if Pokémon at play area location
-; in hTempPlayAreaLocation_ff9d does not have
+; in hTempPlayAreaLocation does not have
 ; energy required for the attack index in wSelectedAttack
 ; or has exactly the same amount of energy needed
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = play area location
+;	[hTempPlayAreaLocation] = play area location
 ;	[wSelectedAttack]         = attack index to check
 ; output:
 ;	a = number of extra energy cards attached
 CheckIfNoSurplusEnergyForAttack:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
@@ -4137,7 +4137,7 @@ CheckIfNoSurplusEnergyForAttack:
 	ret
 
 .is_attack
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	bank1call HandleEnergyBurn
@@ -4251,7 +4251,7 @@ FindCardIDInBenchWithEnoughEnergy:
 	jr nz, .loop
 	; same card ID found in bench
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetHighestAttackIndex
 	ld [wSelectedAttack], a
 	push bc
@@ -4299,7 +4299,7 @@ CheckCardIDInPlayAreaThatCanUseAttacks:
 	jr nz, .loop_play_area
 	; is same as input card iD
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetHighestAttackIndex
 	ld [wSelectedAttack], a
 	push bc
@@ -4467,7 +4467,7 @@ AIDecide_ComputerSearch_EverybodysFriendDeck:
 
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	pop bc
 	ld a, b
@@ -4545,11 +4545,11 @@ AIDecide_ComputerSearch_EverybodysFriendDeck:
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAIComputerSearchFirstDiscardDeckIndex]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 ; success
 	add sp, $2 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -4615,14 +4615,14 @@ AIDecide_ScoopUp_EverybodysFriendDeck:
 	call FindCardIDInBenchWithEnoughEnergy
 	ret nc
 ; ready for Do the Wave
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
 
 .found_low_hp
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e ; PLAY_AREA_*
 	or a
 	jr nz, .set_carry
@@ -4630,7 +4630,7 @@ AIDecide_ScoopUp_EverybodysFriendDeck:
 	push de
 	farcall AIDecideBenchPokemonToSwitchTo
 	pop de
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e
 	jr nc, .set_carry
 
@@ -4724,11 +4724,11 @@ AIDecide_ItemFinder_EverybodysFriendDeck:
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAIItemFinderFirstDiscardDeckIndex]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 ; success
 	add sp, $2 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -4753,7 +4753,7 @@ LookForCardIDInHandList_IgnoreTrainerCardToPlay:
 	cp [hl]
 	pop hl
 	jr z, .loop_hand_cards
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	push bc
 	call GetCardIDFromDeckIndex
 	pop bc
@@ -4764,7 +4764,7 @@ LookForCardIDInHandList_IgnoreTrainerCardToPlay:
 	cp c
 	jr nz, .loop_hand_cards
 ; found
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	scf
 	ret
 
@@ -4868,19 +4868,19 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 .power_of_darkness
 	ldtx de, PowerOfDarknessCheckText
 	farcall Serial_TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	ld e, PLAY_AREA_ARENA
 	call Func_4a3dc
 	call SwapTurn
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ret
 
 .sneak_attack
 	xor a
 	ld d, 10
 	farcall AIFindPlayAreaPkmnWithMinimumLeastRemainingHP
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, 10
 	cp d
 	ret z ; will ko
@@ -4896,7 +4896,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	srl a
 	ret c ; odd number
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 .summon_minions
@@ -4919,10 +4919,10 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 
 .reel_in
 	ld a, $ff
-	ldh [hTemp_ffa0], a
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [hPlayAreaEffectTarget], a
-	ldh [$ffa5], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + 2], a
+	ldh [hDuelActionArgs + 3], a
 	ld a, [wOpponentDeckID]
 	cp BAD_GUYS_DECK_ID
 	jr z, .BadGuysDeck
@@ -4968,7 +4968,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 .TryAddCardToList:
 	ld b, a
 	ld c, 0
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs
 .asm_4a3bf
 	ld a, [hl]
 	cp $ff
@@ -5258,7 +5258,7 @@ AIDecide_PokemonTrader_RonaldsPsychicDeck:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -5355,7 +5355,7 @@ AIDecide_PokemonTrader_ColorlessEnergyDeck:
 	ld de, SPEAROW_LV13
 	ret nc
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -5363,7 +5363,7 @@ AIDecide_PokemonTrader_ColorlessEnergyDeck:
 ; find trade card first
 	call FindUnusableEvolutionCardInHand
 	ret nc
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find target
 	ld bc, DRAGONAIR
@@ -5437,8 +5437,8 @@ AIDecide_PokemonTrader_ColorlessEnergyDeck:
 	ret nc
 
 .found_target_evo
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
 	scf
 	ret
 
@@ -5451,8 +5451,8 @@ AIDecide_ComputerSearch_ImmortalPokemonDeck:
 
 ; get 2 of >= 3 psychic energy cards in hand to discard
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 	bank1call CreateEnergyCardListFromHand
 	ld hl, wDuelTempList
 .loop_energy_cards
@@ -5464,14 +5464,14 @@ AIDecide_ComputerSearch_ImmortalPokemonDeck:
 	pop hl
 	cp16 PSYCHIC_ENERGY
 	jr nz, .next ; dce
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ld a, [hl]
 	jr z, .next_store_first
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	jr .target_abra
 .next_store_first
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 .next
 	inc hl
 	jr .loop_energy_cards
@@ -5620,7 +5620,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_alakazam
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5639,7 +5639,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_kadabra_1
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5670,7 +5670,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_mr_mime_lv20
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5695,7 +5695,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_mr_mime_lv28
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5726,7 +5726,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_kadabra_2
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5760,7 +5760,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_chansey
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5788,7 +5788,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_scyther
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5816,7 +5816,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	jr nc, .target_tentacool
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, TENTACOOL
 	farcall LookForCardIDInHandList
 	ret c
@@ -5847,7 +5847,7 @@ AIDecide_PokemonTrader_ImmortalPokemonDeck:
 	farcall IsCardIDInDeckAndNotInHandOrPlayArea
 	ret nc
 ; find trade card
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, KADABRA_LV39
 	farcall LookForCardIDInHandList
 	ret c
@@ -5859,7 +5859,7 @@ AIDecide_PokemonCenter_ImmortalPokemonDeck:
 	farcall CheckIfArenaCardCanRetreat
 	jr c, .tally
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .tally
 	call SwapTurn
@@ -5913,15 +5913,15 @@ AIDecide_PokemonCenter_ImmortalPokemonDeck:
 	ret
 
 ; return carry and output three selected cards to
-; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
+; {a, wAITrainerCardArgs[1, 2]}
 ; bug: may illegally allow any card
 ; fan-favourite cheating bug, too fitting for "immortal" deck by "magician"
 AIDecide_NightlyGarbageRun_ImmortalPokemonDeck:
 ; init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MR_MIME_LV20
@@ -5962,9 +5962,9 @@ AIDecide_NightlyGarbageRun_ImmortalPokemonDeck:
 
 ; re-init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
@@ -5995,12 +5995,12 @@ AIDecide_NightlyGarbageRun_ImmortalPokemonDeck:
 ; shift {#1, #2, #3} to {a, #1, #2}
 ; no carry if selected no cards
 .shift
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	cp $ff
 	jr z, .no_carry
@@ -6016,7 +6016,7 @@ AIDecide_NightlyGarbageRun_ImmortalPokemonDeck:
 .store_card
 	ld b, a
 	push hl
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 	ld a, $ff
 	cp [hl]
 	jr z, .store
@@ -6277,7 +6277,7 @@ AIDecide_PokemonTrader_TorrentialFloodDeck:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6287,7 +6287,7 @@ AIDecide_Switch_TorrentialFloodDeck:
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .else
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
 	jr nc, .switch
@@ -6363,9 +6363,9 @@ AIDecide_ComputerSearch_TorrentialFloodDeck:
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld de, COMPUTER_SEARCH
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
@@ -6407,16 +6407,16 @@ AIDecide_ComputerSearch_TorrentialFloodDeck:
 
 .store_discard_cards
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ret
 
 .latter_discard_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	add sp, $02 ; exit
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -6577,7 +6577,7 @@ AIDecide_PokemonTrader_TrainerImprisonDeck:
 	jr c, .asm_4b022
 	ret
 .asm_4b022
-	ld [wd097], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6610,7 +6610,7 @@ AIChoosePlayerBenchPkmnWithNotEnoughEnergiesOrHighRetreatCost:
 	call SwapTurn
 .loop_bench
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	push de
 	call .CheckIfNotEnoughEnergiesToAttack
 	jr c, .chose_target
@@ -6939,7 +6939,7 @@ AIDecide_PokemonTrader_BlazingFlameDeck:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindDifferentPokemonCardInHand
 	ret
 
@@ -6949,7 +6949,7 @@ AIDecide_Switch_BlazingFlameDeck:
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	ret nc
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	or a
 	jr nz, .switch
@@ -6976,9 +6976,9 @@ AIDecide_EnergyRetrieval_BlazingFlameDeck:
 	ret nc
 
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find discard card
 	call CreateHandCardList
@@ -7077,7 +7077,7 @@ AIDecide_EnergyRetrieval_BlazingFlameDeck:
 
 ; a = PLAY_AREA_* location
 Func_4b3d8:
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	call .CheckEnergyCost
@@ -7110,8 +7110,8 @@ Func_4b3d8:
 AIChooseFollowMeTarget:
 	ld [wd079], a
 
-	; save value of hTempPlayAreaLocation_ff9d in the stack
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	; save value of hTempPlayAreaLocation in the stack
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -7151,7 +7151,7 @@ AIChooseFollowMeTarget:
 	jr nz, .loop_play_area
 	call SwapTurn
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, c
 	or a
 	ret z
@@ -7161,7 +7161,7 @@ AIChooseFollowMeTarget:
 ; input:
 ; - a = PLAY_AREA_* constant
 CheckIfPlayAreaCardNeedsEnergyForAnyAttack:
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	farcall CheckEnergyNeededForAttack
@@ -7344,7 +7344,7 @@ AIDeckSpecificAttackLogic:
 	or a
 	jr z, .standard_score
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 10
@@ -7499,7 +7499,7 @@ AIDeckSpecificAttackLogic:
 	cp 1
 	jp nz, .standard_score
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 12
@@ -7824,7 +7824,7 @@ PickRandomCardOfSpecificTypeFromHand:
 	ld a, [hli]
 	cp $ff
 	ret z ; not found
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	call GetCardIDFromDeckIndex
 	call GetCardType
 	cp TYPE_ENERGY
@@ -7842,7 +7842,7 @@ PickRandomCardOfSpecificTypeFromHand:
 	jr nz, .loop_hand_cards
 	jr .set_carry
 .pkmn_card
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Stage]
 	or a ; cp BASIC
@@ -7857,7 +7857,7 @@ PickRandomCardOfSpecificTypeFromHand:
 	cp AI_SEARCH_2_ONLY_EVOLUTION_PKMN
 	jr nz, .loop_hand_cards
 .set_carry
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	scf
 	ret
 
@@ -7920,7 +7920,7 @@ AIDecide_PokemonTrader_DamageChaosDeck:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call FindLeastUsefulPokemonInHand
 	ret
 
@@ -8090,16 +8090,16 @@ GetHighestDamageFromDefendingPokemon:
 
 .CheckAttack:
 	ld [wSelectedAttack], a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call SwapTurn
 	farcall CheckIfSelectedAttackIsUnusable
 	call SwapTurn
 	pop bc
 	ld a, b
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	jr c, .zero ; is unusable
 	ld a, [wSelectedAttack]
 	farcall EstimateDamage_FromDefendingPokemon
@@ -8175,9 +8175,9 @@ AIDecide_ComputerSearch_SpiritedAwayDeck:
 	jr c, .no_carry
 ; set discard cards
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
@@ -8280,7 +8280,7 @@ AIDecide_Potion_BigThunderDeck:
 
 	; player is on last prize card, will Chansey be KO'd?
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .find_non_chansey_pkmn
 	; Chansey will be KO'd
@@ -8416,7 +8416,7 @@ PickRandomCardOfSpecificTypeFromDeck:
 	ld a, [hli]
 	cp $ff
 	ret z ; not found
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	call GetCardIDFromDeckIndex
 	call GetCardType
 	cp TYPE_ENERGY
@@ -8434,7 +8434,7 @@ PickRandomCardOfSpecificTypeFromDeck:
 	jr nz, .loop_deck_cards
 	jr .set_carry
 .pkmn_card
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Stage]
 	or a ; cp BASIC
@@ -8448,7 +8448,7 @@ PickRandomCardOfSpecificTypeFromDeck:
 	cp AI_SEARCH_2_ONLY_EVOLUTION_PKMN
 	jr nz, .loop_deck_cards
 .set_carry
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	scf
 	ret
 
@@ -8474,7 +8474,7 @@ CanUseEvolutionaryLight:
 	jr nz, .next_pokemon ; not Dark Dragonair
 	push bc
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, [wd084]
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
@@ -8630,7 +8630,7 @@ CheckUseZapdosThunderboltInTenThousandVoltsDeck:
 	cp16 ZAPDOS_LV64
 	jr nz, .no_carry
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	ret ; carry set if can KO
 
@@ -8830,7 +8830,7 @@ GetHighestAttackIndex:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ret
 
-; for Pokémon at [hTempPlayAreaLocation_ff9d] and its [wSelectedAttack],
+; for Pokémon at [hTempPlayAreaLocation] and its [wSelectedAttack],
 ; return carry if
 ;      no surplus energy
 ;   OR energy boost attack but only 1 or 2 extra energy attached

@@ -444,7 +444,8 @@ wPlayAreaScreenLoaded:: ; cbcc
 wPlayAreaSelectAction:: ; cbcd
 	ds $1
 
-; low byte of the address of the next slot in the hTempRetreatCostCards array to be used
+; low byte of the address of the next slot in
+; the hDuelActionArgs[2-] array to be used
 wTempRetreatCostCardsPos:: ; cbce
 	ds $1
 
@@ -1739,8 +1740,7 @@ wAIRetreatedThisTurn::  ; d07d
 ; while handling Energy Trans logic.
 wAIVenusaurLv67DeckIndex::  ; d07e
 	ds $1
-
-wd07f:: ; d07f
+wAIVenusaurLv67PlayAreaLocation:: ; d07f
 	ds $1
 
 wAIRetreatConsiderStatus:: ; d080
@@ -1805,22 +1805,8 @@ wAITrainerCardPhase:: ; d095
 
 ; parameters output by AI Trainer card logic routines
 ; (e.g. what Pokemon in Play Area to use card on, etc)
-wAITrainerCardParameter:: ; d096
-	ds $1
-
-wTempAIMultiTargetCardDeckIndex1:: ; d097
-wd097:: ; d097
-	ds $1
-wTempAIMultiTargetCardDeckIndex2:: ; d098
-	ds $1
-wTempAIMultiTargetCardDeckIndex3:: ; d099
-	ds $1
-wTempAIMultiTargetCardDeckIndex4:: ; d09a
-	ds $1
-wTempAIMultiTargetCardDeckIndex5:: ; d09b
-	ds $1
-wTempAIMultiTargetCardDeckIndex6:: ; d09c
-	ds $1
+wAITrainerCardArgs:: ; d096
+	ds AI_TRAINER_ARGS_BUFFER_SIZE
 
 ; used to store previous/current flags of AI actions
 ; see AI_FLAG_* constants

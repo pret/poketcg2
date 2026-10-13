@@ -56,7 +56,7 @@ AIProcessHandTrainerCards:
 	push hl
 	push de
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 
 ; if Headache effects prevent playing card
 ; move on to the next item in list.
@@ -83,13 +83,13 @@ AIProcessHandTrainerCards:
 ; this card should be played.
 	inc hl
 	inc hl
-	ld [wAITrainerCardParameter], a
+	ld [wAITrainerCardArgs + 0], a
 
 ; show Play Trainer Card screen
 	push de
 	push hl
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_PLAY_TRAINER
 	farcall AIMakeDecision
 	pop hl
@@ -201,16 +201,16 @@ CalculateBDividedByA_Bank08:
 ; makes AI use Potion card.
 AIPlay_Potion:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld e, a
 	call GetCardDamageAndMaxHP
 	cp 20
 	jr c, .play_card
 	ld a, 20
 .play_card
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -408,19 +408,19 @@ AIDecide_Potion_Phase11:
 ; makes AI use Super Potion card.
 AIPlay_SuperPotion:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 1], a
 	farcall AIPickEnergyCardToDiscard
-	ldh [hTemp_ffa0], a
-	ld a, [wAITrainerCardParameter]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 0]
 	ld e, a
 	call GetCardDamageAndMaxHP
 	cp 40
 	jr c, .play_card
 	ld a, 40
 .play_card
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -604,7 +604,7 @@ AIDecide_SuperPotion_Phase11:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr c, .second_attack_2
 	farcall CheckEnergyNeededForAttackAfterDiscard
@@ -616,7 +616,7 @@ AIDecide_SuperPotion_Phase11:
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr c, .false_2
 	farcall CheckEnergyNeededForAttackAfterDiscard
@@ -644,10 +644,10 @@ AIDecide_SuperPotion_Phase13:
 
 AIPlay_Defender:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	; AI always attaches a Defender card to the Active Pokémon.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -930,10 +930,10 @@ AIPlay_PlusPower:
 	ld a, [wCurrentAIFlags]
 	or AI_FLAG_USED_PLUSPOWER
 	ld [wCurrentAIFlags], a
-	ld a, [wAITrainerCardParameter]
+	ld a, [wAITrainerCardArgs + 0]
 	ld [wAIPlusPowerAttack], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1083,7 +1083,7 @@ AIDecide_PlusPower_Phase14:
 	jr c, .no_carry
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	; if is any of the following decks,
 	; don't use except for Quick Attack deck
@@ -1199,9 +1199,9 @@ AIPlay_Switch:
 	or AI_FLAG_USED_SWITCH
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	xor a
@@ -1217,7 +1217,7 @@ AIDecide_Switch_Phase09:
 ; can't play energy card from hand to retreat
 ; compare number of energy cards attached to retreat cost
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	push af
 	xor a ; PLAY_AREA_ARENA
@@ -1245,7 +1245,7 @@ AIDecide_Switch_Phase09:
 
 	; use Switch if retreat cost is 3 or more
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	cp 3
 	jr nc, .switch
@@ -1325,7 +1325,7 @@ AIDecide_Switch_Phase16:
 	and POISONED
 	jr z, .not_poisoned
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	or a
 	ret z
@@ -1339,7 +1339,7 @@ AIDecide_Switch_Phase16:
 
 	; if defending Pokémon can KO, use Switch
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr c, .switch
 
@@ -1362,7 +1362,7 @@ AIDecide_Switch_Phase16:
 
 	; if retreat cost is 2 or more, use Switch
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
 	jr nc, .switch
@@ -1463,9 +1463,9 @@ AIPlay_GustOfWind:
 	or AI_FLAG_USED_GUST_OF_WIND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1519,7 +1519,7 @@ AIDecide_GustOfWind:
 	jp z, .PsychicBattleDeck
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call .CheckIfArenaCardCanPotentiallyDamageDefendingCard
 	jr c, .check_bench_energy ; Arena card cannot damage
 
@@ -1750,7 +1750,7 @@ FindBenchCardThatCanBeKnockedOut:
 	ld [hl], b ; temporarily replace Arena card HP
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfAnyAttackCanKO
 	jr nc, .next_bench_card
 	farcall CheckIfSelectedAttackIsUnusable
@@ -1864,7 +1864,7 @@ CheckIfCanDamageBenchedCard:
 
 AIPlay_Bill:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1878,11 +1878,11 @@ AIDecide_Bill:
 
 AIPlay_EnergyRemoval:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -1940,12 +1940,12 @@ AIDecide_EnergyRemoval:
 
 .pick_energy
 ; a play area card was picked to remove energy
-; store the picked energy card to remove in wTempAIMultiTargetCardDeckIndex1
+; store the picked energy card to remove in wAITrainerCardArgs[1]
 ; and set carry
 	ld a, e
 	push af
 	farcall PickAttachedEnergyCardToRemove
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	pop af
 	call SwapTurn
 	scf
@@ -2007,7 +2007,7 @@ AIDecide_EnergyRemoval:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr nc, .enough_energy
 	pop de
@@ -2016,7 +2016,7 @@ AIDecide_EnergyRemoval:
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr nc, .check_surplus
 	pop de
@@ -2045,7 +2045,7 @@ AIDecide_EnergyRemoval:
 .FindHighestDamagingAttack:
 	push de
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	farcall EstimateDamage_VersusDefendingCard
@@ -2069,7 +2069,7 @@ AIDecide_EnergyRemoval:
 .second_attack
 	push de
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	ld a, SECOND_ATTACK
 	farcall EstimateDamage_VersusDefendingCard
@@ -2122,7 +2122,7 @@ AIDecide_EnergyRemoval:
 	jr .asm_20d80
 .dce_found
 	; found, target it
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, c
 	scf
 	ret
@@ -2163,7 +2163,7 @@ AIDecide_EnergyRemoval:
 	xor a ; PLAY_AREA_ARENA
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -2213,12 +2213,12 @@ AIDecide_EnergyRemoval:
 	xor a ; PLAY_AREA_ARENA
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
 .asm_20e36
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, b
 	scf
 	ret
@@ -2242,7 +2242,7 @@ AIDecide_EnergyRemoval:
 
 	; yes, check its damage output
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	; a = FIRST_ATTACK_OR_PKMN_POWER
 	call .Func_20e72
 	jr c, .asm_20e61
@@ -2255,7 +2255,7 @@ AIDecide_EnergyRemoval:
 	xor a ; PLAY_AREA_ARENA
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -2306,7 +2306,7 @@ AIDecide_EnergyRemoval:
 	; has Dark Vaporeon or Dark Starmie as Arena Pokémon
 	; if its second attack is usable already, exit
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
@@ -2317,7 +2317,7 @@ AIDecide_EnergyRemoval:
 	xor a ; PLAY_AREA_ARENA
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -2343,7 +2343,7 @@ AIDecide_EnergyRemoval:
 	xor a
 	farcall PickAttachedEnergyCardToRemove
 	call SwapTurn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -2354,19 +2354,19 @@ AIDecide_EnergyRemoval:
 
 AIPlay_SuperEnergyRemoval:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hTempRetreatCostCards + 1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex4]
-	ldh [hTempRetreatCostCards + 2], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 2], a
+	ld a, [wAITrainerCardArgs + 3]
+	ldh [hDuelActionArgs + 3], a
+	ld a, [wAITrainerCardArgs + 4]
+	ldh [hDuelActionArgs + 4], a
 	ld a, $ff
-	ldh [hTempRetreatCostCards + 3], a
+	ldh [hDuelActionArgs + 5], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -2454,19 +2454,19 @@ AIDecide_SuperEnergyRemoval:
 	or a
 	jr nz, .check_bench_damage
 
-; store the picked energy card to remove in wTempAIMultiTargetCardDeckIndex1
+; store the picked energy card to remove in wAITrainerCardArgs[1]
 ; and set carry
 .pick_energy
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	farcall PickTwoAttachedEnergyCards
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex4], a
+	ld [wAITrainerCardArgs + 4], a
 	call SwapTurn
 	ld a, [wTempAITargetPokemonCardDeckIndex]
 	push af
 	farcall AIPickEnergyCardToDiscard
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	pop af
 	scf
 	ret
@@ -2541,7 +2541,7 @@ AIDecide_SuperEnergyRemoval:
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr nc, .enough_energy
 	pop de
@@ -2550,7 +2550,7 @@ AIDecide_SuperEnergyRemoval:
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckEnergyNeededForAttack
 	jr nc, .check_surplus
 	pop de
@@ -2582,7 +2582,7 @@ AIDecide_SuperEnergyRemoval:
 .FindHighestDamagingAttack:
 	push de
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	farcall EstimateDamage_VersusDefendingCard
@@ -2606,7 +2606,7 @@ AIDecide_SuperEnergyRemoval:
 .second_attack
 	push de
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	ld a, SECOND_ATTACK
 	farcall EstimateDamage_VersusDefendingCard
@@ -2629,20 +2629,20 @@ AIDecide_SuperEnergyRemoval:
 
 AIPlay_PokemonBreeder:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, [wcd15]
 	cp $ff
 	ret z
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld [wTempAIPokemonCard], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -2809,7 +2809,7 @@ AIDecide_PokemonBreeder:
 	jr nz, .loop_score_1
 
 ; store the deck index of the stage 2 card
-; that has been decided in wTempAIMultiTargetCardDeckIndex1,
+; that has been decided in wAITrainerCardArgs[1],
 ; return the Play Area location of card
 ; to evolve in a and return carry
 	ld a, [wd083]
@@ -2817,7 +2817,7 @@ AIDecide_PokemonBreeder:
 	ld hl, wTempAITargetPokemonCardDeckIndex
 	add hl, de
 	ld a, [hl]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd083]
 	scf
 	ret
@@ -2922,14 +2922,14 @@ AIDecide_PokemonBreeder:
 
 ; a card to evolve was found
 ; store the deck index of the stage 2 card
-; that has been decided in wTempAIMultiTargetCardDeckIndex1,
+; that has been decided in wAITrainerCardArgs[1],
 ; return the Play Area location of card
 ; to evolve in a and return carry
 	ld e, a
 	ld hl, wTempAITargetPokemonCardDeckIndex
 	add hl, de
 	ld a, [hl]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd083]
 	scf
 	ret
@@ -2948,7 +2948,7 @@ AIDecide_PokemonBreeder:
 	ret nc ; no Charizard
 .found_charizard
 	; found, only evolve Charmanders in Bench
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld de, CHARMANDER_LV10
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -2985,7 +2985,7 @@ AIDecide_PokemonBreeder:
 	ccf
 	ret nc
 .asm_212a4
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3009,7 +3009,7 @@ AIDecide_PokemonBreeder:
 	farcall LookForCardIDInHandList
 	ret nc
 	; yes, play it
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3031,7 +3031,7 @@ AIDecide_PokemonBreeder:
 	farcall LookForCardIDInHandList
 	ret nc
 	; yes, then evolve Gastly into Gengar
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3055,7 +3055,7 @@ AIDecide_PokemonBreeder:
 	farcall LookForCardIDInHandList
 	ret nc
 	; yes, play it
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3079,7 +3079,7 @@ AIDecide_PokemonBreeder:
 	farcall LookForCardIDInHandList
 	ret nc
 	; yes, play it
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3096,7 +3096,7 @@ AIDecide_PokemonBreeder:
 	farcall LookForCardIDInHandList
 	ret nc
 	; yes, play it
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -3190,7 +3190,7 @@ AIPlay_ProfessorOak:
 	or AI_FLAG_USED_PROFESSOR_OAK | AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -3302,7 +3302,7 @@ AIDecide_ProfessorOak:
 	ld a, [wAIProfessorOakScore]
 	add 10
 	ld [wAIProfessorOakScore], a
-	
+
 ; loops through hand cards and encourages
 ; if it finds any Basic Pokémon cards
 	call CreateHandCardList
@@ -3652,17 +3652,17 @@ AIPlay_EnergyRetrieval:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 2], a
 	cp $ff
 	jr z, .asm_21667
 	ld a, $ff
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + 3], a
 .asm_21667
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -3768,9 +3768,9 @@ AIDecide_EnergyRetrieval:
 
 ; some basic energy cards were found in Discard Pile
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -3816,7 +3816,7 @@ AIDecide_EnergyRetrieval:
 	pop hl
 	jr nc, .loop_energy_cards_1
 
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .second_energy_1
 
@@ -3825,12 +3825,12 @@ AIDecide_EnergyRetrieval:
 
 ; first energy card found
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call RemoveCardFromList
 	jr .next_play_area
 .second_energy_1
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	jr .set_carry
 
 .next_play_area
@@ -3847,22 +3847,22 @@ AIDecide_EnergyRetrieval:
 	cp $ff
 	jr z, .check_chosen
 	ld b, a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .second_energy_2
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call RemoveCardFromList
 	jr .loop_energy_cards_2
 
 .second_energy_2
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	jr .set_carry
 
 ; will set carry if at least one has been chosen
 .check_chosen
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .set_carry
 .no_carry
@@ -3892,9 +3892,9 @@ AIDecide_EnergyRetrieval:
 	jr c, .no_carry
 	; yes, choose top 2 cards
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 	; choose a card to discard from hand
 
@@ -3933,9 +3933,9 @@ AIDecide_EnergyRetrieval:
 	; yes, choose top 2 cards
 	; but if only 1 is found, then exit
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	cp $ff
 	jr z, .no_carry
 
@@ -4326,27 +4326,27 @@ AIPlay_SuperEnergyRetrieval:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards + 0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hTempRetreatCostCards + 1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 2], a
+	ld a, [wAITrainerCardArgs + 3]
+	ldh [hDuelActionArgs + 3], a
 	cp $ff
 	jr z, .asm_21ad8
-	ld a, [wTempAIMultiTargetCardDeckIndex4]
-	ldh [hTempRetreatCostCards + 2], a
+	ld a, [wAITrainerCardArgs + 4]
+	ldh [hDuelActionArgs + 4], a
 	cp $ff
 	jr z, .asm_21ad8
-	ld a, [wTempAIMultiTargetCardDeckIndex5]
-	ldh [hTempRetreatCostCards + 3], a
+	ld a, [wAITrainerCardArgs + 5]
+	ldh [hDuelActionArgs + 5], a
 	cp $ff
 	jr z, .asm_21ad8
 	ld a, $ff
-	ldh [hTempRetreatCostCards + 4], a
+	ldh [hDuelActionArgs + 6], a
 .asm_21ad8
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -4382,11 +4382,11 @@ AIDecide_SuperEnergyRetrieval:
 
 ; some basic energy cards were found in Discard Pile
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
-	ld [wTempAIMultiTargetCardDeckIndex4], a
-	ld [wTempAIMultiTargetCardDeckIndex5], a
-	ld [wTempAIMultiTargetCardDeckIndex6], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
+	ld [wAITrainerCardArgs + 4], a
+	ld [wAITrainerCardArgs + 5], a
+	ld [wAITrainerCardArgs + 6], a
 
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -4432,32 +4432,32 @@ AIDecide_SuperEnergyRetrieval:
 	jr nc, .loop_energy_cards_1
 
 ; first energy
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld a, [wAITrainerCardArgs + 2]
 	cp $ff
 	jr nz, .second_energy_1
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	call RemoveCardFromList
 	jr .next_play_area
 .second_energy_1
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld a, [wAITrainerCardArgs + 3]
 	cp $ff
 	jr nz, .third_energy_1
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 	call RemoveCardFromList
 	jr .next_play_area
 .third_energy_1
-	ld a, [wTempAIMultiTargetCardDeckIndex4]
+	ld a, [wAITrainerCardArgs + 4]
 	cp $ff
 	jr nz, .fourth_energy_1
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex4], a
+	ld [wAITrainerCardArgs + 4], a
 	call RemoveCardFromList
 	jr .next_play_area
 .fourth_energy_1
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex5], a
+	ld [wAITrainerCardArgs + 5], a
 	jr .set_carry
 
 .next_play_area
@@ -4474,42 +4474,42 @@ AIDecide_SuperEnergyRetrieval:
 	cp $ff
 	jr z, .check_chosen
 	ld b, a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld a, [wAITrainerCardArgs + 2]
 	cp $ff
 	jr nz, .second_energy_2
 	ld a, b
 
 ; first energy
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	call RemoveCardFromList
 	jr .loop_energy_cards_2
 
 .second_energy_2
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
+	ld a, [wAITrainerCardArgs + 3]
 	cp $ff
 	jr nz, .third_energy_2
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 3], a
 	call RemoveCardFromList
 	jr .loop_energy_cards_2
 
 .third_energy_2
-	ld a, [wTempAIMultiTargetCardDeckIndex4]
+	ld a, [wAITrainerCardArgs + 4]
 	cp $ff
 	jr nz, .fourth_energy_2
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex4], a
+	ld [wAITrainerCardArgs + 4], a
 	call RemoveCardFromList
 	jr .loop_energy_cards_2
 
 .fourth_energy_2
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex5], a
+	ld [wAITrainerCardArgs + 5], a
 	jr .set_carry
 
 ; will set carry if at least one has been chosen
 .check_chosen
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
+	ld a, [wAITrainerCardArgs + 2]
 	cp $ff
 	jr nz, .set_carry
 
@@ -4518,7 +4518,7 @@ AIDecide_SuperEnergyRetrieval:
 	ret
 .set_carry
 	ld a, [wd084]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wd082]
 	scf
 	ret
@@ -4564,7 +4564,7 @@ AIDecide_SuperEnergyRetrieval:
 	ld b, a
 	ld c, 0 ; how many cards chosen
 	ld de, wDuelTempList
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 .loop_choose_discard_energies
 	ld a, [de]
 	inc de
@@ -4599,7 +4599,7 @@ FindAndRemoveCardFromList:
 
 AIPlay_PokemonCenter:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4693,7 +4693,7 @@ AIDecide_PokemonCenter:
 
 AIPlay_ImposterProfessorOak:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -4749,9 +4749,9 @@ AIDecide_ImposterProfessorOak:
 
 AIPlay_EnergySearch:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5015,19 +5015,19 @@ UnreferencedCheckUsefulGrassEnergy:
 
 AIPlay_Pokedex:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ldh [hTempRetreatCostCards + 0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex4]
-	ldh [hTempRetreatCostCards + 1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex5]
-	ldh [hTempRetreatCostCards + 2], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ldh [hDuelActionArgs + 2], a
+	ld a, [wAITrainerCardArgs + 4]
+	ldh [hDuelActionArgs + 3], a
+	ld a, [wAITrainerCardArgs + 5]
+	ldh [hDuelActionArgs + 4], a
 	ld a, $ff
-	ldh [hTempRetreatCostCards + 3], a
+	ldh [hDuelActionArgs + 5], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5094,7 +5094,7 @@ AIDecide_Pokedex:
 
 ; the AI always orders the cards in the following way:
 ; Pokémon -> Trainer -> Energy
-	ld de, wTempAIMultiTargetCardDeckIndex1
+	ld de, wAITrainerCardArgs + 1
 	ld hl, wd084
 	ld c, $ff
 	ld b, $00
@@ -5173,7 +5173,7 @@ AIDecide_Pokedex:
 
 AIPlay_FullHeal:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5323,9 +5323,9 @@ AIDecide_FullHeal:
 
 AIPlay_MrFuji:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5451,18 +5451,18 @@ AIDecide_MrFuji:
 
 AIPlay_ScoopUp:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
 
 AIDecide_ScoopUp:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 ; if only one Pokemon in Play Area, skip.
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -5510,7 +5510,7 @@ AIDecide_ScoopUp:
 	jr z, .is_psn_or_cannot_retreat
 	; ...and has enough energies to retreat...
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	ld b, a
 	xor a
@@ -5550,11 +5550,11 @@ AIDecide_ScoopUp:
 	cp 7
 	jr c, .no_carry
 
-; store Pokemon to switch to in wTempAIMultiTargetCardDeckIndex1 and set carry.
+; store Pokemon to switch to in wAITrainerCardArgs[1] and set carry.
 .decide_switch
 	farcall AIDecideBenchPokemonToSwitchTo
 	jr c, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
@@ -5613,7 +5613,7 @@ AIDecide_ScoopUp:
 	; no energies, use Scoop Up on it
 	push af
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	pop af
 	scf
 	ret
@@ -5684,7 +5684,7 @@ AIDecide_ScoopUp:
 	ret nc
 	; use Scoop Up on it
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e
 	scf
 	ret
@@ -5702,11 +5702,11 @@ AIPlay_Maintenance:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5731,7 +5731,7 @@ AIDecide_Maintenance:
 
 ; store the first duplicate card and remove it from the list.
 ; run duplicate check again.
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld hl, wDuelTempList
 	call FindAndRemoveCardFromList
 ; if duplicates are not found, return no carry.
@@ -5739,7 +5739,7 @@ AIDecide_Maintenance:
 	jp c, .no_carry
 
 ; store the second duplicate card and return carry.
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	scf
 	ret
 
@@ -5749,16 +5749,16 @@ AIDecide_Maintenance:
 
 AIPlay_Recycle:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
 	jr nc, .asm_222ae
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	jr .asm_222b2
 .asm_222ae
 	ld a, $ff
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 .asm_222b2
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -5843,7 +5843,7 @@ AIPlay_Lass:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5886,13 +5886,13 @@ AIPlay_ItemFinder:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 2], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -5956,18 +5956,18 @@ AIDecide_ItemFinder:
 	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
 	jp c, .no_carry
 
-; store the duplicate found in wTempAIMultiTargetCardDeckIndex1 and
+; store the duplicate found in wAITrainerCardArgs[1] and
 ; remove it from the hand list.
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld hl, wDuelTempList
 	call FindAndRemoveCardFromList
 ; find duplicates again, if not found, return no carry.
 	farcall FindDuplicateCards_IgnoreTrainerCardToPlay
 	jp c, .no_carry
 
-; store the duplicate found in wTempAIMultiTargetCardDeckIndex2.
+; store the duplicate found in wAITrainerCardArgs[2].
 ; output the card to be recovered from the Discard Pile.
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -5985,8 +5985,8 @@ AIDecide_ItemFinder:
 	ld [wd082], a
 
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 	ld de, DEFENDER
 	farcall CheckIfHandHasRepeatedCard
 	call c, .AddCardToDiscard
@@ -6040,9 +6040,9 @@ AIDecide_ItemFinder:
 	cp 3
 	jr c, .asm_224a7
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -6073,8 +6073,8 @@ AIDecide_ItemFinder:
 	; one of the Trainer cards listed was found
 	ld [wd082], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 	; try discarding any of the following duplicated cards in hand
 	ld de, PROFESSOR_OAK
 	farcall CheckIfHandHasRepeatedCard
@@ -6141,9 +6141,9 @@ AIDecide_ItemFinder:
 	cp 3
 	jr c, .asm_2258f
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -6166,8 +6166,8 @@ AIDecide_ItemFinder:
 	; one of the Trainer cards listed was found
 	ld [wd082], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 	; try discarding any of the following duplicated cards in hand
 	ld de, SWITCH
 	farcall CheckIfHandHasRepeatedCard
@@ -6205,21 +6205,19 @@ AIDecide_ItemFinder:
 	farcall AIDecide_ItemFinder_EverybodysFriendDeck
 	ret
 
-; adds card index given in a to:
-; - wTempAIMultiTargetCardDeckIndex1 if it's the first discard card;
-; - wTempAIMultiTargetCardDeckIndex2 if it's the second discard card;
-; in the latter case, the rest of the caller routine is skipped
+; appends card index given in a to wAITrainerCardArgs
+; if it's the second discard card, skips the rest of the caller routine
 .AddCardToDiscard:
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .choosing_second_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ret
 .choosing_second_card
 	pop af
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	; skip rest of caller's instructions
 	add sp, $02
 	ld a, [wd082]
@@ -6228,7 +6226,7 @@ AIDecide_ItemFinder:
 
 AIPlay_Imakuni:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6305,7 +6303,7 @@ AIPlay_Gambler:
 	ld [hld], a
 	ld [hl], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 
@@ -6322,7 +6320,7 @@ AIPlay_Gambler:
 
 .no_cheated_rng
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6378,9 +6376,9 @@ AIDecide_Gambler:
 
 AIPlay_Revive:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6460,9 +6458,9 @@ AIDecide_Revive:
 
 AIPlay_PokemonFlute:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6569,7 +6567,7 @@ AIDecide_PokemonFlute:
 
 AIPlay_ClefairyDollOrMysteriousFossil:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -6616,7 +6614,7 @@ AIDecide_ClefairyDollOrMysteriousFossil:
 	ld b, PLAY_AREA_BENCH_1
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret nc
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
@@ -6636,17 +6634,17 @@ AIDecide_ClefairyDollOrMysteriousFossil:
 
 AIPlay_Pokeball:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ldtx de, TrainerCardSuccessCheckText
 	bank1call TossCoin
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .asm_228cd
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 1], a
 	jr .asm_228d1
 .asm_228cd
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .asm_228d1
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -7149,13 +7147,13 @@ AIPlay_ComputerSearch:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempRetreatCostCards], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 2], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -7247,10 +7245,10 @@ AIDecide_ComputerSearch:
 	ld e, a
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22d95
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22d95
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -7268,10 +7266,10 @@ AIDecide_ComputerSearch:
 	ld e, a
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22de9
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22df6
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -7282,13 +7280,13 @@ AIDecide_ComputerSearch:
 	ld e, NONE
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22e08
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 .asm_22df6
 	ld d, AI_SEARCH_ONLY_PKMN
 	ld e, NONE
 	farcall TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .asm_22e08
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, [wd082]
 	scf
 	ret
@@ -7322,11 +7320,11 @@ AIDecide_ComputerSearch:
 
 AIPlay_PokemonTrader:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, $01
@@ -7416,7 +7414,7 @@ AIDecide_PokemonTrader:
 	farcall FindCardIDInLocation
 	jr nc, .asm_22f17
 .asm_22f0e
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDuplicatePokemonCardsInHand
 	jr c, .asm_22f19
 .asm_22f17
@@ -7460,7 +7458,7 @@ AIDecide_PokemonTrader:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr nc, .asm_22f84
 .asm_22f7b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDuplicatePokemonCardsInHand
 	jr c, .asm_22f86
 .asm_22f84
@@ -7528,7 +7526,7 @@ AIDecide_PokemonTrader:
 	farcall LookForCardIDInDeck_GivenCardIDInHand
 	jr nc, .asm_2303c
 .asm_23033
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDuplicatePokemonCardsInHand
 	jr c, .asm_2303e
 .asm_2303c
@@ -7568,7 +7566,7 @@ AIDecide_PokemonTrader:
 	farcall CheckReelInEvoLineTarget
 	jr nc, .asm_230a3
 .asm_23094
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDuplicatePokemonCardsInHand
 	jr c, .asm_230a5
 	farcall FindUnusableEvolutionCardInHand
@@ -7687,7 +7685,7 @@ AIDecide_PokemonTrader:
 	ld de, DEWGONG_LV42
 	ret nc
 .asm_231cc
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -7706,7 +7704,7 @@ AIDecide_PokemonTrader:
 	ld de, PIKACHU_LV14
 	farcall FindCardIDInLocation
 	ret nc
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	; trade it with a repeated Dark Dragonite
 	; or Dark Dragonair from hand
 	ld de, DARK_DRAGONITE
@@ -7777,7 +7775,7 @@ AIDecide_PokemonTrader:
 	ld de, DARK_JOLTEON
 	ret nc
 .asm_2326c
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -7821,7 +7819,7 @@ AIDecide_PokemonTrader:
 	ld de, PONYTA_LV8
 	ret nc
 .asm_232cf
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -7859,7 +7857,7 @@ AIDecide_PokemonTrader:
 	ld de, SURFING_PIKACHU_ALT_LV13
 	ret nc
 .asm_2331f
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -7916,7 +7914,7 @@ AIDecide_PokemonTrader:
 	ld de, GOLDEEN
 	ret nc
 .asm_23396
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -7946,7 +7944,7 @@ AIDecide_PokemonTrader:
 	ld de, DARK_MACHAMP
 	ret nc
 .asm_233d0
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -8000,7 +7998,7 @@ AIDecide_PokemonTrader:
 	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
 	ret nc
 .asm_2344e
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -8054,11 +8052,11 @@ AIDecide_PokemonTrader:
 
 AIPlay_TheBosssWay:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8221,15 +8219,15 @@ AIDecide_TheBosssWay:
 
 AIPlay_NightlyGarbageRun:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 2]
+	ldh [hDuelActionArgs + 2], a
 	ld a, $ff
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh [hDuelActionArgs + 3], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8270,12 +8268,12 @@ AIDecide_NightlyGarbageRun:
 	ld de, ALAKAZAM_LV42
 	farcall FindCardIDInLocation
 	jr nc, .asm_23684
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, KADABRA_LV39
 	farcall FindCardIDInLocation
 	jr nc, .asm_23684
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, ABRA_LV14
 	farcall FindCardIDInLocation
@@ -8290,9 +8288,9 @@ AIDecide_NightlyGarbageRun:
 	cp 3
 	jr c, .asm_236ab
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MR_MIME_LV20
 	farcall FindCardIDInLocation
@@ -8313,9 +8311,9 @@ AIDecide_NightlyGarbageRun:
 	cp 3
 	jr c, .asm_236d4
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	; additionally if there's a Moltres lv40,
 	; choose it as final target
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -8339,9 +8337,9 @@ AIDecide_NightlyGarbageRun:
 	cp $03
 	jr c, .asm_236fd
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	; additionally if there's a Zapdos lv68,
 	; choose it as final target
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -8375,9 +8373,9 @@ AIDecide_NightlyGarbageRun:
 	ret
 .asm_23722
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, CHARIZARD_LV76
 	farcall FindCardIDInLocation
@@ -8408,12 +8406,12 @@ AIDecide_NightlyGarbageRun:
 	pop hl
 	jr nc, .asm_2376a
 .asm_23776
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	scf
 	ret
@@ -8437,9 +8435,9 @@ AIDecide_NightlyGarbageRun:
 	ret
 .asm_237ac
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, EKANS_LV15
 	farcall FindCardIDInLocation
@@ -8480,21 +8478,21 @@ AIDecide_NightlyGarbageRun:
 	pop hl
 	jr nc, .asm_23810
 .asm_2381c
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	scf
 	ret
 
 .MadPetalsDeck:
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_VILEPLUME
 	farcall FindCardIDInLocation
@@ -8515,14 +8513,14 @@ AIDecide_NightlyGarbageRun:
 	pop hl
 	jr nc, .asm_2385b
 .asm_23867
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ret z
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	scf
 	ret
@@ -8535,9 +8533,9 @@ AIDecide_NightlyGarbageRun:
 	ret nc
 
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, MAGMAR_LV27
 	farcall FindCardIDInLocation
@@ -8554,14 +8552,14 @@ AIDecide_NightlyGarbageRun:
 	pop hl
 	jr nc, .asm_238a7
 .asm_238b3
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ret z
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	scf
 	ret
@@ -8575,9 +8573,9 @@ AIDecide_NightlyGarbageRun:
 	cp $03
 	jr c, .asm_238f0
 	ld a, [wDuelTempList + 0]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 	; additionally if there's a Dark Ninetales,
 	; choose it as final target
 	ld a, CARD_LOCATION_DISCARD_PILE
@@ -8594,9 +8592,9 @@ AIDecide_NightlyGarbageRun:
 
 .SpiritedAwayDeck:
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall CreateBasicEnergyCardListInLocation
 	ld hl, wDuelTempList
@@ -8628,23 +8626,23 @@ AIDecide_NightlyGarbageRun:
 	or a
 	ret
 .asm_23940
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ret z
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	pop af
 	scf
 	ret
 
 .SuddenGrowthDeck:
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DRATINI_LV12
 	farcall FindCardIDInLocation
@@ -8680,14 +8678,14 @@ AIDecide_NightlyGarbageRun:
 	pop hl
 	jr nc, .asm_239ac
 .asm_239b8
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	ret z
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	cp $ff
 	jr z, .asm_239d2
 	pop af
@@ -8708,7 +8706,7 @@ AIDecide_NightlyGarbageRun:
 
 .AddCardToShuffleToDeck:
 	ld b, a
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 	ld a, $ff
 	cp [hl]
 	jr z, .asm_239f2
@@ -8730,11 +8728,11 @@ AIPlay_FossilExcavation:
 	or AI_FLAG_MODIFIED_HAND
 	ld [wCurrentAIFlags], a
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8755,7 +8753,7 @@ AIDecide_FossilExcavation:
 	ld de, MYSTERIOUS_FOSSIL
 	farcall FindCardIDInLocation
 	jr nc, .asm_23a33
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, $01
 	ret
 .asm_23a33
@@ -8764,14 +8762,14 @@ AIDecide_FossilExcavation:
 	ld de, MYSTERIOUS_FOSSIL
 	farcall FindCardIDInLocation
 	ret nc
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret
 
 AIPlay_Sleep:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8817,11 +8815,11 @@ AIDecide_Sleep:
 
 AIPlay_PokemonRecall:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -8873,11 +8871,11 @@ AIDecide_PokemonRecall:
 
 AIPlay_MasterBall:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9237,7 +9235,7 @@ AIDecide_MasterBall:
 
 AIPlay_BillsTeleporter:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9251,9 +9249,9 @@ AIDecide_BillsTeleporter:
 
 AIPlay_MoonStone:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9317,7 +9315,7 @@ AIDecide_MoonStone:
 
 AIPlay_TheRocketsTrap:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9344,7 +9342,7 @@ AIDecide_TheRocketsTrap:
 
 AIPlay_GoopGasAttack:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9368,9 +9366,9 @@ AIDecide_GoopGasAttack:
 
 AIPlay_ImposterOaksRevenge:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9432,7 +9430,7 @@ AIDecide_ImposterOaksRevenge:
 
 AIPlay_Digger:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ret
@@ -9444,13 +9442,13 @@ AIDecide_Digger:
 
 AIPlay_ComputerError:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
-	ld a, [wAITrainerCardParameter]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 0], a
 	call SwapTurn
 	farcall HandleComputerErrorPlayerSelection
 	call SwapTurn
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
 	ld a, $02
@@ -9506,19 +9504,19 @@ AIDecide_ComputerError:
 
 AIPlay_SuperScoopUp:
 	ld a, [wAITrainerCardToPlay]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld de, RHYDON_LV37
 	bank1call TossCoin
-	ldh [hTemp_ffa0], a
-	jr nc, .asm_23fb1
-	ld a, [wAITrainerCardParameter]
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 0], a
+	jr nc, .tails
+	ld a, [wAITrainerCardArgs + 0]
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAITrainerCardArgs + 1]
+	ldh [hDuelActionArgs + 2], a
 	jr .asm_23fb5
-.asm_23fb1
+.tails
 	ld a, $ff
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .asm_23fb5
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	farcall AIMakeDecision
@@ -9535,7 +9533,7 @@ AIDecide_SuperScoopUp:
 	jr c, .no_carry
 	; ...and player's card can KO Arena card...
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .no_carry
 
@@ -9548,7 +9546,7 @@ AIDecide_SuperScoopUp:
 	jr c, .no_carry
 	; valid benched Pokémon, use Super Scoop Up on Arena card
 	ld a, d
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	xor a
 	scf
 	ret

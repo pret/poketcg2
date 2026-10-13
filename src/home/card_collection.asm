@@ -61,9 +61,9 @@ GetCardCountInCollectionAndDecks::
 	push bc
 	call EnableSRAM
 	ld a, e
-	ldh [hTempCardID_ff9b], a
+	ldh [hTempCardID_SortCards], a
 	ld a, d
-	ldh [hTempCardID_ff9b + 1], a
+	ldh [hTempCardID_SortCards + 1], a
 	ld c, $0
 	ld hl, sCardCollection
 	add hl, de
@@ -82,10 +82,10 @@ GetCardCountInCollectionAndDecks::
 	or [hl]
 	dec hl
 	jr z, .deck_done
-	ldh a, [hTempCardID_ff9b]
+	ldh a, [hTempCardID_SortCards]
 	cp [hl]
 	jr nz, .no_match
-	ldh a, [hTempCardID_ff9b + 1]
+	ldh a, [hTempCardID_SortCards + 1]
 	inc hl
 	cp [hl]
 	dec hl

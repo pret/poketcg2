@@ -206,7 +206,7 @@ PlayStatusConditionQueueAnimations::
 PlayAttackAnimationOverAttackingPokemon:
 	ld [wLoadedAttackAnimation], a
 	call ResetAttackAnimationIsPlaying
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld b, a
 	ld c, $0 ; neither WEAKNESS nor RESISTANCE
 	ldh a, [hWhoseTurn]

@@ -613,36 +613,36 @@ LoadCardDataToBuffer2_FromDeckIndex::
 	pop hl
 	ret
 
-; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation_ff9d
-; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex_ff98.
+; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation
+; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex.
 ; return nc if evolution was successful.
 EvolvePokemonCardIfPossible::
 	; first make sure the attempted evolution is viable
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	ld d, a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call CheckIfCanEvolveInto
 	ret c ; return if it's not capable of evolving into the selected Pokemon
 ;	fallthrough
 
-; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation_ff9d
-; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex_ff98.
+; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation
+; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex.
 EvolvePokemonCard::
 ; place the evolved Pokemon card in the play area location of the pre-evolved Pokemon card
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld [wPreEvolutionPokemonCard], a ; save pre-evolved Pokemon card into wPreEvolutionPokemonCard
 	call LoadCardDataToBuffer2_FromDeckIndex
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	ld [hl], a
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call PutHandCardInPlayArea
 	; update the Pokemon's HP with the difference
-	ldh a, [hTempPlayAreaLocation_ff9d] ; derp
+	ldh a, [hTempPlayAreaLocation] ; derp
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -665,7 +665,7 @@ EvolvePokemonCard::
 	or a
 	call z, ClearAllStatusConditions
 	; set the new evolution stage of the card
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_STAGE
 	get_turn_duelist_var
 	ld a, [wLoadedCard1Stage]
@@ -1231,7 +1231,7 @@ GetNonTurnDuelistVariable::
 	ret
 
 ; copies, given a card identified by register hl (card ID):
-; - e into wSelectedAttack and d into hTempCardIndex_ff9f
+; - e into wSelectedAttack and d into hDuelActionCardIndex
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
@@ -1241,14 +1241,14 @@ CopyAttackDataAndDamage_FromCardID::
 	ld a, e
 	ld [wSelectedAttack], a
 	ld a, d
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop de
 	call LoadCardDataToBuffer1_FromCardID
 	pop de
 	jr CopyAttackDataAndDamage
 
 ; copies, given a card identified by register d (0-59 deck index):
-; - e into wSelectedAttack and d into hTempCardIndex_ff9f
+; - e into wSelectedAttack and d into hDuelActionCardIndex
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
@@ -1256,7 +1256,7 @@ CopyAttackDataAndDamage_FromDeckIndex::
 	ld a, e
 	ld [wSelectedAttack], a
 	ld a, d
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 ;	fallthrough
 
@@ -1292,7 +1292,7 @@ CopyAttackDataAndDamage:
 UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars::
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call UpdateTempDuelistCardIDs
 	call ClearTwoTurnDuelVars
 	ret
@@ -1336,7 +1336,7 @@ ClearTwoTurnDuelVars::
 UseAttackOrPokemonPower::
 	ld a, [wSelectedAttack]
 	ld [wPlayerAttackingAttackIndex], a
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld [wPlayerAttackingCardIndex], a
 	ld a, [wTempCardID_ccc2]
 	ld [wPlayerAttackingCardID], a
@@ -1346,7 +1346,7 @@ UseAttackOrPokemonPower::
 	cp POKEMON_POWER
 	jp z, UsePokemonPower
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
@@ -1371,7 +1371,7 @@ UseAttackOrPokemonPower::
 	; if we're here then it means that the Metronome attack
 	; does not have its requirements met to be used
 	ld a, $ff
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_ATTACK_ANIM_AND_DAMAGE
 	call SetOppAction_SerialSendDuelData
 	call ShowMetronomeUnsuccessfulText
@@ -1398,7 +1398,7 @@ PlayAttackAnimation_DealAttackDamage::
 	call SwapTurn
 .deal_damage
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
 	call TryExecuteEffectCommandFunction
 	call ApplyDamageModifiers_DamageToTarget
@@ -1536,23 +1536,23 @@ SendAttackDataToLinkOpponent::
 	ld a, [wccec]
 	or a
 	ret nz
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + DECLARE_ATTACK_ARGS_ATTACK_INDEX]
 	push af
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	push af
 	ld a, $1
 	ld [wccec], a
 	ld a, [wPlayerAttackingCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wPlayerAttackingAttackIndex]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + DECLARE_ATTACK_ARGS_ATTACK_INDEX], a
 	ld a, OPPACTION_BEGIN_ATTACK
 	call SetOppAction_SerialSendDuelData
 	call ExchangeRNG
 	pop af
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + DECLARE_ATTACK_ARGS_ATTACK_INDEX], a
 	ret
 
 Func_189d:
@@ -1697,7 +1697,7 @@ ApplyDamageModifiers_DamageToTarget:
 	ret
 .non_zero_damage
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld d, [hl]
 	dec hl
 	ld e, [hl]
@@ -1713,7 +1713,7 @@ ApplyDamageModifiers_DamageToTarget:
 	ld a, e
 	or d
 	ret z
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call GetPlayAreaCardColor
 	call TranslateColorToWR
 	ld b, a
@@ -2066,7 +2066,7 @@ Func_1bb4:
 	bank1call DrawDuelMainScene
 	bank1call DrawDuelHUDs
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call PrintFailedEffectText
 	call WaitForWideTextBoxInput
 	call ExchangeRNG
@@ -2092,7 +2092,7 @@ PrintFailedEffectText::
 	ret
 
 Func_19fd:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -2118,9 +2118,9 @@ ShowMetronomeUnsuccessfulText::
 	jp DrawWideTextBox_WaitForInput
 
 ; return in a the retreat cost of the turn holder's arena or bench Pokemon
-; given the PLAY_AREA_* value in hTempPlayAreaLocation_ff9d
+; given the PLAY_AREA_* value in hTempPlayAreaLocation
 GetPlayAreaCardRetreatCost::
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex

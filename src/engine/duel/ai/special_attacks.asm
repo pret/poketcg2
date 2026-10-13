@@ -1,5 +1,5 @@
 HandleSpecialAIAttacks:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -796,7 +796,7 @@ HandleSpecialAIAttacks:
 ; dismiss otherwise
 .Recharge:
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp c, .ZeroScore
 	ld de, LIGHTNING_ENERGY
@@ -833,7 +833,7 @@ HandleSpecialAIAttacks:
 .TransDamage:
 ; check Psycho Panic
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER, PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall EstimateDamage_VersusDefendingCard
 	ld a, DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
@@ -900,7 +900,7 @@ HandleSpecialAIAttacks:
 ; dismiss otherwise
 .DestinyBond:
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
 	ld a, AI_SCORE_NEUTRAL + 5
@@ -913,7 +913,7 @@ HandleSpecialAIAttacks:
 ; dismiss otherwise
 .Regeneration:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
 	cp 40
@@ -1080,7 +1080,7 @@ HandleSpecialAIAttacks:
 ;   neutral otherwise
 .StirUpTwister:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
@@ -1247,7 +1247,7 @@ HandleSpecialAIAttacks:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .burning_fire_neutral
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	farcall EstimateDamage_VersusDefendingCard
 	ld a, [wDamage]
@@ -1283,7 +1283,7 @@ HandleSpecialAIAttacks:
 	jr z, .discourage_rock_blast
 .rock_blast_is_golem_going_down
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp c, .encourage_rock_blast
 	ld e, PLAY_AREA_ARENA
@@ -1305,7 +1305,7 @@ HandleSpecialAIAttacks:
 ; dismiss otherwise
 .DragOff:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	farcall EstimateDamage_VersusDefendingCard
 	ld a, DUELVARS_ARENA_CARD_HP
@@ -1402,7 +1402,7 @@ HandleSpecialAIAttacks:
 	call LookForCardIDInHandList
 	jp c, .ZeroScore
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
 	ld a, AI_SCORE_NEUTRAL + 7
@@ -1537,7 +1537,7 @@ HandleSpecialAIAttacks:
 	jr nc, .is_cool_porygon_already_resistant
 
 	call AISelectSpecialAttackParameters.SelectAttackParameters
-	ldh a, [hTempPlayAreaLocation_ffa1]
+	ldh a, [hDuelActionArgs + 1]
 	cp $ff
 	jr z, .is_cool_porygon_already_resistant
 	call TranslateColorToWR
@@ -1561,7 +1561,7 @@ HandleSpecialAIAttacks:
 ; +5 otherwise
 .CompleteRecovery:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
 	farcall CheckIfArenaCardCanKnockOutDefendingCard

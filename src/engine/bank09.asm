@@ -192,16 +192,16 @@ ResetDoFrameFunction_Bank9:
 	ret
 
 ; outputs in hl the next position
-; in hTempList to place a new card,
+; in hDuelActionArgs to place a new card,
 ; and increments hCurSelectionItem.
-GetNextPositionInTempList:
+GetNextDuelActionArgPtr:
 	push de
 	ld hl, hCurSelectionItem
 	ld a, [hl]
 	inc [hl]
 	ld e, a
 	ld d, $00
-	ld hl, hTempList
+	ld hl, hDuelActionArgs
 	add hl, de
 	pop de
 	ret
@@ -258,7 +258,7 @@ DisplayOpponentUsedAttackScreen:
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
 	call LoadDuelFaceDownCardTiles
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, CARDPAGE_POKEMON_OVERVIEW
 	ld [wCardPageNumber], a
@@ -319,10 +319,10 @@ PrintDescriptionFromHL:
 ; display the screen that prompts the player to use the selected card's
 ; Pokemon Power. Includes the card's information above, and the Pokemon Power's
 ; description below.
-; input: hTempPlayAreaLocation_ff9d
+; input: hTempPlayAreaLocation
 DisplayUsePokemonPowerScreen:
 	push hl
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld [wCurPlayAreaSlot], a
 	xor a
 	ld [wCurPlayAreaY], a
@@ -395,34 +395,34 @@ PrintTextToDescriptionScreenTextBox:
 	jp PrintTextNoDelay
 
 ; display card detail when a trainer card is used, and print "Used xxx"
-; hTempCardIndex_ff9f contains the card's deck index
+; hDuelActionCardIndex contains the card's deck index
 DisplayUsedTrainerCardDetailScreen:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ldtx hl, UsedText
 	bank1call DisplayCardDetailScreen
 	ret
 
-; print the AttachedEnergyToPokemonText, given the energy card to attach in hTempCardIndex_ff98,
-; and the PLAY_AREA_* of the turn holder's Pokemon to attach the energy to in hTempPlayAreaLocation_ff9d
+; print the AttachedEnergyToPokemonText, given the energy card to attach in hTempCardIndex,
+; and the PLAY_AREA_* of the turn holder's Pokemon to attach the energy to in hTempPlayAreaLocation
 PrintAttachedEnergyToPokemon:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardNameToTxRam2_b
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call LoadCardNameToTxRam2
 	ldtx hl, AttachedEnergyToPokemonText
 	call DrawWideTextBox_WaitForInput
 	ret
 
 ; print the PokemonEvolvedIntoPokemonText, given the Pokemon card to evolve in wPreEvolutionPokemonCard,
-; and the evolved Pokemon card in hTempCardIndex_ff98. also play a sound effect.
+; and the evolved Pokemon card in hTempCardIndex. also play a sound effect.
 PrintPokemonEvolvedIntoPokemon:
 	ld a, SFX_POKEMON_EVOLUTION
 	call PlaySFX
 	ld a, [wPreEvolutionPokemonCard]
 	call LoadCardNameToTxRam2
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call LoadCardNameToTxRam2_b
 	ldtx hl, PokemonEvolvedIntoPokemonText
 	call DrawWideTextBox_WaitForInput
@@ -570,13 +570,13 @@ OppAction_FinishTurnWithoutAttacking:
 	ret
 
 OppAction_PlayEnergyCard:
-	ldh a, [hTempPlayAreaLocation_ffa1]
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_TARGET_PLAY_AREA_LOCATION]
+	ldh [hTempPlayAreaLocation], a
 	ld e, a
-	ldh a, [hTemp_ffa0]
-	ldh [hTempCardIndex_ff98], a
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX]
+	ldh [hTempCardIndex], a
 	call PutHandCardInPlayArea
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	call DrawLargePictureOfCard
 	call PrintAttachedEnergyToPokemon
@@ -587,10 +587,10 @@ OppAction_PlayEnergyCard:
 	ret
 
 OppAction_EvolvePokemonCard:
-	ldh a, [hTempPlayAreaLocation_ffa1]
-	ldh [hTempPlayAreaLocation_ff9d], a
-	ldh a, [hTemp_ffa0]
-	ldh [hTempCardIndex_ff98], a
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_TARGET_PLAY_AREA_LOCATION]
+	ldh [hTempPlayAreaLocation], a
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX]
+	ldh [hTempCardIndex], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 	call DrawLargePictureOfCard
 	call EvolvePokemonCardIfPossible
@@ -600,14 +600,14 @@ OppAction_EvolvePokemonCard:
 	ret
 
 OppAction_PlayBasicPokemonCard:
-	ldh a, [hTemp_ffa0]
-	ldh [hTempCardIndex_ff98], a
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX]
+	ldh [hTempCardIndex], a
 	call PutHandPokemonCardInPlayArea
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	add DUELVARS_ARENA_CARD_STAGE
 	get_turn_duelist_var
 	ld [hl], BASIC
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX]
 	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 	ld a, TRUE
@@ -657,16 +657,16 @@ OppAction_ExecuteTrainerCardEffectCommands:
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
 	call TryExecuteEffectCommandFunction
 	bank1call DrawDuelMainScene
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call MoveHandCardToDiscardPile
 	call ExchangeRNG
 	bank1call DrawDuelMainScene
 	ret
 
 OppAction_BeginUseAttack:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + DECLARE_ATTACK_ARGS_ATTACK_INDEX]
 	ld e, a
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars
@@ -698,7 +698,7 @@ OppAction_UseAttack:
 
 ; now handle EFFECTCMDTYPE_DISCARD_ENERGY here
 OppAction_PlayAttackAnimationDealAttackDamage:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	cp -1
 	jr z, .metronome_unsuccessful
 	ld a, EFFECTCMDTYPE_DISCARD_ENERGY
@@ -722,19 +722,19 @@ OppAction_ForceSwitchActive:
 	bank1call OpenPlayAreaScreenForSelection
 	jr c, .force_selection
 	call SwapTurn
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	call SerialSendByte
 	ret
 
 OppAction_UsePokemonPower_NoEffect2:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call ClearTwoTurnDuelVars
-	ldh a, [hTemp_ffa0]
-	ldh [hTempPlayAreaLocation_ff9d], a
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
+	ldh [hTempPlayAreaLocation], a
+	ldh a, [hDuelActionCardIndex]
 	call LoadCardNameToTxRam2
 	ld hl, wLoadedAttackName
 	ld a, [hli]
@@ -747,19 +747,19 @@ OppAction_UsePokemonPower_NoEffect2:
 	ret
 
 OppAction_UsePokemonPower:
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call ClearTwoTurnDuelVars
-	ldh a, [hTemp_ffa0]
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
+	ldh [hTempPlayAreaLocation], a
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
 	call TryExecuteEffectCommandFunction
 	ld a, [wcd0d]
 	or a
 	jr nz, .exit
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	call LoadCardNameToTxRam2
 	ld hl, wLoadedAttackName
 	ld a, [hli]
@@ -809,7 +809,7 @@ OppAction_TossCoinATimes:
 OppAction_6b30:
 	ldh a, [hWhoseTurn]
 	push af
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ldh [hWhoseTurn], a
 	call PlayDeckShuffleAnimation
 	pop af
@@ -824,7 +824,7 @@ OppAction_UseMetronomeAttack:
 	call SwapTurn
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call SwapTurn
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld [wPlayerAttackingCardIndex], a
 	ld a, [wSelectedAttack]
 	ld [wPlayerAttackingAttackIndex], a
@@ -841,8 +841,8 @@ OppAction_UseMetronomeAttack:
 	ret
 
 OppAction_ProcessPlayedPokemonCard:
-	ldh a, [hTemp_ffa0]
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hDuelActionArgs + 0]
+	ldh [hTempPlayAreaLocation], a
 	bank1call ProcessPlayedPokemonCard.Process
 	ret nc
 	bank1call DrawDuelMainScene
@@ -855,7 +855,7 @@ OppAction_ProcessTriggeredPokemonPower:
 	ret
 
 OppAction_ComputerErrorPrompt:
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
@@ -1459,7 +1459,7 @@ HandleComputerErrorPlayerSelection:
 ; handles player selection when opponent
 ; accepts challenge due to the effects of Challenge! card
 HandleChallengeCardPlayerSelection:
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	ldh [hCurSelectionItem], a
 	call CreateDeckCardList
 	jr nc, .has_deck_cards
@@ -1501,7 +1501,7 @@ HandleChallengeCardPlayerSelection:
 	bank1call SetCardListHeaderAndInfoText
 .loop_selection
 	bank1call DisplayCardList
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp MENU_CANCEL
 	jr z, .try_cancel ; player cancelled operation
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -1511,9 +1511,9 @@ HandleChallengeCardPlayerSelection:
 	ld a, [wLoadedCard2Stage]
 	or a
 	jr nz, .loop_selection ; not Basic
-	; add this Basic Pokémon to hTempList
-	call GetNextPositionInTempList
-	ldh a, [hTempCardIndex_ff98]
+	; add this Basic Pokémon to hDuelActionArgs
+	call GetNextDuelActionArgPtr
+	ldh a, [hTempCardIndex]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .done_selection
@@ -1523,10 +1523,10 @@ HandleChallengeCardPlayerSelection:
 	jr nz, .start_selection
 
 .done_selection
-	call GetNextPositionInTempList
+	call GetNextDuelActionArgPtr
 	ld [hl], $ff ; terminating byte
 	ldh a, [hCurSelectionItem]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 
 .try_cancel
@@ -1542,7 +1542,7 @@ HandleChallengeCardPlayerSelection:
 	jr .done_selection
 
 PrintHowManyCardsLinkOpponentChoseDueToChallenge:
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	sub $02
 	ld hl, wTxRam3
 	ld [hli], a
@@ -1827,7 +1827,7 @@ ExecuteCardSearchFunc:
 ; input:
 ; - hl = info text ID
 ; - de = header text ID
-; returns carry if no selection made, else return selection in [hTempCardIndex_ff98]
+; returns carry if no selection made, else return selection in [hTempCardIndex]
 SelectCardSearchTarget:
 	push hl
 	push de
@@ -1846,7 +1846,7 @@ SelectCardSearchTarget:
 	or a
 	jr nz, .loop
 	; valid selection
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	or a
 	ret
 
@@ -3038,7 +3038,7 @@ CheckDeck:
 	ld hl, wDuelTempList
 .loop_filter_only_pkmn
 	ld a, [hli]
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp $ff
 	jp z, .got_basic_card_list
 	; keeps only PKMN cards or Mysterious Fossil
@@ -3051,7 +3051,7 @@ CheckDeck:
 	cp TYPE_ENERGY
 	jr c, .check_stage
 	; is not PKMN card or Mysterious Fossil
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call RemoveCardFromDuelTempList
 	jr .loop_filter_only_pkmn
 .check_stage
@@ -3198,7 +3198,7 @@ CheckDeck:
 	ld hl, wDuelTempList
 .loop_search_cards_with_same_name
 	ld a, [hli]
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp $ff
 	jr z, .got_card_with_same_name_count
 	call GetCardIDFromDeckIndex
@@ -3218,10 +3218,10 @@ CheckDeck:
 
 	; has same name, remove it from wDuelTempList
 	; and add this card to list in wListPointer2
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call GetCardIDFromDeckIndex
 	call Func_0b99
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call RemoveCardFromDuelTempList
 	dec hl
 	inc c

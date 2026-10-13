@@ -80,7 +80,7 @@ AIDecideSpecialEvolutions:
 	cphl DODUO_LV10
 	jp nz, .standard_score
 ; Doduo
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 30
@@ -135,7 +135,7 @@ AIDecideSpecialEvolutions:
 ; active: neutral
 ; benched: +10
 .GatheringNidoranDeck:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp z, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 10
@@ -179,7 +179,7 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl DROWZEE_LV10
 	jp nz, .standard_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp z, .standard_score
 	ld a, AI_SCORE_NEUTRAL - 10
@@ -204,7 +204,7 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl DARK_DRAGONAIR
 	jp nz, .standard_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .tally_tap
 	ld e, a
@@ -335,7 +335,7 @@ AIDecideSpecialEvolutions:
 	farcall CountCardIDInTurnDuelistPlayArea
 	or a
 	jr nz, .has_dark_slowbro
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies + PSYCHIC]
@@ -371,7 +371,7 @@ AIDecideSpecialEvolutions:
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_biruritchi_grass
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp z, .standard_score
 	ld a, AI_SCORE_NEUTRAL + 12
@@ -567,7 +567,7 @@ AIDecideSpecialEvolutions:
 ;   );
 ; -10 otherwise
 .dragonair_rod:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr z, .dragonair_rod_active
 

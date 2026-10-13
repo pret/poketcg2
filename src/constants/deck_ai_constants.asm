@@ -141,7 +141,7 @@ DEF AI_ENERGY_TRANS_TO_BENCH EQU $e ; moves energy cards away from Arena card
 ;	%10'0001 = second prize card
 ;	%10'0010 = third prize card
 ;	etc...
-DEF AI_PEEK_TARGET_PRIZE_F EQU 6
+DEF AI_PEEK_TARGET_PRIZE_F EQU 6 ; MAX_PRIZE_CARDS
 DEF AI_PEEK_TARGET_PRIZE   EQU 1 << AI_PEEK_TARGET_PRIZE_F
 ; this bit is set when the AI decides to use Peek on Player hand card,
 ; with the following bits deciding which one to Peek. That is:
