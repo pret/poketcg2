@@ -1,5 +1,5 @@
 #define PROGRAM_NAME "card_gfx"
-#define USAGE_OPTS "[-h|--help] [--printer printer.2bpp] [--extra-out extra_outfile.2bpp] infile.png infile.pal.bin infile.cardattr.bin outfile.2bpp"
+#define USAGE_OPTS "[-h|--help] [--printer printer.2bpp] [--extra-out extra_outfile.2bpp] infile.png infile.pal infile.cardattr outfile.2bpp"
 
 #include "common.h"
 #include "lodepng/lodepng.h"

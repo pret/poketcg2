@@ -7,9 +7,6 @@
 # compiled graphics
 *.1bpp
 *.2bpp
-*.pal.bin
-*.asm.temp
-*.cardattr.bin
 
 # compiled roms
 *.gbc

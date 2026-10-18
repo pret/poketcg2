@@ -47,11 +47,6 @@ clean: tidy
 	find src/gfx \
 	     \( -iname '*.[12]bpp' \) \
 	     -delete
-	find src/gfx/cards \
-	     \( -iname '*.asm.temp' \
-	        -o -iname '*.o' \
-	        -o -iname '*.bin' \) \
-	     -delete
 
 tidy:
 	$(RM) $(rom) \
@@ -111,30 +106,19 @@ $(rom): $(rom_obj) src/layout.link
 card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
 card_printer_png := $(wildcard src/gfx/cards/*_printer.png)
 
-TEMP_HEADER := SECTION "TEMP", ROM0
-TEMP_PREINCLUDES := --preinclude macros.asm --preinclude constants.asm
 CARDGFX := tools/card_gfx
-
-src/gfx/cards/%.asm.temp: src/gfx/cards/%.asm
-	{ printf '%s\n\n' '$(TEMP_HEADER)'; cat $<; } > $@
-
-src/gfx/cards/%.o: src/gfx/cards/%.asm.temp
-	$(RGBASM) $(RGBASMFLAGS) $(TEMP_PREINCLUDES) -o $@ $<
-
-src/gfx/cards/%.bin: src/gfx/cards/%.o
-	$(RGBLINK) $(RGBLINKFLAGS) -x -o $@ $<
 
 src/gfx/cards/%_printer.2bpp: src/gfx/cards/%_printer.png
 	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
 
 define CARDGFX_WITH_PRINTER_ALT
-$1.2bpp $1_extra.2bpp &: $(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin $1_printer.2bpp
-	$(CARDGFX) --printer $1_printer.2bpp --extra-out $1_extra.2bpp $1.png $1.pal.bin $1.cardattr.bin $1.2bpp
+$1.2bpp $1_extra.2bpp &: $(CARDGFX) $1.png $1.pal $1.cardattr $1_printer.2bpp
+	$(CARDGFX) --printer $1_printer.2bpp --extra-out $1_extra.2bpp $1.png $1.pal $1.cardattr $1.2bpp
 endef
 
 define CARDGFX_WITHOUT_PRINTER_ALT
-$1.2bpp &: $(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin
-	$(CARDGFX) $1.png $1.pal.bin $1.cardattr.bin $1.2bpp
+$1.2bpp &: $(CARDGFX) $1.png $1.pal $1.cardattr
+	$(CARDGFX) $1.png $1.pal $1.cardattr $1.2bpp
 endef
 
 $(foreach card,$(card_portrait_png),$(eval $(if $(wildcard $(card:.png=_printer.png)),\
@@ -165,6 +149,7 @@ src/gfx/link/link_scene.2bpp: RGBGFXFLAGS += -x 7
 %.png: ;
 
 %.pal: ;
+%.cardattr: ;
 
 %.2bpp: %.png
 	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) -o $@ $<
