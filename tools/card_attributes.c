@@ -2,10 +2,7 @@
 #define USAGE_OPTS "[-h|--help] [-o|--out outfile] attrmap"
 
 #include "common.h"
-
-#define CARD_WIDTH_TILES  8
-#define CARD_HEIGHT_TILES 6
-#define CARD_NUM_TILES    CARD_WIDTH_TILES * CARD_HEIGHT_TILES
+#include "card_gfx.h"
 
 struct Options {
 	char *outfile;

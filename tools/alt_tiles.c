@@ -2,12 +2,7 @@
 #define USAGE_OPTS "[-h|--help] [-o|--out outfile] regularpic grayscalepic cardattr"
 
 #include "common.h"
-
-#define CARD_WIDTH_TILES  8
-#define CARD_HEIGHT_TILES 6
-#define CARD_NUM_TILES    CARD_WIDTH_TILES * CARD_HEIGHT_TILES
-#define TILE_SIZE         16
-#define CARD_SIZE_BYTES   CARD_NUM_TILES * TILE_SIZE
+#include "card_gfx.h"
 
 struct Options {
 	char *outfile;
