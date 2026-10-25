@@ -84,6 +84,10 @@ MACRO? energy
 	ENDC
 ENDM
 
+MACRO? gfx
+	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
+ENDM
+
 MACRO? length
 	db ROUND(\1 * 10) >> 16
 ENDM
