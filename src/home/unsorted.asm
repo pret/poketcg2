@@ -2723,7 +2723,7 @@ ApplyBackgroundScroll::
 
 	call DisableInt_LYCoincidence
 	ld hl, rSTAT
-	res B_STAT_LYCF, [hl] ; reset coincidence flag
+	res B_STAT_LYC_EQ, [hl] ; reset coincidence flag
 	ei
 	ld hl, wApplyBGScroll
 	ld a, [hl]

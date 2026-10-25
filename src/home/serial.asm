@@ -463,7 +463,7 @@ SerialRecvBytes:
 ; tcg1: Func_0ef1
 Serial_Func_0e12:
 	ld de, wcb73
-	ld hl, sp+$fe
+	ld hl, sp-$2
 	ld a, l
 	ld [de], a
 	inc de
