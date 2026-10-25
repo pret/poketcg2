@@ -1,5 +1,6 @@
-scan_includes
+alt_tiles
+card_attributes
 gfx
-card_gfx
+scan_includes
 
 *.exe

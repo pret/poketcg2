@@ -1,9 +1,9 @@
 .PHONY: all clean
 
 CC := gcc
-CFLAGS := -O3 -std=gnu23 -Wall -Wextra -pedantic
+CFLAGS := -O3 -std=c17 -Wall -Wextra -pedantic
 
-tools := scan_includes gfx card_gfx
+tools := alt_tiles card_attributes gfx scan_includes
 
 all: $(tools)
 	@:
@@ -11,9 +11,8 @@ all: $(tools)
 clean:
 	rm -f $(tools)
 
-card_gfx: card_gfx.c common.h lodepng/lodepng.c lodepng/lodepng.h
-	$(CC) $(CFLAGS) -o $@ $(filter %.c,$^)
-
 gfx: common.h
+card_attributes: common.h card_gfx.h
+alt_tiles: common.h card_gfx.h
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<

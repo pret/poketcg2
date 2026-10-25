@@ -7,6 +7,7 @@
 # compiled graphics
 *.1bpp
 *.2bpp
+*.cardattr
 
 # compiled roms
 *.gbc

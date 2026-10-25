@@ -45,7 +45,8 @@ tcg2: $(rom) compare
 
 clean: tidy
 	find src/gfx \
-	     \( -iname '*.[12]bpp' \) \
+	     \( -iname '*.[12]bpp' \
+	        -o -iname '*.cardattr' \) \
 	     -delete
 
 tidy:
@@ -102,28 +103,24 @@ $(rom): $(rom_obj) src/layout.link
 	$(RGBFIX) $(RGBFIXFLAGS) $@
 
 
-### Card GFX
-card_portrait_png := $(filter-out %_printer.png,$(wildcard src/gfx/cards/*.png))
-card_printer_png := $(wildcard src/gfx/cards/*_printer.png)
+### Cards graphics rules
 
-CARDGFX := tools/card_gfx
+src/gfx/cards/%/attributes.cardattr: src/gfx/cards/%/regular.attrmap
+	tools/card_attributes -o $@ $^
 
-src/gfx/cards/%_printer.2bpp: src/gfx/cards/%_printer.png
+# for matching purposes
+src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.2bpp.match
+	cp $< $@
+
+src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.png src/gfx/cards/%/regular.pal
+	$(RGBGFX) $(RGBGFXFLAGS) --colors gbc:$(word 2,$^) -Z -o $@ $<
+
+src/gfx/cards/%/grayscale.2bpp: src/gfx/cards/%/grayscale.png
 	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
 
-define CARDGFX_WITH_PRINTER_ALT
-$1.2bpp $1_extra.2bpp &: $(CARDGFX) $1.png $1.pal $1.cardattr $1_printer.2bpp
-	$(CARDGFX) --printer $1_printer.2bpp --extra-out $1_extra.2bpp $1.png $1.pal $1.cardattr $1.2bpp
-endef
+src/gfx/cards/%/alt_tiles.2bpp: src/gfx/cards/%/regular.2bpp src/gfx/cards/%/grayscale.2bpp src/gfx/cards/%/attributes.cardattr
+	tools/alt_tiles -o $@ $^
 
-define CARDGFX_WITHOUT_PRINTER_ALT
-$1.2bpp &: $(CARDGFX) $1.png $1.pal $1.cardattr
-	$(CARDGFX) $1.png $1.pal $1.cardattr $1.2bpp
-endef
-
-$(foreach card,$(card_portrait_png),$(eval $(if $(wildcard $(card:.png=_printer.png)),\
-$(call CARDGFX_WITH_PRINTER_ALT,$(card:.png=)),\
-$(call CARDGFX_WITHOUT_PRINTER_ALT,$(card:.png=)))))
 
 ### Misc file-specific graphics rules
 
@@ -149,7 +146,8 @@ src/gfx/link/link_scene.2bpp: RGBGFXFLAGS += -x 7
 %.png: ;
 
 %.pal: ;
-%.cardattr: ;
+
+%.attrmap: ;
 
 %.2bpp: %.png
 	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) -o $@ $<
