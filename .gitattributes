@@ -6,6 +6,7 @@
 
 # files part of the build
 *.asm text
+*.hex text
 *.link text
 
 # extra files
@@ -17,7 +18,6 @@
 
 # Denote all files that are truly binary and should not be modified.
 *.png binary diff=hex
-*.pal binary diff=hex
 *.attrmap binary diff=hex
 *.bin binary diff=hex
 *.2bpp.match binary diff=hex
@@ -26,3 +26,4 @@
 *.2bpp binary diff=hex
 *.1bpp binary diff=hex
 *.cardattr binary diff=hex
+*.gbcpal binary diff=hex

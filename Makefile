@@ -45,7 +45,8 @@ clean: tidy
 	find src/gfx \
 	     \( -iname '*.1bpp' \
 	        -o -iname '*.2bpp' \
-	        -o -iname '*.cardattr' \) \
+	        -o -iname '*.cardattr' \
+	        -o -iname '*.gbcpal' \) \
 	     -delete
 
 tidy:
@@ -111,11 +112,14 @@ src/gfx/cards/%/attributes.cardattr: src/gfx/cards/%/regular.attrmap
 src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.2bpp.match
 	cp $< $@
 
-src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.png src/gfx/cards/%/regular.pal
-	$(RGBGFX) $(RGBGFXFLAGS) --colors gbc:$(word 2,$^) -Z -o $@ $<
+src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.png src/gfx/cards/%/regular.hex
+	$(RGBGFX) $(RGBGFXFLAGS) --colors hex:$(word 2,$^) -Z -o $@ $<
 
 src/gfx/cards/%/grayscale.2bpp: src/gfx/cards/%/grayscale.png
 	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
+
+src/gfx/cards/%/regular.gbcpal: src/gfx/cards/%/regular.hex
+	$(RGBGFX) $(RGBGFXFLAGS) --colors hex:$< -p $@
 
 src/gfx/cards/%/alt_tiles.2bpp: src/gfx/cards/%/regular.2bpp src/gfx/cards/%/grayscale.2bpp src/gfx/cards/%/attributes.cardattr
 	tools/alt_tiles $(tools/alt_tiles) -o $@ $^

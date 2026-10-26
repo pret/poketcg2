@@ -21,6 +21,7 @@
 *.1bpp
 *.2bpp
 *.cardattr
+*.gbcpal
 
 # *disasm.py output file
 *disasm_output.asm
