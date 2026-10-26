@@ -146,6 +146,8 @@ src/gfx/link/link_scene.2bpp: RGBGFXFLAGS += -x 7
 
 %.attrmap: ;
 
+%.2bpp.match: ;
+
 %.2bpp: %.png
 	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) -o $@ $<
 	$(if $(tools/gfx),\
