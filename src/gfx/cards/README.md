@@ -19,6 +19,10 @@ See `CARDGFXSTRUCT_*` offset constants for details.
 * `regular.2bpp.match`: Some affected cards point to a different color index of a different palette than RGBGFX would normally do for the same full-color PNG; so the raw 2bpp data is provided for those cards for matching purposes.
 * `grayscale.png`: Some cards have a modified illustration for the Game Boy Printer.
 
+### Example of 2bpp mismatching
+
+Water Energy has the following palettes: {#deffff, #00b5ff, #005aa5, #00004a}, {#00b5ff, #0084ce, #005aa5, #00004a}, {#deffff, #00b5ff, #005aa5, #0084ce}. It wants palette #0 at tile $14, and the topmost line of that tile is {1 1 2 3 3 3 3 3}; however, RGBGFX would choose palette #1 there, which would provide {0 0 2 3 3 3 3 3}. The same thing occurs on tile $1b of that card, too.
+
 ## Assembling process
 
 1. `tools/card_attributes` prepares `attributes.cardattr` from `regular.attrmap` by `<<= 6`.
