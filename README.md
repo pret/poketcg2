@@ -6,10 +6,11 @@ It builds the following ROM:
 
 - Pokémon Card GB2 - GR Dan Sanjou! (J) [C][!].gbc `sha1: a7e12bcc5f514e3aad8de570fd511aab0a308822`
 
-To assemble, first install [RGBDS](https://github.com/gbdev/rgbds/releases) and put it in your path.
+To assemble, first install [RGBDS](https://github.com/gbdev/rgbds/releases) and put it in your path.  
 Then run `make` in your shell.
 
-This will output a file named `poketcg2.gbc`.
+This will output a file named "poketcg2.gbc".
+
 
 ## See also
 
