@@ -175,16 +175,14 @@ _BillsPC:
 	db 0, 0
 REPT 2
 	db $30 + BORDER_TILE_TOP_LEFT
-	REPT 8
-		db $30 + BORDER_TILE_TOP
-	ENDR
+	ds 8, $30 + BORDER_TILE_TOP
 	db $30 + BORDER_TILE_TOP_RIGHT
 ENDR
 	db 0
 
 	; y = [1, 10]
 FOR y, 1, 11
-	db  0, y, $30 + BORDER_TILE_LEFT, 0
+	db  0, y, $30 + BORDER_TILE_LEFT,  0
 	db  9, y, $30 + BORDER_TILE_RIGHT, $30 + BORDER_TILE_LEFT, 0
 	db 19, y, $30 + BORDER_TILE_RIGHT, 0
 ENDR
@@ -193,12 +191,11 @@ ENDR
 	db 0, 11
 REPT 2
 	db $30 + BORDER_TILE_BOTTOM_LEFT
-	REPT 8
-		db $30 + BORDER_TILE_BOTTOM
-	ENDR
+	ds 8, $30 + BORDER_TILE_BOTTOM
 	db $30 + BORDER_TILE_BOTTOM_RIGHT
 ENDR
 	db 0
+
 	db $ff ; end
 
 HandleBillsPCMenu:
