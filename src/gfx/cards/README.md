@@ -4,7 +4,7 @@
 
 In the following order:
 
-1. `regular.gbcpal`: 3 palettes.
+1. `regular.gbcpal`: 3 palettes, in native GBC binary format.
 2. `attributes.cardattr`: Custom-format attribute metadata, `(palette index) << 6 | (alt tile index offset)` for each tile.
 3. `regular.2bpp`: 48 tiles of the full-color illustration.
 4. `alt_tiles.2bpp`: Tiles to replace regular ones in the Game Boy Printer mode. The amount ranges from 0 to 48.
@@ -14,7 +14,7 @@ See `CARDGFXSTRUCT_*` offset constants for details.
 ## Files included under `<card_name>/`
 
 * `regular.png`: The full-color illustration.
-* `regular.hex`: The palette file in binary for RGBGFX to load.
+* `regular.hex`: The 3 palettes in `rrggbb` text format for RGBGFX to load.
 * `regular.attrmap`: The attribute map of only the palette indices. It's often different than RGBGFX would generate with the  `--attr-map` option, due to duplicate color entries across the palettes. That's inconsequential in the 2bpp output for most affected cards, thanks to the shared color index in their palettes, but…
 * `regular.2bpp.match`: Some affected cards point to a different color index of a different palette than RGBGFX would normally do for the same full-color PNG; so the raw 2bpp data is provided for those cards for matching purposes.
 * `grayscale.png`: Some cards have a modified illustration for the Game Boy Printer.
