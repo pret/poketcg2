@@ -104,15 +104,7 @@ ENDM
 
 ; reserved tile #0 in tilesets
 MACRO? solid_black_tile
-	REPT TILE_SIZE
-		db $ff
-	ENDR
-ENDM
-
-MACRO? solid_white_tile
-	REPT TILE_SIZE
-		db $00
-	ENDR
+	ds TILE_SIZE, $ff
 ENDM
 
 ; \1 = y offset
