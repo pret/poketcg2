@@ -99,7 +99,7 @@ endif
 RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
 
 
@@ -136,6 +136,8 @@ src/gfx/booster_packs/psychic_pack.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/booster_packs/ambition_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/present_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/pack_oam.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/cgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/dmg_sgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/titlescreen/title_screen.2bpp: RGBGFXFLAGS += -x 4
 src/gfx/titlescreen/gb_error.2bpp: RGBGFXFLAGS += -x 10
 src/gfx/black_box/black_box_bg.2bpp: RGBGFXFLAGS += -x 5

@@ -76,16 +76,110 @@ Pals_6f0f0::
 	rgb  0,  0,  0
 	rgb 28, 12,  0
 	rgb 13,  9,  0
-; 0x6f108
 
-SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
+DuelCoinTossResultPalette::
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb  0,  0,  0
+	rgb  0, 10, 28 ; [X]
+
+DuelBoxMessagePalettes::
+	; BOXMSG_PLAYERS_TURN
+	rgb 31, 31, 31
+	rgb 31, 22,  9
+	rgb 27,  9,  4
+	rgb 18,  0,  0
+	; BOXMSG_OPPONENTS_TURN
+	rgb 31, 31, 31
+	rgb 16, 24, 29
+	rgb  6, 11, 24
+	rgb  0,  0, 16
+	; BOXMSG_BETWEEN_TURNS
+	rgb 31, 31, 31
+	rgb 21, 27, 13
+	rgb  7, 16,  0
+	rgb  0,  7,  0
+	; BOXMSG_DECISION
+	rgb 31, 31, 31
+	rgb 26, 22,  7
+	rgb 19, 13,  0
+	rgb  6,  2,  0
+	; BOXMSG_BENCH_POKEMON
+	rgb 31, 31, 31
+	rgb 31, 16, 20
+	rgb 21,  6, 14
+	rgb 10,  0,  4
+	; BOXMSG_ARENA_POKEMON
+	rgb 31, 31, 31
+	rgb 20, 29,  0
+	rgb 11, 18,  0
+	rgb  7,  6,  0
+	; BOXMSG_COIN_TOSS
+	rgb 31, 31, 31
+	rgb 18, 30, 31
+	rgb  8, 20, 27
+	rgb  0,  7, 14
+
+; back of the card
+DuelSetupPalette::
+	rgb 31, 31, 31
+	rgb  0,  0, 31
+	rgb 31,  0,  0
+	rgb  0,  0,  0
 
 SymbolsFont::
 INCBIN "gfx/fonts/symbols.2bpp"
 
+DuelGraphics::
+
+DuelCardHeaderGraphics::
+	INCBIN "gfx/duel/card_type_headers.2bpp"
+
+DuelCgbCardSymbolGraphics::
+	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
+
+DuelDmgSgbCardSymbolGraphics::
+	INCBIN "gfx/duel/dmg_sgb_card_symbols.2bpp"
+
+RealCardSetSymbolGraphics::
+	INCBIN "gfx/duel/real_card_set_symbols.2bpp"
+
+	ds $30
+
+SECTION "Gfx 2", ROMX
+
+DuelCheckPokemonScreenGraphics::
+	INCBIN "gfx/duel/check_pokemon_stages.2bpp"
+	INCBIN "gfx/duel/check_locations.2bpp"
+
+DuelCgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/cgb_play_area_screen.2bpp"
+	INCBIN "gfx/duel/cgb_play_area_screen_29.2bpp"
+
+DuelDmgSgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/dmg_sgb_play_area_screen.2bpp"
+	INCBIN "gfx/duel/dmg_sgb_play_area_screen_29.2bpp"
+
+DuelSetupScreenGraphics::
+	INCBIN "gfx/duel/setup_arena_card.2bpp"
+	INCBIN "gfx/duel/setup_prize_card.2bpp"
+
+DuelCoinTossResultSymbolGraphics::
+	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
+
+CardOrDuelMenuBorderGraphics::
+	INCBIN "gfx/duel/borders.2bpp"
+
+DuelDrawCardsScreenGraphics::
+	INCBIN "gfx/duel/draw_cards_screen.2bpp"
+
+DuelBoxMessages::
+	INCBIN "gfx/duel/box_messages.2bpp"
+
 
 SECTION "Card Gfx 1", ROMX
 
+; see CARDGFXSTRUCT_*
 CardGraphics::
 
 GrassEnergyCardGfx::
@@ -178,6 +272,7 @@ MetapodLv21CardGfx::
 	INCBIN "gfx/cards/metapod_lv21/attributes.cardattr"
 	INCBIN "gfx/cards/metapod_lv21/regular.2bpp"
 
+	ds $90
 
 SECTION "Card Gfx 2", ROMX
 
@@ -279,6 +374,7 @@ ParasLv8CardGfx::
 	INCBIN "gfx/cards/paras_lv8/regular.2bpp"
 	INCBIN "gfx/cards/paras_lv8/alt_tiles.2bpp"
 
+	ds $120
 
 SECTION "Card Gfx 3", ROMX
 
@@ -379,6 +475,7 @@ CharmeleonCardGfx::
 	INCBIN "gfx/cards/charmeleon/regular.2bpp"
 	INCBIN "gfx/cards/charmeleon/alt_tiles.2bpp"
 
+	ds $250
 
 SECTION "Card Gfx 4", ROMX
 
@@ -472,6 +569,7 @@ WartortleLv22CardGfx::
 	INCBIN "gfx/cards/wartortle_lv22/attributes.cardattr"
 	INCBIN "gfx/cards/wartortle_lv22/regular.2bpp"
 
+	ds $378
 
 SECTION "Card Gfx 5", ROMX
 
@@ -569,6 +667,7 @@ GoldeenCardGfx::
 	INCBIN "gfx/cards/goldeen/regular.2bpp"
 	INCBIN "gfx/cards/goldeen/alt_tiles.2bpp"
 
+	ds $2e8
 
 SECTION "Card Gfx 6", ROMX
 
@@ -663,6 +762,7 @@ FlyingPikachuLv12CardGfx::
 	INCBIN "gfx/cards/flying_pikachu_lv12/regular.2bpp"
 	INCBIN "gfx/cards/flying_pikachu_lv12/alt_tiles.2bpp"
 
+	ds $3e8
 
 SECTION "Card Gfx 7", ROMX
 
@@ -759,6 +859,7 @@ ZapdosLv64CardGfx::
 	INCBIN "gfx/cards/zapdos_lv64/regular.2bpp"
 	INCBIN "gfx/cards/zapdos_lv64/alt_tiles.2bpp"
 
+	ds $d8
 
 SECTION "Card Gfx 8", ROMX
 
@@ -861,6 +962,7 @@ HitmonchanLv33CardGfx::
 	INCBIN "gfx/cards/hitmonchan_lv33/attributes.cardattr"
 	INCBIN "gfx/cards/hitmonchan_lv33/regular.2bpp"
 
+	ds $18
 
 SECTION "Card Gfx 9", ROMX
 
@@ -961,6 +1063,7 @@ HypnoLv36CardGfx::
 	INCBIN "gfx/cards/hypno_lv36/attributes.cardattr"
 	INCBIN "gfx/cards/hypno_lv36/regular.2bpp"
 
+	ds $240
 
 SECTION "Card Gfx 10", ROMX
 
@@ -1058,6 +1161,7 @@ ClefableCardGfx::
 	INCBIN "gfx/cards/clefable/attributes.cardattr"
 	INCBIN "gfx/cards/clefable/regular.2bpp"
 
+	ds $f0
 
 SECTION "Card Gfx 11", ROMX
 
@@ -1156,6 +1260,7 @@ SnorlaxLv20CardGfx::
 	INCBIN "gfx/cards/snorlax_lv20/attributes.cardattr"
 	INCBIN "gfx/cards/snorlax_lv20/regular.2bpp"
 
+	ds $2c0
 
 SECTION "Card Gfx 12", ROMX
 
@@ -1252,6 +1357,7 @@ DarkVaporeonCardGfx::
 	INCBIN "gfx/cards/dark_vaporeon/attributes.cardattr"
 	INCBIN "gfx/cards/dark_vaporeon/regular.2bpp"
 
+	ds $270
 
 SECTION "Card Gfx 13", ROMX
 
@@ -1352,6 +1458,7 @@ DarkHypnoCardGfx::
 	INCBIN "gfx/cards/dark_hypno/attributes.cardattr"
 	INCBIN "gfx/cards/dark_hypno/regular.2bpp"
 
+	ds $1e0
 
 SECTION "Card Gfx 14", ROMX
 
@@ -1454,6 +1561,7 @@ DarkMagnetonCardGfx::
 	INCBIN "gfx/cards/dark_magneton/regular.2bpp"
 	INCBIN "gfx/cards/dark_magneton/alt_tiles.2bpp"
 
+	ds $90
 
 SECTION "Card Gfx 15", ROMX
 
@@ -1544,6 +1652,7 @@ WigglytuffLv40CardGfx::
 	INCBIN "gfx/cards/wigglytuff_lv40/attributes.cardattr"
 	INCBIN "gfx/cards/wigglytuff_lv40/regular.2bpp"
 
+	ds $280
 
 SECTION "Card Gfx 16", ROMX
 
@@ -1642,6 +1751,7 @@ EeveeLv5CardGfx::
 	INCBIN "gfx/cards/eevee_lv5/regular.2bpp"
 	INCBIN "gfx/cards/eevee_lv5/alt_tiles.2bpp"
 
+	ds $1b8
 
 SECTION "Card Gfx 17", ROMX
 
@@ -1740,6 +1850,7 @@ OnixLv25CardGfx::
 	INCBIN "gfx/cards/onix_lv25/attributes.cardattr"
 	INCBIN "gfx/cards/onix_lv25/regular.2bpp"
 
+	ds $128
 
 SECTION "Card Gfx 18", ROMX
 
@@ -1841,6 +1952,7 @@ VulpixLv13CardGfx::
 	INCBIN "gfx/cards/vulpix_lv13/regular.2bpp"
 	INCBIN "gfx/cards/vulpix_lv13/alt_tiles.2bpp"
 
+	ds $160
 
 SECTION "Card Gfx 19", ROMX
 
@@ -1940,6 +2052,7 @@ HypnoLv30CardGfx::
 	INCBIN "gfx/cards/hypno_lv30/regular.2bpp"
 	INCBIN "gfx/cards/hypno_lv30/alt_tiles.2bpp"
 
+	ds $210
 
 SECTION "Card Gfx 20", ROMX
 
@@ -2034,6 +2147,7 @@ CoolPorygonCardGfx::
 	INCBIN "gfx/cards/cool_porygon/regular.2bpp"
 	INCBIN "gfx/cards/cool_porygon/alt_tiles.2bpp"
 
+	ds $178
 
 SECTION "Card Gfx 21", ROMX
 
@@ -2137,6 +2251,7 @@ ImposterProfessorOakCardGfx::
 	INCBIN "gfx/cards/imposter_professor_oak/regular.2bpp"
 	INCBIN "gfx/cards/imposter_professor_oak/alt_tiles.2bpp"
 
+	ds $1d0
 
 SECTION "Card Gfx 22", ROMX
 
@@ -2240,6 +2355,7 @@ ComputerSearchCardGfx::
 	INCBIN "gfx/cards/computer_search/attributes.cardattr"
 	INCBIN "gfx/cards/computer_search/regular.2bpp"
 
+	ds $f0
 
 SECTION "Card Gfx 23", ROMX
 
@@ -2339,6 +2455,7 @@ SleepCardGfx::
 	INCBIN "gfx/cards/sleep/attributes.cardattr"
 	INCBIN "gfx/cards/sleep/regular.2bpp"
 
+	ds $b8
 
 SECTION "Card Gfx 24", ROMX
 
@@ -2441,6 +2558,7 @@ RaichuLv33CardGfx::
 	INCBIN "gfx/cards/raichu_lv33/regular.2bpp"
 	INCBIN "gfx/cards/raichu_lv33/alt_tiles.2bpp"
 
+	ds $118
 
 SECTION "Card Gfx 25", ROMX
 
@@ -2540,6 +2658,7 @@ DarkRaichuCardGfx::
 	INCBIN "gfx/cards/dark_raichu/attributes.cardattr"
 	INCBIN "gfx/cards/dark_raichu/regular.2bpp"
 
+	ds $50
 
 SECTION "Card Gfx 26", ROMX
 
@@ -4869,7 +4988,8 @@ RareCardPopSceneGfx::
 	INCBIN "gfx/link/rare_card_pop_scene.2bpp"
 
 SpecialRulesGfx::
-	dw 21 ; length
+	dw 1 + 20 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/special_rules.2bpp"
 
 FullMailboxGfx::
@@ -4964,7 +5084,8 @@ MailboxCopyGfx::
 	INCBIN "gfx/minicom/mailbox_copy.2bpp"
 
 DeckDiagnosisGfx::
-	dw 33 ; length
+	dw 1 + 32 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/deck_diagnosis.2bpp"
 
 LinkSceneIntroGfx::

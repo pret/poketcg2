@@ -2340,3 +2340,5 @@ CharmanderLv10Description:
 GrowlName:
 	textfw "なきごえ"
 	done
+
+	ds $1b

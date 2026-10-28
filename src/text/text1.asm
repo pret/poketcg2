@@ -1530,3 +1530,5 @@ FossilizeCheckText:
 	linefw "進化した進化カードを 手札にもどせる"
 	linefw ""
 	done
+
+	ds $e

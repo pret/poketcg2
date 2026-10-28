@@ -84,7 +84,8 @@ ROMX $1a
 	"Effect Functions 1"
 ROMX $1b
 	"Gfx 1"
-; ROMX $1c not started
+ROMX $1c
+	"Gfx 2"
 ROMX $1d
 	"Card Gfx 1"
 ROMX $1e

@@ -2504,3 +2504,5 @@ FarfetchdName:
 LeekSlapName:
 	textfw "ネギでたたく"
 	done
+
+	ds $34

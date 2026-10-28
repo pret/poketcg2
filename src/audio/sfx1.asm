@@ -634,3 +634,5 @@ INCLUDE "audio/sfx/sfx_firegiver_start.asm"
 INCLUDE "audio/sfx/sfx_receive_card_pop.asm"
 INCLUDE "audio/sfx/sfx_pokemon_evolution.asm"
 INCLUDE "audio/sfx/sfx_5f.asm"
+
+	ds $3b3

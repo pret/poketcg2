@@ -1628,3 +1628,5 @@ PsychicPokemonPokemonPowerBookText:
 	linefw "この特殊能力を つかいこなすことが"
 	linefw "超ポケモンを つかいこなすことだ"
 	done
+
+	ds $7b

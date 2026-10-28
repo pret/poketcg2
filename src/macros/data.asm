@@ -102,6 +102,11 @@ MACRO? gfx_ptr
 	db $0 ; padding
 ENDM
 
+; reserved tile #0 in tilesets
+MACRO? solid_black_tile
+	ds TILE_SIZE, $ff
+ENDM
+
 ; \1 = y offset
 ; \2 = x offset
 ; \3 = vtile
