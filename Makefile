@@ -1,5 +1,3 @@
-# GNU Make 4.3+
-
 rom := poketcg2.gbc
 
 rom_obj := \
@@ -108,7 +106,7 @@ $(rom): $(rom_obj) src/layout.link
 ### Cards graphics rules
 
 src/gfx/cards/%/attributes.cardattr: src/gfx/cards/%/regular.attrmap
-	tools/card_attributes -o $@ $^
+	tools/card_attributes $(tools/card_attributes) -o $@ $^
 
 # for matching purposes
 src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.2bpp.match
@@ -124,7 +122,7 @@ src/gfx/cards/%/regular.gbcpal: src/gfx/cards/%/regular.hex
 	$(RGBGFX) $(RGBGFXFLAGS) --colors hex:$< -p $@
 
 src/gfx/cards/%/alt_tiles.2bpp: src/gfx/cards/%/regular.2bpp src/gfx/cards/%/grayscale.2bpp src/gfx/cards/%/attributes.cardattr
-	tools/alt_tiles -o $@ $^
+	tools/alt_tiles $(tools/alt_tiles) -o $@ $^
 
 
 ### Misc file-specific graphics rules

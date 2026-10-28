@@ -12,7 +12,5 @@ clean:
 	rm -f $(tools)
 
 gfx: common.h
-card_attributes: common.h card_gfx.h
-alt_tiles: common.h card_gfx.h
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<

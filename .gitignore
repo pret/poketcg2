@@ -1,10 +1,10 @@
 # precompiled python
 *.pyc
 
-# compiled objects
+# compiled object file
 *.o
 
-# compiled roms
+# roms
 *.gbc
 
 # rgbds extras
