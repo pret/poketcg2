@@ -1955,3 +1955,5 @@ Text11f2:
 	linefw "やっぱりGR団員なら"
 	linefw "わるいポケモン もってないとね!"
 	done
+
+	ds $d

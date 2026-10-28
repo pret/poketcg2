@@ -1897,3 +1897,5 @@ IshiharaThanksTradedArticunoLv34Text:
 	linefw "ほんとうに ありがとう"
 	linefw "たすかりましたよ"
 	done
+
+	ds $ae

@@ -2430,3 +2430,5 @@ DebugKondoDebugText:
 DebugMapDisplayTestText:
 	textfw "地図の表示テスト"
 	done
+
+	ds $4
