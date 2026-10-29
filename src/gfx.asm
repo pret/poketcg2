@@ -76,16 +76,2628 @@ Pals_6f0f0::
 	rgb  0,  0,  0
 	rgb 28, 12,  0
 	rgb 13,  9,  0
-; 0x6f108
 
-SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
+DuelCoinTossResultPalette::
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb  0,  0,  0
+	rgb  0, 10, 28 ; [X]
+
+DuelBoxMessagePalettes::
+	; BOXMSG_PLAYERS_TURN
+	rgb 31, 31, 31
+	rgb 31, 22,  9
+	rgb 27,  9,  4
+	rgb 18,  0,  0
+	; BOXMSG_OPPONENTS_TURN
+	rgb 31, 31, 31
+	rgb 16, 24, 29
+	rgb  6, 11, 24
+	rgb  0,  0, 16
+	; BOXMSG_BETWEEN_TURNS
+	rgb 31, 31, 31
+	rgb 21, 27, 13
+	rgb  7, 16,  0
+	rgb  0,  7,  0
+	; BOXMSG_DECISION
+	rgb 31, 31, 31
+	rgb 26, 22,  7
+	rgb 19, 13,  0
+	rgb  6,  2,  0
+	; BOXMSG_BENCH_POKEMON
+	rgb 31, 31, 31
+	rgb 31, 16, 20
+	rgb 21,  6, 14
+	rgb 10,  0,  4
+	; BOXMSG_ARENA_POKEMON
+	rgb 31, 31, 31
+	rgb 20, 29,  0
+	rgb 11, 18,  0
+	rgb  7,  6,  0
+	; BOXMSG_COIN_TOSS
+	rgb 31, 31, 31
+	rgb 18, 30, 31
+	rgb  8, 20, 27
+	rgb  0,  7, 14
+
+; back of the card
+DuelSetupPalette::
+	rgb 31, 31, 31
+	rgb  0,  0, 31
+	rgb 31,  0,  0
+	rgb  0,  0,  0
 
 SymbolsFont::
 INCBIN "gfx/fonts/symbols.2bpp"
 
+DuelGraphics::
+
+DuelCardHeaderGraphics::
+	INCBIN "gfx/duel/card_type_headers.2bpp"
+
+DuelCgbCardSymbolGraphics::
+	INCBIN "gfx/duel/cgb_card_symbols.2bpp"
+
+DuelDmgSgbCardSymbolGraphics::
+	INCBIN "gfx/duel/dmg_sgb_card_symbols.2bpp"
+
+RealCardSetSymbolGraphics::
+	INCBIN "gfx/duel/real_card_set_symbols.2bpp"
+
+	ds $30
+
+SECTION "Gfx 2", ROMX
+
+DuelCheckPokemonScreenGraphics::
+	INCBIN "gfx/duel/check_pokemon_stages.2bpp"
+	INCBIN "gfx/duel/check_locations.2bpp"
+
+DuelCgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/cgb_play_area_screen.2bpp"
+	INCBIN "gfx/duel/cgb_play_area_screen_29.2bpp"
+
+DuelDmgSgbPlayAreaScreenGraphics::
+	INCBIN "gfx/duel/dmg_sgb_play_area_screen.2bpp"
+	INCBIN "gfx/duel/dmg_sgb_play_area_screen_29.2bpp"
+
+DuelSetupScreenGraphics::
+	INCBIN "gfx/duel/setup_arena_card.2bpp"
+	INCBIN "gfx/duel/setup_prize_card.2bpp"
+
+DuelCoinTossResultSymbolGraphics::
+	INCBIN "gfx/duel/coin_toss_result_symbols.2bpp"
+
+CardOrDuelMenuBorderGraphics::
+	INCBIN "gfx/duel/borders.2bpp"
+
+DuelDrawCardsScreenGraphics::
+	INCBIN "gfx/duel/draw_cards_screen.2bpp"
+
+DuelBoxMessages::
+	INCBIN "gfx/duel/box_messages.2bpp"
+
+
 SECTION "Card Gfx 1", ROMX
 
+; see CARDGFXSTRUCT_*
 CardGraphics::
+
+GrassEnergyCardGfx::
+	INCBIN "gfx/cards/grass_energy/regular.gbcpal"
+	INCBIN "gfx/cards/grass_energy/attributes.cardattr"
+	INCBIN "gfx/cards/grass_energy/regular.2bpp"
+	INCBIN "gfx/cards/grass_energy/alt_tiles.2bpp"
+
+FireEnergyCardGfx::
+	INCBIN "gfx/cards/fire_energy/regular.gbcpal"
+	INCBIN "gfx/cards/fire_energy/attributes.cardattr"
+	INCBIN "gfx/cards/fire_energy/regular.2bpp"
+	INCBIN "gfx/cards/fire_energy/alt_tiles.2bpp"
+
+WaterEnergyCardGfx::
+	INCBIN "gfx/cards/water_energy/regular.gbcpal"
+	INCBIN "gfx/cards/water_energy/attributes.cardattr"
+	INCBIN "gfx/cards/water_energy/regular.2bpp"
+	INCBIN "gfx/cards/water_energy/alt_tiles.2bpp"
+
+LightningEnergyCardGfx::
+	INCBIN "gfx/cards/lightning_energy/regular.gbcpal"
+	INCBIN "gfx/cards/lightning_energy/attributes.cardattr"
+	INCBIN "gfx/cards/lightning_energy/regular.2bpp"
+	INCBIN "gfx/cards/lightning_energy/alt_tiles.2bpp"
+
+FightingEnergyCardGfx::
+	INCBIN "gfx/cards/fighting_energy/regular.gbcpal"
+	INCBIN "gfx/cards/fighting_energy/attributes.cardattr"
+	INCBIN "gfx/cards/fighting_energy/regular.2bpp"
+	INCBIN "gfx/cards/fighting_energy/alt_tiles.2bpp"
+
+PsychicEnergyCardGfx::
+	INCBIN "gfx/cards/psychic_energy/regular.gbcpal"
+	INCBIN "gfx/cards/psychic_energy/attributes.cardattr"
+	INCBIN "gfx/cards/psychic_energy/regular.2bpp"
+	INCBIN "gfx/cards/psychic_energy/alt_tiles.2bpp"
+
+DoubleColorlessEnergyCardGfx::
+	INCBIN "gfx/cards/double_colorless_energy/regular.gbcpal"
+	INCBIN "gfx/cards/double_colorless_energy/attributes.cardattr"
+	INCBIN "gfx/cards/double_colorless_energy/regular.2bpp"
+	INCBIN "gfx/cards/double_colorless_energy/alt_tiles.2bpp"
+
+PotionEnergyCardGfx::
+	INCBIN "gfx/cards/potion_energy/regular.gbcpal"
+	INCBIN "gfx/cards/potion_energy/attributes.cardattr"
+	INCBIN "gfx/cards/potion_energy/regular.2bpp"
+	INCBIN "gfx/cards/potion_energy/alt_tiles.2bpp"
+
+FullHealEnergyCardGfx::
+	INCBIN "gfx/cards/full_heal_energy/regular.gbcpal"
+	INCBIN "gfx/cards/full_heal_energy/attributes.cardattr"
+	INCBIN "gfx/cards/full_heal_energy/regular.2bpp"
+
+RainbowEnergyCardGfx::
+	INCBIN "gfx/cards/rainbow_energy/regular.gbcpal"
+	INCBIN "gfx/cards/rainbow_energy/attributes.cardattr"
+	INCBIN "gfx/cards/rainbow_energy/regular.2bpp"
+
+BulbasaurLv13CardGfx::
+	INCBIN "gfx/cards/bulbasaur_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/bulbasaur_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/bulbasaur_lv13/regular.2bpp"
+
+IvysaurLv20CardGfx::
+	INCBIN "gfx/cards/ivysaur_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/ivysaur_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/ivysaur_lv20/regular.2bpp"
+	INCBIN "gfx/cards/ivysaur_lv20/alt_tiles.2bpp"
+
+VenusaurLv64CardGfx::
+	INCBIN "gfx/cards/venusaur_lv64/regular.gbcpal"
+	INCBIN "gfx/cards/venusaur_lv64/attributes.cardattr"
+	INCBIN "gfx/cards/venusaur_lv64/regular.2bpp"
+	INCBIN "gfx/cards/venusaur_lv64/alt_tiles.2bpp"
+
+VenusaurLv67CardGfx::
+	INCBIN "gfx/cards/venusaur_lv67/regular.gbcpal"
+	INCBIN "gfx/cards/venusaur_lv67/attributes.cardattr"
+	INCBIN "gfx/cards/venusaur_lv67/regular.2bpp"
+
+CaterpieCardGfx::
+	INCBIN "gfx/cards/caterpie/regular.gbcpal"
+	INCBIN "gfx/cards/caterpie/attributes.cardattr"
+	INCBIN "gfx/cards/caterpie/regular.2bpp"
+
+MetapodLv21CardGfx::
+	INCBIN "gfx/cards/metapod_lv21/regular.gbcpal"
+	INCBIN "gfx/cards/metapod_lv21/attributes.cardattr"
+	INCBIN "gfx/cards/metapod_lv21/regular.2bpp"
+
+	ds $90
+
+SECTION "Card Gfx 2", ROMX
+
+ButterfreeCardGfx::
+	INCBIN "gfx/cards/butterfree/regular.gbcpal"
+	INCBIN "gfx/cards/butterfree/attributes.cardattr"
+	INCBIN "gfx/cards/butterfree/regular.2bpp"
+	INCBIN "gfx/cards/butterfree/alt_tiles.2bpp"
+
+WeedleLv12CardGfx::
+	INCBIN "gfx/cards/weedle_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/weedle_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/weedle_lv12/regular.2bpp"
+
+KakunaLv23CardGfx::
+	INCBIN "gfx/cards/kakuna_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/kakuna_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/kakuna_lv23/regular.2bpp"
+
+BeedrillCardGfx::
+	INCBIN "gfx/cards/beedrill/regular.gbcpal"
+	INCBIN "gfx/cards/beedrill/attributes.cardattr"
+	INCBIN "gfx/cards/beedrill/regular.2bpp"
+	INCBIN "gfx/cards/beedrill/alt_tiles.2bpp"
+
+EkansLv10CardGfx::
+	INCBIN "gfx/cards/ekans_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/ekans_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/ekans_lv10/regular.2bpp"
+	INCBIN "gfx/cards/ekans_lv10/alt_tiles.2bpp"
+
+ArbokLv27CardGfx::
+	INCBIN "gfx/cards/arbok_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/arbok_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/arbok_lv27/regular.2bpp"
+	INCBIN "gfx/cards/arbok_lv27/alt_tiles.2bpp"
+
+NidoranFLv13CardGfx::
+	INCBIN "gfx/cards/nidoranf_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/nidoranf_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/nidoranf_lv13/regular.2bpp"
+	INCBIN "gfx/cards/nidoranf_lv13/alt_tiles.2bpp"
+
+NidorinaLv24CardGfx::
+	INCBIN "gfx/cards/nidorina_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/nidorina_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/nidorina_lv24/regular.2bpp"
+	INCBIN "gfx/cards/nidorina_lv24/alt_tiles.2bpp"
+
+NidoqueenCardGfx::
+	INCBIN "gfx/cards/nidoqueen/regular.gbcpal"
+	INCBIN "gfx/cards/nidoqueen/attributes.cardattr"
+	INCBIN "gfx/cards/nidoqueen/regular.2bpp"
+
+NidoranMLv20CardGfx::
+	INCBIN "gfx/cards/nidoranm_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/nidoranm_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/nidoranm_lv20/regular.2bpp"
+	INCBIN "gfx/cards/nidoranm_lv20/alt_tiles.2bpp"
+
+NidorinoLv25CardGfx::
+	INCBIN "gfx/cards/nidorino_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/nidorino_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/nidorino_lv25/regular.2bpp"
+
+NidokingCardGfx::
+	INCBIN "gfx/cards/nidoking/regular.gbcpal"
+	INCBIN "gfx/cards/nidoking/attributes.cardattr"
+	INCBIN "gfx/cards/nidoking/regular.2bpp"
+
+ZubatLv10CardGfx::
+	INCBIN "gfx/cards/zubat_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/zubat_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/zubat_lv10/regular.2bpp"
+
+GolbatLv29CardGfx::
+	INCBIN "gfx/cards/golbat_lv29/regular.gbcpal"
+	INCBIN "gfx/cards/golbat_lv29/attributes.cardattr"
+	INCBIN "gfx/cards/golbat_lv29/regular.2bpp"
+
+OddishLv8CardGfx::
+	INCBIN "gfx/cards/oddish_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/oddish_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/oddish_lv8/regular.2bpp"
+
+GloomCardGfx::
+	INCBIN "gfx/cards/gloom/regular.gbcpal"
+	INCBIN "gfx/cards/gloom/attributes.cardattr"
+	INCBIN "gfx/cards/gloom/regular.2bpp"
+
+VileplumeCardGfx::
+	INCBIN "gfx/cards/vileplume/regular.gbcpal"
+	INCBIN "gfx/cards/vileplume/attributes.cardattr"
+	INCBIN "gfx/cards/vileplume/regular.2bpp"
+
+ParasLv8CardGfx::
+	INCBIN "gfx/cards/paras_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/paras_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/paras_lv8/regular.2bpp"
+	INCBIN "gfx/cards/paras_lv8/alt_tiles.2bpp"
+
+	ds $120
+
+SECTION "Card Gfx 3", ROMX
+
+ParasectLv28CardGfx::
+	INCBIN "gfx/cards/parasect_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/parasect_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/parasect_lv28/regular.2bpp"
+	INCBIN "gfx/cards/parasect_lv28/alt_tiles.2bpp"
+
+VenonatLv12CardGfx::
+	INCBIN "gfx/cards/venonat_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/venonat_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/venonat_lv12/regular.2bpp"
+
+VenomothLv28CardGfx::
+	INCBIN "gfx/cards/venomoth_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/venomoth_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/venomoth_lv28/regular.2bpp"
+
+BellsproutLv11CardGfx::
+	INCBIN "gfx/cards/bellsprout_lv11/regular.gbcpal"
+	INCBIN "gfx/cards/bellsprout_lv11/attributes.cardattr"
+	INCBIN "gfx/cards/bellsprout_lv11/regular.2bpp"
+
+WeepinbellLv28CardGfx::
+	INCBIN "gfx/cards/weepinbell_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/weepinbell_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/weepinbell_lv28/regular.2bpp"
+
+VictreebelCardGfx::
+	INCBIN "gfx/cards/victreebel/regular.gbcpal"
+	INCBIN "gfx/cards/victreebel/attributes.cardattr"
+	INCBIN "gfx/cards/victreebel/regular.2bpp"
+
+GrimerLv17CardGfx::
+	INCBIN "gfx/cards/grimer_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/grimer_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/grimer_lv17/regular.2bpp"
+
+MukCardGfx::
+	INCBIN "gfx/cards/muk/regular.gbcpal"
+	INCBIN "gfx/cards/muk/attributes.cardattr"
+	INCBIN "gfx/cards/muk/regular.2bpp"
+
+ExeggcuteCardGfx::
+	INCBIN "gfx/cards/exeggcute/regular.gbcpal"
+	INCBIN "gfx/cards/exeggcute/attributes.cardattr"
+	INCBIN "gfx/cards/exeggcute/regular.2bpp"
+	INCBIN "gfx/cards/exeggcute/alt_tiles.2bpp"
+
+ExeggutorCardGfx::
+	INCBIN "gfx/cards/exeggutor/regular.gbcpal"
+	INCBIN "gfx/cards/exeggutor/attributes.cardattr"
+	INCBIN "gfx/cards/exeggutor/regular.2bpp"
+	INCBIN "gfx/cards/exeggutor/alt_tiles.2bpp"
+
+KoffingLv13CardGfx::
+	INCBIN "gfx/cards/koffing_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/koffing_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/koffing_lv13/regular.2bpp"
+
+WeezingLv27CardGfx::
+	INCBIN "gfx/cards/weezing_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/weezing_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/weezing_lv27/regular.2bpp"
+	INCBIN "gfx/cards/weezing_lv27/alt_tiles.2bpp"
+
+TangelaLv8CardGfx::
+	INCBIN "gfx/cards/tangela_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/tangela_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/tangela_lv8/regular.2bpp"
+	INCBIN "gfx/cards/tangela_lv8/alt_tiles.2bpp"
+
+TangelaLv12CardGfx::
+	INCBIN "gfx/cards/tangela_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/tangela_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/tangela_lv12/regular.2bpp"
+
+ScytherLv25CardGfx::
+	INCBIN "gfx/cards/scyther_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/scyther_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/scyther_lv25/regular.2bpp"
+
+PinsirLv24CardGfx::
+	INCBIN "gfx/cards/pinsir_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/pinsir_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/pinsir_lv24/regular.2bpp"
+
+CharmanderLv10CardGfx::
+	INCBIN "gfx/cards/charmander_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/charmander_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/charmander_lv10/regular.2bpp"
+	INCBIN "gfx/cards/charmander_lv10/alt_tiles.2bpp"
+
+CharmeleonCardGfx::
+	INCBIN "gfx/cards/charmeleon/regular.gbcpal"
+	INCBIN "gfx/cards/charmeleon/attributes.cardattr"
+	INCBIN "gfx/cards/charmeleon/regular.2bpp"
+	INCBIN "gfx/cards/charmeleon/alt_tiles.2bpp"
+
+	ds $250
+
+SECTION "Card Gfx 4", ROMX
+
+CharizardLv76CardGfx::
+	INCBIN "gfx/cards/charizard_lv76/regular.gbcpal"
+	INCBIN "gfx/cards/charizard_lv76/attributes.cardattr"
+	INCBIN "gfx/cards/charizard_lv76/regular.2bpp"
+
+VulpixLv11CardGfx::
+	INCBIN "gfx/cards/vulpix_lv11/regular.gbcpal"
+	INCBIN "gfx/cards/vulpix_lv11/attributes.cardattr"
+	INCBIN "gfx/cards/vulpix_lv11/regular.2bpp"
+
+NinetalesLv32CardGfx::
+	INCBIN "gfx/cards/ninetales_lv32/regular.gbcpal"
+	INCBIN "gfx/cards/ninetales_lv32/attributes.cardattr"
+	INCBIN "gfx/cards/ninetales_lv32/regular.2bpp"
+
+NinetalesLv35CardGfx::
+	INCBIN "gfx/cards/ninetales_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/ninetales_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/ninetales_lv35/regular.2bpp"
+	INCBIN "gfx/cards/ninetales_lv35/alt_tiles.2bpp"
+
+GrowlitheLv18CardGfx::
+	INCBIN "gfx/cards/growlithe_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/growlithe_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/growlithe_lv18/regular.2bpp"
+
+ArcanineLv34CardGfx::
+	INCBIN "gfx/cards/arcanine_lv34/regular.gbcpal"
+	INCBIN "gfx/cards/arcanine_lv34/attributes.cardattr"
+	INCBIN "gfx/cards/arcanine_lv34/regular.2bpp"
+	INCBIN "gfx/cards/arcanine_lv34/alt_tiles.2bpp"
+
+ArcanineLv45CardGfx::
+	INCBIN "gfx/cards/arcanine_lv45/regular.gbcpal"
+	INCBIN "gfx/cards/arcanine_lv45/attributes.cardattr"
+	INCBIN "gfx/cards/arcanine_lv45/regular.2bpp"
+
+PonytaLv10CardGfx::
+	INCBIN "gfx/cards/ponyta_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/ponyta_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/ponyta_lv10/regular.2bpp"
+	INCBIN "gfx/cards/ponyta_lv10/alt_tiles.2bpp"
+
+RapidashLv33CardGfx::
+	INCBIN "gfx/cards/rapidash_lv33/regular.gbcpal"
+	INCBIN "gfx/cards/rapidash_lv33/attributes.cardattr"
+	INCBIN "gfx/cards/rapidash_lv33/regular.2bpp"
+	INCBIN "gfx/cards/rapidash_lv33/alt_tiles.2bpp"
+
+MagmarLv24CardGfx::
+	INCBIN "gfx/cards/magmar_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/magmar_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/magmar_lv24/regular.2bpp"
+
+MagmarLv31CardGfx::
+	INCBIN "gfx/cards/magmar_lv31/regular.gbcpal"
+	INCBIN "gfx/cards/magmar_lv31/attributes.cardattr"
+	INCBIN "gfx/cards/magmar_lv31/regular.2bpp"
+
+FlareonLv22CardGfx::
+	INCBIN "gfx/cards/flareon_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/flareon_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/flareon_lv22/regular.2bpp"
+
+FlareonLv28CardGfx::
+	INCBIN "gfx/cards/flareon_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/flareon_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/flareon_lv28/regular.2bpp"
+
+MoltresLv35CardGfx::
+	INCBIN "gfx/cards/moltres_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/moltres_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/moltres_lv35/regular.2bpp"
+
+MoltresLv40CardGfx::
+	INCBIN "gfx/cards/moltres_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/moltres_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/moltres_lv40/regular.2bpp"
+
+SquirtleLv8CardGfx::
+	INCBIN "gfx/cards/squirtle_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/squirtle_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/squirtle_lv8/regular.2bpp"
+	INCBIN "gfx/cards/squirtle_lv8/alt_tiles.2bpp"
+
+WartortleLv22CardGfx::
+	INCBIN "gfx/cards/wartortle_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/wartortle_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/wartortle_lv22/regular.2bpp"
+
+	ds $378
+
+SECTION "Card Gfx 5", ROMX
+
+BlastoiseLv52CardGfx::
+	INCBIN "gfx/cards/blastoise_lv52/regular.gbcpal"
+	INCBIN "gfx/cards/blastoise_lv52/attributes.cardattr"
+	INCBIN "gfx/cards/blastoise_lv52/regular.2bpp"
+	INCBIN "gfx/cards/blastoise_lv52/alt_tiles.2bpp"
+
+PsyduckLv15CardGfx::
+	INCBIN "gfx/cards/psyduck_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/psyduck_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/psyduck_lv15/regular.2bpp"
+	INCBIN "gfx/cards/psyduck_lv15/alt_tiles.2bpp"
+
+GolduckLv27CardGfx::
+	INCBIN "gfx/cards/golduck_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/golduck_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/golduck_lv27/regular.2bpp"
+	INCBIN "gfx/cards/golduck_lv27/alt_tiles.2bpp"
+
+PoliwagLv13CardGfx::
+	INCBIN "gfx/cards/poliwag_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/poliwag_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/poliwag_lv13/regular.2bpp"
+	INCBIN "gfx/cards/poliwag_lv13/alt_tiles.2bpp"
+
+PoliwhirlLv28CardGfx::
+	INCBIN "gfx/cards/poliwhirl_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/poliwhirl_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/poliwhirl_lv28/regular.2bpp"
+
+PoliwrathLv48CardGfx::
+	INCBIN "gfx/cards/poliwrath_lv48/regular.gbcpal"
+	INCBIN "gfx/cards/poliwrath_lv48/attributes.cardattr"
+	INCBIN "gfx/cards/poliwrath_lv48/regular.2bpp"
+
+TentacoolCardGfx::
+	INCBIN "gfx/cards/tentacool/regular.gbcpal"
+	INCBIN "gfx/cards/tentacool/attributes.cardattr"
+	INCBIN "gfx/cards/tentacool/regular.2bpp"
+
+TentacruelCardGfx::
+	INCBIN "gfx/cards/tentacruel/regular.gbcpal"
+	INCBIN "gfx/cards/tentacruel/attributes.cardattr"
+	INCBIN "gfx/cards/tentacruel/regular.2bpp"
+	INCBIN "gfx/cards/tentacruel/alt_tiles.2bpp"
+
+SeelLv12CardGfx::
+	INCBIN "gfx/cards/seel_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/seel_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/seel_lv12/regular.2bpp"
+
+DewgongLv42CardGfx::
+	INCBIN "gfx/cards/dewgong_lv42/regular.gbcpal"
+	INCBIN "gfx/cards/dewgong_lv42/attributes.cardattr"
+	INCBIN "gfx/cards/dewgong_lv42/regular.2bpp"
+
+ShellderLv8CardGfx::
+	INCBIN "gfx/cards/shellder_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/shellder_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/shellder_lv8/regular.2bpp"
+	INCBIN "gfx/cards/shellder_lv8/alt_tiles.2bpp"
+
+CloysterCardGfx::
+	INCBIN "gfx/cards/cloyster/regular.gbcpal"
+	INCBIN "gfx/cards/cloyster/attributes.cardattr"
+	INCBIN "gfx/cards/cloyster/regular.2bpp"
+
+KrabbyLv20CardGfx::
+	INCBIN "gfx/cards/krabby_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/krabby_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/krabby_lv20/regular.2bpp"
+	INCBIN "gfx/cards/krabby_lv20/alt_tiles.2bpp"
+
+KinglerLv27CardGfx::
+	INCBIN "gfx/cards/kingler_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/kingler_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/kingler_lv27/regular.2bpp"
+	INCBIN "gfx/cards/kingler_lv27/alt_tiles.2bpp"
+
+HorseaLv19CardGfx::
+	INCBIN "gfx/cards/horsea_lv19/regular.gbcpal"
+	INCBIN "gfx/cards/horsea_lv19/attributes.cardattr"
+	INCBIN "gfx/cards/horsea_lv19/regular.2bpp"
+
+SeadraLv23CardGfx::
+	INCBIN "gfx/cards/seadra_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/seadra_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/seadra_lv23/regular.2bpp"
+
+GoldeenCardGfx::
+	INCBIN "gfx/cards/goldeen/regular.gbcpal"
+	INCBIN "gfx/cards/goldeen/attributes.cardattr"
+	INCBIN "gfx/cards/goldeen/regular.2bpp"
+	INCBIN "gfx/cards/goldeen/alt_tiles.2bpp"
+
+	ds $2e8
+
+SECTION "Card Gfx 6", ROMX
+
+SeakingCardGfx::
+	INCBIN "gfx/cards/seaking/regular.gbcpal"
+	INCBIN "gfx/cards/seaking/attributes.cardattr"
+	INCBIN "gfx/cards/seaking/regular.2bpp"
+
+StaryuLv15CardGfx::
+	INCBIN "gfx/cards/staryu_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/staryu_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/staryu_lv15/regular.2bpp"
+	INCBIN "gfx/cards/staryu_lv15/alt_tiles.2bpp"
+
+StarmieCardGfx::
+	INCBIN "gfx/cards/starmie/regular.gbcpal"
+	INCBIN "gfx/cards/starmie/attributes.cardattr"
+	INCBIN "gfx/cards/starmie/regular.2bpp"
+
+MagikarpLv8CardGfx::
+	INCBIN "gfx/cards/magikarp_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/magikarp_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/magikarp_lv8/regular.2bpp"
+
+GyaradosCardGfx::
+	INCBIN "gfx/cards/gyarados/regular.gbcpal"
+	INCBIN "gfx/cards/gyarados/attributes.cardattr"
+	INCBIN "gfx/cards/gyarados/regular.2bpp"
+	INCBIN "gfx/cards/gyarados/alt_tiles.2bpp"
+
+LaprasLv31CardGfx::
+	INCBIN "gfx/cards/lapras_lv31/regular.gbcpal"
+	INCBIN "gfx/cards/lapras_lv31/attributes.cardattr"
+	INCBIN "gfx/cards/lapras_lv31/regular.2bpp"
+
+VaporeonLv29CardGfx::
+	INCBIN "gfx/cards/vaporeon_lv29/regular.gbcpal"
+	INCBIN "gfx/cards/vaporeon_lv29/attributes.cardattr"
+	INCBIN "gfx/cards/vaporeon_lv29/regular.2bpp"
+
+VaporeonLv42CardGfx::
+	INCBIN "gfx/cards/vaporeon_lv42/regular.gbcpal"
+	INCBIN "gfx/cards/vaporeon_lv42/attributes.cardattr"
+	INCBIN "gfx/cards/vaporeon_lv42/regular.2bpp"
+
+OmanyteLv19CardGfx::
+	INCBIN "gfx/cards/omanyte_lv19/regular.gbcpal"
+	INCBIN "gfx/cards/omanyte_lv19/attributes.cardattr"
+	INCBIN "gfx/cards/omanyte_lv19/regular.2bpp"
+
+OmastarLv32CardGfx::
+	INCBIN "gfx/cards/omastar_lv32/regular.gbcpal"
+	INCBIN "gfx/cards/omastar_lv32/attributes.cardattr"
+	INCBIN "gfx/cards/omastar_lv32/regular.2bpp"
+	INCBIN "gfx/cards/omastar_lv32/alt_tiles.2bpp"
+
+ArticunoLv35CardGfx::
+	INCBIN "gfx/cards/articuno_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/articuno_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/articuno_lv35/regular.2bpp"
+
+ArticunoLv37CardGfx::
+	INCBIN "gfx/cards/articuno_lv37/regular.gbcpal"
+	INCBIN "gfx/cards/articuno_lv37/attributes.cardattr"
+	INCBIN "gfx/cards/articuno_lv37/regular.2bpp"
+
+PikachuLv12CardGfx::
+	INCBIN "gfx/cards/pikachu_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_lv12/regular.2bpp"
+
+PikachuLv14CardGfx::
+	INCBIN "gfx/cards/pikachu_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_lv14/regular.2bpp"
+
+PikachuLv16CardGfx::
+	INCBIN "gfx/cards/pikachu_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_lv16/regular.2bpp"
+	INCBIN "gfx/cards/pikachu_lv16/alt_tiles.2bpp"
+
+PikachuAltLv16CardGfx::
+	INCBIN "gfx/cards/pikachu_alt_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_alt_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_alt_lv16/regular.2bpp"
+	INCBIN "gfx/cards/pikachu_alt_lv16/alt_tiles.2bpp"
+
+FlyingPikachuLv12CardGfx::
+	INCBIN "gfx/cards/flying_pikachu_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/flying_pikachu_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/flying_pikachu_lv12/regular.2bpp"
+	INCBIN "gfx/cards/flying_pikachu_lv12/alt_tiles.2bpp"
+
+	ds $3e8
+
+SECTION "Card Gfx 7", ROMX
+
+SurfingPikachuLv13CardGfx::
+	INCBIN "gfx/cards/surfing_pikachu_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/surfing_pikachu_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/surfing_pikachu_lv13/regular.2bpp"
+	INCBIN "gfx/cards/surfing_pikachu_lv13/alt_tiles.2bpp"
+
+SurfingPikachuAltLv13CardGfx::
+	INCBIN "gfx/cards/surfing_pikachu_alt_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/surfing_pikachu_alt_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/surfing_pikachu_alt_lv13/regular.2bpp"
+	INCBIN "gfx/cards/surfing_pikachu_alt_lv13/alt_tiles.2bpp"
+
+RaichuLv40CardGfx::
+	INCBIN "gfx/cards/raichu_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/raichu_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/raichu_lv40/regular.2bpp"
+
+RaichuLv45CardGfx::
+	INCBIN "gfx/cards/raichu_lv45/regular.gbcpal"
+	INCBIN "gfx/cards/raichu_lv45/attributes.cardattr"
+	INCBIN "gfx/cards/raichu_lv45/regular.2bpp"
+
+MagnemiteLv13CardGfx::
+	INCBIN "gfx/cards/magnemite_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/magnemite_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/magnemite_lv13/regular.2bpp"
+	INCBIN "gfx/cards/magnemite_lv13/alt_tiles.2bpp"
+
+MagnemiteLv14CardGfx::
+	INCBIN "gfx/cards/magnemite_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/magnemite_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/magnemite_lv14/regular.2bpp"
+	INCBIN "gfx/cards/magnemite_lv14/alt_tiles.2bpp"
+
+MagnetonLv28CardGfx::
+	INCBIN "gfx/cards/magneton_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/magneton_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/magneton_lv28/regular.2bpp"
+	INCBIN "gfx/cards/magneton_lv28/alt_tiles.2bpp"
+
+MagnetonLv35CardGfx::
+	INCBIN "gfx/cards/magneton_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/magneton_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/magneton_lv35/regular.2bpp"
+
+VoltorbLv10CardGfx::
+	INCBIN "gfx/cards/voltorb_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/voltorb_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/voltorb_lv10/regular.2bpp"
+	INCBIN "gfx/cards/voltorb_lv10/alt_tiles.2bpp"
+
+ElectrodeLv35CardGfx::
+	INCBIN "gfx/cards/electrode_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/electrode_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/electrode_lv35/regular.2bpp"
+
+ElectrodeLv42CardGfx::
+	INCBIN "gfx/cards/electrode_lv42/regular.gbcpal"
+	INCBIN "gfx/cards/electrode_lv42/attributes.cardattr"
+	INCBIN "gfx/cards/electrode_lv42/regular.2bpp"
+
+ElectabuzzLv20CardGfx::
+	INCBIN "gfx/cards/electabuzz_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/electabuzz_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/electabuzz_lv20/regular.2bpp"
+
+ElectabuzzLv35CardGfx::
+	INCBIN "gfx/cards/electabuzz_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/electabuzz_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/electabuzz_lv35/regular.2bpp"
+	INCBIN "gfx/cards/electabuzz_lv35/alt_tiles.2bpp"
+
+JolteonLv24CardGfx::
+	INCBIN "gfx/cards/jolteon_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/jolteon_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/jolteon_lv24/regular.2bpp"
+
+JolteonLv29CardGfx::
+	INCBIN "gfx/cards/jolteon_lv29/regular.gbcpal"
+	INCBIN "gfx/cards/jolteon_lv29/attributes.cardattr"
+	INCBIN "gfx/cards/jolteon_lv29/regular.2bpp"
+
+ZapdosLv40CardGfx::
+	INCBIN "gfx/cards/zapdos_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/zapdos_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/zapdos_lv40/regular.2bpp"
+
+ZapdosLv64CardGfx::
+	INCBIN "gfx/cards/zapdos_lv64/regular.gbcpal"
+	INCBIN "gfx/cards/zapdos_lv64/attributes.cardattr"
+	INCBIN "gfx/cards/zapdos_lv64/regular.2bpp"
+	INCBIN "gfx/cards/zapdos_lv64/alt_tiles.2bpp"
+
+	ds $d8
+
+SECTION "Card Gfx 8", ROMX
+
+ZapdosLv68CardGfx::
+	INCBIN "gfx/cards/zapdos_lv68/regular.gbcpal"
+	INCBIN "gfx/cards/zapdos_lv68/attributes.cardattr"
+	INCBIN "gfx/cards/zapdos_lv68/regular.2bpp"
+
+SandshrewLv12CardGfx::
+	INCBIN "gfx/cards/sandshrew_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/sandshrew_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/sandshrew_lv12/regular.2bpp"
+	INCBIN "gfx/cards/sandshrew_lv12/alt_tiles.2bpp"
+
+SandslashLv33CardGfx::
+	INCBIN "gfx/cards/sandslash_lv33/regular.gbcpal"
+	INCBIN "gfx/cards/sandslash_lv33/attributes.cardattr"
+	INCBIN "gfx/cards/sandslash_lv33/regular.2bpp"
+	INCBIN "gfx/cards/sandslash_lv33/alt_tiles.2bpp"
+
+DiglettLv8CardGfx::
+	INCBIN "gfx/cards/diglett_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/diglett_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/diglett_lv8/regular.2bpp"
+
+DugtrioLv36CardGfx::
+	INCBIN "gfx/cards/dugtrio_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/dugtrio_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/dugtrio_lv36/regular.2bpp"
+	INCBIN "gfx/cards/dugtrio_lv36/alt_tiles.2bpp"
+
+MankeyLv7CardGfx::
+	INCBIN "gfx/cards/mankey_lv7/regular.gbcpal"
+	INCBIN "gfx/cards/mankey_lv7/attributes.cardattr"
+	INCBIN "gfx/cards/mankey_lv7/regular.2bpp"
+	INCBIN "gfx/cards/mankey_lv7/alt_tiles.2bpp"
+
+PrimeapeCardGfx::
+	INCBIN "gfx/cards/primeape/regular.gbcpal"
+	INCBIN "gfx/cards/primeape/attributes.cardattr"
+	INCBIN "gfx/cards/primeape/regular.2bpp"
+
+MachopLv20CardGfx::
+	INCBIN "gfx/cards/machop_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/machop_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/machop_lv20/regular.2bpp"
+
+MachokeLv40CardGfx::
+	INCBIN "gfx/cards/machoke_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/machoke_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/machoke_lv40/regular.2bpp"
+
+MachampLv67CardGfx::
+	INCBIN "gfx/cards/machamp_lv67/regular.gbcpal"
+	INCBIN "gfx/cards/machamp_lv67/attributes.cardattr"
+	INCBIN "gfx/cards/machamp_lv67/regular.2bpp"
+
+GeodudeLv16CardGfx::
+	INCBIN "gfx/cards/geodude_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/geodude_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/geodude_lv16/regular.2bpp"
+
+GravelerLv29CardGfx::
+	INCBIN "gfx/cards/graveler_lv29/regular.gbcpal"
+	INCBIN "gfx/cards/graveler_lv29/attributes.cardattr"
+	INCBIN "gfx/cards/graveler_lv29/regular.2bpp"
+
+GolemLv36CardGfx::
+	INCBIN "gfx/cards/golem_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/golem_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/golem_lv36/regular.2bpp"
+
+OnixLv12CardGfx::
+	INCBIN "gfx/cards/onix_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/onix_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/onix_lv12/regular.2bpp"
+
+CuboneLv13CardGfx::
+	INCBIN "gfx/cards/cubone_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/cubone_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/cubone_lv13/regular.2bpp"
+
+MarowakLv26CardGfx::
+	INCBIN "gfx/cards/marowak_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/marowak_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/marowak_lv26/regular.2bpp"
+
+MarowakLv32CardGfx::
+	INCBIN "gfx/cards/marowak_lv32/regular.gbcpal"
+	INCBIN "gfx/cards/marowak_lv32/attributes.cardattr"
+	INCBIN "gfx/cards/marowak_lv32/regular.2bpp"
+
+HitmonleeLv30CardGfx::
+	INCBIN "gfx/cards/hitmonlee_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/hitmonlee_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/hitmonlee_lv30/regular.2bpp"
+
+HitmonchanLv33CardGfx::
+	INCBIN "gfx/cards/hitmonchan_lv33/regular.gbcpal"
+	INCBIN "gfx/cards/hitmonchan_lv33/attributes.cardattr"
+	INCBIN "gfx/cards/hitmonchan_lv33/regular.2bpp"
+
+	ds $18
+
+SECTION "Card Gfx 9", ROMX
+
+RhyhornCardGfx::
+	INCBIN "gfx/cards/rhyhorn/regular.gbcpal"
+	INCBIN "gfx/cards/rhyhorn/attributes.cardattr"
+	INCBIN "gfx/cards/rhyhorn/regular.2bpp"
+
+RhydonLv48CardGfx::
+	INCBIN "gfx/cards/rhydon_lv48/regular.gbcpal"
+	INCBIN "gfx/cards/rhydon_lv48/attributes.cardattr"
+	INCBIN "gfx/cards/rhydon_lv48/regular.2bpp"
+
+KabutoLv9CardGfx::
+	INCBIN "gfx/cards/kabuto_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/kabuto_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/kabuto_lv9/regular.2bpp"
+
+KabutopsCardGfx::
+	INCBIN "gfx/cards/kabutops/regular.gbcpal"
+	INCBIN "gfx/cards/kabutops/attributes.cardattr"
+	INCBIN "gfx/cards/kabutops/regular.2bpp"
+
+AerodactylLv28CardGfx::
+	INCBIN "gfx/cards/aerodactyl_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/aerodactyl_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/aerodactyl_lv28/regular.2bpp"
+	INCBIN "gfx/cards/aerodactyl_lv28/alt_tiles.2bpp"
+
+AbraLv10CardGfx::
+	INCBIN "gfx/cards/abra_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/abra_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/abra_lv10/regular.2bpp"
+	INCBIN "gfx/cards/abra_lv10/alt_tiles.2bpp"
+
+KadabraLv38CardGfx::
+	INCBIN "gfx/cards/kadabra_lv38/regular.gbcpal"
+	INCBIN "gfx/cards/kadabra_lv38/attributes.cardattr"
+	INCBIN "gfx/cards/kadabra_lv38/regular.2bpp"
+	INCBIN "gfx/cards/kadabra_lv38/alt_tiles.2bpp"
+
+AlakazamLv42CardGfx::
+	INCBIN "gfx/cards/alakazam_lv42/regular.gbcpal"
+	INCBIN "gfx/cards/alakazam_lv42/attributes.cardattr"
+	INCBIN "gfx/cards/alakazam_lv42/regular.2bpp"
+
+SlowpokeLv9CardGfx::
+	INCBIN "gfx/cards/slowpoke_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/slowpoke_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/slowpoke_lv9/regular.2bpp"
+	INCBIN "gfx/cards/slowpoke_lv9/alt_tiles.2bpp"
+
+SlowpokeLv18CardGfx::
+	INCBIN "gfx/cards/slowpoke_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/slowpoke_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/slowpoke_lv18/regular.2bpp"
+	INCBIN "gfx/cards/slowpoke_lv18/alt_tiles.2bpp"
+
+SlowbroLv26CardGfx::
+	INCBIN "gfx/cards/slowbro_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/slowbro_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/slowbro_lv26/regular.2bpp"
+	INCBIN "gfx/cards/slowbro_lv26/alt_tiles.2bpp"
+
+GastlyLv8CardGfx::
+	INCBIN "gfx/cards/gastly_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/gastly_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/gastly_lv8/regular.2bpp"
+
+GastlyLv17CardGfx::
+	INCBIN "gfx/cards/gastly_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/gastly_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/gastly_lv17/regular.2bpp"
+
+HaunterLv17CardGfx::
+	INCBIN "gfx/cards/haunter_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/haunter_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/haunter_lv17/regular.2bpp"
+
+HaunterLv22CardGfx::
+	INCBIN "gfx/cards/haunter_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/haunter_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/haunter_lv22/regular.2bpp"
+
+GengarLv38CardGfx::
+	INCBIN "gfx/cards/gengar_lv38/regular.gbcpal"
+	INCBIN "gfx/cards/gengar_lv38/attributes.cardattr"
+	INCBIN "gfx/cards/gengar_lv38/regular.2bpp"
+	INCBIN "gfx/cards/gengar_lv38/alt_tiles.2bpp"
+
+DrowzeeLv12CardGfx::
+	INCBIN "gfx/cards/drowzee_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/drowzee_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/drowzee_lv12/regular.2bpp"
+
+HypnoLv36CardGfx::
+	INCBIN "gfx/cards/hypno_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/hypno_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/hypno_lv36/regular.2bpp"
+
+	ds $240
+
+SECTION "Card Gfx 10", ROMX
+
+MrMimeLv28CardGfx::
+	INCBIN "gfx/cards/mr_mime_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/mr_mime_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/mr_mime_lv28/regular.2bpp"
+
+JynxLv23CardGfx::
+	INCBIN "gfx/cards/jynx_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/jynx_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/jynx_lv23/regular.2bpp"
+
+MewtwoLv53CardGfx::
+	INCBIN "gfx/cards/mewtwo_lv53/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_lv53/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_lv53/regular.2bpp"
+
+MewtwoLv60CardGfx::
+	INCBIN "gfx/cards/mewtwo_lv60/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_lv60/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_lv60/regular.2bpp"
+
+MewtwoAltLv60CardGfx::
+	INCBIN "gfx/cards/mewtwo_alt_lv60/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_alt_lv60/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_alt_lv60/regular.2bpp"
+	INCBIN "gfx/cards/mewtwo_alt_lv60/alt_tiles.2bpp"
+
+MewLv8CardGfx::
+	INCBIN "gfx/cards/mew_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/mew_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/mew_lv8/regular.2bpp"
+
+MewLv15CardGfx::
+	INCBIN "gfx/cards/mew_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/mew_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/mew_lv15/regular.2bpp"
+
+MewLv23CardGfx::
+	INCBIN "gfx/cards/mew_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/mew_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/mew_lv23/regular.2bpp"
+
+PidgeyLv8CardGfx::
+	INCBIN "gfx/cards/pidgey_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/pidgey_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/pidgey_lv8/regular.2bpp"
+
+PidgeottoLv36CardGfx::
+	INCBIN "gfx/cards/pidgeotto_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/pidgeotto_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/pidgeotto_lv36/regular.2bpp"
+
+PidgeotLv38CardGfx::
+	INCBIN "gfx/cards/pidgeot_lv38/regular.gbcpal"
+	INCBIN "gfx/cards/pidgeot_lv38/attributes.cardattr"
+	INCBIN "gfx/cards/pidgeot_lv38/regular.2bpp"
+
+PidgeotLv40CardGfx::
+	INCBIN "gfx/cards/pidgeot_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/pidgeot_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/pidgeot_lv40/regular.2bpp"
+
+RattataLv9CardGfx::
+	INCBIN "gfx/cards/rattata_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/rattata_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/rattata_lv9/regular.2bpp"
+	INCBIN "gfx/cards/rattata_lv9/alt_tiles.2bpp"
+
+RaticateCardGfx::
+	INCBIN "gfx/cards/raticate/regular.gbcpal"
+	INCBIN "gfx/cards/raticate/attributes.cardattr"
+	INCBIN "gfx/cards/raticate/regular.2bpp"
+
+SpearowLv13CardGfx::
+	INCBIN "gfx/cards/spearow_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/spearow_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/spearow_lv13/regular.2bpp"
+	INCBIN "gfx/cards/spearow_lv13/alt_tiles.2bpp"
+
+FearowLv27CardGfx::
+	INCBIN "gfx/cards/fearow_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/fearow_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/fearow_lv27/regular.2bpp"
+	INCBIN "gfx/cards/fearow_lv27/alt_tiles.2bpp"
+
+ClefairyLv14CardGfx::
+	INCBIN "gfx/cards/clefairy_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/clefairy_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/clefairy_lv14/regular.2bpp"
+
+ClefableCardGfx::
+	INCBIN "gfx/cards/clefable/regular.gbcpal"
+	INCBIN "gfx/cards/clefable/attributes.cardattr"
+	INCBIN "gfx/cards/clefable/regular.2bpp"
+
+	ds $f0
+
+SECTION "Card Gfx 11", ROMX
+
+JigglypuffLv12CardGfx::
+	INCBIN "gfx/cards/jigglypuff_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/jigglypuff_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/jigglypuff_lv12/regular.2bpp"
+
+JigglypuffLv13CardGfx::
+	INCBIN "gfx/cards/jigglypuff_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/jigglypuff_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/jigglypuff_lv13/regular.2bpp"
+
+JigglypuffLv14CardGfx::
+	INCBIN "gfx/cards/jigglypuff_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/jigglypuff_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/jigglypuff_lv14/regular.2bpp"
+
+WigglytuffLv36CardGfx::
+	INCBIN "gfx/cards/wigglytuff_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/wigglytuff_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/wigglytuff_lv36/regular.2bpp"
+
+MeowthLv13CardGfx::
+	INCBIN "gfx/cards/meowth_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/meowth_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/meowth_lv13/regular.2bpp"
+	INCBIN "gfx/cards/meowth_lv13/alt_tiles.2bpp"
+
+MeowthLv15CardGfx::
+	INCBIN "gfx/cards/meowth_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/meowth_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/meowth_lv15/regular.2bpp"
+	INCBIN "gfx/cards/meowth_lv15/alt_tiles.2bpp"
+
+PersianCardGfx::
+	INCBIN "gfx/cards/persian/regular.gbcpal"
+	INCBIN "gfx/cards/persian/attributes.cardattr"
+	INCBIN "gfx/cards/persian/regular.2bpp"
+	INCBIN "gfx/cards/persian/alt_tiles.2bpp"
+
+FarfetchdLv20CardGfx::
+	INCBIN "gfx/cards/farfetchd_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/farfetchd_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/farfetchd_lv20/regular.2bpp"
+	INCBIN "gfx/cards/farfetchd_lv20/alt_tiles.2bpp"
+
+DoduoLv10CardGfx::
+	INCBIN "gfx/cards/doduo_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/doduo_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/doduo_lv10/regular.2bpp"
+
+DodrioLv28CardGfx::
+	INCBIN "gfx/cards/dodrio_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/dodrio_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/dodrio_lv28/regular.2bpp"
+
+LickitungLv26CardGfx::
+	INCBIN "gfx/cards/lickitung_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/lickitung_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/lickitung_lv26/regular.2bpp"
+
+ChanseyLv55CardGfx::
+	INCBIN "gfx/cards/chansey_lv55/regular.gbcpal"
+	INCBIN "gfx/cards/chansey_lv55/attributes.cardattr"
+	INCBIN "gfx/cards/chansey_lv55/regular.2bpp"
+
+KangaskhanLv40CardGfx::
+	INCBIN "gfx/cards/kangaskhan_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/kangaskhan_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/kangaskhan_lv40/regular.2bpp"
+
+TaurosLv32CardGfx::
+	INCBIN "gfx/cards/tauros_lv32/regular.gbcpal"
+	INCBIN "gfx/cards/tauros_lv32/attributes.cardattr"
+	INCBIN "gfx/cards/tauros_lv32/regular.2bpp"
+
+DittoCardGfx::
+	INCBIN "gfx/cards/ditto/regular.gbcpal"
+	INCBIN "gfx/cards/ditto/attributes.cardattr"
+	INCBIN "gfx/cards/ditto/regular.2bpp"
+	INCBIN "gfx/cards/ditto/alt_tiles.2bpp"
+
+EeveeLv12CardGfx::
+	INCBIN "gfx/cards/eevee_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/eevee_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/eevee_lv12/regular.2bpp"
+
+PorygonLv12CardGfx::
+	INCBIN "gfx/cards/porygon_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/porygon_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/porygon_lv12/regular.2bpp"
+
+SnorlaxLv20CardGfx::
+	INCBIN "gfx/cards/snorlax_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/snorlax_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/snorlax_lv20/regular.2bpp"
+
+	ds $2c0
+
+SECTION "Card Gfx 12", ROMX
+
+DratiniLv10CardGfx::
+	INCBIN "gfx/cards/dratini_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/dratini_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/dratini_lv10/regular.2bpp"
+
+DragonairCardGfx::
+	INCBIN "gfx/cards/dragonair/regular.gbcpal"
+	INCBIN "gfx/cards/dragonair/attributes.cardattr"
+	INCBIN "gfx/cards/dragonair/regular.2bpp"
+
+DragoniteLv41CardGfx::
+	INCBIN "gfx/cards/dragonite_lv41/regular.gbcpal"
+	INCBIN "gfx/cards/dragonite_lv41/attributes.cardattr"
+	INCBIN "gfx/cards/dragonite_lv41/regular.2bpp"
+	INCBIN "gfx/cards/dragonite_lv41/alt_tiles.2bpp"
+
+DragoniteLv45CardGfx::
+	INCBIN "gfx/cards/dragonite_lv45/regular.gbcpal"
+	INCBIN "gfx/cards/dragonite_lv45/attributes.cardattr"
+	INCBIN "gfx/cards/dragonite_lv45/regular.2bpp"
+
+CharmanderLv9CardGfx::
+	INCBIN "gfx/cards/charmander_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/charmander_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/charmander_lv9/regular.2bpp"
+
+DarkCharmeleonCardGfx::
+	INCBIN "gfx/cards/dark_charmeleon/regular.gbcpal"
+	INCBIN "gfx/cards/dark_charmeleon/attributes.cardattr"
+	INCBIN "gfx/cards/dark_charmeleon/regular.2bpp"
+
+DarkCharizardCardGfx::
+	INCBIN "gfx/cards/dark_charizard/regular.gbcpal"
+	INCBIN "gfx/cards/dark_charizard/attributes.cardattr"
+	INCBIN "gfx/cards/dark_charizard/regular.2bpp"
+
+PonytaLv15CardGfx::
+	INCBIN "gfx/cards/ponyta_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/ponyta_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/ponyta_lv15/regular.2bpp"
+
+DarkRapidashCardGfx::
+	INCBIN "gfx/cards/dark_rapidash/regular.gbcpal"
+	INCBIN "gfx/cards/dark_rapidash/attributes.cardattr"
+	INCBIN "gfx/cards/dark_rapidash/regular.2bpp"
+
+DarkFlareonCardGfx::
+	INCBIN "gfx/cards/dark_flareon/regular.gbcpal"
+	INCBIN "gfx/cards/dark_flareon/attributes.cardattr"
+	INCBIN "gfx/cards/dark_flareon/regular.2bpp"
+
+SquirtleLv16CardGfx::
+	INCBIN "gfx/cards/squirtle_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/squirtle_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/squirtle_lv16/regular.2bpp"
+	INCBIN "gfx/cards/squirtle_lv16/alt_tiles.2bpp"
+
+DarkWartortleCardGfx::
+	INCBIN "gfx/cards/dark_wartortle/regular.gbcpal"
+	INCBIN "gfx/cards/dark_wartortle/attributes.cardattr"
+	INCBIN "gfx/cards/dark_wartortle/regular.2bpp"
+	INCBIN "gfx/cards/dark_wartortle/alt_tiles.2bpp"
+
+DarkBlastoiseCardGfx::
+	INCBIN "gfx/cards/dark_blastoise/regular.gbcpal"
+	INCBIN "gfx/cards/dark_blastoise/attributes.cardattr"
+	INCBIN "gfx/cards/dark_blastoise/regular.2bpp"
+
+PsyduckLv16CardGfx::
+	INCBIN "gfx/cards/psyduck_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/psyduck_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/psyduck_lv16/regular.2bpp"
+
+DarkGolduckCardGfx::
+	INCBIN "gfx/cards/dark_golduck/regular.gbcpal"
+	INCBIN "gfx/cards/dark_golduck/attributes.cardattr"
+	INCBIN "gfx/cards/dark_golduck/regular.2bpp"
+
+MagikarpLv6CardGfx::
+	INCBIN "gfx/cards/magikarp_lv6/regular.gbcpal"
+	INCBIN "gfx/cards/magikarp_lv6/attributes.cardattr"
+	INCBIN "gfx/cards/magikarp_lv6/regular.2bpp"
+
+DarkGyaradosCardGfx::
+	INCBIN "gfx/cards/dark_gyarados/regular.gbcpal"
+	INCBIN "gfx/cards/dark_gyarados/attributes.cardattr"
+	INCBIN "gfx/cards/dark_gyarados/regular.2bpp"
+
+DarkVaporeonCardGfx::
+	INCBIN "gfx/cards/dark_vaporeon/regular.gbcpal"
+	INCBIN "gfx/cards/dark_vaporeon/attributes.cardattr"
+	INCBIN "gfx/cards/dark_vaporeon/regular.2bpp"
+
+	ds $270
+
+SECTION "Card Gfx 13", ROMX
+
+EkansLv15CardGfx::
+	INCBIN "gfx/cards/ekans_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/ekans_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/ekans_lv15/regular.2bpp"
+	INCBIN "gfx/cards/ekans_lv15/alt_tiles.2bpp"
+
+DarkArbokCardGfx::
+	INCBIN "gfx/cards/dark_arbok/regular.gbcpal"
+	INCBIN "gfx/cards/dark_arbok/attributes.cardattr"
+	INCBIN "gfx/cards/dark_arbok/regular.2bpp"
+	INCBIN "gfx/cards/dark_arbok/alt_tiles.2bpp"
+
+ZubatLv9CardGfx::
+	INCBIN "gfx/cards/zubat_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/zubat_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/zubat_lv9/regular.2bpp"
+
+DarkGolbatCardGfx::
+	INCBIN "gfx/cards/dark_golbat/regular.gbcpal"
+	INCBIN "gfx/cards/dark_golbat/attributes.cardattr"
+	INCBIN "gfx/cards/dark_golbat/regular.2bpp"
+	INCBIN "gfx/cards/dark_golbat/alt_tiles.2bpp"
+
+OddishLv21CardGfx::
+	INCBIN "gfx/cards/oddish_lv21/regular.gbcpal"
+	INCBIN "gfx/cards/oddish_lv21/attributes.cardattr"
+	INCBIN "gfx/cards/oddish_lv21/regular.2bpp"
+
+DarkGloomCardGfx::
+	INCBIN "gfx/cards/dark_gloom/regular.gbcpal"
+	INCBIN "gfx/cards/dark_gloom/attributes.cardattr"
+	INCBIN "gfx/cards/dark_gloom/regular.2bpp"
+
+DarkVileplumeCardGfx::
+	INCBIN "gfx/cards/dark_vileplume/regular.gbcpal"
+	INCBIN "gfx/cards/dark_vileplume/attributes.cardattr"
+	INCBIN "gfx/cards/dark_vileplume/regular.2bpp"
+
+GrimerLv10CardGfx::
+	INCBIN "gfx/cards/grimer_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/grimer_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/grimer_lv10/regular.2bpp"
+
+DarkMukCardGfx::
+	INCBIN "gfx/cards/dark_muk/regular.gbcpal"
+	INCBIN "gfx/cards/dark_muk/attributes.cardattr"
+	INCBIN "gfx/cards/dark_muk/regular.2bpp"
+
+KoffingLv12CardGfx::
+	INCBIN "gfx/cards/koffing_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/koffing_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/koffing_lv12/regular.2bpp"
+
+DarkWeezingCardGfx::
+	INCBIN "gfx/cards/dark_weezing/regular.gbcpal"
+	INCBIN "gfx/cards/dark_weezing/attributes.cardattr"
+	INCBIN "gfx/cards/dark_weezing/regular.2bpp"
+
+AbraLv14CardGfx::
+	INCBIN "gfx/cards/abra_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/abra_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/abra_lv14/regular.2bpp"
+
+DarkKadabraCardGfx::
+	INCBIN "gfx/cards/dark_kadabra/regular.gbcpal"
+	INCBIN "gfx/cards/dark_kadabra/attributes.cardattr"
+	INCBIN "gfx/cards/dark_kadabra/regular.2bpp"
+
+DarkAlakazamCardGfx::
+	INCBIN "gfx/cards/dark_alakazam/regular.gbcpal"
+	INCBIN "gfx/cards/dark_alakazam/attributes.cardattr"
+	INCBIN "gfx/cards/dark_alakazam/regular.2bpp"
+	INCBIN "gfx/cards/dark_alakazam/alt_tiles.2bpp"
+
+SlowpokeLv16CardGfx::
+	INCBIN "gfx/cards/slowpoke_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/slowpoke_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/slowpoke_lv16/regular.2bpp"
+	INCBIN "gfx/cards/slowpoke_lv16/alt_tiles.2bpp"
+
+DarkSlowbroCardGfx::
+	INCBIN "gfx/cards/dark_slowbro/regular.gbcpal"
+	INCBIN "gfx/cards/dark_slowbro/attributes.cardattr"
+	INCBIN "gfx/cards/dark_slowbro/regular.2bpp"
+	INCBIN "gfx/cards/dark_slowbro/alt_tiles.2bpp"
+
+DrowzeeLv10CardGfx::
+	INCBIN "gfx/cards/drowzee_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/drowzee_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/drowzee_lv10/regular.2bpp"
+	INCBIN "gfx/cards/drowzee_lv10/alt_tiles.2bpp"
+
+DarkHypnoCardGfx::
+	INCBIN "gfx/cards/dark_hypno/regular.gbcpal"
+	INCBIN "gfx/cards/dark_hypno/attributes.cardattr"
+	INCBIN "gfx/cards/dark_hypno/regular.2bpp"
+
+	ds $1e0
+
+SECTION "Card Gfx 14", ROMX
+
+DiglettLv15CardGfx::
+	INCBIN "gfx/cards/diglett_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/diglett_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/diglett_lv15/regular.2bpp"
+	INCBIN "gfx/cards/diglett_lv15/alt_tiles.2bpp"
+
+DarkDugtrioCardGfx::
+	INCBIN "gfx/cards/dark_dugtrio/regular.gbcpal"
+	INCBIN "gfx/cards/dark_dugtrio/attributes.cardattr"
+	INCBIN "gfx/cards/dark_dugtrio/regular.2bpp"
+
+MankeyLv14CardGfx::
+	INCBIN "gfx/cards/mankey_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/mankey_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/mankey_lv14/regular.2bpp"
+	INCBIN "gfx/cards/mankey_lv14/alt_tiles.2bpp"
+
+DarkPrimeapeCardGfx::
+	INCBIN "gfx/cards/dark_primeape/regular.gbcpal"
+	INCBIN "gfx/cards/dark_primeape/attributes.cardattr"
+	INCBIN "gfx/cards/dark_primeape/regular.2bpp"
+	INCBIN "gfx/cards/dark_primeape/alt_tiles.2bpp"
+
+MachopLv24CardGfx::
+	INCBIN "gfx/cards/machop_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/machop_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/machop_lv24/regular.2bpp"
+	INCBIN "gfx/cards/machop_lv24/alt_tiles.2bpp"
+
+DarkMachokeCardGfx::
+	INCBIN "gfx/cards/dark_machoke/regular.gbcpal"
+	INCBIN "gfx/cards/dark_machoke/attributes.cardattr"
+	INCBIN "gfx/cards/dark_machoke/regular.2bpp"
+	INCBIN "gfx/cards/dark_machoke/alt_tiles.2bpp"
+
+DarkMachampCardGfx::
+	INCBIN "gfx/cards/dark_machamp/regular.gbcpal"
+	INCBIN "gfx/cards/dark_machamp/attributes.cardattr"
+	INCBIN "gfx/cards/dark_machamp/regular.2bpp"
+
+RattataLv12CardGfx::
+	INCBIN "gfx/cards/rattata_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/rattata_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/rattata_lv12/regular.2bpp"
+
+DarkRaticateCardGfx::
+	INCBIN "gfx/cards/dark_raticate/regular.gbcpal"
+	INCBIN "gfx/cards/dark_raticate/attributes.cardattr"
+	INCBIN "gfx/cards/dark_raticate/regular.2bpp"
+	INCBIN "gfx/cards/dark_raticate/alt_tiles.2bpp"
+
+MeowthLv10CardGfx::
+	INCBIN "gfx/cards/meowth_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/meowth_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/meowth_lv10/regular.2bpp"
+
+DarkPersianLv28CardGfx::
+	INCBIN "gfx/cards/dark_persian_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/dark_persian_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/dark_persian_lv28/regular.2bpp"
+
+EeveeLv9CardGfx::
+	INCBIN "gfx/cards/eevee_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/eevee_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/eevee_lv9/regular.2bpp"
+	INCBIN "gfx/cards/eevee_lv9/alt_tiles.2bpp"
+
+PorygonLv20CardGfx::
+	INCBIN "gfx/cards/porygon_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/porygon_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/porygon_lv20/regular.2bpp"
+	INCBIN "gfx/cards/porygon_lv20/alt_tiles.2bpp"
+
+DratiniLv12CardGfx::
+	INCBIN "gfx/cards/dratini_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/dratini_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/dratini_lv12/regular.2bpp"
+
+DarkDragonairCardGfx::
+	INCBIN "gfx/cards/dark_dragonair/regular.gbcpal"
+	INCBIN "gfx/cards/dark_dragonair/attributes.cardattr"
+	INCBIN "gfx/cards/dark_dragonair/regular.2bpp"
+
+DarkDragoniteCardGfx::
+	INCBIN "gfx/cards/dark_dragonite/regular.gbcpal"
+	INCBIN "gfx/cards/dark_dragonite/attributes.cardattr"
+	INCBIN "gfx/cards/dark_dragonite/regular.2bpp"
+
+MagnemiteLv12CardGfx::
+	INCBIN "gfx/cards/magnemite_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/magnemite_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/magnemite_lv12/regular.2bpp"
+
+DarkMagnetonCardGfx::
+	INCBIN "gfx/cards/dark_magneton/regular.gbcpal"
+	INCBIN "gfx/cards/dark_magneton/attributes.cardattr"
+	INCBIN "gfx/cards/dark_magneton/regular.2bpp"
+	INCBIN "gfx/cards/dark_magneton/alt_tiles.2bpp"
+
+	ds $90
+
+SECTION "Card Gfx 15", ROMX
+
+VoltorbLv13CardGfx::
+	INCBIN "gfx/cards/voltorb_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/voltorb_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/voltorb_lv13/regular.2bpp"
+
+DarkElectrodeCardGfx::
+	INCBIN "gfx/cards/dark_electrode/regular.gbcpal"
+	INCBIN "gfx/cards/dark_electrode/attributes.cardattr"
+	INCBIN "gfx/cards/dark_electrode/regular.2bpp"
+
+DarkJolteonCardGfx::
+	INCBIN "gfx/cards/dark_jolteon/regular.gbcpal"
+	INCBIN "gfx/cards/dark_jolteon/attributes.cardattr"
+	INCBIN "gfx/cards/dark_jolteon/regular.2bpp"
+
+BulbasaurLv15CardGfx::
+	INCBIN "gfx/cards/bulbasaur_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/bulbasaur_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/bulbasaur_lv15/regular.2bpp"
+	INCBIN "gfx/cards/bulbasaur_lv15/alt_tiles.2bpp"
+
+CharmanderLv12CardGfx::
+	INCBIN "gfx/cards/charmander_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/charmander_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/charmander_lv12/regular.2bpp"
+
+SquirtleLv15CardGfx::
+	INCBIN "gfx/cards/squirtle_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/squirtle_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/squirtle_lv15/regular.2bpp"
+
+MetapodLv20CardGfx::
+	INCBIN "gfx/cards/metapod_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/metapod_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/metapod_lv20/regular.2bpp"
+	INCBIN "gfx/cards/metapod_lv20/alt_tiles.2bpp"
+
+WeedleLv15CardGfx::
+	INCBIN "gfx/cards/weedle_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/weedle_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/weedle_lv15/regular.2bpp"
+	INCBIN "gfx/cards/weedle_lv15/alt_tiles.2bpp"
+
+KakunaLv20CardGfx::
+	INCBIN "gfx/cards/kakuna_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/kakuna_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/kakuna_lv20/regular.2bpp"
+	INCBIN "gfx/cards/kakuna_lv20/alt_tiles.2bpp"
+
+PidgeyLv10CardGfx::
+	INCBIN "gfx/cards/pidgey_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/pidgey_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/pidgey_lv10/regular.2bpp"
+	INCBIN "gfx/cards/pidgey_lv10/alt_tiles.2bpp"
+
+RattataLv15CardGfx::
+	INCBIN "gfx/cards/rattata_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/rattata_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/rattata_lv15/regular.2bpp"
+	INCBIN "gfx/cards/rattata_lv15/alt_tiles.2bpp"
+
+PikachuLv5CardGfx::
+	INCBIN "gfx/cards/pikachu_lv5/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_lv5/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_lv5/regular.2bpp"
+
+NidoranFLv12CardGfx::
+	INCBIN "gfx/cards/nidoranf_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/nidoranf_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/nidoranf_lv12/regular.2bpp"
+	INCBIN "gfx/cards/nidoranf_lv12/alt_tiles.2bpp"
+
+NidoranMLv22CardGfx::
+	INCBIN "gfx/cards/nidoranm_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/nidoranm_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/nidoranm_lv22/regular.2bpp"
+
+ClefairyLv15CardGfx::
+	INCBIN "gfx/cards/clefairy_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/clefairy_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/clefairy_lv15/regular.2bpp"
+
+WigglytuffLv40CardGfx::
+	INCBIN "gfx/cards/wigglytuff_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/wigglytuff_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/wigglytuff_lv40/regular.2bpp"
+
+	ds $280
+
+SECTION "Card Gfx 16", ROMX
+
+ZubatLv12CardGfx::
+	INCBIN "gfx/cards/zubat_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/zubat_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/zubat_lv12/regular.2bpp"
+
+GolbatLv25CardGfx::
+	INCBIN "gfx/cards/golbat_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/golbat_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/golbat_lv25/regular.2bpp"
+	INCBIN "gfx/cards/golbat_lv25/alt_tiles.2bpp"
+
+ParasLv15CardGfx::
+	INCBIN "gfx/cards/paras_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/paras_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/paras_lv15/regular.2bpp"
+
+ParasectLv29CardGfx::
+	INCBIN "gfx/cards/parasect_lv29/regular.gbcpal"
+	INCBIN "gfx/cards/parasect_lv29/attributes.cardattr"
+	INCBIN "gfx/cards/parasect_lv29/regular.2bpp"
+	INCBIN "gfx/cards/parasect_lv29/alt_tiles.2bpp"
+
+PoliwagLv15CardGfx::
+	INCBIN "gfx/cards/poliwag_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/poliwag_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/poliwag_lv15/regular.2bpp"
+
+PoliwhirlLv30CardGfx::
+	INCBIN "gfx/cards/poliwhirl_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/poliwhirl_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/poliwhirl_lv30/regular.2bpp"
+	INCBIN "gfx/cards/poliwhirl_lv30/alt_tiles.2bpp"
+
+PoliwrathLv40CardGfx::
+	INCBIN "gfx/cards/poliwrath_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/poliwrath_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/poliwrath_lv40/regular.2bpp"
+	INCBIN "gfx/cards/poliwrath_lv40/alt_tiles.2bpp"
+
+AbraLv8CardGfx::
+	INCBIN "gfx/cards/abra_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/abra_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/abra_lv8/regular.2bpp"
+
+GeodudeLv15CardGfx::
+	INCBIN "gfx/cards/geodude_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/geodude_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/geodude_lv15/regular.2bpp"
+	INCBIN "gfx/cards/geodude_lv15/alt_tiles.2bpp"
+
+RapidashLv30CardGfx::
+	INCBIN "gfx/cards/rapidash_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/rapidash_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/rapidash_lv30/regular.2bpp"
+
+DoduoLv8CardGfx::
+	INCBIN "gfx/cards/doduo_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/doduo_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/doduo_lv8/regular.2bpp"
+
+DodrioLv25CardGfx::
+	INCBIN "gfx/cards/dodrio_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/dodrio_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/dodrio_lv25/regular.2bpp"
+
+LickitungLv20CardGfx::
+	INCBIN "gfx/cards/lickitung_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/lickitung_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/lickitung_lv20/regular.2bpp"
+	INCBIN "gfx/cards/lickitung_lv20/alt_tiles.2bpp"
+
+ChanseyLv40CardGfx::
+	INCBIN "gfx/cards/chansey_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/chansey_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/chansey_lv40/regular.2bpp"
+	INCBIN "gfx/cards/chansey_lv40/alt_tiles.2bpp"
+
+MrMimeLv20CardGfx::
+	INCBIN "gfx/cards/mr_mime_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/mr_mime_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/mr_mime_lv20/regular.2bpp"
+	INCBIN "gfx/cards/mr_mime_lv20/alt_tiles.2bpp"
+
+PinsirLv15CardGfx::
+	INCBIN "gfx/cards/pinsir_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/pinsir_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/pinsir_lv15/regular.2bpp"
+	INCBIN "gfx/cards/pinsir_lv15/alt_tiles.2bpp"
+
+EeveeLv5CardGfx::
+	INCBIN "gfx/cards/eevee_lv5/regular.gbcpal"
+	INCBIN "gfx/cards/eevee_lv5/attributes.cardattr"
+	INCBIN "gfx/cards/eevee_lv5/regular.2bpp"
+	INCBIN "gfx/cards/eevee_lv5/alt_tiles.2bpp"
+
+	ds $1b8
+
+SECTION "Card Gfx 17", ROMX
+
+PorygonLv18CardGfx::
+	INCBIN "gfx/cards/porygon_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/porygon_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/porygon_lv18/regular.2bpp"
+	INCBIN "gfx/cards/porygon_lv18/alt_tiles.2bpp"
+
+SnorlaxLv35CardGfx::
+	INCBIN "gfx/cards/snorlax_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/snorlax_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/snorlax_lv35/regular.2bpp"
+	INCBIN "gfx/cards/snorlax_lv35/alt_tiles.2bpp"
+
+MewtwoLv54CardGfx::
+	INCBIN "gfx/cards/mewtwo_lv54/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_lv54/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_lv54/regular.2bpp"
+	INCBIN "gfx/cards/mewtwo_lv54/alt_tiles.2bpp"
+
+SpearowLv12CardGfx::
+	INCBIN "gfx/cards/spearow_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/spearow_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/spearow_lv12/regular.2bpp"
+
+FearowLv24CardGfx::
+	INCBIN "gfx/cards/fearow_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/fearow_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/fearow_lv24/regular.2bpp"
+	INCBIN "gfx/cards/fearow_lv24/alt_tiles.2bpp"
+
+RaichuLv32CardGfx::
+	INCBIN "gfx/cards/raichu_lv32/regular.gbcpal"
+	INCBIN "gfx/cards/raichu_lv32/attributes.cardattr"
+	INCBIN "gfx/cards/raichu_lv32/regular.2bpp"
+
+SandshrewLv15CardGfx::
+	INCBIN "gfx/cards/sandshrew_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/sandshrew_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/sandshrew_lv15/regular.2bpp"
+	INCBIN "gfx/cards/sandshrew_lv15/alt_tiles.2bpp"
+
+VenomothLv22CardGfx::
+	INCBIN "gfx/cards/venomoth_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/venomoth_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/venomoth_lv22/regular.2bpp"
+
+MachopLv18CardGfx::
+	INCBIN "gfx/cards/machop_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/machop_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/machop_lv18/regular.2bpp"
+	INCBIN "gfx/cards/machop_lv18/alt_tiles.2bpp"
+
+MachokeLv28CardGfx::
+	INCBIN "gfx/cards/machoke_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/machoke_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/machoke_lv28/regular.2bpp"
+	INCBIN "gfx/cards/machoke_lv28/alt_tiles.2bpp"
+
+GravelerLv28CardGfx::
+	INCBIN "gfx/cards/graveler_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/graveler_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/graveler_lv28/regular.2bpp"
+	INCBIN "gfx/cards/graveler_lv28/alt_tiles.2bpp"
+
+MagnemiteLv15CardGfx::
+	INCBIN "gfx/cards/magnemite_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/magnemite_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/magnemite_lv15/regular.2bpp"
+
+MagnetonLv30CardGfx::
+	INCBIN "gfx/cards/magneton_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/magneton_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/magneton_lv30/regular.2bpp"
+
+SeelLv10CardGfx::
+	INCBIN "gfx/cards/seel_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/seel_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/seel_lv10/regular.2bpp"
+	INCBIN "gfx/cards/seel_lv10/alt_tiles.2bpp"
+
+DewgongLv24CardGfx::
+	INCBIN "gfx/cards/dewgong_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/dewgong_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/dewgong_lv24/regular.2bpp"
+
+ShellderLv16CardGfx::
+	INCBIN "gfx/cards/shellder_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/shellder_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/shellder_lv16/regular.2bpp"
+	INCBIN "gfx/cards/shellder_lv16/alt_tiles.2bpp"
+
+OnixLv25CardGfx::
+	INCBIN "gfx/cards/onix_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/onix_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/onix_lv25/regular.2bpp"
+
+	ds $128
+
+SECTION "Card Gfx 18", ROMX
+
+KrabbyLv17CardGfx::
+	INCBIN "gfx/cards/krabby_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/krabby_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/krabby_lv17/regular.2bpp"
+
+VoltorbLv8CardGfx::
+	INCBIN "gfx/cards/voltorb_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/voltorb_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/voltorb_lv8/regular.2bpp"
+
+HitmonleeLv23CardGfx::
+	INCBIN "gfx/cards/hitmonlee_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/hitmonlee_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/hitmonlee_lv23/regular.2bpp"
+
+HitmonchanLv23CardGfx::
+	INCBIN "gfx/cards/hitmonchan_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/hitmonchan_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/hitmonchan_lv23/regular.2bpp"
+
+JynxLv18CardGfx::
+	INCBIN "gfx/cards/jynx_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/jynx_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/jynx_lv18/regular.2bpp"
+	INCBIN "gfx/cards/jynx_lv18/alt_tiles.2bpp"
+
+LaprasLv24CardGfx::
+	INCBIN "gfx/cards/lapras_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/lapras_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/lapras_lv24/regular.2bpp"
+	INCBIN "gfx/cards/lapras_lv24/alt_tiles.2bpp"
+
+OmanyteLv20CardGfx::
+	INCBIN "gfx/cards/omanyte_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/omanyte_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/omanyte_lv20/regular.2bpp"
+	INCBIN "gfx/cards/omanyte_lv20/alt_tiles.2bpp"
+
+KabutoLv22CardGfx::
+	INCBIN "gfx/cards/kabuto_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/kabuto_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/kabuto_lv22/regular.2bpp"
+
+AerodactylLv30CardGfx::
+	INCBIN "gfx/cards/aerodactyl_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/aerodactyl_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/aerodactyl_lv30/regular.2bpp"
+	INCBIN "gfx/cards/aerodactyl_lv30/alt_tiles.2bpp"
+
+ArticunoLv34CardGfx::
+	INCBIN "gfx/cards/articuno_lv34/regular.gbcpal"
+	INCBIN "gfx/cards/articuno_lv34/attributes.cardattr"
+	INCBIN "gfx/cards/articuno_lv34/regular.2bpp"
+	INCBIN "gfx/cards/articuno_lv34/alt_tiles.2bpp"
+
+ZapdosLv28CardGfx::
+	INCBIN "gfx/cards/zapdos_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/zapdos_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/zapdos_lv28/regular.2bpp"
+
+MoltresLv37CardGfx::
+	INCBIN "gfx/cards/moltres_lv37/regular.gbcpal"
+	INCBIN "gfx/cards/moltres_lv37/attributes.cardattr"
+	INCBIN "gfx/cards/moltres_lv37/regular.2bpp"
+	INCBIN "gfx/cards/moltres_lv37/alt_tiles.2bpp"
+
+PidgeottoLv38CardGfx::
+	INCBIN "gfx/cards/pidgeotto_lv38/regular.gbcpal"
+	INCBIN "gfx/cards/pidgeotto_lv38/attributes.cardattr"
+	INCBIN "gfx/cards/pidgeotto_lv38/regular.2bpp"
+
+ArbokLv30CardGfx::
+	INCBIN "gfx/cards/arbok_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/arbok_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/arbok_lv30/regular.2bpp"
+
+SandslashLv35CardGfx::
+	INCBIN "gfx/cards/sandslash_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/sandslash_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/sandslash_lv35/regular.2bpp"
+	INCBIN "gfx/cards/sandslash_lv35/alt_tiles.2bpp"
+
+NidorinaLv22CardGfx::
+	INCBIN "gfx/cards/nidorina_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/nidorina_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/nidorina_lv22/regular.2bpp"
+
+NidorinoLv23CardGfx::
+	INCBIN "gfx/cards/nidorino_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/nidorino_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/nidorino_lv23/regular.2bpp"
+
+VulpixLv13CardGfx::
+	INCBIN "gfx/cards/vulpix_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/vulpix_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/vulpix_lv13/regular.2bpp"
+	INCBIN "gfx/cards/vulpix_lv13/alt_tiles.2bpp"
+
+	ds $160
+
+SECTION "Card Gfx 19", ROMX
+
+VenonatLv15CardGfx::
+	INCBIN "gfx/cards/venonat_lv15/regular.gbcpal"
+	INCBIN "gfx/cards/venonat_lv15/attributes.cardattr"
+	INCBIN "gfx/cards/venonat_lv15/regular.2bpp"
+	INCBIN "gfx/cards/venonat_lv15/alt_tiles.2bpp"
+
+GolduckLv28CardGfx::
+	INCBIN "gfx/cards/golduck_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/golduck_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/golduck_lv28/regular.2bpp"
+	INCBIN "gfx/cards/golduck_lv28/alt_tiles.2bpp"
+
+GrowlitheLv16CardGfx::
+	INCBIN "gfx/cards/growlithe_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/growlithe_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/growlithe_lv16/regular.2bpp"
+
+KadabraLv39CardGfx::
+	INCBIN "gfx/cards/kadabra_lv39/regular.gbcpal"
+	INCBIN "gfx/cards/kadabra_lv39/attributes.cardattr"
+	INCBIN "gfx/cards/kadabra_lv39/regular.2bpp"
+	INCBIN "gfx/cards/kadabra_lv39/alt_tiles.2bpp"
+
+AlakazamLv45CardGfx::
+	INCBIN "gfx/cards/alakazam_lv45/regular.gbcpal"
+	INCBIN "gfx/cards/alakazam_lv45/attributes.cardattr"
+	INCBIN "gfx/cards/alakazam_lv45/regular.2bpp"
+
+MachokeLv24CardGfx::
+	INCBIN "gfx/cards/machoke_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/machoke_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/machoke_lv24/regular.2bpp"
+
+MachampLv54CardGfx::
+	INCBIN "gfx/cards/machamp_lv54/regular.gbcpal"
+	INCBIN "gfx/cards/machamp_lv54/attributes.cardattr"
+	INCBIN "gfx/cards/machamp_lv54/regular.2bpp"
+
+BellsproutLv10CardGfx::
+	INCBIN "gfx/cards/bellsprout_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/bellsprout_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/bellsprout_lv10/regular.2bpp"
+
+WeepinbellLv23CardGfx::
+	INCBIN "gfx/cards/weepinbell_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/weepinbell_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/weepinbell_lv23/regular.2bpp"
+
+GravelerLv27CardGfx::
+	INCBIN "gfx/cards/graveler_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/graveler_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/graveler_lv27/regular.2bpp"
+
+GolemLv37CardGfx::
+	INCBIN "gfx/cards/golem_lv37/regular.gbcpal"
+	INCBIN "gfx/cards/golem_lv37/attributes.cardattr"
+	INCBIN "gfx/cards/golem_lv37/regular.2bpp"
+
+PonytaLv8CardGfx::
+	INCBIN "gfx/cards/ponyta_lv8/regular.gbcpal"
+	INCBIN "gfx/cards/ponyta_lv8/attributes.cardattr"
+	INCBIN "gfx/cards/ponyta_lv8/regular.2bpp"
+
+SlowbroLv35CardGfx::
+	INCBIN "gfx/cards/slowbro_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/slowbro_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/slowbro_lv35/regular.2bpp"
+	INCBIN "gfx/cards/slowbro_lv35/alt_tiles.2bpp"
+
+GastlyLv13CardGfx::
+	INCBIN "gfx/cards/gastly_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/gastly_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/gastly_lv13/regular.2bpp"
+
+HaunterLv26CardGfx::
+	INCBIN "gfx/cards/haunter_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/haunter_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/haunter_lv26/regular.2bpp"
+
+HaunterLv25CardGfx::
+	INCBIN "gfx/cards/haunter_lv25/regular.gbcpal"
+	INCBIN "gfx/cards/haunter_lv25/attributes.cardattr"
+	INCBIN "gfx/cards/haunter_lv25/regular.2bpp"
+	INCBIN "gfx/cards/haunter_lv25/alt_tiles.2bpp"
+
+GengarLv40CardGfx::
+	INCBIN "gfx/cards/gengar_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/gengar_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/gengar_lv40/regular.2bpp"
+
+HypnoLv30CardGfx::
+	INCBIN "gfx/cards/hypno_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/hypno_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/hypno_lv30/regular.2bpp"
+	INCBIN "gfx/cards/hypno_lv30/alt_tiles.2bpp"
+
+	ds $210
+
+SECTION "Card Gfx 20", ROMX
+
+KinglerLv33CardGfx::
+	INCBIN "gfx/cards/kingler_lv33/regular.gbcpal"
+	INCBIN "gfx/cards/kingler_lv33/attributes.cardattr"
+	INCBIN "gfx/cards/kingler_lv33/regular.2bpp"
+
+CuboneLv14CardGfx::
+	INCBIN "gfx/cards/cubone_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/cubone_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/cubone_lv14/regular.2bpp"
+
+WeezingLv26CardGfx::
+	INCBIN "gfx/cards/weezing_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/weezing_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/weezing_lv26/regular.2bpp"
+
+RhydonLv37CardGfx::
+	INCBIN "gfx/cards/rhydon_lv37/regular.gbcpal"
+	INCBIN "gfx/cards/rhydon_lv37/attributes.cardattr"
+	INCBIN "gfx/cards/rhydon_lv37/regular.2bpp"
+	INCBIN "gfx/cards/rhydon_lv37/alt_tiles.2bpp"
+
+KangaskhanLv36CardGfx::
+	INCBIN "gfx/cards/kangaskhan_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/kangaskhan_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/kangaskhan_lv36/regular.2bpp"
+	INCBIN "gfx/cards/kangaskhan_lv36/alt_tiles.2bpp"
+
+HorseaLv20CardGfx::
+	INCBIN "gfx/cards/horsea_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/horsea_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/horsea_lv20/regular.2bpp"
+
+SeadraLv26CardGfx::
+	INCBIN "gfx/cards/seadra_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/seadra_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/seadra_lv26/regular.2bpp"
+
+StaryuLv17CardGfx::
+	INCBIN "gfx/cards/staryu_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/staryu_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/staryu_lv17/regular.2bpp"
+	INCBIN "gfx/cards/staryu_lv17/alt_tiles.2bpp"
+
+ScytherLv23CardGfx::
+	INCBIN "gfx/cards/scyther_lv23/regular.gbcpal"
+	INCBIN "gfx/cards/scyther_lv23/attributes.cardattr"
+	INCBIN "gfx/cards/scyther_lv23/regular.2bpp"
+	INCBIN "gfx/cards/scyther_lv23/alt_tiles.2bpp"
+
+MagmarLv27CardGfx::
+	INCBIN "gfx/cards/magmar_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/magmar_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/magmar_lv27/regular.2bpp"
+
+TaurosLv35CardGfx::
+	INCBIN "gfx/cards/tauros_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/tauros_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/tauros_lv35/regular.2bpp"
+	INCBIN "gfx/cards/tauros_lv35/alt_tiles.2bpp"
+
+OmanyteLv22CardGfx::
+	INCBIN "gfx/cards/omanyte_lv22/regular.gbcpal"
+	INCBIN "gfx/cards/omanyte_lv22/attributes.cardattr"
+	INCBIN "gfx/cards/omanyte_lv22/regular.2bpp"
+
+OmastarLv36CardGfx::
+	INCBIN "gfx/cards/omastar_lv36/regular.gbcpal"
+	INCBIN "gfx/cards/omastar_lv36/attributes.cardattr"
+	INCBIN "gfx/cards/omastar_lv36/regular.2bpp"
+
+MewtwoLv67CardGfx::
+	INCBIN "gfx/cards/mewtwo_lv67/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_lv67/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_lv67/regular.2bpp"
+
+DarkPersianAltLv28CardGfx::
+	INCBIN "gfx/cards/dark_persian_alt_lv28/regular.gbcpal"
+	INCBIN "gfx/cards/dark_persian_alt_lv28/attributes.cardattr"
+	INCBIN "gfx/cards/dark_persian_alt_lv28/regular.2bpp"
+
+MeowthLv14CardGfx::
+	INCBIN "gfx/cards/meowth_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/meowth_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/meowth_lv14/regular.2bpp"
+
+CoolPorygonCardGfx::
+	INCBIN "gfx/cards/cool_porygon/regular.gbcpal"
+	INCBIN "gfx/cards/cool_porygon/attributes.cardattr"
+	INCBIN "gfx/cards/cool_porygon/regular.2bpp"
+	INCBIN "gfx/cards/cool_porygon/alt_tiles.2bpp"
+
+	ds $178
+
+SECTION "Card Gfx 21", ROMX
+
+HungrySnorlaxCardGfx::
+	INCBIN "gfx/cards/hungry_snorlax/regular.gbcpal"
+	INCBIN "gfx/cards/hungry_snorlax/attributes.cardattr"
+	INCBIN "gfx/cards/hungry_snorlax/regular.2bpp"
+
+MewtwoLv30CardGfx::
+	INCBIN "gfx/cards/mewtwo_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/mewtwo_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/mewtwo_lv30/regular.2bpp"
+
+PikachuLv13CardGfx::
+	INCBIN "gfx/cards/pikachu_lv13/regular.gbcpal"
+	INCBIN "gfx/cards/pikachu_lv13/attributes.cardattr"
+	INCBIN "gfx/cards/pikachu_lv13/regular.2bpp"
+	INCBIN "gfx/cards/pikachu_lv13/alt_tiles.2bpp"
+
+FarfetchdAltLv20CardGfx::
+	INCBIN "gfx/cards/farfetchd_alt_lv20/regular.gbcpal"
+	INCBIN "gfx/cards/farfetchd_alt_lv20/attributes.cardattr"
+	INCBIN "gfx/cards/farfetchd_alt_lv20/regular.2bpp"
+	INCBIN "gfx/cards/farfetchd_alt_lv20/alt_tiles.2bpp"
+
+KangaskhanLv38CardGfx::
+	INCBIN "gfx/cards/kangaskhan_lv38/regular.gbcpal"
+	INCBIN "gfx/cards/kangaskhan_lv38/attributes.cardattr"
+	INCBIN "gfx/cards/kangaskhan_lv38/regular.2bpp"
+	INCBIN "gfx/cards/kangaskhan_lv38/alt_tiles.2bpp"
+
+DiglettLv16CardGfx::
+	INCBIN "gfx/cards/diglett_lv16/regular.gbcpal"
+	INCBIN "gfx/cards/diglett_lv16/attributes.cardattr"
+	INCBIN "gfx/cards/diglett_lv16/regular.2bpp"
+	INCBIN "gfx/cards/diglett_lv16/alt_tiles.2bpp"
+
+DugtrioLv40CardGfx::
+	INCBIN "gfx/cards/dugtrio_lv40/regular.gbcpal"
+	INCBIN "gfx/cards/dugtrio_lv40/attributes.cardattr"
+	INCBIN "gfx/cards/dugtrio_lv40/regular.2bpp"
+	INCBIN "gfx/cards/dugtrio_lv40/alt_tiles.2bpp"
+
+DragoniteLv43CardGfx::
+	INCBIN "gfx/cards/dragonite_lv43/regular.gbcpal"
+	INCBIN "gfx/cards/dragonite_lv43/attributes.cardattr"
+	INCBIN "gfx/cards/dragonite_lv43/regular.2bpp"
+
+MagikarpLv10CardGfx::
+	INCBIN "gfx/cards/magikarp_lv10/regular.gbcpal"
+	INCBIN "gfx/cards/magikarp_lv10/attributes.cardattr"
+	INCBIN "gfx/cards/magikarp_lv10/regular.2bpp"
+	INCBIN "gfx/cards/magikarp_lv10/alt_tiles.2bpp"
+
+VenusaurAltLv67CardGfx::
+	INCBIN "gfx/cards/venusaur_alt_lv67/regular.gbcpal"
+	INCBIN "gfx/cards/venusaur_alt_lv67/attributes.cardattr"
+	INCBIN "gfx/cards/venusaur_alt_lv67/regular.2bpp"
+	INCBIN "gfx/cards/venusaur_alt_lv67/alt_tiles.2bpp"
+
+CharizardAltLv76CardGfx::
+	INCBIN "gfx/cards/charizard_alt_lv76/regular.gbcpal"
+	INCBIN "gfx/cards/charizard_alt_lv76/attributes.cardattr"
+	INCBIN "gfx/cards/charizard_alt_lv76/regular.2bpp"
+
+BlastoiseAltLv52CardGfx::
+	INCBIN "gfx/cards/blastoise_alt_lv52/regular.gbcpal"
+	INCBIN "gfx/cards/blastoise_alt_lv52/attributes.cardattr"
+	INCBIN "gfx/cards/blastoise_alt_lv52/regular.2bpp"
+
+FlyingPikachuAltLv12CardGfx::
+	INCBIN "gfx/cards/flying_pikachu_alt_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/flying_pikachu_alt_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/flying_pikachu_alt_lv12/regular.2bpp"
+	INCBIN "gfx/cards/flying_pikachu_alt_lv12/alt_tiles.2bpp"
+
+TogepiCardGfx::
+	INCBIN "gfx/cards/togepi/regular.gbcpal"
+	INCBIN "gfx/cards/togepi/attributes.cardattr"
+	INCBIN "gfx/cards/togepi/regular.2bpp"
+
+MarillCardGfx::
+	INCBIN "gfx/cards/marill/regular.gbcpal"
+	INCBIN "gfx/cards/marill/attributes.cardattr"
+	INCBIN "gfx/cards/marill/regular.2bpp"
+	INCBIN "gfx/cards/marill/alt_tiles.2bpp"
+
+MankeyAltLv7CardGfx::
+	INCBIN "gfx/cards/mankey_alt_lv7/regular.gbcpal"
+	INCBIN "gfx/cards/mankey_alt_lv7/attributes.cardattr"
+	INCBIN "gfx/cards/mankey_alt_lv7/regular.2bpp"
+
+ProfessorOakCardGfx::
+	INCBIN "gfx/cards/professor_oak/regular.gbcpal"
+	INCBIN "gfx/cards/professor_oak/attributes.cardattr"
+	INCBIN "gfx/cards/professor_oak/regular.2bpp"
+
+ImposterProfessorOakCardGfx::
+	INCBIN "gfx/cards/imposter_professor_oak/regular.gbcpal"
+	INCBIN "gfx/cards/imposter_professor_oak/attributes.cardattr"
+	INCBIN "gfx/cards/imposter_professor_oak/regular.2bpp"
+	INCBIN "gfx/cards/imposter_professor_oak/alt_tiles.2bpp"
+
+	ds $1d0
+
+SECTION "Card Gfx 22", ROMX
+
+BillCardGfx::
+	INCBIN "gfx/cards/bill/regular.gbcpal"
+	INCBIN "gfx/cards/bill/attributes.cardattr"
+	INCBIN "gfx/cards/bill/regular.2bpp"
+
+MrFujiCardGfx::
+	INCBIN "gfx/cards/mr_fuji/regular.gbcpal"
+	INCBIN "gfx/cards/mr_fuji/attributes.cardattr"
+	INCBIN "gfx/cards/mr_fuji/regular.2bpp"
+
+LassCardGfx::
+	INCBIN "gfx/cards/lass/regular.gbcpal"
+	INCBIN "gfx/cards/lass/attributes.cardattr"
+	INCBIN "gfx/cards/lass/regular.2bpp"
+
+ImakuniCardCardGfx::
+	INCBIN "gfx/cards/imakuni_card/regular.gbcpal"
+	INCBIN "gfx/cards/imakuni_card/attributes.cardattr"
+	INCBIN "gfx/cards/imakuni_card/regular.2bpp"
+	INCBIN "gfx/cards/imakuni_card/alt_tiles.2bpp"
+
+PokemonTraderCardGfx::
+	INCBIN "gfx/cards/pokemon_trader/regular.gbcpal"
+	INCBIN "gfx/cards/pokemon_trader/attributes.cardattr"
+	INCBIN "gfx/cards/pokemon_trader/regular.2bpp"
+
+PokemonBreederCardGfx::
+	INCBIN "gfx/cards/pokemon_breeder/regular.gbcpal"
+	INCBIN "gfx/cards/pokemon_breeder/attributes.cardattr"
+	INCBIN "gfx/cards/pokemon_breeder/regular.2bpp"
+
+ClefairyDollCardGfx::
+	INCBIN "gfx/cards/clefairy_doll/regular.gbcpal"
+	INCBIN "gfx/cards/clefairy_doll/attributes.cardattr"
+	INCBIN "gfx/cards/clefairy_doll/regular.2bpp"
+	INCBIN "gfx/cards/clefairy_doll/alt_tiles.2bpp"
+
+MysteriousFossilCardGfx::
+	INCBIN "gfx/cards/mysterious_fossil/regular.gbcpal"
+	INCBIN "gfx/cards/mysterious_fossil/attributes.cardattr"
+	INCBIN "gfx/cards/mysterious_fossil/regular.2bpp"
+
+EnergyRetrievalCardGfx::
+	INCBIN "gfx/cards/energy_retrieval/regular.gbcpal"
+	INCBIN "gfx/cards/energy_retrieval/attributes.cardattr"
+	INCBIN "gfx/cards/energy_retrieval/regular.2bpp"
+	INCBIN "gfx/cards/energy_retrieval/alt_tiles.2bpp"
+
+SuperEnergyRetrievalCardGfx::
+	INCBIN "gfx/cards/super_energy_retrieval/regular.gbcpal"
+	INCBIN "gfx/cards/super_energy_retrieval/attributes.cardattr"
+	INCBIN "gfx/cards/super_energy_retrieval/regular.2bpp"
+
+EnergySearchCardGfx::
+	INCBIN "gfx/cards/energy_search/regular.gbcpal"
+	INCBIN "gfx/cards/energy_search/attributes.cardattr"
+	INCBIN "gfx/cards/energy_search/regular.2bpp"
+	INCBIN "gfx/cards/energy_search/alt_tiles.2bpp"
+
+EnergyRemovalCardGfx::
+	INCBIN "gfx/cards/energy_removal/regular.gbcpal"
+	INCBIN "gfx/cards/energy_removal/attributes.cardattr"
+	INCBIN "gfx/cards/energy_removal/regular.2bpp"
+	INCBIN "gfx/cards/energy_removal/alt_tiles.2bpp"
+
+SuperEnergyRemovalCardGfx::
+	INCBIN "gfx/cards/super_energy_removal/regular.gbcpal"
+	INCBIN "gfx/cards/super_energy_removal/attributes.cardattr"
+	INCBIN "gfx/cards/super_energy_removal/regular.2bpp"
+	INCBIN "gfx/cards/super_energy_removal/alt_tiles.2bpp"
+
+SwitchCardGfx::
+	INCBIN "gfx/cards/switch/regular.gbcpal"
+	INCBIN "gfx/cards/switch/attributes.cardattr"
+	INCBIN "gfx/cards/switch/regular.2bpp"
+	INCBIN "gfx/cards/switch/alt_tiles.2bpp"
+
+PokemonCenterCardGfx::
+	INCBIN "gfx/cards/pokemon_center/regular.gbcpal"
+	INCBIN "gfx/cards/pokemon_center/attributes.cardattr"
+	INCBIN "gfx/cards/pokemon_center/regular.2bpp"
+	INCBIN "gfx/cards/pokemon_center/alt_tiles.2bpp"
+
+PokeballCardGfx::
+	INCBIN "gfx/cards/pokeball/regular.gbcpal"
+	INCBIN "gfx/cards/pokeball/attributes.cardattr"
+	INCBIN "gfx/cards/pokeball/regular.2bpp"
+	INCBIN "gfx/cards/pokeball/alt_tiles.2bpp"
+
+ScoopUpCardGfx::
+	INCBIN "gfx/cards/scoop_up/regular.gbcpal"
+	INCBIN "gfx/cards/scoop_up/attributes.cardattr"
+	INCBIN "gfx/cards/scoop_up/regular.2bpp"
+	INCBIN "gfx/cards/scoop_up/alt_tiles.2bpp"
+
+ComputerSearchCardGfx::
+	INCBIN "gfx/cards/computer_search/regular.gbcpal"
+	INCBIN "gfx/cards/computer_search/attributes.cardattr"
+	INCBIN "gfx/cards/computer_search/regular.2bpp"
+
+	ds $f0
+
+SECTION "Card Gfx 23", ROMX
+
+PokedexCardGfx::
+	INCBIN "gfx/cards/pokedex/regular.gbcpal"
+	INCBIN "gfx/cards/pokedex/attributes.cardattr"
+	INCBIN "gfx/cards/pokedex/regular.2bpp"
+
+PlusPowerCardGfx::
+	INCBIN "gfx/cards/plus_power/regular.gbcpal"
+	INCBIN "gfx/cards/plus_power/attributes.cardattr"
+	INCBIN "gfx/cards/plus_power/regular.2bpp"
+	INCBIN "gfx/cards/plus_power/alt_tiles.2bpp"
+
+DefenderCardGfx::
+	INCBIN "gfx/cards/defender/regular.gbcpal"
+	INCBIN "gfx/cards/defender/attributes.cardattr"
+	INCBIN "gfx/cards/defender/regular.2bpp"
+	INCBIN "gfx/cards/defender/alt_tiles.2bpp"
+
+ItemFinderCardGfx::
+	INCBIN "gfx/cards/item_finder/regular.gbcpal"
+	INCBIN "gfx/cards/item_finder/attributes.cardattr"
+	INCBIN "gfx/cards/item_finder/regular.2bpp"
+
+GustOfWindCardGfx::
+	INCBIN "gfx/cards/gust_of_wind/regular.gbcpal"
+	INCBIN "gfx/cards/gust_of_wind/attributes.cardattr"
+	INCBIN "gfx/cards/gust_of_wind/regular.2bpp"
+
+DevolutionSprayCardGfx::
+	INCBIN "gfx/cards/devolution_spray/regular.gbcpal"
+	INCBIN "gfx/cards/devolution_spray/attributes.cardattr"
+	INCBIN "gfx/cards/devolution_spray/regular.2bpp"
+	INCBIN "gfx/cards/devolution_spray/alt_tiles.2bpp"
+
+PotionCardGfx::
+	INCBIN "gfx/cards/potion/regular.gbcpal"
+	INCBIN "gfx/cards/potion/attributes.cardattr"
+	INCBIN "gfx/cards/potion/regular.2bpp"
+	INCBIN "gfx/cards/potion/alt_tiles.2bpp"
+
+SuperPotionCardGfx::
+	INCBIN "gfx/cards/super_potion/regular.gbcpal"
+	INCBIN "gfx/cards/super_potion/attributes.cardattr"
+	INCBIN "gfx/cards/super_potion/regular.2bpp"
+	INCBIN "gfx/cards/super_potion/alt_tiles.2bpp"
+
+FullHealCardGfx::
+	INCBIN "gfx/cards/full_heal/regular.gbcpal"
+	INCBIN "gfx/cards/full_heal/attributes.cardattr"
+	INCBIN "gfx/cards/full_heal/regular.2bpp"
+	INCBIN "gfx/cards/full_heal/alt_tiles.2bpp"
+
+ReviveCardGfx::
+	INCBIN "gfx/cards/revive/regular.gbcpal"
+	INCBIN "gfx/cards/revive/attributes.cardattr"
+	INCBIN "gfx/cards/revive/regular.2bpp"
+	INCBIN "gfx/cards/revive/alt_tiles.2bpp"
+
+MaintenanceCardGfx::
+	INCBIN "gfx/cards/maintenance/regular.gbcpal"
+	INCBIN "gfx/cards/maintenance/attributes.cardattr"
+	INCBIN "gfx/cards/maintenance/regular.2bpp"
+
+PokemonFluteCardGfx::
+	INCBIN "gfx/cards/pokemon_flute/regular.gbcpal"
+	INCBIN "gfx/cards/pokemon_flute/attributes.cardattr"
+	INCBIN "gfx/cards/pokemon_flute/regular.2bpp"
+	INCBIN "gfx/cards/pokemon_flute/alt_tiles.2bpp"
+
+GamblerCardGfx::
+	INCBIN "gfx/cards/gambler/regular.gbcpal"
+	INCBIN "gfx/cards/gambler/attributes.cardattr"
+	INCBIN "gfx/cards/gambler/regular.2bpp"
+
+RecycleCardGfx::
+	INCBIN "gfx/cards/recycle/regular.gbcpal"
+	INCBIN "gfx/cards/recycle/attributes.cardattr"
+	INCBIN "gfx/cards/recycle/regular.2bpp"
+	INCBIN "gfx/cards/recycle/alt_tiles.2bpp"
+
+ChallengeCardGfx::
+	INCBIN "gfx/cards/challenge/regular.gbcpal"
+	INCBIN "gfx/cards/challenge/attributes.cardattr"
+	INCBIN "gfx/cards/challenge/regular.2bpp"
+	INCBIN "gfx/cards/challenge/alt_tiles.2bpp"
+
+ImposterOaksRevengeCardGfx::
+	INCBIN "gfx/cards/imposter_oaks_revenge/regular.gbcpal"
+	INCBIN "gfx/cards/imposter_oaks_revenge/attributes.cardattr"
+	INCBIN "gfx/cards/imposter_oaks_revenge/regular.2bpp"
+	INCBIN "gfx/cards/imposter_oaks_revenge/alt_tiles.2bpp"
+
+SleepCardGfx::
+	INCBIN "gfx/cards/sleep/regular.gbcpal"
+	INCBIN "gfx/cards/sleep/attributes.cardattr"
+	INCBIN "gfx/cards/sleep/regular.2bpp"
+
+	ds $b8
+
+SECTION "Card Gfx 24", ROMX
+
+DiggerCardGfx::
+	INCBIN "gfx/cards/digger/regular.gbcpal"
+	INCBIN "gfx/cards/digger/attributes.cardattr"
+	INCBIN "gfx/cards/digger/regular.2bpp"
+	INCBIN "gfx/cards/digger/alt_tiles.2bpp"
+
+TheBosssWayCardGfx::
+	INCBIN "gfx/cards/the_bosss_way/regular.gbcpal"
+	INCBIN "gfx/cards/the_bosss_way/attributes.cardattr"
+	INCBIN "gfx/cards/the_bosss_way/regular.2bpp"
+	INCBIN "gfx/cards/the_bosss_way/alt_tiles.2bpp"
+
+GoopGasAttackCardGfx::
+	INCBIN "gfx/cards/goop_gas_attack/regular.gbcpal"
+	INCBIN "gfx/cards/goop_gas_attack/attributes.cardattr"
+	INCBIN "gfx/cards/goop_gas_attack/regular.2bpp"
+	INCBIN "gfx/cards/goop_gas_attack/alt_tiles.2bpp"
+
+RocketsSneakAttackCardGfx::
+	INCBIN "gfx/cards/rockets_sneak_attack/regular.gbcpal"
+	INCBIN "gfx/cards/rockets_sneak_attack/attributes.cardattr"
+	INCBIN "gfx/cards/rockets_sneak_attack/regular.2bpp"
+	INCBIN "gfx/cards/rockets_sneak_attack/alt_tiles.2bpp"
+
+HereComesTeamRocketCardGfx::
+	INCBIN "gfx/cards/here_comes_team_rocket/regular.gbcpal"
+	INCBIN "gfx/cards/here_comes_team_rocket/attributes.cardattr"
+	INCBIN "gfx/cards/here_comes_team_rocket/regular.2bpp"
+	INCBIN "gfx/cards/here_comes_team_rocket/alt_tiles.2bpp"
+
+NightlyGarbageRunCardGfx::
+	INCBIN "gfx/cards/nightly_garbage_run/regular.gbcpal"
+	INCBIN "gfx/cards/nightly_garbage_run/attributes.cardattr"
+	INCBIN "gfx/cards/nightly_garbage_run/regular.2bpp"
+	INCBIN "gfx/cards/nightly_garbage_run/alt_tiles.2bpp"
+
+TheRocketsTrapCardGfx::
+	INCBIN "gfx/cards/the_rockets_trap/regular.gbcpal"
+	INCBIN "gfx/cards/the_rockets_trap/attributes.cardattr"
+	INCBIN "gfx/cards/the_rockets_trap/regular.2bpp"
+	INCBIN "gfx/cards/the_rockets_trap/alt_tiles.2bpp"
+
+FossilExcavationCardGfx::
+	INCBIN "gfx/cards/fossil_excavation/regular.gbcpal"
+	INCBIN "gfx/cards/fossil_excavation/attributes.cardattr"
+	INCBIN "gfx/cards/fossil_excavation/regular.2bpp"
+	INCBIN "gfx/cards/fossil_excavation/alt_tiles.2bpp"
+
+MoonStoneCardGfx::
+	INCBIN "gfx/cards/moon_stone/regular.gbcpal"
+	INCBIN "gfx/cards/moon_stone/attributes.cardattr"
+	INCBIN "gfx/cards/moon_stone/regular.2bpp"
+	INCBIN "gfx/cards/moon_stone/alt_tiles.2bpp"
+
+MaxReviveCardGfx::
+	INCBIN "gfx/cards/max_revive/regular.gbcpal"
+	INCBIN "gfx/cards/max_revive/attributes.cardattr"
+	INCBIN "gfx/cards/max_revive/regular.2bpp"
+	INCBIN "gfx/cards/max_revive/alt_tiles.2bpp"
+
+MasterBallCardGfx::
+	INCBIN "gfx/cards/master_ball/regular.gbcpal"
+	INCBIN "gfx/cards/master_ball/attributes.cardattr"
+	INCBIN "gfx/cards/master_ball/regular.2bpp"
+	INCBIN "gfx/cards/master_ball/alt_tiles.2bpp"
+
+PokemonRecallCardGfx::
+	INCBIN "gfx/cards/pokemon_recall/regular.gbcpal"
+	INCBIN "gfx/cards/pokemon_recall/attributes.cardattr"
+	INCBIN "gfx/cards/pokemon_recall/regular.2bpp"
+
+BillsComputerCardGfx::
+	INCBIN "gfx/cards/bills_computer/regular.gbcpal"
+	INCBIN "gfx/cards/bills_computer/attributes.cardattr"
+	INCBIN "gfx/cards/bills_computer/regular.2bpp"
+	INCBIN "gfx/cards/bills_computer/alt_tiles.2bpp"
+
+ComputerErrorCardGfx::
+	INCBIN "gfx/cards/computer_error/regular.gbcpal"
+	INCBIN "gfx/cards/computer_error/attributes.cardattr"
+	INCBIN "gfx/cards/computer_error/regular.2bpp"
+
+SquirtleLv14CardGfx::
+	INCBIN "gfx/cards/squirtle_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/squirtle_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/squirtle_lv14/regular.2bpp"
+	INCBIN "gfx/cards/squirtle_lv14/alt_tiles.2bpp"
+
+SuperScoopUpCardGfx::
+	INCBIN "gfx/cards/super_scoop_up/regular.gbcpal"
+	INCBIN "gfx/cards/super_scoop_up/attributes.cardattr"
+	INCBIN "gfx/cards/super_scoop_up/regular.2bpp"
+
+RaichuLv33CardGfx::
+	INCBIN "gfx/cards/raichu_lv33/regular.gbcpal"
+	INCBIN "gfx/cards/raichu_lv33/attributes.cardattr"
+	INCBIN "gfx/cards/raichu_lv33/regular.2bpp"
+	INCBIN "gfx/cards/raichu_lv33/alt_tiles.2bpp"
+
+	ds $118
+
+SECTION "Card Gfx 25", ROMX
+
+IvysaurLv26CardGfx::
+	INCBIN "gfx/cards/ivysaur_lv26/regular.gbcpal"
+	INCBIN "gfx/cards/ivysaur_lv26/attributes.cardattr"
+	INCBIN "gfx/cards/ivysaur_lv26/regular.2bpp"
+
+KoffingLv14CardGfx::
+	INCBIN "gfx/cards/koffing_lv14/regular.gbcpal"
+	INCBIN "gfx/cards/koffing_lv14/attributes.cardattr"
+	INCBIN "gfx/cards/koffing_lv14/regular.2bpp"
+
+GrowlitheLv12CardGfx::
+	INCBIN "gfx/cards/growlithe_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/growlithe_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/growlithe_lv12/regular.2bpp"
+
+JynxLv27CardGfx::
+	INCBIN "gfx/cards/jynx_lv27/regular.gbcpal"
+	INCBIN "gfx/cards/jynx_lv27/attributes.cardattr"
+	INCBIN "gfx/cards/jynx_lv27/regular.2bpp"
+
+ArcanineLv35CardGfx::
+	INCBIN "gfx/cards/arcanine_lv35/regular.gbcpal"
+	INCBIN "gfx/cards/arcanine_lv35/attributes.cardattr"
+	INCBIN "gfx/cards/arcanine_lv35/regular.2bpp"
+
+ElectabuzzLv30CardGfx::
+	INCBIN "gfx/cards/electabuzz_lv30/regular.gbcpal"
+	INCBIN "gfx/cards/electabuzz_lv30/attributes.cardattr"
+	INCBIN "gfx/cards/electabuzz_lv30/regular.2bpp"
+
+WartortleLv24CardGfx::
+	INCBIN "gfx/cards/wartortle_lv24/regular.gbcpal"
+	INCBIN "gfx/cards/wartortle_lv24/attributes.cardattr"
+	INCBIN "gfx/cards/wartortle_lv24/regular.2bpp"
+	INCBIN "gfx/cards/wartortle_lv24/alt_tiles.2bpp"
+
+SpearowLv9CardGfx::
+	INCBIN "gfx/cards/spearow_lv9/regular.gbcpal"
+	INCBIN "gfx/cards/spearow_lv9/attributes.cardattr"
+	INCBIN "gfx/cards/spearow_lv9/regular.2bpp"
+	INCBIN "gfx/cards/spearow_lv9/alt_tiles.2bpp"
+
+MeowthLv17CardGfx::
+	INCBIN "gfx/cards/meowth_lv17/regular.gbcpal"
+	INCBIN "gfx/cards/meowth_lv17/attributes.cardattr"
+	INCBIN "gfx/cards/meowth_lv17/regular.2bpp"
+
+BillsTeleporterCardGfx::
+	INCBIN "gfx/cards/bills_teleporter/regular.gbcpal"
+	INCBIN "gfx/cards/bills_teleporter/attributes.cardattr"
+	INCBIN "gfx/cards/bills_teleporter/regular.2bpp"
+	INCBIN "gfx/cards/bills_teleporter/alt_tiles.2bpp"
+
+BulbasaurLv12CardGfx::
+	INCBIN "gfx/cards/bulbasaur_lv12/regular.gbcpal"
+	INCBIN "gfx/cards/bulbasaur_lv12/attributes.cardattr"
+	INCBIN "gfx/cards/bulbasaur_lv12/regular.2bpp"
+	INCBIN "gfx/cards/bulbasaur_lv12/alt_tiles.2bpp"
+
+MagmarLv18CardGfx::
+	INCBIN "gfx/cards/magmar_lv18/regular.gbcpal"
+	INCBIN "gfx/cards/magmar_lv18/attributes.cardattr"
+	INCBIN "gfx/cards/magmar_lv18/regular.2bpp"
+	INCBIN "gfx/cards/magmar_lv18/alt_tiles.2bpp"
+
+GRsMewtwoCardGfx::
+	INCBIN "gfx/cards/grs_mewtwo/regular.gbcpal"
+	INCBIN "gfx/cards/grs_mewtwo/attributes.cardattr"
+	INCBIN "gfx/cards/grs_mewtwo/regular.2bpp"
+
+DarkIvysaurCardGfx::
+	INCBIN "gfx/cards/dark_ivysaur/regular.gbcpal"
+	INCBIN "gfx/cards/dark_ivysaur/attributes.cardattr"
+	INCBIN "gfx/cards/dark_ivysaur/regular.2bpp"
+
+DarkHaunterCardGfx::
+	INCBIN "gfx/cards/dark_haunter/regular.gbcpal"
+	INCBIN "gfx/cards/dark_haunter/attributes.cardattr"
+	INCBIN "gfx/cards/dark_haunter/regular.2bpp"
+	INCBIN "gfx/cards/dark_haunter/alt_tiles.2bpp"
+
+DarkVenusaurCardGfx::
+	INCBIN "gfx/cards/dark_venusaur/regular.gbcpal"
+	INCBIN "gfx/cards/dark_venusaur/attributes.cardattr"
+	INCBIN "gfx/cards/dark_venusaur/regular.2bpp"
+
+DarkClefableCardGfx::
+	INCBIN "gfx/cards/dark_clefable/regular.gbcpal"
+	INCBIN "gfx/cards/dark_clefable/attributes.cardattr"
+	INCBIN "gfx/cards/dark_clefable/regular.2bpp"
+
+DarkRaichuCardGfx::
+	INCBIN "gfx/cards/dark_raichu/regular.gbcpal"
+	INCBIN "gfx/cards/dark_raichu/attributes.cardattr"
+	INCBIN "gfx/cards/dark_raichu/regular.2bpp"
+
+	ds $50
+
+SECTION "Card Gfx 26", ROMX
+
+DarkMarowakCardGfx::
+	INCBIN "gfx/cards/dark_marowak/regular.gbcpal"
+	INCBIN "gfx/cards/dark_marowak/attributes.cardattr"
+	INCBIN "gfx/cards/dark_marowak/regular.2bpp"
+
+DarkStarmieCardGfx::
+	INCBIN "gfx/cards/dark_starmie/regular.gbcpal"
+	INCBIN "gfx/cards/dark_starmie/attributes.cardattr"
+	INCBIN "gfx/cards/dark_starmie/regular.2bpp"
+
+DarkNinetalesCardGfx::
+	INCBIN "gfx/cards/dark_ninetales/regular.gbcpal"
+	INCBIN "gfx/cards/dark_ninetales/attributes.cardattr"
+	INCBIN "gfx/cards/dark_ninetales/regular.2bpp"
+
+DarkFearowCardGfx::
+	INCBIN "gfx/cards/dark_fearow/regular.gbcpal"
+	INCBIN "gfx/cards/dark_fearow/attributes.cardattr"
+	INCBIN "gfx/cards/dark_fearow/regular.2bpp"
+	INCBIN "gfx/cards/dark_fearow/alt_tiles.2bpp"
+
+RecycleEnergyCardGfx::
+	INCBIN "gfx/cards/recycle_energy/regular.gbcpal"
+	INCBIN "gfx/cards/recycle_energy/attributes.cardattr"
+	INCBIN "gfx/cards/recycle_energy/regular.2bpp"
+
+DarkGengarCardGfx::
+	INCBIN "gfx/cards/dark_gengar/regular.gbcpal"
+	INCBIN "gfx/cards/dark_gengar/attributes.cardattr"
+	INCBIN "gfx/cards/dark_gengar/regular.2bpp"
+
+LugiaCardGfx::
+	INCBIN "gfx/cards/lugia/regular.gbcpal"
+	INCBIN "gfx/cards/lugia/attributes.cardattr"
+	INCBIN "gfx/cards/lugia/regular.2bpp"
+
 
 SECTION "Bank 4b", ROMX
 INCLUDE "engine/bank4b.asm"
@@ -2376,7 +4988,8 @@ RareCardPopSceneGfx::
 	INCBIN "gfx/link/rare_card_pop_scene.2bpp"
 
 SpecialRulesGfx::
-	dw 21 ; length
+	dw 1 + 20 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/special_rules.2bpp"
 
 FullMailboxGfx::
@@ -2471,7 +5084,8 @@ MailboxCopyGfx::
 	INCBIN "gfx/minicom/mailbox_copy.2bpp"
 
 DeckDiagnosisGfx::
-	dw 33 ; length
+	dw 1 + 32 ; length
+	solid_black_tile
 	INCBIN "gfx/duel/deck_diagnosis.2bpp"
 
 LinkSceneIntroGfx::

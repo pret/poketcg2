@@ -1,9 +1,9 @@
 .PHONY: all clean
 
 CC := gcc
-CFLAGS := -O3 -std=c99 -Wall -Wextra -pedantic
+CFLAGS := -O3 -std=c17 -Wall -Wextra -pedantic
 
-tools := scan_includes gfx
+tools := alt_tiles card_attributes gfx scan_includes
 
 all: $(tools)
 	@:

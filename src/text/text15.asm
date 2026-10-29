@@ -2601,3 +2601,5 @@ DiglettLv8Description:
 DigUnderName:
 	textfw "じめんにもぐる"
 	done
+
+	ds $9
