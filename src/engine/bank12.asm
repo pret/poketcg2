@@ -4454,7 +4454,7 @@ AIDecide_ComputerSearch_EverybodysFriendDeck:
 	farcall FindCardIDInLocation
 	jr nc, .check_scoop_up_in_discard_pile
 	push af
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -4517,14 +4517,14 @@ AIDecide_ComputerSearch_EverybodysFriendDeck:
 	call c, .store_discard_cards
 
 .try_energy_retrieval
-	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	farcall AIDecide_EnergyRetrieval
 	jr c, .try_pluspower
 	ld de, ENERGY_RETRIEVAL
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 
 .try_pluspower
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	jr c, .no_carry
 	ld de, PLUSPOWER
 	farcall LookForCardIDInHandList
@@ -4649,7 +4649,7 @@ AIDecide_ItemFinder_EverybodysFriendDeck:
 	farcall FindCardIDInLocation
 	jr nc, .target_scoop_up
 	push af
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	pop bc
 	jr c, .find_discard_cards
 
@@ -4697,13 +4697,13 @@ AIDecide_ItemFinder_EverybodysFriendDeck:
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_energy_retrieval
-	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	farcall AIDecide_EnergyRetrieval
 	jr c, .try_pluspower
 	ld de, ENERGY_RETRIEVAL
 	farcall LookForCardIDInHandList
 	call c, .store_discard_cards
 .try_pluspower
-	farcall $8, $4692 ; AIDecide_PlusPower1
+	farcall AIDecide_PlusPower_Phase13
 	jr c, .no_carry
 	ld de, PLUSPOWER
 	farcall LookForCardIDInHandList
