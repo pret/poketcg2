@@ -3171,3 +3171,5 @@ GlossaryActivePokemonTitleText:
 GlossaryBenchedPokemonTitleText:
 	textfw "「ひかえポケモン」について"
 	done
+
+	ds $d

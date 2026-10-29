@@ -2963,3 +2963,5 @@ Text0b75:
 	textfw "サイドカードは 6枚ということで"
 	linefw "対戦しようか"
 	done
+
+	ds $15

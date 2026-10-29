@@ -84,10 +84,60 @@ ROMX $1a
 	"Effect Functions 1"
 ROMX $1b
 	"Gfx 1"
-; ROMX $1c not started
+ROMX $1c
+	"Gfx 2"
 ROMX $1d
 	"Card Gfx 1"
-; ROMX $1e-$36 not started
+ROMX $1e
+	"Card Gfx 2"
+ROMX $1f
+	"Card Gfx 3"
+ROMX $20
+	"Card Gfx 4"
+ROMX $21
+	"Card Gfx 5"
+ROMX $22
+	"Card Gfx 6"
+ROMX $23
+	"Card Gfx 7"
+ROMX $24
+	"Card Gfx 8"
+ROMX $25
+	"Card Gfx 9"
+ROMX $26
+	"Card Gfx 10"
+ROMX $27
+	"Card Gfx 11"
+ROMX $28
+	"Card Gfx 12"
+ROMX $29
+	"Card Gfx 13"
+ROMX $2a
+	"Card Gfx 14"
+ROMX $2b
+	"Card Gfx 15"
+ROMX $2c
+	"Card Gfx 16"
+ROMX $2d
+	"Card Gfx 17"
+ROMX $2e
+	"Card Gfx 18"
+ROMX $2f
+	"Card Gfx 19"
+ROMX $30
+	"Card Gfx 20"
+ROMX $31
+	"Card Gfx 21"
+ROMX $32
+	"Card Gfx 22"
+ROMX $33
+	"Card Gfx 23"
+ROMX $34
+	"Card Gfx 24"
+ROMX $35
+	"Card Gfx 25"
+ROMX $36
+	"Card Gfx 26"
 ROMX $37
 	"Text Offsets"
 ROMX $38

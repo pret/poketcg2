@@ -45,7 +45,8 @@ clean: tidy
 	find src/gfx \
 	     \( -iname '*.1bpp' \
 	        -o -iname '*.2bpp' \
-	        -o -iname '*.pal' \) \
+	        -o -iname '*.cardattr' \
+	        -o -iname '*.gbcpal' \) \
 	     -delete
 
 tidy:
@@ -98,8 +99,30 @@ endif
 RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
+
+
+### Cards graphics rules
+
+src/gfx/cards/%/attributes.cardattr: src/gfx/cards/%/regular.attrmap
+	tools/card_attributes $(tools/card_attributes) -o $@ $^
+
+# for matching purposes
+src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.2bpp.match
+	cp $< $@
+
+src/gfx/cards/%/regular.2bpp: src/gfx/cards/%/regular.png src/gfx/cards/%/regular.hex
+	$(RGBGFX) $(RGBGFXFLAGS) --colors hex:$(word 2,$^) -Z -o $@ $<
+
+src/gfx/cards/%/grayscale.2bpp: src/gfx/cards/%/grayscale.png
+	$(RGBGFX) $(RGBGFXFLAGS) --colors dmg -Z -o $@ $<
+
+src/gfx/cards/%/regular.gbcpal: src/gfx/cards/%/regular.hex
+	$(RGBGFX) $(RGBGFXFLAGS) --colors hex:$< -p $@
+
+src/gfx/cards/%/alt_tiles.2bpp: src/gfx/cards/%/regular.2bpp src/gfx/cards/%/grayscale.2bpp src/gfx/cards/%/attributes.cardattr
+	tools/alt_tiles $(tools/alt_tiles) -o $@ $^
 
 
 ### Misc file-specific graphics rules
@@ -113,6 +136,8 @@ src/gfx/booster_packs/psychic_pack.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/booster_packs/ambition_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/present_pack.2bpp: RGBGFXFLAGS += -x 2
 src/gfx/booster_packs/pack_oam.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/cgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/duel/dmg_sgb_play_area_screen.2bpp: RGBGFXFLAGS += -x 1
 src/gfx/titlescreen/title_screen.2bpp: RGBGFXFLAGS += -x 4
 src/gfx/titlescreen/gb_error.2bpp: RGBGFXFLAGS += -x 10
 src/gfx/black_box/black_box_bg.2bpp: RGBGFXFLAGS += -x 5
@@ -124,6 +149,10 @@ src/gfx/link/link_scene.2bpp: RGBGFXFLAGS += -x 7
 %.png: ;
 
 %.pal: ;
+
+%.attrmap: ;
+
+%.2bpp.match: ;
 
 %.2bpp: %.png
 	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) -o $@ $<

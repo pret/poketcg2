@@ -450,7 +450,7 @@ SFX_wave:
 	ld a, AUD3ENA_OFF
 	ldh [rAUD3ENA], a
 	ld b, d
-	ld de, _AUD3WAVERAM
+	ld de, AUD3WAVERAM
 .asm_fc215
 	ld a, [hli]
 	ld [de], a
@@ -634,3 +634,5 @@ INCLUDE "audio/sfx/sfx_firegiver_start.asm"
 INCLUDE "audio/sfx/sfx_receive_card_pop.asm"
 INCLUDE "audio/sfx/sfx_pokemon_evolution.asm"
 INCLUDE "audio/sfx/sfx_5f.asm"
+
+	ds $3b3

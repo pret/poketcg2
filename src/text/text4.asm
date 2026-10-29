@@ -3162,3 +3162,5 @@ DebugModifyCardCountValuesText:
 DebugBeatTheGameText:
 	textfw "ゲームクリア直後にする"
 	done
+
+	ds $b

@@ -193,49 +193,63 @@ GetCardPointer:
 	ret
 
 ; input:
-; hl = card_gfx_index
-; de = where to load the card gfx to
-; bc are supposed to be $30 (number of tiles of a card gfx) and TILE_SIZE respectively
-; card_gfx_index = (<Name>CardGfx - CardGraphics) / 8  (using absolute ROM addresses)
-; also copies the card's palette to wCardPalette
+;   hl = card gfx index
+;   de = destination
+;   b = NUM_CARD_GFX_TILES
+;   c = TILE_SIZE
+; also set wCardPalette and wCardAttributes
 LoadCardGfx::
 	ldh a, [hBankROM]
 	push af
-	call LoadCardPalettes
+	call LoadCardPalettesAndAttributes
 	call CopyGfxData
 	pop af
 	call BankswitchROM
 	ret
 
-Func_2dc4::
+; LoadCardGfx but with printer-only alt tiles where appropriate
+; based on CARD_GFX_CARD_ATTR_ALT_OFFSET
+; see BuildPrintableCardPic
+; input:
+;   hl = card gfx index
+;   de = destination
+;   b = NUM_CARD_GFX_TILES
+;   c = TILE_SIZE
+LoadCardGfx_PrinterAlt::
 	ldh a, [hBankROM]
 	push af
-	call LoadCardPalettes
+	call LoadCardPalettesAndAttributes
 	ld a, l
-	ld [wcde5 + 0], a
+	ld [wCardGfxTileBase + 0], a
 	ld a, h
-	ld [wcde5 + 1], a
-	ld hl, wCardAttrMap
-	lb bc, $30, 0
+	ld [wCardGfxTileBase + 1], a
+	ld hl, wCardAttributes
+	lb bc, NUM_CARD_GFX_TILES, 0
 .loop_copy
+	; mask offset
+	; offset = 48 + (cur alt tile idx) - (cur tile idx) if has alt,
+	; 0 otherwise
 	ld a, [hl]
-	and $3f
+	and CARD_GFX_CARD_ATTR_ALT_OFFSET
 	ld [hli], a
 	push hl
 	push bc
-	add c
+	add c ; += (cur tile idx)
+	; a = 48 + (cur alt tile idx) if has alt,
+	; (cur tile idx) otherwise
+	; get source tile addr
 	ld l, a
 	ld h, $00
+REPT 4 ; *= TILE_SIZE
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl ; *TILE_SIZE
-	ld a, [wcde5 + 0]
+ENDR
+	ld a, [wCardGfxTileBase + 0]
 	add l
 	ld l, a
-	ld a, [wcde5 + 1]
+	ld a, [wCardGfxTileBase + 1]
 	adc h
 	ld h, a
+	; copy tile
 	ld b, TILE_SIZE
 	call SafeCopyDataHLtoDE
 	pop bc
@@ -243,28 +257,32 @@ Func_2dc4::
 	inc c
 	dec b
 	jr nz, .loop_copy
+
 	pop af
 	call BankswitchROM
 	ret
 
-LoadCardPalettes:
+; hl = card gfx index
+; set up wCardPalettes and wCardAttributes, and
+; return hl = card tile address
+LoadCardPalettesAndAttributes:
 	push bc
 	push de
 	push hl
 	ld a, h
+REPT 3 ; /= 8
 	srl a
-	srl a
-	srl a ; /8
+ENDR
 	add BANK(CardGraphics)
 	call BankswitchROM
 	pop hl
+REPT 3 ; *= 8
 	add hl, hl
-	add hl, hl
-	add hl, hl ; *8
+ENDR
 	res 7, h
 	set 6, h ; $4000 ≤ hl ≤ $7fff
-	ld b, 3 palettes + $30 ; palettes + attributes
-	ld de, wCardPalettes
+	ld b, CARDGFXSTRUCT_HEADER_SIZE
+	ld de, wCardGfxHeaderData
 .loop_copy
 	ld a, [hli]
 	ld [de], a

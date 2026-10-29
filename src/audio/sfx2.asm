@@ -450,7 +450,7 @@ SFX2_wave:
 	ld a, AUD3ENA_OFF
 	ldh [rAUD3ENA], a
 	ld b, d
-	ld de, _AUD3WAVERAM
+	ld de, AUD3WAVERAM
 .asm_fc215
 	ld a, [hli]
 	ld [de], a
@@ -600,3 +600,5 @@ INCLUDE "audio/sfx/sfx_electronic_input.asm"
 INCLUDE "audio/sfx/sfx_electronic_response.asm"
 INCLUDE "audio/sfx/sfx_ghost_master_appear.asm"
 INCLUDE "audio/sfx/sfx_ghost_master_disappear.asm"
+
+	ds $e1a

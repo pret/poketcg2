@@ -84,6 +84,10 @@ MACRO? energy
 	ENDC
 ENDM
 
+MACRO? gfx
+	dw ($4000 * (BANK(\1) - BANK(CardGraphics)) + ((\1) - $4000)) / 8
+ENDM
+
 MACRO? length
 	db ROUND(\1 * 10) >> 16
 ENDM
@@ -96,6 +100,11 @@ MACRO? gfx_ptr
 	db BANK(\1) - BANK(@)
 	dw \1
 	db $0 ; padding
+ENDM
+
+; reserved tile #0 in tilesets
+MACRO? solid_black_tile
+	ds TILE_SIZE, $ff
 ENDM
 
 ; \1 = y offset

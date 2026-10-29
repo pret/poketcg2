@@ -1744,3 +1744,5 @@ SteveTournamentsPlayerWonText:
 	textfw "ユー アー ウィナー!"
 	linefw "オー グレートね!"
 	done
+
+	ds $15
