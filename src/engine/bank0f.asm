@@ -4,7 +4,7 @@ Prologue::
 	ld a, MUSIC_OVERWORLD
 	farcall PlayAfterCurrentSong
 
-	xor a
+	xor a ; PROLOGUE_PLAYER_RECAP
 	farcall ShowProloguePortraitAndText
 
 	farcall Func_102ef
@@ -18,7 +18,7 @@ Prologue::
 	farcall LoadOWMap
 	ld bc, TILEMAP_001
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, $00
 	call Func_338f
 	call WaitPalFading
@@ -42,7 +42,7 @@ Prologue::
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
 
-	ld a, $01
+	ld a, PROLOGUE_GR_INVASION
 	farcall ShowProloguePortraitAndText_WithFade
 
 	; load player object in map
@@ -87,7 +87,7 @@ Prologue::
 	ld b, EAST
 	call .MoveGRBlimp
 
-	ld a, $02
+	ld a, PROLOGUE_PLAYER_TO_LAB
 	farcall ShowProloguePortraitAndText_WithFade
 
 	ld a, EVENT_PLAYER_GENDER
@@ -102,11 +102,11 @@ Prologue::
 	farcall _SetAndInitOWObjectFrameset
 
 	ld a, NPC_GR_BLIMP
-	farcall _ClearOWObject
+	farcall ClearOWObject_Internal
 
 	ld bc, TILEMAP_002
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 
 	lb de,  1, 1
 	lb bc, 11, 1
@@ -119,7 +119,7 @@ Prologue::
 	ld a, [wPlayerOWObject]
 	call WaitForOWObjectAnimation
 	ld a, [wPlayerOWObject]
-	farcall _ClearOWObject
+	farcall ClearOWObject_Internal
 	lb de, 68, 68
 	ld b, SOUTH
 	farcall LoadOWObject
@@ -178,7 +178,7 @@ Prologue::
 	farcall LoadOWObject
 	call WaitForOWObjectAnimation
 	ld a, NPC_GR_BLIMP_BEAM
-	farcall _ClearOWObject
+	farcall ClearOWObject_Internal
 	ret
 
 .MovePlayer:
@@ -341,10 +341,10 @@ Script_BattleCenter:
 	script_ret
 
 Script_GiftCenter:
-	ld a, EVENT_F2
+	ld a, EVENT_GIFT_CENTER_UNUSED
 	farcall ZeroOutEventValue
 	farcall GiftCenter
-	ld a, EVENT_F2
+	ld a, EVENT_GIFT_CENTER_UNUSED
 	farcall GetEventValue
 	jr z, .done
 	farcall PlayCurrentSong
@@ -358,11 +358,11 @@ Script_3c2f0:
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_3c305
 	set_var VAR_21, $01
-	set_var VAR_25, $09
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_FIRE_CLUB
 	script_jump .ows_3c30b
 .ows_3c305
 	set_var VAR_21, $03
-	set_var VAR_25, $09
+	set_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_FIRE_CLUB
 .ows_3c30b
 	script_retfar
 
@@ -386,14 +386,14 @@ Func_3c30c:
 	script_jump .ows_3c3ae
 .ows_3c333
 	set_var VAR_21, $02
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_LOCATION, $0f
 	print_npc_text ImakuniBlackCardlessFirstCardPopText
 	card_pop SCRIPTED_CARD_POP_IMAKUNI
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopSaveText
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -418,7 +418,7 @@ Func_3c30c:
 	farcall PlayAfterCurrentSong
 	ret
 .ows_3c37f
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_LOCATION, $0f
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopRepeatText
 	end_dialog
 	get_player_direction
@@ -461,7 +461,7 @@ Script_ImakuniBlackAfterDuel:
 	xor a
 	start_script
 	start_dialog
-	set_var VAR_25, $0f
+	set_var VAR_IMAKUNI_BLACK_LOCATION, $0f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	inc_var VAR_IMAKUNI_BLACK_WIN_COUNT
@@ -578,14 +578,14 @@ NPCMovement_3c492:
 	db $ff
 
 Script_3c497:
-	set_var VAR_26, $0f
+	set_var VAR_IMAKUNI_RED_LOCATION, $0f
 	print_npc_text Text12d3
 	card_pop SCRIPTED_RARE_CARD_POP_IMAKUNI
 	print_npc_text Text12d4
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -621,7 +621,7 @@ Func_3c4e0:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_23
+	get_var VAR_MET_IMAKUNI_RED
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_3c50b
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
@@ -631,7 +631,7 @@ Func_3c4e0:
 	script_jump_if_b0z .ows_3c514
 	script_jump Script_3c497
 .ows_3c50b
-	set_var VAR_23, $01
+	set_var VAR_MET_IMAKUNI_RED, $01
 	print_npc_text Text12d6
 	script_jump .ows_3c517
 .ows_3c514
@@ -654,14 +654,14 @@ Func_3c52d:
 	xor a
 	start_script
 	start_dialog
-	set_var VAR_26, $0f
+	set_var VAR_IMAKUNI_RED_LOCATION, $0f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c574
-	inc_var VAR_24
-	get_var VAR_24
+	inc_var VAR_IMAKUNI_RED_WIN_COUNT
+	get_var VAR_IMAKUNI_RED_WIN_COUNT
 	compare_loaded_var $0a
 	script_jump_if_b1nz .ows_3c546
-	set_var VAR_24, $0a
+	set_var VAR_IMAKUNI_RED_WIN_COUNT, $0a
 .ows_3c546
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_3c558
@@ -729,7 +729,7 @@ Func_3c52d:
 	script_ret
 .ows_3c5ce
 	print_npc_text Text12e2
-	get_var VAR_24
+	get_var VAR_IMAKUNI_RED_WIN_COUNT
 	compare_loaded_var $03
 	script_jump_if_b1nz .ows_3c5e5
 	compare_loaded_var $06
@@ -816,7 +816,7 @@ Func_3c697:
 	farcall SetOWObjectDirection
 	ld bc, TILEMAP_008
 	lb de, 7, 7
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 .asm_3c6b1
 	scf
 	ret
@@ -1058,13 +1058,13 @@ Func_3c84c:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_27
+	get_var VAR_AARON_STEP_UP_PROGRESS
 	compare_loaded_var $04
 	script_jump_if_b0nz .ows_3c87f
 	script_jump_if_b1z .ows_3c88a
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_3c879
-	set_var VAR_27, $01
+	set_var VAR_AARON_STEP_UP_PROGRESS, $01
 	print_npc_text Text0f3a
 	script_jump .ows_3c890
 .ows_3c879
@@ -1076,10 +1076,12 @@ Func_3c84c:
 	print_npc_text Text0f3c
 	script_jump .ows_3c890
 .ows_3c88a
-	var_sub VAR_27, $05
+	; print congratulation dialogue, then
+	; subtract 5 to resume Step-up progress
+	var_sub VAR_AARON_STEP_UP_PROGRESS, $05
 	print_npc_text Text0f3d
 .ows_3c890
-	get_var VAR_27
+	get_var VAR_AARON_STEP_UP_PROGRESS
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_3c8cb
 	script_jump_if_b1z .ows_3c8e7
@@ -1164,10 +1166,10 @@ Func_3c931:
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c951
-	get_var VAR_27
+	get_var VAR_AARON_STEP_UP_PROGRESS
 	compare_loaded_var $02
 	script_jump_if_b1z .ows_3c945
-	set_var VAR_27, $02
+	set_var VAR_AARON_STEP_UP_PROGRESS, $02
 .ows_3c945
 	print_npc_text Text0f44
 	give_booster_packs BoosterList_cc9e
@@ -1207,10 +1209,10 @@ Func_3c97e:
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c99e
-	get_var VAR_27
+	get_var VAR_AARON_STEP_UP_PROGRESS
 	compare_loaded_var $03
 	script_jump_if_b1z .ows_3c992
-	set_var VAR_27, $03
+	set_var VAR_AARON_STEP_UP_PROGRESS, $03
 .ows_3c992
 	print_npc_text Text0f49
 	give_booster_packs BoosterList_cca1
@@ -1250,10 +1252,10 @@ Func_3c9cb:
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c9ef
-	get_var VAR_27
+	get_var VAR_AARON_STEP_UP_PROGRESS
 	compare_loaded_var $04
 	script_jump_if_b1z .ows_3c9df
-	set_var VAR_27, $04
+	set_var VAR_AARON_STEP_UP_PROGRESS, $04
 .ows_3c9df
 	print_npc_text Text0f4d
 	give_booster_packs BoosterList_cca4
@@ -1564,7 +1566,7 @@ Func_3cbfb:
 .asm_3cc0b
 	ld bc, TILEMAP_00C
 	lb de, 1, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	call Func_3cc53
 	jr c, .asm_3cc35
 	ldtx hl, DialogGR4Text
@@ -1599,7 +1601,7 @@ Func_3cc37:
 Func_3cc53:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_3cc5f
 	scf
 	ret
@@ -2515,11 +2517,11 @@ Func_3d3c0:
 	xor a
 	start_script
 	start_dialog
-	check_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL
+	check_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_1
 	script_jump_if_b0nz .ows_3d3ee
-	check_event EVENT_B1
+	check_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_2
 	script_jump_if_b0nz .ows_3d43b
-	check_event EVENT_B2
+	check_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_3
 	script_jump_if_b0nz .ows_3d493
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	print_variable_npc_text Text0992, Text0993
@@ -2554,8 +2556,8 @@ Func_3d3c0:
 	receive_card WIGGLYTUFF_LV36
 	take_card GRAVELER_LV29
 	give_card WIGGLYTUFF_LV36
-	set_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL
-	set_event EVENT_F3
+	set_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_1
+	set_event EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP
 	reset_event EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
 	print_npc_text Text099a
 .ows_3d438
@@ -2563,7 +2565,7 @@ Func_3d3c0:
 	end_script
 	ret
 .ows_3d43b
-	check_event EVENT_F3
+	check_event EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP
 	script_jump_if_b0z .ows_3d48d
 	check_event EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
 	script_jump_if_b0z .ows_3d44d
@@ -2592,8 +2594,8 @@ Func_3d3c0:
 	receive_card LAPRAS_LV31
 	take_card OMANYTE_LV19
 	give_card LAPRAS_LV31
-	set_event EVENT_B1
-	set_event EVENT_F3
+	set_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_2
+	set_event EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP
 	reset_event EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
 	print_npc_text Text09a1
 	script_jump .ows_3d490
@@ -2604,7 +2606,7 @@ Func_3d3c0:
 	end_script
 	ret
 .ows_3d493
-	check_event EVENT_F3
+	check_event EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP
 	script_jump_if_b0z .ows_3d4e3
 	check_event EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
 	script_jump_if_b0z .ows_3d4a5
@@ -2633,7 +2635,7 @@ Func_3d3c0:
 	receive_card BILLS_COMPUTER
 	take_card HAUNTER_LV17
 	give_card BILLS_COMPUTER
-	set_event EVENT_B2
+	set_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_3
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	print_npc_text Text09a9
 	script_jump .ows_3d4e6
@@ -2881,7 +2883,7 @@ Func_3d6c1:
 Func_3d6ca:
 	ld bc, TILEMAP_037
 	lb de, 7, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, [wPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .cup_played
@@ -3667,7 +3669,7 @@ Script_RodAfterFinalCup:
 	ld [wScriptNPCName], a
 	ld a, h
 	ld [wScriptNPCName + 1], a
-	ld a, EVENT_EE
+	ld a, EVENT_BEAT_GR3
 	farcall GetEventValue
 	jr z, .resume
 	xor a
@@ -3864,7 +3866,7 @@ Func_3ddb8:
 .grand_master_cup
 	ld bc, TILEMAP_0B9
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, NPC_COURTNEY
 	lb de, 3, 5
 	ld b, EAST
@@ -4271,7 +4273,7 @@ Script_FinalCupRound4AfterDuel:
 
 Script_FinalCupPlayerLost:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	set_event EVENT_EE
+	set_event EVENT_BEAT_GR3
 	move_npc NPC_ROD, .NPCMovement_3e126
 	wait_for_player_animation
 	set_player_direction NORTH
@@ -6121,9 +6123,9 @@ GameCenterLobby_MapScripts:
 	db $ff
 
 Func_3ef80:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $02
+	cp OWMAP_GAME_CENTER
 	jr z, .asm_3ef8c
 	scf
 	ret
@@ -6236,9 +6238,9 @@ Script_GameCenterLobbyGRPappy:
 	ret
 
 Func_3f03d:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $02
+	cp OWMAP_GAME_CENTER
 	jr z, .asm_3f049
 	scf
 	ret
@@ -6303,7 +6305,7 @@ Func_3f0a3:
 Func_3f0b3:
 	ld bc, TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f1c6)
@@ -6522,7 +6524,7 @@ Func_3f249:
 Func_3f259:
 	ld bc, TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f395)
@@ -6763,7 +6765,7 @@ Func_3f419:
 Func_3f429:
 	ld bc, TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f57e)
@@ -7002,9 +7004,9 @@ WaterFortLobby_MapScripts:
 	db $ff
 
 Func_3f63b:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_GR_WATER_FORT
 	jr z, .asm_3f647
 	scf
 	ret
@@ -7205,9 +7207,9 @@ Func_3f780:
 	ret
 
 Func_3f7a6:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_GR_WATER_FORT
 	jr z, .asm_3f7b2
 	scf
 	ret

@@ -405,7 +405,7 @@ CreditsCmd_LoadTilemap:
 	ld d, a
 	ld a, [wCreditsCmdArg5]
 	ld e, a
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ret
 
 CreditsCmd_LoadOWObject:

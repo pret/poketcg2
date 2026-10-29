@@ -9902,7 +9902,7 @@ ReceiveDeckConfigurationMenu:
 	call EnableSRAM
 	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
-	call SaveGame
+	call SaveGame_PreserveRegisters
 	call ClearScreenAndDrawDeckMachineScreen
 	ld a, [wCurScrollMenuItem]
 	ld hl, DeckMachineSelectionParams

@@ -172,9 +172,12 @@ Func_12c0b7:
 	pop af
 	ret
 
-; bc = TILEMAP_* constant
-; de = OW coordinates
-Func_12c0ce::
+; given a tilemap ID and coordinates, loads it accordingly
+; and additionally adds the input as an entry into wTilemapLoadHistory
+; input:
+; - bc = TILEMAP_* constant
+; - de = OW coordinates
+LoadTilemapAndAddToHistory::
 	push af
 	push bc
 	push de
@@ -184,15 +187,15 @@ Func_12c0ce::
 	call GetTilemapGfxPointer
 	sla d ; *2
 	sla e ; *2
-	call Func_12c0fc
-	ld hl, wd852
+	call .Load
+	ld hl, wTilemapLoadHistoryEntries
 	ld a, [hl]
 	inc [hl]
 	ld c, a
 	sla c
 	sla c ; *4
 	ld b, $00
-	ld hl, wd853
+	ld hl, wTilemapLoadHistory
 	add hl, bc
 	pop de
 	pop bc
@@ -210,7 +213,7 @@ Func_12c0ce::
 	ret
 
 ; b:hl = tilemap pointer
-Func_12c0fc:
+.Load:
 	push af
 	push bc
 	push de
@@ -249,9 +252,9 @@ LoadTilemap::
 	ld a, c
 	ld [wBGMapHeight], a
 	ld a, l
-	ld [wd7d8], a
+	ld [wMapPermissionPtr + 0], a
 	ld a, h
-	ld [wd7d9], a
+	ld [wMapPermissionPtr + 1], a
 	pop hl
 	inc hl
 	inc hl
@@ -337,13 +340,13 @@ LoadTilemap::
 	jr nz, .loop_rows
 	pop de
 
-	ld a, [wd7d8]
+	ld a, [wMapPermissionPtr + 0]
 	ld l, a
-	ld a, [wd7d9]
+	ld a, [wMapPermissionPtr + 1]
 	ld h, a
 	or l
 	jr z, .null
-	call Func_12c1c1
+	call LoadPermissionMap
 .null
 	ld a, [wBGMapWidth]
 	ld b, a
@@ -356,8 +359,9 @@ LoadTilemap::
 	pop af
 	ret
 
-; decompress permission data?
-Func_12c1c1:
+; loads in wPermissionMap the permissions of the map,
+; which has its compressed permission data given in hl
+LoadPermissionMap:
 	call InitDataDecompressionFromBank
 	srl d
 	srl e
@@ -369,7 +373,7 @@ Func_12c1c1:
 	; e *= 8
 	ld a, d
 	ld d, $00
-	ld hl, wd6d4
+	ld hl, wPermissionMap
 	add hl, de
 	ld e, a
 	add hl, de
@@ -827,7 +831,7 @@ _LoadOWObject::
 	ld [hl], d ;
 	inc hl
 	xor a
-	ld [hli], a ; OWOBJSTRUCT_4
+	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_INDEX
 	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_BANK
 	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_PTR
 	ld [hl], a  ;

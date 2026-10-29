@@ -256,7 +256,7 @@ LoadGeneralSaveDataChecksumSeed:
 	call DisableSRAM
 	ret
 
-_SaveGame::
+SaveGame::
 	ld a, OWMODE_SAVE_PRELOAD
 	call ExecuteOWModeScript
 	farcall Func_10f32

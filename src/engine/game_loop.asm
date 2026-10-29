@@ -1,6 +1,6 @@
 GameLoop::
 	di
-	ld sp, $d000
+	ld sp, wStackTop
 	call ResetSerial
 	call EnableInt_VBlank
 	call EnableInt_Timer

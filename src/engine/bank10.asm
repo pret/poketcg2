@@ -795,7 +795,7 @@ Func_4048a:
 .gr_blimp_cutscene
 	ld bc, TILEMAP_001
 	lb de, 0, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
@@ -1427,7 +1427,7 @@ Func_40e91:
 Func_40ef9:
 	ld bc, TILEMAP_006
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ret
 
 Func_40f04:
@@ -1440,19 +1440,20 @@ Func_40f04:
 	scf
 	ret
 
+; returns carry set if NOT dueling in Challenge Machine
 Func_40f14:
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall GetEventValue
-	jr nz, .asm_40f1e
+	jr nz, .no_carry
 	scf
 	ret
-.asm_40f1e
+.no_carry
 	scf
 	ccf
 	ret
 
 Func_40f21:
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall GetEventValue
 	jr nz, .asm_40f34
 	ld hl, MasonLaboratoryMain_AfterDuelScripts
@@ -1487,7 +1488,7 @@ Func_40f46:
 	script_call .ows_40fac
 	script_call .ows_40f9b
 	quit_script
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME
@@ -1610,7 +1611,7 @@ Script_TCGChallengeMachine:
 	jr c, .quit
 	xor a
 	start_script
-	set_event EVENT_EB
+	set_event EVENT_DUELING_CHALLENGE_MACHINE
 	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	send_mail $0d
 	end_script
@@ -1697,7 +1698,7 @@ Func_41074:
 	ld a, b
 	ld [wTCGChallengeMachineCurWinStreak + 1], a
 .exit
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall ZeroOutEventValue
 	farcall SaveChallengeMachine
 .done
@@ -1780,7 +1781,7 @@ Func_41188:
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_411cd
 	get_var VAR_TIMES_MET_RONALD
-	compare_loaded_var $02
+	compare_loaded_var 2
 	script_jump_if_b0nz .ows_411c1
 	script_jump_if_b1z .ows_411c7
 	print_npc_text Text0f09
@@ -1801,9 +1802,9 @@ Func_41188:
 	print_npc_text Text0f0e
 	script_jump .ows_411ef
 .ows_411df
-	check_event EVENT_92
+	check_event EVENT_DR_MASON_CONGRATULATED_PLAYER
 	script_jump_if_b0z .ows_411ec
-	set_event EVENT_92
+	set_event EVENT_DR_MASON_CONGRATULATED_PLAYER
 	print_npc_text Text0f0f
 	script_jump .ows_411ef
 .ows_411ec
@@ -1825,9 +1826,9 @@ Func_411f2:
 	start_script
 	start_dialog
 	get_var VAR_TIMES_MET_RONALD
-	compare_loaded_var $09
+	compare_loaded_var 9
 	script_jump_if_b1z .ows_41217
-	set_var VAR_TIMES_MET_RONALD, $09
+	set_var VAR_TIMES_MET_RONALD, 9
 	print_npc_text Text0f11
 	script_jump .ows_4121a
 .ows_41217
@@ -1890,7 +1891,7 @@ Func_41233:
 	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_41499
-	set_event EVENT_EF
+	set_event EVENT_BEAT_GRACE
 	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1929,7 +1930,7 @@ Func_412c0:
 	xor a
 	start_script
 	start_dialog
-	check_event EVENT_EF
+	check_event EVENT_BEAT_GRACE
 	script_jump_if_b0z .ows_412e4
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_412db
@@ -1945,7 +1946,7 @@ Func_412c0:
 	end_script
 	ret
 .ows_412e4
-	reset_event EVENT_EF
+	reset_event EVENT_BEAT_GRACE
 	print_npc_text Text0f1d
 	end_dialog
 	move_npc NPC_DR_MASON, .NPCMovement_412f1
@@ -4512,7 +4513,7 @@ Func_4266e:
 	jr nz, .set_opponents_draw_round1
 	ld bc, TILEMAP_057
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 .set_opponents_draw_round1
 	ld a, GR_ISLAND
 	farcall SetChallengeCupOpponents
@@ -4536,19 +4537,20 @@ Func_426b9:
 	scf
 	ret
 
+; returns carry set if NOT dueling in Challenge Machine
 Func_426c9:
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall GetEventValue
-	jr nz, .asm_426d3
+	jr nz, .no_carry
 	scf
 	ret
-.asm_426d3
+.no_carry
 	scf
 	ccf
 	ret
 
 Func_426d6:
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall GetEventValue
 	jr nz, .asm_426ef
 	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
@@ -4610,7 +4612,7 @@ Script_GRChallengeMachine:
 	jr c, .quit
 	xor a
 	start_script
-	set_event EVENT_EB
+	set_event EVENT_DUELING_CHALLENGE_MACHINE
 	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	end_script
 	farcall SetChallengeMachineDuelParams
@@ -4696,7 +4698,7 @@ Func_42776:
 	ld a, b
 	ld [wGRChallengeMachineCurWinStreak + 1], a
 .exit
-	ld a, EVENT_EB
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall ZeroOutEventValue
 	farcall SaveChallengeMachine
 .done
@@ -5715,8 +5717,12 @@ Script_43000:
 	reset_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
 	reset_event EVENT_TALKED_TO_JACK_POKEMON_DOME
 	reset_event EVENT_ENTERED_GRAND_MASTER_CUP
-	set_var VAR_0B, $01
-	var_add VAR_27, $05
+	set_var VAR_BIRURITCHI_WIN_COUNT, 1
+
+	; add 5 to VAR_AARON_STEP_UP_PROGRESS, this is only used
+	; so that Aaron will congratulate the player during next training
+	var_add VAR_AARON_STEP_UP_PROGRESS, $05
+
 	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_3_UNLOCKED
 	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_3_UNLOCKED
 	script_call Script_43333
@@ -5861,9 +5867,9 @@ Func_43136:
 	xor a
 	start_script
 	start_dialog
-	set_var VAR_08, $00
-	set_var VAR_09, $00
-	set_var VAR_0A, $00
+	set_var VAR_BIRURITCHI_DECKS_PLAYED, $00
+	set_var VAR_BIRURITCHI_DUEL_NUMBER, 0
+	set_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH, 0
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_43181
 	check_event EVENT_TALKED_TO_BIRURITCHI
@@ -5895,8 +5901,8 @@ Func_43136:
 	script_jump Script_431ca
 .ows_43196
 	print_npc_text Text093b
-	get_var VAR_0B
-	compare_loaded_var $01
+	get_var VAR_BIRURITCHI_WIN_COUNT
+	compare_loaded_var 1
 	script_jump_if_b0z .ows_431a3
 	print_npc_text Text093c
 .ows_431a3
@@ -5910,10 +5916,10 @@ Func_431a6:
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_431b5
-	inc_var VAR_0A
+	inc_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
 	script_jump .ows_431b7
 .ows_431b5
-	get_var VAR_09
+	get_var VAR_BIRURITCHI_DUEL_NUMBER
 .ows_431b7
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0nz Script_4324b
@@ -5929,10 +5935,10 @@ Func_431bf:
 	ret
 
 Script_431ca:
-	inc_var VAR_09
+	inc_var VAR_BIRURITCHI_DUEL_NUMBER
 	end_script
 .asm_431cd
-	ld a, $04
+	ld a, NUM_BIRURITCHI_DECKS
 	call Random
 	dec a
 	jr z, .asm_431f7
@@ -5940,13 +5946,13 @@ Script_431ca:
 	jr z, .asm_43213
 	dec a
 	jr z, .asm_4322f
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall GetVarValue
-	bit 0, a
+	bit BIRURITCHI_DECK_STOP_LIFE_F, a
 	jr nz, .asm_431cd
-	set 0, a
+	set BIRURITCHI_DECK_STOP_LIFE_F, a
 	ld c, a
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall SetVarValue
 	xor a
 	start_script
@@ -5954,13 +5960,13 @@ Script_431ca:
 	end_script
 	ret
 .asm_431f7
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall GetVarValue
-	bit 1, a
+	bit BIRURITCHI_DECK_SCORCHER_F, a
 	jr nz, .asm_431cd
-	set 1, a
+	set BIRURITCHI_DECK_SCORCHER_F, a
 	ld c, a
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall SetVarValue
 	xor a
 	start_script
@@ -5968,13 +5974,13 @@ Script_431ca:
 	end_script
 	ret
 .asm_43213
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall GetVarValue
-	bit 2, a
+	bit BIRURITCHI_DECK_TSUNAMI_STARTER_F, a
 	jr nz, .asm_431cd
-	set 2, a
+	set BIRURITCHI_DECK_TSUNAMI_STARTER_F, a
 	ld c, a
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall SetVarValue
 	xor a
 	start_script
@@ -5982,13 +5988,13 @@ Script_431ca:
 	end_script
 	ret
 .asm_4322f
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall GetVarValue
-	bit 3, a
+	bit BIRURITCHI_DECK_SMASH_TO_MINCEMEAT_F, a
 	jr nz, .asm_431cd
-	set 3, a
+	set BIRURITCHI_DECK_SMASH_TO_MINCEMEAT_F, a
 	ld c, a
-	ld a, VAR_08
+	ld a, VAR_BIRURITCHI_DECKS_PLAYED
 	farcall SetVarValue
 	xor a
 	start_script
@@ -5997,28 +6003,28 @@ Script_431ca:
 	ret
 
 Script_4324b:
-	get_var VAR_09
-	compare_loaded_var $03
+	get_var VAR_BIRURITCHI_DUEL_NUMBER
+	compare_loaded_var 3
 	script_jump_if_b0nz .ows_4327b
-	compare_loaded_var $02
+	compare_loaded_var 2
 	script_jump_if_b0nz .ows_43266
-	get_var VAR_0A
-	compare_loaded_var $01
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 1
 	print_variable_npc_text Text093d, Text093e
-	set_text_ram3 $0002
+	set_text_ram3 2
 	script_jump .ows_43285
 .ows_43266
-	get_var VAR_0A
-	compare_loaded_var $02
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 2
 	script_jump_if_b0nz Script_43000
 	compare_loaded_var $00
 	script_jump_if_b0nz Script_432f5
 	print_npc_text Text093f
-	set_text_ram3 $0003
+	set_text_ram3 3
 	script_jump .ows_43285
 .ows_4327b
-	get_var VAR_0A
-	compare_loaded_var $02
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 2
 	script_jump_if_b0nz Script_43000
 	script_jump Script_432f5
 .ows_43285
@@ -6037,28 +6043,28 @@ Script_4324b:
 	script_jump Script_431ca
 
 Script_432a0:
-	get_var VAR_09
-	compare_loaded_var $03
+	get_var VAR_BIRURITCHI_DUEL_NUMBER
+	compare_loaded_var 3
 	script_jump_if_b0nz .ows_432d0
-	compare_loaded_var $02
+	compare_loaded_var 2
 	script_jump_if_b0nz .ows_432bb
-	get_var VAR_0A
-	compare_loaded_var $01
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 1
 	print_variable_npc_text Text0943, Text0944
-	set_text_ram3 $0002
+	set_text_ram3 2
 	script_jump .ows_432da
 .ows_432bb
-	get_var VAR_0A
-	compare_loaded_var $02
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 2
 	script_jump_if_b0nz Script_432fb
 	compare_loaded_var $00
 	script_jump_if_b0nz Script_4332d
 	print_npc_text Text0945
-	set_text_ram3 $0003
+	set_text_ram3 3
 	script_jump .ows_432da
 .ows_432d0
-	get_var VAR_0A
-	compare_loaded_var $02
+	get_var VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	compare_loaded_var 2
 	script_jump_if_b0nz Script_432fb
 	script_jump Script_4332d
 .ows_432da
@@ -6085,10 +6091,10 @@ Script_432f5:
 Script_432fb:
 	play_song_next MUSIC_HALL_OF_HONOR
 	end_dialog
-	get_var VAR_0B
-	compare_loaded_var $01
+	get_var VAR_BIRURITCHI_WIN_COUNT
+	compare_loaded_var 1
 	script_jump_if_b0z .ows_4331a
-	set_var VAR_0B, $02
+	set_var VAR_BIRURITCHI_WIN_COUNT, 2
 	set_event EVENT_SEALED_FORT_DOOR_STATE
 	print_npc_text Text0949
 	receive_card GRS_MEWTWO
@@ -6096,7 +6102,7 @@ Script_432fb:
 	print_npc_text Text094a
 	script_jump Script_43044
 .ows_4331a
-	set_var VAR_0B, $03
+	set_var VAR_BIRURITCHI_WIN_COUNT, 3
 	print_npc_text Text094b
 	give_booster_packs BoosterList_cdba
 	script_call Script_43333
@@ -6127,7 +6133,7 @@ Script_43333:
 	ld [wCurIsland], a
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME

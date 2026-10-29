@@ -1529,9 +1529,9 @@ Func_2cba8:
 	ret
 
 Func_2cbba:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 3
+	cp OWMAP_PSYCHIC_CLUB
 	jr z, .asm_2cbc6
 	scf
 	ret
@@ -1645,7 +1645,7 @@ Func_2cc7d:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $03
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_PSYCHIC_CLUB
 	script_jump_if_b0nz .ows_2cca2
 	script_callfar Script_3c2f0
 	print_npc_text Text0bd5
@@ -1658,9 +1658,9 @@ Func_2cc7d:
 	ret
 
 Func_2cca8:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $03
+	cp OWMAP_PSYCHIC_CLUB
 	jr z, .asm_2ccb4
 	scf
 	ret
@@ -1802,7 +1802,7 @@ Func_2cda2:
 	jr z, .asm_2cdf6
 	ld bc, TILEMAP_013
 	lb de, 5, 6
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	jr .asm_2ce0f
 .asm_2cdc6
 	ld a, OWMODE_SCRIPT
@@ -2334,7 +2334,7 @@ Func_2d190:
 	start_dialog
 	check_event EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
 	script_jump_if_b0nz .ows_2d1c8
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	script_jump_if_b0z .ows_2d1c2
 	check_event EVENT_TALKED_TO_GR4_PSYCHIC_CLUB
 	script_jump_if_b0z .ows_2d1bc
@@ -2348,7 +2348,7 @@ Func_2d190:
 	print_npc_text Text0bb1
 	script_jump .ows_2d20b
 .ows_2d1c8
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	script_jump_if_b0z .ows_2d1e0
 	check_event EVENT_TALKED_TO_GR4_PSYCHIC_CLUB
 	script_jump_if_b0z .ows_2d1da
@@ -2363,14 +2363,14 @@ Func_2d190:
 .ows_2d1e3
 	ask_question Text0bb5, TRUE
 	script_jump_if_b0z .ows_2d1f7
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	print_variable_npc_text Text0bb6, Text0bb7
 	end_dialog
 	start_duel GREAT_ROCKET4_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2d1f7
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	script_jump_if_b0z .ows_2d208
 	check_event EVENT_OBTAINED_TWO_GR_COIN_PIECES
 	set_event EVENT_OBTAINED_TWO_GR_COIN_PIECES
@@ -2389,15 +2389,15 @@ Func_2d20e:
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d225
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	print_variable_npc_text Text0bbb, Text0bbc
 	give_booster_packs BoosterList_cd4c
 	script_jump Script_2d2d1
 .ows_2d225
 	set_event EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
-	check_event EVENT_A7
+	check_event EVENT_LOST_AGAINST_GR4
 	script_jump_if_b0z .ows_2d236
-	set_event EVENT_A7
+	set_event EVENT_LOST_AGAINST_GR4
 	reset_event EVENT_TALKED_TO_MURRAY
 	print_npc_text Text0bbd
 	script_jump .ows_2d239
@@ -2685,9 +2685,9 @@ Func_2d472:
 	ret
 
 Func_2d489:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 4
+	cp OWMAP_ROCK_CLUB
 	jr z, .asm_2d495
 	scf
 	ret
@@ -2799,7 +2799,7 @@ Func_2d546:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $04
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_ROCK_CLUB
 	script_jump_if_b0nz .ows_2d576
 	script_callfar Script_3c2f0
 	check_event EVENT_GOT_GR_COIN
@@ -2817,9 +2817,9 @@ Func_2d546:
 	ret
 
 Func_2d57c:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $04
+	cp OWMAP_ROCK_CLUB
 	jr z, .asm_2d588
 	scf
 	ret
@@ -3812,7 +3812,7 @@ Func_2dd15:
 	jr z, .asm_2dd2f
 	ld bc, TILEMAP_01A
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 .asm_2dd2f
 	scf
 	ret
@@ -4485,7 +4485,7 @@ Func_2e1d9:
 	jr z, .asm_2e1f3
 	ld bc, TILEMAP_01E
 	lb de, 5, 11
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 .asm_2e1f3
 	scf
 	ret
@@ -4877,9 +4877,9 @@ Func_2e498:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e4b5
-	ld a, VAR_0F
+	ld a, VAR_GR2_LOCATION
 	farcall GetVarValue
-	cp $06
+	cp OWMAP_GRASS_CLUB
 	jr nz, .asm_2e4b5
 	scf
 	ccf
@@ -5065,8 +5065,8 @@ Func_2e5d0:
 	print_npc_text Text106c
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0nz .ows_2e606
-	get_var VAR_0F
-	compare_loaded_var $07
+	get_var VAR_GR2_LOCATION
+	compare_loaded_var OWMAP_SCIENCE_CLUB
 	script_jump_if_b0z .ows_2e606
 	print_npc_text Text106d
 	script_jump .ows_2e627
@@ -5076,8 +5076,8 @@ Func_2e5d0:
 .ows_2e60c
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0nz .ows_2e61e
-	get_var VAR_0F
-	compare_loaded_var $07
+	get_var VAR_GR2_LOCATION
+	compare_loaded_var OWMAP_SCIENCE_CLUB
 	script_jump_if_b0z .ows_2e61e
 	print_npc_text Text106f
 	script_jump .ows_2e627
@@ -5168,9 +5168,9 @@ Func_2e6f7:
 	ret
 
 Func_2e709:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 7
+	cp OWMAP_SCIENCE_CLUB
 	jr z, .asm_2e715
 	scf
 	ret
@@ -5334,9 +5334,9 @@ Func_2e80d:
 	ret
 
 Func_2e822:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_SCIENCE_CLUB
 	jr z, .asm_2e82e
 	scf
 	ret
@@ -5393,9 +5393,9 @@ Func_2e862:
 	print_npc_text Text1081
 	script_jump .ows_2e89d
 .ows_2e88d
-	check_event EVENT_91
+	check_event EVENT_GLASSES_KID_CONGRATULATED_PLAYER
 	script_jump_if_b0z .ows_2e89a
-	set_event EVENT_91
+	set_event EVENT_GLASSES_KID_CONGRATULATED_PLAYER
 	print_npc_text Text1082
 	script_jump .ows_2e89d
 .ows_2e89a
@@ -5506,16 +5506,16 @@ Func_2e95c:
 	jr z, .asm_2e994
 	ld bc, TILEMAP_022
 	lb de, 4, 1
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld bc, TILEMAP_023
 	lb de, 9, 1
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld bc, TILEMAP_024
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld bc, TILEMAP_025
 	lb de, 5, 12
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 .asm_2e994
 	scf
 	ret
@@ -5561,22 +5561,22 @@ Func_2e9c7:
 	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2ea23
-	compare_var VAR_01, $03
+	compare_var VAR_TIMES_TALKED_TO_RICK, 3
 	script_jump_if_b0nz .ows_2ea05
-	compare_var VAR_01, $02
+	compare_var VAR_TIMES_TALKED_TO_RICK, 2
 	script_jump_if_b0nz .ows_2ea05
-	compare_var VAR_01, $01
+	compare_var VAR_TIMES_TALKED_TO_RICK, 1
 	script_jump_if_b0nz .ows_2e9fd
 	set_event EVENT_TALKED_TO_RICK
-	inc_var VAR_01
+	inc_var VAR_TIMES_TALKED_TO_RICK
 	print_npc_text Text1034
 	script_jump .ows_2ea0b
 .ows_2e9fd
-	inc_var VAR_01
+	inc_var VAR_TIMES_TALKED_TO_RICK
 	print_npc_text Text1035
 	script_jump .ows_2ea0b
 .ows_2ea05
-	set_var VAR_01, $03
+	set_var VAR_TIMES_TALKED_TO_RICK, 3
 	print_npc_text Text1036
 .ows_2ea0b
 	ask_question Text1037, TRUE
@@ -5966,9 +5966,9 @@ Func_2eca9:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2ecc6
-	ld a, VAR_0F
+	ld a, VAR_GR2_LOCATION
 	farcall GetVarValue
-	cp $07
+	cp OWMAP_SCIENCE_CLUB
 	jr nz, .asm_2ecc6
 	scf
 	ccf
@@ -6042,7 +6042,7 @@ Func_2ed3e:
 	ld hl, Func_340a4
 	jr .got_event
 .gift
-	ld a, EVENT_EE
+	ld a, EVENT_BEAT_GR3
 	farcall ZeroOutEventValue
 	ld hl, Func_3451d
 .got_event
@@ -6093,7 +6093,7 @@ WaterClubEntrance_ShouldRonaldAppear:
 	farcall GetVarValue
 	cp 2
 	jr c, .second_meeting
-	ld a, EVENT_EE
+	ld a, EVENT_BEAT_GR3
 	farcall GetEventValue
 	jr nz, .won_gr3
 	scf
@@ -6170,9 +6170,9 @@ Func_2ee73:
 	ret
 
 Func_2ee85:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 8
+	cp OWMAP_WATER_CLUB
 	jr z, .asm_2ee91
 	scf
 	ret
@@ -6321,7 +6321,7 @@ Func_2ef74:
 	xor a
 	start_script
 	start_dialog
-	compare_var VAR_25, $08
+	compare_var VAR_IMAKUNI_BLACK_LOCATION, OWMAP_WATER_CLUB
 	script_jump_if_b0nz .ows_2ef99
 	script_callfar Script_3c2f0
 	print_npc_text Text0884
@@ -6334,9 +6334,9 @@ Func_2ef74:
 	ret
 
 Func_2ef9f:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $08
+	cp OWMAP_WATER_CLUB
 	jr z, .asm_2efab
 	scf
 	ret
@@ -6478,13 +6478,13 @@ Func_2f0a5:
 .asm_2f0c3
 	ld bc, TILEMAP_02A
 	lb de, 2, 4
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f0e1
 	ld bc, TILEMAP_029
 	lb de, 5, 12
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	jr .asm_2f0f5
 .asm_2f0e1
 	xor a
@@ -6524,7 +6524,7 @@ WaterClub_AfterDuelScripts:
 
 Script_2f127:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	set_event EVENT_EE
+	set_event EVENT_BEAT_GR3
 	reset_event EVENT_TALKED_TO_JOSHUA
 	reset_event EVENT_TALKED_TO_KEN
 	reset_event EVENT_TALKED_TO_ADAM
@@ -6736,9 +6736,9 @@ Func_2f28a:
 	script_jump_if_b0nz .ows_2f2c9
 	print_npc_text Text0847
 	give_booster_packs BoosterList_ccee
-	check_event EVENT_35
+	check_event EVENT_BEAT_AMY
 	script_jump_if_b0z .ows_2f2c3
-	set_event EVENT_35
+	set_event EVENT_BEAT_AMY
 	print_npc_text Text084a
 	script_jump .ows_2f2cc
 .ows_2f2c3
@@ -6976,9 +6976,9 @@ Func_2f44f:
 	script_jump_if_b0nz .ows_2f472
 	print_npc_text Text086e
 	give_booster_packs BoosterList_ccfe
-	check_event EVENT_36
+	check_event EVENT_BEAT_AMANDA
 	script_jump_if_b0z .ows_2f46c
-	set_event EVENT_36
+	set_event EVENT_BEAT_AMANDA
 	print_npc_text Text086f
 	script_jump .ows_2f475
 .ows_2f46c
@@ -7272,9 +7272,9 @@ Func_2f6a0:
 	ret
 
 Func_2f6b2:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp 9
+	cp OWMAP_FIRE_CLUB
 	jr z, .asm_2f6be
 	scf
 	ret
@@ -7376,9 +7376,9 @@ Func_2f709:
 	ret
 
 Func_2f76f:
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	farcall GetVarValue
-	cp $09
+	cp OWMAP_FIRE_CLUB
 	jr z, .asm_2f77b
 	scf
 	ret
@@ -7511,10 +7511,10 @@ Func_2f86e:
 .asm_2f891
 	ld bc, TILEMAP_02E
 	lb de, 5, 11
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld bc, TILEMAP_02F
 	lb de, 5, 7
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_2f8c6

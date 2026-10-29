@@ -8762,7 +8762,7 @@ GiftCenter_SendCards:
 	ld hl, wCurDeckCards
 	call DecrementDeckCardsInCollection
 	call DisableSRAM
-	call SaveGame
+	call SaveGame_PreserveRegisters
 	ld hl, wNameBuffer
 	ld de, wDefaultText
 	call CopyListFromHLToDE
@@ -8785,7 +8785,7 @@ GiftCenter_ReceiveCards:
 	call CopyDeckFromSRAM
 	ld hl, wTempSavedDeckCards
 	call AddGiftCenterDeckCardsToCollection
-	call SaveGame
+	call SaveGame_PreserveRegisters
 	xor a
 	ld [wScrollMenuScrollOffset], a
 	ld hl, GiftCenter_CardSelectionParams

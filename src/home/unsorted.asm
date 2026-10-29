@@ -77,7 +77,7 @@ ExecuteGameEvent::
 	jr nz, .load_warp
 	bit 7, [hl]
 	jr nz, .no_warp
-	ld a, EVENT_02
+	ld a, EVENT_IS_DUELING
 	farcall GetEventValue
 	jr nz, .no_warp
 .load_warp
@@ -128,13 +128,15 @@ ExecuteGameEvent::
 	ld [wCurIsland], a
 	ld a, $0e
 	ld [wCurOWLocation], a
-	farcall _SaveGame
+
+	farcall SaveGame
 	ld a, SFX_SAVE_GAME
 	call PlaySFX
 	farcall WaitForSFXToFinish
 
 .has_entered_info
 	farcall Prologue
+
 	ld a, TCG_ISLAND
 	ld [wCurIsland], a
 	ld a, OWMAP_MASON_LABORATORY
@@ -568,7 +570,7 @@ Func_33a3::
 	farcall StartPalFadeToBlackOrWhite
 	call WaitPalFading
 	farcall Func_110a8
-	ld a, EVENT_EF
+	ld a, EVENT_BEAT_GRACE
 	farcall ZeroOutEventValue
 	ret
 
@@ -2070,12 +2072,12 @@ SaveAndApplyNewTextBoxFrameColor::
 	farcall _SaveAndApplyNewTextBoxFrameColor
 	ret
 
-SaveGame::
+SaveGame_PreserveRegisters::
 	push af
 	push bc
 	push de
 	push hl
-	farcall _SaveGame
+	farcall SaveGame
 	pop hl
 	pop de
 	pop bc
@@ -2204,7 +2206,14 @@ Func_3bc1::
 	pop af
 	ret
 
-; e = ?
+; input:
+; - e = ?
+; - b:hl = movement data
+; - c = movement data index
+; output:
+; - b = direction
+; - c = movement speed
+; - e = ?
 Func_3be0::
 	push af
 	push hl
@@ -2215,9 +2224,9 @@ Func_3be0::
 	ld b, $00
 	sla c ; *2
 	add hl, bc
-	ld b, [hl]
+	ld b, [hl] ; direction
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; speed & duration
 	ld a, e
 	ld e, c
 	srl e
@@ -2225,13 +2234,13 @@ Func_3be0::
 .loop
 	srl a
 	and a
-	jr z, .asm_3c00
-	sla e
+	jr z, .got_speed_and_duration
+	sla e ; *2
 	jr .loop
-.asm_3c00
+.got_speed_and_duration
 	ld a, c
 	and $03
-	ld c, a
+	ld c, a ; speed
 	pop af
 	call BankswitchROM
 	pop hl

@@ -1,7 +1,7 @@
 	const_def
 	const EVENT_PLAYER_GENDER                             ; $00
 	const EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE        ; $01
-	const EVENT_02                                        ; $02
+	const EVENT_IS_DUELING                                ; $02
 	const EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY  ; $03
 ; Coin flags
 	const EVENT_GOT_CHANSEY_COIN                          ; $04
@@ -58,8 +58,8 @@
 	const EVENT_TALKED_TO_JOSHUA                          ; $32
 	const EVENT_TALKED_TO_SARA                            ; $33
 	const EVENT_TALKED_TO_AMANDA                          ; $34
-	const EVENT_35                                        ; $35
-	const EVENT_36                                        ; $36
+	const EVENT_BEAT_AMY                                  ; $35
+	const EVENT_BEAT_AMANDA                               ; $36
 ; Lightning Club flags
 	const EVENT_TALKED_TO_ISAAC                           ; $37
 	const EVENT_TALKED_TO_JENNIFER                        ; $38
@@ -163,10 +163,10 @@
 	const EVENT_TALKED_TO_TRADE_NPC_WATER_FORT            ; $8f
 	const EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_STRONGHOLD    ; $90
 ; Misc NPC flags
-	const EVENT_91                                        ; $91
-	const EVENT_92                                        ; $92
+	const EVENT_GLASSES_KID_CONGRATULATED_PLAYER          ; $91
+	const EVENT_DR_MASON_CONGRATULATED_PLAYER             ; $92
 	const EVENT_TALKED_TO_SAM                             ; $93
-	const EVENT_94                                        ; $94
+	const EVENT_GR_CHALLENGE_HALL_GR_CHAP_LEFT            ; $94
 ; Ishihara flags
 	const EVENT_TALKED_TO_ISHIHARA                        ; $95
 	const EVENT_BATTLED_ISHIHARA                          ; $96
@@ -188,7 +188,7 @@
 	const EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB          ; $a4
 	const EVENT_TALKED_TO_GR3_WATER_CLUB                  ; $a5
 	const EVENT_TALKED_TO_GR4_PSYCHIC_CLUB                ; $a6
-	const EVENT_A7                                        ; $a7
+	const EVENT_LOST_AGAINST_GR4                          ; $a7
 	const EVENT_OBTAINED_TWO_GR_COIN_PIECES               ; $a8
 	const EVENT_TALKED_TO_GR5_POKEMON_DOME                ; $a9
 	const EVENT_TALKED_TO_GR5_TCG_AIRPORT                 ; $aa
@@ -198,9 +198,9 @@
 	const EVENT_TRADED_CARDS_FIRE_CLUB                    ; $ad
 	const EVENT_TRADED_CARDS_LIGHTNING_CLUB               ; $ae
 	const EVENT_TRADED_CARDS_PSYCHIC_CLUB                 ; $af
-	const EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL           ; $b0
-	const EVENT_B1                                        ; $b1
-	const EVENT_B2                                        ; $b2
+	const EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_1         ; $b0
+	const EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_2         ; $b1
+	const EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_3         ; $b2
 	const EVENT_TRADED_CARDS_GRASS_FORT                   ; $b3
 	const EVENT_TRADED_CARDS_LIGHTNING_FORT               ; $b4
 	const EVENT_TRADED_CARDS_GR_CHALLENGE_HALL            ; $b5
@@ -268,15 +268,16 @@
 	const EVENT_TALKED_TO_ROOK                            ; $e9
 	const EVENT_TALKED_TO_QUEEN                           ; $ea
 ; Misc flags
-	const EVENT_EB                                        ; $eb
+	const EVENT_DUELING_CHALLENGE_MACHINE                 ; $eb
 	const EVENT_TALKED_TO_ROD_POKEMON_DOME                ; $ec
 	const EVENT_SET_UNTIL_MAP_RELOAD_1                    ; $ed
-	const EVENT_EE                                        ; $ee
-	const EVENT_EF                                        ; $ef
-	const EVENT_F0                                        ; $f0
+	const EVENT_BEAT_GR3                                  ; $ee
+	const EVENT_BEAT_GRACE                                ; $ef
+; temporary events, are cleared when booting up the game
+	const EVENT_CONTINUING_DUEL_FROM_SAVE                 ; $f0
 	const EVENT_SET_UNTIL_MAP_RELOAD_2                    ; $f1
-	const EVENT_F2                                        ; $f2
-	const EVENT_F3                                        ; $f3
+	const EVENT_GIFT_CENTER_UNUSED                        ; $f2
+	const EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP       ; $f3
 	const EVENT_ISHIHARA_CARD_TRADE_STATE                 ; $f4
 	const EVENT_ISHIHARA_LOCATION_STATE                   ; $f5
 DEF NUM_EVENT_FLAGS EQU const_value

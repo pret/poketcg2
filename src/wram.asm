@@ -1040,7 +1040,7 @@ wcd53:: ; cd53
 wcd54:: ; cd54
 	ds $1
 
-wcd55:: ; cd55
+wColorlessAltarDeckRequirementIndex:: ; cd55
 	ds $1
 
 wDeckCheckCardName:: ; cd56
@@ -1405,6 +1405,10 @@ wBGColorFadeConfigList:: ; cece
 
 wOBColorFadeConfigList:: ; ceee
 	ds (NUM_OBJECT_PALETTES palettes) / 2
+
+wStack:: ; cf0e
+	ds $f2
+wStackTop::
 
 SECTION "WRAM1", WRAMX
 
@@ -2444,9 +2448,9 @@ wCurMapScriptsPointer:: ; d552
 	ds $2
 
 ; bit 0: has save data
-; bit 1: has saved duel + ?
+; bit 1: has saved duel + unlocked Card Pop!
 ; bit 2: has saved duel
-wd554:: ; d554
+wSaveDataFlags:: ; d554
 	ds $1
 
 wCurrentNPCDuelistData:: ; d555
@@ -2823,7 +2827,7 @@ wd693:: ; d693
 wDecompressedBGMap:: ; d694
 	ds 2 * TILEMAP_WIDTH
 
-wd6d4:: ; d6d4
+wPermissionMap:: ; d6d4
 	ds $100
 
 wBGMapAttribute:: ; d7d4
@@ -2838,11 +2842,8 @@ wBGMapWidth:: ; d7d6
 wBGMapHeight:: ; d7d7
 	ds $1
 
-wd7d8:: ; d7d8
-	ds $1
-
-wd7d9:: ; d7d9
-	ds $1
+wMapPermissionPtr:: ; d7d8
+	ds $2
 
 	ds $2
 
@@ -2890,11 +2891,16 @@ wOWMap:: ; d7ec
 wOWAnimatedTiles:: ; d7ee
 	ds NUM_OW_ANIMATED_TILES * $4
 
-wd852:: ; d852
+; how many entries in wTilemapLoadHistory
+wTilemapLoadHistoryEntries:: ; d852
 	ds $1
 
-wd853:: ; d853
-	ds $40
+; entries consisting of [Tilemap, Coordinates]
+; this is used so that changes to the OW map
+; are persisted when loading it in ReloadOWMap
+; (e.g. opened doors, etc)
+wTilemapLoadHistory:: ; d853
+	ds $10 * $4
 
 wScrollTargetSpritePtr:: ; d893
 	ds $2

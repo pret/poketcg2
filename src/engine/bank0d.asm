@@ -1,6 +1,6 @@
 Script_34000:
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $01
+	set_var VAR_TIMES_MET_RONALD, 1
 	send_mail $10
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_player .NPCMovement_34031, TRUE
@@ -36,7 +36,7 @@ Func_34037:
 	xor a
 	start_script
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $02
+	set_var VAR_TIMES_MET_RONALD, 2
 	load_npc NPC_RONALD, 15, 3, EAST
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_34095
@@ -54,7 +54,7 @@ Func_34037:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -89,7 +89,7 @@ Func_340a4:
 	xor a
 	start_script
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $02
+	set_var VAR_TIMES_MET_RONALD, 2
 	load_npc NPC_RONALD, 15, 3, EAST
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_34102
@@ -107,7 +107,7 @@ Func_340a4:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -142,7 +142,7 @@ Func_34111:
 	xor a
 	start_script
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $02
+	set_var VAR_TIMES_MET_RONALD, 2
 	load_npc NPC_RONALD, 15, 3, EAST
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_3416f
@@ -160,7 +160,7 @@ Func_34111:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall _SaveGame
+	farcall SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -195,7 +195,7 @@ Func_3417e:
 	xor a
 	start_script
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $03
+	set_var VAR_TIMES_MET_RONALD, 3
 	load_npc NPC_RONALD, 15, 3, EAST
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_341b7
@@ -266,7 +266,7 @@ Func_341f7:
 	start_script
 	wait_for_fade
 	send_mail $06
-	set_var VAR_TIMES_MET_RONALD, $04
+	set_var VAR_TIMES_MET_RONALD, 4
 	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_START
 	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
 	get_var VAR_21
@@ -395,7 +395,7 @@ Func_342ef:
 	start_script
 	wait_for_fade
 	send_mail $14
-	set_var VAR_TIMES_MET_RONALD, $05
+	set_var VAR_TIMES_MET_RONALD, 5
 	load_npc NPC_GR_X, 4, 15, SOUTH
 	set_active_npc NPC_GR_X, DialogGRXText
 	move_active_npc .NPCMovement_3431d
@@ -475,7 +475,7 @@ Func_34391:
 	xor a
 	start_script
 	wait_for_fade
-	set_var VAR_TIMES_MET_RONALD, $06
+	set_var VAR_TIMES_MET_RONALD, 6
 	load_npc NPC_GR_X, 4, 10, NORTH
 	set_active_npc NPC_GR_X, DialogGRXText
 	move_active_npc .NPCMovement_343e2
@@ -563,7 +563,7 @@ Func_3442d:
 	wait_for_fade
 	send_mail $19
 	send_mail $1a
-	set_var VAR_TIMES_MET_RONALD, $07
+	set_var VAR_TIMES_MET_RONALD, 7
 	start_dialog
 	print_npc_text Text1285
 	end_dialog
@@ -602,7 +602,7 @@ Func_3448d:
 	xor a
 	start_script
 	send_mail $1b
-	set_var VAR_TIMES_MET_RONALD, $08
+	set_var VAR_TIMES_MET_RONALD, 8
 	play_song_next MUSIC_RONALD
 	do_frames 60
 	load_npc NPC_RONALD, 5, 2, NORTH
@@ -2192,7 +2192,7 @@ Func_350f6:
 Func_35106:
 	ld bc, TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3525b)
@@ -2584,7 +2584,7 @@ Func_353e5:
 	print_npc_text Text0e3e
 	script_jump .ows_3543c
 .ows_35423
-	set_event EVENT_94
+	set_event EVENT_GR_CHALLENGE_HALL_GR_CHAP_LEFT
 	print_npc_text Text0e3f
 	end_dialog
 	get_player_direction
@@ -2608,7 +2608,7 @@ Func_353e5:
 	db $ff
 
 Func_35444:
-	ld a, EVENT_94
+	ld a, EVENT_GR_CHALLENGE_HALL_GR_CHAP_LEFT
 	farcall GetEventValue
 	jr nz, .disappear
 	scf
@@ -2880,13 +2880,13 @@ Func_3562b:
 Func_35634:
 	ld bc, TILEMAP_08A
 	lb de, 5, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, EVENT_SENTAS_ROOM_BRIDGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3565f
 	ld bc, TILEMAP_08B
 	lb de, 12, 5
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, NPC_SENTA
 	lb de, 11, 6
 	farcall SetOWObjectTilePosition
@@ -3177,7 +3177,7 @@ Func_35865:
 	jr nz, .asm_35880
 	ld bc, TILEMAP_08F
 	lb de, 4, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, NPC_AIRA
 	lb de, 5, 5
 	farcall SetOWObjectTilePosition
@@ -3403,7 +3403,7 @@ Func_35a0d:
 .asm_35a37
 	ld bc, TILEMAP_096
 	lb de, 7, 0
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
 	farcall GetEventValue
 	jr nz, .asm_35a7a
@@ -3702,7 +3702,7 @@ Func_35c86:
 	call PlaySFX
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	farcall Func_30005
 	ret
 
@@ -3758,7 +3758,7 @@ Func_35d22:
 	call PlaySFX
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	farcall Func_30005
 	ret
 
@@ -3814,7 +3814,7 @@ Func_35d8a:
 .asm_35d94
 	ld bc, TILEMAP_0A1
 	lb de, 4, 2
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	scf
 	ret
 
@@ -4086,7 +4086,7 @@ Func_35f81:
 	xor a
 	start_script
 	start_dialog
-	check_event EVENT_EF
+	check_event EVENT_BEAT_GRACE
 	script_jump_if_b0z .ows_35fd1
 	check_event EVENT_GRACES_ROOM_CHEST_STATE
 	script_jump_if_b0z .ows_35fd7
@@ -4173,7 +4173,7 @@ Func_35ffb:
 	end_script
 	ret
 .ows_36032
-	set_event EVENT_EF
+	set_event EVENT_BEAT_GRACE
 	print_npc_text Text0c0f
 	end_dialog
 	spin_active_npc 260
@@ -4269,7 +4269,7 @@ PsychicStrongholdEntrance_MapScripts:
 Func_360ef:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $07
+	cp 7
 	jr c, .asm_360fb
 	scf
 	ret
@@ -4295,7 +4295,7 @@ Func_3610b:
 Func_36114:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $07
+	cp 7
 	jr nc, .asm_3613e
 	ld a, NPC_GR_X
 	lb de, 4, 3
@@ -4388,9 +4388,9 @@ PsychicStrongholdLobby_MapScripts:
 	db $ff
 
 Func_361f9:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $0a
+	cp OWMAP_GR_PSYCHIC_STRONGHOLD
 	jr z, .asm_36205
 	scf
 	ret
@@ -4540,9 +4540,9 @@ Func_362ea:
 	ret
 
 Func_36310:
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	farcall GetVarValue
-	cp $0a
+	cp OWMAP_GR_PSYCHIC_STRONGHOLD
 	jr z, .asm_3631c
 	scf
 	ret
@@ -4702,8 +4702,8 @@ Func_36448:
 	jr z, .asm_36476
 	cp $07
 	jr nc, .asm_3647c
-	ld a, $e8
-	ld bc, $157
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_157
 	farcall SetOWObjectFrameset
 	jr .asm_3647c
 .asm_36476
@@ -5829,8 +5829,8 @@ Func_36d29:
 	jr z, .asm_36d4b
 	cp $07
 	jr nc, .asm_36d51
-	ld a, $e8
-	ld bc, $157
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_157
 	farcall SetOWObjectFrameset
 	jr .asm_36d51
 .asm_36d4b
@@ -6735,7 +6735,7 @@ Func_3741f:
 	jr nz, .asm_37469
 	ld bc, TILEMAP_0B4
 	lb de, 4, 2
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	ld a, EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
 	farcall GetEventValue
 	jr z, .asm_3744d

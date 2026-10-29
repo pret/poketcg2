@@ -314,7 +314,7 @@ Func_10252:
 	call Func_105de
 	call DisableLCD
 	call Func_10b9c
-	call Func_1055e
+	call ReloadOWMap
 	call UpdateOWScroll
 	call EnableLCD
 	call Func_1109f
@@ -375,7 +375,7 @@ Func_102c4:
 	call Func_105de
 	call DisableLCD
 	call Func_10b9c
-	call Func_1055e
+	call ReloadOWMap
 	call UpdateOWScroll
 	call EnableLCD
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
@@ -393,20 +393,24 @@ Func_102ef:
 	push hl
 	call SetInitialGraphicsConfiguration
 
+	; initialize animated tiles
 	xor a
 	ld hl, wOWAnimatedTiles
 	ld bc, NUM_OW_ANIMATED_TILES * $4
 	call WriteBCBytesToHL
 
+	; initialize permission map (all impassable)
+	; and also wBGMapAttribute (unintentional?)
 	ld a, $80
-	ld hl, wd6d4
+	ld hl, wPermissionMap
 	ld bc, $101
 	call WriteBCBytesToHL
 
+	; initialize tilemap load history
 	xor a
-	ld [wd852], a
-	ld hl, wd853
-	ld bc, $40
+	ld [wTilemapLoadHistoryEntries], a
+	ld hl, wTilemapLoadHistory
+	ld bc, $10 * $4
 	call WriteBCBytesToHL
 
 	call Func_10327
@@ -839,16 +843,17 @@ CheckOWScroll:
 	pop bc
 	ret
 
+; gets permission at coordinate (d, e)
 ; output:
-; a = [wd6d4 + (e/2)*16 + d/2]
-Func_10541:
+; a = [wPermissionMap + (e/2)*16 + d/2]
+GetPermissionOfMapPosition:
 	push bc
 	push de
 	push hl
 	srl d
 	srl e
 	ld b, 0
-	ld hl, wd6d4
+	ld hl, wPermissionMap
 REPT 4
 	sla e
 ENDR
@@ -862,7 +867,7 @@ ENDR
 	pop bc
 	ret
 
-Func_1055e:
+ReloadOWMap:
 	push af
 	push bc
 	push de
@@ -872,34 +877,38 @@ Func_1055e:
 	ld a, [wOWMap + 1]
 	ld b, a
 	farcall LoadOWMap
+
 	ld a, $00
 	ld hl, wOWAnimatedTiles
-	ld bc, $64
+	ld bc, NUM_OW_ANIMATED_TILES * $4
 	call WriteBCBytesToHL
 	call LoadOWAnimatedTiles
-	ld hl, wd852
+
+	; reload all tilemaps in wTilemapLoadHistory
+	ld hl, wTilemapLoadHistoryEntries
 	ld a, [hl]
 	and a
-	jr z, .asm_1059a
+	jr z, .no_history
 	ld c, a
+	; reset wTilemapLoadHistoryEntries
 	xor a
 	ld [hl], a
-	ld hl, wd853
-.asm_10589
+	ld hl, wTilemapLoadHistory
+.loop_entries
 	push bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
+	ld a, [hli] ; tilemap
+	ld c, a     ;
+	ld a, [hli] ;
 	ld b, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
+	ld a, [hli] ; coordinates
+	ld d, a     ;
+	ld a, [hli] ;
 	ld e, a
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	pop bc
 	dec c
-	jr nz, .asm_10589
-.asm_1059a
+	jr nz, .loop_entries
+.no_history
 	pop hl
 	pop de
 	pop bc
@@ -1451,10 +1460,14 @@ RestoreObjectPalsToDE:
 	pop af
 	ret
 
+; input:
+; - a = TRUE or FALSE
 SetwD8A1:
 	ld [wd8a1], a
 	ret
 
+; output:
+; - a = TRUE or FALSE
 GetwD8A1::
 	ld a, [wd8a1]
 	ret
@@ -2494,7 +2507,7 @@ GetPalettesWithID:
 
 Func_10d40::
 	call InitOWObjects
-	ld a, 1
+	ld a, TRUE
 	call SetwD8A1
 	call FillwD986
 	ret
@@ -2570,7 +2583,7 @@ ENDR
 	ret
 
 ClearOWObject:
-	call _ClearOWObject
+	call ClearOWObject_Internal
 	ret
 
 ; input: a = NPC_* ID
@@ -2639,8 +2652,9 @@ GetOWObjectSpeedAndMoveDuration::
 	call _GetOWObjectSpeedAndMoveDuration
 	ret
 
-; a = NPC_* ID
-; hl = NPCMovement data pointer
+; input:
+; - a = NPC_* ID
+; - b:hl = movement data
 MoveNPC:
 	call _MoveNPC
 	ret
@@ -2764,7 +2778,7 @@ Func_10e3c::
 	jr nz, .blocked
 	sla d
 	sla e
-	call Func_10541
+	call GetPermissionOfMapPosition
 	and a
 	jr nz, .blocked
 .asm_10e8f
@@ -2781,6 +2795,8 @@ Func_10e3c::
 	pop bc
 	ret
 
+; input:
+; - e = ?
 Func_10ea3::
 	call Func_11384
 	ret
@@ -3413,7 +3429,7 @@ InitOWObjects:
 	push hl
 	xor a
 	call ClearSpriteAnims
-	xor a
+	xor a ; FALSE
 	call SetwD8A1
 	xor a
 	ld bc, OWOBJSTRUCT_LENGTH * MAX_NUM_OW_OBJECTS
@@ -3524,7 +3540,7 @@ LoadOWObject:
 	farcall _LoadOWObject
 	ret
 
-_ClearOWObject:
+ClearOWObject_Internal:
 	push af
 	push hl
 	call _GetOWObjectWithID
@@ -3652,9 +3668,12 @@ _GetOWObjectSpeedAndMoveDuration:
 	pop af
 	ret
 
-; a = NPC_* ID
-; b = direction
-; c = speed
+; input:
+; - a = NPC_* ID
+; - b = direction
+; - c = speed
+; output:
+; - a = ?
 Func_1132e:
 	push bc
 	push de
@@ -3676,7 +3695,7 @@ Func_1132e:
 	and a
 	jr z, .done
 	dec c
-	jr c, .done
+	jr c, .done ; never taken
 	jr z, .asm_11355
 	srl e ; /2
 .asm_11355
@@ -3693,9 +3712,9 @@ Func_1132e:
 	ld a, [wda8b]
 	ret
 
-; a = NPC_* ID
-; b = NPCMovement data bank
-; hl = NPCMovement data pointer
+; input:
+; - a = NPC_* ID
+; - b:hl = movement data
 _MoveNPC:
 	push af
 	push bc
@@ -3706,11 +3725,11 @@ _MoveNPC:
 	call _GetOWObjectWithID
 	set OBJ_FLAG6_F, [hl]
 	push bc
-	ld bc, OWOBJSTRUCT_4
+	ld bc, OWOBJSTRUCT_MOVEMENT_INDEX
 	add hl, bc
 	pop bc
 	xor a
-	ld [hli], a ; OWOBJSTRUCT_4
+	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_INDEX
 	ld [hl], b  ; OWOBJSTRUCT_MOVEMENT_BANK
 	inc hl
 	ld [hl], e  ;  LOW(OWOBJSTRUCT_MOVEMENT_PTR)
@@ -3722,7 +3741,8 @@ _MoveNPC:
 	pop af
 	ret
 
-; e = ?
+; input:
+; - e = ?
 Func_11384::
 	push af
 	push bc
@@ -3759,11 +3779,11 @@ Func_11384::
 .Func_113af:
 	inc hl
 	ld d, [hl] ; OWOBJSTRUCT_ID
-REPT OWOBJSTRUCT_4 - OWOBJSTRUCT_ID
+REPT OWOBJSTRUCT_MOVEMENT_INDEX - OWOBJSTRUCT_ID
 	inc hl
 ENDR
 	push hl
-	ld a, [hli] ; OWOBJSTRUCT_4
+	ld a, [hli] ; OWOBJSTRUCT_MOVEMENT_INDEX
 	ld c, a
 	ld a, [hli] ; OWOBJSTRUCT_MOVEMENT_BANK
 	ld b, a
@@ -3772,7 +3792,8 @@ ENDR
 	ld l, a
 	call Func_3be0
 	pop hl
-	inc [hl] ; OWOBJSTRUCT_4
+	; increment movement data index
+	inc [hl] ; OWOBJSTRUCT_MOVEMENT_INDEX
 	ld a, b
 	cp $ff
 	jr z, .asm_113cb
@@ -3781,7 +3802,7 @@ ENDR
 	ret
 
 .asm_113cb
-	ld bc, OWOBJSTRUCT_FLAGS - OWOBJSTRUCT_4
+	ld bc, OWOBJSTRUCT_FLAGS - OWOBJSTRUCT_MOVEMENT_INDEX
 	add hl, bc
 	res OBJ_FLAG6_F, [hl]
 	ret
@@ -6115,12 +6136,16 @@ INCLUDE "engine/challenge_machine.asm"
 
 INCLUDE "engine/credits_commands.asm"
 
+; input:
+; - a = PROLOGUE_* constant
 ShowProloguePortraitAndText_WithFade:
 	call Func_1022a
 	call ShowProloguePortraitAndText
 	call Func_10252
 	ret
 
+; input:
+; - a = PROLOGUE_* constant
 ShowProloguePortraitAndText:
 	push af
 	push bc

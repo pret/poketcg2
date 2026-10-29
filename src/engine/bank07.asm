@@ -859,7 +859,7 @@ SaveGamePrompt:
 	call .OverWorldPushPopWrapper
 	jr .sfx
 .save_simply
-	call SaveGame
+	call SaveGame_PreserveRegisters
 .sfx
 	push af
 	ld a, SFX_SAVE_GAME
@@ -886,7 +886,7 @@ SaveGamePrompt:
 	push hl
 	farcall Func_10ed3
 	farcall Func_105de
-	call SaveGame
+	call SaveGame_PreserveRegisters
 	farcall Func_10ea7
 	farcall Func_1059f
 	pop hl
@@ -3085,7 +3085,7 @@ ReadOrInitSaveData:
 
 .Read:
 	call LoadSavedOptions
-	ld a, $01
+	ld a, TRUE
 	farcall SetwD8A1
 	ret
 
@@ -3104,7 +3104,7 @@ ShowOWMapLocationBox:
 	ldh [hWY], a
 	ld bc, TILEMAP_004
 	lb de, 0, 16
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	lb de,  1, 33
 	lb bc, 11,  1
 	farcall FillBoxInBGMapWithZero
@@ -4086,7 +4086,7 @@ Func_1dfb9::
 	push hl
 	ld a, $01 ; unused
 	farcall ClearSpriteAnims
-	xor a
+	xor a ; FALSE
 	farcall SetwD8A1
 	xor a
 	ld [wDuelAnimBufferSize], a
@@ -5042,7 +5042,7 @@ Func_1e5a2::
 	push bc
 	push de
 	push hl
-	ld a, EVENT_F0
+	ld a, EVENT_CONTINUING_DUEL_FROM_SAVE
 	farcall GetEventValue
 	jr nz, .from_sram
 	call .RunDuel
@@ -5065,9 +5065,11 @@ Func_1e5a2::
 .RunDuel:
 	farcall Func_1022a
 	call Func_1e73a
-	ld a, EVENT_EB
+	; are we dueling in Challenge Machine?
+	ld a, EVENT_DUELING_CHALLENGE_MACHINE
 	farcall GetEventValue
 	jr nz, .start_duel
+	; no, show opp's portrait and special rules, if any
 	call Func_1e60c
 	ld a, [wSpecialRule]
 	and a
