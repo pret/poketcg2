@@ -289,7 +289,7 @@ ProcessTextHeader::
 	jr nc, .not_tx_fullwidth
 	inc hl
 .not_tx_fullwidth
-	call Func_22ca
+	call ProcessTextTile
 	xor a
 	call ProcessSpecialTextCharacter
 .processed_char
@@ -496,13 +496,14 @@ PrintTextNoDelay::
 
 ; hl = text ID
 ; de = coordinates
-Func_2c4b::
+; if no TEXT_TILE_PROCESS_* flags, also clear BG attributes of the current text line
+PrintTextNoDelay_Init_ClearBGAttributes::
 	push hl
 	push de
 	call PrintTextNoDelay_Init
 	pop de
 	pop hl
-	ldh a, [hffbb]
+	ldh a, [hTextTileProcessFlag]
 	or a
 	ret nz
 	ldh a, [hTextLineCurPos]
@@ -511,6 +512,7 @@ Func_2c4b::
 
 ; a = number of zero bytes
 ; de = coordinates
+; exit early if hl = 0
 ZeroAttributesAtDE::
 	push hl
 	push de

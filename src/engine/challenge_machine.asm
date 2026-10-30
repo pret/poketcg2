@@ -58,7 +58,7 @@ ChallengeMachine_DrawScoreScreen:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	ld hl, .text_items
 	call PlaceTextItemsVRAM0
 	ldtx hl, ChallengeMachineScoreTitleText
@@ -177,7 +177,7 @@ ChallengeMachine_DrawOpponentList:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 0
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	call ChallengeMachine_PrintOpponentInfo
 	ret
 

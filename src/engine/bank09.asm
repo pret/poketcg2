@@ -2836,7 +2836,7 @@ CheckDeck:
 	call DrawRegularTextBox
 	lb de, 2, 0
 	ldtx hl, DeckDiagnosisTargetNameText
-	call Func_2c4b
+	call PrintTextNoDelay_Init_ClearBGAttributes
 	lb de, 2, 2
 	ldtx hl, DeckDiagnosisBreakdownText
 	call PrintTextNoDelay_Init
