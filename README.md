@@ -1,4 +1,4 @@
-# Pokémon TCG 2
+# Pokémon TCG 2 [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon TCG 2.
 
@@ -14,10 +14,14 @@ This will output a file named "poketcg2.gbc".
 
 ## See also
 
+- [**Symbols**][symbols]
 - [**Tools**][tools]
 
 You can find us on [Discord (pret, #poketcg)](https://discord.gg/d5dubZ3).
 
 For other pret projects, see [pret.github.io](https://pret.github.io/).
 
+[symbols]: https://github.com/pret/poketcg2/tree/symbols
 [tools]: https://github.com/pret/gb-asm-tools
+[ci]: https://github.com/pret/poketcg2/actions
+[ci-badge]: https://github.com/pret/poketcg2/actions/workflows/main.yml/badge.svg
