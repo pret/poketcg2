@@ -56,7 +56,7 @@ HandleAIEnergyTrans:
 	ld a, DUELVARS_ARENA_CARD
 	add b
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call GetCardIDFromDeckIndex
 	cp16 VENUSAUR_LV67
 	jr z, .use_pkmn_power
@@ -70,14 +70,14 @@ HandleAIEnergyTrans:
 
 .use_pkmn_power
 	ld a, b
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 
-	xor a
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	xor a ; PLAY_AREA_ARENA
+	ldh [hDuelActionArgs + 3], a
 	ld a, [wd082]
 	ld d, a
 
@@ -91,7 +91,7 @@ HandleAIEnergyTrans:
 	jr c, .next_card
 
 	and %00001111
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 
 	ld a, e
 	push de
@@ -102,7 +102,7 @@ HandleAIEnergyTrans:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 
 	push de
 	ld d, 30
@@ -146,7 +146,7 @@ HandleAIEnergyTrans:
 	jr z, .is_exeggutor
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckEnergyNeededForAttack
@@ -226,7 +226,7 @@ HandleAIEnergyTrans:
 ; if so, output the number of energy cards still needed in a.
 .CheckEnoughGrassEnergyCardsForRetreatCost:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	ld b, a
 	xor a ; PLAY_AREA_ARENA
@@ -261,7 +261,7 @@ HandleAIEnergyTrans:
 ; some card in the Bench.
 AIEnergyTransTransferEnergyToBench:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	ret nc ; return if Defending can't KO
 
@@ -292,7 +292,7 @@ AIEnergyTransTransferEnergyToBench:
 	ld a, DUELVARS_ARENA_CARD
 	add b
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld [wAIVenusaurLv67DeckIndex], a
 	call GetCardIDFromDeckIndex
 	cp16 VENUSAUR_LV67
@@ -308,8 +308,8 @@ AIEnergyTransTransferEnergyToBench:
 ; use Energy Trans Pkmn Power
 .use_pkmn_power
 	ld a, b
-	ldh [hTemp_ffa0], a
-	ld [wd07f], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
+	ld [wAIVenusaurLv67PlayAreaLocation], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -317,10 +317,10 @@ AIEnergyTransTransferEnergyToBench:
 
 ; loop for each energy cards that are going to be transferred.
 .loop_energy
-	xor a
-	ldh [hAIPkmnPowerEffectParam], a
-	ld a, [wd07f]
-	ldh [hTemp_ffa0], a
+	xor a ; PLAY_AREA_ARENA
+	ldh [hDuelActionArgs + 1], a
+	ld a, [wAIVenusaurLv67PlayAreaLocation]
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	; returns when Arena card has no Grass energy cards attached.
 	ld e, PLAY_AREA_ARENA
@@ -348,7 +348,7 @@ AIEnergyTransTransferEnergyToBench:
 
 	; store the deck index of energy card
 	ld a, e
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 	jr .transfer
 
 .next_card
@@ -362,8 +362,8 @@ AIEnergyTransTransferEnergyToBench:
 ; get the Bench card location to transfer Grass energy card to.
 	farcall AIProcessButDontPlayEnergy_SkipEvolutionAndArena
 	jr nc, .done_transfer
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hAIEnergyTransPlayAreaLocation], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 3], a
 
 	ld d, 30
 .small_delay_loop
@@ -372,7 +372,7 @@ AIEnergyTransTransferEnergyToBench:
 	jr nz, .small_delay_loop
 
 	ld a, [wAIVenusaurLv67DeckIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
@@ -429,7 +429,7 @@ HandleAIPkmnPowers:
 	push bc
 	ld d, a
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, [wLoadedAttackCategory]
@@ -447,7 +447,7 @@ HandleAIPkmnPowers:
 	; TryExecuteEffectCommandFunction was successful
 	; check if this Pokémon can use its Pkmn Power
 	push bc
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	pop bc
 	jp c, .next_3
@@ -571,16 +571,16 @@ HandleAIPkmnPowers:
 ;	c = Play Area location (PLAY_AREA_*) of Vileplume.
 HandleAIHeal:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	call .CheckHealTarget
 	ret nc ; return if no target to heal
 	push af
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	pop af
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 2], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -601,7 +601,7 @@ HandleAIHeal:
 	jr z, .check_bench
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	jr nc, .set_carry ; return carry if can't KO
 	ld d, a
@@ -679,7 +679,7 @@ HandleAIShift:
 	or a
 	ret nz ; return if Venomoth is not Arena card
 
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	bank1call GetArenaCardColor
 	call TranslateColorToWR
 	ld b, a
@@ -703,7 +703,7 @@ HandleAIShift:
 
 .found
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 
@@ -720,7 +720,7 @@ HandleAIShift:
 ; use Pkmn Power effect
 .done
 	ld a, b
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -837,7 +837,7 @@ HandleAIShift:
 ;	c = Play Area location (PLAY_AREA_*) of Mankey.
 HandleAIPeek:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, 50
 	call Random
 	cp 3
@@ -904,11 +904,11 @@ HandleAIPeek:
 .use_peek
 	push af
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	pop af
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -923,14 +923,14 @@ HandleAIStrangeBehavior:
 	or a
 	ret z ; return if Slowbro is Arena card
 
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	or a
 	ret z ; return if Arena card has no damage counters
 
 	ld [wd082], a
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	sub 10
@@ -946,11 +946,11 @@ HandleAIStrangeBehavior:
 .use_strange_behavior
 	push af
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	xor a
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	pop af
@@ -986,7 +986,7 @@ HandleAIStrangeBehavior:
 ;	c = Play Area location (PLAY_AREA_*) of Gengar.
 HandleAICurse:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 ; loop Player's Play Area and checks their damage.
 ; finds the card with lowest remaining HP and
@@ -1030,7 +1030,7 @@ HandleAICurse:
 ; card in Play Area with lowest HP remaining was found.
 ; look for another card to take damage counter from.
 	ld a, h
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 	ld b, a
 	ld a, 10
 	cp c
@@ -1072,10 +1072,10 @@ HandleAICurse:
 
 .use_curse
 	ld a, e
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	call SwapTurn
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1089,7 +1089,7 @@ HandleAICurse:
 ;	c = Play Area location (PLAY_AREA_*) of Drowzee.
 HandleAILongDistanceHypnosis:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	call CheckIfArenaCardCanKnockOutDefendingCard
 	ccf
@@ -1144,7 +1144,7 @@ HandleAILongDistanceHypnosis:
 	ret c ; difference is less than 4
 .use_long_distance_hypnosis
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1157,7 +1157,7 @@ HandleAILongDistanceHypnosis:
 	; if Defending card cannot KO,
 	; then use Pkmn Power
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	ret c ; defending card can KO
 	jr .use_long_distance_hypnosis
@@ -1167,7 +1167,7 @@ HandleAILongDistanceHypnosis:
 ;	c = Play Area location (PLAY_AREA_*) of Dark Gloom.
 HandleAIPollenStench:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	call GetNonTurnDuelistVariable
@@ -1251,7 +1251,7 @@ HandleAIPollenStench:
 	ret z
 .use_pollen_stench
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1317,7 +1317,7 @@ HandleAIPollenStench:
 
 	; if Defending card can't be KO'ed, use Pkmn Power
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	jr c, .use_pollen_stench
 	; cannot KO
@@ -1360,9 +1360,9 @@ HandleAIGatherFire:
 	inc c
 	jr nc, .loop_bench
 .use_gather_fire
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1380,7 +1380,7 @@ HandleAIGatherFire:
 	jr c, .check_dark_charmeleon ; can KO defending card
 	; Arena card cannot KO nor retreat
 	; check if defending card can KO it
-	ld hl, hTempPlayAreaLocation_ff9d
+	ld hl, hTempPlayAreaLocation
 	ld a, [hl]
 	push af
 	xor a
@@ -1388,7 +1388,7 @@ HandleAIGatherFire:
 	call CheckIfDefendingPokemonCanKnockOut
 	pop bc
 	ld a, b
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, PLAY_AREA_ARENA
 	jr c, .arena_card_in_danger ; can KO Arena card
 
@@ -1429,7 +1429,7 @@ HandleAIGatherFire:
 ;	c = Play Area location (PLAY_AREA_*) of Dark Dragonair.
 HandleAIEvolutionaryLight:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, [wOpponentDeckID]
 	cp GREAT_DRAGON_DECK_ID
 	jr z, .great_dragon_deck
@@ -1448,9 +1448,9 @@ HandleAIEvolutionaryLight:
 	ret
 
 .use_evolutionary_light
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1639,7 +1639,7 @@ HandleAIEvolutionaryLight:
 ;	c = Play Area location (PLAY_AREA_*) of Dark Kadabra.
 HandleAIMatterExchange:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	; only use Pkmn Power if there are no Energy cards in Hand
 	; and there's duplicates of certain cards to discard
@@ -1661,9 +1661,9 @@ HandleAIMatterExchange:
 	call CheckIfHandHasRepeatedCard
 	ret nc
 .use_matter_exchange
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1680,7 +1680,7 @@ HandleAIPlayTricks:
 	or a
 	ret z ; Dark Gengar is Arena card
 
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, [wOpponentDeckID]
 	cp DAMAGE_CHAOS_DECK_ID
 	jr z, .damage_chaos_deck
@@ -1689,7 +1689,7 @@ HandleAIPlayTricks:
 	ret nc
 .use_play_tricks
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1720,7 +1720,7 @@ HandleAIPlayTricks:
 
 	; use if estimated damage of attack doesn't KO
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	; bug, a is expected to have the attack index to estimate damage
 	; because a is 0 here, it will estimate the damage of Teleport (which is 0)
 	; a is supposed to have SECOND_ATTACK here
@@ -1747,13 +1747,13 @@ HandleAIPlayTricks:
 ;	c = Play Area location (PLAY_AREA_*) of Kabuto.
 HandleAIFossilize:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	call CheckIfArenaCardCanKnockOutDefendingCard
 	ccf
 	ret nc ; Arena card can KO
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	ret nc ; Defending card cannot KO
 
@@ -1794,11 +1794,11 @@ HandleAIFossilize:
 
 .use_fossilize
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	farcall AIMakeDecision
 	ld a, -1
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ldtx de, FossilizeCheckText
 	farcall Serial_TossCoin
 	jr c, .got_heads
@@ -1808,7 +1808,7 @@ HandleAIFossilize:
 	jr .got_tails
 .got_heads
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 .got_tails
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -1825,12 +1825,12 @@ HandleAISpecialDelivery:
 	; chooses an evolution card in Hand that doesn't
 	; evolve any Pokémon in the Play Area to place on Deck
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	farcall FindUnusableEvolutionCardInHand
 	ret nc ; not found
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1844,12 +1844,12 @@ HandleAISpecialDelivery:
 ;	c = Play Area location (PLAY_AREA_*) of Dragonite.
 HandleAIStepIn:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	ret nc ; defending can't KO
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
@@ -1857,7 +1857,7 @@ HandleAIStepIn:
 	ccf
 	ret nc ; Dragonite doesn't have enough energy to attack
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -1899,7 +1899,7 @@ HandleAIMagnet:
 .TryUseMagnet:
 	push bc
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, [wAIPkmnPowerUserCardIndex]
 	ld d, a ; card index
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
@@ -1918,7 +1918,7 @@ HandleAIMagnet:
 
 	; check if there's space in the Bench
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	inc a
@@ -1938,18 +1938,18 @@ HandleAIMagnet:
 	ld a, [hli]
 	cp $ff
 	ret z
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 	farcall ExecuteCardSearchFunc
 	jr nc, .loop_deck
 
 	; a Magnemite is found in the Deck
 	ld a, [wAIPkmnPowerUserCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	farcall AIMakeDecision
 	ldtx de, MagnetCheckText
 	farcall Serial_TossCoin
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	jr c, .heads
 	farcall SetWasUnsuccessful
 	call PrintFailedEffectText
@@ -2015,21 +2015,21 @@ HandleAICowardice:
 ;	c = Play Area location (PLAY_AREA_*) of Tentacool.
 .CheckWhetherToUseCowardice:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ccf
 	ret nc ; can't use Cowardice
 
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	ld e, a
 	call GetCardDamageAndMaxHP
 	or a
 	ret z ; return if has no damage counters
 
 .try
-	ldh a, [hTemp_ffa0]
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
+	ldh [hTempPlayAreaLocation], a
 	ld a, [wd084]
 	ld d, a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
@@ -2038,7 +2038,7 @@ HandleAICowardice:
 	call TryExecuteEffectCommandFunction
 	jr c, .dont_use_cowardice
 
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	or a
 	jr nz, .is_benched
 	farcall AIDecideBenchPokemonToSwitchTo
@@ -2050,11 +2050,11 @@ HandleAICowardice:
 .use_cowardice
 	push af
 	ld a, [wd084]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	pop af
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -2111,7 +2111,7 @@ HandleAICowardice:
 
 .CheckWhetherToUseCowardice_SkipDamageCheck:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ccf
 	ret nc
@@ -2125,7 +2125,7 @@ HandleAITrickery:
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	ret nc ; no Rattata in Play Area
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ret c ; incapable of using Trickery
@@ -2136,15 +2136,15 @@ HandleAITrickery:
 	or a
 	ret z
 
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 
 	; sample random prize cards
 	; until we get one that hasn't been picked yet
 .sample_prize_card
-	ld a, 6
+	ld a, MAX_PRIZE_CARDS
 	call Random
 	ld c, a
 	ld b, $1
@@ -2161,9 +2161,10 @@ HandleAITrickery:
 	jr z, .sample_prize_card
 
 	; use Trickery with selected prize card
+	; (by Peek display routine)
 	ld a, c
-	or $40
-	ldh [hAIPkmnPowerEffectParam], a
+	or AI_PEEK_TARGET_PRIZE
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -2217,7 +2218,7 @@ HandleAIRebirth:
 ; - c = Dark Starmie's PLAY_AREA_* location
 .TryUseRebirth:
 	ld a, c
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ret c ; incapable of using Pkmn Power
 
@@ -2227,15 +2228,15 @@ HandleAIRebirth:
 	farcall FindCardIDInLocation
 	ret nc ; no Staryu in deck
 
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	or a
 	jr nz, .is_on_bench
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	ret nc ; player cannot KO
 	; player can KO next turn
 	; use Rebirth if has <= 20 HP remaining
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 20 + 1
@@ -2253,7 +2254,7 @@ HandleAIRebirth:
 .is_on_bench
 	; Dark Starmie is on the Bench, use Rebirth
 	; if remaining HP is <= 20
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 20 + 1
@@ -2261,7 +2262,7 @@ HandleAIRebirth:
 
 .use_rebirth
 	ld a, [wAIPkmnPowerUserCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -2303,9 +2304,9 @@ HandleAIDamageSwap:
 	ld a, [wd084]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, [wd084]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -2324,9 +2325,9 @@ HandleAIDamageSwap:
 	call .FindTargets
 	jr c, .no_more_targets
 
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + 2], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hAIPkmnPowerEffectParam], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_6B15
 	farcall AIMakeDecision
 	pop de
@@ -2569,7 +2570,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 	push bc
 	ld d, a
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld e, FIRST_ATTACK_OR_PKMN_POWER
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, [wLoadedAttackCategory]
@@ -2583,7 +2584,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 	pop bc
 	jp c, .next_pop_af
 	push bc
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	pop bc
 	jp c, .next_pop_af
@@ -2674,7 +2675,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 
 	; use Prehistoric Dream
 	ld a, [wAIPkmnPowerUserCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -2749,7 +2750,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 
 .grimer
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
@@ -2773,7 +2774,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 
 .use_poison_mist
 	ld a, [wAIPkmnPowerUserCardIndex]
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -2788,9 +2789,9 @@ AIChooseSummonMinionsCards:
 	push af
 	ld b, a
 	ld a, $ff
-	ldh [hTemp_ffa0], a
-	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [hPlayAreaEffectTarget], a
+	ldh [hDuelActionArgs + 0], a
+	ldh [hDuelActionArgs + 1], a
+	ldh [hDuelActionArgs + 2], a
 	ld a, b
 	or a
 	jr z, .zero
@@ -2844,21 +2845,21 @@ AIChooseSummonMinionsCards:
 
 .AddCardToList:
 	push af
-	ldh a, [hTemp_ffa0]
+	ldh a, [hDuelActionArgs + 0]
 	cp $ff
 	jr nz, .second_pkmn
 	pop af
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ret
 .second_pkmn
 	pop af
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	add sp, $02
 .asm_391e1
 	pop af
 	ld c, a
 	ld b, $00
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs
 	add hl, bc
 	ld [hl], $ff
 	ret
@@ -2903,7 +2904,7 @@ Func_3920b:
 	ret
 
 .rock_blast_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2916,7 +2917,7 @@ Func_3920b:
 	jr .no_carry
 
 .sudden_growth_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2947,7 +2948,7 @@ Func_3926a:
 	ret
 
 .rock_blast_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2963,7 +2964,7 @@ Func_3926a:
 	jr .no_carry
 
 .sudden_growth_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2999,7 +3000,7 @@ Func_392db:
 	ret
 
 .rock_blast_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3015,7 +3016,7 @@ Func_392db:
 	jr .no_carry
 
 .sudden_growth_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3043,7 +3044,7 @@ Func_3934d:
 	ret
 
 .rock_blast_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3054,7 +3055,7 @@ Func_3934d:
 	ret
 
 .smash_to_mincemeat_deck
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3234,8 +3235,8 @@ AIDecide_ProfessorOak_RainDanceConfusionDeck:
 
 AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
@@ -3350,16 +3351,16 @@ AIDecide_ComputerSearch_RainDanceConfusionDeck_PickDiscardCards:
 	ret
 
 .store_discard_cards
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	jr .next_card
 
 .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	pop hl
 	scf
@@ -3378,7 +3379,7 @@ AIDecide_PokemonTrader_MadPetalsDeck:
 	jr nc, .check_player_fire_pkmn
 
 .success
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, e
 	scf
 	ret
@@ -3750,20 +3751,20 @@ CreateBasicEnergyCardListInLocation:
 ;	a = deck index of attached energy card chosen
 AIPickEnergyCardToDiscard:
 ; load Pokémon's attached energy cards.
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 
 	; if has Recycle Energy, pick it right away
 	ld de, RECYCLE_ENERGY
 	farcall CheckIfHasSpecificEnergyAttached
 	ret c
 
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	call CreateArenaOrBenchEnergyCardList
 	or a
 	jr z, .no_energy
 
 ; load card's ID and type.
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3805,12 +3806,12 @@ AIPickEnergyCardToDiscard:
 ; (or $ff if no energy)
 ;   order: DCE -> useful energy -> not useful energy -> Recycle Energy
 PickAttachedEnergyCardToRemove:
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CreateArenaOrBenchEnergyCardList
 	or a
 	jr z, .no_energy
 
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3883,12 +3884,12 @@ PickAttachedEnergyCardToRemove:
 ; (or just $ff in a if < 2 energy)
 ;   order: DCE -> useful energy -> not useful energy -> Recycle Energy
 PickTwoAttachedEnergyCards:
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CreateArenaOrBenchEnergyCardList
 	cp 2
 	jp c, .not_enough
 
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld b, a
 	ld a, DUELVARS_ARENA_CARD
 	add b
@@ -4356,7 +4357,7 @@ TakeOutDifferentCardOfSpecificTypeFromListInHL:
 	jr z, .no_carry
 	cp e
 	jr z, .loop_cards
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	push de
 	call GetCardIDFromDeckIndex
 	call GetCardType
@@ -4392,7 +4393,7 @@ TakeOutDifferentCardOfSpecificTypeFromListInHL:
 	jr nz, .loop_shift
 
 ; success
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	pop bc
 	pop de
 	pop hl
@@ -4473,7 +4474,7 @@ CheckIfHandHasRepeatedCard:
 	ld a, [hli]
 	cp $ff
 	ret z
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	push de
 	call GetCardIDFromDeckIndex
 	ld a, e
@@ -4490,7 +4491,7 @@ CheckIfHandHasRepeatedCard:
 	inc c
 	jr nz, .loop_cards
 .repeated
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	scf
 	ret
 
@@ -4591,7 +4592,7 @@ AICheckIfAttackIsHighRecoil:
 CheckIfHealingPreventsKOByDefendingPokemon:
 	ld [wAITempHPRecoverAmount], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfDefendingPokemonCanKnockOut
 	jr nc, .no_carry
 
@@ -4624,7 +4625,7 @@ CheckIfHealingPreventsKOByDefendingPokemon:
 
 CheckIfArenaCardCanKnockOutDefendingCard_CheckHand:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfAnyAttackKnocksOutDefendingCard
 	ret nc
 	farcall CheckIfSelectedAttackIsUnusable
@@ -4975,8 +4976,8 @@ AIDecide_ComputerSearch_EyeOfTheStormDeck:
 .find_discard_cards
 	ld [wTempAISingleTargetCardDeckIndex_2], a
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
 
 	call CreateHandCardList
 	ld hl, wDuelTempList
@@ -5029,16 +5030,16 @@ AIDecide_ComputerSearch_EyeOfTheStormDeck:
 	pop hl
 	ld b, [hl]
 	push hl
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	cp $ff
 	jr nz, .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	jr .next_card
 
 .latter_discard_card
 	ld a, b
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	pop hl
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
@@ -5057,9 +5058,9 @@ AIDecide_EnergyRetrieval_EyeOfTheStormDeck:
 	ret nc
 
 	ld a, [wDuelTempList]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	ld a, [wDuelTempList + 1]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 
 ; find discard card
 	call CreateHandCardList
@@ -5237,7 +5238,7 @@ AIDecide_ComputerSearch_SuddenGrowthDeck:
 	ld b, a
 	ld c, 2
 	ld hl, wDuelTempList
-	ld de, wTempAIMultiTargetCardDeckIndex1
+	ld de, wAITrainerCardArgs + 1
 .loop_hand_cards
 	ld a, [hli]
 	cp b
@@ -5275,10 +5276,10 @@ AIDecide_ComputerSearch_SuddenGrowthDeck:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .find_discard_cards_energy_1
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .find_discard_cards_energy_2
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5289,14 +5290,14 @@ AIDecide_ComputerSearch_SuddenGrowthDeck:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 
 .find_discard_cards_energy_2
 	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5339,10 +5340,10 @@ AIDecide_ItemFinder_SuddenGrowthDeck:
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld [wAITrainerCardArgs + 2], a
 ; success
 	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
@@ -5356,7 +5357,7 @@ AIDecide_ItemFinder_SuddenGrowthDeck:
 ; Arena card has no effect that stops it from retreating
 ; and has enough energy cards to pay retreat cost
 CheckIfArenaCardCanRetreat:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -5365,7 +5366,7 @@ CheckIfArenaCardCanRetreat:
 	bank1call CheckUnableToRetreatDueToEffect
 	jr c, .no_carry ; cannot retreat
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	ld b, a
 	ld e, PLAY_AREA_ARENA
@@ -5374,12 +5375,12 @@ CheckIfArenaCardCanRetreat:
 	cp b
 	jr c, .no_carry ; doesn't have enough energy to retreat
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	scf
 	ret
 .no_carry
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	or a
 	ret
 
@@ -5390,12 +5391,12 @@ AIDecide_ReelIn_BadGuysDeck:
 	farcall FindCardIDInLocation
 	jr nc, .try_psyduck_and_golduck
 	; got an Oddish, try a Dark Gloom next
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DARK_GLOOM
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .try_psyduck_and_golduck
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jr .find_third_card
 
 .try_psyduck_and_golduck
@@ -5404,12 +5405,12 @@ AIDecide_ReelIn_BadGuysDeck:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .try_charmander_and_charmeleon
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DARK_GOLDUCK
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .try_charmander_and_charmeleon
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jr .find_third_card
 
 .try_charmander_and_charmeleon
@@ -5418,12 +5419,12 @@ AIDecide_ReelIn_BadGuysDeck:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .try_slowpoke_and_slowbro
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DARK_CHARMELEON
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .try_slowpoke_and_slowbro
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	jr .find_third_card
 
 .try_slowpoke_and_slowbro
@@ -5431,12 +5432,12 @@ AIDecide_ReelIn_BadGuysDeck:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	ret nc
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld de, DARK_SLOWBRO
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	ret nc
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 
 .find_third_card
 	ld de, ODDISH_LV21
@@ -5475,7 +5476,7 @@ AIDecide_ReelIn_BadGuysDeck:
 	ret
 
 .AddCardIfNotInListAlready:
-	ld hl, hTemp_ffa0
+	ld hl, hDuelActionArgs
 	cp [hl]
 	ret z ; equal to first card
 	inc hl
@@ -5511,7 +5512,7 @@ AIDecide_ProfessorOak_BadGuysDeck:
 	ret
 
 ; return carry and output three selected cards to
-; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
+; {a, wAITrainerCardArgs[1, 2]}
 ; if discard pile contains dark golduck, dark charmeleon, dark slowbro, and dark gloom,
 ; select {dark golduck, dark charmeleon, dark slowbro};
 ; elif discard pile contains >= 7 basic energy cards,
@@ -5520,9 +5521,9 @@ AIDecide_ProfessorOak_BadGuysDeck:
 AIDecide_NightlyGarbageRun_BadGuysDeck:
 ; init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GOLDUCK
@@ -5548,9 +5549,9 @@ AIDecide_NightlyGarbageRun_BadGuysDeck:
 
 ; re-init
 	ld a, $ff
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld [wTempAIMultiTargetCardDeckIndex3], a
+	ld [wAITrainerCardArgs + 1], a
+	ld [wAITrainerCardArgs + 2], a
+	ld [wAITrainerCardArgs + 3], a
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call CreateBasicEnergyCardListInLocation
@@ -5572,12 +5573,12 @@ AIDecide_NightlyGarbageRun_BadGuysDeck:
 ; shift {#1, #2, #3} to {a, #1, #2}
 ; no carry if selected <= 2 cards
 .shift
-	ld a, [wTempAIMultiTargetCardDeckIndex1]
+	ld a, [wAITrainerCardArgs + 1]
 	push af
-	ld a, [wTempAIMultiTargetCardDeckIndex2]
-	ld [wTempAIMultiTargetCardDeckIndex1], a
-	ld a, [wTempAIMultiTargetCardDeckIndex3]
-	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wAITrainerCardArgs + 2]
+	ld [wAITrainerCardArgs + 1], a
+	ld a, [wAITrainerCardArgs + 3]
+	ld [wAITrainerCardArgs + 2], a
 	cp $ff
 	jr z, .no_carry
 ; success
@@ -5595,7 +5596,7 @@ AIDecide_NightlyGarbageRun_BadGuysDeck:
 ; reality: set carry when trying the fourth card
 .store_cards
 	ld b, a
-	ld hl, wTempAIMultiTargetCardDeckIndex1
+	ld hl, wAITrainerCardArgs + 1
 	ld a, $ff
 	cp [hl]
 	jr z, .store
@@ -5710,7 +5711,7 @@ AIDecide_PokemonTraderForEvo_BadGuysDeck:
 	ret nc
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -5752,7 +5753,7 @@ AIDecide_PokemonTrader_PoisonMistDeck:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -5786,7 +5787,7 @@ AIDecide_GustOfWind_PoisonMistDeck:
 	ld e, PLAY_AREA_BENCH_1
 .loop_play_area
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	push de
 	call GetPlayAreaCardRetreatCost
 	pop de
@@ -5810,21 +5811,21 @@ AIDecide_GustOfWind_PoisonMistDeck:
 ; can KO the Defending card with
 ; any of its attacks, and that attack can be used
 CheckIfArenaCardCanKnockOutDefendingCard:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfAnyAttackKnocksOutDefendingCard
 	jr nc, .cannot_ko
 	farcall CheckIfSelectedAttackIsUnusable
 	jp c, .cannot_ko ; can be jr
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	scf
 	ret
 .cannot_ko
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	or a
 	ret
 
@@ -5995,11 +5996,11 @@ GetAttacksEnergyCostBits:
 	ret
 
 ; returns carry if there's an evolution card
-; that can evolve card in hTempPlayAreaLocation_ff9d,
+; that can evolve card in hTempPlayAreaLocation,
 ; and that card needs energy to use wSelectedAttack.
 CheckIfEvolutionNeedsEnergyForAttack:
 	call CreateHandCardList
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	farcall CheckCardEvolutionInHandOrDeck
@@ -6009,14 +6010,14 @@ CheckIfEvolutionNeedsEnergyForAttack:
 
 .has_evolution
 	ld b, a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	push af
 	ld [hl], b
 	farcall CheckEnergyNeededForAttack
 	jr c, .not_enough_energy
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	pop af
@@ -6025,7 +6026,7 @@ CheckIfEvolutionNeedsEnergyForAttack:
 	ret
 
 .not_enough_energy
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	pop af
@@ -6044,7 +6045,7 @@ CheckIfEvolutionNeedsEnergyForAttack:
 ;	carry set if not ZapdosLv64's Thunderbolt attack.
 GetEnergyCardForDiscardOrEnergyBoostAttack:
 ; load card ID and check selected attack index.
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -6138,7 +6139,7 @@ CheckWhetherToSwitchToFirstAttack:
 ; check if it can KO, in case it can't
 ; then the AI keeps second attack as selection.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	; a = FIRST_ATTACK_OR_PKMN_POWER
 	farcall EstimateDamage_VersusDefendingCard
 	ld a, DUELVARS_ARENA_CARD_HP
@@ -6190,7 +6191,7 @@ CheckWhetherToSwitchToFirstAttack:
 ; input:
 ; - a = PLAY_AREA_* constant
 CheckIfCanDamageDefendingPokemon:
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
@@ -6218,12 +6219,12 @@ CheckIfCanDamageDefendingPokemon:
 	ret
 
 ; checks if defending Pokémon can knock out
-; card at hTempPlayAreaLocation_ff9d with any of its attacks
+; card at hTempPlayAreaLocation with any of its attacks
 ; and if so, stores the damage to wAIFirstAttackDamage and wAISecondAttackDamage
 ; sets carry if any on the attacks knocks out
 ; also outputs the largest damage dealt in a
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = location of card to check
+;	[hTempPlayAreaLocation] = location of card to check
 ; output:
 ;	a = largest damage of both attacks
 ;	carry set if can knock out
@@ -6262,28 +6263,28 @@ CheckIfDefendingPokemonCanKnockOut:
 	ret
 
 ; return carry if defending Pokémon can knock out
-; card at hTempPlayAreaLocation_ff9d
+; card at hTempPlayAreaLocation
 ; input:
 ;	a = attack index
-;	[hTempPlayAreaLocation_ff9d] = location of card to check
+;	[hTempPlayAreaLocation] = location of card to check
 .CheckAttack:
 	ld [wSelectedAttack], a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call SwapTurn
 	farcall CheckIfSelectedAttackIsUnusable
 	call SwapTurn
 	pop bc
 	ld a, b
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	jr c, .done
 
 ; player's active Pokémon can use attack
 	ld a, [wSelectedAttack]
 	farcall EstimateDamage_FromDefendingPokemon
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	ld hl, wDamage
@@ -6415,7 +6416,7 @@ AIDecide_PokemonTrader_UltraRemovalDeck:
 	ret
 
 .find_trade_pkmn
-	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld [wAITrainerCardArgs + 1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
 
@@ -6432,7 +6433,7 @@ AIDecide_GustOfWind_UltraRemovalDeck:
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .no_carry ; Hyper Beam not ready
 	ld b, PLAY_AREA_BENCH_1
@@ -6465,7 +6466,7 @@ AIDecide_Switch_UltraRemovalDeck:
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .cannot_use_second_atk
 
@@ -6560,7 +6561,7 @@ AIDecide_Switch_PsychicBattleDeck:
 
 	; use Switch if retreat cost is 2 or more
 	xor a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
 	jr nc, .switch

@@ -158,11 +158,11 @@ AIActionTable_140f4:
 	call AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .asm_1411b
 	call AIDecideBenchPokemonToSwitchTo
-	call Func_167e5
+	call AITryToRetreat
 	call AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .asm_1411b
 	call AIDecideBenchPokemonToSwitchTo
-	call Func_167e5
+	call AITryToRetreat
 .asm_1411b
 	call AIProcessAndTryToPlayEnergy
 	call AIProcessAndTryToUseAttack
@@ -5271,7 +5271,7 @@ AIDecideWhetherToRetreat:
 
 .skip_status_check
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfAnyAttackKnocksOutDefendingCard
 	jr nc, .active_cant_ko_1
 	call CheckIfSelectedAttackIsUnusable
@@ -5471,7 +5471,7 @@ AIDecideWhetherToRetreat:
 	cp $ff
 	jr z, .check_defending_id
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	push hl
 	push bc
 	call CheckIfAnyAttackKnocksOutDefendingCard
@@ -5502,7 +5502,7 @@ AIDecideWhetherToRetreat:
 	jr c, .check_defending_id
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfAnyAttackKnocksOutDefendingCard
 	jr nc, .active_cant_ko_2
 	call CheckIfSelectedAttackIsUnusable
@@ -5518,7 +5518,7 @@ AIDecideWhetherToRetreat:
 	; if retreat cost is 0, then encourage
 	; if Arena card cannot KO
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	or a
 	jr nz, .check_defending_id
@@ -5588,7 +5588,7 @@ AIDecideWhetherToRetreat:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .check_retreat_cost
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	call CheckIfSelectedAttackIsUnusable
@@ -5606,7 +5606,7 @@ AIDecideWhetherToRetreat:
 ; these conditions
 .check_retreat_cost
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	cp 2
 	jr c, .one_or_none
@@ -5658,7 +5658,7 @@ AIDecideWhetherToRetreat:
 	jr z, .trainer_pkmn_card
 	pop de
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	push de
 	push hl
 	farcall CheckIfDefendingPokemonCanKnockOut
@@ -5708,7 +5708,7 @@ AIDecideWhetherToRetreat:
 	cp $ff
 	jr z, .no_carry
 	ld a, e
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	push de
 	farcall CheckIfDefendingPokemonCanKnockOut
 	pop de
@@ -6017,12 +6017,12 @@ SetAIRetreatFlags:
 	ret
 
 ; calculates AI score for bench Pokémon
-; returns in a and [hTempPlayAreaLocation_ff9d] the
+; returns in a and [hTempPlayAreaLocation] the
 ; Play Area location of best card to switch to.
 ; returns carry if no Bench Pokemon.
 AIDecideBenchPokemonToSwitchTo:
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
@@ -6043,7 +6043,7 @@ AIDecideBenchPokemonToSwitchTo:
 .loop_play_area
 	push bc
 	ld a, c
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, 50
 	ld [wAIScore], a
 
@@ -6108,7 +6108,7 @@ AIDecideBenchPokemonToSwitchTo:
 
 ; if no energies attached to card, lower AI score
 .check_attached_energy
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
@@ -6145,7 +6145,7 @@ AIDecideBenchPokemonToSwitchTo:
 .check_defending_weak
 	bank1call CheckIfDampeningShieldIsActive
 	jp c, .check_retreat_cost
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -6220,7 +6220,7 @@ AIDecideBenchPokemonToSwitchTo:
 
 ; if this card's HP is 0, make AI score 0
 .check_hp
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	or a
@@ -6236,7 +6236,7 @@ AIDecideBenchPokemonToSwitchTo:
 	call ConvertHPToCounters
 	call AIEncourage
 
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6285,7 +6285,7 @@ AIDecideBenchPokemonToSwitchTo:
 ; if wLoadedCard1AIInfo == AI_INFO_BENCH_UTILITY,
 ; lower AI score
 .check_if_has_bench_utility
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -6314,7 +6314,7 @@ AIDecideBenchPokemonToSwitchTo:
 	call AIDiscourage
 
 .deck_specific_logic
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6367,7 +6367,7 @@ AIDecideBenchPokemonToSwitchTo:
 	jr .loop_ids
 
 .store_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld c, a
 	ld b, $00
 	ld hl, wPlayAreaAIScore
@@ -6381,7 +6381,14 @@ AIDecideBenchPokemonToSwitchTo:
 ; done
 	jp FindHighestBenchScore
 
-Func_167e5:
+; handles AI action of retreating Arena Pokémon
+; and chooses which energy cards to discard.
+; if card can't discard, return carry.
+; in case it's Clefairy Doll or Mysterious Fossil,
+; handle its effect to discard itself instead of retreating.
+; input:
+;	- a = Play Area location (PLAY_AREA_*) of card to retreat to.
+AITryToRetreat:
 	push af
 	bank1call CheckUnableToRetreatDueToEffect
 	jr nc, .able_to_retreat
@@ -6390,20 +6397,21 @@ Func_167e5:
 .able_to_retreat
 	ld a, [wAIPlayEnergyCardForRetreat]
 	or a
-	jr z, .dont_play_energy_card
+	jr z, .check_id
 
 ; AI is allowed to play an energy card
 ; from the hand in order to provide
 ; the necessary energy for retreat cost
 
 ; check status
+; but useless, already handled in CheckUnableToRetreatDueToEffect
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
 	cp ASLEEP
-	jp z, .dont_play_energy_card ; can be jr
+	jp z, .check_id ; can be jr
 	cp PARALYZED
-	jp z, .dont_play_energy_card ; can be jr
+	jp z, .check_id ; can be jr
 
 ; if an energy card hasn't been played yet,
 ; checks if the Pokémon needs just one more energy to retreat
@@ -6411,33 +6419,33 @@ Func_167e5:
 ; and if there are, play that energy card
 	ld a, [wAlreadyPlayedEnergy]
 	or a
-	jr nz, .dont_play_energy_card
+	jr nz, .check_id
 	call CreateArenaOrBenchEnergyCardList
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	pop bc
 	cp b
-	jr c, .dont_play_energy_card
-	jr z, .dont_play_energy_card
+	jr c, .check_id
+	jr z, .check_id
 	; energy attached < retreat cost
 	sub b
 	cp 1
-	jr nz, .dont_play_energy_card
+	jr nz, .check_id
 	farcall CreateEnergyCardListFromHand_OnlyBasicOrRecycleEnergy
-	jr nc, .asm_1682a
+	jr nc, .play_energy
 	farcall CreateEnergyCardListFromHand_IgnoreRainbowEnergy
-	jr c, .dont_play_energy_card
-.asm_1682a
-	ld a, [wDuelTempList]
-	ldh [hTemp_ffa0], a
+	jr c, .check_id
+.play_energy
+	ld a, [wDuelTempList + 0]
+	ldh [hDuelActionArgs + PLAYCARD_ARGS_CARD_INDEX], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + PLAYCARD_ARGS_TARGET_PLAY_AREA_LOCATION], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 
-.dont_play_energy_card
+.check_id
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -6447,9 +6455,10 @@ Func_167e5:
 	jp z, .mysterious_fossil_or_clefairy_doll
 
 ; if card is Asleep or Paralyzed, set carry and exit
-; else, load the status in hTemp_ffa0
+; else, load the status in hDuelActionArgs[0]
+; but the status check is useless, already handled in CheckUnableToRetreatDueToEffect
 	pop af
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_BENCH], a
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	ld b, a
@@ -6459,14 +6468,14 @@ Func_167e5:
 	cp PARALYZED
 	jp z, .set_carry
 	ld a, b
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_STATUS], a
 	ld a, $ff
-	ldh [hTempRetreatCostCards], a
+	ldh [hDuelActionArgs + RETREAT_ARGS_COST_LIST], a
 
 ; check energy required to retreat
 ; if the cost is 0, retreat right away
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call GetPlayAreaCardRetreatCost
 	ld [wTempCardRetreatCost], a
 	or a
@@ -6484,7 +6493,7 @@ Func_167e5:
 	cp c
 	jr nz, .choose_energy_discard
 
-	ld hl, hTempRetreatCostCards
+	ld hl, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 	ld de, wDuelTempList
 .loop_select_all_cards
 	ld a, [de]
@@ -6513,7 +6522,7 @@ Func_167e5:
 
 ; first, look for and discard any Recycle energy cards
 	ld hl, wDuelTempList
-	ld de, hTempRetreatCostCards
+	ld de, hDuelActionArgs + RETREAT_ARGS_COST_LIST
 .loop_select_recycle_energy
 	ld a, [hli]
 	cp $ff
@@ -6565,6 +6574,8 @@ Func_167e5:
 ; the exception for this are cards that are needed for
 ; some attacks but are not of the same color as the Pokémon
 ; (i.e. Psyduck's Headache attack)
+; and energy cards attached to Eevee corresponding to a
+; color of any of its evolutions (water, fire, lightning)
 .check_non_useful_energy
 	ld hl, wDuelTempList
 	call CountCardsInDuelTempList
@@ -6633,13 +6644,13 @@ Func_167e5:
 .has_bench
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + PKMNPOWER_ARGS_USER_PLAY_AREA_LOCATION], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	pop af
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 	ld a, OPPACTION_DUEL_MAIN_SCENE
@@ -6721,7 +6732,7 @@ AIDecidePlayPokemonCard:
 ; if defending Pokémon can KO active card, increase AI score
 .check_defending_can_ko
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .check_energy_cards
 	ld a, 20
@@ -6761,15 +6772,15 @@ AIDecidePlayPokemonCard:
 	cp 180
 	jr c, .skip
 	ld a, [wTempAIPokemonCard]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call CheckIfCardCanBePlayed
 	jr c, .skip
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
 	ld a, [wTempAIPokemonCard]
-	ldh [hTempCardIndex_ff9f], a
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -6838,15 +6849,15 @@ AIDecideEvolution:
 	jr nc, .done_bench_pokemon
 
 	ld a, [wTempAI]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh [hDuelActionArgs + 1], a
 	ld a, [wTempAIPokemonCard]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_EVOLVE_PKMN
 	farcall AIMakeDecision
 	ld a, [wTempAIPokemonCard]
-	ldh [hTempCardIndex_ff9f], a
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionCardIndex], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 0], a
 	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
@@ -6881,7 +6892,7 @@ AIDecideEvolution_GivenLocation:
 ; store this Play Area location in wTempAI
 ; and initialize the AI score
 	ld [wTempAI], a
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall AIDecideSpecialEvolutions
 	ld [wAIScore], a
 
@@ -6997,7 +7008,7 @@ AIDecideEvolution_GivenLocation:
 	or a
 	jr nz, .check_mr_mime
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .check_mr_mime
 	ld a, 10
@@ -7033,7 +7044,7 @@ AIDecideEvolution_GivenLocation:
 	or a
 	jr nz, .check_2nd_stage_hand
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .check_status
 	; encourage unless it can KO the evolution as well
@@ -7164,7 +7175,7 @@ SortTempHandByIDList:
 ; search in the hand card list
 .next_hand_card
 	ld a, [hl]
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp -1
 	jr nz, .valid_card
 	pop de
@@ -7192,7 +7203,7 @@ SortTempHandByIDList:
 	ld hl, wDuelTempList
 	add hl, bc
 	ld b, [hl]
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	ld [hl], a
 	pop hl
 	ld [hl], b
@@ -7229,7 +7240,7 @@ AIProcessButDontPlayEnergy:
 ; have AI choose an energy card to play, but do not play it.
 ; does not consider whether the cards have evolutions to be played.
 ; return carry if an energy card is chosen to use in any Play Area card,
-; and if so, return its Play Area location in hTempPlayAreaLocation_ff9d.
+; and if so, return its Play Area location in hTempPlayAreaLocation.
 AIProcessButDontPlayEnergy_SkipEvolution:
 	ld a, AI_ENERGY_FLAG_DONT_PLAY | AI_ENERGY_FLAG_SKIP_EVOLUTION
 	ld [wAIEnergyAttachLogicFlags], a
@@ -7253,7 +7264,7 @@ AIProcessButDontPlayEnergy_SkipEvolution:
 ; have AI choose an energy card to play, but do not play it.
 ; does not consider whether the cards have evolutions to be played.
 ; return carry if an energy card is chosen to use in any Bench card,
-; and if so, return its Play Area location in hTempPlayAreaLocation_ff9d.
+; and if so, return its Play Area location in hTempPlayAreaLocation.
 AIProcessButDontPlayEnergy_SkipEvolutionAndArena:
 	ld a, AI_ENERGY_FLAG_DONT_PLAY | AI_ENERGY_FLAG_SKIP_EVOLUTION | AI_ENERGY_FLAG_SKIP_ARENA_CARD
 	ld [wAIEnergyAttachLogicFlags], a
@@ -7335,7 +7346,7 @@ AIProcessEnergyCards:
 .loop_play_area
 	push bc
 	ld a, b
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	farcall AIDeckSpecificEnergyLogic
 	ld [wAIScore], a
 	ld a, $ff
@@ -7348,7 +7359,7 @@ AIProcessEnergyCards:
 ; and if there's an evolution in hand or deck
 ; and if so, add to AI score
 	call CreateHandCardList
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld [wd061], a
@@ -7375,7 +7386,7 @@ AIProcessEnergyCards:
 	call AIEncourage
 
 .check_if_active
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .bench
 
@@ -7454,7 +7465,7 @@ AIProcessEnergyCards:
 .check_bench_hp
 ; lower AI score by 3 - (bench HP)/10
 ; if bench HP < 30
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	call ConvertHPToCounters
@@ -7476,7 +7487,7 @@ AIProcessEnergyCards:
 	ld l, a
 
 	push hl
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -7504,7 +7515,7 @@ AIProcessEnergyCards:
 	ld a, [hli]
 	ld b, a
 	push de
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
@@ -7541,7 +7552,7 @@ AIProcessEnergyCards:
 	jr c, .skip_boss_deck
 
 	; applies wPlayAreaEnergyAIScore
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld c, a
 	ld b, $00
 	ld hl, wPlayAreaEnergyAIScore
@@ -7572,7 +7583,7 @@ AIProcessEnergyCards:
 
 ; store bench score for this card.
 .store_score
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld c, a
 	ld b, $00
 	ld hl, wPlayAreaAIScore
@@ -7682,7 +7693,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 .attaching_kos_player
 	ld a, 20
 	call AIEncourage
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jp nz, .check_evolution
 	ld a, 10
@@ -7746,7 +7757,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 	; encourage if it's Arena card
 	dec a
 	jr nz, .check_evolution
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .check_evolution
 	ld a, 3
@@ -7767,7 +7778,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 .need_1_energy
 	ld a, 3
 	call AIEncourage
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .check_if_can_ko
 	; encourage more if is Arena card
@@ -7776,7 +7787,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 
 .check_if_can_ko
 ; if the attack KOs player and this is the active card, add to AI score.
-	ldh a, [hTempPlayAreaLocation_ff9d] ; useless
+	ldh a, [hTempPlayAreaLocation] ; useless
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
 	ld a, DUELVARS_ARENA_CARD_HP
@@ -7788,7 +7799,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 .atk_kos_defending
 	ld a, 7
 	call AIEncourage
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .check_evolution
 	; encourage more if is Arena card
@@ -7802,7 +7813,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 
 ; temporarily replace this card with evolution in hand.
 	ld b, a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	push af
@@ -7834,14 +7845,14 @@ DetermineAIScoreOfAttackEnergyRequirement:
 
 ; recover the original card in the Play Area location.
 .done
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	pop af
 	ld [hl], a
 	ret
 
-; returns in hTempPlayAreaLocation_ff9d the Play Area location
+; returns in hTempPlayAreaLocation the Play Area location
 ; of the card with the highest Play Area AI score, unless
 ; the highest score is below $85.
 ; if it succeeds in return a card location, set carry.
@@ -7878,7 +7889,7 @@ FindPlayAreaCardWithHighestAIScore:
 	cp $85
 	jr c, .not_enough_score
 	ld a, d
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	scf
 	ret
 .not_enough_score
@@ -7911,7 +7922,7 @@ FindPlayAreaCardWithHighestAIScore:
 
 ; in this case, there is no minimum threshold AI score.
 	ld a, d
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	scf
 	ret
 .no_carry
@@ -8008,19 +8019,19 @@ AITryToPlayEnergyCard:
 ; in this case, Pokémon needs a specific basic energy card.
 ; look for basic energy card needed in hand and play it.
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jp nc, .play_energy_card
 
 ; it might be that there's no basic energy is not in hand,
 ; in which case play Rainbow Energy if remaining HP >= 40
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp 40
 	jr c, .colorless_energy
 	ld de, RAINBOW_ENERGY
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .play_energy_card
 
 ; in this case Pokémon just needs colorless (any basic energy card).
@@ -8040,7 +8051,7 @@ AITryToPlayEnergyCard:
 	ld a, [hli]
 	cp $ff
 	jr z, .check_recycle_energy
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
 	jr nz, .loop_1
@@ -8050,7 +8061,7 @@ AITryToPlayEnergyCard:
 .check_recycle_energy
 	ld de, RECYCLE_ENERGY
 	call LookForCardIDInHand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr nc, .play_energy_card
 
 ; otherwise, try to play any Basic Energy card
@@ -8058,7 +8069,7 @@ AITryToPlayEnergyCard:
 	ld a, [wDuelTempList]
 	cp $ff
 	jr z, .no_basic_energy
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	jr .play_energy_card
 
 .no_basic_energy
@@ -8083,7 +8094,7 @@ AITryToPlayEnergyCard:
 	ld a, [hli]
 	cp $ff
 	jr z, .check_if_done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	push hl
 	farcall Func_4c25c
 	pop hl
@@ -8091,10 +8102,10 @@ AITryToPlayEnergyCard:
 	cp -1
 	jr nz, .asm_171d6
 
-; plays energy card loaded in hTemp_ffa0 and sets carry flag.
+; plays energy card loaded in hDuelActionArgs[0] and sets carry flag.
 .play_energy_card
-	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldh [hTempPlayAreaLocation_ffa1], a
+	ldh a, [hTempPlayAreaLocation]
+	ldh [hDuelActionArgs + 1], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 	scf
@@ -8145,7 +8156,7 @@ AICheckSpecialColorlessEnergyCards:
 
 .PotionAndFullHealEnergy:
 ; Potion Energy
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	ret nz
 	ld a, 10
@@ -8168,7 +8179,7 @@ AICheckSpecialColorlessEnergyCards:
 	ld de, POTION_ENERGY
 	call LookForCardIDInHand
 	jr c, .done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8197,7 +8208,7 @@ AICheckSpecialColorlessEnergyCards:
 	ld de, FULLHEAL_ENERGY
 	call LookForCardIDInHand
 	jr c, .done
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8261,7 +8272,7 @@ AICheckSpecialColorlessEnergyCards:
 	bank1call CreateEnergyCardListFromHand
 	ld a, [wDuelTempList]
 .has_double_colorless_in_hand
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8271,7 +8282,7 @@ AICheckSpecialColorlessEnergyCards:
 	ret
 
 .only_play_if_has_no_colorless_attached
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies + COLORLESS]
@@ -8281,7 +8292,7 @@ AICheckSpecialColorlessEnergyCards:
 	call LookForCardIDInHand
 	jp c, .done ; has no Double Colorless in hand
 	; pick double colorless
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + 0], a
 	pop hl
 	pop de
 	pop bc
@@ -8291,7 +8302,7 @@ AICheckSpecialColorlessEnergyCards:
 	ret
 
 .GetArenaCardID:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8554,7 +8565,7 @@ AIProcessAttacks:
 ; load this attack's damage output against
 ; the current Defending Pokemon.
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
 	ld a, [wDamage]
@@ -8610,7 +8621,7 @@ GetAIScoreOfAttack:
 	ld [wAIScore], a
 
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call CheckIfSelectedAttackIsUnusable
 	jr nc, .usable
 
@@ -9326,7 +9337,7 @@ CheckIfCardIDIsInList:
 ; a card's attacks KOs defending Pokémon
 ; outputs index of the attack that KOs
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = location of attacking card to consider
+;	[hTempPlayAreaLocation] = location of attacking card to consider
 ; output:
 ;	[wSelectedAttack] = attack index that KOs
 CheckIfAnyAttackKnocksOutDefendingCard:
@@ -9346,7 +9357,7 @@ CheckIfAnyAttackKnocksOutDefendingCard:
 	ret
 
 ; returns carry if any of the defending Pokémon's attacks
-; brings card at hTempPlayAreaLocation_ff9d down
+; brings card at hTempPlayAreaLocation down
 ; to exactly 0 HP.
 ; outputs that attack index in wSelectedAttack.
 CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP:
@@ -9357,7 +9368,7 @@ CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP:
 
 .CheckDamage:
 	call EstimateDamage_FromDefendingPokemon
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	ld hl, wDamage
@@ -9370,7 +9381,7 @@ CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP:
 
 ; checks AI scores for all benched Pokémon
 ; returns the location of the card with highest score
-; in a and [hTempPlayAreaLocation_ff9d]
+; in a and [hTempPlayAreaLocation]
 FindHighestBenchScore:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -9393,7 +9404,7 @@ FindHighestBenchScore:
 	jr nz, .loop
 
 	ld a, d
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	or a
 	ret
 
@@ -9454,11 +9465,11 @@ LoadDefendingPokemonColorWRAndPrizeCards:
 ; handles AI choosing parameters for certain attacks as well.
 AITryUseAttack:
 	ld a, [wSelectedAttack]
-	ldh [hTemp_ffa0], a
+	ldh [hDuelActionArgs + DECLARE_ATTACK_ARGS_ATTACK_INDEX], a
 	ld e, a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	ld d, a
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, OPPACTION_BEGIN_ATTACK
@@ -9683,7 +9694,7 @@ AIPlayInitialBasicCards:
 	ld hl, wDuelTempList
 .loop_hand_cards
 	ld a, [hli]
-	ldh [hTempCardIndex_ff98], a
+	ldh [hTempCardIndex], a
 	cp $ff
 	ret z
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -9694,18 +9705,18 @@ AIPlayInitialBasicCards:
 	or a
 	jr nz, .loop_hand_cards ; not Basic card
 	push hl
-	ldh a, [hTempCardIndex_ff98]
+	ldh a, [hTempCardIndex]
 	call PutHandPokemonCardInPlayArea
 	pop hl
 	jr .loop_hand_cards
 
-; returns carry if Pokémon at hTempPlayAreaLocation_ff9d
+; returns carry if Pokémon at hTempPlayAreaLocation
 ; can't use an attack or if that selected attack doesn't have enough energy
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = location of Pokémon card
-;	[wSelectedAttack]         = selected attack to examine
+;	[hTempPlayAreaLocation] = location of Pokémon card
+;	[wSelectedAttack]       = selected attack to examine
 CheckIfSelectedAttackIsUnusable:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .bench
 
@@ -9731,11 +9742,11 @@ CheckIfSelectedAttackIsUnusable:
 	call CheckLoadedAttackFlag
 	ret
 
-; load selected attack from Pokémon in hTempPlayAreaLocation_ff9d
+; load selected attack from Pokémon in hTempPlayAreaLocation
 ; and checks if there is enough energy to execute the selected attack
 ; input:
-;	[hTempPlayAreaLocation_ff9d] = location of Pokémon card
-;	[wSelectedAttack]         = selected attack to examine
+;	[hTempPlayAreaLocation] = location of Pokémon card
+;	[wSelectedAttack]       = selected attack to examine
 ; output:
 ;	b = basic energy still needed
 ;	c = colorless energy still needed
@@ -9744,7 +9755,7 @@ CheckIfSelectedAttackIsUnusable:
 ;	       OR if it's a Pokémon Power
 ;	       OR if not enough energy for attack
 CheckEnergyNeededForAttack:
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
@@ -9765,7 +9776,7 @@ CheckEnergyNeededForAttack:
 	ret
 
 .is_attack
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
 	bank1call HandleEnergyBurn
@@ -9914,7 +9925,7 @@ ConvertColorToEnergyCardID:
 ; input:
 ;	a = card index to check
 CheckIfCardCanBePlayed:
-	ldh [hTempCardIndex_ff9f], a
+	ldh [hDuelActionCardIndex], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Type]
 	cp TYPE_ENERGY
@@ -9950,7 +9961,7 @@ CheckIfCardCanBePlayed:
 .loop
 	push bc
 	ld e, b
-	ldh a, [hTempCardIndex_ff9f]
+	ldh a, [hDuelActionCardIndex]
 	ld d, a
 	call CheckIfCanEvolveInto
 	pop bc
@@ -10031,11 +10042,11 @@ LookForCardIDInHand:
 ; done to the defending Pokémon by a given card and attack
 ; input:
 ;	a = attack index to take into account
-;	[hTempPlayAreaLocation_ff9d] = location of attacking card to consider
+;	[hTempPlayAreaLocation] = location of attacking card to consider
 EstimateDamage_VersusDefendingCard:
 	ld [wSelectedAttack], a
 	ld e, a
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
@@ -10076,7 +10087,7 @@ EstimateDamage_VersusDefendingCard:
 
 .calculation
 ; if temp. location is active, damage calculation can be done directly...
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr z, CalculateDamage_VersusDefendingPokemon
 
@@ -10114,14 +10125,14 @@ EstimateDamage_VersusDefendingCard:
 	ret
 
 ; calculates the damage that will be dealt to the player's active card
-; using the card that is located in hTempPlayAreaLocation_ff9d
+; using the card that is located in hTempPlayAreaLocation
 ; taking into account weakness/resistance/pluspowers/defenders/etc
 ; and outputs the result capped at a max of $ff
 ; input:
 ;	[wAIMinDamage] = base damage
 ;	[wAIMaxDamage] = base damage
 ;	[wDamage]      = base damage
-;	[hTempPlayAreaLocation_ff9d] = turn holder's card location as the attacker
+;	[hTempPlayAreaLocation] = turn holder's card location as the attacker
 CalculateDamage_VersusDefendingPokemon:
 	ld hl, wAIMinDamage
 	call .Calculate
@@ -10135,7 +10146,7 @@ CalculateDamage_VersusDefendingPokemon:
 	push hl
 
 	; load this card's data
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call LoadPlayAreaCardID_ToTempTurnDuelistCardID
 
 	; load player's arena card data
@@ -10152,7 +10163,7 @@ CalculateDamage_VersusDefendingPokemon:
 	ld de, 0
 	jr .done
 .vulnerable
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .not_arena_card
 	bank1call HandleDamageModifiersEffects
@@ -10163,7 +10174,7 @@ CalculateDamage_VersusDefendingPokemon:
 	jr nz, .not_resistant
 
 ; handle weakness
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call GetPlayAreaCardColor
 	call TranslateColorToWR
 	ld b, a
@@ -10201,7 +10212,7 @@ CalculateDamage_VersusDefendingPokemon:
 
 .apply_pluspower_and_defender
 	; apply pluspower and defender boosts
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add CARD_LOCATION_ARENA
 	ld b, a
 	call ApplyAttachedPlusPower
@@ -10237,12 +10248,11 @@ CalculateDamage_VersusDefendingPokemon:
 	ret
 
 ; stores in wDamage, wAIMinDamage and wAIMaxDamage the calculated damage
-; done to the Pokémon at hTempPlayAreaLocation_ff9d
+; done to the Pokémon at hTempPlayAreaLocation
 ; by the defending Pokémon, using the attack index at a
 ; input:
 ;	a = attack index
-;	[hTempPlayAreaLocation_ff9d] = location of card to calculate
-;	                               damage as the receiver
+;	[hTempPlayAreaLocation] = location of card to calculate damage as the receiver
 EstimateDamage_FromDefendingPokemon:
 	call SwapTurn
 	ld [wSelectedAttack], a
@@ -10277,14 +10287,14 @@ EstimateDamage_FromDefendingPokemon:
 	ld [wAIMinDamage], a
 	ld [wAIMaxDamage], a
 	call SwapTurn
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	push af
 	xor a ; PLAY_AREA_ARENA
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	ld a, EFFECTCMDTYPE_AI
 	call TryExecuteEffectCommandFunction
 	pop af
-	ldh [hTempPlayAreaLocation_ff9d], a
+	ldh [hTempPlayAreaLocation], a
 	call SwapTurn
 	ld a, [wAIMinDamage]
 	ld hl, wAIMaxDamage
@@ -10296,7 +10306,7 @@ EstimateDamage_FromDefendingPokemon:
 
 .calculation
 ; if temp. location is active, damage calculation can be done directly...
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr z, CalculateDamage_FromDefendingPokemon
 
@@ -10334,7 +10344,7 @@ EstimateDamage_FromDefendingPokemon:
 
 ; similar to CalculateDamage_VersusDefendingPokemon but reversed,
 ; calculating damage of the defending Pokémon versus
-; the card located in hTempPlayAreaLocation_ff9d
+; the card located in hTempPlayAreaLocation
 ; taking into account weakness/resistance/pluspowers/defenders/etc
 ; and poison damage for two turns
 ; and outputs the result capped at a max of $ff
@@ -10342,8 +10352,7 @@ EstimateDamage_FromDefendingPokemon:
 ;	[wAIMinDamage] = base damage
 ;	[wAIMaxDamage] = base damage
 ;	[wDamage]      = base damage
-;	[hTempPlayAreaLocation_ff9d] = location of card to calculate
-;								 damage as the receiver
+;	[hTempPlayAreaLocation] = location of card to calculate damage as the receiver
 CalculateDamage_FromDefendingPokemon:
 	ld hl, wAIMinDamage
 	call .CalculateDamage
@@ -10365,7 +10374,7 @@ CalculateDamage_FromDefendingPokemon:
 	call SwapTurn
 
 	; load opponent's card data
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	bank1call LoadPlayAreaCardID_ToTempNonTurnDuelistCardID
 
 	call SwapTurn
@@ -10381,7 +10390,7 @@ CalculateDamage_FromDefendingPokemon:
 	bank1call CheckWhetherToApplyWeakness
 	call SwapTurn
 	jr c, .not_weak
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .bench_weak
 	ld a, DUELVARS_ARENA_CARD_CHANGED_WEAKNESS
@@ -10390,7 +10399,7 @@ CalculateDamage_FromDefendingPokemon:
 	jr nz, .unchanged_weak
 
 .bench_weak
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -10406,7 +10415,7 @@ CalculateDamage_FromDefendingPokemon:
 ; handle resistance
 	bank1call CheckWhetherToApplyResistance
 	jr c, .not_resistant
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .bench_res
 	ld a, DUELVARS_ARENA_CARD_CHANGED_RESISTANCE
@@ -10415,7 +10424,7 @@ CalculateDamage_FromDefendingPokemon:
 	jr nz, .unchanged_res
 
 .bench_res
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -10442,11 +10451,11 @@ CalculateDamage_FromDefendingPokemon:
 	ld b, CARD_LOCATION_ARENA
 	call ApplyAttachedPlusPower
 	call SwapTurn
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	add CARD_LOCATION_ARENA
 	ld b, a
 	call ApplyAttachedDefender
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .skip_damage_reduction
 	bank1call HandleDamageReduction
@@ -10456,7 +10465,7 @@ CalculateDamage_FromDefendingPokemon:
 	ld de, 0
 
 .no_underflow
-	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh a, [hTempPlayAreaLocation]
 	or a
 	jr nz, .done
 
