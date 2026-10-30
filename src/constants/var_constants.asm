@@ -1,20 +1,20 @@
 	const_def
 	const VAR_00                                       ; $00
-	const VAR_01                                       ; $01
+	const VAR_TIMES_TALKED_TO_RICK                     ; $01
 	const VAR_ISHIHARA_STATE                           ; $02
 	const VAR_03                                       ; $03
 	const VAR_TIMES_MET_RONALD                         ; $04
-	const VAR_05                                       ; $05
-	const VAR_06                                       ; $06
-	const VAR_07                                       ; $07
-	const VAR_08                                       ; $08
-	const VAR_09                                       ; $09
-	const VAR_0A                                       ; $0a
-	const VAR_0B                                       ; $0b
+	const VAR_NISHIJIMA_DECK_REQUIREMENT               ; $05
+	const VAR_ISHII_DECK_REQUIREMENT                   ; $06
+	const VAR_SAMEJIMA_DECK_REQUIREMENT                ; $07
+	const VAR_BIRURITCHI_DECKS_PLAYED                  ; $08
+	const VAR_BIRURITCHI_DUEL_NUMBER                   ; $09
+	const VAR_BIRURITCHI_WIN_COUNT_IN_MATCH            ; $0a
+	const VAR_BIRURITCHI_WIN_COUNT                     ; $0b
 	const VAR_FINAL_CUP_PLAYED_ROUNDS                  ; $0c
 	const VAR_GRAND_MASTER_CUP_STATE                   ; $0d
 	const VAR_GRANDMASTERCUP_CURRENT_ROUND             ; $0e
-	const VAR_0F                                       ; $0f
+	const VAR_GR2_LOCATION                             ; $0f
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_0             ; $10
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_1             ; $11
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_2             ; $12
@@ -34,11 +34,11 @@
 	const VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP ; $20
 	const VAR_21                                       ; $21
 	const VAR_IMAKUNI_BLACK_WIN_COUNT                  ; $22
-	const VAR_23                                       ; $23
-	const VAR_24                                       ; $24
-	const VAR_25                                       ; $25
-	const VAR_26                                       ; $26
-	const VAR_27                                       ; $27
+	const VAR_MET_IMAKUNI_RED                          ; $23
+	const VAR_IMAKUNI_RED_WIN_COUNT                    ; $24
+	const VAR_IMAKUNI_BLACK_LOCATION                   ; $25
+	const VAR_IMAKUNI_RED_LOCATION                     ; $26
+	const VAR_AARON_STEP_UP_PROGRESS                   ; $27
 	const VAR_TCG_CHALLENGE_CUP_STATE                  ; $28
 	const VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX            ; $29
 	const VAR_TIMES_WON_TCG_CHALLENGE_CUP              ; $2a
@@ -76,3 +76,11 @@ DEF NUM_EVENT_VARS EQU const_value
 	const ISHIHARA_TRADE_5_DONE          ; $8
 	const ISHIHARA_TRADE_6_DONE          ; $9
 	const ISHIHARA_TRADE_7_DONE_COMPLETE ; $a
+
+; VAR_BIRURITCHI_DECKS_PLAYED flags
+	const_def
+	const BIRURITCHI_DECK_STOP_LIFE_F          ; 0
+	const BIRURITCHI_DECK_SCORCHER_F           ; 1
+	const BIRURITCHI_DECK_TSUNAMI_STARTER_F    ; 2
+	const BIRURITCHI_DECK_SMASH_TO_MINCEMEAT_F ; 3
+DEF NUM_BIRURITCHI_DECKS EQU const_value

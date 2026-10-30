@@ -25,7 +25,7 @@ _CoreGameLoop::
 	dw StartMenu_ContinueDuel      ; STARTMENU_CONTINUE_DUEL
 
 StartMenu_NewGame:
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	bit 0, [hl]
 	jr z, .no_save_data
 	farcall AskToOverwriteSaveData
@@ -33,7 +33,7 @@ StartMenu_NewGame:
 .no_save_data
 	farcall InitSaveData
 	call ClearSaveData
-	call Func_c24d
+	call InitVarsForNewGame
 	call ClearChallengeMachineRecords
 	xor a ; FALSE
 	farcall ReadOrInitSaveData
@@ -46,7 +46,7 @@ StartMenu_NewGame:
 	ret
 
 StartMenu_ContinueFromDiary:
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	bit 2, [hl]
 	jr z, .no_saved_duel
 	bit 1, [hl]
@@ -96,7 +96,7 @@ StartMenu_ContinueFromDiary:
 	farcall ReadOrInitSaveData
 	call DisableLCD
 	farcall Func_10b9c
-	farcall Func_1055e
+	farcall ReloadOWMap
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
@@ -124,7 +124,7 @@ StartMenu_ContinueDuel:
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call EnablePlayTimeCounter
-	ld a, EVENT_F0
+	ld a, EVENT_CONTINUING_DUEL_FROM_SAVE
 	call MaxOutEventValue
 	ld a, OWMODE_CONTINUE_DUEL
 	call ExecuteOWModeScript
@@ -249,45 +249,45 @@ PauseMenu:
 
 HandleStartMenu:
 	xor a
-	ld [wd554], a
+	ld [wSaveDataFlags], a
 	call CheckIfHasBackupSave
 	jr c, .menu_config0
 	call ValidateBackupGeneralSaveData
-	jr c, .asm_c20f
-.asm_c1d7
-	ld hl, wd554
+	jr c, .invalid_backup
+.data_backed_up
+	ld hl, wSaveDataFlags
 	set 0, [hl]
 	call LoadBackupSave
 	farcall ValidateSavedNonLinkDuelData
 	jr c, .no_saved_duel
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	set 2, [hl]
 	; on second meeting, Ronald card pops with you
 	; and unlocks it in the start menu
 	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
-	cp $02
+	cp 2
 	jr c, .menu_config4
 	call CheckIfHasMainSave
 	jr c, .menu_config2
 	call ValidateGeneralSaveData
 	jr c, .menu_config2
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	set 1, [hl]
 	jr .menu_config3
 .no_saved_duel
 	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
-	cp $02
+	cp 2
 	jr c, .menu_config1
 	jr .menu_config2
 
-.asm_c20f
+.invalid_backup
 	debug_nop
 	call ValidateGeneralSaveData
 	jr c, .menu_config0
 	call BackupMainSave
-	jr .asm_c1d7
+	jr .data_backed_up
 
 .menu_config0
 	xor a ; STARTMENU_CONFIG_0
@@ -324,7 +324,7 @@ InitEvents:
 	call ClearEvents
 	ret
 
-Func_c24d:
+InitVarsForNewGame:
 	call ClearEvents
 	; reset play time
 	xor a
@@ -354,11 +354,11 @@ Func_c24d:
 	jr nc, .asm_c299
 	call InitChallengeMachine
 .asm_c299
-	call Func_c2a7
+	call EnablePlayTimeCounterAndSetRandomEvents
 	ret
 
 Func_c29d:
-	call Func_c2a7
+	call EnablePlayTimeCounterAndSetRandomEvents
 	ret
 
 EnablePlayTimeCounter:
@@ -366,16 +366,18 @@ EnablePlayTimeCounter:
 	ld [wPlayTimeCounterEnable], a
 	ret
 
-Func_c2a7:
+EnablePlayTimeCounterAndSetRandomEvents:
 	ld a, TRUE
 	ld [wPlayTimeCounterEnable], a
-	call Func_c2d6
-	call Func_c366
-	call Func_c3d4
-	call Func_c2ff
-	call HandleGrandMasterCupState
-	call Func_c439
-	call Func_c477
+
+	; decide random event states
+	call SetGR2Location
+	call SetImakuniBlackLocation
+	call SetImakuniRedLocation
+	call SetIshiharaLocation
+	call SetGrandMasterCupState
+	call SetChallengeCupState
+	call SetGRChallengeCupState
 	ret
 
 ; clears sSavedDecks
@@ -393,30 +395,34 @@ ClearSavedDecks:
 	call DisableSRAM
 	ret
 
-Func_c2d6:
+SetGR2Location:
+	; do we already have top right GR Coin piece?
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jr nz, .done
+	; no, are we in either Grass/Science club?
 	ld a, [wCurOWLocation]
 	cp OWMAP_GRASS_CLUB
 	jr z, .done
 	cp OWMAP_SCIENCE_CLUB
 	jr z, .done
+	; no, randomly choose between Grass and Science clubs
 	call UpdateRNGSources
 	rrca
-	jr c, .asm_c2f7
-	ld a, VAR_0F
+	jr c, .sience_club
+; grass club
+	ld a, VAR_GR2_LOCATION
 	ld c, OWMAP_GRASS_CLUB
 	call SetVarValue
 	jr .done
-.asm_c2f7
-	ld a, VAR_0F
+.sience_club
+	ld a, VAR_GR2_LOCATION
 	ld c, OWMAP_SCIENCE_CLUB
 	call SetVarValue
 .done
 	ret
 
-Func_c2ff:
+SetIshiharaLocation:
 	ld a, VAR_ISHIHARA_STATE
 	call GetVarValue
 	cp ISHIHARA_TALKED_AT_VILLA
@@ -431,7 +437,7 @@ Func_c2ff:
 .done
 	ret
 
-HandleGrandMasterCupState:
+SetGrandMasterCupState:
 	ld a, VAR_GRAND_MASTER_CUP_STATE
 	call GetVarValue
 	cp GRAND_MASTER_CUP_PLAYING
@@ -476,22 +482,26 @@ HandleGrandMasterCupState:
 	call ZeroOutVarValue
 	jr .done
 
-Func_c366:
+SetImakuniBlackLocation:
+	; if VAR_21 < 2, skip
 	ld a, VAR_21
 	call GetVarValue
 	cp $02
 	jr c, .done
+	; are we in same location as the one set already?
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
 	jr nz, .randomly_choose_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
 	jr z, .done
+	; we are not, continue
 
 .randomly_choose_club
+	; choose randomly between the following 5 clubs
 	ld a, 5
 	call Random
 	or a
@@ -504,35 +514,36 @@ Func_c366:
 	jr z, .fire_club
 	jr .water_club
 .rock_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_ROCK_CLUB
 	call SetVarValue
 	jr .club_chosen
 .psychic_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_PSYCHIC_CLUB
 	call SetVarValue
 	jr .club_chosen
 .science_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_SCIENCE_CLUB
 	call SetVarValue
 	jr .club_chosen
 .fire_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_FIRE_CLUB
 	call SetVarValue
 	jr .club_chosen
 .water_club
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	ld c, OWMAP_WATER_CLUB
 	call SetVarValue
 
 .club_chosen
+	; reject sample if chose current location
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
 	jr nz, .done
-	ld a, VAR_25
+	ld a, VAR_IMAKUNI_BLACK_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -541,18 +552,21 @@ Func_c366:
 .done
 	ret
 
-Func_c3d4:
+SetImakuniRedLocation:
+	; are we in same location as the one set already?
 	ld a, [wCurIsland]
 	cp GR_ISLAND
 	jr nz, .randomly_choose_club
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
 	jr z, .done
+	; we are not, continue
 
 .randomly_choose_club
+	; choose randomly between the following 5 locations
 	ld a, 5
 	call Random
 	or a
@@ -565,35 +579,36 @@ Func_c3d4:
 	jr z, .psychic_stronghold
 	jr .game_center
 .grass_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_GRASS_FORT
 	call SetVarValue
 	jr .club_chosen
 .fire_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_FIRE_FORT
 	call SetVarValue
 	jr .club_chosen
 .water_fort
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_WATER_FORT
 	call SetVarValue
 	jr .club_chosen
 .psychic_stronghold
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GR_PSYCHIC_STRONGHOLD
 	call SetVarValue
 	jr .club_chosen
 .game_center
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	ld c, OWMAP_GAME_CENTER
 	call SetVarValue
 
 .club_chosen
+	; reject sample if chose current location
 	ld a, [wCurIsland]
 	cp GR_ISLAND
 	jr nz, .done
-	ld a, VAR_26
+	ld a, VAR_IMAKUNI_RED_LOCATION
 	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
@@ -602,7 +617,7 @@ Func_c3d4:
 .done
 	ret
 
-Func_c439:
+SetChallengeCupState:
 	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	call GetVarValue
 	cp CHALLENGE_CUP_3_UNLOCKED
@@ -635,7 +650,7 @@ Func_c439:
 .skip
 	ret
 
-Func_c477:
+SetGRChallengeCupState:
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	call GetVarValue
 	cp CHALLENGE_CUP_3_UNLOCKED
@@ -1138,7 +1153,7 @@ OverworldLoop::
 	jr nz, .warp
 	bit 7, [hl]
 	jp nz, .fade
-	ld a, EVENT_02
+	ld a, EVENT_IS_DUELING
 	call GetEventValue
 	jp nz, .end_duel
 	ld a, PLAYER_TURN
@@ -1215,7 +1230,7 @@ OverworldLoop::
 	ld c, a
 	ld a, VAR_DUEL_START_THEME
 	call SetVarValue
-	ld a, EVENT_02
+	ld a, EVENT_IS_DUELING
 	call MaxOutEventValue
 	ld a, GAME_EVENT_DUEL
 	ld [wNextGameEvent], a
@@ -1225,10 +1240,10 @@ OverworldLoop::
 .end_duel
 	ld a, OWMODE_AFTER_DUEL_PRELOAD
 	call ExecuteOWModeScript
-	ld a, EVENT_02
+	ld a, EVENT_IS_DUELING
 	call ZeroOutEventValue
 	call InitSaveDataState
-	ld a, EVENT_F0
+	ld a, EVENT_CONTINUING_DUEL_FROM_SAVE
 	call ZeroOutEventValue
 	farcall PlayCurrentSong
 	ld a, OWMODE_AFTER_DUEL
@@ -1239,7 +1254,7 @@ OverworldLoop::
 
 .fade
 	farcall Func_10b9c
-	farcall Func_1055e
+	farcall ReloadOWMap
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
@@ -1699,7 +1714,7 @@ ClearEvents:
 Func_d683:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	call ZeroOutEventValue
-	ld a, EVENT_EE
+	ld a, EVENT_BEAT_GR3
 	call ZeroOutEventValue
 	ld a, VAR_3B
 	ld c, 0
@@ -1903,7 +1918,7 @@ GetByteAfterCall:
 EventVarMasks:
 	db $00, %00000001 ; EVENT_PLAYER_GENDER
 	db $00, %00000010 ; EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	db $00, %00000100 ; EVENT_02
+	db $00, %00000100 ; EVENT_IS_DUELING
 	db $00, %00001000 ; EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	db $01, %00000001 ; EVENT_GOT_CHANSEY_COIN
 	db $01, %00000010 ; EVENT_GOT_ODDISH_COIN
@@ -1954,8 +1969,8 @@ EventVarMasks:
 	db $09, %00000010 ; EVENT_TALKED_TO_JOSHUA
 	db $09, %00000100 ; EVENT_TALKED_TO_SARA
 	db $09, %00001000 ; EVENT_TALKED_TO_AMANDA
-	db $09, %00010000 ; EVENT_35
-	db $09, %00100000 ; EVENT_36
+	db $09, %00010000 ; EVENT_BEAT_AMY
+	db $09, %00100000 ; EVENT_BEAT_AMANDA
 	db $0a, %00000001 ; EVENT_TALKED_TO_ISAAC
 	db $0a, %00000010 ; EVENT_TALKED_TO_JENNIFER
 	db $0a, %00000100 ; EVENT_TALKED_TO_NICHOLAS
@@ -2046,10 +2061,10 @@ EventVarMasks:
 	db $19, %00000010 ; EVENT_TALKED_TO_TRADE_NPC_FIRE_FORT
 	db $19, %00000100 ; EVENT_TALKED_TO_TRADE_NPC_WATER_FORT
 	db $19, %00001000 ; EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_STRONGHOLD
-	db $19, %00010000 ; EVENT_91
-	db $19, %00100000 ; EVENT_92
+	db $19, %00010000 ; EVENT_GLASSES_KID_CONGRATULATED_PLAYER
+	db $19, %00100000 ; EVENT_DR_MASON_CONGRATULATED_PLAYER
 	db $19, %01000000 ; EVENT_TALKED_TO_SAM
-	db $19, %10000000 ; EVENT_94
+	db $19, %10000000 ; EVENT_GR_CHALLENGE_HALL_GR_CHAP_LEFT
 	db $1a, %00000001 ; EVENT_TALKED_TO_ISHIHARA
 	db $1a, %00000010 ; EVENT_BATTLED_ISHIHARA
 	db $1a, %00000100 ; EVENT_TALKED_TO_ISHIHARA_POST_GAME
@@ -2068,7 +2083,7 @@ EventVarMasks:
 	db $1d, %00000010 ; EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
 	db $1d, %00000100 ; EVENT_TALKED_TO_GR3_WATER_CLUB
 	db $1d, %00001000 ; EVENT_TALKED_TO_GR4_PSYCHIC_CLUB
-	db $1d, %00010000 ; EVENT_A7
+	db $1d, %00010000 ; EVENT_LOST_AGAINST_GR4
 	db $1d, %00100000 ; EVENT_OBTAINED_TWO_GR_COIN_PIECES
 	db $1d, %01000000 ; EVENT_TALKED_TO_GR5_POKEMON_DOME
 	db $1d, %10000000 ; EVENT_TALKED_TO_GR5_TCG_AIRPORT
@@ -2077,9 +2092,9 @@ EventVarMasks:
 	db $1e, %00000100 ; EVENT_TRADED_CARDS_FIRE_CLUB
 	db $1e, %00001000 ; EVENT_TRADED_CARDS_LIGHTNING_CLUB
 	db $1e, %00010000 ; EVENT_TRADED_CARDS_PSYCHIC_CLUB
-	db $1e, %00100000 ; EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL
-	db $1e, %01000000 ; EVENT_B1
-	db $1e, %10000000 ; EVENT_B2
+	db $1e, %00100000 ; EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_1
+	db $1e, %01000000 ; EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_2
+	db $1e, %10000000 ; EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL_3
 	db $1f, %00000001 ; EVENT_TRADED_CARDS_GRASS_FORT
 	db $1f, %00000010 ; EVENT_TRADED_CARDS_LIGHTNING_FORT
 	db $1f, %00000100 ; EVENT_TRADED_CARDS_GR_CHALLENGE_HALL
@@ -2136,36 +2151,36 @@ EventVarMasks:
 	db $29, %00000100 ; EVENT_TALKED_TO_BISHOP
 	db $29, %00001000 ; EVENT_TALKED_TO_ROOK
 	db $29, %00010000 ; EVENT_TALKED_TO_QUEEN
-	db $2a, %00000001 ; EVENT_EB
+	db $2a, %00000001 ; EVENT_DUELING_CHALLENGE_MACHINE
 	db $2a, %00000010 ; EVENT_TALKED_TO_ROD_POKEMON_DOME
 	db $2b, %00000001 ; EVENT_SET_UNTIL_MAP_RELOAD_1
-	db $2b, %00000010 ; EVENT_EE
-	db $2b, %00000100 ; EVENT_EF
-	db $33, %00000001 ; EVENT_F0
+	db $2b, %00000010 ; EVENT_BEAT_GR3
+	db $2b, %00000100 ; EVENT_BEAT_GRACE
+	db $33, %00000001 ; EVENT_CONTINUING_DUEL_FROM_SAVE
 	db $33, %00000010 ; EVENT_SET_UNTIL_MAP_RELOAD_2
-	db $33, %00000100 ; EVENT_F2
-	db $33, %00001000 ; EVENT_F3
+	db $33, %00000100 ; EVENT_GIFT_CENTER_UNUSED
+	db $33, %00001000 ; EVENT_TRADED_WITH_TCG_CHALLENGE_HALL_CHAP
 	db $33, %00010000 ; EVENT_ISHIHARA_CARD_TRADE_STATE
 	db $33, %00100000 ; EVENT_ISHIHARA_LOCATION_STATE
 
 ; extra events?
 GeneralVarMasks:
 	db $00, %11111111 ; VAR_00
-	db $01, %00000011 ; VAR_01
+	db $01, %00000011 ; VAR_TIMES_TALKED_TO_RICK
 	db $01, %00111100 ; VAR_ISHIHARA_STATE
 	db $01, %11000000 ; VAR_03
 	db $02, %00001111 ; VAR_TIMES_MET_RONALD
-	db $03, %00000011 ; VAR_05
-	db $03, %00001100 ; VAR_06
-	db $03, %00110000 ; VAR_07
-	db $04, %00001111 ; VAR_08
-	db $04, %00110000 ; VAR_09
-	db $04, %11000000 ; VAR_0A
-	db $05, %00000011 ; VAR_0B
+	db $03, %00000011 ; VAR_NISHIJIMA_DECK_REQUIREMENT
+	db $03, %00001100 ; VAR_ISHII_DECK_REQUIREMENT
+	db $03, %00110000 ; VAR_SAMEJIMA_DECK_REQUIREMENT
+	db $04, %00001111 ; VAR_BIRURITCHI_DECKS_PLAYED
+	db $04, %00110000 ; VAR_BIRURITCHI_DUEL_NUMBER
+	db $04, %11000000 ; VAR_BIRURITCHI_WIN_COUNT_IN_MATCH
+	db $05, %00000011 ; VAR_BIRURITCHI_WIN_COUNT
 	db $06, %00000011 ; VAR_FINAL_CUP_PLAYED_ROUNDS
 	db $06, %00011100 ; VAR_GRAND_MASTER_CUP_STATE
 	db $06, %11100000 ; VAR_GRANDMASTERCUP_CURRENT_ROUND
-	db $07, %00001111 ; VAR_0F
+	db $07, %00001111 ; VAR_GR2_LOCATION
 	db $08, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	db $09, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_1
 	db $0a, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_2
@@ -2185,11 +2200,11 @@ GeneralVarMasks:
 	db $17, %00111100 ; VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP
 	db $18, %00000111 ; VAR_21
 	db $18, %11110000 ; VAR_IMAKUNI_BLACK_WIN_COUNT
-	db $19, %00000001 ; VAR_23
-	db $19, %11110000 ; VAR_24
-	db $1a, %00001111 ; VAR_25
-	db $1a, %11110000 ; VAR_26
-	db $1b, %00001111 ; VAR_27
+	db $19, %00000001 ; VAR_MET_IMAKUNI_RED
+	db $19, %11110000 ; VAR_IMAKUNI_RED_WIN_COUNT
+	db $1a, %00001111 ; VAR_IMAKUNI_BLACK_LOCATION
+	db $1a, %11110000 ; VAR_IMAKUNI_RED_LOCATION
+	db $1b, %00001111 ; VAR_AARON_STEP_UP_PROGRESS
 	db $1b, %01110000 ; VAR_TCG_CHALLENGE_CUP_STATE
 	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	db $1d, %00001111 ; VAR_TIMES_WON_TCG_CHALLENGE_CUP
@@ -3140,7 +3155,7 @@ ScriptCommand_LoadTilemap:
 	ld d, c
 	ld e, b
 	pop bc
-	farcall Func_12c0ce
+	farcall LoadTilemapAndAddToHistory
 	jp IncreaseScriptPointerBy5
 
 ScriptCommand_ShowCardReceivedScreen:
@@ -3666,51 +3681,51 @@ DuelNishijimaRequirement_Reroll:
 	call Random
 	ld c, a
 	ld e, a
-	ld a, VAR_05
+	ld a, VAR_NISHIJIMA_DECK_REQUIREMENT
 	call SetVarValue
 	ld a, SNORLAX_GUARD_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 DuelNishijimaRequirement_Use:
-	ld a, VAR_05
+	ld a, VAR_NISHIJIMA_DECK_REQUIREMENT
 	call GetVarValue
 	ld e, a
 	ld a, SNORLAX_GUARD_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 DuelIshiiRequirement_Reroll:
 	ld a, 3
 	call Random
 	ld c, a
 	ld e, a
-	ld a, VAR_06
+	ld a, VAR_ISHII_DECK_REQUIREMENT
 	call SetVarValue
 	ld a, EYE_OF_THE_STORM_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 DuelIshiiRequirement_Use:
-	ld a, VAR_06
+	ld a, VAR_ISHII_DECK_REQUIREMENT
 	call GetVarValue
 	ld e, a
 	ld a, EYE_OF_THE_STORM_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 DuelSamejimaRequirement_Reroll:
 	ld a, 3
 	call Random
 	ld c, a
 	ld e, a
-	ld a, VAR_07
+	ld a, VAR_SAMEJIMA_DECK_REQUIREMENT
 	call SetVarValue
 	ld a, SUDDEN_GROWTH_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 DuelSamejimaRequirement_Use:
-	ld a, VAR_07
+	ld a, VAR_SAMEJIMA_DECK_REQUIREMENT
 	call GetVarValue
 	ld e, a
 	ld a, SUDDEN_GROWTH_DECK_ID
-	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+	jr CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar
 
 CheckDuelDeckRequirementWithNPCDeckID:
 	farcall LoadDeckIDData
@@ -3720,7 +3735,7 @@ CheckDuelDeckRequirementWithNPCDeckID:
 	call c, DuelDeckRequirementFailed
 	ret
 
-CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
+CheckDuelDeckRequirementWithNPCDeckID_ColorlessAltar:
 	push de
 	farcall LoadDeckIDData
 	pop de

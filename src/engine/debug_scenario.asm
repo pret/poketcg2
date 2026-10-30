@@ -789,10 +789,10 @@ DebugModifyEventsMenuItems:
 	farcall ZeroOutEventValue
 	ld a, EVENT_ENTERED_GRAND_MASTER_CUP
 	farcall ZeroOutEventValue
-	ld a, VAR_0B
-	ld c, $01
+	ld a, VAR_BIRURITCHI_WIN_COUNT
+	ld c, 1
 	farcall SetVarValue
-	ld a, VAR_27
+	ld a, VAR_AARON_STEP_UP_PROGRESS
 	ld c, $09
 	farcall SetVarValue
 	ld a, VAR_ISHIHARA_STATE

@@ -3818,11 +3818,11 @@ LoadDeckIDData:
 
 INCLUDE "data/deck_id_data.asm"
 
-; set [wcd55] = e
+; set [wColorlessAltarDeckRequirementIndex] = e
 ; then check deck requirement using the opponent offset in [wDeckRequirement]
 CheckDuelDeckRequirement::
 	ld a, e
-	ld [wcd55], a
+	ld [wColorlessAltarDeckRequirementIndex], a
 	bank1call LoadPlayerDeck
 	ld a, [wDeckRequirement]
 	ld hl, .DuelDeckRequirementPointers
@@ -3963,7 +3963,7 @@ CheckNishijimaRequirement:
 
 CheckIshiiRequirement:
 	ld e, 3 ; table offset
-	ld a, [wcd55]
+	ld a, [wColorlessAltarDeckRequirementIndex]
 	or a
 	jr z, CheckDarkPokemonRequirement
 	jr CheckColorlessAltarRequirement
@@ -3972,7 +3972,7 @@ CheckSamejimaRequirement:
 	ld e, 6 ; table offset
 	; fallthrough
 CheckColorlessAltarRequirement:
-	ld a, [wcd55]
+	ld a, [wColorlessAltarDeckRequirementIndex]
 	add e
 	add a
 	ld e, a
