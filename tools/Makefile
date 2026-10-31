@@ -11,6 +11,5 @@ all: $(tools)
 clean:
 	rm -f $(tools)
 
-gfx: common.h
-%: %.c
+%: %.c common.h
 	$(CC) $(CFLAGS) -o $@ $<
